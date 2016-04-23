@@ -8,7 +8,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  paddding-top: 60px;
+  padding-top: 60px;
 }
 
 section {
@@ -16,15 +16,14 @@ section {
 }
 
 textarea {
-  resize: vertical
+  resize: vertical;
 }
 
 .center {
   text-align: center;
-}
-
-.center h1 {
-  margin-bottom: 10px;
+  h1 {
+    margin-bottom: 10px;
+  }
 }
 
 
