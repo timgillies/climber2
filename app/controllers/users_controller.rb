@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
 
   def show
-    @account = Account.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def new
-    @account = Account.new
+    @user = User.new
   end
 
   def create
-    @account = Account.new(account_params)
-    if @account.save
+    @user = User.new(user_params)
+    if @user.save
+      log_in @user
       flash[:success] = "Welcome to Climber.  Track your sends and share with friends"
-      redirect_to user_url(@account)
+      redirect_to user_url(@user)
     else
       render 'new'
     end
@@ -20,8 +21,8 @@ class UsersController < ApplicationController
 
   private
 
-  def account_params
-    params.require(:account).permit(:name, :email, :password,
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
                                     :password_confirmation)
   end
 
