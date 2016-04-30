@@ -6,7 +6,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  test "unsuccessful edit" do
+  test "unsuccessful edit with friendly forwarding" do
     log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'

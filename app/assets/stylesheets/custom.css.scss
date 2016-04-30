@@ -205,3 +205,14 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* Homepage */
+
+.jumbotron {
+    position: relative;
+    background: #000 url("carabiners_bw.jpg") center center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
