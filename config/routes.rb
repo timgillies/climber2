@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'facilities/new'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -13,6 +15,9 @@ Rails.application.routes.draw do
   get 'login'        => 'sessions#new'
   post 'login'       => 'sessions#create'
   delete 'logout'    => 'sessions#destroy'
+
+  get 'register'     => 'facilities#new'
+
   resources :users
   resources :account_activations, only: [:edit]
   default_url_options :host => 'localhost:3000'
