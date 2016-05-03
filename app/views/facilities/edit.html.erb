@@ -1,0 +1,41 @@
+<% provide(:title, 'Edit facility info') %>
+
+<ul class="pagination">
+  <li class="active"><a href="#">Basic Info</a></li>
+  <li><a href="#">Manage Routes</a></li>
+  <li><a href="#">Gym Config</a></li>
+</ul>
+<h1>Edit Facility Info</h1>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <div class="col-sm-8">
+      <%= form_for(@facility) do |f| %>
+        <%= render 'shared/error_messages', object: @facility %>
+
+        <%= f.label :name, "Facility name" %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.label :location, "Location (optional)"%>
+        <%= f.text_field :location, class: 'form-control' %>
+
+        <%= f.label :addressline1, "Address" %>
+        <%= f.text_field :addressline1, class: 'form-control' %>
+
+        <%= f.label :addressline2, "Address (line 2)" %>
+        <%= f.text_field :addressline2, class: 'form-control' %>
+
+        <%= f.label :city %>
+        <%= f.text_field :city, class: 'form-control' %>
+
+        <%= f.label :state %>
+        <%= f.select :state, options_for_select(us_states), include_blank: true, class: 'form-control' %>
+
+        <%= f.label :zipcode, "Zip code" %>
+        <%= f.text_field :zipcode, class: 'form-control' %>
+
+        <%= f.submit "Register", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</form>
