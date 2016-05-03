@@ -1,0 +1,17 @@
+<% provide(:title, @facility.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @facility.name %>
+      </h1>
+
+      <h2>
+        <%= @facility.location %>
+        <%= @facility.addressline1 %>
+        <%= @facility.city %>, <%= @facility.state %>
+        <%= @facility.zipcode %>
+      </h2>
+    </section>
+  </aside>
+</div>

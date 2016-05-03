@@ -3,7 +3,11 @@ require 'test_helper'
 class FacilityTest < ActiveSupport::TestCase
 
   def setup
-    @facility = Facility.new(name: "Movement Climbing & Fitness", zipcode: "80220-4545")
+    @facility = Facility.new( name: "Movement Climbing & Fitness",
+                              addressline1: "4323 Fake St." ,
+                              city: "Denver",
+                              state: "CO",
+                              zipcode: "80220-4545")
   end
 
   test "should be valid" do
