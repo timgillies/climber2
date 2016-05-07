@@ -17,3 +17,22 @@ User.create!(name:  "Example User",
                activated: true,
                activated_at: Time.zone.now.to_datetime)
 end
+
+users = User.order(:created_at).take(6)
+3.times do
+  name = Faker::Company.name
+  location = Faker::Address.city
+  addressline1 = Faker::Address.street_address
+  addressline2 = Faker::Address.secondary_address
+  city = Faker::Address.city
+  state = Faker::Address.state
+  zipcode = Faker::Address.zip
+
+  users.each { |user| user.facilities.create!(name: name,
+                                              location: location,
+                                              addressline1: addressline1,
+                                              addressline2: addressline2,
+                                              city: city,
+                                              state: state,
+                                              zipcode: zipcode) }
+end

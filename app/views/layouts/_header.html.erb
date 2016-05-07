@@ -2,14 +2,19 @@
   <div class="container">
     <%= link_to "climbhub", root_path, id: "logo" %>
     <nav>
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Indoor", root_path %></li>
+      <li><%= link_to "Outdoor", help_path %></li>
+      <li><%= link_to "Find a Partner", users_path %></li>
+    </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
           <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+              <%= current_user.name %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", user_path(current_user) %></li>
@@ -21,7 +26,40 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<span class="caret"></span></a>
+            <ul id="login-dp" class="dropdown-menu">
+              <li>
+                <div class="row">
+                  <div class="col-md-12">
+                    Login via
+                    <div class="social-buttons">
+                      <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                      <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                    </div>
+                    or
+                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                      <div class="form-group">
+                        <%= form_for(:session, url: login_path) do |f| %>
+                          <%= f.email_field :email, class: 'form-control', placeholder: "email address" %>
+                          <%= f.password_field :password, class: 'form-control', placeholder: "password" %>
+                          <%= link_to "forgot password?", new_password_reset_path %>
+                          <%= f.label :remember_me, class: "checkbox inline" do %>
+                                  <%= f.check_box :remember_me %>
+                                  <span>keep me logged-in</span>
+                                <% end %>
+
+                          <%= f.submit "Log in", class: "btn btn-primary" %>
+                        <% end %>
+                    </form>
+                  </div>
+                  <div class="bottom text-center">
+                    New here ? <a href="#"><b>Join Us</b></a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
         <% end %>
       </ul>
     </nav>

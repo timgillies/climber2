@@ -1,14 +1,15 @@
-<div class="center jumbotron">
-  <h1>Climber</h1>
+<div class="container">
+  <div class="home-body">
+    <div class="center jumbotron">
 
-  <h2>
-    Welcome to Climber.  Start tracking your indoor sends, interact with others, and find climbing partners.
-  </h2>
+      <h1>CLIMBHUB</h1>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-  <%= link_to "Facilities", register_path, class: "btn btn-lg btn-primary" %>
+      <h2>
+        Welcome to Climbhub.  Start tracking your indoor sends, interact with others, and find climbing partners.
+      </h2>
 
+      <%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "Facilities", register_path, class: "btn btn-lg btn-primary" %>
+    </div>
+  </div>
 </div>
-
-<%= link_to image_tag("carabiners_bw.jpg", alt: "Climber Logo"),
-            'http://rubyonrails.org/' %>

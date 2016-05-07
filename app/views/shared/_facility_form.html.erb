@@ -1,0 +1,8 @@
+
+<%= form_for(@facility) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Register a new facility..." %>
+  </div>
+  <%= f.submit "Register", class: "btn btn-primary" %>
+<% end %>

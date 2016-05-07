@@ -1,19 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  location: MyString
-  addressline1: MyString
-  addressline2: MyString
-  city: MyString
-  state: MyString
-  zipcode: MyString
+most_recent:
+  name: Movement Denver
+  location: Denver
+  addressline1: 1558 Fairfax
+  addressline2:
+  city: Denver
+  state: CO
+  zipcode: 80220
 
-two:
-  name: MyString
-  location: MyString
-  addressline1: MyString
-  addressline2: MyString
-  city: MyString
-  state: MyString
-  zipcode: MyString
+orange:
+  name: Denver Bouldering Club
+  location: Denver
+  addressline1: 2451 Mallard Cir
+  addressline2:
+  city: Denver
+  state: CO
+  zipcode: 80440
+  user: michael

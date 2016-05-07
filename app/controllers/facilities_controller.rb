@@ -1,4 +1,5 @@
 class FacilitiesController < ApplicationController
+  before_action :logged_in_user, only: [:create, :edit]
 
   def show
     @facility = Facility.find(params[:id])
@@ -9,7 +10,7 @@ class FacilitiesController < ApplicationController
   end
 
   def create
-    @facility = Facility.new(facility_params)
+    @facility = current_user.facilities.build(facility_params)
     if @facility.save
       flash[:success] = "Thank you for registering!"
       redirect_to @facility
@@ -21,7 +22,7 @@ class FacilitiesController < ApplicationController
   def edit
     @facility = Facility.find(params[:id])
   end
-  
+
   private
 
     def facility_params

@@ -15,7 +15,8 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  background-color: #fff;
+  padding:50px;
 }
 
 section {
@@ -27,9 +28,13 @@ textarea {
 }
 
 .center {
-  text-align: center;
+  background-color: rgba(255,255,255, 0.7);
+  color: inherit;
   h1 {
-    margin-bottom: 10px;
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
   }
 }
 
@@ -76,6 +81,57 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
 }
 
 /* footer */
@@ -208,11 +264,170 @@ input {
 
 /* Homepage */
 
-.jumbotron {
-    position: relative;
-    background: #000 url("carabiners_bw.jpg") center center;
-    width: 100%;
-    height: 100%;
+.home-body {
+    background: #000 url("Gym_climber_1_copy.jpeg");
     background-size: cover;
-    overflow: hidden;
+    background-position: top left;
+    padding:50px;
 }
+
+
+
+/* facilities */
+
+.facilities {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .name {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
+
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+/* Navbar */
