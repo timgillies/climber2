@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'routes/new'
+
   get 'facilities/new'
 
   get 'password_resets/new'
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :facilities
+  resources :routes
   resources :account_activations, only: [:edit]
   default_url_options :host => 'localhost:3000'
   resources :password_resets,     only: [:new, :create, :edit, :update]

@@ -1,0 +1,31 @@
+<% provide(:title, 'Add a route') %>
+
+
+<div class="container">
+  <div class="center jumbotron">
+
+    <h1>Add a route</h1>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@route) do |f| %>
+          <%= render 'shared/error_messages', object: @route %>
+
+          <%= f.label :name, "Route Name/Description" %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+          <%= f.label :color, "Route Color"%>
+          <%= f.text_field :color, class: 'form-control' %>
+
+          <%= f.label :setter, "Route Setter" %>
+          <%= f.text_field :setter, class: 'form-control' %>
+
+          <%= f.label :setdate, "Set Date" %>
+          <%= f.text_field :setdate, class: 'form-control' %>
+
+          <%= f.submit "Register", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

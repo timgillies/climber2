@@ -1,5 +1,6 @@
 class Facility < ActiveRecord::Base
   belongs_to :user
+  has_many :routes
   default_scope -> { order(created_at: :desc) }
   validates :name, presence: true
   validates :addressline1, presence: true

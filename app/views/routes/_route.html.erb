@@ -1,0 +1,6 @@
+<li id="route-<%= route.id %>">
+  <span class="name"><%= link_to route.name, route %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(route.created_at) %> ago.
+  </span>
+</li>

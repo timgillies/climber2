@@ -1,8 +1,8 @@
 <li id="facility-<%= facility.id %>">
   <%= link_to gravatar_for(facility.user, size: 50), facility.user %>
-  <span class="user"><%= link_to facility.user.name, facility.user %></span>
-  <span class="name"><%= facility.name %></span>
+  <span class="name"><%= link_to facility.name, facility %></span>
+  <span class="user"><%= facility.city %>, <%= facility.state %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(facility.created_at) %> ago.
+    Updated <%= time_ago_in_words(facility.updated_at) %> ago
   </span>
 </li>

@@ -62,4 +62,13 @@
         <%= will_paginate @facilities %>
       <% end %>
     </div>
+    <div class="col-md-8">
+      <% if @user.routes.any? %>
+        <h3>Routes (<%= @user.routes.count %>)</h3>
+        <ol class="routes">
+          <%= render @routes %>
+        </ol>
+        <%= will_paginate @routes %>
+      <% end %>
+    </div>
 </div>

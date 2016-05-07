@@ -1,6 +1,10 @@
 class FacilitiesController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit]
 
+  def index
+    @facilities = Facility.paginate(page: params[:page])
+  end
+
   def show
     @facility = Facility.find(params[:id])
   end
