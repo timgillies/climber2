@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -178,7 +179,8 @@ footer {
 
 aside {
   section.user_info {
-    margin-top: 20px;
+    margin-top: 0px;
+    width: 100px;
   }
   section {
     padding: 10px 0;
@@ -187,6 +189,7 @@ aside {
       border: 0;
       padding-top: 0;
     }
+
     span {
       display: block;
       margin-bottom: 3px;
@@ -210,6 +213,53 @@ aside {
 .gravatar_edit {
   margin-top: 15px;
 }
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 0px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: $gray-light;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: $gray-darker;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 26px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: $gray-darker;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: $gray;
+    background: none;
+}
+
 
 
 /* forms */

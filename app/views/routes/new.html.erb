@@ -11,6 +11,9 @@
         <%= form_for(@route) do |f| %>
           <%= render 'shared/error_messages', object: @route %>
 
+          <%= f.label :facility_id, "Facility Name" %>
+          <%= f.select(:facility_id, @userfacilities) %>
+
           <%= f.label :name, "Route Name/Description" %>
           <%= f.text_field :name, class: 'form-control' %>
 
@@ -23,7 +26,7 @@
           <%= f.label :setdate, "Set Date" %>
           <%= f.text_field :setdate, class: 'form-control' %>
 
-          <%= f.submit "Register", class: "btn btn-primary" %>
+          <%= f.submit "Add", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

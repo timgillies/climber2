@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "liveclimb", root_path, id: "logo" %>
+    <%= link_to "live / climb", root_path, id: "logo" %>
     <nav>
     <ul class="nav navbar-nav navbar-left">
       <li class="dropdown">
@@ -10,9 +10,7 @@
         <ul class="dropdown-menu">
           <li><%= link_to "Browse", facilities_path %></li>
           <li><%= link_to "Add a Route", new_route_path %></li>
-          <% if can? :create, Facility %>
           <li><%= link_to "Add a Facility", new_facility_path %></li>
-          <% end %>
         </ul>
       </li>
       <li><%= link_to "Outdoor", href="#" %></li>

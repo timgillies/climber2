@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507230935) do
+ActiveRecord::Schema.define(version: 20160508043437) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20160507230935) do
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
   add_index "facilities", ["user_id"], name: "index_facilities_on_user_id", using: :btree
 
+  create_table "grades", force: :cascade do |t|
+    t.string   "grade",      limit: 255
+    t.string   "system",     limit: 255
+    t.string   "style",      limit: 255
+    t.integer  "rank",       limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "routes", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.integer  "facility_id", limit: 4
@@ -39,9 +48,11 @@ ActiveRecord::Schema.define(version: 20160507230935) do
     t.date     "enddate"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "grade_id",    limit: 4
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
+  add_index "routes", ["grade_id"], name: "index_routes_on_grade_id", using: :btree
   add_index "routes", ["user_id", "facility_id", "created_at"], name: "index_routes_on_user_id_and_facility_id_and_created_at", using: :btree
   add_index "routes", ["user_id"], name: "index_routes_on_user_id", using: :btree
 
@@ -65,5 +76,6 @@ ActiveRecord::Schema.define(version: 20160507230935) do
 
   add_foreign_key "facilities", "users"
   add_foreign_key "routes", "facilities"
+  add_foreign_key "routes", "grades"
   add_foreign_key "routes", "users"
 end

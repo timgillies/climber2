@@ -7,6 +7,7 @@ class FacilitiesController < ApplicationController
 
   def show
     @facility = Facility.find(params[:id])
+    @routes = @facility.routes.paginate(page: params[:page])
   end
 
   def new
@@ -26,6 +27,7 @@ class FacilitiesController < ApplicationController
   def edit
     @facility = Facility.find(params[:id])
   end
+
 
   private
 

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grade: MyString
+  system: MyString
+  style: MyString
+  rank: 1
+
+two:
+  grade: MyString
+  system: MyString
+  style: MyString
+  rank: 1

@@ -2,20 +2,36 @@
 
 <div class="row">
   <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @facility.name %>
-      </h1>
-
-      <h2>
-        <%= @facility.location %>
-        <%= @facility.addressline1 %>
-        <%= @facility.city %>, <%= @facility.state %>
-        <%= @facility.zipcode %>
-      </h2>
-    </section>
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                <%= @facility.name %>
+            </a>
+        </li>
+        <li>
+            <%= link_to "Bouldering", "#" %>
+        </li>
+        <li>
+            <%= link_to "Horseshoe 1", "#" %>
+        </li>
+        <li>
+            <%= link_to "Horseshoe 2", "#" %>
+        </li>
+        <li>
+            <%= link_to "Lead Wall", "#" %>
+        </li>
+        <li>
+            <%= link_to "Kids Climbing", "#" %>
+        </li>
+        <li>
+            <%= link_to "Training", "#" %>
+        </li>
+        <li>
+            <%= link_to "Manage", "#" %>
+        </li>
+    </ul>
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-4">
     <% if @facility.routes.any? %>
       <h3>routes (<%= @facility.routes.count %>)</h3>
       <ol class="routes">

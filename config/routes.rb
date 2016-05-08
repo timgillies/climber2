@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'grades/new'
+
   get 'routes/new'
 
   get 'facilities/new'
