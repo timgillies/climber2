@@ -1,2 +1,24 @@
-<h1>Grades#new</h1>
-<p>Find me in app/views/grades/new.html.erb</p>
+<% provide(:title, 'Add Custom Grades') %>
+
+<div class="container">
+    <h1>Custom Grading Scale</h1>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for [@facility, @grade] do |f| %>
+          <%= render 'shared/error_messages', object: @grade %>
+
+          <%= f.label :discipline, "Discipline" %>
+          <%= f.select :discipline, options_for_select(disciplines), include_blank: true, class: 'form-control' %>
+
+          <%= f.label :grade, "Grade"%>
+          <%= f.text_field :grade, class: 'form-control' %>
+
+          <%= f.label :rank, "Rank" %>
+          <%= f.text_field :rank, class: 'form-control' %>
+
+          <%= f.submit "Add", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+</div>

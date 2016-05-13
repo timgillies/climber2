@@ -23,8 +23,12 @@ Rails.application.routes.draw do
   get 'register'     => 'facilities#new'
 
   resources :users
-  resources :facilities
+  resources :facilities do
+    resources :routes
+    resources :grades
+  end
   resources :routes
+  resources :grades
   resources :account_activations, only: [:edit]
   default_url_options :host => 'localhost:3000'
   resources :password_resets,     only: [:new, :create, :edit, :update]

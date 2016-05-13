@@ -18,9 +18,9 @@ class RoutesController < ApplicationController
     @userfacilities = current_user.facilities.all.map{|uf| [ uf.name, uf.id ] }
     if @route.save
       flash[:success] = "Route created!"
-      redirect_to root_url
+      redirect_to new_route_url
     else
-      render 'static_pages/home'
+      render 'new'
     end
   end
 

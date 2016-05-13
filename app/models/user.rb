@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :facilities
   has_many :routes
+  has_many :grades
+  
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest

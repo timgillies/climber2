@@ -1,6 +1,10 @@
 class Facility < ActiveRecord::Base
   belongs_to :user
   has_many :routes
+  has_many :grades
+
+  accepts_nested_attributes_for :grades
+
   default_scope -> { order(created_at: :desc) }
   validates :name, presence: true
   validates :addressline1, presence: true

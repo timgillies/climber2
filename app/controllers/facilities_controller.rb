@@ -28,7 +28,6 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:id])
   end
 
-
   private
 
     def facility_params

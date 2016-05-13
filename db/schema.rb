@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508043437) do
+ActiveRecord::Schema.define(version: 20160509131023) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -30,13 +30,18 @@ ActiveRecord::Schema.define(version: 20160508043437) do
   add_index "facilities", ["user_id"], name: "index_facilities_on_user_id", using: :btree
 
   create_table "grades", force: :cascade do |t|
-    t.string   "grade",      limit: 255
-    t.string   "system",     limit: 255
-    t.string   "style",      limit: 255
-    t.integer  "rank",       limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "grade",       limit: 255
+    t.string   "system",      limit: 255
+    t.string   "discipline",  limit: 255
+    t.integer  "rank",        limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "facility_id", limit: 4
+    t.integer  "user_id",     limit: 4
   end
+
+  add_index "grades", ["facility_id"], name: "index_grades_on_facility_id", using: :btree
+  add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
   create_table "routes", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -75,6 +80,8 @@ ActiveRecord::Schema.define(version: 20160508043437) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "facilities", "users"
+  add_foreign_key "grades", "facilities"
+  add_foreign_key "grades", "users"
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades"
   add_foreign_key "routes", "users"

@@ -1,9 +1,6 @@
 <% provide(:title, 'Add a route') %>
 
-
 <div class="container">
-  <div class="center jumbotron">
-
     <h1>Add a route</h1>
 
     <div class="row">
@@ -24,11 +21,10 @@
           <%= f.text_field :setter, class: 'form-control' %>
 
           <%= f.label :setdate, "Set Date" %>
-          <%= f.text_field :setdate, class: 'form-control' %>
+          <%= f.date_field :setdate, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
 
           <%= f.submit "Add", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
-  </div>
 </div>
