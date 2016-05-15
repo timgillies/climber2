@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'zones/new'
+
   get 'grades/new'
 
   get 'routes/new'
@@ -26,9 +28,11 @@ Rails.application.routes.draw do
   resources :facilities do
     resources :routes
     resources :grades
+    resources :zones
   end
   resources :routes
   resources :grades
+  resources :zones
   resources :account_activations, only: [:edit]
   default_url_options :host => 'localhost:3000'
   resources :password_resets,     only: [:new, :create, :edit, :update]

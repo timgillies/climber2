@@ -8,8 +8,8 @@
         <%= form_for [@facility, @route] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
-          <%= f.label :facility_id, "Zone" %>
-          <%= f.select(:facility_id, @userfacilities) %>
+          <%= f.label :zone_id, "Zone" %>
+          <%= f.select(:zone_id, @facilityzones) %>
 
           <%= f.label :grade_id, "Grade" %>
           <%= f.select(:grade_id, @facilitygrades) %>
