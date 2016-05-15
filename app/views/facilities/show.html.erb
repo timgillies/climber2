@@ -24,10 +24,10 @@
             <%= link_to "Kids Climbing", "#" %>
         </li>
         <li>
-            <%= link_to "Training", "#" %>
+            <%= link_to "Add Routes", new_facility_route_path(@facility) %>
         </li>
         <li>
-            <%= link_to "Manage Grading Scale", [@facility, :grades] %>
+            <%= link_to "Manage Grading Scale", new_facility_grade_path(@facility) %>
         </li>
     </ul>
   </aside>

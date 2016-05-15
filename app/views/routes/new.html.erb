@@ -5,11 +5,14 @@
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= form_for(@route) do |f| %>
-          <%= render 'shared/error_messages', object: @route %>
+        <%= form_for [@facility, @route] do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
 
-          <%= f.label :facility_id, "Facility Name" %>
+          <%= f.label :facility_id, "Zone" %>
           <%= f.select(:facility_id, @userfacilities) %>
+
+          <%= f.label :grade_id, "Grade" %>
+          <%= f.select(:grade_id, @facilitygrades) %>
 
           <%= f.label :name, "Route Name/Description" %>
           <%= f.text_field :name, class: 'form-control' %>
@@ -22,6 +25,9 @@
 
           <%= f.label :setdate, "Set Date" %>
           <%= f.date_field :setdate, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+
+          <%= f.label :enddate, "End Date" %>
+          <%= f.date_field :enddate, :value => 30.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
 
           <%= f.submit "Add", class: "btn btn-primary" %>
         <% end %>

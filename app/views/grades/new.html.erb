@@ -8,8 +8,11 @@
         <%= form_for [@facility, @grade] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
+          <%= f.label :system, "System" %>
+          <%= f.select :system, options_for_select(systems), class: 'form-control' %>
+
           <%= f.label :discipline, "Discipline" %>
-          <%= f.select :discipline, options_for_select(disciplines), include_blank: true, class: 'form-control' %>
+          <%= f.select :discipline, options_for_select(disciplines), class: 'form-control' %>
 
           <%= f.label :grade, "Grade"%>
           <%= f.text_field :grade, class: 'form-control' %>

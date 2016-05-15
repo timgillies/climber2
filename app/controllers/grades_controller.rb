@@ -8,7 +8,6 @@ class GradesController < ApplicationController
     @grade = Grade.new
     @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
     @facility = Facility.find(params[:facility_id])
-    @userfacilities = current_user.facilities.all.map{|uf| [ uf.name, uf.id ] }
   end
 
   def show
@@ -20,9 +19,7 @@ class GradesController < ApplicationController
     @grade = current_user.grades.build(grade_params)
     @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page]) # makes "each" work in the partial
     @grade.facility_id = params[:facility_id] #this passes the facility ID through the field
-    @userfacilities = current_user.facilities.all.map{|uf| [ uf.name, uf.id ] }
     if @grade.save
-      @grade.update_attribute(:system, "custom")
       flash[:success] = "Route created!"
       redirect_to(new_facility_grade_path(@facility))
     else
@@ -34,7 +31,6 @@ class GradesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @grade = current_user.grades.build(grade_params)
     if @grade.update_attributes(grade_params)
-      @grade.update_attribute(:system, "custom")
       flash[:success] = "Route created!"
       redirect_to(new_facility_grade_path(@facility))
       # Handle a successful update.
@@ -43,6 +39,11 @@ class GradesController < ApplicationController
     end
   end
 
+  def edit
+    @facility = Facility.find(params[:facility_id])
+    @grade = Grade.find(params[:id])
+    @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page]) # makes "each" work in the partial
+  end
 
   def destroy
   end
@@ -50,6 +51,6 @@ class GradesController < ApplicationController
   private
 
     def grade_params
-      params.require(:grade).permit(:grade, :system, :discipline, :rank, :enddate, :facility_id)
+      params.require(:grade).permit(:grade, :system, :discipline, :rank, :facility_id)
     end
   end

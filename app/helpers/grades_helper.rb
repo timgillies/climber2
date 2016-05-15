@@ -2,15 +2,16 @@ module GradesHelper
 
   def disciplines
     [
-      ['Sport Climbing', 'sport'],
       ['Bouldering', 'boulder'],
+      ['Sport Climbing', 'sport']
     ]
   end
 
-  def styles
+  def systems
     [
-      ['YDS', 'yds'],
-      ['Hueco "V" Scale', 'hueco'],
+      ['Custom', 'custom'],
+      ['Yosemite Decimal System (USA)', 'yds'],
+      ['Hueco V Scale (USA)', 'hueco']
     ]
   end
 end
