@@ -1,0 +1,10 @@
+<% provide(:title, 'All Grades') %>
+<h1>Custom Grades</h1>
+
+<%= will_paginate %>
+
+<ul class="grades">
+  <%= render @grades %>
+</ul>
+
+<%= will_paginate %>

@@ -4,8 +4,8 @@ class Grade < ActiveRecord::Base
   belongs_to :user
 
   validates :discipline, presence: true
-  validates :grade, presence: true,
-                    uniqueness: { case_sensitive: false }
-  validates :rank,  uniqueness: true,
-                    numericality: { only_integer: true }
+  validates :grade, presence: true
+  validates :rank, numericality: { only_integer: true }
+  validates :rank, uniqueness: {  scope: [:facility_id, :discipline] }
+  validates :grade, uniqueness: {  scope: [:facility_id] }
 end

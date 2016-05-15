@@ -339,6 +339,16 @@ input {
   }
 }
 
+.grades {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
 /* Homepage */
 
 .home-body {
@@ -397,6 +407,28 @@ input {
     padding-top: 0;
   }
   .name {
+    display: block;
+    margin-left: 60px;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+}
+
+.grades {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .grade {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .grade {
     display: block;
     margin-left: 60px;
   }

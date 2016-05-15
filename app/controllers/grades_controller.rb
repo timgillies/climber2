@@ -1,12 +1,13 @@
 class GradesController < ApplicationController
 
   def index
-    @grades = Grade.paginate(page: params[:page])
+    @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
   end
 
   def new
-    @facility = Facility.find(params[:facility_id])
     @grade = Grade.new
+    @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
+    @facility = Facility.find(params[:facility_id])
     @userfacilities = current_user.facilities.all.map{|uf| [ uf.name, uf.id ] }
   end
 
@@ -15,17 +16,30 @@ class GradesController < ApplicationController
   end
 
   def create
-    @facility = Facility.find(params[:facility_id])
+    @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @grade = current_user.grades.build(grade_params)
-    @grade.facility_id = params[:facility_id]
+    @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page]) # makes "each" work in the partial
+    @grade.facility_id = params[:facility_id] #this passes the facility ID through the field
     @userfacilities = current_user.facilities.all.map{|uf| [ uf.name, uf.id ] }
-    @grade.update_attribute(:system, "custom")
     if @grade.save
+      @grade.update_attribute(:system, "custom")
       flash[:success] = "Route created!"
       redirect_to(new_facility_grade_path(@facility))
     else
-      flash[:danger] = "Route not saved"
+      render :new
+    end
+  end
+
+  def update
+    @facility = Facility.find(params[:facility_id])
+    @grade = current_user.grades.build(grade_params)
+    if @grade.update_attributes(grade_params)
+      @grade.update_attribute(:system, "custom")
+      flash[:success] = "Route created!"
       redirect_to(new_facility_grade_path(@facility))
+      # Handle a successful update.
+    else
+      render :new
     end
   end
 

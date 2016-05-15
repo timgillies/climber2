@@ -5,5 +5,12 @@ module GradesHelper
       ['Sport Climbing', 'sport'],
       ['Bouldering', 'boulder'],
     ]
-end
+  end
+
+  def styles
+    [
+      ['YDS', 'yds'],
+      ['Hueco "V" Scale', 'hueco'],
+    ]
+  end
 end
