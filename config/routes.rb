@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'walls/new'
+
   get 'zones/new'
 
   get 'grades/new'
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
     resources :routes
     resources :grades
     resources :zones
+    resources :walls
+    get 'manage', on: :member
   end
   resources :routes
   resources :grades

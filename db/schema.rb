@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515144646) do
+ActiveRecord::Schema.define(version: 20160515182708) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -55,12 +55,14 @@ ActiveRecord::Schema.define(version: 20160515144646) do
     t.datetime "updated_at",              null: false
     t.integer  "grade_id",    limit: 4
     t.integer  "zone_id",     limit: 4
+    t.integer  "wall_id",     limit: 4
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
   add_index "routes", ["grade_id"], name: "index_routes_on_grade_id", using: :btree
   add_index "routes", ["user_id", "facility_id", "created_at"], name: "index_routes_on_user_id_and_facility_id_and_created_at", using: :btree
   add_index "routes", ["user_id"], name: "index_routes_on_user_id", using: :btree
+  add_index "routes", ["wall_id"], name: "index_routes_on_wall_id", using: :btree
   add_index "routes", ["zone_id"], name: "index_routes_on_zone_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -81,6 +83,17 @@ ActiveRecord::Schema.define(version: 20160515144646) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  create_table "walls", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "facility_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4
+  end
+
+  add_index "walls", ["facility_id"], name: "index_walls_on_facility_id", using: :btree
+  add_index "walls", ["user_id"], name: "index_walls_on_user_id", using: :btree
+
   create_table "zones", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.integer  "facility_id", limit: 4
@@ -98,7 +111,10 @@ ActiveRecord::Schema.define(version: 20160515144646) do
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades"
   add_foreign_key "routes", "users"
+  add_foreign_key "routes", "walls"
   add_foreign_key "routes", "zones"
+  add_foreign_key "walls", "facilities"
+  add_foreign_key "walls", "users"
   add_foreign_key "zones", "facilities"
   add_foreign_key "zones", "users"
 end

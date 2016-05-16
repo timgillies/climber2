@@ -28,6 +28,12 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:id])
   end
 
+  def manage
+    @facility = Facility.find(params[:id])
+    @routes = @facility.routes.paginate(page: params[:page])
+  end
+
+
   private
 
     def facility_params

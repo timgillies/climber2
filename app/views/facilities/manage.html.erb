@@ -1,0 +1,31 @@
+<% provide(:title, @facility.name) %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                <%= @facility.name %>
+            </a>
+        </li>
+        <li>
+            <%= link_to "Add Routes", new_facility_route_path(@facility) %>
+        </li>
+        <li>
+            <%= link_to "Zones", new_facility_zone_path(@facility) %>
+        </li>
+        <li>
+            <%= link_to "Grading Scale", new_facility_grade_path(@facility) %>
+        </li>
+    </ul>
+  </aside>
+  <div class="col-md-4">
+    <% if @facility.routes.any? %>
+      <h3>routes (<%= @facility.routes.count %>)</h3>
+      <ol class="routes">
+        <%= render @routes %>
+      </ol>
+      <%= will_paginate @routes %>
+    <% end %>
+  </div>
+</div>
