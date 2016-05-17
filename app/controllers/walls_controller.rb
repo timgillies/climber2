@@ -29,7 +29,7 @@ class WallsController < ApplicationController
 
   def update
     @facility = Facility.find(params[:facility_id])
-    @wall = current_user.walls.build(wall_params)
+    @wall = @facility.walls.find(params[:id])
     if @wall.update_attributes(wall_params)
       flash[:success] = "Wall updated!"
       redirect_to(new_facility_wall_path(@facility))
@@ -42,10 +42,13 @@ class WallsController < ApplicationController
   def edit
     @facility = Facility.find(params[:facility_id])
     @wall = Wall.find(params[:id])
-    @zones = Wall.order('discipline ASC', 'rank ASC').paginate(page: params[:page]) # makes "each" work in the partial
+    @walls = Wall.paginate(page: params[:page]) #makes "each" work
   end
 
   def destroy
+    Wall.find(params[:id]).destroy
+    flash[:success] = "Wall deleted"
+    redirect_to :back
   end
 
   private

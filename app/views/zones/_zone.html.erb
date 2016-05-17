@@ -2,7 +2,8 @@
   <% @zones.each do |zone| %>
     <li>
       <%= zone.name  %>
-      <%= link_to "edit",  edit_facility_zone_path(@facility, zone ) %>  
+      <%= link_to "edit",  edit_facility_zone_path(@facility, zone ) %>
+      <%= link_to "delete", zone , method: :delete %> 
     </li>
   <% end %>
 </ul>

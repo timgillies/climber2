@@ -29,7 +29,7 @@ class ZonesController < ApplicationController
 
   def update
     @facility = Facility.find(params[:facility_id])
-    @zone = current_user.zones.build(zone_params)
+    @zone = @facility.zones.find(params[:id])
     if @zone.update_attributes(zone_params)
       flash[:success] = "Zone updated!"
       redirect_to(new_facility_zone_path(@facility))
@@ -42,10 +42,13 @@ class ZonesController < ApplicationController
   def edit
     @facility = Facility.find(params[:facility_id])
     @zone = Zone.find(params[:id])
-    @zones = Zone.order('discipline ASC', 'rank ASC').paginate(page: params[:page]) # makes "each" work in the partial
+    @zones = Zone.paginate(page: params[:page])
   end
 
   def destroy
+    Zone.find(params[:id]).destroy
+    flash[:success] = "Zone deleted"
+    redirect_to :back
   end
 
   private

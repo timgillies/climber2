@@ -6,6 +6,7 @@
       <%= grade.system %> -
       value: <%= grade.rank %>
       <%= link_to "edit",  edit_facility_grade_path(@facility, grade) %>
+      <%= link_to "delete", grade, method: :delete %>
     </li>
   <% end %>
 </ul>

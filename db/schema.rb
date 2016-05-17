@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515182708) do
+ActiveRecord::Schema.define(version: 20160516125000) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -109,10 +109,10 @@ ActiveRecord::Schema.define(version: 20160515182708) do
   add_foreign_key "grades", "facilities"
   add_foreign_key "grades", "users"
   add_foreign_key "routes", "facilities"
-  add_foreign_key "routes", "grades"
+  add_foreign_key "routes", "grades", on_delete: :nullify
   add_foreign_key "routes", "users"
-  add_foreign_key "routes", "walls"
-  add_foreign_key "routes", "zones"
+  add_foreign_key "routes", "walls", on_delete: :nullify
+  add_foreign_key "routes", "zones", on_delete: :nullify
   add_foreign_key "walls", "facilities"
   add_foreign_key "walls", "users"
   add_foreign_key "zones", "facilities"
