@@ -7,5 +7,5 @@ class Grade < ActiveRecord::Base
   validates :grade, presence: true
   validates :rank, numericality: { only_integer: true }
   validates :rank, uniqueness: {  scope: [:facility_id, :discipline] }
-  validates :grade, uniqueness: {  scope: [:facility_id] }
+  validates :grade, uniqueness: {  scope: [:facility_id, :discipline] }
 end

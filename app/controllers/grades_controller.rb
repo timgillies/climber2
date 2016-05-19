@@ -29,9 +29,10 @@ class GradesController < ApplicationController
 
   def update
     @facility = Facility.find(params[:facility_id])
-    @grade = current_user.grades.build(grade_params)
+    @grade = @facility.grades.find(params[:id])
+    @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page]) # makes "each" work in the partial
     if @grade.update_attributes(grade_params)
-      flash[:success] = "Route created!"
+      flash[:success] = "Route updated!"
       redirect_to(new_facility_grade_path(@facility))
       # Handle a successful update.
     else
@@ -46,6 +47,9 @@ class GradesController < ApplicationController
   end
 
   def destroy
+    Grade.find(params[:id]).destroy
+    flash[:success] = "Grade deleted"
+    redirect_to :back
   end
 
   private

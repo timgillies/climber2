@@ -1,5 +1,6 @@
 <li id="route-<%= route.id %>">
-  <span class="name"><%= link_to route.name, route %></span>
+  <span class="name"><%= route.name %></span>
+  <%= link_to "edit",  edit_facility_route_path(@facility, route) %>
   <span class="timestamp">
     Created <%= time_ago_in_words(route.created_at) %> ago.
   </span>

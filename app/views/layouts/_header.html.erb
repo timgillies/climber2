@@ -15,6 +15,9 @@
       </li>
       <li><%= link_to "Outdoor", href="#" %></li>
       <li><%= link_to "Find a Partner", users_path %></li>
+      <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
+      <li><%= link_to "Management Portal", facilities_path %></li>
+      <% end %>
     </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -33,40 +36,7 @@
             </ul>
           </li>
         <% else %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<span class="caret"></span></a>
-            <ul id="login-dp" class="dropdown-menu">
-              <li>
-                <div class="row">
-                  <div class="col-md-12">
-                    Login via
-                    <div class="social-buttons">
-                      <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                      <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                    </div>
-                    or
-                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                      <div class="form-group">
-                        <%= form_for(:session, url: login_path) do |f| %>
-                          <%= f.email_field :email, class: 'form-control', placeholder: "email address" %>
-                          <%= f.password_field :password, class: 'form-control', placeholder: "password" %>
-                          <%= link_to "forgot password?", new_password_reset_path %>
-                          <%= f.label :remember_me, class: "checkbox inline" do %>
-                                  <%= f.check_box :remember_me %>
-                                  <span>keep me logged-in</span>
-                                <% end %>
-
-                          <%= f.submit "Log in", class: "btn btn-primary" %>
-                        <% end %>
-                    </form>
-                  </div>
-                  <div class="bottom text-center">
-                    New here ? <a href="#"><b>Join Us</b></a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </li>
+        <li><%= link_to "Login", login_path %></li>
         <% end %>
       </ul>
     </nav>

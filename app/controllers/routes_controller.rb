@@ -6,9 +6,10 @@ class RoutesController < ApplicationController
 
   def new
     @route = Route.new
-    @userfacilities = current_user.facilities.all.map{|uf| [ uf.name, uf.id ] }
     @facility = Facility.find(params[:facility_id])
-    @facilitygrades = @facility.grades.all.map{|uf| [uf.grade, uf.id ] }
+    @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+    @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
   end
 
   def show
@@ -18,8 +19,10 @@ class RoutesController < ApplicationController
   def create
     @facility = Facility.find(params[:facility_id])
     @route = current_user.routes.build(route_params)
-    @userfacilities = current_user.facilities.all.map{|uf| [ uf.name, uf.id ] }
-    @facilitygrades = @facility.grades.all.map{|uf| [uf.grade, uf.id ] }
+    @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+    @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @route.facility_id = params[:facility_id]
     if @route.save
       flash[:success] = "Route created!"
       redirect_to(new_facility_route_path(@facility))
@@ -28,6 +31,29 @@ class RoutesController < ApplicationController
     end
   end
 
+  def edit
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id])
+    @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+    @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @route.facility_id = params[:facility_id]
+  end
+
+  def update
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id])
+    if @route.update_attributes(route_params)
+      flash[:success] = "Route updated"
+      redirect_to(manage_facility_url(@facility))
+      # Handle a successful update.
+    else
+      render 'edit'
+    end
+  end
+
+
+
 
   def destroy
   end
@@ -35,6 +61,6 @@ class RoutesController < ApplicationController
   private
 
     def route_params
-      params.require(:route).permit(:name, :color, :setter, :setdate, :enddate, :facility_id, :grade_id)
+      params.require(:route).permit(:name, :color, :setter, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id)
     end
 end

@@ -2,6 +2,8 @@ class Facility < ActiveRecord::Base
   belongs_to :user
   has_many :routes
   has_many :grades
+  has_many :zones
+  has_many :walls
 
   accepts_nested_attributes_for :grades
 

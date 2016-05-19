@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'walls/new'
+
+  get 'zones/new'
+
   get 'grades/new'
 
   get 'routes/new'
@@ -26,12 +30,19 @@ Rails.application.routes.draw do
   resources :facilities do
     resources :routes
     resources :grades
+    resources :zones
+    resources :walls
+    get 'manage', on: :member
   end
   resources :routes
   resources :grades
+  resources :zones
+  resources :walls
   resources :account_activations, only: [:edit]
   default_url_options :host => 'localhost:3000'
   resources :password_resets,     only: [:new, :create, :edit, :update]
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
