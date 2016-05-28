@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160519124932) do
-=======
-ActiveRecord::Schema.define(version: 20160516125000) do
->>>>>>> AddCanCan
+ActiveRecord::Schema.define(version: 20160527152010) do
+
+  create_table "admins", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "facility_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "admins", ["facility_id"], name: "index_admins_on_facility_id", using: :btree
+  add_index "admins", ["user_id"], name: "index_admins_on_user_id", using: :btree
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -126,28 +132,8 @@ ActiveRecord::Schema.define(version: 20160516125000) do
   add_index "zones", ["facility_id"], name: "index_zones_on_facility_id", using: :btree
   add_index "zones", ["user_id"], name: "fk_rails_36b0b64bdb", using: :btree
 
-  create_table "walls", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "facility_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "user_id",     limit: 4
-  end
-
-  add_index "walls", ["facility_id"], name: "index_walls_on_facility_id", using: :btree
-  add_index "walls", ["user_id"], name: "index_walls_on_user_id", using: :btree
-
-  create_table "zones", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "facility_id", limit: 4
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "zones", ["facility_id"], name: "index_zones_on_facility_id", using: :btree
-  add_index "zones", ["user_id"], name: "fk_rails_36b0b64bdb", using: :btree
-
+  add_foreign_key "admins", "facilities"
+  add_foreign_key "admins", "users"
   add_foreign_key "facilities", "users"
   add_foreign_key "grades", "facilities"
   add_foreign_key "grades", "users"

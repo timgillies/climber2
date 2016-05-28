@@ -1,0 +1,15 @@
+
+<% provide(:title) %>
+
+<div class="row">
+  <%= render "manage_sidebar" %>
+  <div class="col-md-4">
+    <% if @user.facilities.any? %>
+      <h3>facilities (<%= @user.facilities.count %>)</h3>
+      <ol class="routes">
+        <%= render @facilities %>
+      </ol>
+      <%= will_paginate @facilities %>
+    <% end %>
+  </div>
+</div>

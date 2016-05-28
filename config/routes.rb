@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admins/new'
+
   get 'walls/new'
 
   get 'zones/new'
@@ -26,13 +28,20 @@ Rails.application.routes.draw do
 
   get 'register'     => 'facilities#new'
 
-  resources :users
+  resources :users do
+    member do
+      get 'manage'
+    end
+  end
+
   resources :facilities do
     resources :routes
     resources :grades
     resources :zones
     resources :walls
-    get 'manage', on: :member
+    member do
+      get 'manage'
+    end
   end
   resources :routes
   resources :grades

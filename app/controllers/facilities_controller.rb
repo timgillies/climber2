@@ -29,8 +29,14 @@ class FacilitiesController < ApplicationController
   end
 
   def manage
-    @facility = Facility.find(params[:id])
+    @facility = Facility.find(params[:facility_id])
     @routes = @facility.routes.paginate(page: params[:page])
+  end
+
+  def destroy
+    Facility.find(params[:id]).destroy
+    flash[:success] = "Facility deleted"
+    redirect_to users_url
   end
 
 

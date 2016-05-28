@@ -15,12 +15,12 @@
       </li>
       <li><%= link_to "Outdoor", href="#" %></li>
       <li><%= link_to "Find a Partner", users_path %></li>
-      <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
-      <li><%= link_to "Management Portal", facilities_path %></li>
-      <% end %>
     </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
+        <li><%= link_to "Route Management", manage_user_path(current_user) %></li>
+        <% end %>
           <% if logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :grades
   has_many :zones
   has_many :walls
+  belongs_to :admin 
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

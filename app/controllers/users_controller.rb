@@ -48,6 +48,12 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def manage
+    @user = User.find(params[:id])
+    @facilities = @user.facilities.paginate(page: params[:page])
+  end
+
+
   private
 
   def user_params
