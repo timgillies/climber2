@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  get 'walls/index'
+
+  get 'zones/index'
+
+  get 'grades/index'
+
+  get 'routes/index'
+
+  get 'facilities/index'
+
   get 'admins/new'
 
   get 'walls/new'
@@ -28,9 +39,15 @@ Rails.application.routes.draw do
 
   get 'register'     => 'facilities#new'
 
-  resources :users do
-    member do
-      get 'manage'
+  resources :users
+
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    resources :facilities do
+      resources :routes
+      resources :grades
+      resources :zones
+      resources :walls
     end
   end
 
@@ -39,10 +56,8 @@ Rails.application.routes.draw do
     resources :grades
     resources :zones
     resources :walls
-    member do
-      get 'manage'
-    end
   end
+
   resources :routes
   resources :grades
   resources :zones

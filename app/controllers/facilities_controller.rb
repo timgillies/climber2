@@ -1,6 +1,4 @@
 class FacilitiesController < ApplicationController
-  before_action :logged_in_user, only: [:create, :edit]
-
   def index
     @facilities = Facility.paginate(page: params[:page])
   end
@@ -9,36 +7,6 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:id])
     @routes = @facility.routes.paginate(page: params[:page])
   end
-
-  def new
-    @facility = Facility.new
-  end
-
-  def create
-    @facility = current_user.facilities.build(facility_params)
-    if @facility.save
-      flash[:success] = "Thank you for registering!"
-      redirect_to @facility
-    else
-      render 'new'
-    end
-  end
-
-  def edit
-    @facility = Facility.find(params[:id])
-  end
-
-  def manage
-    @facility = Facility.find(params[:facility_id])
-    @routes = @facility.routes.paginate(page: params[:page])
-  end
-
-  def destroy
-    Facility.find(params[:id]).destroy
-    flash[:success] = "Facility deleted"
-    redirect_to users_url
-  end
-
 
   private
 

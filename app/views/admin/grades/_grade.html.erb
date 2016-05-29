@@ -1,0 +1,12 @@
+<ul class="grades">
+  <% @grades.each do |grade| %>
+    <li>
+      <%= grade.discipline.upcase  %> -
+      <%= grade.grade %> -
+      <%= grade.system %> -
+      value: <%= grade.rank %>
+      <%= link_to "edit",  edit_facility_grade_path(@facility, grade) %>
+      <%= link_to "delete", grade, method: :delete %>
+    </li>
+  <% end %>
+</ul>

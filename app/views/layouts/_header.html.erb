@@ -19,7 +19,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
-        <li><%= link_to "Route Management", manage_user_path(current_user) %></li>
+        <li><%= link_to "Route Management", "#" %></li>
         <% end %>
           <% if logged_in? %>
           <li class="dropdown">
