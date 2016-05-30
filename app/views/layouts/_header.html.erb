@@ -9,8 +9,8 @@
         </a>
         <ul class="dropdown-menu">
           <li><%= link_to "Browse", facilities_path %></li>
-          <li><%= link_to "Add a Route", new_route_path %></li>
-          <li><%= link_to "Add a Facility", new_facility_path %></li>
+          <li><%= link_to "Add a Route", "#" %></li>
+          <li><%= link_to "Add a Facility", "#" %></li>
         </ul>
       </li>
       <li><%= link_to "Outdoor", href="#" %></li>
@@ -19,7 +19,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
-        <li><%= link_to "Route Management", "#" %></li>
+        <li><%= link_to "Route Management", admin_facilities_path %></li>
         <% end %>
           <% if logged_in? %>
           <li class="dropdown">

@@ -1,5 +1,7 @@
 class Admin::GradesController < ApplicationController
 
+  layout "admin"
+
   def index
     @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
   end

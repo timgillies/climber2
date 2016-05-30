@@ -1,5 +1,7 @@
 class Admin::WallsController < ApplicationController
 
+  layout "admin"
+
   def index
     @walls = Wall.paginate(page: params[:page])
   end

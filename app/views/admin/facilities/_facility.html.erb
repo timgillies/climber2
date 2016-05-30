@@ -1,11 +1,6 @@
 <li id="facility-<%= facility.id %>">
   <%= link_to gravatar_for(facility.user, size: 50), facility.user %>
-  <span class="name"><%= link_to facility.name, facility %> - <%= facility.location %></span>
+  <span class="name"><%= link_to facility.name, admin_facility_path(facility) %> - <%= facility.location %></span>
   <span class="user"><%= facility.city %>, <%= facility.state %></span>
-  <span class="timestamp"><% if current_user.admin? && !current_user?(facility) %>
-      <%= link_to "manage", facility %>
-    | <%= link_to "delete", facility, method: :delete,
-                                  data: { confirm: "Are you sure?" } %>
-  <% end %>
   </span>
 </li>

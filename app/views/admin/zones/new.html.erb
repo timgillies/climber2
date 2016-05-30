@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= form_for [@facility, @zone] do |f| %>
+        <%= form_for [:new, @facility, @zone] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
           <%= f.label :name, "Zone Name/Description" %>

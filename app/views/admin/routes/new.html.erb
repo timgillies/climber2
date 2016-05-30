@@ -5,23 +5,23 @@
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= form_for [@facility, @route] do |f| %>
+        <%= form_for [:admin,@facility, @route] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
+
+          <%= f.label :name, "Route Name/Description" %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+          <%= f.label :grade_id, "Grade" %>
+          <%= f.select(:grade_id, @facilitygrades, include_blank: true, class: 'form-control') %>
+
+          <%= f.label :color, "Route Color"%>
+          <%= f.text_field :color, class: 'form-control' %>
 
           <%= f.label :zone_id, "Zone" %>
           <%= f.select(:zone_id, @facilityzones, include_blank: true, class: 'form-control') %>
 
           <%= f.label :wall_id, "Wall" %>
           <%= f.select(:wall_id, @facilitywalls, include_blank: true, class: 'form-control') %>
-
-          <%= f.label :grade_id, "Grade" %>
-          <%= f.select(:grade_id, @facilitygrades, include_blank: true, class: 'form-control') %>
-
-          <%= f.label :name, "Route Name/Description" %>
-          <%= f.text_field :name, class: 'form-control' %>
-
-          <%= f.label :color, "Route Color"%>
-          <%= f.text_field :color, class: 'form-control' %>
 
           <%= f.label :setter, "Route Setter" %>
           <%= f.text_field :setter, class: 'form-control' %>

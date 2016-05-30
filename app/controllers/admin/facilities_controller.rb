@@ -1,8 +1,10 @@
 class Admin::FacilitiesController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit]
 
+  layout "admin"
+
   def index
-    @facilities = Facility.paginate(page: params[:page])
+    @facilities = current_user.facilities.paginate(page: params[:page])
   end
 
   def show
@@ -18,7 +20,7 @@ class Admin::FacilitiesController < ApplicationController
     @facility = current_user.facilities.build(facility_params)
     if @facility.save
       flash[:success] = "Thank you for registering!"
-      redirect_to @facility
+      redirect_to admin_facilities_url
     else
       render 'new'
     end

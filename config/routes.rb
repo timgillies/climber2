@@ -1,27 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'walls/index'
-
-  get 'zones/index'
-
-  get 'grades/index'
-
-  get 'routes/index'
-
-  get 'facilities/index'
-
-  get 'admins/new'
-
-  get 'walls/new'
-
-  get 'zones/new'
-
-  get 'grades/new'
-
-  get 'routes/new'
-
-  get 'facilities/new'
-
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -52,16 +30,12 @@ Rails.application.routes.draw do
   end
 
   resources :facilities do
-    resources :routes
-    resources :grades
-    resources :zones
-    resources :walls
+    resources :routes, only: [:index, :show]
+    resources :grades, only: [:index, :show]
+    resources :zones, only: [:index, :show]
+    resources :walls, only: [:index, :show]
   end
 
-  resources :routes
-  resources :grades
-  resources :zones
-  resources :walls
   resources :account_activations, only: [:edit]
   default_url_options :host => 'localhost:3000'
   resources :password_resets,     only: [:new, :create, :edit, :update]

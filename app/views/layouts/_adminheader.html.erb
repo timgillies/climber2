@@ -1,0 +1,13 @@
+<header class="navbar navbar-top navbar">
+  <div class="container">
+    <nav>
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to @facility.name, admin_facility_path(@facility) %></li>
+      <li><%= link_to "Route Database", admin_facility_routes_path(@facility) %></li>
+      <li><%= link_to "Add Routes", new_admin_facility_route_path(@facility) %></li>
+      <li><%= link_to "Facility Setup", edit_admin_facility_path(@facility) %></li>
+      <li><%= link_to "Grading Setup", new_admin_facility_grade_path(@facility) %></li>
+    </ul>
+    </nav>
+  </div>
+</header>

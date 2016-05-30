@@ -1,5 +1,7 @@
 class Admin::ZonesController < ApplicationController
 
+  layout "admin"
+
   def index
     @zones = Zone.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
   end

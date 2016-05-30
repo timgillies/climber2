@@ -1,7 +1,10 @@
 class Admin::RoutesController < ApplicationController
 
+  layout "admin"
+
   def index
-    @routes = Route.paginate(page: params[:page])
+    @facility = Facility.find(params[:facility_id])
+    @routes = @facility.routes.paginate(page: params[:page])
   end
 
   def new
@@ -25,7 +28,7 @@ class Admin::RoutesController < ApplicationController
     @route.facility_id = params[:facility_id]
     if @route.save
       flash[:success] = "Route created!"
-      redirect_to(new_facility_route_path(@facility))
+      redirect_to(new_admin_facility_route_path(@facility))
     else
       render 'new'
     end
@@ -45,7 +48,7 @@ class Admin::RoutesController < ApplicationController
     @route = Route.find(params[:id])
     if @route.update_attributes(route_params)
       flash[:success] = "Route updated"
-      redirect_to(manage_facility_url(@facility))
+      redirect_to(admin_facility_path(@facility))
       # Handle a successful update.
     else
       render 'edit'

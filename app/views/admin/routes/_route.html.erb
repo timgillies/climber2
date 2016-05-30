@@ -1,7 +1,16 @@
-<li id="route-<%= route.id %>">
-  <span class="name"><%= route.name %></span>
-  <%= link_to "edit",  edit_facility_route_path(@facility, route) %>
-  <span class="timestamp">
-    Created <%= time_ago_in_words(route.created_at) %> ago.
-  </span>
-</li>
+<%= div_for(route) do %>
+<tr>
+
+
+    <td><%= route.zone_id %></td>
+    <td><%= route.wall_id %></td>
+    <td><%= route.grade_id %></td>
+    <td><%= route.name %></td>
+    <td><%= route.color %></td>
+    <td><%= route.setter %></td>
+    <td><%= route.setdate %></td>
+    <td><%= route.enddate %></td>
+
+    <td><%= link_to 'edit', "#" %></td>
+ </tr>
+<% end %>

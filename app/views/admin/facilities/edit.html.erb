@@ -1,15 +1,10 @@
 <% provide(:title, 'Edit facility info') %>
 
-<ul class="pagination">
-  <li class="active"><a href="#">Basic Info</a></li>
-  <li><a href="#">Manage Routes</a></li>
-  <li><a href="#">Gym Config</a></li>
-</ul>
 <h1>Edit Facility Info</h1>
 
 <form class="form-horizontal" role="form">
   <div class="form-group">
-    <div class="col-sm-8">
+    <div class="col-md-6 col-md-offset-3">
       <%= form_for(@facility) do |f| %>
         <%= render 'shared/error_messages', object: @facility %>
 
