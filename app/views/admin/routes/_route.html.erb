@@ -1,16 +1,16 @@
-<%= div_for(route) do %>
-<tr>
+<%= div_for(route) do |r| %>
 
 
-    <td><%= route.zone_id %></td>
-    <td><%= route.wall_id %></td>
-    <td><%= route.grade_id %></td>
-    <td><%= route.name %></td>
-    <td><%= route.color %></td>
-    <td><%= route.setter %></td>
-    <td><%= route.setdate %></td>
-    <td><%= route.enddate %></td>
-
-    <td><%= link_to 'edit', "#" %></td>
- </tr>
+  <tr>
+    <td><%= r.zone.name %></td>
+    <td><%= r.wall.name%></td>
+    <td><%= r.grade.grade %></td>
+    <td><%= r.name %></td>
+    <td><%= r.color %></td>
+    <td><%= r.setter %></td>
+    <td><%= r.setdate %></td>
+    <td><%= r.enddate %></td>
+    <td><%= link_to "edit",  edit_admin_facility_route_path(@facility, route ) %></td>
+    <td><%= link_to "delete", admin_facility_route_path(@facility, route) , method: :delete %></td>
+   </tr>
 <% end %>

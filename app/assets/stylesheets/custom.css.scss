@@ -32,6 +32,14 @@ textarea {
   resize: vertical;
 }
 
+table {
+  width: 800px;
+}
+
+th, td {
+  padding: 7px 10px 10px 10px;
+}
+
 
 .center {
   background-color: rgba(255,255,255, 0.7);
@@ -367,7 +375,6 @@ input {
   padding: 0;
   li {
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
   }
   .user {
     margin-top: 5em;

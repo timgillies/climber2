@@ -1,19 +1,19 @@
 <% provide(:title, 'Add Walls') %>
 
 <div class="container">
-    <h1><%= @facility.name %> - Add Walls</h1>
+    <h1>Edit: <%= @wall.name %> </h1>
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= form_for [@facility, @wall] do |f| %>
+        <%= form_for [:admin, @facility, @wall] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
           <%= f.label :name, "Wall Name/Description" %>
           <%= f.text_field :name, class: 'form-control' %>
 
-          <%= f.submit "Add", class: "btn btn-primary" %>
+          <%= f.submit "Update", class: "btn btn-primary" %>
 
-          <%= render 'walls/wall', object: @walls %>
+          <%= render 'admin/walls/wall', object: @walls %>
 
         <% end %>
       </div>

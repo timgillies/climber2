@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :grades
   has_many :zones
   has_many :walls
-  belongs_to :admin 
+  belongs_to :admin
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6}, allow_nil: true
 
-  ROLES = %w[admin facility_admin user]
 
   # Returns the hash digest of the given string.
   def User.digest(string)

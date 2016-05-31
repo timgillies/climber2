@@ -3,13 +3,14 @@ class Admin::ZonesController < ApplicationController
   layout "admin"
 
   def index
-    @zones = Zone.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
+    @facility = Facility.find(params[:facility_id])
+    @zones = @facility.zones.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
   end
 
   def new
     @zone = Zone.new
-    @zones = Zone.paginate(page: params[:page])
     @facility = Facility.find(params[:facility_id])
+    @zones = @facility.zones.paginate(page: params[:page])
   end
 
   def show
@@ -23,7 +24,7 @@ class Admin::ZonesController < ApplicationController
     @zone.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @zone.save
       flash[:success] = "Zone created!"
-      redirect_to(new_facility_zone_path(@facility))
+      redirect_to(new_admin_facility_zone_path(@facility))
     else
       render :new
     end
@@ -34,7 +35,7 @@ class Admin::ZonesController < ApplicationController
     @zone = @facility.zones.find(params[:id])
     if @zone.update_attributes(zone_params)
       flash[:success] = "Zone updated!"
-      redirect_to(new_facility_zone_path(@facility))
+      redirect_to(new_admin_facility_zone_path(@facility))
       # Handle a successful update.
     else
       render :new
@@ -44,7 +45,7 @@ class Admin::ZonesController < ApplicationController
   def edit
     @facility = Facility.find(params[:facility_id])
     @zone = Zone.find(params[:id])
-    @zones = Zone.paginate(page: params[:page])
+    @zones = @facility.zones.paginate(page: params[:page])
   end
 
   def destroy

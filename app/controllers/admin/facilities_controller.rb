@@ -1,7 +1,7 @@
 class Admin::FacilitiesController < ApplicationController
-  before_action :logged_in_user, only: [:create, :edit]
+  before_action :logged_in_user, only: [:create, :edit, :update]
 
-  layout "admin"
+  layout "admin", except: [:index, :new]
 
   def index
     @facilities = current_user.facilities.paginate(page: params[:page])
@@ -26,6 +26,17 @@ class Admin::FacilitiesController < ApplicationController
     end
   end
 
+  def update
+    @facility = Facility.find(params[:id])
+    if @facility.update_attributes(facility_params)
+      flash[:success] = "Info updated!"
+      redirect_to(admin_facility_path(@facility))
+      # Handle a successful update.
+    else
+      render 'edit'
+    end
+  end
+
   def edit
     @facility = Facility.find(params[:id])
   end
@@ -40,6 +51,6 @@ class Admin::FacilitiesController < ApplicationController
   private
 
     def facility_params
-      params.require(:facility).permit(:name, :addressline1, :city, :state, :zipcode)
+      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :user_id)
     end
 end

@@ -1,13 +1,17 @@
-<% provide(:title, @facility.name) %>
+<div class="container">
+  <div class="home-body">
+    <div class="center jumbotron">
 
-<div class="row">
-  <div class="col-md-4">
-    <% if @facility.routes.any? %>
-      <h3>routes (<%= @facility.routes.count %>)</h3>
-      <ol class="routes">
-        <%= render @routes %>
-      </ol>
-      <%= will_paginate @routes %>
-    <% end %>
+      <h1><%= @facility.name %></h1>
+
+      <h2>
+        <%= @facility.addressline1 %> <%= @facility.city %>, <%= @facility.state %>
+      </h2>
+
+      <p>
+        Total Routes:  <%= @facility.routes.count %>
+      </p>
+
+    </div>
   </div>
 </div>

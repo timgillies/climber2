@@ -48,7 +48,7 @@ class Admin::RoutesController < ApplicationController
     @route = Route.find(params[:id])
     if @route.update_attributes(route_params)
       flash[:success] = "Route updated"
-      redirect_to(admin_facility_path(@facility))
+      redirect_to(admin_facility_routes_path(@facility))
       # Handle a successful update.
     else
       render 'edit'
@@ -59,6 +59,9 @@ class Admin::RoutesController < ApplicationController
 
 
   def destroy
+    Route.find(params[:id]).destroy
+    flash[:success] = "Route deleted"
+    redirect_to :back
   end
 
   private

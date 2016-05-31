@@ -8,8 +8,9 @@ class Admin::GradesController < ApplicationController
 
   def new
     @grade = Grade.new
-    @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
     @facility = Facility.find(params[:facility_id])
+    @grades = @facility.grades.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
+
   end
 
   def show
@@ -23,7 +24,7 @@ class Admin::GradesController < ApplicationController
     @grade.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @grade.save
       flash[:success] = "Route created!"
-      redirect_to(new_facility_grade_path(@facility))
+      redirect_to(new_admin_facility_grade_path(@facility))
     else
       render :new
     end
@@ -35,7 +36,7 @@ class Admin::GradesController < ApplicationController
     @grades = Grade.order('discipline ASC', 'rank ASC').paginate(page: params[:page]) # makes "each" work in the partial
     if @grade.update_attributes(grade_params)
       flash[:success] = "Route updated!"
-      redirect_to(new_facility_grade_path(@facility))
+      redirect_to(new_admin_facility_grade_path(@facility))
       # Handle a successful update.
     else
       render :new

@@ -1,10 +1,22 @@
 <% provide(:title, 'All facilities') %>
-<h1>Climbing Facilities</h1>
 
-<%= will_paginate %>
 
-<ul class="facilities">
-  <%= render @facilities %>
-</ul>
+<div class="container">
+  <div class="home-body">
+    <div class="center jumbotron">
 
-<%= will_paginate %>
+      <h1>Route Management</h1>
+
+      <ul class="facilities">
+        <%= render @facilities %>
+      </ul>
+
+      <br>
+
+      <p>
+        <%= link_to "+ New Facility", new_admin_facility_path, class: "btn btn-lg btn-primary" %>
+      </p>
+
+    </div>
+  </div>
+</div>

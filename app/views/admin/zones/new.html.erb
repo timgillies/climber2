@@ -1,11 +1,11 @@
 <% provide(:title, 'Add Zones') %>
 
 <div class="container">
-    <h1><%= @facility.name %> - Add Zones</h1>
+    <h1>Zones</h1>
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= form_for [:new, @facility, @zone] do |f| %>
+        <%= form_for [:admin, @facility, @zone] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
           <%= f.label :name, "Zone Name/Description" %>
@@ -13,7 +13,7 @@
 
           <%= f.submit "Add", class: "btn btn-primary" %>
 
-          <%= render 'zones/zone', object: @zones %>
+          <%= render 'admin/zones/zone', object: @zones %>
 
         <% end %>
       </div>

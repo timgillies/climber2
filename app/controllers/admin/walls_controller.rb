@@ -8,8 +8,9 @@ class Admin::WallsController < ApplicationController
 
   def new
     @wall = Wall.new
-    @walls = Wall.paginate(page: params[:page])
     @facility = Facility.find(params[:facility_id])
+    @walls = @facility.walls.paginate(page: params[:page])
+
   end
 
   def show
@@ -23,7 +24,7 @@ class Admin::WallsController < ApplicationController
     @wall.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @wall.save
       flash[:success] = "Wall created!"
-      redirect_to(new_facility_wall_path(@facility))
+      redirect_to(new_admin_facility_wall_path(@facility))
     else
       render :new
     end
@@ -34,7 +35,7 @@ class Admin::WallsController < ApplicationController
     @wall = @facility.walls.find(params[:id])
     if @wall.update_attributes(wall_params)
       flash[:success] = "Wall updated!"
-      redirect_to(new_facility_wall_path(@facility))
+      redirect_to(new_admin_facility_wall_path(@facility))
       # Handle a successful update.
     else
       render :new
@@ -44,7 +45,7 @@ class Admin::WallsController < ApplicationController
   def edit
     @facility = Facility.find(params[:facility_id])
     @wall = Wall.find(params[:id])
-    @walls = Wall.paginate(page: params[:page]) #makes "each" work
+    @walls = @facility.walls.paginate(page: params[:page])
   end
 
   def destroy

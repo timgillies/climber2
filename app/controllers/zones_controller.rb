@@ -1,6 +1,6 @@
 class ZonesController < ApplicationController
   def index
-    @zones = Zone.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
+    @zones = Zone.paginate(page: params[:page])
   end
 
   def show
