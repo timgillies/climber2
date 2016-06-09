@@ -2,8 +2,8 @@
 
 
   <tr>
-    <td><%= r.zone.name %></td>
-    <td><%= r.wall.name%></td>
+    <td><%= r.zone.name if r.zone %></td>
+    <td><%= r.wall.name if r.wall %></td>
     <td><%= r.grade.grade %></td>
     <td><%= r.name %></td>
     <td><%= r.color %></td>
