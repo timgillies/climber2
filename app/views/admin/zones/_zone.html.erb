@@ -1,8 +1,8 @@
 <ul class="grades">
-  <% @zones.each do |zone| %>
+  <% @facility.zones.each do |zone| %>
     <li>
       <%= zone.name  %>
-      <%= link_to "edit",  edit_admin_facility_zone_path(@facility, zone ) %> | 
+      <%= link_to "edit",  edit_admin_facility_zone_path(@facility, zone ) %> |
       <%= link_to "delete", admin_facility_zone_path(@facility, zone) , method: :delete %>
     </li>
   <% end %>

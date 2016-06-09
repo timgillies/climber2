@@ -3,6 +3,6 @@ class Zone < ActiveRecord::Base
   belongs_to  :user
   has_many    :routes
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 50}
+  validates :name, presence: true, uniqueness: {scope: :facility_id}, length: { maximum: 50}
 
 end

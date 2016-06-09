@@ -15,7 +15,12 @@
           <li><%= link_to "Walls", new_admin_facility_wall_path(@facility) %></li>
         </ul>
       </li>
+
+      <% if @facility.custom? %>
+
       <li><%= link_to "Grading Setup", new_admin_facility_grade_path(@facility) %></li>
+
+      <% end %>
     </ul>
     </nav>
   </div>

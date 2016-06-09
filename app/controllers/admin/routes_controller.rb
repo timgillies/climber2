@@ -11,7 +11,13 @@ class Admin::RoutesController < ApplicationController
     @route = Route.new
     @facility = Facility.find(params[:facility_id])
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
-    @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+
+    if @facility.custom?
+      @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    else
+      @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
+    end
+
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
   end
 
@@ -23,7 +29,11 @@ class Admin::RoutesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @route = current_user.routes.build(route_params)
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
-    @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    if @facility.custom?
+      @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    else
+      @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
+    end
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @route.facility_id = params[:facility_id]
     if @route.save

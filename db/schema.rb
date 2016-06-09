@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527152010) do
+ActiveRecord::Schema.define(version: 20160605174246) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160527152010) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "user_id",      limit: 4
+    t.boolean  "custom"
   end
 
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160527152010) do
     t.integer  "grade_id",    limit: 4
     t.integer  "zone_id",     limit: 4
     t.integer  "wall_id",     limit: 4
+    t.string   "discipline",  limit: 255
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree

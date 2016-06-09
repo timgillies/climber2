@@ -8,10 +8,12 @@
       <%= form_for([:admin, @facility]) do |f| %>
         <%= render 'shared/error_messages', object: @facility %>
 
+        <h2>Location</h2>
+
         <%= f.label :name, "Facility name" %>
         <%= f.text_field :name, class: 'form-control' %>
 
-        <%= f.label :location, "Location (optional)" %>
+        <%= f.label :location, "Location (optional)"%>
         <%= f.text_field :location, class: 'form-control' %>
 
         <%= f.label :addressline1, "Address" %>
@@ -28,6 +30,14 @@
 
         <%= f.label :zipcode, "Zip code" %>
         <%= f.text_field :zipcode, class: 'form-control' %>
+
+        <h2>Grading</h2>
+
+        <%= f.label :custom, "Custom Grading?" %>
+        <%= f.check_box :custom %>
+
+        <br>
+        <br>
 
         <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>

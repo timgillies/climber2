@@ -8,12 +8,12 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def show
-    @facility = Facility.find(params[:id])
+    @facility = current_user.facilities.find(params[:id])
     @routes = @facility.routes.paginate(page: params[:page])
   end
 
   def new
-    @facility = Facility.new
+    @facility = current_user.facilities.new
   end
 
   def create
@@ -27,7 +27,7 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def update
-    @facility = Facility.find(params[:id])
+    @facility = current_user.facilities.find(params[:id])
     if @facility.update_attributes(facility_params)
       flash[:success] = "Info updated!"
       redirect_to(admin_facility_path(@facility))
@@ -35,22 +35,25 @@ class Admin::FacilitiesController < ApplicationController
     else
       render 'edit'
     end
+
+    byebug
+
   end
 
   def edit
-    @facility = Facility.find(params[:id])
+    @facility = current_user.facilities.find(params[:id])
   end
 
   def destroy
     Facility.find(params[:id]).destroy
     flash[:success] = "Facility deleted"
-    redirect_to users_url
+    redirect_to admin_facilities_url
   end
 
 
   private
 
     def facility_params
-      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :user_id)
+      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom)
     end
 end

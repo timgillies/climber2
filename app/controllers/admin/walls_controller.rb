@@ -26,7 +26,7 @@ class Admin::WallsController < ApplicationController
       flash[:success] = "Wall created!"
       redirect_to(new_admin_facility_wall_path(@facility))
     else
-      render :new
+      render 'new'
     end
   end
 

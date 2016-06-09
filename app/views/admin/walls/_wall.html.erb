@@ -1,8 +1,8 @@
 <ul class="grades">
-  <% @walls.each do |wall| %>
+  <% @facility.walls.each do |wall| %>
     <li>
       <%= wall.name  %>
-      <%= link_to "edit",  edit_admin_facility_wall_path(@facility, wall ) %> | 
+      <%= link_to "edit",  edit_admin_facility_wall_path(@facility, wall ) %> |
       <%= link_to "delete", admin_facility_wall_path(@facility, wall) , method: :delete %>
     </li>
   <% end %>

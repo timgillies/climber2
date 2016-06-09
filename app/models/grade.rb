@@ -8,4 +8,9 @@ class Grade < ActiveRecord::Base
   validates :rank, numericality: { only_integer: true }
   validates :rank, uniqueness: {  scope: [:facility_id, :discipline] }
   validates :grade, uniqueness: {  scope: [:facility_id, :discipline] }
+
+  def self.facilitygrades
+  end
+
+
 end

@@ -8,11 +8,14 @@
         <%= form_for [:admin,@facility, @route] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
-          <%= f.label :name, "Route Name/Description" %>
-          <%= f.text_field :name, class: 'form-control' %>
+          <%= f.label :discipline, "Discipline" %>
+          <%= f.select(:discipline, options_for_select(facility_disciplines), class: 'form-control') %>
 
           <%= f.label :grade_id, "Grade" %>
-          <%= f.select(:grade_id, @facilitygrades, include_blank: true, class: 'form-control') %>
+          <%= f.select(:grade_id, @facilitygrades, include_blank: "Please select", class: 'form-control') %>
+
+          <%= f.label :name, "Route Name/Description" %>
+          <%= f.text_field :name, class: 'form-control' %>
 
           <%= f.label :color, "Route Color"%>
           <%= f.text_field :color, class: 'form-control' %>
