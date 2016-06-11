@@ -1,5 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
-  before_action :logged_in_user, only: [:create, :edit, :update]
+  before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
+  before_action :facility_admin,      only: [:show, :edit, :update, :destroy]
 
   layout "admin", except: [:index, :new]
 
@@ -51,9 +52,17 @@ class Admin::FacilitiesController < ApplicationController
   end
 
 
+
   private
 
     def facility_params
-      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom)
+      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom, :user_id)
+    end
+
+    # Before filters
+
+    # Confirms an admin user.
+    def admin_user
+      redirect_to root_url unless current_user.admin?
     end
 end

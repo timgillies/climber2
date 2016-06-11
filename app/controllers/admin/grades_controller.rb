@@ -1,4 +1,6 @@
-class Admin::GradesController < ApplicationController
+class Admin::GradesController < Admin::FacilitiesController
+  before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
+  before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
 
   layout "admin"
 

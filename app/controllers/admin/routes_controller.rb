@@ -1,4 +1,6 @@
-class Admin::RoutesController < ApplicationController
+class Admin::RoutesController < Admin::FacilitiesController
+  before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
+  before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
 
   layout "admin"
 
@@ -65,9 +67,6 @@ class Admin::RoutesController < ApplicationController
     end
   end
 
-
-
-
   def destroy
     Route.find(params[:id]).destroy
     flash[:success] = "Route deleted"
@@ -76,7 +75,8 @@ class Admin::RoutesController < ApplicationController
 
   private
 
-    def route_params
-      params.require(:route).permit(:name, :color, :setter, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id)
-    end
+
+  def route_params
+    params.require(:route).permit(:name, :color, :setter, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id)
+  end
 end
