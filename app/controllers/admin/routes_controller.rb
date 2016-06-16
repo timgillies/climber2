@@ -7,6 +7,7 @@ class Admin::RoutesController < Admin::FacilitiesController
   def index
     @facility = Facility.find(params[:facility_id])
     @routes = @facility.routes.paginate(page: params[:page])
+
   end
 
   def new
