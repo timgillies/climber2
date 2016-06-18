@@ -6,7 +6,19 @@ class Admin::RoutesController < Admin::FacilitiesController
 
   def index
     @facility = Facility.find(params[:facility_id])
-    @routes = @facility.routes.paginate(page: params[:page])
+    @routes = @facility.routes.page(params[:page])
+
+    @filterrific = initialize_filterrific(
+      Facility.routes,
+      params[:filterrific]
+    ) or return
+    @routes = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
 
   end
 

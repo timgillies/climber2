@@ -5,12 +5,12 @@ class Admin::FacilitiesController < ApplicationController
   layout "admin", except: [:index, :new]
 
   def index
-    @facilities = current_user.facilities.paginate(page: params[:page])
+    @facilities = current_user.facilities.page(params[:page]).per(5)
   end
 
   def show
     @facility = current_user.facilities.find(params[:id])
-    @routes = @facility.routes.paginate(page: params[:page])
+    @routes = @facility.routes.page(params[:page])
   end
 
   def new

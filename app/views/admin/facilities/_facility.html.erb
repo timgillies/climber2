@@ -1,6 +1,5 @@
 <li id="facility-<%= facility.id %>">
-  <%= link_to gravatar_for(facility.user, size: 50), facility.user %>
   <span class="name"><%= link_to facility.name, admin_facility_path(facility) %></span>
-  <span class="user"><%= facility.addressline1 %></span>
-  <span class="user"><%= facility.city %>, <%= facility.state %></span>
+  <span class="name"><%= facility.addressline1 %></span>
+  <span class="name"><%= facility.city %>, <%= facility.state %></span>
 </li>

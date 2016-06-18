@@ -360,7 +360,16 @@ input {
 /* Homepage */
 
 .home-body {
-    background: #000 url("Gym_climber_1_copy.jpeg");
+    background: #000 url("gym_climber.jpeg");
+    background-size: cover;
+    background-position: top left;
+    padding: 50px;
+}
+
+/* Admin Homepage */
+
+.admin-home-body {
+    background: #000 url("gym_climber.jpeg");
     background-size: cover;
     background-position: top left;
     padding: 50px;

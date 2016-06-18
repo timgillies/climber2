@@ -4,13 +4,13 @@ class UsersController < ApplicationController
   before_action :admin_user,        only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.page(params[:page]).per(25)
   end
 
   def show
     @user = User.find(params[:id])
-    @facilities = @user.facilities.paginate(page: params[:page])
-    @routes = @user.routes.paginate(page: params[:page])
+    @facilities = @user.facilities.page(params[:page])
+    @routes = @user.routes.page(params[:page])
   end
 
   def new
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
   def manage
     @user = User.find(params[:id])
-    @facilities = @user.facilities.paginate(page: params[:page])
+    @facilities = @user.facilities.page(params[:page])
   end
 
 

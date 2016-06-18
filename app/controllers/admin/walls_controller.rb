@@ -5,13 +5,13 @@ class Admin::WallsController < Admin::FacilitiesController
   layout "admin"
 
   def index
-    @walls = Wall.paginate(page: params[:page])
+    @walls = Wall.page(params[:page])
   end
 
   def new
     @wall = Wall.new
     @facility = Facility.find(params[:facility_id])
-    @walls = @facility.walls.paginate(page: params[:page])
+    @walls = @facility.walls.page(params[:page])
 
   end
 
@@ -22,7 +22,7 @@ class Admin::WallsController < Admin::FacilitiesController
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @wall = current_user.walls.build(wall_params)
-    @walls = Wall.paginate(page: params[:page]) # makes "each" work in the partial
+    @walls = Wall.page(params[:page]) # makes "each" work in the partial
     @wall.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @wall.save
       flash[:success] = "Wall created!"
@@ -47,7 +47,7 @@ class Admin::WallsController < Admin::FacilitiesController
   def edit
     @facility = Facility.find(params[:facility_id])
     @wall = Wall.find(params[:id])
-    @walls = @facility.walls.paginate(page: params[:page])
+    @walls = @facility.walls.page(params[:page])
   end
 
   def destroy
