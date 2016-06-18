@@ -1,0 +1,30 @@
+<div id="filterrific_results">
+
+<table>
+  <tr>
+    <th>Zone</th>
+    <th>Wall</th>
+    <th>Grade</th>
+    <th>Route Name</th>
+    <th>Color</th>
+    <th>Setter</th>
+    <th>Set Date</th>
+    <th>Exp. Date</th>
+  </tr>
+  <% @facility.routes.each do |r| %>
+    <tr>
+      <td><%= r.zone.name if r.zone %></td>
+      <td><%= r.wall.name if r.wall %></td>
+      <td><%= r.grade.grade if r.grade %></td>
+      <td><%= r.name %></td>
+      <td><%= r.color %></td>
+      <td><%= r.setter %></td>
+      <td><%= r.setdate %></td>
+      <td><%= r.enddate %></td>
+   </tr>
+<% end %>
+</table>
+
+  <br />
+  <%= paginate @routes %>
+</div>

@@ -9,8 +9,15 @@ class Admin::RoutesController < Admin::FacilitiesController
     @routes = @facility.routes.page(params[:page])
 
     @filterrific = initialize_filterrific(
-      Facility.routes,
-      params[:filterrific]
+      Route,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Route.options_for_sorted_by,
+        with_grade_id: Grade.options_for_select
+      },
+      persistence_id: 'shared_key',
+      default_filter_params: {},
+      available_filters: [],
     ) or return
     @routes = @filterrific.find.page(params[:page])
 
