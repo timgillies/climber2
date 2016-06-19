@@ -71,16 +71,16 @@ scope :sorted_by, lambda { |sort_option|
   end
 }
 
-  scope :with_grade_id, lambda { |country_ids|
-      where(:grade_id, [*grade_ids])
-    }
+  scope :with_grade_id, lambda { |grade_ids|
+      where( grade_id: [*grade_ids])
+  }
 
     # always include the lower boundary for semi open intervals
-  scope :setdate_gte, lambda { |reference_time|
+  scope :with_setdate_gte, lambda { |reference_time|
     where('routes.setdate >= ?', reference_time)
   }
 
-  scope :enddate_gte, lambda { |reference_time|
+  scope :with_enddate_lt, lambda { |reference_time|
     where('routes.enddate < ?', reference_time)
   }
 
