@@ -12,9 +12,6 @@ class Grade < ActiveRecord::Base
   def self.facilitygrades
   end
 
-  def self.options_for_select
-  order('LOWER(grade)').map { |e| [e.grade, e.id] }
-end
-
+  
 
 end

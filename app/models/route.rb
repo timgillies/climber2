@@ -72,7 +72,7 @@ scope :sorted_by, lambda { |sort_option|
 }
 
   scope :with_grade_id, lambda { |grade_ids|
-      where( grade_id: [*grade_ids])
+      where( 'grade_id = ?', grade_ids)
   }
 
     # always include the lower boundary for semi open intervals
@@ -89,6 +89,10 @@ scope :sorted_by, lambda { |sort_option|
       ['Create date (newest first)', 'setdate_desc'],
       ['Expire date (newest first)', 'enddate_desc'],
     ]
+  end
+
+  def Grade.options_for_select
+  order('LOWER(grade)').map { |e| [e.grade, e.id] }
   end
 
 end

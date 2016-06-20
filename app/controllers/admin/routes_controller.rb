@@ -6,7 +6,6 @@ class Admin::RoutesController < Admin::FacilitiesController
 
   def index
     @facility = Facility.find(params[:facility_id])
-
     @filterrific = initialize_filterrific(
       Route,
       params[:filterrific],
@@ -15,15 +14,13 @@ class Admin::RoutesController < Admin::FacilitiesController
         with_grade_id: Grade.options_for_select
       },
       persistence_id: 'shared_key',
-      default_filter_params: {},
-      available_filters: [],
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.
     # You can paginate with will_paginate or kaminari.
-    # NOTE: filterrific_find returns an ActiveRecord Relation that can be
+    # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @routes = @filterrific.find.page(params[:page])
+    @routes = @facility.routes.filterrific_find(@filterrific).page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

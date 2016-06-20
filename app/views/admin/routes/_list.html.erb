@@ -15,7 +15,7 @@
       <th>Set Date</th>
       <th>Exp. Date</th>
     </tr>
-      <% @facility.routes.each do |r| %>
+      <%= div_for(@routes) do |r| %>
       <tr>
         <td><%= r.zone.name if r.zone %></td>
         <td><%= r.wall.name if r.wall %></td>
