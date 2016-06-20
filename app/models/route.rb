@@ -91,8 +91,6 @@ scope :sorted_by, lambda { |sort_option|
     ]
   end
 
-  def Grade.options_for_select
-  order('LOWER(grade)').map { |e| [e.grade, e.id] }
-  end
+
 
 end

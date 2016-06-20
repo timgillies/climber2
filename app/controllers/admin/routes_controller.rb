@@ -11,7 +11,7 @@ class Admin::RoutesController < Admin::FacilitiesController
       params[:filterrific],
       select_options: {
         sorted_by: Route.options_for_sorted_by,
-        with_grade_id: Grade.options_for_select
+        with_grade_id: options_for_select
       },
       persistence_id: 'shared_key',
     ) or return
@@ -106,5 +106,14 @@ class Admin::RoutesController < Admin::FacilitiesController
 
   def route_params
     params.require(:route).permit(:name, :color, :setter, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id)
+  end
+
+  def options_for_select
+    if @facility.custom?
+      @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    else
+      Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
+    end
+    # provides the list of available grades in the route list filters
   end
 end
