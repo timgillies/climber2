@@ -11,7 +11,9 @@ class Admin::RoutesController < Admin::FacilitiesController
       params[:filterrific],
       select_options: {
         sorted_by: Route.options_for_sorted_by,
-        with_grade_id: options_for_select
+        with_grade_id: options_for_grade_select,
+        with_zone_id: options_for_zone_select,
+        with_wall_id: options_for_wall_select,
       },
       persistence_id: 'shared_key',
     ) or return
@@ -108,7 +110,7 @@ class Admin::RoutesController < Admin::FacilitiesController
     params.require(:route).permit(:name, :color, :setter, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id)
   end
 
-  def options_for_select
+  def options_for_grade_select
     if @facility.custom?
       @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
     else
@@ -116,4 +118,15 @@ class Admin::RoutesController < Admin::FacilitiesController
     end
     # provides the list of available grades in the route list filters
   end
+
+  def options_for_zone_select
+      @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+    # provides the list of available zones in the route list filters
+  end
+
+  def options_for_wall_select
+      @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    # provides the list of available walls in the route list filters
+  end
+
 end

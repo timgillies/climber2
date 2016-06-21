@@ -16,6 +16,8 @@ class Route < ActiveRecord::Base
     :sorted_by,
     :search_query,
     :with_grade_id,
+    :with_zone_id,
+    :with_wall_id,
     :with_setdate_gte
   ]
   )
@@ -75,6 +77,14 @@ scope :sorted_by, lambda { |sort_option|
       where( 'grade_id = ?', grade_ids)
   }
 
+  scope :with_zone_id, lambda { |zone_ids|
+      where( 'zone_id = ?', zone_ids)
+  }
+
+  scope :with_wall_id, lambda { |wall_ids|
+      where( 'wall_id = ?', wall_ids)
+  }
+
     # always include the lower boundary for semi open intervals
   scope :with_setdate_gte, lambda { |reference_time|
     where('routes.setdate >= ?', reference_time)
@@ -90,7 +100,4 @@ scope :sorted_by, lambda { |sort_option|
       ['Expire date (newest first)', 'enddate_desc'],
     ]
   end
-
-
-
 end
