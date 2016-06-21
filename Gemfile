@@ -33,6 +33,8 @@ gem 'devise'
 gem 'filterrific'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
