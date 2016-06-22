@@ -1,10 +1,12 @@
 <% provide(:title, 'Custom Grades') %>
 
 <div class="container">
+  <div class="filter-body">
     <h1>Custom Grading Scale</h1>
-
+  </div>
+  <br/>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-sm-6">
         <%= form_for [:admin, @facility, @grade] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
@@ -22,9 +24,9 @@
 
           <%= f.submit "Add", class: "btn btn-primary" %>
 
-          <%= render 'admin/grades/grade', object: @grades %>
-
         <% end %>
-      </div>
+    </div>
+    <div class="col-sm-6">
+      <%= render 'admin/grades/grade', object: @grades %>
     </div>
 </div>
