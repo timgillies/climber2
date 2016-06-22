@@ -1,17 +1,10 @@
 <div class="container">
-  <div class="home-body">
-    <div class="center jumbotron">
-
-      <h1><%= @facility.name %></h1>
-
-      <h2>
-        <%= @facility.addressline1 %> <%= @facility.city %>, <%= @facility.state %>
-      </h2>
-
-      <p>
-        Total Routes:  <%= @facility.routes.count %>
-      </p>
-
-    </div>
+  <div class="filter-body">
+    <h1><%= @facility.name %></h1>
   </div>
-</div>
+
+  <div class="row">
+    <h2>
+      <%= @facility.addressline1 %> <%= @facility.city %>, <%= @facility.state %>
+    </h2>
+  </div>

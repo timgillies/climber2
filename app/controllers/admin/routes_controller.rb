@@ -1,4 +1,4 @@
-class Admin::RoutesController < Admin::FacilitiesController
+class Admin::RoutesController < ApplicationController
   before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
   before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
 
@@ -14,6 +14,7 @@ class Admin::RoutesController < Admin::FacilitiesController
         with_grade_id: options_for_grade_select,
         with_zone_id: options_for_zone_select,
         with_wall_id: options_for_wall_select,
+        with_setter_id: options_for_setter_select,
       },
       persistence_id: 'shared_key',
     ) or return
@@ -51,6 +52,7 @@ class Admin::RoutesController < Admin::FacilitiesController
     end
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
   end
 
   def show
@@ -107,7 +109,7 @@ class Admin::RoutesController < Admin::FacilitiesController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setter, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :description)
   end
 
   def options_for_grade_select
@@ -126,6 +128,11 @@ class Admin::RoutesController < Admin::FacilitiesController
 
   def options_for_wall_select
       @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    # provides the list of available walls in the route list filters
+  end
+
+  def options_for_setter_select
+      @facility.setters.all.map{|fs| [fs.nick_name, fs.id ] }
     # provides the list of available walls in the route list filters
   end
 

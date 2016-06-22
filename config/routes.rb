@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :grades
       resources :zones
       resources :walls
+      resources :setters
     end
   end
 
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
     resources :grades, only: [:index, :show]
     resources :zones, only: [:index, :show]
     resources :walls, only: [:index, :show]
+    resources :setters, only: [:index, :show]
   end
 
   resources :account_activations, only: [:edit]

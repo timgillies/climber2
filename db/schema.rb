@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605174246) do
+ActiveRecord::Schema.define(version: 20160622173613) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -59,23 +59,40 @@ ActiveRecord::Schema.define(version: 20160605174246) do
     t.integer  "facility_id", limit: 4
     t.string   "name",        limit: 255
     t.string   "color",       limit: 255
-    t.string   "setter",      limit: 255
     t.date     "setdate"
     t.date     "enddate"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "grade_id",    limit: 4
     t.integer  "zone_id",     limit: 4
     t.integer  "wall_id",     limit: 4
     t.string   "discipline",  limit: 255
+    t.integer  "setter_id",   limit: 4
+    t.text     "description", limit: 65535
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
   add_index "routes", ["grade_id"], name: "index_routes_on_grade_id", using: :btree
+  add_index "routes", ["setter_id"], name: "index_routes_on_setter_id", using: :btree
   add_index "routes", ["user_id", "facility_id", "created_at"], name: "index_routes_on_user_id_and_facility_id_and_created_at", using: :btree
   add_index "routes", ["user_id"], name: "index_routes_on_user_id", using: :btree
   add_index "routes", ["wall_id"], name: "index_routes_on_wall_id", using: :btree
   add_index "routes", ["zone_id"], name: "index_routes_on_zone_id", using: :btree
+
+  create_table "setters", force: :cascade do |t|
+    t.string   "first_name",  limit: 255
+    t.string   "last_name",   limit: 255
+    t.string   "nick_name",   limit: 255
+    t.string   "email",       limit: 255
+    t.integer  "facility_id", limit: 4
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "user_id",     limit: 4
+    t.boolean  "active",                  default: true
+  end
+
+  add_index "setters", ["facility_id"], name: "index_setters_on_facility_id", using: :btree
+  add_index "setters", ["user_id"], name: "index_setters_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -141,9 +158,12 @@ ActiveRecord::Schema.define(version: 20160605174246) do
   add_foreign_key "grades", "users"
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades", on_delete: :nullify
+  add_foreign_key "routes", "setters", on_delete: :nullify
   add_foreign_key "routes", "users"
   add_foreign_key "routes", "walls", on_delete: :nullify
   add_foreign_key "routes", "zones", on_delete: :nullify
+  add_foreign_key "setters", "facilities", on_delete: :nullify
+  add_foreign_key "setters", "users", on_delete: :nullify
   add_foreign_key "walls", "facilities"
   add_foreign_key "walls", "users"
   add_foreign_key "zones", "facilities"

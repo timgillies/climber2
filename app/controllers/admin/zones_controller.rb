@@ -1,4 +1,4 @@
-class Admin::ZonesController < Admin::FacilitiesController
+class Admin::ZonesController < ApplicationController
 
   before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
   before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
@@ -13,7 +13,7 @@ class Admin::ZonesController < Admin::FacilitiesController
   def new
     @zone = Zone.new
     @facility = Facility.find(params[:facility_id])
-    @zones = @facility.zones.paginate(page: params[:page])
+    @zones = @facility.zones.page(params[:page])
   end
 
   def show
@@ -23,7 +23,7 @@ class Admin::ZonesController < Admin::FacilitiesController
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @zone = current_user.zones.build(zone_params)
-    @zones = Zone.paginate(page: params[:page]) # makes "each" work in the partial
+    @zones = Zone.page(params[:page]) # makes "each" work in the partial
     @zone.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @zone.save
       flash[:success] = "Zone created!"
@@ -48,7 +48,7 @@ class Admin::ZonesController < Admin::FacilitiesController
   def edit
     @facility = Facility.find(params[:facility_id])
     @zone = Zone.find(params[:id])
-    @zones = @facility.zones.paginate(page: params[:page])
+    @zones = @facility.zones.page(params[:page])
   end
 
   def destroy

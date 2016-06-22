@@ -1,8 +1,8 @@
-<% provide(:title, 'Add a route') %>
+<% provide(:title, 'Add routes') %>
 
 <div class="container">
   <div class="filter-body">
-    <h1>Add a route</h1>
+    <h1>Add Routes</h1>
   </div>
   <br/>
         <%= form_for [:admin, @facility, @route] do |f| %>
@@ -21,7 +21,7 @@
                 <%= f.select(:discipline, options_for_select(facility_disciplines), include_blank: "- Discipline -", class: 'form-control') %>
               </div>
               <div class="col-sm-3">
-                <%= f.select(:setter, @facilityzones, include_blank: "- Route setter -", class: 'form-control') %>
+                <%= f.select(:setter_id, @facilitysetters, include_blank: "- Route setter -", class: 'form-control') %>
               </div>
             </div>
             <div class="row">
@@ -47,7 +47,7 @@
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <%= f.text_area :name, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
+                <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
               </div>
             </div>
             <div class="row">

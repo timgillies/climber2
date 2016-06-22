@@ -1,8 +1,8 @@
-<% provide(:title, 'Custom Grades') %>
+<% provide(:title, 'Grades') %>
 
 <div class="container">
   <div class="filter-body">
-    <h1>Custom Grading Scale</h1>
+    <h1>Grades</h1>
   </div>
   <br/>
     <div class="row">
@@ -10,17 +10,17 @@
         <%= form_for [:admin, @facility, @grade] do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
 
-          <%= f.label :system, "System" %>
-          <%= f.select :system, options_for_select(systems), class: 'form-control' %>
+          <%= f.text_field :grade, class: 'form-control', placeholder: "Grade Name" %>
 
-          <%= f.label :discipline, "Discipline" %>
-          <%= f.select :discipline, options_for_select(disciplines), class: 'form-control' %>
+          <%= f.text_field :rank, class: 'form-control', placeholder: "Grade Value" %>
 
-          <%= f.label :grade, "Grade"%>
-          <%= f.text_field :grade, class: 'form-control' %>
+          <%= f.select :system, options_for_select(systems), class: 'form-control', include_blank: "- System -"%>
 
-          <%= f.label :rank, "Rank" %>
-          <%= f.text_field :rank, class: 'form-control' %>
+          <%= f.select :discipline, options_for_select(disciplines), class: 'form-control', include_blank: "- Discipline -" %>
+
+
+
+
 
           <%= f.submit "Add", class: "btn btn-primary" %>
 

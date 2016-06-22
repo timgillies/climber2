@@ -1,9 +1,15 @@
-<ul class="grades">
+<%= page_entries_info @zones  %>
+<table class="table table-condensed">
+  <tr>
+    <th>Zones</th>
+    <th>Route Count</th>
+    <th></th>
+  </tr>
   <% @facility.zones.each do |zone| %>
-    <li>
-      <%= zone.name  %>
-      <%= link_to "edit",  edit_admin_facility_zone_path(@facility, zone ) %> |
-      <%= link_to "delete", admin_facility_zone_path(@facility, zone) , method: :delete %>
-    </li>
+    <tr>
+      <td><%= link_to zone.name,  edit_admin_facility_zone_path(@facility, zone ) %></td>
+      <td><%= zone.routes.count %> routes</td>
+    </tr>
   <% end %>
-</ul>
+</table>
+</div>

@@ -1,9 +1,15 @@
-<ul class="grades">
+<%= page_entries_info @walls  %>
+<table class="table table-condensed">
+  <tr>
+    <th>Walls</th>
+    <th>Route Count</th>
+    <th></th>
+  </tr>
   <% @facility.walls.each do |wall| %>
-    <li>
-      <%= wall.name  %>
-      <%= link_to "edit",  edit_admin_facility_wall_path(@facility, wall ) %> |
-      <%= link_to "delete", admin_facility_wall_path(@facility, wall) , method: :delete %>
-    </li>
+    <tr>
+      <td><%= link_to wall.name,  edit_admin_facility_wall_path(@facility, wall ) %></td>
+      <td><%= wall.routes.count %> routes</td>
+    </tr>
   <% end %>
-</ul>
+</table>
+</div>

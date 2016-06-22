@@ -1,0 +1,17 @@
+
+<%= page_entries_info @setters  %>
+<table class="table table-condensed">
+  <tr>
+    <th>Setters</th>
+    <th>Display Name</th>
+    <th>Route Count</th>
+  </tr>
+    <% @facility.setters.each do |setter| %>
+    <tr>
+      <td><%= link_to setter.last_name + ", " + setter.first_name,  edit_admin_facility_setter_path(@facility, setter ) %></td>
+      <td><%= setter.nick_name %>
+      <td><%= setter.routes.count %> routes</td>
+   </tr>
+  <% end %>
+</table>
+</div>

@@ -1,5 +1,6 @@
 class Grade < ActiveRecord::Base
   belongs_to :route
+  has_many :routes
   belongs_to :facility
   belongs_to :user
 
@@ -12,6 +13,6 @@ class Grade < ActiveRecord::Base
   def self.facilitygrades
   end
 
-  
+
 
 end

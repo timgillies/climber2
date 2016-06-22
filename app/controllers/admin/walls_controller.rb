@@ -1,4 +1,4 @@
-class Admin::WallsController < Admin::FacilitiesController
+class Admin::WallsController < ApplicationController
   before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
   before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
 

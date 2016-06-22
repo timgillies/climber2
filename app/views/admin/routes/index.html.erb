@@ -37,6 +37,13 @@
         ) %>
       </div>
       <div class="col-md-2">
+        <%= f.select(
+          :with_setter_id,
+          @filterrific.select_options[:with_setter_id],
+          { include_blank: 'All routesetters' }
+        ) %>
+      </div>
+      <div class="col-md-2">
         <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
       </div>
       <div class="col-md-2">
@@ -47,17 +54,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
-      <%= page_entries_info @routes  %>
-    </div>
-  </div>
-
-
-
 <% end %>
-
-
 
 <%= render(
 partial: 'admin/routes/list',

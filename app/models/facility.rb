@@ -4,6 +4,7 @@ class Facility < ActiveRecord::Base
   has_many :grades
   has_many :zones
   has_many :walls
+  has_many :setters
   has_many :admins
 
   accepts_nested_attributes_for :grades

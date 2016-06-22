@@ -1,21 +1,16 @@
-<% provide(:title, 'Add Zones') %>
+<% provide(:title, 'Zones') %>
 
 <div class="container">
+  <div class="filter-body">
     <h1>Zones</h1>
-
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <%= form_for [:admin, @facility, @zone] do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
-
-          <%= f.label :name, "Zone Name/Description" %>
-          <%= f.text_field :name, class: 'form-control' %>
-
-          <%= f.submit "Add", class: "btn btn-primary" %>
-
-          <%= render 'admin/zones/zone', object: @zones %>
-
-        <% end %>
-      </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= render 'admin/zones/form', object: @zones %>
     </div>
+    <div class="col-sm-6">
+      <%= render 'admin/zones/zone', object: @zones %>
+    </div>
+  </div>
 </div>

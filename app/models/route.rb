@@ -4,6 +4,7 @@ class Route < ActiveRecord::Base
   belongs_to :wall
   belongs_to :user
   belongs_to :grade
+  belongs_to :setter
   has_many :grades
 
   validates :color, presence: true
@@ -18,6 +19,7 @@ class Route < ActiveRecord::Base
     :with_grade_id,
     :with_zone_id,
     :with_wall_id,
+    :with_setter_id,
     :with_setdate_gte
   ]
   )
@@ -83,6 +85,10 @@ scope :sorted_by, lambda { |sort_option|
 
   scope :with_wall_id, lambda { |wall_ids|
       where( 'wall_id = ?', wall_ids)
+  }
+
+  scope :with_setter_id, lambda { |setter_ids|
+      where( 'setter_id = ?', setter_ids)
   }
 
     # always include the lower boundary for semi open intervals

@@ -1,0 +1,9 @@
+
+<%= form_for [:admin, @facility, @wall] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.text_field :name, class: 'form-control', placeholder: "Add a wall..."%>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+
+<% end %>

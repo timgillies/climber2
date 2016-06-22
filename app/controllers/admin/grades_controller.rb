@@ -1,4 +1,4 @@
-class Admin::GradesController < Admin::FacilitiesController
+class Admin::GradesController < ApplicationController
   before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
   before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
 
@@ -11,7 +11,12 @@ class Admin::GradesController < Admin::FacilitiesController
   def new
     @grade = Grade.new
     @facility = Facility.find(params[:facility_id])
-    @grades = @facility.grades.order('discipline ASC', 'rank ASC').page(params[:page])
+
+    if @facility.custom?
+      @grades = @facility.grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    else
+      @grades = Grade.where(system: ['yds','vscale']).order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    end
 
   end
 
@@ -47,8 +52,8 @@ class Admin::GradesController < Admin::FacilitiesController
 
   def edit
     @facility = Facility.find(params[:facility_id])
-    @grade = Grade.find(params[:id])
-    @grades = Grade.order('discipline ASC', 'rank ASC').page(params[:page]) # makes "each" work in the partial
+    @grade = @facility.grades.find(params[:id])
+    @grades = @facility.grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50) # makes "each" work in the partial
   end
 
   def destroy

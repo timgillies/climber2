@@ -1,17 +1,23 @@
-<table class="table table-striped table-condensed">
+<%= page_entries_info @grades  %>
+<table class="table table-condensed">
   <tr>
-    <th>Discipline</th>
-    <th>Rank</th>
     <th>Grade</th>
-    <th></th>
+    <th>Discipline</th>
+    <th>Value</th>
+    <th>Route Count</th>
   </tr>
-    <% @facility.grades.each do |grade| %>
+    <% @grades.each do |grade| %>
     <tr>
+      <% if @facility.custom? %>
+        <td><%=link_to grade.grade,  edit_admin_facility_grade_path(@facility, grade ) %></td>
+        <% else %>
+          <td><%= grade.grade %></td>
+      <% end %>
       <td><%= grade.discipline %></td>
       <td><%= grade.rank %></td>
-      <td><%= grade.grade %></td>
-      <td><%= link_to "edit",  edit_admin_facility_grade_path(@facility, grade ) %></td>
+      <td><%= grade.routes.where('facility_id = ?', @facility.id).count %> routes</td>
    </tr>
   <% end %>
 </table>
+<%= paginate @grades %>
 </div>
