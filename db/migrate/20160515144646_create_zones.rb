@@ -1,5 +1,10 @@
 class CreateZones < ActiveRecord::Migration
   def change
-    add_reference :routes, :zone, index: true, foreign_key: true
+    create_table :zones do |t|
+      t.string :name
+      t.references :facility, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
+      t.timestamps null: false
+    end
   end
 end
