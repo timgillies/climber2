@@ -1,5 +1,31 @@
-<li id="facility-<%= facility.id %>">
-  <span class="name"><%= link_to facility.name, admin_facility_path(facility) %></span>
-  <span class="name"><%= facility.addressline1 %></span>
-  <span class="name"><%= facility.city %>, <%= facility.state %></span>
-</li>
+<div id="filterrific_results">
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= page_entries_info @facilities  %>
+    </div>
+  </div>
+
+  <table class="table table-striped table-condensed">
+    <tr>
+      <th>Facilities</th>
+      <th>Location</th>
+      <th>Address</th>
+      <th></th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip Code</th>
+    </tr>
+      <%= div_for(@facilities) do |f| %>
+      <tr>
+        <td><%= link_to f.name,  admin_facility_routes_path(f) %></td>
+        <td><%= f.location %></td>
+        <td><%= f.addressline1 %></td>
+        <td><%= f.addressline2 %></td>
+        <td><%= f.city %></td>
+        <td><%= f.state %></td>
+        <td><%= f.zipcode %></td>
+     </tr>
+    <% end %>
+  </table>
+</div>

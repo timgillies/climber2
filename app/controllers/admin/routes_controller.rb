@@ -53,6 +53,7 @@ class Admin::RoutesController < ApplicationController
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
+    @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
   end
 
   def show
@@ -69,6 +70,7 @@ class Admin::RoutesController < ApplicationController
       @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
     end
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
     @route.facility_id = params[:facility_id]
     if @route.save
       flash[:success] = "Route created!"
@@ -82,8 +84,15 @@ class Admin::RoutesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @route = Route.find(params[:id])
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
-    @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+
+    if @facility.custom?
+      @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
+    else
+      @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
+    end
+
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
     @route.facility_id = params[:facility_id]
   end
 
@@ -95,7 +104,7 @@ class Admin::RoutesController < ApplicationController
       redirect_to(admin_facility_routes_path(@facility))
       # Handle a successful update.
     else
-      render 'edit'
+      render 'new'
     end
   end
 

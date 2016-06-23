@@ -7,8 +7,6 @@ class Facility < ActiveRecord::Base
   has_many :setters
   has_many :admins
 
-  accepts_nested_attributes_for :grades
-
   default_scope -> { order(created_at: :desc) }
   validates :name, presence: true
   validates :addressline1, presence: true

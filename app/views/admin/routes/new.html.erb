@@ -5,54 +5,12 @@
     <h1>Add Routes</h1>
   </div>
   <br/>
-        <%= form_for [:admin, @facility, @route] do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
-            <div class="row">
-              <div class="col-sm-3">
-                <%= f.text_field :color, class: 'form-control', placeholder: "Route color" %>
-
-              </div>
-              <div class="col-sm-3">
-                <%= f.text_field :name, class: 'form-control', placeholder: "Route name (optional)" %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <%= f.select(:discipline, options_for_select(facility_disciplines), include_blank: "- Discipline -", class: 'form-control') %>
-              </div>
-              <div class="col-sm-3">
-                <%= f.select(:setter_id, @facilitysetters, include_blank: "- Route setter -", class: 'form-control') %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-2">
-                <%= f.select(:grade_id, @facilitygrades, include_blank: "- Grade -", class: 'form-control') %>
-              </div>
-              <div class="col-sm-2">
-                <%= f.select(:zone_id, @facilityzones, include_blank: "- Zone -", class: 'form-control') %>
-              </div>
-              <div class="col-sm-2">
-                <%= f.select(:wall_id, @facilitywalls, include_blank: "- Wall -", class: 'form-control') %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <%= f.label :setdate, "Set Date" %>
-                <%= f.date_field :setdate, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
-              </div>
-              <div class="col-sm-3">
-                <%= f.label :enddate, "End Date" %>
-                <%= f.date_field :enddate, :value => 30.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <%= f.submit "Add", class: "btn btn-primary" %>
-              </div>
-            </div>
-        <% end %>
+  <div class="row">
+    <div class="col-sm-6">
+        <%= render 'admin/routes/form', object: @routes %>
+    </div>
+    <div class="col-sm-6">
+      <%= render 'admin/routes/recent', object: @recentroutes %>
+    </div>
+  </div>
+</div>

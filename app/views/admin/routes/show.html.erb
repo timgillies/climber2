@@ -1,17 +1,28 @@
 <% provide(:title, @route.name) %>
 
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @route.name %>
-      </h1>
-
-      <h2>
-        <%= @route.color  %>
-        <%= @route.setter %>
-        <%= @route.created_at %>
-      </h2>
-    </section>
-  </aside>
+<div class="container">
+  <div class="filter-body">
+    <h1><%= @facility.name %></h1>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-sm-6">
+        <h3><%= @route.grade.grade %><small> <%= @route.name %></small></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+        <p>Color: <%= @route.color %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+        <p>Setter: <%= @route.setter.nick_name %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+        <h3><small><%= @route.description %></small></h3>
+    </div>
+  </div>
 </div>

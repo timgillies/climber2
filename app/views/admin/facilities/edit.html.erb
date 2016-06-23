@@ -1,14 +1,17 @@
-<% provide(:title, 'Edit facility info') %>
+<% provide(:title, 'Edit Facility') %>
 
-<h1>Edit Facility Info</h1>
+<div class="container">
+  <div class="filter-body">
+    <h1>Edit Facility</h1>
+  </div>
+  <br/>
 
-<form class="form-horizontal" role="form">
+<form class="form-horizontal">
   <div class="form-group">
     <div class="col-md-6 col-md-offset-3">
-      <%= form_for([:admin, @facility]) do |f| %>
-        <%= render 'shared/error_messages', object: @facility %>
+      <%= form_for([:admin,@facility]) do |f| %>
 
-        <h2>Location</h2>
+        <%= render 'shared/error_messages', object: @facility %>
 
         <%= f.label :name, "Facility name" %>
         <%= f.text_field :name, class: 'form-control' %>
@@ -26,12 +29,10 @@
         <%= f.text_field :city, class: 'form-control' %>
 
         <%= f.label :state %>
-        <%= f.select :state, options_for_select(us_states), include_blank: true, class: 'form-control' %>
+        <%= f.select :state, options_for_select(us_states), include_blank: "- State -", class: 'form-control' %>
 
         <%= f.label :zipcode, "Zip code" %>
         <%= f.text_field :zipcode, class: 'form-control' %>
-
-        <h2>Grading</h2>
 
         <%= f.label :custom, "Custom Grading?" %>
         <%= f.check_box :custom %>

@@ -5,7 +5,7 @@ class Admin::FacilitiesController < ApplicationController
   layout "admin", except: [:index, :new]
 
   def index
-    @facilities = current_user.facilities.page(params[:page]).per(5)
+    @facilities = current_user.facilities.page(params[:page])
   end
 
   def show
@@ -27,8 +27,12 @@ class Admin::FacilitiesController < ApplicationController
     end
   end
 
+  def edit
+    @facility = Facility.find(params[:id])
+  end
+
   def update
-    @facility = current_user.facilities.find(params[:id])
+    @facility = Facility.find(params[:facility])
     if @facility.update_attributes(facility_params)
       flash[:success] = "Info updated!"
       redirect_to(admin_facility_path(@facility))
@@ -36,14 +40,9 @@ class Admin::FacilitiesController < ApplicationController
     else
       render 'edit'
     end
-
-    byebug
-
   end
 
-  def edit
-    @facility = current_user.facilities.find(params[:id])
-  end
+
 
   def destroy
     Facility.find(params[:id]).destroy

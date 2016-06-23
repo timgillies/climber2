@@ -10,6 +10,7 @@ class Route < ActiveRecord::Base
   validates :color, presence: true
   validates :setter, presence: true
   validates :setdate, presence: true
+  validates :grade, presence: true
 
   filterrific(
   default_filter_params: { sorted_by: 'setdate_desc' },
@@ -48,7 +49,7 @@ class Route < ActiveRecord::Base
   num_or_conds = 2
   where(
     terms.map { |term|
-      "(LOWER(routes.name) LIKE ? OR LOWER(routes.setter) LIKE ?)"
+      "(LOWER(routes.name) LIKE ? OR LOWER(routes.setter.name) LIKE ?)"
     }.join(' AND '),
     *terms.map { |e| [e] * num_or_conds }.flatten
   )
