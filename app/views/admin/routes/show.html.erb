@@ -1,28 +1,52 @@
 <% provide(:title, @route.name) %>
 
-<div class="container">
-  <div class="filter-body">
-    <h1><%= @facility.name %></h1>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-sm-6">
-        <h3><%= @route.grade.grade %><small> <%= @route.name %></small></h3>
+  <div class="container">
+    <div class="filter-body">
+      <h1><%= @facility.name %></h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-        <p>Color: <%= @route.color %></p>
+    <br/>
+  <div class="routes">
+    <div class="row">
+      <div class="col-sm-6">
+          <h1><%= @route.grade.grade %><small> <%= @route.name %></small></h1>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-        <p>Setter: <%= @route.setter.nick_name %></p>
+    <div class="row">
+      <div class="col-sm-2">
+          <h2>Color:</h2>
+      </div>
+      <div class="col-sm-3">
+          <h2><%= @route.color %></h2>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-        <h3><small><%= @route.description %></small></h3>
+    <div class="row">
+      <div class="col-sm-2">
+          <h2>Setter:</h2>
+      </div>
+      <div class="col-sm-3">
+          <h2><%= @route.setter.nick_name %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+          <h2>Zone:</h2>
+      </div>
+      <div class="col-sm-3">
+          <h2><%= @route.zone.name %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+          <h2>Wall:</h2>
+      </div>
+      <div class="col-sm-3">
+          <h2><%= @route.wall.name %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+          <p><%= @route.description %></p>
+      </div>
     </div>
   </div>
 </div>

@@ -341,10 +341,35 @@ input {
 .routes {
   list-style: none;
   margin: 0;
+  h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 5px;
+    text-align: left;
+    border-bottom: 1px solid $gray-lighter;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    text-align: left;
+    color: $gray;
+  }
+
+  p {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-top: 10px;
+    font-weight: normal;
+    text-align: left;
+    color: $gray-light;
+  }
+
   li {
     overflow: auto;
     padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
   }
 }
 
@@ -596,4 +621,9 @@ Licensed under MIT
       }
       }
 
+}
+
+.adminnavbar {
+  body { padding-top: 70px;
+  }
 }

@@ -94,6 +94,7 @@ class Admin::RoutesController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
     @route.facility_id = params[:facility_id]
+    @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
   end
 
   def update

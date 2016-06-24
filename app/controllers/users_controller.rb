@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.update_attribute(:role, "user")
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_back_or root_url
@@ -36,7 +35,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to(root_url)
       # Handle a successful update.
     else
       render 'edit'
@@ -59,7 +58,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                    :password_confirmation)
+                                    :password_confirmation, :role)
   end
 
   # Before filters

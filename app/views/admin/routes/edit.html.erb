@@ -1,9 +1,16 @@
-<% provide(:title, 'Add routes') %>
+<% provide(:title, 'Edit Route') %>
 
 <div class="container">
   <div class="filter-body">
-    <h1>Add Routes</h1>
+    <h1>Edit Route</h1>
   </div>
   <br/>
-    <%= render 'admin/routes/form', object: @routes %>
+  <div class="row">
+    <div class="col-sm-6">
+        <%= render 'admin/routes/form', object: @routes %>
+    </div>
+    <div class="col-sm-6">
+      <%= render 'admin/routes/recent', object: @recentroutes %>
+    </div>
+  </div>
 </div>

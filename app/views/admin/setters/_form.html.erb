@@ -1,0 +1,12 @@
+<%= form_for [:admin, @facility, @setter] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.text_field :first_name, class: 'form-control', placeholder: "First name" %>
+
+  <%= f.text_field :last_name, class: 'form-control', placeholder: "Last name" %>
+
+  <%= f.text_field :nick_name, class: 'form-control', placeholder: "Display name" %>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+
+<% end %>
