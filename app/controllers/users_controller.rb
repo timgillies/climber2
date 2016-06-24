@@ -23,14 +23,14 @@ class UsersController < ApplicationController
       @user.update_attribute(:role, "user")
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      redirect_back_or root_url
     else
       render 'new'
     end
   end
 
   def edit
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
   end
 
   def update
