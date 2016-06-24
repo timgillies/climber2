@@ -17,6 +17,6 @@ class UserMailer < ApplicationMailer
   #
   def password_reset(user)
     @user = user
-    mail from: 'noreply@climbconnect', to: user.email, subject: "Password reset"
+    mail from: 'noreply@climbconnect.com', to: user.email, subject: "Password reset"
     end
 end
