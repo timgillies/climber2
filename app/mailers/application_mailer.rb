@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "noreply@climbhub.net"
+  default from: "noreply@climbconnect.net"
   layout 'mailer'
 end
