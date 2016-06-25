@@ -44,7 +44,11 @@
         ) %>
       </div>
       <div class="col-md-2">
-        <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+        <%= f.select(
+          :with_status_id,
+          @filterrific.select_options[:with_status_id],
+          { include_blank: 'Status' }
+        ) %>
       </div>
       <div class="col-md-2">
         <%= link_to(

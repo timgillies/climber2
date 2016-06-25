@@ -15,6 +15,7 @@ class Admin::RoutesController < ApplicationController
         with_zone_id: options_for_zone_select,
         with_wall_id: options_for_wall_select,
         with_setter_id: options_for_setter_select,
+        with_status_id: Route.options_for_status_select,
       },
       persistence_id: 'shared_key',
     ) or return
@@ -119,7 +120,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :description)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :description, :active)
   end
 
   def options_for_grade_select

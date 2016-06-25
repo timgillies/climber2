@@ -16,6 +16,7 @@
       <th>Color</th>
       <th>Set Date</th>
       <th>Exp. Date</th>
+      <th>Active</th>
       <th></th>
       <th></th>
       <th></th>
@@ -30,6 +31,7 @@
         <td><%= r.color %></td>
         <td><%= r.setdate %></td>
         <td><%= r.enddate %></td>
+        <td><%= r.active? %></td>
         <td><%= link_to "view",  admin_facility_route_path(@facility, r ) %></td>
         <td><%= link_to "edit",  edit_admin_facility_route_path(@facility, r ) %></td>
         <td><%= link_to "delete",  admin_facility_route_path(@facility, r ), method: :delete %></td>

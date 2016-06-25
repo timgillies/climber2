@@ -12,8 +12,12 @@ class Route < ActiveRecord::Base
   validates :setdate, presence: true
   validates :grade, presence: true
 
+  def active?
+    (Date.today - self.enddate).to_i <= 0
+  end
+
   filterrific(
-  default_filter_params: { sorted_by: 'setdate_desc' },
+  default_filter_params: { sorted_by: 'enddate_desc' },
   available_filters: [
     :sorted_by,
     :search_query,
@@ -21,6 +25,7 @@ class Route < ActiveRecord::Base
     :with_zone_id,
     :with_wall_id,
     :with_setter_id,
+    :with_status_id,
     :with_setdate_gte
   ]
   )
@@ -41,15 +46,15 @@ class Route < ActiveRecord::Base
   # replace "*" with "%" for wildcard searches,
   # append '%', remove duplicate '%'s
   terms = terms.map { |e|
-    (e.gsub('*', '%') + '%').gsub(/%+/, '%')
+    (e.gsub('%', '%') + '%').gsub(/%+/, '%')
   }
   # configure number of OR conditions for provision
   # of interpolation arguments. Adjust this if you
   # change the number of OR conditions.
-  num_or_conds = 2
+  num_or_conds = 1
   where(
     terms.map { |term|
-      "(LOWER(routes.name) LIKE ? OR LOWER(routes.setter.name) LIKE ?)"
+      "(LOWER(routes.name) LIKE ?)"
     }.join(' AND '),
     *terms.map { |e| [e] * num_or_conds }.flatten
   )
@@ -92,6 +97,10 @@ scope :sorted_by, lambda { |sort_option|
       where( 'setter_id = ?', setter_ids)
   }
 
+  scope :with_status_id, lambda { |status_ids|
+      where( 'enddate <= ?', status_ids)
+  }
+
     # always include the lower boundary for semi open intervals
   scope :with_setdate_gte, lambda { |reference_time|
     where('routes.setdate >= ?', reference_time)
@@ -105,6 +114,12 @@ scope :sorted_by, lambda { |sort_option|
     [
       ['Create date (newest first)', 'setdate_desc'],
       ['Expire date (newest first)', 'enddate_desc'],
+    ]
+  end
+
+  def self.options_for_status_select
+    [
+      ['Expired only', Date.today]
     ]
   end
 end

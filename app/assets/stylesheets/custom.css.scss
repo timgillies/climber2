@@ -3,6 +3,8 @@
 @import 'bootstrap-datetimepicker';
 
 
+
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -21,8 +23,9 @@ $gray-medium-light: #eaeaea;
 
 body {
   background-color: #fff;
-  padding:50px;
-  padding-top: 70px;
+  padding: 0px;
+  padding-top: 65px;
+  padding-bottom: 0px;
 }
 
 section {
@@ -49,7 +52,7 @@ th, td {
   h1 {
     font-size: 3em;
     letter-spacing: -2px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     text-align: center;
   }
 }
@@ -608,11 +611,13 @@ Licensed under MIT
 /* Navbar */
 
 @media (min-width: 768px){
+
     .navbar-nav{
         float:none;
         margin: 0px auto;
         display: table;
         table-layout: fixed;
+        margin-bottom: 0px;
     }
     li a {
       color: $gray;
@@ -624,6 +629,6 @@ Licensed under MIT
 }
 
 .adminnavbar {
-  body { padding-top: 70px;
+  body { padding-top: 0px;
   }
 }
