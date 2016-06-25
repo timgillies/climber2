@@ -27,6 +27,13 @@ crumb :editroute do |route|
   parent :routes
 end
 
+# Breadcrumb using view helper
+module FacilitiesHelper
+  def facility_name_for(facility)
+    facility.name
+  end
+end
+
 # If you want to split your breadcrumbs configuration over multiple files, you
 # can create a folder named `config/breadcrumbs` and put your configuration
 # files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that

@@ -11,9 +11,9 @@
       <th>Zone</th>
       <th>Wall</th>
       <th>Grade</th>
-      <th>Routesetter</th>
-      <th>Route Name</th>
       <th>Color</th>
+      <th>Route Name</th>
+      <th>Routesetter</th>
       <th>Set Date</th>
       <th>Exp. Date</th>
       <th>Active</th>
@@ -26,9 +26,9 @@
         <td><%= r.zone.name if r.zone %></td>
         <td><%= r.wall.name if r.wall %></td>
         <td><%= r.grade.grade if r.grade %></td>
-        <td><%= r.setter.nick_name if r.setter %></td>
-        <td><%= r.name %></td>
         <td><%= r.color %></td>
+        <td><%= r.name %></td>
+        <td><%= r.setter.nick_name if r.setter %></td>
         <td><%= r.setdate %></td>
         <td><%= r.enddate %></td>
         <td><%= r.active? %></td>
