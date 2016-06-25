@@ -1,17 +1,29 @@
 
 # Root crumb
-crumb :facility do |facility|
-  link @facilty.name , admin_facility_routes_path(@facility)
+crumb :root do
+  link "Home", admin_facility_routes_path
 end
 
-# Issue list
+# Routes list
 crumb :routes do
-  link "Routes", admin_facility_routes_path(@facility)
+  link "Routes", admin_facility_routes_path
 end
 
-# Issue
+# Route
 crumb :route do |route|
-  link route.name, route
+  link route.name, admin_facility_routes_path
+  parent :routes
+end
+
+# Route
+crumb :addroute do
+  link "Add route", admin_facility_routes_path
+  parent :routes
+end
+
+# Route
+crumb :editroute do |route|
+  link route.name, admin_facility_routes_path
   parent :routes
 end
 

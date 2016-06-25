@@ -4,6 +4,10 @@
       <h1> Route Database </h1>
     </div>
     <br/>
+
+    <% breadcrumb :routes, @routes %>
+    <%= breadcrumbs style: :bootstrap %>
+
     <div class="row">
       <div class="col-md-10">
         <%# give the search field the 'filterrific-periodically-observed' class for live updates %>

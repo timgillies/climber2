@@ -59,6 +59,7 @@ class Admin::RoutesController < ApplicationController
 
   def show
     @route = Route.find(params[:id])
+    @facility = Facility.find(params[:facility_id])
   end
 
   def create
