@@ -1,10 +1,13 @@
-<div class="container">
-  <div class="filter-body">
-    <h1><%= @facility.name %></h1>
-  </div>
+  <% provide(:title, @facility.name ) %>
 
-  <div class="row">
-    <h2>
-      <%= @facility.addressline1 %> <%= @facility.city %>, <%= @facility.state %>
-    </h2>
-  </div>
+    <div class="filter-body">
+      <h1><%= @facility.name %></h1>
+    </div>
+      <div class="row">
+        <div class="col-md-6">
+            <%= render 'admin/facilities/gradechart', object: @facility %>
+        </div>
+        <div class="col-md-6">
+            <%= render 'admin/facilities/setterchart', object: @facility %>
+        </div>
+      </div>
