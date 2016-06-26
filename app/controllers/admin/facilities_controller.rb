@@ -15,23 +15,40 @@ class Admin::FacilitiesController < ApplicationController
 
     @gradechart = LazyHighCharts::HighChart.new('chart') do |f|
       f.title(text: "Routes by Grade")
-      f.xAxis(categories: @facility.grades.map{|f| [f.grade]})
-      f.series(name: "Routes by grade", categories: @facility.grades.map{|f| [f.grade]}, yAxis: 0, data: @facility.grades.all.map{|f| @activeroutes.where("grade_id = ?", f).count } )
-
-      f.yAxis [
-        {title: {text: "Routes by Grade", margin: 0, tickInterval: 10} }
-      ]
-
-      f.chart({defaultSeriesType: "pie"})
+      f.chart(  defaultSeriesType: "pie",
+                borderWidth: 0,
+                plotBackgroundColor: "rgba(255, 255, 255, .9)",
+                plotShadow: true,
+                plotBorderWidth: 1
+              )
+      series = {
+               type: 'pie',
+               name: 'Routes by grade',
+               data: @facility.grades.all.map{|f| [f.grade, @activeroutes.where("grade_id = ?", f).count] }
+      }
+      f.series(series)
+      f.legend(enabled: false)
+      f.plotOptions(pie:{
+        allowPointSelect: true,
+        cursor: "pointer" ,
+        dataLabels: {
+          enabled: true,
+          color: "black",
+          style: {
+            font: "13px Trebuchet MS, Verdana, sans-serif"
+          }
+        }
+      })
     end
 
     @setterchart = LazyHighCharts::HighChart.new('chart') do |f|
       f.title(text: "Routes by Setter")
       f.xAxis(categories: @facility.setters.map{|f| [f.last_name + ", " + f.first_name]})
-      f.series(name: "Routes by setter", categories: @facility.setters.map{|f| [f.last_name]}, yAxis: 0, data: @facility.setters.all.map{|f| @activeroutes.where("setter_id = ?", f).count } )
-
+      f.series(name: "Number of routes", categories: @facility.setters.map{|f| [f.last_name]}, yAxis: 0, data: @facility.setters.all.map{|f| @activeroutes.where("setter_id = ?", f).count } )
+      f.legend(enabled: false)
+      f.colors( ["#6bda8f"])
       f.yAxis [
-        {title: {text: "Routes by Setter", margin: 0} }
+        {title: {text: "Active Routes", margin: 0} }
       ]
 
       f.chart({defaultSeriesType: "bar"})
@@ -46,7 +63,7 @@ class Admin::FacilitiesController < ApplicationController
         plotBorderWidth: 1
       )
       f.lang(thousandsSep: ",")
-      f.colors(["#90ed7d", "#f7a35c", "#8085e9", "#f15c80", "#e4d354"])
+      f.colors(["#b6da6b", "#6bda8f", "#8f6bda", "#da6bb6", "#da8f6b"])
     end
   end
 

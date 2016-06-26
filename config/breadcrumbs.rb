@@ -1,7 +1,7 @@
 
 # Root crumb
 crumb :root do
-  link "Home", admin_facilities_url
+  link "Home", admin_facility_routes_path
 end
 
 # Routes list

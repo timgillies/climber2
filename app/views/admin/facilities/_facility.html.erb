@@ -18,7 +18,7 @@
     </tr>
       <%= div_for(@facilities) do |f| %>
       <tr>
-        <td><%= link_to f.name,  admin_facility_routes_path(f) %></td>
+        <td><%= link_to f.name,  admin_facility_path(f) %></td>
         <td><%= f.location %></td>
         <td><%= f.addressline1 %></td>
         <td><%= f.addressline2 %></td>
