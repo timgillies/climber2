@@ -351,6 +351,10 @@ input {
     margin-bottom: 5px;
     text-align: left;
     border-bottom: 1px solid $gray-lighter;
+    h3 {
+      text-align: right;
+    }
+
   }
 
   h2 {
@@ -359,6 +363,15 @@ input {
     margin-bottom: 0px;
     font-weight: normal;
     text-align: left;
+    color: $gray;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    align: right;
     color: $gray;
   }
 

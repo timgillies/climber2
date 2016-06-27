@@ -73,6 +73,7 @@ class Admin::RoutesController < ApplicationController
     end
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
+    @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
     @route.facility_id = params[:facility_id]
     if @route.save
       flash[:success] = "Route created!"
@@ -121,7 +122,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :description, :active)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :discipline, :description, :active)
   end
 
   def options_for_grade_select

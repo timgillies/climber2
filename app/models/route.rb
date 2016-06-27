@@ -11,6 +11,7 @@ class Route < ActiveRecord::Base
   validates :setter, presence: true
   validates :setdate, presence: true
   validates :grade, presence: true
+  validates :discipline, presence: true
 
   def active?
     (Date.today - self.enddate).to_i <= 0

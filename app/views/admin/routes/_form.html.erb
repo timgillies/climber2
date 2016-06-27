@@ -11,7 +11,7 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <%= f.select(:discipline, options_for_select(facility_disciplines), include_blank: "- Discipline -", class: 'form-control') %>
+        <%= f.select :discipline, options_for_select(facility_disciplines), include_blank: "- Discipline -", class: 'form-control' %>
       </div>
       <div class="col-sm-6">
         <%= f.select(:setter_id, @facilitysetters, include_blank: "- Route setter -", class: 'form-control') %>

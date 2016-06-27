@@ -14,7 +14,6 @@ class Admin::FacilitiesController < ApplicationController
     @activeroutes = @facility.routes.where("enddate >= ?", Date.today)
 
     @gradechart = LazyHighCharts::HighChart.new('chart') do |f|
-      f.title(text: "Routes by Grade")
       f.chart(  defaultSeriesType: "pie",
                 borderWidth: 0,
                 plotBackgroundColor: "rgba(255, 255, 255, .9)",
@@ -42,9 +41,8 @@ class Admin::FacilitiesController < ApplicationController
     end
 
     @setterchart = LazyHighCharts::HighChart.new('chart') do |f|
-      f.title(text: "Routes by Setter")
       f.xAxis(categories: @facility.setters.map{|f| [f.last_name + ", " + f.first_name]})
-      f.series(name: "Number of routes", categories: @facility.setters.map{|f| [f.last_name]}, yAxis: 0, data: @facility.setters.all.map{|f| @activeroutes.where("setter_id = ?", f).count } )
+      f.series(name: "Number of routes", yAxis: 0, data: @facility.setters.all.map{|f| @activeroutes.where("setter_id = ?", f).count } )
       f.legend(enabled: false)
       f.colors( ["#6bda8f"])
       f.yAxis [
