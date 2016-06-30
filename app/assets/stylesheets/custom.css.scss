@@ -13,9 +13,7 @@ $gray-medium-light: #eaeaea;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
-  -webkit-border-radius:  0 !important;
-    -moz-border-radius:   0 !important;
-      border-radius:      0 !important;
+
 }
 
 
@@ -42,6 +40,10 @@ table {
 
 th, td {
   padding: 7px 10px 10px 10px;
+}
+
+a {
+  color: $gray;
 }
 
 
@@ -645,4 +647,18 @@ Licensed under MIT
 .adminnavbar {
   body { padding-top: 0px;
   }
+}
+
+/* Buttons */
+
+
+.btn-danger, .btn-danger:hover {
+    a {
+      color: #ffffff;
+    }
+}
+
+.btn-primary {
+      color: #ffffff;
+
 }

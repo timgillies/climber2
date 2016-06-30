@@ -3,17 +3,13 @@
     <div class="routes">
       <h1>Routes</h1>
     </div>
-    <br/>
-
-    <% breadcrumb :routes, @routes %>
-    <%= breadcrumbs style: :bootstrap %>
-
+  <br/>
     <div class="row">
       <div class="col-md-10">
         <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <%= f.text_field(
           :search_query,
-          placeholder: 'Search by name or setter',
+          placeholder: '  Search by ID or Name',
           class: 'filterrific-periodically-observed'
         ) %>
       </div>
