@@ -1,8 +1,5 @@
 class RoutesController < ApplicationController
   before_action :logged_in_user,    only: [:index, :show]
-  before_action :facilityroute_admin,      only: [:edit, :update, :destroy]
-
-  layout "admin"
 
   def index
     @facility = Facility.find(params[:facility_id])
