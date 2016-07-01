@@ -23,7 +23,7 @@
 
     </tr>
       <%= div_for(@routes) do |r| %>
-        <td><button type="button" class="btn btn-default btn-sm"><%= link_to r.id,  admin_facility_route_path(@facility, r ) %></td></button>
+        <td><%= button_to( r.id, admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get)  %></td>
         <td><%= r.zone.name if r.zone %></td>
         <td><%= r.wall.name if r.wall %></td>
         <td><%= r.grade.grade if r.grade %></td>
@@ -33,8 +33,8 @@
         <td><%= r.setdate %></td>
         <td><%= r.enddate %></td>
         <td><%= r.active? %></td>
-        <td><button type="button" class="btn btn-default btn-sm"><%= link_to "edit",  edit_admin_facility_route_path(@facility, r ) %></button></td>
-        <td><button type="button" class="btn btn-danger btn-sm"><%= link_to "delete",  admin_facility_route_path(@facility, r ), method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+        <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get %></td>
+        <td><%= button_to "delete",  admin_facility_route_path(@facility, r ), class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: "Are you sure?"} %></td>
      </tr>
     <% end %>
   </table>
