@@ -1,0 +1,27 @@
+<!-- Left nav -->
+
+
+<div class="container">
+  <ul class="nav nav-pills">
+    <li> <%= link_to "My Home", user_path(current_user) %></li>
+    <li> <%= link_to "Route Database", '#' %></li>
+    <li> <%= link_to "Add Routes", '#' %></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Setup <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Zones", '#' %></li>
+        <li><%= link_to "Walls", '#' %></li>
+        <li><%= link_to "Routesetters", '#' %></li>
+        <li><%= link_to "Grades", '#' %></li>
+        <li class="divider"></li>
+        <li>
+          <%= link_to "Change Facility", admin_facilities_path %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<br/>

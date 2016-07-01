@@ -1,0 +1,39 @@
+<div id="filterrific_results">
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= page_entries_info @routes  %>
+    </div>
+  </div>
+
+  <table class="table table-hover table-condensed">
+    <tr>
+      <th>Route ID</th>
+      <th>Zone</th>
+      <th>Wall</th>
+      <th>Grade</th>
+      <th>Color</th>
+      <th>Route Name</th>
+      <th>Routesetter</th>
+      <th>Set Date</th>
+      <th>Exp. Date</th>
+      <th>Active</th>
+
+    </tr>
+      <%= div_for(@routes) do |r| %>
+        <td><%= button_to( r.id, facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get)  %></td>
+        <td><%= r.zone.name if r.zone %></td>
+        <td><%= r.wall.name if r.wall %></td>
+        <td><%= r.grade.grade if r.grade %></td>
+        <td><%= r.color %></td>
+        <td><%= r.name %></td>
+        <td><%= r.setter.nick_name if r.setter %></td>
+        <td><%= r.setdate %></td>
+        <td><%= r.enddate %></td>
+        <td><%= r.active? %></td>
+     </tr>
+    <% end %>
+  </table>
+</div>
+
+  <%= paginate @routes %>

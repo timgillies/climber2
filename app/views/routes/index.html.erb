@@ -5,9 +5,6 @@
     </div>
     <br/>
 
-    <% breadcrumb :routes, @routes %>
-    <%= breadcrumbs style: :bootstrap %>
-
     <div class="row">
       <div class="col-md-10">
         <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
@@ -65,6 +62,6 @@
 <% end %>
 
 <%= render(
-partial: 'admin/routes/list',
+partial: 'routes/list',
 locals: { routes: @routes }
 ) %>

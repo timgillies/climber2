@@ -5,7 +5,7 @@ class FacilitiesController < ApplicationController
   end
 
   def show
-    @facility = current_user.facilities.find(params[:id])
+    @facility = Facility.find(params[:id])
     @routes = @facility.routes.page(params[:page])
     @activeroutes = @facility.routes.where("enddate >= ?", Date.today)
 

@@ -38,9 +38,11 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-6">
-        <%= render 'facilities/gradechart', object: @facility %>
+        <%= render 'admin/facilities/gradechart', object: @facility %>
+    </div>
+    <div class="col-md-6">
+        <%= render 'admin/facilities/setterchart', object: @facility %>
     </div>
   </div>
