@@ -1,4 +1,4 @@
 <% js = escape_javascript(
-  render(partial: 'admin/routes/list', locals: { routes: @routes })
+  render(partial: 'routes/list', locals: { routes: @routes })
 ) %>
 $("#filterrific_results").html("<%= js %>");
