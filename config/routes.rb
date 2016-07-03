@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   get 'password_resets/new'
 
   get 'password_resets/edit'

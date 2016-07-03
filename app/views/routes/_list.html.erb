@@ -16,8 +16,7 @@
       <th>Route Name</th>
       <th>Routesetter</th>
       <th>Set Date</th>
-      <th>Exp. Date</th>
-      <th>Active</th>
+      <th>Rating</th>
 
     </tr>
       <%= div_for(@routes) do |r| %>
@@ -29,8 +28,8 @@
         <td><%= r.name %></td>
         <td><%= r.setter.nick_name if r.setter %></td>
         <td><%= r.setdate %></td>
-        <td><%= r.enddate %></td>
-        <td><%= r.active? %></td>
+        <td><%= (rating_for r, "total") %></td>
+
      </tr>
     <% end %>
   </table>

@@ -57,6 +57,8 @@ class RoutesController < ApplicationController
   def show
     @route = Route.find(params[:id])
     @facility = Facility.find(params[:facility_id])
+    @averagerating = Rate.where("rateable_id = ?", @route).average(:stars)
+    @ratingcount = Rate.where("rateable_id = ?", @route).count(:stars)
   end
 
   def create

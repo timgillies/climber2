@@ -17,6 +17,8 @@ class Route < ActiveRecord::Base
     (Date.today - self.enddate).to_i <= 0
   end
 
+  ratyrate_rateable 'total'
+
   filterrific(
   default_filter_params: { sorted_by: 'enddate_desc' },
   available_filters: [

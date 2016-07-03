@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622173613) do
+ActiveRecord::Schema.define(version: 20160702183625) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20160622173613) do
 
   add_index "admins", ["facility_id"], name: "index_admins_on_facility_id", using: :btree
   add_index "admins", ["user_id"], name: "index_admins_on_user_id", using: :btree
+
+  create_table "average_caches", force: :cascade do |t|
+    t.integer  "rater_id",      limit: 4
+    t.integer  "rateable_id",   limit: 4
+    t.string   "rateable_type", limit: 255
+    t.float    "avg",           limit: 24,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -53,6 +62,39 @@ ActiveRecord::Schema.define(version: 20160622173613) do
 
   add_index "grades", ["facility_id"], name: "index_grades_on_facility_id", using: :btree
   add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
+
+  create_table "overall_averages", force: :cascade do |t|
+    t.integer  "rateable_id",   limit: 4
+    t.string   "rateable_type", limit: 255
+    t.float    "overall_avg",   limit: 24,  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.integer  "rater_id",      limit: 4
+    t.integer  "rateable_id",   limit: 4
+    t.string   "rateable_type", limit: 255
+    t.float    "stars",         limit: 24,  null: false
+    t.string   "dimension",     limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.integer  "cacheable_id",   limit: 4
+    t.string   "cacheable_type", limit: 255
+    t.float    "avg",            limit: 24,  null: false
+    t.integer  "qty",            limit: 4,   null: false
+    t.string   "dimension",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
   create_table "routes", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
