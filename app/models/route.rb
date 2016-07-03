@@ -44,23 +44,16 @@ class Route < ActiveRecord::Base
   return nil  if query.blank?
 
   # condition query, parse into individual keywords
-  terms = query.downcase.split(/\s+/)
+  terms = query
 
   # replace "*" with "%" for wildcard searches,
   # append '%', remove duplicate '%'s
-  terms = terms.map { |e|
-    (e.gsub('%', '%') + '%').gsub(/%+/, '%')
-  }
+
   # configure number of OR conditions for provision
   # of interpolation arguments. Adjust this if you
   # change the number of OR conditions.
-  num_or_conds = 2
-  where(
-    terms.map { |term|
-      "(LOWER(routes.name) LIKE ? OR routes.id = ?)"
-    }.join(' AND '),
-    *terms.map { |e| [e] * num_or_conds }.flatten
-  )
+  num_or_conds = 1
+  where("routes.id = ?", terms)
 }
 
 scope :sorted_by, lambda { |sort_option|

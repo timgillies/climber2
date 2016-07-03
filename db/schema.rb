@@ -13,16 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160702183625) do
 
-  create_table "admins", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "facility_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "admins", ["facility_id"], name: "index_admins_on_facility_id", using: :btree
-  add_index "admins", ["user_id"], name: "index_admins_on_user_id", using: :btree
-
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id",      limit: 4
     t.integer  "rateable_id",   limit: 4
@@ -193,8 +183,6 @@ ActiveRecord::Schema.define(version: 20160702183625) do
   add_index "zones", ["facility_id"], name: "index_zones_on_facility_id", using: :btree
   add_index "zones", ["user_id"], name: "fk_rails_36b0b64bdb", using: :btree
 
-  add_foreign_key "admins", "facilities"
-  add_foreign_key "admins", "users"
   add_foreign_key "facilities", "users"
   add_foreign_key "grades", "facilities"
   add_foreign_key "grades", "users"
