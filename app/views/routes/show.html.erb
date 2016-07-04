@@ -5,9 +5,6 @@
   <div class="routes">
     <h1><%= @route.grade.grade %><small> <%= @route.name %></small></h1>
     <div class="row">
-      <div class="col-sm-2">
-          <h2>Rating:</h2>
-      </div>
       <div class="col-sm-3">
         <% if current_user %>
           <h2> <%= (rating_for @route, "total", disable_after_rate: false) %><small><%= @averagerating.to_s + " / " + @ratingcount.to_s + " votes" %></small></h2>

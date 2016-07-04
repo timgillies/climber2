@@ -30,7 +30,7 @@ class TicksController < ApplicationController
   private
 
     def tick_params
-      params.require(:tick).permit(:route_id, :facility_id, :user_id, :type, :description, :date)
+      params.require(:tick).permit(:route_id, :facility_id, :user_id, :tick_type, :description, :date)
     end
 
 

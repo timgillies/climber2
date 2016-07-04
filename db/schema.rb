@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703183837) do
+ActiveRecord::Schema.define(version: 20160704034111) do
 
   create_table "admins", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20160703183837) do
   create_table "ticks", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.integer  "route_id",    limit: 4
-    t.string   "type",        limit: 255
+    t.string   "tick_type",   limit: 255
     t.string   "description", limit: 255
     t.date     "date"
     t.datetime "created_at",              null: false
@@ -150,6 +150,13 @@ ActiveRecord::Schema.define(version: 20160703183837) do
   add_index "ticks", ["facility_id"], name: "index_ticks_on_facility_id", using: :btree
   add_index "ticks", ["route_id"], name: "index_ticks_on_route_id", using: :btree
   add_index "ticks", ["user_id"], name: "index_ticks_on_user_id", using: :btree
+
+  create_table "ticktypes", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "value",      limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
