@@ -18,7 +18,14 @@ Rails.application.routes.draw do
 
   get 'register'     => 'facilities#new'
 
-  resources :users
+  resources :users do
+    resources :facilities do
+      resources :routes do
+    resources :ticks
+      end
+    end
+  end
+
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
@@ -37,6 +44,7 @@ Rails.application.routes.draw do
     resources :zones, only: [:index, :show]
     resources :walls, only: [:index, :show]
     resources :setters, only: [:index, :show]
+    resources :ticks
   end
 
   resources :account_activations, only: [:edit]

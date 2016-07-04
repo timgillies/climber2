@@ -1,0 +1,11 @@
+
+<%= form_for [current_user, @facility, @route, @tick] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.text_field :description, class: 'form-control', placeholder: "Notes..."%>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+
+<% end %>
+
+<h1><%= @facility.name %><small><%= @route.name %></small></h1>

@@ -6,6 +6,8 @@ class Facility < ActiveRecord::Base
   has_many :walls
   has_many :setters
   has_many :admins
+  has_many :ticks
+  belongs_to :tick
 
   default_scope -> { order(created_at: :desc) }
   validates :name, presence: true

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :zones
   has_many :walls
   has_many :setters
+  has_many :ticks
   belongs_to :admin
 
   attr_accessor :remember_token, :activation_token, :reset_token

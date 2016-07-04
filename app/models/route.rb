@@ -5,7 +5,11 @@ class Route < ActiveRecord::Base
   belongs_to :user
   belongs_to :grade
   belongs_to :setter
+  has_many :ticks
   has_many :grades
+  belongs_to :tick
+
+  accepts_nested_attributes_for :ticks
 
   validates :color, presence: true
   validates :setter, presence: true
