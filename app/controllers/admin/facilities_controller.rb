@@ -32,6 +32,7 @@ class Admin::FacilitiesController < ApplicationController
         cursor: "pointer" ,
         dataLabels: {
           enabled: true,
+          format: '<b>{point.name}:</b> {point.percentage:.0f}%',
           color: "black",
           style: {
             font: "13px Trebuchet MS, Verdana, sans-serif"
@@ -40,7 +41,7 @@ class Admin::FacilitiesController < ApplicationController
       })
     end
 
-    @setterchart = LazyHighCharts::HighChart.new('chart') do |f|
+    @setterchart = LazyHighCharts::HighChart.new('barchart') do |f|
       f.xAxis(categories: @facility.setters.map{|f| [f.last_name + ", " + f.first_name]})
       f.series(name: "Number of routes", yAxis: 0, data: @facility.setters.all.map{|f| @activeroutes.where("setter_id = ?", f).count } )
       f.legend(enabled: false)
@@ -48,6 +49,15 @@ class Admin::FacilitiesController < ApplicationController
       f.yAxis [
         {title: {text: "Active Routes", margin: 0} }
       ]
+      f.labels(enables: true)
+      f.plot_options(bar:{
+        allowPointSelect: true,
+        cursor: "pointer" ,
+        dataLabels: {
+          enabled: true,
+          format: '{point.y:.0f}'
+        }
+      })
 
       f.chart({defaultSeriesType: "bar"})
     end
@@ -116,4 +126,5 @@ class Admin::FacilitiesController < ApplicationController
     def admin_user
       redirect_to root_url unless current_user.admin?
     end
+
 end

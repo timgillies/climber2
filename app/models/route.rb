@@ -122,4 +122,8 @@ scope :sorted_by, lambda { |sort_option|
       ['Expired only', Date.today]
     ]
   end
+
+  def self.total_on(date)
+    where("date(setdate) = ?", date)
+  end
 end
