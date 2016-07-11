@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
   post '/rate' => 'rater#create', :as => 'rate'
   get 'password_resets/new'
 
