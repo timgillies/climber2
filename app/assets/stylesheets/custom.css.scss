@@ -193,6 +193,13 @@ footer {
   }
 }
 
+/* Nav pills */
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: black;
+    background-color: $gray-lighter
+    }
+
 /* sidebar */
 
 aside {
@@ -380,7 +387,7 @@ input {
   p {
     font-size: 1.2em;
     letter-spacing: -1px;
-    margin-top: 10px;
+    margin-top: 0px;
     font-weight: normal;
     text-align: left;
     color: $gray-light;
@@ -660,7 +667,6 @@ Licensed under MIT
 
 .btn-primary {
       color: #ffffff;
-
 }
 
 /* Radio Buttons */
