@@ -12,6 +12,7 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/adminheader' %>
     <div class="container">
+      <br/>
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
         <% end %>

@@ -1,5 +1,5 @@
 <%= form_for [:admin, @facility, @grade] do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= render 'shared/error_messages', object: f.object %>
 
   <%= f.text_field :grade, class: 'form-control', placeholder: "Grade Name" %>
 
@@ -10,5 +10,7 @@
   <%= f.select :discipline, options_for_select(disciplines), class: 'form-control', include_blank: "- Discipline -" %>
 
   <%= f.submit "Submit", class: "btn btn-primary" %>
+
+
 
 <% end %>
