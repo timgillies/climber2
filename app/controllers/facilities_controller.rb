@@ -1,5 +1,7 @@
 class FacilitiesController < ApplicationController
 
+  layout "user", except: [:index]
+
   def index
     @facilities = Facility.page(params[:page])
   end
@@ -28,6 +30,7 @@ class FacilitiesController < ApplicationController
         cursor: "pointer" ,
         dataLabels: {
           enabled: true,
+          format: '<b>{point.name}:</b> {point.percentage:.0f}%',
           color: "black",
           style: {
             font: "13px Trebuchet MS, Verdana, sans-serif"
@@ -36,14 +39,23 @@ class FacilitiesController < ApplicationController
       })
     end
 
-    @setterchart = LazyHighCharts::HighChart.new('chart') do |f|
-      f.xAxis(categories: @facility.setters.map{|f| [f.last_name + ", " + f.first_name]})
+    @setterchart = LazyHighCharts::HighChart.new('barchart') do |f|
+      f.xAxis(categories: @facility.setters.map{|f| [f.nick_name]})
       f.series(name: "Number of routes", yAxis: 0, data: @facility.setters.all.map{|f| @activeroutes.where("setter_id = ?", f).count } )
       f.legend(enabled: false)
       f.colors( ["#6bda8f"])
       f.yAxis [
         {title: {text: "Active Routes", margin: 0} }
       ]
+      f.labels(enables: true)
+      f.plot_options(bar:{
+        allowPointSelect: true,
+        cursor: "pointer" ,
+        dataLabels: {
+          enabled: true,
+          format: '{point.y:.0f}'
+        }
+      })
 
       f.chart({defaultSeriesType: "bar"})
     end
@@ -59,6 +71,9 @@ class FacilitiesController < ApplicationController
       f.lang(thousandsSep: ",")
       f.colors(["#b6da6b", "#6bda8f", "#8f6bda", "#da6bb6", "#da8f6b"])
     end
+  end
+
+  def leaderboard
   end
 
   private

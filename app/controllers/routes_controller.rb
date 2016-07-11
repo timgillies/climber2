@@ -1,6 +1,8 @@
 class RoutesController < ApplicationController
   before_action :logged_in_user,    only: [:index, :show]
 
+  layout "user"
+
   def index
     @facility = Facility.find(params[:facility_id])
     @filterrific = initialize_filterrific(
