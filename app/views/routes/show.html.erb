@@ -1,57 +1,60 @@
 <% provide(:title, @route.name) %>
 
+<div class="container">
+  <div class="col-sm-6">
+    <div class="routes">
+      <h1><%= @route.grade.grade %><small> <%= @route.name %></small></h1>
+      <div class="row">
+        <div class="col-sm-6">
+          <% if current_user %>
+            <h2> <%= (rating_for @route, "total", disable_after_rate: false) %><small><%= @averagerating.to_s + " / " + @ratingcount.to_s + " votes" %></small></h2>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Color: <b> <%= @route.color %></b></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Setter: <b> <%= @route.setter.nick_name if @route.setter %></b></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Zone: <b><%= @route.zone.name if @route.zone %></b></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Wall: <b><%= @route.wall.name if @route.wall %></b></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Established: <b><%= @route.setdate %></b></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+            <p><%= @route.description %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <%= render 'ticks/form', object: @ticks %>
+            <%= render 'routes/userticks' %>
+        </div>
 
-<div class="container-fluid">
-  <div class="routes">
-    <h1><%= @route.grade.grade %><small> <%= @route.name %></small></h1>
-    <div class="row">
-      <div class="col-sm-3">
-        <% if current_user %>
-          <h2> <%= (rating_for @route, "total", disable_after_rate: false) %><small><%= @averagerating.to_s + " / " + @ratingcount.to_s + " votes" %></small></h2>
-        <% end %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-2">
-          <h2>Color:</h2>
-      </div>
-      <div class="col-sm-3">
-          <h2><%= @route.color %></h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-          <h2>Setter:</h2>
-      </div>
-      <div class="col-sm-3">
-          <h2><%= @route.setter.nick_name if @route.setter %></h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-          <h2>Zone:</h2>
-      </div>
-      <div class="col-sm-3">
-          <h2><%= @route.zone.name if @route.zone %></h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-          <h2>Wall:</h2>
-      </div>
-      <div class="col-sm-3">
-          <h2><%= @route.wall.name if @route.wall %></h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-          <p><%= @route.description %></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-          <%= render 'ticks/form', object: @ticks %>
-      </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="routes">
+      <%= render 'routes/totalticks' %>
+
+
     </div>
   </div>
 </div>

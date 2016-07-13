@@ -17,7 +17,7 @@ class TicksController < ApplicationController
        @tick.update_attribute(:tick_type, "onsight")
 
         if @tick.save
-          flash[:success] = "Onsight! Nice work."
+          flash[:success] = "Onsight! Congrats."
           redirect_to facility_route_path(@facility, @route)
         else
           render 'new'
@@ -28,7 +28,7 @@ class TicksController < ApplicationController
        @tick.update_attribute(:tick_type, "flash")
 
         if @tick.save
-          flash[:success] = "Flashed it!"
+          flash[:success] = "Flashed it! Nice job."
           redirect_to facility_route_path(@facility, @route)
         else
           render 'new'
@@ -38,7 +38,7 @@ class TicksController < ApplicationController
        @tick.update_attribute(:tick_type, "redpoint")
 
         if @tick.save
-          flash[:success] = "Onsight! Nice work."
+          flash[:success] = "Redpointed"
           redirect_to facility_route_path(@facility, @route)
         else
           render 'new'
@@ -48,7 +48,7 @@ class TicksController < ApplicationController
        @tick.update_attribute(:tick_type, "project")
 
         if @tick.save
-          flash[:success] = "Keep crushing, you'll get it!"
+          flash[:success] = "Project attempt added.  Keep crushing, you'll get it!"
           redirect_to facility_route_path(@facility, @route)
         else
           render 'new'
@@ -60,6 +60,10 @@ class TicksController < ApplicationController
     @tick = Tick.new
     @tick.facility_id = params[:facility_id] #this passes the facility ID through the field
     @tick.route_id = params[:route_id]
+  end
+
+  def show
+    @tick = Tick.find(params[:id])
   end
 
   private

@@ -1,17 +1,17 @@
 
 # Root crumb
 crumb :root do
-  link "Home", admin_facility_routes_path
+  link "Home", facility_routes_path
 end
 
 # Routes list
 crumb :routes do
-  link "Routes", admin_facility_routes_path
+  link "Routes", facility_routes_path
 end
 
 # Route
 crumb :route do |route|
-  link route.name, admin_facility_routes_path
+  link route.name, facility_routes_path
   parent :routes
 end
 

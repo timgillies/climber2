@@ -10,6 +10,7 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:id])
     @routes = @facility.routes.page(params[:page])
     @activeroutes = @facility.routes.where("enddate >= ?", Date.today)
+    @facilityticks = Tick.where("facility_id = ?", @facility)
 
     @gradechart = LazyHighCharts::HighChart.new('chart') do |f|
       f.chart(  defaultSeriesType: "pie",
