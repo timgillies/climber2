@@ -7,24 +7,10 @@
   </div>
 
   <table class="table table-hover table-condensed">
-    <tr>
-      <th>Facilities</th>
-      <th>Location</th>
-      <th>Address</th>
-      <th></th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip Code</th>
-    </tr>
       <%= div_for(@facilities) do |f| %>
       <tr>
         <td><%= link_to f.name,  facility_path(f) %></td>
-        <td><%= f.location %></td>
-        <td><%= f.addressline1 %></td>
-        <td><%= f.addressline2 %></td>
-        <td><%= f.city %></td>
-        <td><%= f.state %></td>
-        <td><%= f.zipcode %></td>
+        <td><%= f.addressline1 + " " + f.city + ", " + f.state + " " + f.zipcode %></td>
      </tr>
     <% end %>
   </table>
