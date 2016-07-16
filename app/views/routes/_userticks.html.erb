@@ -1,4 +1,4 @@
-<h1><small> My Ticks </small></h1>
+<br/>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
@@ -10,15 +10,35 @@
         text: ""
       },
       xAxis: {
-        type: "datetime"
+        type: "datetime",
+        labels: {
+          enabled: true
+        },
+        tickLength: 0,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        minorTickLength: 0,
+        lineColor: 'transparent'
       },
       yAxis: {
         title: {
-          text: ""
+          text: "My Ticks"
         },
-        allowDecimals: false,
+        labels: {
+          enabled: false
+        },
+        tickLength: 0,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        gridLineColor: 'transparent',
+        minorTickLength: 0,
+        lineColor: 'transparent',
+        allowDecimals: false
       },
       credits: {
+        enabled: false
+      },
+      legend: {
         enabled: false
       },
       tooltip: {
@@ -54,4 +74,4 @@
     });
   });
 </script>
-<div id="user_ticks" style="width:100%; height:200px;"></div>
+<div id="user_ticks" style="width:100%; height:100px;"></div>

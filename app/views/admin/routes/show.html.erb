@@ -1,46 +1,52 @@
 <% provide(:title, @route.name) %>
 
-  <div class="container-fluid">
-    <div class="col-sm-6">
-      <div class="routes">
-        <h1><%= @route.grade.grade %><small> <%= @route.name %></small></h1>
-        <div class="row">
-          <div class="col-sm-2">
-              <p>Color:</p>
-          </div>
-          <div class="col-sm-3">
-              <p><%= @route.color %></p>
-          </div>
+<div class="container">
+  <div class="col-sm-6">
+    <div class="routes">
+      <h1><%= @route.grade.grade %><small> <%= @route.name %></small></h1>
+      <div class="row">
+        <div class="col-sm-4">
+          <% if current_user %>
+            <h2> <%= (rating_for @route, "total", disable_after_rate: false) %><small><%= @averagerating.to_s + " / " + @ratingcount.to_s + " votes" %></small></h2>
+          <% end %>
         </div>
-        <div class="row">
-          <div class="col-sm-2">
-              <p>Setter:</p>
-          </div>
-          <div class="col-sm-3">
-              <p><%= @route.setter.nick_name %></p>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Color: <b> <%= @route.color %></b></h2>
         </div>
-        <div class="row">
-          <div class="col-sm-2">
-              <p>Zone:</p>
-          </div>
-          <div class="col-sm-3">
-              <p><%= @route.zone.name if @route.zone %></p>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Setter: <b> <%= @route.setter.nick_name if @route.setter %></b></h2>
         </div>
-        <div class="row">
-          <div class="col-sm-2">
-              <p>Wall:</p>
-          </div>
-          <div class="col-sm-3">
-              <p><%= @route.wall.name if @route.wall %></p>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Zone: <b><%= @route.zone.name if @route.zone %></b></h2>
         </div>
-        <div class="row">
-          <div class="col-sm-6">
-              <p><%= @route.description %></p>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Wall: <b><%= @route.wall.name if @route.wall %></b></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <h2>Established: <b><%= @route.setdate %></b></h2>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-sm-12">
+            <p><%= @route.description %></p>
         </div>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12">
+        <%= render 'routes/totalticks' %>
+    </div>
+  </div>
+</div>

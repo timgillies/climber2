@@ -1,5 +1,11 @@
 <% provide(:title, @facility.name ) %>
 
+<div class="row">
+  <div class="col-md-6">
+      <%= render 'facilities/gradedist' %>
+  </div>
+</div>
+
   <div class="row">
     <div class="col-md-12">
         <%= render 'facilities/tick_summary' %>

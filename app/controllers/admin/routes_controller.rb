@@ -60,6 +60,7 @@ class Admin::RoutesController < ApplicationController
   def show
     @route = Route.find(params[:id])
     @facility = Facility.find(params[:facility_id])
+    @totalticks = Tick.where("route_id = ?", @route)
   end
 
   def create
