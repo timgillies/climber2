@@ -21,6 +21,18 @@ class Route < ActiveRecord::Base
     (Date.today - self.enddate).to_i <= 0
   end
 
+  def self.set_on(date)
+    where("date(setdate) = ?", date).count(:id)
+  end
+
+  scope :boulder, -> {
+  where(:discipline => 'boulder')
+  }
+
+  scope :sport, -> {
+  where(:discipline => 'sport')
+  }
+
   ratyrate_rateable 'total'
 
   filterrific(

@@ -11,7 +11,7 @@
       },
       xAxis: {
         type: 'category',
-        categories: <%= raw @facility.grades.all.map {|f| [f.grade] } %>,
+        categories: <%= raw @facility.grades.all.order('discipline ASC', 'rank ASC').map {|f| [f.grade] } %>,
         labels: {
           enabled: true
         },
