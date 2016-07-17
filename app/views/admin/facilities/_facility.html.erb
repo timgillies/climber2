@@ -9,7 +9,7 @@
   <table class="table table-hover table-condensed">
       <%= div_for(@facilities) do |f| %>
       <tr>
-        <td><%= link_to f.name,  facility_path(f) %></td>
+        <td><%= link_to f.name,  admin_facility_path(f) %></td>
         <td><%= f.addressline1 + " " + f.city + ", " + f.state + " " + f.zipcode %></td>
      </tr>
     <% end %>
