@@ -13,6 +13,14 @@ class Grade < ActiveRecord::Base
   def self.facilitygrades
   end
 
+  scope :boulder, -> {
+  where(:discipline => 'boulder')
+  }
+
+  scope :sport, -> {
+  where(:discipline => 'sport')
+  }
+
 
 
 end

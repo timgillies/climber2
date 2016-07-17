@@ -1,17 +1,17 @@
-<h1><small> Route by Setter </small></h1>
+<h1><small> Grade Distribution </small></h1>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
       chart: {
-        renderTo: "wall_dist",
-        type: "bar"
+        renderTo: "gradedist_boulder",
+        type: "column"
       },
       title: {
         text: ""
       },
       xAxis: {
         type: 'category',
-        categories: <%= raw @facility.walls.all.order('name ASC').map {|f| [f.name] } %>,
+        categories: <%= raw @facility.grades.all.order('discipline ASC', 'rank ASC').map {|f| [f.grade] } %>,
         labels: {
           enabled: true
         },
@@ -43,7 +43,7 @@
         enabled: false
       },
       plotOptions: {
-        bar: {
+        column: {
           dataLabels: {
             enabled: true,
             style: {
@@ -55,11 +55,11 @@
       colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
 
       series: [{
-          type: 'bar',
+          type: 'column',
           name: 'Routes',
-          data: <%= @facility.walls.all.map {|f| [ @activeroutes.where("wall_id = ?", f).count] } %>
+          data: <%= @facility.grades.all.map {|f| [ @activeroutes.all.where("grade_id = ?", f).count] } %>
       }]
     });
   });
 </script>
-<div id="wall_dist" style="width:100%; height:200px;"></div>
+<div id="gradedist_boulder" style="width:100%; height:200px;"></div>

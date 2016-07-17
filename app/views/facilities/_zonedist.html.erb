@@ -1,17 +1,17 @@
-<h1><small> Active Routes </small></h1>
+<h1><small> Routes by Zone </small></h1>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
       chart: {
-        renderTo: "grade_dist",
-        type: "column"
+        renderTo: "zone_dist",
+        type: "bar"
       },
       title: {
         text: ""
       },
       xAxis: {
         type: 'category',
-        categories: <%= raw @facility.grades.all.order('discipline ASC', 'rank ASC').map {|f| [f.grade] } %>,
+        categories: <%= raw @facility.zones.all.order('name ASC').map {|f| [f.name] } %>,
         labels: {
           enabled: true
         },
@@ -43,7 +43,7 @@
         enabled: false
       },
       plotOptions: {
-        column: {
+        bar: {
           dataLabels: {
             enabled: true,
             style: {
@@ -52,14 +52,14 @@
           }
         }
       },
-      colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
+      colors: (["#b6da6b", "#da8f6b", "#da6bb6"]),
 
       series: [{
-          type: 'column',
+          type: 'bar',
           name: 'Routes',
-          data: <%= @facility.grades.all.map {|f| [ @activeroutes.where("grade_id = ?", f).count] } %>
+          data: <%= @facility.zones.all.map {|f| [ @activeroutes.where("zone_id = ?", f).count] } %>
       }]
     });
   });
 </script>
-<div id="grade_dist" style="width:100%; height:200px;"></div>
+<div id="zone_dist" style="width:100%; height:200px;"></div>

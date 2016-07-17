@@ -1,43 +1,24 @@
-  <% provide(:title, @facility.name ) %>
+<% provide(:title, @facility.name ) %>
 
-    <div class="container">
-      <div class="routes">
-        <div class="row">
-          <div class="col-sm-6">
-              <h2><%= @facility.addressline1 + " " + @facility.city + ", " + @facility.state + " " + @facility.zipcode %></h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-2">
-              <h2>Active Routes:</h2>
-          </div>
-          <div class="col-sm-3">
-              <h2><%= link_to @facility.routes.where("enddate >= ?", Date.today).count, admin_facility_routes_path(@facility) %></h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-2">
-              <h2>Route Setters:</h2>
-          </div>
-          <div class="col-sm-3">
-              <h2><%= @facility.setters.count %></h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-2">
-              <h2>Active Users:</h2>
-          </div>
-          <div class="col-sm-3">
-              <h2><%= @facility.zipcode %></h2>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-          <%= render 'admin/facilities/gradechart', object: @facility %>
-      </div>
-      <div class="col-md-6">
-          <%= render 'admin/facilities/setterchart', object: @facility %>
-      </div>
-    </div>
+
+
+<div class="row">
+  <div class="col-md-6">
+      <%= render 'facilities/gradedist_boulder' %>
+  </div>
+  <div class="col-md-6">
+      <%= render 'facilities/zonedist' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+      <%= render 'facilities/newroutes' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+      <%= render 'facilities/tick_summary' %>
+  </div>
+</div>
