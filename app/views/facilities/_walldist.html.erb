@@ -1,19 +1,19 @@
-<br/>
+<h1><small> Route by Setter </small></h1>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
       chart: {
-        renderTo: "user_ticks",
-        type: "column"
+        renderTo: "wall_dist",
+        type: "bar"
       },
       title: {
         text: ""
       },
       xAxis: {
-        type: "datetime",
+        type: 'category',
+        categories: <%= raw @facility.walls.all.order('name ASC').map {|f| [f.name] } %>,
         labels: {
-          enabled: true,
-          format: '{value: %a, %m/%d}'
+          enabled: true
         },
         tickLength: 0,
         lineWidth: 0,
@@ -23,7 +23,7 @@
       },
       yAxis: {
         title: {
-          text: "My Ticks"
+          text: ""
         },
         labels: {
           enabled: false
@@ -42,17 +42,10 @@
       legend: {
         enabled: false
       },
-      tooltip: {
-        formatter: function() {
-          return Highcharts.dateFormat("%B %e, %Y", this.x) + ': ' +
-           + Highcharts.numberFormat(this.y, 0);
-        }
-      },
       plotOptions: {
-        column: {
-          stacking: 'normal',
+        bar: {
           dataLabels: {
-            enabled: false,
+            enabled: true,
             style: {
               textShadow: '0 0 0 black'
             }
@@ -61,18 +54,12 @@
       },
       colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
 
-      series: [
-      <% { "Onsight" => @userticks.onsight, "Flash" => @userticks.flash,
-          "Redpoint" => @userticks.redpoint, "Project" => @userticks.project }.each do |name, ticks| %>
-        {
-        name: "<%= name %>",
-        pointInterval: <%= 1.day * 1000 %>,
-        pointStart: <%= 30.days.ago.to_i * 1000 %>,
-        data: <%= (30.days.ago.to_date..Date.today).map { |date| ticks.total_on(date).to_f}.inspect %>
-      },
-      <% end %>
-      ]
+      series: [{
+          type: 'bar',
+          name: 'Routes',
+          data: <%= @facility.walls.all.map {|f| [ @activeroutes.where("wall_id = ?", f).count] } %>
+      }]
     });
   });
 </script>
-<div id="user_ticks" style="width:100%; height:100px;"></div>
+<div id="wall_dist" style="width:100%; height:200px;"></div>

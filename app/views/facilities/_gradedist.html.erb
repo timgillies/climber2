@@ -56,7 +56,7 @@
 
       series: [{
           type: 'column',
-          name: 'Grades',
+          name: 'Routes',
           data: <%= @facility.grades.all.map {|f| [ @activeroutes.where("grade_id = ?", f).count] } %>
       }]
     });
