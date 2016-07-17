@@ -13,11 +13,6 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select :discipline, @facilitydisciplines.uniq , include_blank: "- Discipline -", class: 'form-control' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
         <%= f.select(:grade_id, @facilitygrades, include_blank: "- Grade -", class: 'form-control') %>
       </div>
     </div>
