@@ -682,6 +682,48 @@ Licensed under MIT
   color: #ffffff;
 }
 
+.btn-expire{
+  border-color: #df3549;
+  background: #ffffff;
+  opacity: 1;
+  color: #df3549;
+}
+
+.btn-expire:hover{
+  border-color: #df3549;
+  background: #df3549;
+  opacity: 1;
+  color: #ffffff;
+}
+
+.btn-expired, .btn-expired:hover{
+  border-color: #df3549;
+  background: #df3549;
+  opacity: 1;
+  color: #ffffff;
+}
+
+.btn-tag{
+  border-color: #6bda8f;
+  background: #ffffff;
+  opacity: 1;
+  color: #6bda8f;
+}
+
+.btn-tag:hover{
+  border-color: #6bda8f;
+  background: #6bda8f;
+  opacity: 1;
+  color: #ffffff;
+}
+
+.btn-tagged, .btn-tagged:hover{
+  border-color: #6bda8f;
+  background: #6bda8f;
+  opacity: 1;
+  color: #ffffff;
+}
+
 
 .btn-danger, .btn-danger:hover {
     a {

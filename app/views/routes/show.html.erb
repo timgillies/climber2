@@ -3,9 +3,13 @@
 <div class="container">
   <div class="col-sm-6">
     <div class="routes">
+      <% if (@route.name == "") %>
+      <h1><%= @route.grade.grade %><small> <%= @route.color %></small></h1>
+      <% else %>
       <h1><%= @route.grade.grade %><small> <%= @route.name %></small></h1>
+      <% end %>
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-12">
           <% if current_user %>
             <h2> <%= (rating_for @route, "total", disable_after_rate: false) %><small><%= @averagerating.to_s + " / " + @ratingcount.to_s + " votes" %></small></h2>
           <% end %>

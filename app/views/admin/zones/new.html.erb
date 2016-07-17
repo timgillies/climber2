@@ -1,13 +1,17 @@
 <% provide(:title, 'Add Zones') %>
 
-<div class="container">
-  <br/>
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm-6">
+      <div class="routes">
+        <h1><small>Add new zone</small></h1>
+      </div>
       <%= render 'admin/zones/form', object: @zones %>
     </div>
     <div class="col-sm-6">
+      <div class="routes">
+        <h1><small>Zones</small></h1>
+      </div>
       <%= render 'admin/zones/zone', object: @zones %>
     </div>
   </div>
-</div>

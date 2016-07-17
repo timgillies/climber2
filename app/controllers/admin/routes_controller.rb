@@ -67,11 +67,13 @@ class Admin::RoutesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @route = current_user.routes.build(route_params)
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+
     if @facility.custom?
       @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
     else
       @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
     end
+
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
@@ -99,6 +101,13 @@ class Admin::RoutesController < ApplicationController
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
     @route.facility_id = params[:facility_id]
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
+
+    if @facility.custom?
+      @facilitydisciplines = @facility.grades.all.map{|fg| [fg.discipline, fg.discipline ] }
+    else
+      @facilitydisciplines = Grade.where(system: ['yds','vscale']).map{|sg| [sg.discipline, sg.discipline ] }
+    end
+
   end
 
   def update
@@ -112,6 +121,22 @@ class Admin::RoutesController < ApplicationController
       render 'new'
     end
   end
+
+  def expire
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id])
+    @route.update_attribute(:enddate, Date.yesterday)
+    redirect_to(admin_facility_routes_path(@facility))
+  end
+
+  def tagged
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id])
+    @route.update_attribute(:tagged, true)
+    redirect_to(admin_facility_routes_path(@facility))
+  end
+
+
 
   def destroy
     Route.find(params[:id]).destroy

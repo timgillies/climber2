@@ -1,12 +1,17 @@
 <% provide(:title, 'Walls') %>
 
-<div class="container">
-  <br/>
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm-6">
+      <div class="routes">
+        <h1><small>Add new wall</small></h1>
+      </div>
       <%= render 'admin/walls/form', object: @walls %>
     </div>
     <div class="col-sm-6">
+      <div class="routes">
+        <h1><small>Walls</small></h1>
+      </div>
       <%= render 'admin/walls/wall', object: @walls %>
     </div>
   </div>

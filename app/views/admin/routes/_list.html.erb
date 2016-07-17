@@ -1,5 +1,4 @@
 <div id="filterrific_results">
-
   <div class="row">
     <div class="col-md-3">
       <%= page_entries_info @routes  %>
@@ -9,32 +8,44 @@
   <table class="table table-hover table-condensed">
     <tr>
       <th>Route ID</th>
+      <th>Grade</th>
+      <th>Name</th>
+      <th>Color</th>
       <th>Zone</th>
       <th>Wall</th>
-      <th>Grade</th>
-      <th>Color</th>
-      <th>Route Name</th>
-      <th>Routesetter</th>
+      <th>Setter</th>
       <th>Set Date</th>
       <th>Exp. Date</th>
-      <th>Active</th>
+      <th></th>
       <th></th>
       <th></th>
 
     </tr>
       <%= div_for(@routes) do |r| %>
-        <td><%= button_to( r.id, admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get)  %></td>
+        <td><%= button_to( r.id, admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get)  %></td>
+        <td><b><%= r.grade.grade if r.grade %>
+        <td><%= r.name if r.name %></td>
+        <td><%= r.color %></td>
         <td><%= r.zone.name if r.zone %></td>
         <td><%= r.wall.name if r.wall %></td>
-        <td><%= r.grade.grade if r.grade %></td>
-        <td><%= r.color %></td>
-        <td><%= r.name %></td>
         <td><%= r.setter.nick_name if r.setter %></td>
         <td><%= r.setdate %></td>
         <td><%= r.enddate %></td>
-        <td><%= r.active? %></td>
-        <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get %></td>
-        <td><%= button_to "delete",  admin_facility_route_path(@facility, r ), class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: "Are you sure?"} %></td>
+        <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get %></td>
+
+        <% if r.tagged? %>
+        <td><%= button_to "tag",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tagged btn-xs', method: :tagged, remote: true %></td>
+        <% else %>
+        <td><%= button_to "tag",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tag btn-xs', method: :tagged, remote: true %></td>
+        <% end %>
+
+
+
+        <% if r.active? %>
+          <td><%= button_to "expire",  expire_admin_facility_route_path(@facility, r ), class: 'btn btn-expire btn-xs', method: :expire, remote: true%></td>
+        <% else %>
+          <td><%= button_to "expired",  expire_admin_facility_route_path(@facility, r ), class: 'btn btn-expired btn-xs', method: :expire, remote: true%></td>
+        <% end %>
      </tr>
     <% end %>
   </table>

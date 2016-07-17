@@ -9,26 +9,26 @@
   <table class="table table-hover table-condensed">
     <tr>
       <th>Route ID</th>
-      <th>Zone</th>
-      <th>Wall</th>
       <th>Grade</th>
       <th>Color</th>
       <th>Route Name</th>
+      <th>Zone</th>
+      <th>Wall</th>
+
+
       <th>Routesetter</th>
       <th>Set Date</th>
-      <th>Rating</th>
 
     </tr>
       <%= div_for(@routes) do |r| %>
-        <td><%= button_to( r.id, facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get)  %></td>
-        <td><%= r.zone.name if r.zone %></td>
-        <td><%= r.wall.name if r.wall %></td>
-        <td><%= r.grade.grade if r.grade %></td>
+        <td><%= button_to( r.id, facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get)  %></td>
+        <td><b><%= r.grade.grade if r.grade %></b></td>
         <td><%= r.color %></td>
         <td><%= r.name %></td>
+        <td><%= r.zone.name if r.zone %></td>
+        <td><%= r.wall.name if r.wall %></td>
         <td><%= r.setter.nick_name if r.setter %></td>
         <td><%= r.setdate %></td>
-        <td><%= (rating_for r, "total") %></td>
 
      </tr>
     <% end %>

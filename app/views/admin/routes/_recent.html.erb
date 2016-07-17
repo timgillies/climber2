@@ -1,33 +1,23 @@
 <div id="filterrific_results">
-
   <div class="row">
     <div class="col-md-12">
-      Recently added - <%= page_entries_info @recentroutes  %>
+      <%= page_entries_info @recentroutes  %>
     </div>
   </div>
 
   <table class="table table-hover table-condensed">
-    <tr>
-      <th>ID</th>
-      <th>Zone</th>
-      <th>Wall</th>
-      <th>Grade</th>
-      <th>Color</th>
-      <th>Routesetter</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
       <%= div_for(@recentroutes) do |r| %>
       <tr>
         <td><%= button_to r.id, admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get %></td>
-        <td><%= r.zone.name if r.zone %></td>
-        <td><%= r.wall.name if r.wall %></td>
         <td><%= r.grade.grade if r.grade %></td>
         <td><%= r.color %></td>
         <td><%= r.setter.nick_name if r.setter %></td>
-        <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-sm', method: :get %></td>
-        <td><%= button_to "delete",  admin_facility_route_path(@facility, r ), class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: "Are you sure?"} %></td>
+        <% if r.tagged? %>
+        <td><%= button_to "tagged",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tagged btn-sm', method: :tagged %></td>
+        <% else %>
+        <td><%= button_to "tag",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tag btn-sm', method: :tagged %></td>
+        <% end %>
+        <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), class: 'btn btn-default btn-sm', method: :get %></td>
      </tr>
     <% end %>
   </table>

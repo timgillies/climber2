@@ -1,41 +1,56 @@
+
 <%= form_for [:admin, @facility, @route] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <div class="row">
-      <div class="col-sm-6">
-        <%= f.text_field :color, class: 'form-control', placeholder: "Route color" %>
-
-      </div>
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <%= f.text_field :name, class: 'form-control', placeholder: "Route name (optional)" %>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
-        <%= f.select :discipline, options_for_select(facility_disciplines), include_blank: "- Discipline -", class: 'form-control' %>
+      <div class="col-sm-12">
+        <%= f.text_field :color, class: 'form-control', placeholder: "Route color" %>
       </div>
-      <div class="col-sm-6">
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.select :discipline, @facilitydisciplines.uniq , include_blank: "- Discipline -", class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.select(:grade_id, @facilitygrades, include_blank: "- Grade -", class: 'form-control') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
         <%= f.select(:setter_id, @facilitysetters, include_blank: "- Route setter -", class: 'form-control') %>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-4">
-        <%= f.select(:grade_id, @facilitygrades, include_blank: "- Grade -", class: 'form-control') %>
-      </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <%= f.select(:zone_id, @facilityzones, include_blank: "- Zone -", class: 'form-control') %>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <%= f.select(:wall_id, @facilitywalls, include_blank: "- Wall -", class: 'form-control') %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
         <%= f.label :setdate, "Set Date" %>
-        <%= f.date_field :setdate, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+        <% if params[:action] == "edit" %>
+          <%= f.date_field :setdate, class: 'form-control' %>
+        <% else %>
+          <%= f.date_field :setdate, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+        <% end %>
+
       </div>
       <div class="col-sm-6">
         <%= f.label :enddate, "End Date" %>
-        <%= f.date_field :enddate, :value => 30.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
+        <% if params[:action] == "edit" %>
+          <%= f.date_field :enddate, class: 'form-control' %>
+        <% else %>
+          <%= f.date_field :enddate, :value => 30.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
+        <% end %>
       </div>
     </div>
     <div class="row">
@@ -45,7 +60,8 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.submit "Submit", class: "btn btn-primary" %>
+        <%= f.submit "Submit", class: "btn btn-onsight" %>
       </div>
     </div>
+  <br/>
 <% end %>

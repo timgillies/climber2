@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704034111) do
+ActiveRecord::Schema.define(version: 20160717171040) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id",      limit: 4
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160704034111) do
     t.string   "discipline",  limit: 255
     t.integer  "setter_id",   limit: 4
     t.text     "description", limit: 65535
+    t.boolean  "tagged"
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
@@ -135,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160704034111) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "facility_id", limit: 4
+    t.boolean  "lead"
   end
 
   add_index "ticks", ["facility_id"], name: "index_ticks_on_facility_id", using: :btree
@@ -189,6 +191,7 @@ ActiveRecord::Schema.define(version: 20160704034111) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "user_id",     limit: 4
+    t.integer  "vertical_ft", limit: 4
   end
 
   add_index "walls", ["facility_id"], name: "index_walls_on_facility_id", using: :btree

@@ -32,11 +32,17 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :facilities do
-      resources :routes
+      resources :routes do
+        member do
+          post :expire #output path - expire_route/:id
+          post :tagged #output path - tagged_route/:id
+        end
+      end
       resources :grades
       resources :zones
       resources :walls
       resources :setters
+
     end
   end
 
@@ -47,6 +53,11 @@ Rails.application.routes.draw do
     resources :walls, only: [:index, :show]
     resources :setters, only: [:index, :show]
     resources :ticks
+    member do
+      get :leaderboard
+      get :partners
+      get :discussion
+    end
   end
 
   resources :account_activations, only: [:edit]

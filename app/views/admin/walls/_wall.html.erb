@@ -2,12 +2,14 @@
 <table class="table table-condensed">
   <tr>
     <th>Walls</th>
+    <th>Vertical ft.</th>
     <th>Route Count</th>
     <th></th>
   </tr>
   <% @facility.walls.each do |wall| %>
     <tr>
       <td><%= link_to wall.name,  edit_admin_facility_wall_path(@facility, wall ) %></td>
+      <td><%= wall.vertical_ft %>
       <td><%= wall.routes.count %> routes</td>
     </tr>
   <% end %>

@@ -1,13 +1,17 @@
 <% provide(:title, 'Grades') %>
 
-<div class="container">
-  <br/>
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm-6">
+      <div class="routes">
+        <h1><small>Add grade</small></h1>
+      </div>
         <%= render 'admin/grades/form', object: @grades %>
     </div>
     <div class="col-sm-6">
+      <div class="routes">
+        <h1><small>Grades</small></h1>
+      </div>
       <%= render 'admin/grades/grade', object: @grades %>
     </div>
   </div>
-</div>
