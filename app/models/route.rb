@@ -24,13 +24,13 @@ class Route < ActiveRecord::Base
     where("date(setdate) = ?", date).count(:id)
   end
 
-  scope :boulder, -> {
-  where(:discipline => 'boulder')
-  }
+  def self.boulder
+    Route.joins(:grade).merge(Grade.where(:discipline => 'boulder'))
+  end
 
-  scope :sport, -> {
-  where(:discipline => 'sport')
-  }
+  def self.sport
+    Route.joins(:grade).merge(Grade.where(:discipline => 'sport'))
+  end
 
   ratyrate_rateable 'total'
 
