@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'bcrypt', '3.1.7'
 gem 'faker', '1.4.2'
+gem 'bower-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

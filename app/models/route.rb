@@ -16,22 +16,28 @@ class Route < ActiveRecord::Base
   validates :setdate, presence: true
   validates :grade, presence: true
 
+
+# checks if route is active or expired.  true = active
   def active?
     (Date.today - self.enddate).to_i <= 0
   end
 
+# counts number of routes set on given date
   def self.set_on(date)
     where("date(setdate) = ?", date).count(:id)
   end
 
+# limits routes where the grade is a "boulder" grade
   def self.boulder
     Route.joins(:grade).merge(Grade.where(:discipline => 'boulder'))
   end
 
+# limits routes where the grade is a "sport" grade
   def self.sport
     Route.joins(:grade).merge(Grade.where(:discipline => 'sport'))
   end
 
+# enables rating for routes
   ratyrate_rateable 'total'
 
   filterrific(

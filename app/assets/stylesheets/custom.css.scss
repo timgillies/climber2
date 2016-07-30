@@ -659,26 +659,59 @@ Licensed under MIT
 /* Buttons */
 
 .btn-onsight{
+  background: #ffffff;
+  border-color: #6bda8f;
+  opacity: 1;
+  color: #6bda8f;
+}
+
+.btn-onsight:hover{
   background: #6bda8f;
+  border-color: #6bda8f;
   opacity: 1;
   color: #ffffff;
 }
 
+
 .btn-flash{
+  background: #ffffff;
+  border-color: #b6da6b;
+  opacity: 1;
+  color: #b6da6b;
+}
+
+.btn-flash:hover{
   background: #b6da6b;
+  border-color: #b6da6b;
   opacity: 1;
   color: #ffffff;
 }
 
 .btn-redpoint{
+  background: #ffffff;
+  border-color: #da8f6b;
+  opacity: 1;
+  color: #da8f6b;
+}
+
+.btn-redpoint:hover{
   background: #da8f6b;
-  opacity: .75;
+  border-color: #da8f6b;
+  opacity: 1;
   color: #ffffff;
 }
 
 .btn-project{
+  background: #ffffff;
+  border-color: #da6bb6;
+  opacity: 1;
+  color: #da6bb6;
+}
+
+.btn-project:hover{
   background: #da6bb6;
-  opacity: .75;
+  border-color: #da6bb6;
+  opacity: 1;
   color: #ffffff;
 }
 

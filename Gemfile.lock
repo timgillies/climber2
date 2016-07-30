@@ -48,6 +48,7 @@ GEM
       sass (~> 3.2)
     bootstrap3-datetimepicker-rails (4.17.37)
       momentjs-rails (>= 2.8.1)
+    bower-rails (0.10.0)
     builder (3.2.2)
     byebug (8.2.4)
     cancan (1.6.10)
@@ -236,6 +237,7 @@ DEPENDENCIES
   bootstrap-kaminari-views
   bootstrap-sass (= 3.2.0.0)
   bootstrap3-datetimepicker-rails (~> 4.17.37)
+  bower-rails
   byebug
   cancan
   coffee-rails (~> 4.1.0)

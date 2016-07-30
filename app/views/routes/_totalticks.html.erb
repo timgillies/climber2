@@ -63,7 +63,7 @@
       colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
 
       series: [
-      <% { "Onsight" => @totalticks.all, "Flash" => @totalticks.flash,
+      <% { "Onsight" => @totalticks.onsight, "Flash" => @totalticks.flash,
           "Redpoint" => @totalticks.redpoint, "Project" => @totalticks.project }.each do |name, ticks| %>
         {
         name: "<%= name %>",

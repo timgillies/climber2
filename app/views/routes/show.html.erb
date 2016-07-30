@@ -63,4 +63,7 @@
         <%= render 'routes/totalticks' %>
     </div>
   </div>
+
+  <a class="btn btn" ng-class="{true: 'btn-primary', false: 'btn-danger'}[!routes.tagged]" ng-click="route.tagged = !route.tagged">{{!route.tagged && 'Tag' || 'Untag'}} route</a>
+
 </div>
