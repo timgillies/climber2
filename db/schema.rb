@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717171040) do
+ActiveRecord::Schema.define(version: 20160802023142) do
+
+  create_table "admins", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "facility_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "admins", ["facility_id"], name: "index_admins_on_facility_id", using: :btree
+  add_index "admins", ["user_id"], name: "index_admins_on_user_id", using: :btree
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id",      limit: 4
@@ -164,7 +174,7 @@ ActiveRecord::Schema.define(version: 20160717171040) do
     t.string   "reset_digest",           limit: 255
     t.datetime "reset_sent_at"
     t.string   "role",                   limit: 255
-    t.string   "encrypted_password",     limit: 128, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -177,9 +187,7 @@ ActiveRecord::Schema.define(version: 20160717171040) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
-    t.integer  "failed_attempts",        limit: 4,   default: 0,     null: false
-    t.string   "unlock_token",           limit: 255
-    t.datetime "locked_at"
+    t.string   "remember_token",         limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -208,6 +216,8 @@ ActiveRecord::Schema.define(version: 20160717171040) do
   add_index "zones", ["facility_id"], name: "index_zones_on_facility_id", using: :btree
   add_index "zones", ["user_id"], name: "fk_rails_36b0b64bdb", using: :btree
 
+  add_foreign_key "admins", "facilities"
+  add_foreign_key "admins", "users"
   add_foreign_key "facilities", "users"
   add_foreign_key "grades", "facilities"
   add_foreign_key "grades", "users"

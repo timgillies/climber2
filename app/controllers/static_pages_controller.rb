@@ -1,6 +1,8 @@
 class StaticPagesController < ApplicationController
+
+
   def home
-    @facility = current_user.facilities.build if logged_in?
+    @facility = current_user.facilities.build if user_signed_in?
   end
 
   def help

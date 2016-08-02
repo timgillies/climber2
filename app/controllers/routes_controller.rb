@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :logged_in_user,    only: [:index, :show]
+  before_action :authenticate_user!,    only: [:index, :show]
 
   layout "user"
 

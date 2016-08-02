@@ -1,5 +1,5 @@
 class Admin::GradesController < ApplicationController
-  before_action :logged_in_user,    only: [:index, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!,    only: [:index, :show, :edit, :update, :destroy]
   before_action :facilityroute_admin,      only: [:edit, :update, :destroy]
 
   layout "admin"
@@ -72,7 +72,7 @@ class Admin::GradesController < ApplicationController
     else
       @grades = Grade.where(system: ['yds','vscale']).order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
     end
-    
+
   end
 
   def destroy

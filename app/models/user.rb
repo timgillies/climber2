@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :facilities
   has_many :routes
   has_many :grades
@@ -17,10 +21,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255},
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  has_secure_password
   validates :password, presence: true, length: { minimum: 6}, allow_nil: true
 
   ratyrate_rater
+
 
   # Returns the hash digest of the given string.
   def User.digest(string)

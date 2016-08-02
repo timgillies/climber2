@@ -1,4 +1,7 @@
 class TicksController < ApplicationController
+
+  before_action :authenticate_user!
+  
   def new
     @tick = Tick.new
     @tick.facility_id = params[:facility_id] #this passes the facility ID through the field

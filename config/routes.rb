@@ -3,20 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   post '/rate' => 'rater#create', :as => 'rate'
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
-  get 'sessions/new'
 
   root                  'static_pages#home'
   get 'help'         => 'static_pages#help'
   get 'about'        => 'static_pages#about'
   get 'contact'      => 'static_pages#contact'
-  get 'signup'       => 'users#new'
-  get 'login'        => 'sessions#new'
-  post 'login'       => 'sessions#create'
-  delete 'logout'    => 'sessions#destroy'
 
   get 'register'     => 'facilities#new'
 
@@ -60,9 +51,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :account_activations, only: [:edit]
   default_url_options :host => 'localhost:3000'
-  resources :password_resets,     only: [:new, :create, :edit, :update]
 
 
 
