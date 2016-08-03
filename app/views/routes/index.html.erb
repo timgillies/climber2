@@ -5,53 +5,55 @@
     <div class="row">
       <div class="col-md-10">
         <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <%= f.text_field(
-          :search_query,
-          placeholder: 'Search by route ID',
-          class: 'filterrific-periodically-observed'
-        ) %>
+        <div class="form-group">
+          <%= f.text_field(
+            :search_query,
+            placeholder: '  Search by ID #',
+            class: 'filterrific-periodically-observed form-control'
+          ) %>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-sm-2">
         <%= f.select(
           :with_grade_id,
           @filterrific.select_options[:with_grade_id],
           { include_blank: 'All grades' }
         ) %>
       </div>
-      <div class="col-md-2">
+      <div class="col-sm-2">
         <%= f.select(
           :with_zone_id,
           @filterrific.select_options[:with_zone_id],
           { include_blank: 'All zones' }
         ) %>
       </div>
-      <div class="col-md-2">
+      <div class="col-sm-2">
         <%= f.select(
           :with_wall_id,
           @filterrific.select_options[:with_wall_id],
           { include_blank: 'All walls' }
         ) %>
       </div>
-      <div class="col-md-2">
+      <div class="col-sm-2">
         <%= f.select(
           :with_setter_id,
           @filterrific.select_options[:with_setter_id],
-          { include_blank: 'All routesetters' }
+          { include_blank: 'All setters' }
         ) %>
       </div>
-      <div class="col-md-2">
+      <div class="col-sm-2">
         <%= f.select(
           :with_status_id,
           @filterrific.select_options[:with_status_id],
-          { include_blank: 'Status' }
+          { include_blank: 'All' }
         ) %>
       </div>
-      <div class="col-md-2">
-        <%= link_to(
+      <div class="col-sm-2">
+        <%= button_to(
           'Reset filters',
-          reset_filterrific_url,
+          reset_filterrific_url, class: "btn btn-primary"
         ) %>
       </div>
     </div>

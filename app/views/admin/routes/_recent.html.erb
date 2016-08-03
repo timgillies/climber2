@@ -12,11 +12,6 @@
         <td><%= r.grade.grade if r.grade %></td>
         <td><%= r.color %></td>
         <td><%= r.setter.nick_name if r.setter %></td>
-        <% if r.tagged? %>
-        <td><%= button_to "tag",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tagged btn-xs', method: :tagged %></td>
-        <% else %>
-        <td><%= button_to "tag",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tag btn-xs', method: :tagged %></td>
-        <% end %>
         <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), class: 'btn btn-default btn-xs', method: :get %></td>
      </tr>
     <% end %>

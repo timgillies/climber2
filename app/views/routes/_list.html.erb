@@ -17,7 +17,7 @@
 
 
       <th>Routesetter</th>
-      <th>Set Date</th>
+      <th><%= filterrific_sorting_link(@filterrific, :setdate) %></th>
 
     </tr>
       <%= div_for(@routes) do |r| %>
@@ -34,5 +34,3 @@
     <% end %>
   </table>
 </div>
-
-  <%= paginate @routes %>

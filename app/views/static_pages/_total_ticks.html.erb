@@ -62,8 +62,7 @@
       colors: (["#ffffff"]),
 
       series: [
-      <% { "Onsight" => Tick.onsight, "Flash" => Tick.flash,
-          "Redpoint" => Tick.redpoint, "Project" => Tick.project }.each do |name, ticks| %>
+      <% { "Project" => Tick.all }.each do |name, ticks| %>
         {
         name: "<%= name %>",
         pointInterval: <%= 1.day * 1000 %>,

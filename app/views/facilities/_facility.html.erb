@@ -6,12 +6,15 @@
     </div>
   </div>
 
-  <table class="table table-hover table-condensed">
-      <%= div_for(@facilities) do |f| %>
-      <tr>
-        <td><%= link_to f.name,  facility_path(f) %></td>
-        <td><%= f.addressline1 + " " + f.city + ", " + f.state + " " + f.zipcode %></td>
-     </tr>
+  <br />
+
+  <ol class="list-group">
+    <%= div_for(@facilities) do |f| %>
+    <li class="list-group-item clearfix">
+      <h3 class="pull-left">
+        <%= link_to f.name,  facility_path(f) %><br />
+        <small><%= f.addressline1 + " " + f.city + ", " + f.state + " " + f.zipcode %></small>
+      </h3>
+    </li>
     <% end %>
-  </table>
-</div>
+  </ol>

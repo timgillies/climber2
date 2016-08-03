@@ -15,8 +15,8 @@
       <!-- Left nav -->
       <ul class="nav navbar-nav navbar navbar-left">
         <li><%= link_to "Indoor", facilities_path %></li>
-        <li><%= link_to "Outdoor", facilities_path %></li>
-        <li><%= link_to "Find a Partner", '#' %></li>
+        <li><%= link_to "Outdoor", outdoors_path %></li>
+        <li><%= link_to "Find a Partner", social_path %></li>
         <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
         <li><%= link_to 'Route Management', admin_facilities_path %></li>
         <% end %>

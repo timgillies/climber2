@@ -13,20 +13,22 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:grade_id, @facilitygrades, include_blank: "- Grade -", class: 'form-control') %>
+        <%= f.select(:grade_id, @facilitygrades, include_blank: "Select Grade", class: 'form-control') %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:setter_id, @facilitysetters, include_blank: "- Route setter -", class: 'form-control') %>
+        <%= f.select(:setter_id, @facilitysetters, include_blank: "Select Setter", class: 'form-control') %>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
-        <%= f.select(:zone_id, @facilityzones, include_blank: "- Zone -", class: 'form-control') %>
+      <div class="col-sm-12">
+        <%= f.select(:zone_id, @facilityzones, include_blank: "Select Zone (optional)", class: 'form-control') %>
       </div>
-      <div class="col-sm-6">
-        <%= f.select(:wall_id, @facilitywalls, include_blank: "- Wall -", class: 'form-control') %>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.select(:wall_id, @facilitywalls, include_blank: "Select Wall (optional)", class: 'form-control') %>
       </div>
     </div>
     <div class="row">
@@ -55,7 +57,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.submit "Submit", class: "btn btn-onsight" %>
+        <%= f.submit "Submit", class: "btn btn-submit" %>
       </div>
     </div>
   <br/>

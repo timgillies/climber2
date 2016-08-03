@@ -18,4 +18,5 @@ class Facility < ActiveRecord::Base
   validates :zipcode, presence: true, format: { with: VALID_ZIPCODE_REGEX }
   validates :user_id, presence: true
 
+
 end

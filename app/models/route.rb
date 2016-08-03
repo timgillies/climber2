@@ -41,7 +41,7 @@ class Route < ActiveRecord::Base
   ratyrate_rateable 'total'
 
   filterrific(
-  default_filter_params: { sorted_by: 'enddate_desc' },
+  default_filter_params: { sorted_by: 'setdate_desc', with_status_id: Date.today },
   available_filters: [
     :sorted_by,
     :search_query,
@@ -115,7 +115,7 @@ scope :sorted_by, lambda { |sort_option|
   }
 
   scope :with_status_id, lambda { |status_ids|
-      where( 'enddate <= ?', status_ids)
+      where( 'routes.enddate > ?', status_ids)
   }
 
     # always include the lower boundary for semi open intervals
@@ -124,7 +124,7 @@ scope :sorted_by, lambda { |sort_option|
   }
 
   scope :with_enddate_lt, lambda { |reference_time|
-    where('routes.enddate < ?', reference_time)
+    where('routes.active = ?', reference_time)
   }
 
   def self.options_for_sorted_by
@@ -136,7 +136,7 @@ scope :sorted_by, lambda { |sort_option|
 
   def self.options_for_status_select
     [
-      ['Expired only', Date.today]
+      ['Active only', Date.today ]
     ]
   end
 

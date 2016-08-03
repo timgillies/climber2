@@ -1,6 +1,6 @@
 <div id="filterrific_results">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-5">
       <%= page_entries_info @routes  %>
     </div>
   </div>
@@ -14,16 +14,15 @@
       <th>Zone</th>
       <th>Wall</th>
       <th>Setter</th>
-      <th>Set Date</th>
-      <th>Exp. Date</th>
+      <th><%= filterrific_sorting_link(@filterrific, :setdate) %></th>
+      <th><%= filterrific_sorting_link(@filterrific, :enddate) %></th>
       <th></th>
       <th></th>
       <th></th>
-
     </tr>
       <%= div_for(@routes) do |r| %>
         <td><%= button_to( r.id, admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get)  %></td>
-        <td><b><%= r.grade.grade if r.grade %>
+        <td><b><%= r.grade.grade if r.grade %></b></td>
         <td><%= r.name if r.name %></td>
         <td><%= r.color %></td>
         <td><%= r.zone.name if r.zone %></td>
@@ -46,9 +45,8 @@
         <% else %>
           <td><%= button_to "expired",  expire_admin_facility_route_path(@facility, r ), class: 'btn btn-expired btn-xs', method: :expire, remote: true%></td>
         <% end %>
-     </tr>
+    </tr>
     <% end %>
   </table>
-</div>
-
   <%= paginate @routes %>
+</div>

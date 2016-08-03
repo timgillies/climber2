@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'help'         => 'static_pages#help'
   get 'about'        => 'static_pages#about'
   get 'contact'      => 'static_pages#contact'
-
+  get 'outdoors'      => 'static_pages#outdoors'
+  get 'social'      => 'static_pages#social'
   get 'register'     => 'facilities#new'
 
   resources :users do
