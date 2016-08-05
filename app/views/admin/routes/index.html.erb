@@ -1,8 +1,8 @@
 <%= form_for_filterrific @filterrific do |f| %>
-  <div class="container">
+  <div class="container-fluid">
   <br/>
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-12">
         <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <div class="form-group">
           <%= f.text_field(
@@ -14,45 +14,52 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-xs-6 col-sm-2 col-md-2">
         <%= f.select(
           :with_grade_id,
           @filterrific.select_options[:with_grade_id],
-          { include_blank: 'All grades' }
+          { include_blank: 'All grades' },
+          {class: "form-control"}
         ) %>
       </div>
-      <div class="col-sm-2">
+      <div class="col-xs-6 col-sm-2 col-md-2">
         <%= f.select(
           :with_zone_id,
           @filterrific.select_options[:with_zone_id],
-          { include_blank: 'All zones' }
+          { include_blank: 'All zones' },
+          {class: "form-control"}
         ) %>
       </div>
-      <div class="col-sm-2">
+      <div class="col-xs-6 col-sm-2 col-md-2">
         <%= f.select(
           :with_wall_id,
           @filterrific.select_options[:with_wall_id],
-          { include_blank: 'All walls' }
+          { include_blank: 'All walls' },
+          {class: "form-control"}
         ) %>
       </div>
-      <div class="col-sm-2">
+      <div class="col-xs-6 col-sm-2 col-md-2">
         <%= f.select(
           :with_setter_id,
           @filterrific.select_options[:with_setter_id],
-          { include_blank: 'All setters' }
+          { include_blank: 'All setters' },
+          {class: "form-control"}
         ) %>
       </div>
-      <div class="col-sm-2">
+      <div class="col-xs-6 col-sm-2 col-md-2">
         <%= f.select(
           :with_status_id,
           @filterrific.select_options[:with_status_id],
-          { include_blank: 'All' }
+          { include_blank: 'All' },
+          {class: "form-control"}
         ) %>
       </div>
-      <div class="col-sm-2">
-        <%= link_to(
-          'Reset filters',
-          reset_filterrific_url, class: "btn btn-tagged btn-md"
+      <div class="col-xs-6 col-sm-2 col-md-2">
+        <%= f.select(
+          :sorted_by,
+          @filterrific.select_options[:sorted_by],
+          { include_blank: 'All' },
+          {class: "form-control"}
         ) %>
       </div>
     </div>

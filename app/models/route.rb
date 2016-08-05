@@ -129,8 +129,8 @@ scope :sorted_by, lambda { |sort_option|
 
   def self.options_for_sorted_by
     [
-      ['Create date (newest first)', 'setdate_desc'],
-      ['Expire date (newest first)', 'enddate_desc'],
+      ['Newest first', 'setdate_desc'],
+      ['Oldest first', 'setdate_asc'],
     ]
   end
 

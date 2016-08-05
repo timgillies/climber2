@@ -670,16 +670,16 @@ span.picture {
 /* Buttons */
 
 .btn-submit{
-  border-color: #3498DB;
-  background: #3498DB;
+  border-color: #2E86C1;
+  background: #2E86C1;
   opacity: 1;
   color: #ffffff;
   transition-duration: 0.5s;
 }
 
 .btn-submit:hover{
-  border-color: #2980B9;
-  background: #2980B9;
+  border-color: #2471A3;
+  background: #2471A3;
   opacity: 1;
   color: #ffffff;
 }
@@ -757,47 +757,44 @@ span.picture {
 }
 
 .btn-expire{
-  border-color: #df3549;
+  border-color: #FADBD8;
   background: #ffffff;
   opacity: 1;
-  color: #df3549;
+  color: #FADBD8;
+  margin-top: 5px;
 }
 
-.btn-expire:hover{
-  border-color: #df3549;
-  background: #df3549;
+.btn-expire:hover, .btn-expired, .btn-expired:hover{
+  border-color: #EC7063;
+  background: #EC7063;
   opacity: 1;
   color: #ffffff;
-}
-
-.btn-expired, .btn-expired:hover{
-  border-color: #df3549;
-  background: #df3549;
-  opacity: 1;
-  color: #ffffff;
+  margin-top: 5px;
 }
 
 .btn-tag{
-  border-color: #359EDF;
+  border-color: #D6EAF8;
   background: #ffffff;
   opacity: 1;
-  color: #359EDF;
+  color: #D6EAF8;
+  margin-top: 5px;
 }
 
-.btn-tag:hover{
-  border-color: #359EDF;
-  background: #359EDF;
+.btn-tag:hover, .btn-tagged, .btn-tagged:hover {
+  border-color: #85C1E9;
+  background: #85C1E9;
   opacity: 1;
   color: #ffffff;
+  margin-top: 5px;
 }
 
-.btn-tagged, .btn-tagged:hover{
-  border-color: #359EDF;
-  background: #359EDF;
+.btn-edit, .btn-edit:hover{
+  border-color: $gray-lighter;
+  background: #ffffff;
   opacity: 1;
-  color: #ffffff;
+  color: $gray-light;
+  margin-top: 5px;
 }
-
 
 .btn-danger, .btn-danger:hover {
     a {
@@ -842,16 +839,7 @@ span.picture {
 
 }
 
-select {
 
-  background: transparent;
-  padding: 6px 35px 6px 6px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  color: $gray-light;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
 /*target Internet Explorer 9 and Internet Explorer 10:*/
 @media screen and (min-width:0\0) {
     select {

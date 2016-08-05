@@ -13,22 +13,30 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:grade_id, @facilitygrades, include_blank: "Select Grade", class: 'form-control') %>
+        <%= f.select(:grade_id, @facilitygrades,
+        { include_blank: 'Select grades' },
+        {class: "form-control"}) %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:setter_id, @facilitysetters, include_blank: "Select Setter", class: 'form-control') %>
+        <%= f.select(:setter_id, @facilitysetters,
+        { include_blank: 'Select grades' },
+        {class: "form-control"}) %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:zone_id, @facilityzones, include_blank: "Select Zone (optional)", class: 'form-control') %>
+        <%= f.select(:zone_id, @facilityzones,
+        { include_blank: 'Select zone (optional)' },
+        {class: "form-control"}) %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:wall_id, @facilitywalls, include_blank: "Select Wall (optional)", class: 'form-control') %>
+        <%= f.select(:wall_id, @facilitywalls,
+        { include_blank: 'Select wall (optional)' },
+        {class: "form-control"}) %>
       </div>
     </div>
     <div class="row">
