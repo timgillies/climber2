@@ -5,48 +5,59 @@
     </div>
   </div>
 
-  <table class="table table-hover table-condensed">
-    <tr>
-      <th>Route ID</th>
-      <th>Grade</th>
-      <th>Name</th>
-      <th>Color</th>
-      <th>Zone</th>
-      <th>Wall</th>
-      <th>Setter</th>
-      <th><%= filterrific_sorting_link(@filterrific, :setdate) %></th>
-      <th><%= filterrific_sorting_link(@filterrific, :enddate) %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-      <%= div_for(@routes) do |r| %>
-        <td><%= button_to( r.id, admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get)  %></td>
-        <td><b><%= r.grade.grade if r.grade %></b></td>
-        <td><%= r.name if r.name %></td>
-        <td><%= r.color %></td>
-        <td><%= r.zone.name if r.zone %></td>
-        <td><%= r.wall.name if r.wall %></td>
-        <td><%= r.setter.nick_name if r.setter %></td>
-        <td><%= r.setdate %></td>
-        <td><%= r.enddate %></td>
-        <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get %></td>
+  <br />
 
-        <% if r.tagged? %>
-        <td><%= button_to "tag",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tagged btn-xs', method: :tagged, remote: true %></td>
-        <% else %>
-        <td><%= button_to "tag",  tagged_admin_facility_route_path(@facility, r ), :class => 'btn btn-tag btn-xs', method: :tagged, remote: true %></td>
-        <% end %>
+  <%= div_for(@routes) do |f| %>
+  <ol class="routelist">
+    <li>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-9">
+            <h3><%= link_to f.grade.grade , admin_facility_route_path(@facility, f) %>
+              <small> <%= f.color.capitalize %><b> <%= f.name if f.name %></b></small>
+            </h3>
+          </div>
 
+          <div class="col-sm-1">
+            <%= button_to "edit",  edit_admin_facility_route_path(@facility, f ), :class => 'btn btn-addnew btn-xs', method: :get %>
+          </div>
+          <div class="col-sm-1">
+            <% if f.tagged? %>
+            <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), :class => 'btn btn-tagged btn-xs', method: :tagged, remote: true %>
+            <% else %>
+            <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), :class => 'btn btn-tag btn-xs', method: :tagged, remote: true %>
+            <% end %>
+          </div>
 
+          <div class="col-sm-1">
+              <% if f.active? %>
+                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
+              <% else %>
+                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
+              <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <span class="timestamp">
+              <h4><small>Route ID: <%= f.id %></small></h4>
+            </span>
+          </div>
 
-        <% if r.active? %>
-          <td><%= button_to "expire",  expire_admin_facility_route_path(@facility, r ), class: 'btn btn-expire btn-xs', method: :expire, remote: true%></td>
-        <% else %>
-          <td><%= button_to "expired",  expire_admin_facility_route_path(@facility, r ), class: 'btn btn-expired btn-xs', method: :expire, remote: true%></td>
-        <% end %>
-    </tr>
-    <% end %>
-  </table>
+          <div class="col-sm-3">
+              <h4><small>Location: <%= f.zone.name %> / <%= f.wall.name %></small></h4>
+          </div>
+          <div class="col-sm-3">
+            <h4><small><%= f.setter.nick_name %></small></h4>
+          </div>
+          <div class="col-sm-3">
+            <h4><small>set <%= time_ago_in_words(f.setdate) %> ago</small></h4>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
+  <% end %>
+
   <%= paginate @routes %>
 </div>

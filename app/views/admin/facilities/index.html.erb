@@ -3,9 +3,8 @@
 <div class="home-manage">
   <div class="center jumbotron">
 
-    <h1>CLIMB | CONNECT<small> Route Management</small></h1>
-
-    <br />
+    <h1>CLIMB | CONNECT</h1>
+    <h1><small>Route Management</small></h1>
 
 
   </div>
@@ -13,7 +12,10 @@
 
 <div class="container-fluid">
   <div class="routes">
-    <h1> Manage Facilities </h1>
+    <h1> Manage Facilities</h1>
+    <p class="pull-right">
+      <%= link_to "Add New Facility", new_admin_facility_path, class: "btn btn-md btn-addnew" %>
+    </p>
   </div>
       <br>
       <ul class="facilities">
@@ -22,7 +24,5 @@
 
       <br>
 
-      <p>
-        <%= link_to "Add New Facility", new_admin_facility_path, class: "btn btn-md btn-submit" %>
-      </p>
+
 </div>

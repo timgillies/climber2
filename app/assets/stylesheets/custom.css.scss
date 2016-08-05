@@ -415,6 +415,13 @@ input {
     padding: 50px;
 }
 
+.home-outdoors {
+    background-image: url(asset-path('outdoors.jpg'));
+    background-size: cover;
+    background-position: top left;
+    padding: 50px;
+}
+
 .home-social {
     background-image: url(asset-path('social.jpg'));
     background-size: cover;
@@ -504,6 +511,98 @@ input {
   }
 }
 
+/* route list */
+
+.routelist {
+  list-style: none;
+  padding: 0px;
+  display: inline;
+  li {
+    padding: 0px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .grade {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .info {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-medium-light;
+    display: block;
+    margin-left: 0px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+
+  h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 5px;
+    text-align: left;
+    border-bottom: 1px solid $gray-lighter;
+    h3 {
+      text-align: right;
+    }
+
+  }
+
+  h2 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    text-align: left;
+    color: $gray;
+  }
+
+  h3 {
+    font-size: 2em;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    text-align: left;
+    color: $gray;
+    margin-top: 0px;
+  }
+
+  h4 {
+    font-size: 1.2em;
+    letter-spacing: -.5px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    text-align: left;
+  }
+
+  p {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-top: 0px;
+    font-weight: normal;
+    text-align: left;
+    color: $gray-light;
+  }
+
+  li {
+    overflow: auto;
+    padding: 10px 0;
+  }
+
+  a {
+    color: $gray;
+    text-decoration: none;
+  }
+}
+
 /* grades */
 
 .grades {
@@ -571,15 +670,30 @@ span.picture {
 /* Buttons */
 
 .btn-submit{
-  border-color: $gray;
+  border-color: #3498DB;
+  background: #3498DB;
+  opacity: 1;
+  color: #ffffff;
+  transition-duration: 0.5s;
+}
+
+.btn-submit:hover{
+  border-color: #2980B9;
+  background: #2980B9;
+  opacity: 1;
+  color: #ffffff;
+}
+
+.btn-addnew{
   background: #ffffff;
+  border-color: $gray;
   opacity: 1;
   color: $gray;
 }
 
-.btn-submit:hover{
-  border-color: #359EDF;
+.btn-addnew:hover{
   background: #ffffff;
+  border-color: #3498DB;
   opacity: 1;
   color: $gray;
 }
@@ -750,3 +864,14 @@ select {
   border: 0 none;
   border-bottom: 1px solid $gray-lighter;
 }
+
+/* HEX
+
+#8e44ad
+#2980b9
+#e74c3c
+#e67e22
+#f1c40f
+#16a085
+
+*/
