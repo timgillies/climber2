@@ -757,16 +757,16 @@ span.picture {
 }
 
 .btn-expire{
-  border-color: #FADBD8;
+  border-color: #F9EBEA;
   background: #ffffff;
   opacity: 1;
-  color: #FADBD8;
+  color: #CD6155;
   margin-top: 5px;
 }
 
 .btn-expire:hover, .btn-expired, .btn-expired:hover{
-  border-color: #EC7063;
-  background: #EC7063;
+  border-color: #CD6155;
+  background: #CD6155;
   opacity: 1;
   color: #ffffff;
   margin-top: 5px;
@@ -776,13 +776,13 @@ span.picture {
   border-color: #D6EAF8;
   background: #ffffff;
   opacity: 1;
-  color: #D6EAF8;
+  color: #5499C7;
   margin-top: 5px;
 }
 
 .btn-tag:hover, .btn-tagged, .btn-tagged:hover {
-  border-color: #85C1E9;
-  background: #85C1E9;
+  border-color: #5499C7;
+  background: #5499C7;
   opacity: 1;
   color: #ffffff;
   margin-top: 5px;
@@ -812,6 +812,7 @@ span.picture {
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
+    list-style-type: none;
  }
 
 .alert-alert {
@@ -819,6 +820,7 @@ span.picture {
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
+    list-style-type: none;
  }
 
 .alert-success {
@@ -826,6 +828,7 @@ span.picture {
     border-color: #d6e9c6;
     color: #468847;
     text-align: left;
+    list-style-type: none;
  }
 
 .alert-notice {
@@ -833,6 +836,7 @@ span.picture {
     border-color: #d6e9c6;
     color: #468847;
     text-align: left;
+    list-style-type: none;
  }
 
 .list-group {

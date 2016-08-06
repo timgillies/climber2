@@ -14,6 +14,15 @@ class FacilitiesController < ApplicationController
   end
 
   def leaderboard
+    @facility = Facility.find(params[:id])
+  end
+
+  def social
+    @facility = Facility.find(params[:id])
+  end
+
+  def analytics
+    @facility = Facility.find(params[:id])
   end
 
   private

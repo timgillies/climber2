@@ -1,36 +1,70 @@
 <div id="filterrific_results">
-
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-sm-10">
       <%= page_entries_info @routes  %>
+    </div>
+    <div class="col-sm-2">
+      <%= link_to(
+        'Reset filters',
+        reset_filterrific_url
+      ) %>
     </div>
   </div>
 
-  <table class="table table-hover table-condensed">
-    <tr>
-      <th>Route ID</th>
-      <th>Grade</th>
-      <th>Color</th>
-      <th>Route Name</th>
-      <th>Zone</th>
-      <th>Wall</th>
+  <br />
+
+  <%= div_for(@routes) do |f| %>
+  <ol class="routelist">
+    <li>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-9">
+            <h3><%= link_to f.grade.grade , facility_route_path(@facility, f) %>
+              <small> <%= link_to f.color.capitalize, facility_route_path(@facility, f) %><b> <%= link_to f.name , facility_route_path(@facility, f) %></b></small>
+            </h3>
+          </div>
 
 
-      <th>Routesetter</th>
-      <th><%= filterrific_sorting_link(@filterrific, :setdate) %></th>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <span class="timestamp">
+              <h4><small>Route ID: <%= f.id %></small></h4>
+            </span>
+          </div>
 
-    </tr>
-      <%= div_for(@routes) do |r| %>
-        <td><%= button_to( r.id, facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get)  %></td>
-        <td><b><%= r.grade.grade if r.grade %></b></td>
-        <td><%= r.color %></td>
-        <td><%= r.name %></td>
-        <td><%= r.zone.name if r.zone %></td>
-        <td><%= r.wall.name if r.wall %></td>
-        <td><%= r.setter.nick_name if r.setter %></td>
-        <td><%= r.setdate %></td>
+          <div class="col-sm-3">
+              <h4><small><%= f.zone.name if f.zone %> / <%= f.wall.name if f.wall %></small></h4>
+          </div>
+          <div class="col-sm-2">
+            <h4><small><%= f.setter.nick_name if f.setter%></small></h4>
+          </div>
+          <div class="col-sm-2">
+            <h4><small>set <%= time_ago_in_words(f.setdate) %> ago</small></h4>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-1">
+            <%= button_to "edit", "#" , :class => 'btn btn-edit btn-xs', method: :get %>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-1">
+            <% if f.active? %>
+              <%= button_to "expire",  "#" , class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
+            <% else %>
+              <%= button_to "expire",  "#" , class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
+            <% end %>
+          </div>
 
-     </tr>
-    <% end %>
-  </table>
+          <div class="col-xs-4 col-sm-4 col-md-1">
+            <% if f.tagged? %>
+            <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), :class => 'btn btn-tagged btn-xs', method: :tagged, remote: true %>
+            <% else %>
+            <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), :class => 'btn btn-tag btn-xs', method: :tagged, remote: true %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
+  <% end %>
+
+  <%= paginate @routes %>
 </div>

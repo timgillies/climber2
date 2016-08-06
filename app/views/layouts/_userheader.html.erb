@@ -13,9 +13,9 @@
     <ul class="nav nav-pills">
       <li class="<%= 'active' if current_page?(facility_path(@facility)) %>"><%= link_to "Home", facility_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(facility_routes_path(@facility)) %>"><%= link_to "Route Database", facility_routes_path(@facility) %></li>
-      <li class="<%= 'active' if current_page?(facility_routes_path(@facility)) %>"><%= link_to "Leaderboard", "#" %></li>
-      <li class="<%= 'active' if current_page?(facility_routes_path(@facility)) %>"><%= link_to "Find Partners", "#" %></li>
-      <li class="<%= 'active' if current_page?(facility_routes_path(@facility)) %>"><%= link_to "Discussion", "#" %></li>
+      <li class="<%= 'active' if current_page?(leaderboard_facility_path(@facility)) %>"><%= link_to "Leaderboard", leaderboard_facility_path(@facility) %></li>
+      <li class="<%= 'active' if current_page?(social_facility_path(@facility)) %>"><%= link_to "Find Partners", social_facility_path(@facility) %></li>
+      <li class="<%= 'active' if current_page?(analytics_facility_path(@facility)) %>"><%= link_to "Analytics", analytics_facility_path(@facility) %></li>
     </ul>
   </div>
 </div>

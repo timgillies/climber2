@@ -47,8 +47,8 @@ Rails.application.routes.draw do
     resources :ticks
     member do
       get :leaderboard
-      get :partners
-      get :discussion
+      get :social
+      get :analytics
     end
   end
 
