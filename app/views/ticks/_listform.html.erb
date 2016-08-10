@@ -1,0 +1,19 @@
+<%= form_for [current_user, @facility, @route, @tick] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :date, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+
+<div class="col-xs-3">
+  <%= f.submit "Onsight", class: "btn btn-onsight" %>
+</div>
+<div class="col-xs-3">
+  <%= f.submit "Flash", class: "btn btn-flash" %>
+</div>
+<div class="col-xs-3">
+  <%= f.submit "Redpoint", class: "btn btn-redpoint" %>
+</div>
+<div class="col-xs-3">
+  <%= f.submit "Project", class: "btn btn-project" %>
+</div>
+
+<% end %>

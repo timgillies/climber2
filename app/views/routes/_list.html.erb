@@ -40,26 +40,13 @@
             <h4><small><%= f.setter.nick_name if f.setter%></small></h4>
           </div>
           <div class="col-sm-2">
-            <h4><small>set <%= time_ago_in_words(f.setdate) %> ago</small></h4>
+            <h4><small>set <%= time_ago_in_words(f.created_at) %> ago</small></h4>
           </div>
           <div class="col-xs-4 col-sm-4 col-md-1">
             <%= button_to "edit", "#" , :class => 'btn btn-edit btn-xs', method: :get %>
           </div>
-          <div class="col-xs-4 col-sm-4 col-md-1">
-            <% if f.active? %>
-              <%= button_to "expire",  "#" , class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
-            <% else %>
-              <%= button_to "expire",  "#" , class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
-            <% end %>
-          </div>
 
-          <div class="col-xs-4 col-sm-4 col-md-1">
-            <% if f.tagged? %>
-            <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), :class => 'btn btn-tagged btn-xs', method: :tagged, remote: true %>
-            <% else %>
-            <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), :class => 'btn btn-tag btn-xs', method: :tagged, remote: true %>
-            <% end %>
-          </div>
+
         </div>
       </div>
     </li>

@@ -5,6 +5,7 @@ class RoutesController < ApplicationController
 
   def index
     @facility = Facility.find(params[:facility_id])
+    @tick = current_user.ticks.build
     @filterrific = initialize_filterrific(
       Route,
       params[:filterrific],

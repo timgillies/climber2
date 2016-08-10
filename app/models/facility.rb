@@ -9,7 +9,7 @@ class Facility < ActiveRecord::Base
   has_many :ticks
   belongs_to :tick
 
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(created_at: :asc) }
   validates :name, presence: true
   validates :addressline1, presence: true
   validates :city, presence: true

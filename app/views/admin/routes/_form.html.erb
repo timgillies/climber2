@@ -3,6 +3,7 @@
   <%= render 'shared/error_messages', object: f.object %>
     <div class="row">
       <div class="col-sm-12">
+        <%= f.label :name, "Route info" %>
         <%= f.text_field :name, class: 'form-control', placeholder: "Route name (optional)" %>
       </div>
     </div>
@@ -14,28 +15,29 @@
     <div class="row">
       <div class="col-sm-12">
         <%= f.select(:grade_id, @facilitygrades,
-        { include_blank: 'Select grades' },
+        { include_blank: 'Select grade' },
         {class: "form-control"}) %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
         <%= f.select(:setter_id, @facilitysetters,
-        { include_blank: 'Select grades' },
+        { include_blank: 'Select setter' },
         {class: "form-control"}) %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <%= f.label :zone_id, "Location (optional)" %>
         <%= f.select(:zone_id, @facilityzones,
-        { include_blank: 'Select zone (optional)' },
+        { include_blank: 'Select zone' },
         {class: "form-control"}) %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
         <%= f.select(:wall_id, @facilitywalls,
-        { include_blank: 'Select wall (optional)' },
+        { include_blank: 'Select wall' },
         {class: "form-control"}) %>
       </div>
     </div>
