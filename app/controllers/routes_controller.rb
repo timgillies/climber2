@@ -53,6 +53,8 @@ class RoutesController < ApplicationController
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
+
+    # refactor into model
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
   end
 

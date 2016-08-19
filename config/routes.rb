@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
 
   post '/rate' => 'rater#create', :as => 'rate'
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :leads
 
 
   namespace :admin do

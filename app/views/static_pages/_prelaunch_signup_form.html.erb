@@ -1,0 +1,12 @@
+<%= form_for [ @lead ] do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="col-md-10">
+    <%= f.text_field :email, class: 'form-control signup', placeholder: "Enter your email address for launch updates" %>
+</div>
+<div class="col-md-2">
+  <%= f.submit "CONNECT", class: "btn btn-signup" %>
+</div>
+
+
+<% end %>

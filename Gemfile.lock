@@ -137,7 +137,6 @@ GEM
     momentjs-rails (2.11.1)
       railties (>= 3.1)
     multi_json (1.11.2)
-    mysql2 (0.4.3)
     nenv (0.3.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -257,7 +256,6 @@ DEPENDENCIES
   mini_backtrace
   minitest-reporters
   momentjs-rails (>= 2.9.0)
-  mysql2 (>= 0.3.13, < 0.5)
   pg (= 0.17.1)
   puma (= 3.1.0)
   rails (= 4.2.6)
