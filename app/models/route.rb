@@ -11,10 +11,13 @@ class Route < ActiveRecord::Base
 
   accepts_nested_attributes_for :ticks
 
+
   validates :color, presence: true
   validates :setter, presence: true
   validates :setdate, presence: true
   validates :grade, presence: true
+
+  default_scope -> { order(created_at: :desc) }
 
 
 # checks if route is active or expired.  true = active

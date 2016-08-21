@@ -5,6 +5,7 @@
     <%= f.text_field :email, class: 'form-control signup', placeholder: "Enter your email address for launch updates" %>
     <br/>
 </div>
+  <%= f.hidden_field :source, value: 'prelaunch' %>
 <div class="col-md-2 col-sm-4">
   <%= f.submit "CONNECT", class: "btn btn-signup" %>
 </div>

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         member do
           post :expire #output path - expire_route/:id
           post :tagged #output path - tagged_route/:id
+          post :untagged #output path - tagged_route/:id
         end
       end
       resources :grades

@@ -1,6 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'bootstrap-datetimepicker';
 
 
 
@@ -678,16 +677,18 @@ span.picture {
 /* Buttons */
 
 .btn-submit{
-  border-color: #2E86C1;
-  background: #2E86C1;
+  border-color: #52BE80;
+  background: #52BE80;
   opacity: 1;
   color: #ffffff;
   transition-duration: 0.5s;
+  letter-spacing: -0.0px;
+  font-weight: lighter;
 }
 
-.btn-submit:hover{
-  border-color: #2471A3;
-  background: #2471A3;
+.btn-submit:hover, .btn-submit:active{
+  border-color: #58D68D;
+  background: #58D68D;
   opacity: 1;
   color: #ffffff;
 }
@@ -702,7 +703,7 @@ span.picture {
   font-weight: lighter;
 }
 
-.btn-signup:hover{
+.btn-signup:hover, .btn-signup:active{
   border-color: #58D68D;
   background: #58D68D;
   opacity: 1;
@@ -837,7 +838,9 @@ span.picture {
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
-    list-style-type: none;
+    ul {
+      list-style: none;
+    }
  }
 
 .alert-alert {
@@ -845,7 +848,9 @@ span.picture {
     border-color: #eed3d7;
     color: #b94a48;
     text-align: left;
-    list-style-type: none;
+    ul {
+      list-style: none;
+    }
  }
 
 .alert-success {
@@ -853,7 +858,9 @@ span.picture {
     border-color: #d6e9c6;
     color: #468847;
     text-align: left;
-    list-style-type: none;
+    ul {
+      list-style: none;
+    }
  }
 
 .alert-notice {
@@ -861,7 +868,9 @@ span.picture {
     border-color: #d6e9c6;
     color: #468847;
     text-align: left;
-    list-style-type: none;
+    ul {
+      list-style: none;
+    }
  }
 
 .list-group {

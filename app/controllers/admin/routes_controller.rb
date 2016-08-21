@@ -138,6 +138,13 @@ class Admin::RoutesController < ApplicationController
     redirect_to(admin_facility_routes_path(@facility))
   end
 
+  def untagged
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id])
+    @route.update_attribute(:tagged, false)
+    redirect_to(admin_facility_routes_path(@facility))
+  end
+
 
 
   def destroy
@@ -150,7 +157,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :discipline, :description, :active)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :discipline, :description, :active, :tagged)
   end
 
   def options_for_grade_select

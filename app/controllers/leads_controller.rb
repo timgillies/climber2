@@ -6,15 +6,16 @@ class LeadsController < ApplicationController
   def create
     @lead = Lead.create(lead_params)
     if @lead.save
-      flash[:success] = "Thanks for signing up!  We'll be in touch once CLIMB | CONNECT is ready."
+      flash[:success] = "Thanks!  We'll be in touch once we're ready."
       redirect_to root_url
     else
+      flash[:error] = "Please enter a valid email address."
       redirect_to root_url
     end
   end
 
   def lead_params
-    params.require(:lead).permit(:email)
+    params.require(:lead).permit(:email, :source)
   end
 
 end
