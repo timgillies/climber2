@@ -2,15 +2,25 @@
 <table class="table table-condensed">
   <tr>
     <th>Walls</th>
+    <th>Zone</th>
     <th>Vertical ft.</th>
     <th>Route Count</th>
+    <th></th>
     <th></th>
   </tr>
   <% @facility.walls.each do |wall| %>
     <tr>
-      <td><%= link_to wall.name,  edit_admin_facility_wall_path(@facility, wall ) %></td>
-      <td><%= wall.vertical_ft %>
+      <td><%= wall.name %></td>
+      <td><%= wall.zone.name if wall.zone %></td>
+      <td><%= wall.vertical_ft %></td>
       <td><%= wall.routes.count %> routes</td>
+      <td><%= link_to edit_admin_facility_wall_path(@facility, wall ) do %>
+                  <i class="glyphicon glyphicon-cog"></i>
+                  <%end %></td>
+      <td><%= link_to admin_facility_wall_path(@facility, wall), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                  :method => :delete do %>
+                  <i class="glyphicon glyphicon-remove"></i>
+                  <%end %></td>
     </tr>
   <% end %>
 </table>

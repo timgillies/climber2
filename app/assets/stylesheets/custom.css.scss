@@ -314,14 +314,7 @@ input {
   }
 }
 
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
-}
+
 
 #session_remember_me {
   width: auto;
@@ -526,7 +519,7 @@ input {
   display: inline;
   li {
     padding: 0px 0;
-    border-top: 1px solid #e8e8e8;
+    border-top: 1px solid $gray-medium-light;
   }
   .grade {
     margin-top: 5em;
@@ -648,6 +641,15 @@ span.picture {
   }
 }
 
+/* Glyphicons */
+.glyphicon-remove {
+  color: #CD6155
+}
+
+.glyphicon-cog {
+  color: #CCD1D1;
+}
+
 
 /* Navbar */
 
@@ -675,6 +677,11 @@ span.picture {
 }
 
 /* Buttons */
+
+.btn {
+  font-weight: lighter;
+  transition-duration: 0.5s;
+}
 
 .btn-submit{
   border-color: #52BE80;
@@ -783,11 +790,12 @@ span.picture {
 }
 
 .btn-expire{
-  border-color: #F9EBEA;
+  border-color: #CD6155;
   background: #ffffff;
   opacity: 1;
   color: #CD6155;
   margin-top: 5px;
+  font-weight: lighter
 }
 
 .btn-expire:hover, .btn-expired, .btn-expired:hover{
@@ -798,24 +806,27 @@ span.picture {
   margin-top: 5px;
 }
 
-.btn-tag{
-  border-color: #D6EAF8;
+.btn-tag, .btn-tagged:hover {
+  border-color: $gray;
   background: #ffffff;
   opacity: 1;
-  color: #5499C7;
+  color: $gray;
   margin-top: 5px;
+  display: inline-block;
 }
 
-.btn-tag:hover, .btn-tagged, .btn-tagged:hover {
-  border-color: #5499C7;
-  background: #5499C7;
+.btn-tag:hover, .btn-tagged {
+  border-color: $gray;
+  background: $gray;
   opacity: 1;
   color: #ffffff;
   margin-top: 5px;
+  display: block;
+  width: 100%;
 }
 
 .btn-edit, .btn-edit:hover{
-  border-color: $gray-lighter;
+  border-color: #ffffff;
   background: #ffffff;
   opacity: 1;
   color: $gray-light;

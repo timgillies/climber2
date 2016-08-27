@@ -2,7 +2,10 @@
 <%= form_for [:admin, @facility, @wall] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
+  <%= f.select(:zone_id, @facilityzones,{ include_blank: 'Select zone' },{class: "form-control"}) %>
+
   <%= f.text_field :name, class: 'form-control', placeholder: "Wall name..." %>
+
   <%= f.text_field :vertical_ft, class: 'form-control', placeholder: "Vertical ft. (optional)..." %>
 
   <%= f.submit "Submit", class: "btn btn-submit" %>

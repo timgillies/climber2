@@ -1,14 +1,14 @@
 200.times do |n|
   name  = Faker::Book.title
   color = Faker::Color.color_name
-  grade_id = Faker::Number.between(18, 32)
-  setter_id = Faker::Number.between(2, 6)
-  zone_id = Faker::Number.between(7, 12)
-  wall_id = Faker::Number.between(2, 6)
+  grade_id = Faker::Number.between(1, 17)
+  setter_id = Faker::Number.between(1, 4)
+  zone_id = Faker::Number.between(1, 5)
+  wall_id = Faker::Number.between(1, 4)
   start_date = Faker::Date.between(30.days.ago, Date.today)
   end_date = Faker::Date.between(30.days.from_now, 60.days.from_now)
-  Route.create!(user_id:  '5',
-               facility_id: '3',
+  Route.create!(user_id:  '1',
+               facility_id: '1',
                name:              name,
                color:             color,
                setdate:           start_date.strftime('%Y-%m-%d'),

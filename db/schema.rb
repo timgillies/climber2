@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821035359) do
+ActiveRecord::Schema.define(version: 20160827165449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,10 +210,12 @@ ActiveRecord::Schema.define(version: 20160821035359) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "vertical_ft"
+    t.integer  "zone_id"
   end
 
   add_index "walls", ["facility_id"], name: "index_walls_on_facility_id", using: :btree
   add_index "walls", ["user_id"], name: "index_walls_on_user_id", using: :btree
+  add_index "walls", ["zone_id"], name: "index_walls_on_zone_id", using: :btree
 
   create_table "zones", force: :cascade do |t|
     t.string   "name"
@@ -244,6 +246,7 @@ ActiveRecord::Schema.define(version: 20160821035359) do
   add_foreign_key "ticks", "users"
   add_foreign_key "walls", "facilities"
   add_foreign_key "walls", "users"
+  add_foreign_key "walls", "zones", on_delete: :nullify
   add_foreign_key "zones", "facilities"
   add_foreign_key "zones", "users"
 end

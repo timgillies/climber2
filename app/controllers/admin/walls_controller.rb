@@ -12,6 +12,7 @@ class Admin::WallsController < ApplicationController
     @wall = Wall.new
     @facility = Facility.find(params[:facility_id])
     @walls = @facility.walls.page(params[:page])
+    @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
 
   end
 
@@ -24,6 +25,7 @@ class Admin::WallsController < ApplicationController
     @wall = current_user.walls.build(wall_params)
     @walls = Wall.page(params[:page]) # makes "each" work in the partial
     @wall.facility_id = params[:facility_id] #this passes the facility ID through the field
+    @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
     if @wall.save
       flash[:success] = "Wall created!"
       redirect_to(new_admin_facility_wall_path(@facility))
@@ -35,6 +37,7 @@ class Admin::WallsController < ApplicationController
   def update
     @facility = Facility.find(params[:facility_id])
     @wall = @facility.walls.find(params[:id])
+    @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
     if @wall.update_attributes(wall_params)
       flash[:success] = "Wall updated!"
       redirect_to(new_admin_facility_wall_path(@facility))
@@ -48,6 +51,7 @@ class Admin::WallsController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @wall = Wall.find(params[:id])
     @walls = @facility.walls.page(params[:page])
+    @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
   end
 
   def destroy

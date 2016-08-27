@@ -4,11 +4,19 @@
     <th>Zones</th>
     <th>Route Count</th>
     <th></th>
+    <th></th>
   </tr>
   <% @facility.zones.each do |zone| %>
     <tr>
-      <td><%= link_to zone.name,  edit_admin_facility_zone_path(@facility, zone ) %></td>
+      <td><%= zone.name %></td>
       <td><%= zone.routes.count %> routes</td>
+      <td><%= link_to edit_admin_facility_zone_path(@facility, zone ) do %>
+                  <i class="glyphicon glyphicon-cog"></i>
+                  <%end %></td>
+      <td><%= link_to admin_facility_zone_path(@facility, zone), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                  :method => :delete do %>
+                  <i class="glyphicon glyphicon-remove"></i>
+                  <%end %></td>
     </tr>
   <% end %>
 </table>

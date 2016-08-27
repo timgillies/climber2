@@ -17,8 +17,22 @@
         <li><%= link_to "Indoor", facilities_path %></li>
         <li><%= link_to "Outdoor", outdoors_path %></li>
         <li><%= link_to "Find a Partner", social_path %></li>
+
         <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
-        <li><%= link_to 'Route Management', admin_facilities_path %></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Route Management <b class="caret"></b>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <% @userfacilities.each do |f| %>
+              <%= link_to f.name + " - " + f.location, admin_facility_path(f) %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
         <% end %>
       </ul>
 
