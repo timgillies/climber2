@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :set_facilities
+
+
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
@@ -13,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   # Sets up facilities to list in Route Management dropdown
   def set_facilities
-    @userfacilities = current_user.facilities.all
+    @userfacilities = current_user.facilities.all if user_signed_in?
   end
 
 

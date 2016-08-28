@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
 
 
+
   def home
     @facility = current_user.facilities.build if user_signed_in?
     @user = User.new
@@ -16,4 +17,5 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
 end
