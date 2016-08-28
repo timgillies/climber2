@@ -643,11 +643,34 @@ span.picture {
 
 /* Glyphicons */
 .glyphicon-remove {
-  color: #CD6155
+  color: #B2BABB;
+  vertical-align: bottom;
+  transition-duration: 0.25s;
 }
 
+.glyphicon-remove:hover {
+  color: #CD6155;
+}
+
+.glyphicon-trash {
+  color: #B2BABB;
+  vertical-align: bottom;
+  transition-duration: 0.25s;
+}
+
+.glyphicon-trash:hover {
+  color: #CD6155;
+}
+
+
+
 .glyphicon-cog {
-  color: #CCD1D1;
+  color: #B2BABB;
+  vertical-align: bottom;
+}
+
+.glyphicon-cog:hover {
+  color: #7F8C8D;
 }
 
 
@@ -807,17 +830,17 @@ span.picture {
 }
 
 .btn-tag, .btn-tagged:hover {
-  border-color: $gray;
+  border-color: $gray-light;
   background: #ffffff;
   opacity: 1;
-  color: $gray;
+  color: $gray-light;
   margin-top: 5px;
   display: inline-block;
 }
 
 .btn-tag:hover, .btn-tagged {
-  border-color: $gray;
-  background: $gray;
+  border-color: $gray-light;
+  background: $gray-light;
   opacity: 1;
   color: #ffffff;
   margin-top: 5px;

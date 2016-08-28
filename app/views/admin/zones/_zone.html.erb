@@ -1,23 +1,58 @@
-<%= page_entries_info @zones  %>
-<table class="table table-condensed">
-  <tr>
-    <th>Zones</th>
-    <th>Route Count</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @facility.zones.each do |zone| %>
-    <tr>
-      <td><%= zone.name %></td>
-      <td><%= zone.routes.count %> routes</td>
-      <td><%= link_to edit_admin_facility_zone_path(@facility, zone ) do %>
-                  <i class="glyphicon glyphicon-cog"></i>
-                  <%end %></td>
-      <td><%= link_to admin_facility_zone_path(@facility, zone), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                  :method => :delete do %>
-                  <i class="glyphicon glyphicon-remove"></i>
-                  <%end %></td>
-    </tr>
+<div id="filterrific_results_admin">
+  <div class="row">
+    <div class="col-sm-10">
+      <%= page_entries_info @zones  %>
+    </div>
+  </div>
+
+  <br />
+
+  <%= div_for(@zones) do |f| %>
+  <ol class="routelist">
+    <li>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-9">
+            <h3><%= link_to f.name , admin_facility_zone_path(@facility, f) %>
+            </h3>
+          </div>
+
+
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <span class="timestamp">
+              <h4><small>Route ID: <%= f.id %></small></h4>
+            </span>
+          </div>
+
+          <div class="col-sm-3">
+              <h4><small><%= f.routes.count %> / <%= f.walls.count %></small></h4>
+          </div>
+          <div class="col-sm-2">
+            <h4><small><%= f.name if f.name%></small></h4>
+          </div>
+          <div class="col-sm-2">
+            <h4><small>set <%= time_ago_in_words(f.created_at) %> ago</small></h4>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-1">
+            <%= button_to "edit",  edit_admin_facility_zone_path(@facility, f ), :class => 'btn btn-edit btn-xs', method: :get %>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-1">
+            <%= link_to edit_admin_facility_zone_path(@facility, f ) do %>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <%end %>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 col-md-1">
+            <%= link_to admin_facility_zone_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                        :method => :delete do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <%end %>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
   <% end %>
-</table>
 </div>

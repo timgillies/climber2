@@ -7,7 +7,7 @@ class Admin::ZonesController < ApplicationController
 
   def index
     @facility = Facility.find(params[:facility_id])
-    @zones = @facility.zones.order('discipline ASC', 'rank ASC').paginate(page: params[:page])
+    @zones = @facility.zones.page(params[:page])
   end
 
   def new

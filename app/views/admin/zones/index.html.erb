@@ -1,2 +1,11 @@
-<h1>Zones#index</h1>
-<p>Find me in app/views/zones/index.html.erb</p>
+<% provide(:title, 'Zones') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="routes">
+        <h1><small>Zones</small></h1>
+      </div>
+      <%= render 'admin/zones/zone', object: @zones %>
+    </div>
+  </div>
