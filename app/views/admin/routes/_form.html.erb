@@ -56,7 +56,7 @@
         <% if params[:action] == "edit" %>
           <%= f.date_field :enddate, class: 'form-control' %>
         <% else %>
-          <%= f.date_field :enddate, :value => 30.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
+          <%= f.date_field :enddate, :value => 40.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
         <% end %>
       </div>
     </div>
