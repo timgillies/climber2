@@ -1,17 +1,36 @@
+  <div class="row">
+  </div>
 
-<%= page_entries_info @setters  %>
-<table class="table table-condensed">
-  <tr>
-    <th>Setters</th>
-    <th>Display Name</th>
-    <th>Route Count</th>
-  </tr>
-    <% @facility.setters.each do |setter| %>
-    <tr>
-      <td><%= link_to setter.last_name + ", " + setter.first_name,  edit_admin_facility_setter_path(@facility, setter ) %></td>
-      <td><%= setter.nick_name %>
-      <td><%= setter.routes.count %> routes</td>
-   </tr>
+  <br />
+
+  <%= div_for(@setters) do |f| %>
+  <ol class="routelist">
+    <li>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4">
+            <h3><small><%= f.last_name + ", " + f.first_name %></small>
+            </h3>
+          </div>
+          <div class="col-sm-6">
+              <h3><%= f.routes.count %><small> active routes</small></h3>
+          </div>
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h4><%= link_to edit_admin_facility_setter_path(@facility, f ) do %>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <%end %>
+            </h4>
+          </div>
+
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h4><%= link_to admin_facility_setter_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                        :method => :delete do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <%end %>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
   <% end %>
-</table>
-</div>

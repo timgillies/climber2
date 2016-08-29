@@ -25,6 +25,10 @@ class Route < ActiveRecord::Base
     (Date.today - self.enddate).to_i <= 0
   end
 
+  def self.current
+    where("enddate > ?", Date.today)
+  end
+
 # counts number of routes set on given date
   def self.set_on(date)
     where("date(setdate) = ?", date).count(:id)

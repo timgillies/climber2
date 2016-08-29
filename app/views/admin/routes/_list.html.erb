@@ -42,8 +42,12 @@
           <div class="col-sm-2">
             <h4><small>set <%= time_ago_in_words(f.created_at) %> ago</small></h4>
           </div>
-          <div class="col-xs-4 col-sm-4 col-md-1">
-            <%= button_to "edit",  edit_admin_facility_route_path(@facility, f ), :class => 'btn btn-edit btn-xs', method: :get %>
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h4>
+              <%= link_to edit_admin_facility_route_path(@facility, f ) do %>
+                <i class="glyphicon glyphicon-cog"></i>
+              <%end %>
+            </h4>
           </div>
           <div class="col-xs-4 col-sm-4 col-md-1">
             <% if f.active? %>

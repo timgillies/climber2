@@ -2,12 +2,20 @@
 <%= form_for [:admin, @facility, @wall] do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.select(:zone_id, @facilityzones,{ include_blank: 'Select zone' },{class: "form-control"}) %>
+  <div class="col-sm-3 col-md-3 col-lg-3">
+    <%= f.text_field :name, class: 'form-control', placeholder: "Wall name..." %>
+  </div>
 
-  <%= f.text_field :name, class: 'form-control', placeholder: "Wall name..." %>
+  <div class="col-sm-3 col-md-3 col-lg-3">
+    <%= f.text_field :vertical_ft, class: 'form-control', placeholder: "Vertical ft. (optional)..." %>
+  </div>
 
-  <%= f.text_field :vertical_ft, class: 'form-control', placeholder: "Vertical ft. (optional)..." %>
+  <div class="col-sm-3 col-md-3 col-lg-3">
+    <%= f.select(:zone_id, @facilityzones,{ include_blank: 'Select zone' },{class: "form-control"}) %>
+  </div>
 
-  <%= f.submit "Submit", class: "btn btn-submit" %>
+  <div class="col-sm-3 col-md-3 col-lg-3">
+    <%= f.submit "Submit", class: "btn btn-submit" %>
+  </div>
 
 <% end %>

@@ -1,8 +1,5 @@
-<div id="filterrific_results_admin">
+
   <div class="row">
-    <div class="col-sm-10">
-      <%= page_entries_info @zones  %>
-    </div>
   </div>
 
   <br />
@@ -12,47 +9,38 @@
     <li>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-9">
-            <h3><%= link_to f.name , admin_facility_zone_path(@facility, f) %>
+          <div class="col-xs-4">
+            <h3><small><%= f.name %></small>
             </h3>
           </div>
-
-
-        </div>
-        <div class="row">
-          <div class="col-sm-2">
-            <span class="timestamp">
-              <h4><small>Route ID: <%= f.id %></small></h4>
-            </span>
+          <div class="col-xs-6">
+              <h3><%= f.routes.current.count %>  <small>active routes</small></h3>
           </div>
-
-          <div class="col-sm-3">
-              <h4><small><%= f.routes.count %> / <%= f.walls.count %></small></h4>
-          </div>
-          <div class="col-sm-2">
-            <h4><small><%= f.name if f.name%></small></h4>
-          </div>
-          <div class="col-sm-2">
-            <h4><small>set <%= time_ago_in_words(f.created_at) %> ago</small></h4>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-1">
-            <%= button_to "edit",  edit_admin_facility_zone_path(@facility, f ), :class => 'btn btn-edit btn-xs', method: :get %>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-1">
-            <%= link_to edit_admin_facility_zone_path(@facility, f ) do %>
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h4><%= link_to edit_admin_facility_zone_path(@facility, f ) do %>
                         <i class="glyphicon glyphicon-cog"></i>
-                        <%end %>
+            </h4>            <%end %>
           </div>
 
-          <div class="col-xs-4 col-sm-4 col-md-1">
-            <%= link_to admin_facility_zone_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h4><%= link_to admin_facility_zone_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
                         :method => :delete do %>
                         <i class="glyphicon glyphicon-trash"></i>
-                        <%end %>
+            </h4>            <%end %>
           </div>
+        </div>
+        <div class="row">
+        <% f.walls.each do |w| %>
+          <div class="col-xs-4">
+            <h4 class="tab"><small><%= w.name %></small><h5>
+          </div>
+          <div class="col-xs-8">
+            <h4><small><%= w.routes.current.count %></small><h4>
+          </div>
+
+        <% end %>
         </div>
       </div>
     </li>
   </ol>
   <% end %>
-</div>

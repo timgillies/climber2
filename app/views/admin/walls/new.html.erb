@@ -2,16 +2,17 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
       <div class="routes">
         <h1><small>Add new wall</small></h1>
       </div>
       <%= render 'admin/walls/form', object: @walls %>
     </div>
-    <div class="col-sm-6">
-      <div class="routes">
-        <h1><small>Walls</small></h1>
-      </div>
-      <%= render 'admin/walls/wall', object: @walls %>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= render 'admin/walls/wall', object: @zones %>
     </div>
   </div>
+</div>
