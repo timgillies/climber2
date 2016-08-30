@@ -1,5 +1,7 @@
 class FacilitiesController < ApplicationController
 
+  before_filter :authenticate_user!
+
   layout "user", except: [:index]
 
   def index
