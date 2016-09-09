@@ -34,12 +34,13 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def update
-    @facility = Facility.find(params[:facility])
+    @facility = Facility.find(params[:id])
     if @facility.update_attributes(facility_params)
       flash[:success] = "Info updated!"
       redirect_to(admin_facility_path(@facility))
       # Handle a successful update.
     else
+      flash[:danger] = "Thank you for registering!"
       render 'edit'
     end
   end

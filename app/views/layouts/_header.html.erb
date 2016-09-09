@@ -28,7 +28,7 @@
           <ul class="dropdown-menu">
             <li>
               <% @userfacilities.each do |f| %>
-              <%= link_to f.name + " - " + f.location, admin_facility_path(f) %>
+                <%= link_to f.name + " " + f.location, admin_facility_path(f) %>
               <% end %>
             </li>
             <li class="divider"></li>

@@ -1,8 +1,11 @@
 <%= form_for([:admin,@facility]) do |f| %>
   <%= render 'shared/error_messages', object: @facility %>
 
-  <h2>Location</h2>
+<div class="routes">
+  <h1><small>Location</small></h1>
+</div>
 
+<div class="col-sm-12 col-md-12 col-lg-12">
   <%= f.label :name, "Facility name" %>
   <%= f.text_field :name, class: 'form-control' %>
 
@@ -14,23 +17,51 @@
 
   <%= f.label :addressline2, "Address (line 2)" %>
   <%= f.text_field :addressline2, class: 'form-control' %>
+</div>
 
+<div class="col-sm-6 col-md-6 col-lg-6">
   <%= f.label :city %>
   <%= f.text_field :city, class: 'form-control' %>
+</div>
 
+  <div class="col-sm-6 col-md-6 col-lg-6">
   <%= f.label :state %>
-  <%= f.select :state, options_for_select(us_states), include_blank: true, class: 'form-control' %>
+  <%= f.select(:state, options_for_select(us_states, selected: f.object.state ), { include_blank: 'Select state' }, { class: 'form-control' }) %>
+  </div>
 
+<div class="col-sm-12 col-md-12 col-lg-12">
   <%= f.label :zipcode, "Zip code" %>
   <%= f.text_field :zipcode, class: 'form-control' %>
+</div>
 
-  <h2>Grading</h2>
+<div class="routes">
+  <h1><small>Grading options</small></h1>
+</div>
 
-  <%= f.label :custom, "Custom Grading?" %>
-  <%= f.check_box :custom %>
+<div class="col-sm-12 col-md-12 col-lg-12">
 
-  <br>
-  <br>
+  <div class="row">
+    <label class="checkbox-inline">
+      <%= f.check_box :custom, class: 'checkbox' %>
+      V-Scale (Hueco)
+    </label>
+  </div>
+  <div class="row">
+    <label class="checkbox-inline">
+      <%= f.check_box :custom, class: 'checkbox' %>
+      Yosemite Decimal System (YDS)
+    </label>
+  </div>
+  <div class="row">
+    <label class="checkbox-inline">
+      <%= f.check_box :custom, class: 'checkbox' %>
+      Custom grading
+    </label>
+  </div>
+
+  <br/>
 
   <%= f.submit "Submit", class: "btn btn-submit" %>
+</div>
+
 <% end %>

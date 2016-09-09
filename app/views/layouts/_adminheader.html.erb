@@ -18,6 +18,7 @@
       <li class="<%= 'active' if current_page?(new_admin_facility_wall_path(@facility)) %>"><%= link_to "Walls", new_admin_facility_wall_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(new_admin_facility_setter_path(@facility)) %>"><%= link_to "Routesetters", new_admin_facility_setter_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(new_admin_facility_grade_path(@facility)) %>"><%= link_to "Grades", new_admin_facility_grade_path(@facility) %></li>
+      <li class="<%= 'active' if current_page?(edit_admin_facility_path(@facility)) %>"><%= link_to "Edit", edit_admin_facility_path(@facility) %></li>
     </ul>
   </div>
 </div>

@@ -16,11 +16,10 @@
       </div>
 
       <% if devise_mapping.rememberable? -%>
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :remember_me, {checked: true} %> Remember me
-          </label>
-        </div>
+        <label class="checkbox-inline">
+          <%= f.check_box :remember_me, checked: true, class: 'checkbox' %>
+          Remember me
+        </label>
       <% end -%>
 
       <div class="actions">

@@ -915,6 +915,24 @@ span.picture {
 
 }
 
+/*Check box in the middle of the text fix*/
+
+.checkbox {
+    width: 15px;
+    height: 15px;
+    float: left;
+    vertical-align: middle;
+
+}
+.checkbox-inline {
+    float: left;
+    padding-left: 3px;
+    margin-left: 10px;
+    padding: 15px;
+    vertical-align: middle;
+
+}
+
 
 /*target Internet Explorer 9 and Internet Explorer 10:*/
 @media screen and (min-width:0\0) {

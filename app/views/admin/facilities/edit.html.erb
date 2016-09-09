@@ -1,44 +1,12 @@
 <% provide(:title, 'Edit Facility') %>
 
 <div class="container">
-  <br/>
-
-<form class="form-horizontal">
-  <div class="form-group">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_for([:admin,@facility]) do |f| %>
-
-        <%= render 'shared/error_messages', object: @facility %>
-
-        <%= f.label :name, "Facility name" %>
-        <%= f.text_field :name, class: 'form-control' %>
-
-        <%= f.label :location, "Location (optional)"%>
-        <%= f.text_field :location, class: 'form-control' %>
-
-        <%= f.label :addressline1, "Address" %>
-        <%= f.text_field :addressline1, class: 'form-control' %>
-
-        <%= f.label :addressline2, "Address (line 2)" %>
-        <%= f.text_field :addressline2, class: 'form-control' %>
-
-        <%= f.label :city %>
-        <%= f.text_field :city, class: 'form-control' %>
-
-        <%= f.label :state %>
-        <%= f.select :state, options_for_select(us_states), include_blank: "- State -", class: 'form-control' %>
-
-        <%= f.label :zipcode, "Zip code" %>
-        <%= f.text_field :zipcode, class: 'form-control' %>
-
-        <%= f.label :custom, "Custom Grading?" %>
-        <%= f.check_box :custom %>
-
-        <br>
-        <br>
-
-        <%= f.submit "Update", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+  <div class="routes">
+    <h1>Edit Facility</h1>
   </div>
-</form>
+    <div class="row">
+      <div class="col-md-6">
+          <%= render 'admin/facilities/form', object: @facility %>
+      </div>
+    </div>
+</div>

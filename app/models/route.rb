@@ -143,7 +143,7 @@ scope :sorted_by, lambda { |sort_option|
 
   def self.options_for_status_select
     [
-      ['Active only', Date.today ]
+      ['Active', Date.today ]
     ]
   end
 
