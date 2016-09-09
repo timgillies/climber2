@@ -17,5 +17,16 @@ class Facility < ActiveRecord::Base
   VALID_ZIPCODE_REGEX = /\A\d{5}-\d{4}|\A\d{5}\z/
   validates :zipcode, presence: true, format: { with: VALID_ZIPCODE_REGEX }
 
+  def self.yds?
+    where(yds: true)
+  end
+
+  def self.vscale?
+    where(vscale: true)
+  end
+
+  def self.custom?
+    where(custom: true)
+  end
 
 end

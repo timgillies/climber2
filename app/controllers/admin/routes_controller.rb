@@ -4,6 +4,8 @@ class Admin::RoutesController < ApplicationController
 
   layout "admin"
 
+  include GradesHelper
+
   def index
     @facility = Facility.find(params[:facility_id])
     @filterrific = initialize_filterrific(
@@ -46,11 +48,9 @@ class Admin::RoutesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
 
-    if @facility.custom?
-      @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
-    else
-      @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
-    end
+    @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
+
+    @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
@@ -70,11 +70,7 @@ class Admin::RoutesController < ApplicationController
     @route = current_user.routes.build(route_params)
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
 
-    if @facility.custom?
-      @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
-    else
-      @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
-    end
+    @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
@@ -93,22 +89,14 @@ class Admin::RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
 
-    if @facility.custom?
-      @facilitygrades = @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
-    else
-      @facilitygrades = Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
-    end
+    @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
     @route.facility_id = params[:facility_id]
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
 
-    if @facility.custom?
-      @facilitydisciplines = @facility.grades.all.map{|fg| [fg.discipline, fg.discipline ] }
-    else
-      @facilitydisciplines = Grade.where(system: ['yds','vscale']).map{|sg| [sg.discipline, sg.discipline ] }
-    end
+    @facilitydisciplines = facility_grades.map{ |fg| [fg.discipline, fg.discipline ] }
 
   end
 
@@ -161,11 +149,7 @@ class Admin::RoutesController < ApplicationController
   end
 
   def options_for_grade_select
-    if @facility.custom?
-      @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
-    else
-      Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
-    end
+      facility_grades.map{ |sg| [sg.grade, sg.id ] }
     # provides the list of available grades in the route list filters
   end
 

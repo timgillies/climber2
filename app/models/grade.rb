@@ -10,8 +10,6 @@ class Grade < ActiveRecord::Base
   validates :rank, uniqueness: {  scope: [:facility_id, :discipline] }
   validates :grade, uniqueness: {  scope: [:facility_id, :discipline] }
 
-  def self.facilitygrades
-  end
 
   scope :boulder, -> {
   where(:discipline => 'boulder')
@@ -20,6 +18,9 @@ class Grade < ActiveRecord::Base
   scope :sport, -> {
   where(:discipline => 'sport')
   }
+
+
+
 
 
 

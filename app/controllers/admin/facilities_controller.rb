@@ -58,7 +58,7 @@ class Admin::FacilitiesController < ApplicationController
   private
 
     def facility_params
-      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom, :user_id)
+      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom, :vscale, :yds, :user_id)
     end
 
     # Before filters
