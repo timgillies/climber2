@@ -41,6 +41,8 @@ gem 'gretel'
 gem 'lazy_high_charts'
 gem 'ratyrate'
 gem 'jquery-turbolinks'
+gem 'execjs'
+gem 'therubyracer'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

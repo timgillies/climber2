@@ -6,8 +6,6 @@ class Grade < ActiveRecord::Base
 
   validates :discipline, presence: true
   validates :grade, presence: true
-  validates :rank, numericality: { only_integer: true }
-  validates :rank, uniqueness: {  scope: [:facility_id, :discipline] }
   validates :grade, uniqueness: {  scope: [:facility_id, :discipline] }
 
 
@@ -20,7 +18,14 @@ class Grade < ActiveRecord::Base
   }
 
 
+  before_save :calculate_rank
 
+  private
+
+
+  def calculate_rank
+    self.rank = (self.range_start.to_f + self.range_end.to_f)/2
+  end
 
 
 

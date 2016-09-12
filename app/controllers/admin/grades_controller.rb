@@ -24,10 +24,14 @@ class Admin::GradesController < ApplicationController
 
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
-    @grade = current_user.grades.build(grade_params)
     @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
 
+    @grade = current_user.grades.build(grade_params)
+
     @grade.facility_id = params[:facility_id] #this passes the facility ID through the field
+
+    @grade.rank = ((params[:range_start]).to_f + (params[:range_end]).to_f)/2
+
     if @grade.save
       flash[:success] = "Grade created!"
       redirect_to(new_admin_facility_grade_path(@facility))
@@ -40,6 +44,8 @@ class Admin::GradesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @grade = @facility.grades.find(params[:id])
     @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+
+    @grade.rank = ((params[:range_start]).to_f + (params[:range_end]).to_f)/2
 
     if @grade.update_attributes(grade_params)
       flash[:success] = "Grade updated!"
@@ -66,6 +72,6 @@ class Admin::GradesController < ApplicationController
   private
 
     def grade_params
-      params.require(:grade).permit(:grade, :system, :discipline, :rank, :facility_id)
+      params.require(:grade).permit(:grade, :system, :discipline, :rank, :facility_id, :range_start, :range_end)
     end
   end

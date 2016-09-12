@@ -28,7 +28,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.label :zone_id, "Location (optional)" %>
+        <%= f.label :zone_id, "Zone" %>
         <%= f.select(:zone_id, @facilityzones,
         { include_blank: 'Select zone' },
         {class: "form-control"}) %>
@@ -36,7 +36,8 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:wall_id, @facilitywalls,
+        <%= f.label :wall_id, "Sub-zone" %>
+        <%= f.grouped_collection_select(:wall_id, Zone.where(facility_id: @facility.id) , :walls, :name, :id, :name,
         { include_blank: 'Select sub-zone' },
         {class: "form-control"}) %>
       </div>

@@ -1,15 +1,30 @@
 <%= form_for [:admin, @facility, @grade] do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
+<div class="col-sm-3 col-md-3 col-lg-3">
   <%= f.text_field :grade, class: 'form-control', placeholder: "Grade Name" %>
+</div>
 
-  <%= f.text_field :rank, class: 'form-control', placeholder: "Grade Value" %>
+<div class="col-sm-3 col-md-3 col-lg-3">
+<%= f.select(:discipline, options_for_select(disciplines), {include_blank: "Select discipline"}, {class: 'form-control'}) %>
+</div>
 
-  <%= f.select(:system, options_for_select(systems), {}, {class: "form-control"}) %>
+<div class="col-sm-3 col-md-3 col-lg-3">
+  <%= f.select(:range_start, options_for_select(grade_ranges), {include_blank: "Range start"}, {class: 'form-control'}) %>
+</div>
 
-  <%= f.select(:discipline, options_for_select(disciplines), {include_blank: "Select discipline"}, {class: 'form-control'}) %>
+<div class="col-sm-3 col-md-3 col-lg-3">
+  <%= f.select(:range_end, options_for_select(grade_ranges), {include_blank: "Range end"}, {class: 'form-control'}) %>
+</div>
 
-  <%= f.submit "Submit", class: "btn btn-submit" %>
+
+
+
+  <%= f.hidden_field :system, value: "custom" %>
+
+<div class="col-sm-12 col-md-12 col-lg-12">
+  <%= f.submit "Save", class: "btn btn-submit" %>
+</div>
 
 
 

@@ -14,8 +14,6 @@ module GradesHelper
   end
 
   def facility_grades
-
-
     if @facility.yds? && @facility.vscale?
         Grade.where("system = ? or system = ? or facility_id = ?", 'yds', 'vscale', @facility.id).all
     elsif @facility.yds?
@@ -25,6 +23,10 @@ module GradesHelper
     else
         @facility.grades.all if @facility.grades
     end
+  end
+
+  def grade_ranges
+    Grade.where("system = ? or system = ?", 'yds','vscale').map{|f| [f.grade, f.rank ] }
   end
 
 end

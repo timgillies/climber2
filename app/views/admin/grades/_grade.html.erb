@@ -1,23 +1,40 @@
-<%= page_entries_info @grades  %>
-<table class="table table-condensed">
-  <tr>
-    <th>Grade</th>
-    <th>Discipline</th>
-    <th>Value</th>
-    <th>Route Count</th>
-  </tr>
-    <% @grades.each do |grade| %>
-    <tr>
-      <% if @facility.custom? %>
-        <td><%=link_to grade.grade,  edit_admin_facility_grade_path(@facility, grade ) %></td>
-        <% else %>
-          <td><%= grade.grade %></td>
-      <% end %>
-      <td><%= grade.discipline %></td>
-      <td><%= grade.rank %></td>
-      <td><%= grade.routes.where('facility_id = ?', @facility.id).count %> routes</td>
-   </tr>
+  <div class="row">
+  </div>
+
+  <br />
+
+  <%= div_for(@grades) do |f| %>
+  <ol class="routelist">
+    <li>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4">
+            <h3><small><%= f.grade %></small>
+            </h3>
+          </div>
+          <div class="col-sm-6">
+              <h3><%= f.routes.current.count %>  <small>active routes</small></h3>
+          </div>
+          <% if f.system == 'custom' %>
+          <div class="col-xs-1 col-sm-1 col-md-1">
+
+            <h4><%= link_to edit_admin_facility_grade_path(@facility, f ) do %>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <%end %>
+
+            </h4>
+          </div>
+
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h4><%= link_to admin_facility_grade_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                        :method => :delete do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <%end %>
+            </h4>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </ol>
   <% end %>
-</table>
-<%= paginate @grades %>
-</div>
