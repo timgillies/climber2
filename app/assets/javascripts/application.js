@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require filterrific/filterrific-jquery
-//= require jquery.turbolinks
 //= require bootstrap
 
 //= require_tree .
@@ -11,4 +10,3 @@
 
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
-//= require turbolinks
