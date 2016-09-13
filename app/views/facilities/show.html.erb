@@ -6,10 +6,28 @@
   <div class="col-md-6">
       <%= render 'facilities/gradedist_boulder' %>
   </div>
+
+  <% if facility_grades.where("discipline =?","sport").count > 0 %>
+
+  <div class="col-md-6">
+      <%= render 'facilities/gradedist_sport' %>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-6">
       <%= render 'facilities/zonedist' %>
   </div>
 </div>
+  <% else %>
+
+  <div class="col-md-6">
+      <%= render 'facilities/zonedist' %>
+  </div>
+</div>
+
+<% end %>
+
+
 
 <div class="row">
   <div class="col-md-12">
