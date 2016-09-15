@@ -32,14 +32,16 @@
         <div class="row">
         <% f.walls.each do |w| %>
           <div class="col-xs-4">
-            <h4 class="tab"><small><%= w.name %></small><h5>
+            <p class="tab"><%= w.name %><p>
           </div>
           <div class="col-xs-8">
-            <h4><small><%= w.routes.current.count %></small><h4>
+            <p><i><%= w.routes.current.count %></i></p>
           </div>
-
         <% end %>
+        <div class="tab"><%= link_to "+ New sub-zone", new_admin_facility_wall_path(@facility,@wall), id: "new_wall", remote: true %></div>
         </div>
+
+
       </div>
     </li>
   </ol>

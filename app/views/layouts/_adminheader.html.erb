@@ -14,7 +14,7 @@
       <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "Home", admin_facility_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "Route Database", admin_facility_routes_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %>"><%= link_to "Add Routes", new_admin_facility_route_path(@facility) %></li>
-      <li class="<%= 'active' if current_page?(new_admin_facility_zone_path(@facility)) %>"><%= link_to "Zones", new_admin_facility_zone_path(@facility) %></li>
+      <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "Zones", admin_facility_zones_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(new_admin_facility_wall_path(@facility)) %>"><%= link_to "Walls", new_admin_facility_wall_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(new_admin_facility_setter_path(@facility)) %>"><%= link_to "Routesetters", new_admin_facility_setter_path(@facility) %></li>
       <li class="<%= 'active' if current_page?(new_admin_facility_grade_path(@facility)) %>"><%= link_to "Grades", new_admin_facility_grade_path(@facility) %></li>

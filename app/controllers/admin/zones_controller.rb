@@ -8,6 +8,8 @@ class Admin::ZonesController < ApplicationController
   def index
     @facility = Facility.find(params[:facility_id])
     @zones = @facility.zones.page(params[:page])
+    @wall = Wall.new
+    @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
   end
 
   def new
@@ -27,7 +29,7 @@ class Admin::ZonesController < ApplicationController
     @zone.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @zone.save
       flash[:success] = "Zone created!"
-      redirect_to(new_admin_facility_zone_path(@facility))
+      redirect_to(admin_facility_zones_path(@facility))
     else
       render :new
     end
@@ -38,7 +40,7 @@ class Admin::ZonesController < ApplicationController
     @zone = @facility.zones.find(params[:id])
     if @zone.update_attributes(zone_params)
       flash[:success] = "Zone updated!"
-      redirect_to(new_admin_facility_zone_path(@facility))
+      redirect_to(admin_facility_zones_path(@facility))
       # Handle a successful update.
     else
       render :new

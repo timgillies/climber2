@@ -14,11 +14,13 @@
 
       <!-- Left nav -->
       <ul class="nav navbar-nav navbar navbar-left">
+
+
+        <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
+
         <li><%= link_to "Indoor", facilities_path %></li>
         <li><%= link_to "Outdoor", outdoors_path %></li>
         <li><%= link_to "Find a Partner", social_path %></li>
-
-        <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -37,7 +39,15 @@
             </li>
           </ul>
         </li>
+
+        <% else %>
+
+        <li><%= link_to "Features & Details", facilities_path %></li>
+        <li><%= link_to "Request Beta Access", outdoors_path %></li>
+
         <% end %>
+
+
       </ul>
 
       <!-- Right nav -->

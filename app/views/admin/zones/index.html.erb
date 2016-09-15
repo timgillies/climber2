@@ -1,11 +1,12 @@
 <% provide(:title, 'Zones') %>
 
 <div class="container-fluid">
+  <div class="routes">
+    <h1><small> Facility Zones </small></h1>
+  </div>
   <div class="row">
     <div class="col-sm-12">
-      <div class="routes">
-        <h1><small>Zones</small></h1>
-      </div>
+      <%= link_to "New Zone", new_admin_facility_zone_path, id: "new_zone", remote: true %>
       <%= render 'admin/zones/zone', object: @zones %>
     </div>
   </div>
