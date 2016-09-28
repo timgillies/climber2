@@ -27,8 +27,8 @@ class Admin::WallsController < ApplicationController
     @wall.facility_id = params[:facility_id] #this passes the facility ID through the field
     @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
     if @wall.save
-      flash[:success] = "Wall created!"
-      redirect_to(new_admin_facility_wall_path(@facility))
+      flash[:success] = "Zone created!"
+      redirect_to(admin_facility_zones_path(@facility))
     else
       render 'new'
     end
@@ -39,8 +39,8 @@ class Admin::WallsController < ApplicationController
     @wall = @facility.walls.find(params[:id])
     @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
     if @wall.update_attributes(wall_params)
-      flash[:success] = "Wall updated!"
-      redirect_to(new_admin_facility_wall_path(@facility))
+      flash[:success] = "Zone updated!"
+      redirect_to(admin_facility_zones_path(@facility))
       # Handle a successful update.
     else
       render :new
@@ -56,7 +56,7 @@ class Admin::WallsController < ApplicationController
 
   def destroy
     Wall.find(params[:id]).destroy
-    flash[:success] = "Wall deleted"
+    flash[:success] = "Zone deleted"
     redirect_to :back
   end
 

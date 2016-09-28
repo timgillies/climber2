@@ -1,21 +1,21 @@
 <br />
-<%= form_for [:admin, @facility, @wall], remote: true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= form_for [:admin, @facility, @wall], remote: false do |fw| %>
+  <%= render 'shared/error_messages', object: fw.object %>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
-    <%= f.text_field :name, class: 'form-control', placeholder: "Wall name..." %>
+    <%= fw.text_field :name, class: 'form-control', placeholder: "Child zone name..." %>
   </div>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
-    <%= f.text_field :vertical_ft, class: 'form-control', placeholder: "Vertical ft. (optional)..." %>
+    <%= fw.text_field :vertical_ft, class: 'form-control', placeholder: "Vertical ft. (optional)..." %>
   </div>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
-    <%= f.select(:zone_id, @facilityzones,{ include_blank: 'Select zone' },{class: "form-control"}) %>
+    <%= fw.select(:zone_id, @facilityzones,{include_blank: "Parent zone..." },{class: "form-control"}) %>
   </div>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
-    <%= f.submit "Save", class: "btn btn-submit" %>
+    <%= fw.submit "Save", class: "btn btn-submit" %>
   </div>
 
 <% end %>

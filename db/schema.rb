@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910152030) do
+ActiveRecord::Schema.define(version: 20160928141548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160910152030) do
     t.integer  "user_id"
     t.decimal  "range_start"
     t.decimal  "range_end"
+    t.string   "system_name"
   end
 
   add_index "grades", ["facility_id"], name: "index_grades_on_facility_id", using: :btree
@@ -117,8 +118,8 @@ ActiveRecord::Schema.define(version: 20160910152030) do
     t.string   "color"
     t.date     "setdate"
     t.date     "enddate"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "grade_id"
     t.integer  "zone_id"
     t.integer  "wall_id"
@@ -126,11 +127,13 @@ ActiveRecord::Schema.define(version: 20160910152030) do
     t.integer  "setter_id"
     t.text     "description"
     t.boolean  "tagged"
+    t.integer  "sub_child_zone_id"
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
   add_index "routes", ["grade_id"], name: "index_routes_on_grade_id", using: :btree
   add_index "routes", ["setter_id"], name: "index_routes_on_setter_id", using: :btree
+  add_index "routes", ["sub_child_zone_id"], name: "index_routes_on_sub_child_zone_id", using: :btree
   add_index "routes", ["user_id", "facility_id", "created_at"], name: "index_routes_on_user_id_and_facility_id_and_created_at", using: :btree
   add_index "routes", ["user_id"], name: "index_routes_on_user_id", using: :btree
   add_index "routes", ["wall_id"], name: "index_routes_on_wall_id", using: :btree
@@ -150,6 +153,18 @@ ActiveRecord::Schema.define(version: 20160910152030) do
 
   add_index "setters", ["facility_id"], name: "index_setters_on_facility_id", using: :btree
   add_index "setters", ["user_id"], name: "index_setters_on_user_id", using: :btree
+
+  create_table "sub_child_zones", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "wall_id"
+    t.integer  "facility_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sub_child_zones", ["facility_id"], name: "index_sub_child_zones_on_facility_id", using: :btree
+  add_index "sub_child_zones", ["wall_id"], name: "index_sub_child_zones_on_wall_id", using: :btree
 
   create_table "ticks", force: :cascade do |t|
     t.integer  "user_id"
@@ -240,11 +255,15 @@ ActiveRecord::Schema.define(version: 20160910152030) do
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades", on_delete: :nullify
   add_foreign_key "routes", "setters", on_delete: :nullify
+  add_foreign_key "routes", "sub_child_zones", on_delete: :nullify
   add_foreign_key "routes", "users"
   add_foreign_key "routes", "walls", on_delete: :nullify
   add_foreign_key "routes", "zones", on_delete: :nullify
   add_foreign_key "setters", "facilities", on_delete: :nullify
   add_foreign_key "setters", "users", on_delete: :nullify
+  add_foreign_key "sub_child_zones", "facilities"
+  add_foreign_key "sub_child_zones", "users"
+  add_foreign_key "sub_child_zones", "walls"
   add_foreign_key "ticks", "facilities", on_delete: :nullify
   add_foreign_key "ticks", "routes", on_delete: :nullify
   add_foreign_key "ticks", "users"

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       resources :zones
       resources :walls
       resources :setters
+      resources :sub_child_zones
 
     end
   end

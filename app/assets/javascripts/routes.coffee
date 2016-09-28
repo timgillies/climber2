@@ -2,8 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-jQuery ->
 
+
+
+jQuery ->
+  $('#route_wall_id').parent().hide()
+  $('#route_sub_child_zone_id').parent().hide()
   walls = $('#route_wall_id').html()
   $('#route_zone_id').change ->
     zone = $('#route_zone_id :selected').text()
@@ -14,3 +18,17 @@ jQuery ->
     else
       $('#route_wall_id').empty
       $('#route_wall_id').parent().hide()
+
+  jQuery ->
+
+      $('#route_sub_child_zone_id').parent().hide()
+      sub_child_zones = $('#route_sub_child_zone_id').html()
+      $('#route_wall_id').change ->
+        wall = $('#route_wall_id :selected').text()
+        options = $(sub_child_zones).filter("optgroup[label='#{wall}']").html()
+        if options
+          $('#route_sub_child_zone_id').html(options)
+          $('#route_sub_child_zone_id').parent().show()
+        else
+          $('#route_sub_child_zone_id').empty
+          $('#route_sub_child_zone_id').parent().hide()

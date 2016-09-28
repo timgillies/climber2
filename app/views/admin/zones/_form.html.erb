@@ -1,12 +1,14 @@
 <br />
-<%= form_for [:admin, @facility, @zone], remote: true do |f| %>
+<%= form_for [:admin, @facility, @zone], remote: false do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
-    <%= f.text_field :name, class: 'form-control', placeholder: "Add a zone..." %>
+    <%= f.label :name, "Zone Name:", class: 'sr-only' %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Zone name..." %>
   </div>
 
   <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
-    <%= f.submit "Submit", class: "btn btn-submit" %>
+    <%= f.label :name, class: 'sr-only' %>
+    <%= f.submit "Save", class: "btn btn-submit" %>
   </div>
 <% end %>

@@ -1,0 +1,2 @@
+class SubChildZonesController < ApplicationController
+end

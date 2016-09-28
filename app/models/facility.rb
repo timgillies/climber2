@@ -7,6 +7,7 @@ class Facility < ActiveRecord::Base
   has_many :setters
   has_many :admins
   has_many :ticks
+  has_many :sub_child_zones
   belongs_to :tick
 
   default_scope -> { order(created_at: :asc) }

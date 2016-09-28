@@ -18,7 +18,7 @@
     <li>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-9">
+          <div class="col-sm-12">
             <h3><%= link_to f.grade.grade , admin_facility_route_path(@facility, f) %>
               <small> <%= link_to f.color.capitalize, admin_facility_route_path(@facility, f) %><b> <%= link_to f.name , admin_facility_route_path(@facility, f) %></b></small>
             </h3>
@@ -33,13 +33,13 @@
             </span>
           </div>
 
-          <div class="col-sm-3">
+          <div class="col-md-3">
               <h4><small><%= f.zone.name if f.zone %> / <%= f.wall.name if f.wall %></small></h4>
           </div>
-          <div class="col-sm-2">
+          <div class="col-md-2">
             <h4><small><%= f.setter.nick_name if f.setter%></small></h4>
           </div>
-          <div class="col-sm-2">
+          <div class="col-md-2">
             <h4><small>set <%= time_ago_in_words(f.created_at) %> ago</small></h4>
           </div>
           <div class="col-xs-1 col-sm-1 col-md-1">

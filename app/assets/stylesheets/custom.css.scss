@@ -23,6 +23,9 @@ body {
   padding: 0px;
   padding-top: 65px;
   padding-bottom: 0px;
+  font-family: 'myriad-pro' , sans-serif;
+  font-weight: 300;
+
 }
 
 section {
@@ -47,6 +50,14 @@ a {
 
 .tab {
   margin-left: 20px;
+}
+
+.doubletab {
+  margin-left: 40px;
+}
+
+.header {
+  border-bottom: 1px solid $gray-lighter;
 }
 
 
@@ -109,56 +120,14 @@ p {
   }
 }
 
-#login-dp{
-    min-width: 250px;
-    padding: 14px 14px 0;
-    overflow:hidden;
-    background-color:rgba(255,255,255,.8);
+#logo-black {
+  font-size: 4.7vw;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  padding-top: 9px;
+  font-weight: 700;
 }
-#login-dp .help-block{
-    font-size:12px
-}
-#login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
-    border-top:1px solid #ddd;
-    clear:both;
-    padding:14px;
-}
-#login-dp .social-buttons{
-    margin:12px 0
-}
-#login-dp .social-buttons a{
-    width: 49%;
-}
-#login-dp .form-group {
-    margin-bottom: 10px;
-}
-.btn-fb{
-    color: #fff;
-    background-color:#3b5998;
-}
-.btn-fb:hover{
-    color: #fff;
-    background-color:#496ebc
-}
-.btn-tw{
-    color: #fff;
-    background-color:#55acee;
-}
-.btn-tw:hover{
-    color: #fff;
-    background-color:#59b5fa;
-}
-@media(max-width:768px){
-    #login-dp{
-        background-color: inherit;
-        color: #fff;
-    }
-    #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
-    }
-}
+
 
 /* footer */
 
@@ -196,12 +165,9 @@ footer {
   }
 }
 
-/* Nav pills */
+/* Navbars bar */
 
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-    color: black;
-    background-color: $gray-lighter
-    }
+
 
 /* sidebar */
 
@@ -242,51 +208,6 @@ aside {
   margin-top: 15px;
 }
 
-/* Sidebar Styles */
-
-.sidebar-nav {
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.sidebar-nav li {
-    text-indent: 0px;
-    line-height: 40px;
-}
-
-.sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: $gray-light;
-}
-
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: $gray-darker;
-    background: rgba(255,255,255,0.2);
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 26px;
-    line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: $gray-darker;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: $gray;
-    background: none;
-}
 
 
 
@@ -351,10 +272,11 @@ input {
   list-style: none;
   margin: 0;
   h1 {
-    font-size: 3em;
+    font-size: 2.7em;
     letter-spacing: -2px;
     margin-bottom: 5px;
     text-align: left;
+    font-weight: 700;
     border-bottom: 1px solid $gray-lighter;
     h3 {
       text-align: right;
@@ -400,7 +322,7 @@ input {
 .home-body {
     background-image: url(asset-path('gym_climber.jpg'));
     background-size: cover;
-    background-position: top left;
+    background-position: top right;
     padding: 50px;
 }
 
@@ -435,7 +357,6 @@ input {
 .signup {
   letter-spacing: 0px;
   margin-bottom: 0px;
-  font-weight: lighter;
   text-align: left;
   color: $gray;
 }
@@ -521,6 +442,7 @@ input {
   list-style: none;
   padding: 0px;
   display: inline;
+  font-weight: 300;
   li {
     padding: 0px 0;
     border-top: 1px solid $gray-medium-light;
@@ -541,6 +463,7 @@ input {
     color: $gray-medium-light;
     display: block;
     margin-left: 0px;
+    font-weight: 300;
   }
   .gravatar {
     float: left;
@@ -564,7 +487,7 @@ input {
     font-size: 1.2em;
     letter-spacing: -1px;
     margin-bottom: 0px;
-    font-weight: normal;
+    font-weight: 300;
     text-align: left;
     color: $gray;
   }
@@ -573,7 +496,7 @@ input {
     font-size: 2em;
     letter-spacing: -1px;
     margin-bottom: 0px;
-    font-weight: normal;
+    font-weight: 300;
     text-align: left;
     color: $gray;
     margin-top: 0px;
@@ -583,7 +506,7 @@ input {
     font-size: 1.2em;
     letter-spacing: -.5px;
     margin-bottom: 0px;
-    font-weight: normal;
+    font-weight: 300;
     text-align: left;
   }
 
@@ -591,7 +514,7 @@ input {
     font-size: 1.2em;
     letter-spacing: -1px;
     margin-top: 0px;
-    font-weight: normal;
+    font-weight: 300;
     text-align: left;
     color: $gray-light;
   }
@@ -680,6 +603,31 @@ span.picture {
 
 /* Navbar */
 
+.navbar-toggle {
+  border-style: none;
+}
+
+.navbar-default div.navbar-collapse {
+  border-top: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.navbar-header {
+  border-style: none;
+}
+#admin-header {
+  .navbar {
+    color: black;
+    background-color: #ffffff;
+    border-style: none;
+    margin-left: 1px;
+  }
+  .navbar-collapse {
+    background-color: #ffffff;
+  }
+}
+
 @media (min-width: 768px){
 
     .navbar-nav{
@@ -696,6 +644,14 @@ span.picture {
       }
       }
 
+      .navbar-default {
+        border-style: none;
+        font-weight: 300;
+      }
+
+
+
+
 }
 
 .adminnavbar {
@@ -706,8 +662,9 @@ span.picture {
 /* Buttons */
 
 .btn {
-  font-weight: lighter;
+  font-weight: normal;
   transition-duration: 0.5s;
+  font-weight: 300;
 }
 
 .btn-submit{
@@ -717,7 +674,6 @@ span.picture {
   color: #ffffff;
   transition-duration: 0.5s;
   letter-spacing: -0.0px;
-  font-weight: lighter;
 }
 
 .btn-submit:hover, .btn-submit:active{
@@ -734,7 +690,6 @@ span.picture {
   color: #ffffff;
   transition-duration: 0.5s;
   letter-spacing: -0.0px;
-  font-weight: lighter;
 }
 
 .btn-signup:hover, .btn-signup:active{
@@ -822,7 +777,6 @@ span.picture {
   opacity: 1;
   color: #CD6155;
   margin-top: 5px;
-  font-weight: lighter
 }
 
 .btn-expire:hover, .btn-expired, .btn-expired:hover{

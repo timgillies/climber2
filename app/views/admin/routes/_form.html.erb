@@ -30,7 +30,7 @@
       <div class="col-sm-12">
         <%= f.label :zone_id, "Zone" %>
         <%= f.select(:zone_id, @facilityzones,
-        { include_blank: 'Select zone' },
+        { include_blank: 'Select primary zone' },
         {class: "form-control"}) %>
       </div>
     </div>
@@ -38,7 +38,15 @@
       <div class="col-sm-12">
         <%= f.label :wall_id, "Sub-zone" %>
         <%= f.grouped_collection_select(:wall_id, Zone.where(facility_id: @facility.id) , :walls, :name, :id, :name,
-        { include_blank: 'Select sub-zone' },
+        { include_blank: 'Select child zone' },
+        {class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label :sub_child_zone_id, "Sub-child zone" %>
+        <%= f.grouped_collection_select(:sub_child_zone_id, Wall.where(facility_id: @facility.id) , :sub_child_zones, :name, :id, :name,
+        { include_blank: 'Select sub-child zone' },
         {class: "form-control"}) %>
       </div>
     </div>
