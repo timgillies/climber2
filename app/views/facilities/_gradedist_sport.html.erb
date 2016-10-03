@@ -56,7 +56,7 @@
       series: [{
           type: 'column',
           name: 'Routes',
-          data: <%= raw facility_grades.where("discipline =?","sport").order('discipline ASC', 'rank ASC').map {|f| [f.grade, @activeroutes.all.where("grade_id = ?", f).count] } %>
+          data: <%= raw Grades.where("facilitt_id =?", @facility.id ).order('discipline ASC', 'rank ASC').map {|f| [f.grade, @activeroutes.all.where("grade_id = ?", f).count] } %>
       }]
     });
   });

@@ -1,0 +1,40 @@
+<div class="row">
+</div>
+
+<br />
+
+<%= div_for(@grade_systems) do |f| %>
+<ol class="routelist">
+  <li>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          <p><%= f.name %></p>
+
+        </div>
+        <div class="col-sm-2">
+            <p><%= f.grades.count %> grades</p>
+
+        </div>
+
+        <div class="col-sm-4">
+          <% if f.facility %>
+            <p><%= f.facility.name %><%if f.facility.location %> - <%= f.facility.location %> <% end %> </p>
+          <% end %>
+        </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-2">
+          <div id="use_system_form">
+            <% if FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, f.id).count > 0 %>
+            <%= render 'unuse_system', :f => f %>
+            <% else %>
+            <%= render 'use_system', :f => f %>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </li>
+</ol>
+<% end %>

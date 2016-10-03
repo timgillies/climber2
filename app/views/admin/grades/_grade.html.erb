@@ -15,24 +15,6 @@
           <div class="col-sm-6">
               <h3><%= f.routes.current.count %>  <small>active routes</small></h3>
           </div>
-          <% if f.system == 'custom' %>
-          <div class="col-xs-1 col-sm-1 col-md-1">
-
-            <h4><%= link_to edit_admin_facility_grade_path(@facility, f ) do %>
-                        <i class="glyphicon glyphicon-cog"></i>
-                        <%end %>
-
-            </h4>
-          </div>
-
-          <div class="col-xs-1 col-sm-1 col-md-1">
-            <h4><%= link_to admin_facility_grade_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                        :method => :delete do %>
-                        <i class="glyphicon glyphicon-trash"></i>
-                        <%end %>
-            </h4>
-          </div>
-          <% end %>
         </div>
       </div>
     </li>

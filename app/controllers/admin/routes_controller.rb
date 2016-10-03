@@ -50,8 +50,6 @@ class Admin::RoutesController < ApplicationController
 
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
-    @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
-
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)

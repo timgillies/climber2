@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :setters
   has_many :ticks
   has_many :sub_child_zones
+  has_many :grade_systems
   belongs_to :admin
 
   attr_accessor :remember_token, :activation_token, :reset_token

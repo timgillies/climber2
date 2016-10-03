@@ -1,0 +1,21 @@
+<% provide(:title, 'Facility Grading') %>
+
+<%= link_to "Back", admin_grade_systems_path %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="routes">
+        <h1><small><%= @grade_system.name  %></small></h1>
+      </div>
+        <%= render 'admin/grade_systems/show', object: @grade_systems %>
+        <%= render 'admin/grade_systems/form', object: @grade_system %>
+    </div>
+    <div class="col-sm-12">
+      <div class="routes">
+        <h1><small>Add grade</small></h1>
+      </div>
+        <%= render 'admin/grades/form', object: @grades %>
+        <%= render 'admin/grade_systems/grade_list', object: @grades %>
+    </div>
+  </div>

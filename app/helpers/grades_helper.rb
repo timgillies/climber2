@@ -1,11 +1,6 @@
 module GradesHelper
 
-  def disciplines
-    [
-      ['Boulder', 'boulder'],
-      ['Sport', 'sport']
-    ]
-  end
+
 
   def systems
     [
@@ -13,20 +8,28 @@ module GradesHelper
     ]
   end
 
-  def facility_grades
-    if @facility.yds? && @facility.vscale?
-        Grade.where("system = ? or system = ? or facility_id = ?", 'yds', 'vscale', @facility.id).all
-    elsif @facility.yds?
-        Grade.where("system = ? or facility_id = ?", 'yds', @facility.id).all
-    elsif @facility.vscale?
-        Grade.where("system = ? or facility_id = ?", 'vscale', @facility.id).all
-    else
-        @facility.grades.all if @facility.grades
-    end
+  def available_systems
+    GradeSystem.where("category = ? or facility_id = ?", 'outdoor', @facility.id)
   end
 
-  def grade_ranges
-    Grade.where("system = ? or system = ?", 'yds','vscale').map{|f| [f.grade, f.rank ] }
+  def custom_systems
+    GradeSystem.where("facility_id = ?", @facility.id)
   end
+
+  def facility_systems
+    GradeSystem.joins(:facilities).where(:facilities => {:id => @facility.id})
+  end
+
+# Joins grades to facilities via grade_system and facility_grade_syste relationships
+  def facility_grades
+    Grade.joins(:facilities).where(:facilities => {:id => @facility.id} ).order('grade_systems.name ASC', 'grades.rank ASC')
+  end
+
+
+
+  def self.boulder
+    Route.joins(:grade).merge(Grade.where(:discipline => 'boulder'))
+  end
+
 
 end

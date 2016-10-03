@@ -1,0 +1,15 @@
+
+<div class="routelist">
+  <div class="col-md-3">
+    <p>Discipline: <b><%= @grade_system.discipline.capitalize %></b></P>
+  </div>
+  <div class="col-md-6">
+    <% if @grade_system.facility %>
+      <p>Facility: <b><%= @grade_system.facility.name %>
+          <% if @grade_system.facility.location %> - <%= @grade_system.facility.location %> <% end %>
+      </b></P>
+        <% else %>
+        <p>Existing outdoor grading system</p>
+    <% end %>
+  </div>
+</div>

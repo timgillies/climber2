@@ -1,20 +1,27 @@
 class Admin::GradesController < ApplicationController
   before_action :authenticate_user!,    only: [:index, :show, :edit, :update, :destroy]
-  before_action :facilityroute_admin,      only: [:edit, :update, :destroy]
+  before_action :site_admin,      only: [:edit, :update, :destroy]
 
   include GradesHelper
+  include GradeSystemsHelper
 
-  layout "admin"
+  layout "admin", only: [:index]
 
   def index
-    @grades = Grade.order('discipline ASC', 'rank ASC').page(params[:page])
     @facility = Facility.find(params[:facility_id])
+    @grade_system = GradeSystem.new
+    @grade = Grade.new
+    @grades = Grade.order('discipline ASC', 'rank ASC').page(params[:page])
+    @grade_systems = available_systems.order('facility_id ASC').page(params[:page])
+    @facility_grade_system = FacilityGradeSystem.new
+    @facility_grade_systems = FacilityGradeSystem.page(params[:page]).per(50)
+
   end
 
   def new
     @grade = Grade.new
-    @facility = Facility.find(params[:facility_id])
-    @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grades = Grade.all.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grade_systems = GradeSystem.available_systems.map{ |f| [f.name, f.id ] }
 
   end
 
@@ -23,33 +30,30 @@ class Admin::GradesController < ApplicationController
   end
 
   def create
-    @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
-    @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
-
+    @grades = Grade.all.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
     @grade = current_user.grades.build(grade_params)
-
-    @grade.facility_id = params[:facility_id] #this passes the facility ID through the field
-
     @grade.rank = ((params[:range_start]).to_f + (params[:range_end]).to_f)/2
-
+    @grade_system_select = GradeSystem.all.map{ |f| [f.name, f.id ] }
+    @grade_system = GradeSystem.find(params[:grade_system_id])
+    @grade.grade_system_id = params[:grade_system_id]
     if @grade.save
       flash[:success] = "Grade created!"
-      redirect_to(new_admin_facility_grade_path(@facility))
+      redirect_to(edit_admin_grade_system_path(@grade_system))
     else
       render 'new'
     end
   end
 
   def update
-    @facility = Facility.find(params[:facility_id])
-    @grade = @facility.grades.find(params[:id])
-    @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grade_system = GradeSystem.find(params[:grade_system_id])
+    @grade = @grade_system.grades.find(params[:id])
+    @grades = @grade_system.grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
 
     @grade.rank = ((params[:range_start]).to_f + (params[:range_end]).to_f)/2
 
     if @grade.update_attributes(grade_params)
       flash[:success] = "Grade updated!"
-      redirect_to(new_admin_facility_grade_path(@facility))
+      redirect_to(edit_admin_grade_system_path(@grade_system))
       # Handle a successful update.
     else
       render 'new'
@@ -57,9 +61,9 @@ class Admin::GradesController < ApplicationController
   end
 
   def edit
-    @facility = Facility.find(params[:facility_id])
-    @grade = @facility.grades.find(params[:id])
-    @grades = facility_grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grade_system = GradeSystem.find(params[:grade_system_id])
+    @grade = @grade_system.grades.find(params[:id])
+    @grades = @grade_system.grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
 
   end
 
@@ -72,6 +76,7 @@ class Admin::GradesController < ApplicationController
   private
 
     def grade_params
-      params.require(:grade).permit(:grade, :system, :discipline, :rank, :facility_id, :range_start, :range_end)
+      params.require(:grade).permit(:grade, :system, :discipline, :grade_system_id, :rank, :range_start, :range_end)
     end
+
   end

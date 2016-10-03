@@ -26,6 +26,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
+    resources :grade_systems do
+      resources :grades
+    end
+
     resources :facilities do
       resources :routes do
         member do
@@ -39,6 +43,7 @@ Rails.application.routes.draw do
       resources :walls
       resources :setters
       resources :sub_child_zones
+      resources :facility_grade_systems
 
     end
   end

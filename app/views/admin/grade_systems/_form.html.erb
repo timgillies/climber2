@@ -1,0 +1,42 @@
+<%= form_for [:admin, @grade_system] do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="row">
+  <div class="col-md-9">
+    <%= f.label :name, "Grade System Name" %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter grade system name..." %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-3">
+    <%= f.label :discipline, "Discipline" %>
+    <%= f.select(:discipline, @disciplines, {include_blank: "Select discipline"}, {class: 'form-control'}) %>
+  </div>
+
+
+
+  <div class="col-md-3">
+    <%= f.label :category, "Category" %>
+    <%= f.select(:category, @categories, {include_blank: "Select category"}, {class: 'form-control'}) %>
+  </div>
+
+
+
+  <div class="col-md-3">
+    <%= f.label :facility_id, "Assign to facility (optional)" %>
+    <%= f.select(:facility_id, @facilities , {include_blank: "Select facility"}, {class: 'form-control'}) %>
+  </div>
+
+
+  <div class="col-md-2">
+    <label class="hidden-xs">&nbsp;</label>
+    <%= f.submit "Save", class: "btn btn-submit" %>
+  </div>
+</div>
+
+
+
+
+<% end %>

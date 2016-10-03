@@ -506,7 +506,7 @@ input {
     font-size: 1.2em;
     letter-spacing: -.5px;
     margin-bottom: 0px;
-    font-weight: 300;
+    font-weight: lighter;
     text-align: left;
   }
 
@@ -571,7 +571,6 @@ span.picture {
 /* Glyphicons */
 .glyphicon-remove {
   color: #B2BABB;
-  vertical-align: bottom;
   transition-duration: 0.25s;
 }
 
@@ -598,6 +597,10 @@ span.picture {
 
 .glyphicon-cog:hover {
   color: #7F8C8D;
+}
+
+.glyphicon-green {
+  color: #52BE80;
 }
 
 
@@ -665,6 +668,7 @@ span.picture {
   font-weight: normal;
   transition-duration: 0.5s;
   font-weight: 300;
+  vertical-align: bottom;
 }
 
 .btn-submit{

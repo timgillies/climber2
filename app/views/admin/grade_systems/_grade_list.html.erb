@@ -1,0 +1,44 @@
+<div class="row">
+</div>
+
+<br />
+
+<%= div_for(@grades) do |fw| %>
+<ol class="routelist">
+  <li>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          <p><%= fw.grade %></p>
+        </div>
+
+        <div class="col-sm-2">
+          <p>Value: <%= fw.rank %></p>
+        </div>
+
+        <div class="col-sm-6">
+            <p><%= fw.routes.current.count %> active routes</p>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1">
+
+          <h4><%= link_to edit_admin_grade_system_grade_path(@grade_system, fw) do %>
+                      <i class="glyphicon glyphicon-cog"></i>
+                      <%end %>
+
+          </h4>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1">
+          <h4><%= link_to admin_grade_system_grade_path(@grade_system, fw), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                      :method => :delete do %>
+                      <i class="glyphicon glyphicon-trash"></i>
+                      <%end %>
+          </h4>
+        </div>
+
+      </div>
+    </div>
+  </li>
+</ol>
+<% end %>

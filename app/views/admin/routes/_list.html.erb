@@ -28,9 +28,8 @@
         </div>
         <div class="row">
           <div class="col-sm-2">
-            <span class="timestamp">
               <h4><small>Route ID: <%= f.id %></small></h4>
-            </span>
+
           </div>
 
           <div class="col-md-3">
@@ -53,7 +52,7 @@
             <% if f.active? %>
               <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
             <% else %>
-              <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
+              <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
             <% end %>
           </div>
 

@@ -56,4 +56,10 @@ module FacilitiesHelper
       ['Wyoming', 'WY']
     ]
 end
+
+def facility_systems
+  GradeSystem.joins(:facilities).where(:facilities => {:id => @facility.id} )
+end
+
+
 end

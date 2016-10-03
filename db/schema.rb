@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928141548) do
+ActiveRecord::Schema.define(version: 20160930231101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,21 +54,43 @@ ActiveRecord::Schema.define(version: 20160928141548) do
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
   add_index "facilities", ["user_id"], name: "index_facilities_on_user_id", using: :btree
 
+  create_table "facility_grade_systems", force: :cascade do |t|
+    t.integer  "facility_id"
+    t.integer  "grade_system_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "facility_grade_systems", ["facility_id"], name: "index_facility_grade_systems_on_facility_id", using: :btree
+
+  create_table "grade_systems", force: :cascade do |t|
+    t.string   "name"
+    t.string   "discipline"
+    t.string   "description"
+    t.integer  "facility_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "category"
+  end
+
+  add_index "grade_systems", ["facility_id"], name: "index_grade_systems_on_facility_id", using: :btree
+
   create_table "grades", force: :cascade do |t|
     t.string   "grade"
     t.string   "system"
     t.string   "discipline"
     t.decimal  "rank"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "facility_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "user_id"
     t.decimal  "range_start"
     t.decimal  "range_end"
     t.string   "system_name"
+    t.integer  "grade_system_id"
   end
 
-  add_index "grades", ["facility_id"], name: "index_grades_on_facility_id", using: :btree
+  add_index "grades", ["grade_system_id"], name: "index_grades_on_grade_system_id", using: :btree
   add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
   create_table "leads", force: :cascade do |t|
@@ -250,7 +272,11 @@ ActiveRecord::Schema.define(version: 20160928141548) do
   add_foreign_key "admins", "facilities"
   add_foreign_key "admins", "users"
   add_foreign_key "facilities", "users"
-  add_foreign_key "grades", "facilities"
+  add_foreign_key "facility_grade_systems", "facilities"
+  add_foreign_key "facility_grade_systems", "grade_systems"
+  add_foreign_key "grade_systems", "facilities", on_delete: :nullify
+  add_foreign_key "grade_systems", "users", on_delete: :nullify
+  add_foreign_key "grades", "grade_systems", on_delete: :nullify
   add_foreign_key "grades", "users"
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades", on_delete: :nullify

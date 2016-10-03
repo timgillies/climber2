@@ -1,0 +1,15 @@
+<% provide(:title, 'Grading Systems') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="routes">
+        <h1><small>Add grading system</small></h1>
+      </div>
+        <%= render 'admin/grade_systems/form', object: @grade_systems %>
+      <div class="routes">
+        <h1><small>Manage grading systems</small></h1>
+      </div>
+        <%= render 'admin/grade_systems/grade_system', object: @grade_systems %>
+    </div>
+  </div>

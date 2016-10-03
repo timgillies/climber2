@@ -1,0 +1,4 @@
+<%= form_for [:admin, @facility, @facility_grade_system], remote: false do |fg| %>
+    <div><%= hidden_field_tag :grade_system_id, f.id %></div>
+    <%= fg.submit "Use", class: "btn btn-default btn-sm" %>
+<% end %>

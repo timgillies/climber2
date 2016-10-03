@@ -4,6 +4,9 @@ class Admin::FacilitiesController < ApplicationController
 
   layout "admin", except: [:index, :new]
 
+  include FacilitiesHelper
+
+
   def index
     @facilities = current_user.facilities.page(params[:page])
   end
@@ -13,6 +16,7 @@ class Admin::FacilitiesController < ApplicationController
     @routes = @facility.routes.page(params[:page])
     @activeroutes = @facility.routes.where("enddate >= ?", Date.today)
     @facilityticks = Tick.where("facility_id = ?", @facility)
+    @facility_systems = facility_systems.page(params[:page])
   end
 
   def new

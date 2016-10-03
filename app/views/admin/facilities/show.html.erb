@@ -1,31 +1,19 @@
 <% provide(:title, @facility.name ) %>
 
-
-
 <div class="row">
-  <div class="col-md-6">
-      <%= render 'facilities/gradedist_boulder' %>
-  </div>
+  <% @facility_systems.each do |fs| %>
 
-  <% if facility_grades.where("discipline =?","sport").count > 0 %>
-
-  <div class="col-md-6">
-      <%= render 'facilities/gradedist_sport' %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-      <%= render 'facilities/zonedist' %>
-  </div>
-</div>
+  <% if fs.grades.count > 15 %>
+    <div class="col-md-12">
   <% else %>
+    <div class="col-md-6">
+  <% end %>
 
-  <div class="col-md-6">
-      <%= render 'facilities/zonedist' %>
+      <%= render 'facilities/gradedist_boulder', :fs => fs %>
   </div>
-</div>
 
-<% end %>
+  <% end %>
+</div>
 
 
 

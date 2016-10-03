@@ -1,11 +1,13 @@
 <% provide(:title, 'Grades') %>
 
+<%= link_to "Back", edit_admin_grade_system_path(@grade_system) %>
+
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
       <div class="routes">
         <h1><small>Edit grade</small></h1>
       </div>
-        <%= render 'admin/grades/form', object: @grades %>
+        <%= render 'admin/grades/form', object: @grade %>
     </div>
   </div>

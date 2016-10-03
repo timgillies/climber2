@@ -25,7 +25,14 @@ class ApplicationController < ActionController::Base
     @facility = Facility.find(params[:id])
     unless @facility.user_id == current_user.id
       flash[:danger] = 'Page not found'
-      redirect_to admin_facilities_url
+      redirect_to root_url
+    end
+  end
+
+  def site_admin
+    unless current_user.role == "admin"
+      flash[:danger] = 'Page not found'
+      redirect_to root_url
     end
   end
 
@@ -33,7 +40,7 @@ class ApplicationController < ActionController::Base
     @facility = Facility.find(params[:facility_id])
     unless @facility.user_id == current_user.id
       flash[:danger] = 'Page not found'
-      redirect_to admin_facilities_url
+      redirect_to root_url
     end
   end
 

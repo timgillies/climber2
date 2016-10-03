@@ -14,7 +14,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.select(:grade_id, @facilitygrades,
+        <%= f.grouped_collection_select(:grade_id, facility_systems , :grades, :name, :id, :grade,
         { include_blank: 'Select grade' },
         {class: "form-control"}) %>
       </div>
@@ -76,7 +76,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <%= f.submit "SUBMIT", class: "btn btn-submit" %>
+        <%= f.submit "Save", class: "btn btn-submit" %>
       </div>
     </div>
   <br/>

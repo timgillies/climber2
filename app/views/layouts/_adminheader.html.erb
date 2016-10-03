@@ -24,13 +24,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbar-left">
             <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "Home", admin_facility_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "Route Database", admin_facility_routes_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %>"><%= link_to "Add Routes", new_admin_facility_route_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "Zones", admin_facility_zones_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(new_admin_facility_setter_path(@facility)) %>"><%= link_to "Routesetters", new_admin_facility_setter_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(new_admin_facility_grade_path(@facility)) %>"><%= link_to "Grades", new_admin_facility_grade_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "Grades", admin_facility_grades_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(edit_admin_facility_path(@facility)) %>"><%= link_to "Edit", edit_admin_facility_path(@facility) %></li>
           </ul>
         </div><!-- /.navbar-collapse -->

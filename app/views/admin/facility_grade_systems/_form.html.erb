@@ -1,0 +1,4 @@
+<%= form_for(@facility.facility_grade_systems.build) do |f| %>
+  <div><%= hidden_field_tag :grade_system_id, @facility_grade_system.id %></div>
+  <%= f.submit "Use", class: "btn btn-primary" %>
+<% end %>
