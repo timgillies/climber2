@@ -1,10 +1,15 @@
-<h1><small> Routes by Zone </small></h1>
+<div class="chart-header">
+  <h1>Routes by Zone</h1>
+</div>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
       chart: {
         renderTo: "zone_dist",
-        type: "bar"
+        type: "bar",
+        style: {
+          fontFamily: 'Helvetica',
+        }
       },
       title: {
         text: ""
@@ -46,7 +51,17 @@
           dataLabels: {
             enabled: true,
             style: {
-              textShadow: '0 0 0 black'
+              textShadow: '0 0 0 black',
+              color: '#333',
+              fontFamily: 'Helvetica',
+              fontWeight: 'normal'
+            },
+            formatter: function() {
+                if (this.y != 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
             }
           }
         }

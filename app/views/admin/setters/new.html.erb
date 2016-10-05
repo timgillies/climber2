@@ -3,16 +3,17 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="routes">
-        <h1><small>Add new route setter</small></h1>
+      <div class="headliner-line">
+        <h1>Add new route setter</h1>
       </div>
       <%= render 'admin/setters/form', object: @setters %>
     </div>
   </div>
   <br/>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= render 'admin/setters/setter', object: @setters %>
+  <div class="col-sm-12">
+    <div class="headliner">
+      <h1>Route setting team</h1>
     </div>
+    <%= render 'admin/setters/setter', object: @setters %>
   </div>
 </div>

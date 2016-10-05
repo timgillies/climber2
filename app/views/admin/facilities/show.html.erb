@@ -1,6 +1,6 @@
 <% provide(:title, @facility.name ) %>
 
-<div class="row">
+
   <% @facility_systems.each do |fs| %>
 
   <% if fs.grades.count > 15 %>
@@ -13,7 +13,11 @@
   </div>
 
   <% end %>
+
+<div class="col-md-6">
+    <%= render 'facilities/zonedist' %>
 </div>
+
 
 
 

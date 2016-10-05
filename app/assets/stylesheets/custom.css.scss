@@ -169,35 +169,55 @@ footer {
 
 
 
-/* sidebar */
+/* headliner */
 
-aside {
-  section.user_info {
-    margin-top: 0px;
-    width: 100px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
+.chart-header {
+  list-style: none;
+  font-style: normal;
+  font-weight: 300;
 
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
+  h1 {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: 300;
+    color: $gray;
+    h3 {
+      text-align: right;
     }
   }
 }
+
+.headliner-line {
+  list-style: none;
+  font-style: normal;
+  font-weight: 300;
+  h1 {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-bottom: 1px;
+    font-weight: 300;
+    text-align: left;
+    color: $gray;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+.headliner {
+  list-style: none;
+  font-style: normal;
+  font-weight: 300;
+  h1 {
+    font-size: 1.7em;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin-bottom: 1px;
+    text-align: left;
+    color: $gray;
+  }
+}
+
 
 .gravatar {
   float: left;
@@ -208,6 +228,9 @@ aside {
   margin-top: 15px;
 }
 
+.form-background {
+  background-color: #eee;
+}
 
 
 
@@ -580,7 +603,6 @@ span.picture {
 
 .glyphicon-trash {
   color: #B2BABB;
-  vertical-align: bottom;
   transition-duration: 0.25s;
 }
 
@@ -592,7 +614,6 @@ span.picture {
 
 .glyphicon-cog {
   color: #B2BABB;
-  vertical-align: bottom;
 }
 
 .glyphicon-cog:hover {

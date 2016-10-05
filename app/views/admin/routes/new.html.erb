@@ -2,17 +2,11 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6">
-      <div class="routes">
-        <h1><small>Add a route</small></h1>
+    <div class="col-sm-8">
+      <div class="headliner-line">
+        <h1>Add a route</h1>
       </div>
         <%= render 'admin/routes/form', object: @routes %>
-    </div>
-    <div class="col-sm-6">
-      <div class="routes">
-        <h1><small>Recently added</small></h1>
-      </div>
-      <%= render 'admin/routes/recent', object: @recentroutes %>
     </div>
   </div>
 </div>

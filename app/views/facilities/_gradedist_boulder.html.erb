@@ -1,4 +1,6 @@
-<h2> <%= fs.name %> </h2>
+<div class="chart-header">
+  <h1> <%= fs.name %></h1>
+</div>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
@@ -50,9 +52,9 @@
             enabled: true,
             style: {
               textShadow: '0 0 0 black',
-              color: '#7F8C8D',
+              color: '#333',
               fontFamily: 'Helvetica',
-              fontWeight: 'lighter'
+              fontWeight: 'normal'
             },
             formatter: function() {
                 if (this.y != 0) {

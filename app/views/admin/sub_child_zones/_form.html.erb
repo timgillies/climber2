@@ -3,16 +3,19 @@
   <%= render 'shared/error_messages', object: fw.object %>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
+    <%= fw.label :name, "Name:" %>
     <%= fw.text_field :name, class: 'form-control', placeholder: "Zone name..." %>
   </div>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
+    <%= fw.label :wall_id, "Parent zone:" %>
     <%= fw.grouped_collection_select(:wall_id, Zone.where(facility_id: @facility.id) , :walls, :name, :id, :name,
     { include_blank: 'Parent zone' },
     {class: "form-control"}) %>
   </div>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
+    <label class="hidden-xl">&nbsp;</label>
     <%= fw.submit "Save", class: "btn btn-submit" %>
   </div>
 
