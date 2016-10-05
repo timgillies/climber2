@@ -5,8 +5,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-5 col-xs-4">
-            <p><%= f.name %></p>
-            </h3>
+            <p><b><%= f.name %></b></p>
           </div>
           <div class="col-sm-5 col-xs-4">
               <p><%= f.routes.current.count %> active routes</p>
@@ -48,10 +47,10 @@
         <div class="row">
           <% w.sub_child_zones.each do |s| %>
             <div class="col-sm-5 col-xs-4">
-              <p class="doubletab"><%= s.name %></p>
+              <p class="doubletab"><small><%= s.name %></small></p>
             </div>
             <div class="col-sm-5 col-xs-4">
-              <p><%= s.routes.current.count %></p>
+              <p><small><%= s.routes.current.count %></small></p>
             </div>
             <div class="col-xs-2 col-sm-1 col-md-1">
               <p><%= link_to edit_admin_facility_sub_child_zone_path(@facility, s ) do %>

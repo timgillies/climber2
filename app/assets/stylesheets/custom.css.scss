@@ -165,8 +165,17 @@ footer {
   }
 }
 
-/* Navbars bar */
+/* Form Styling */
 
+input[type=text] {
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+textarea[type=text] {
+  border-radius: 0px;
+  box-shadow: none;
+}
 
 
 /* headliner */
@@ -241,10 +250,12 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
+  border-radius: 0;
 }
 
 input {
   height: auto !important;
+  border-radius: 0;
 }
 
 #error_explanation {
@@ -650,6 +661,10 @@ span.picture {
   .navbar-collapse {
     background-color: #ffffff;
   }
+  .navbar-toggle {
+    border-style: none;
+    float: left;
+  }
 }
 
 @media (min-width: 768px){
@@ -690,6 +705,8 @@ span.picture {
   transition-duration: 0.5s;
   font-weight: 300;
   vertical-align: bottom;
+  border-radius:0;
+
 }
 
 .btn-submit{

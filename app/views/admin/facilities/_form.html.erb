@@ -1,9 +1,11 @@
+<div class="headliner-line">
+  <h1>Location</h1>
+</div>
+
 <%= form_for([:admin,@facility]) do |f| %>
   <%= render 'shared/error_messages', object: @facility %>
 
-<div class="routes">
-  <h1><small>Location</small></h1>
-</div>
+
 
 <div class="col-sm-12 col-md-12 col-lg-12">
   <%= f.label :name, "Facility name" %>
@@ -34,33 +36,8 @@
   <%= f.text_field :zipcode, class: 'form-control' %>
 </div>
 
-<div class="routes">
-  <h1><small>Grading options</small></h1>
-</div>
-
-<div class="col-sm-12 col-md-12 col-lg-12">
-
-  <div class="row">
-    <label class="checkbox-inline">
-      <%= f.check_box :vscale, class: 'checkbox' %>
-      V-Scale (Hueco)
-    </label>
-  </div>
-  <div class="row">
-    <label class="checkbox-inline">
-      <%= f.check_box :yds, class: 'checkbox' %>
-      Yosemite Decimal System (YDS)
-    </label>
-  </div>
-  <div class="row">
-    <label class="checkbox-inline">
-      <%= f.check_box :custom, class: 'checkbox' %>
-      Custom grading
-    </label>
-  </div>
-
   <br/>
-
+<div class="col-sm-12 col-md-12 col-lg-12">
   <%= f.submit "Submit", class: "btn btn-submit" %>
 </div>
 

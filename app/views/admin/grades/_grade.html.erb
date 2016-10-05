@@ -1,7 +1,7 @@
-  <div class="row">
-  </div>
 
-  <br />
+<div class="headliner">
+  <h1>Facility grades</h1>
+</div>
 
   <%= div_for(@grades) do |f| %>
   <ol class="routelist">
@@ -9,11 +9,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-4">
-            <h3><small><%= f.grade %></small>
-            </h3>
+            <p><%= f.grade %></p>
           </div>
           <div class="col-sm-6">
-              <h3><%= f.routes.current.count %>  <small>active routes</small></h3>
+              <p><%= f.routes.current.count %>  active routes</p>
           </div>
         </div>
       </div>
