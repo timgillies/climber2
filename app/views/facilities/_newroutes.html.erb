@@ -6,7 +6,10 @@
     new Highcharts.Chart({
       chart: {
         renderTo: "newroutes",
-        type: "column"
+        type: "column",
+        style: {
+          fontFamily: 'Helvetica',
+        }
       },
       title: {
         text: ""
@@ -38,7 +41,17 @@
           dataLabels: {
             enabled: false,
             style: {
-              textShadow: '0 0 0 black'
+              textShadow: '0 0 0 black',
+              color: '#333',
+              fontFamily: 'Helvetica',
+              fontWeight: 'normal'
+            },
+            formatter: function() {
+                if (this.y != 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
             }
           }
         }

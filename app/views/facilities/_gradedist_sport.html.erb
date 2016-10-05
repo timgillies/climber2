@@ -1,4 +1,6 @@
-<h1><small> Climbing Routes </small></h1>
+<div class="chart-header">
+  <h1>Climbing Routes</h1>
+</div>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
@@ -56,7 +58,7 @@
       series: [{
           type: 'column',
           name: 'Routes',
-          data: <%= raw Grades.where("facilitt_id =?", @facility.id ).order('discipline ASC', 'rank ASC').map {|f| [f.grade, @activeroutes.all.where("grade_id = ?", f).count] } %>
+          data: <%= raw Grade.where("system = ? and discipline = ?", "custom", "boulder").order('discipline ASC', 'rank ASC').map {|f| [f.grade, Route.current.where("grade_id = ?", f).count] } %>
       }]
     });
   });

@@ -4,11 +4,11 @@
     <li>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-5 col-xs-4">
-            <p><b><%= f.name %></b></p>
+          <div class="col-sm-5 col-xs-6">
+            <p><%= f.name %></p>
           </div>
-          <div class="col-sm-5 col-xs-4">
-              <p><%= f.routes.current.count %> active routes</p>
+          <div class="col-sm-5 col-xs-2">
+              <p><%= f.routes.current.count %><span class="hidden-xs"> active routes</span></p>
           </div>
           <div class="col-xs-2 col-sm-1 col-md-1">
             <p><%= link_to edit_admin_facility_zone_path(@facility, f ) do %>
@@ -25,44 +25,44 @@
         </div>
         <% f.walls.each do |w| %>
         <div class="row">
-          <div class="col-sm-5 col-xs-4">
-            <p class="tab"><%= w.name %></p>
+          <div class="col-sm-5 col-xs-6">
+            <div class="tab"><%= w.name %></div>
           </div>
-          <div class="col-sm-5 col-xs-4">
-            <p><%= w.routes.current.count %></p>
+          <div class="col-sm-5 col-xs-2">
+            <%= w.routes.current.count %>
           </div>
           <div class="col-xs-2 col-sm-1 col-md-1">
-            <p><%= link_to edit_admin_facility_wall_path(@facility, w ) do %>
+            <%= link_to edit_admin_facility_wall_path(@facility, w ) do %>
                         <i class="glyphicon glyphicon-cog"></i>
-            </p>            <% end %>
+                        <% end %>
           </div>
 
           <div class="col-xs-2 col-sm-1 col-md-1">
-            <p><%= link_to admin_facility_wall_path(@facility, w), data: {:confirm => 'Are you sure? This cannot be undone.'},
+            <%= link_to admin_facility_wall_path(@facility, w), data: {:confirm => 'Are you sure? This cannot be undone.'},
                         :method => :delete do %>
                         <i class="glyphicon glyphicon-trash"></i>
-            </p>            <% end %>
+                        <% end %>
           </div>
         </div>
         <div class="row">
           <% w.sub_child_zones.each do |s| %>
-            <div class="col-sm-5 col-xs-4">
-              <p class="doubletab"><small><%= s.name %></small></p>
+            <div class="col-sm-5 col-xs-6">
+              <div class="doubletab"><%= s.name %></div></span>
             </div>
-            <div class="col-sm-5 col-xs-4">
-              <p><small><%= s.routes.current.count %></small></p>
+            <div class="col-sm-5 col-xs-2">
+              <%= s.routes.current.count %>
             </div>
             <div class="col-xs-2 col-sm-1 col-md-1">
-              <p><%= link_to edit_admin_facility_sub_child_zone_path(@facility, s ) do %>
+              <%= link_to edit_admin_facility_sub_child_zone_path(@facility, s ) do %>
                           <i class="glyphicon glyphicon-cog"></i>
-              </p>            <% end %>
+                         <% end %>
             </div>
 
             <div class="col-xs-2 col-sm-1 col-md-1">
-              <p><%= link_to admin_facility_sub_child_zone_path(@facility, s), data: {:confirm => 'Are you sure? This cannot be undone.'},
+              <%= link_to admin_facility_sub_child_zone_path(@facility, s), data: {:confirm => 'Are you sure? This cannot be undone.'},
                           :method => :delete do %>
                           <i class="glyphicon glyphicon-trash"></i>
-              </p>            <% end %>
+                         <% end %>
             </div>
           <% end %>
         </div>

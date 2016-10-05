@@ -28,7 +28,11 @@ module GradesHelper
 
 
   def self.boulder
-    Route.joins(:grade).merge(Grade.where(:discipline => 'boulder'))
+    Route.joins(:grade_system).where("grade_systems.discipline =?", 'boulder')
+  end
+
+  def self.boulder
+    Route.joins(:grade_system).where("grade_systems.discipline =?", 'sport')
   end
 
 
