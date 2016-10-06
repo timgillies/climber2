@@ -1,6 +1,3 @@
-<div class="chart-header">
-  <h1>Routes by Zone</h1>
-</div>
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
@@ -71,7 +68,7 @@
       series: [{
           type: 'bar',
           name: 'Routes',
-          data: <%= raw @facility.zones.all.order('name ASC').map {|f| [f.name, @activeroutes.where("zone_id = ?", f).count] } %>
+          data: <%= raw @facility.zones.all.order('name ASC').map {|f| [f.name, Route.current.where("zone_id = ?", f).count ] } %>
       }]
     });
   });

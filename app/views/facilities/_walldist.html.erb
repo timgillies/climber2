@@ -1,13 +1,12 @@
-
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
       chart: {
-        renderTo: "gradedist_boulder-<%= fs.id %>",
-        type: "column",
+        renderTo: "wall_dist-<%= fz.id %>",
+        type: "bar",
         style: {
           fontFamily: 'Helvetica',
-        }
+        },
       },
       title: {
         text: ""
@@ -45,9 +44,13 @@
         enabled: false
       },
       plotOptions: {
-        column: {
+        series: {
+          pointWidth: 20,
+        },
+        bar: {
           dataLabels: {
             enabled: true,
+
             style: {
               textShadow: '0 0 0 black',
               color: '#333',
@@ -64,14 +67,14 @@
           }
         }
       },
-      colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
+      colors: (["#b6da6b", "#da8f6b", "#da6bb6"]),
 
       series: [{
-          type: 'column',
+          type: 'bar',
           name: 'Routes',
-          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).order('grade_systems.discipline ASC', 'grades.rank ASC').map {|f| [f.grade, Route.current.where("grade_id = ?", f).count] } %>
+          data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, Route.current.where("wall_id = ? and zone_id = ?", f, fz).count ] } %>
       }]
     });
   });
 </script>
-<div id="gradedist_boulder-<%= fs.id %>" style="width:100%; height:200px;"></div>
+<div id="wall_dist-<%= fz.id %>" style="width:100%; height:150px;"></div>

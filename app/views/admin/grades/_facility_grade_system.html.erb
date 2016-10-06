@@ -3,36 +3,38 @@
   <h1>Available grading systems</h1>
 </div>
 
-<%= div_for(@grade_systems) do |f| %>
+<%= div_for(@grade_systems) do |fs| %>
 <ol class="routelist">
   <li>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-4">
-          <p><%= f.name %></p>
-
-        </div>
-        <div class="col-sm-2">
-            <p><%= f.grades.count %> grades</p>
+        <div class="col-sm-5">
+          <p><%= fs.name %></p>
 
         </div>
 
-        <div class="col-sm-4">
-          <% if f.facility %>
-            <p><%= f.facility.name %><%if f.facility.location %> - <%= f.facility.location %> <% end %> </p>
+
+        <div class="col-sm-5">
+          <% if fs.facility %>
+            <p><%= fs.facility.name %><%if fs.facility.location %> - <%= fs.facility.location %> <% end %> </p>
           <% end %>
         </div>
 
-        <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="col-xs-4 col-sm-2 col-md-2">
           <div id="use_system_form">
-            <% if FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, f.id).count > 0 %>
-            <%= render 'unuse_system', :f => f %>
+            <% if FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
+            <%= render 'unuse_system', :fs => fs %>
             <% else %>
-            <%= render 'use_system', :f => f %>
+            <%= render 'use_system', :fs => fs %>
             <% end %>
           </div>
 
         </div>
+      </div>
+      <div class="row">
+        <% if fs.grades.joins(:routes).count > 0 && FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
+        <%= render 'facilities/gradedist_boulder', :fs => fs %>
+        <% end %>
       </div>
     </div>
   </li>

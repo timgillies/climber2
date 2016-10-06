@@ -7,13 +7,18 @@
   <% else %>
     <div class="col-md-6">
   <% end %>
-
+  <div class="chart-header">
+    <h1> <%= fs.name %></h1>
+  </div>
       <%= render 'facilities/gradedist_boulder', :fs => fs %>
   </div>
 
   <% end %>
 
 <div class="col-md-6">
+  <div class="chart-header">
+    <h1>Routes by Zone</h1>
+  </div>
     <%= render 'facilities/zonedist' %>
 </div>
 

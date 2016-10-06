@@ -1,5 +1,7 @@
 <% provide(:title, 'Zones') %>
 
+<%= link_to "Back", :back %>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
@@ -7,6 +9,14 @@
         <h1>Edit zone</h1>
       </div>
       <%= render 'admin/zones/form', object: @zones %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="headliner">
+        <h1>Zone Children</h1>
+      </div>
+    <%= render 'admin/zones/zone_children', object: @zone %>
     </div>
   </div>
 </div>

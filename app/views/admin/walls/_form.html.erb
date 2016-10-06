@@ -1,15 +1,11 @@
-<div class="form-background">
+<br/>
+<div class="row">
   <%= form_for [:admin, @facility, @wall], remote: false do |fw| %>
   <%= render 'shared/error_messages', object: fw.object %>
 
-  <div class="col-sm-3 col-md-3 col-lg-3">
+  <div class="col-sm-6 col-md-6 col-lg-6">
     <%= fw.label :name, "Child zone name:" %>
     <%= fw.text_field :name, class: 'form-control', placeholder: "Child zone name..." %>
-  </div>
-
-  <div class="col-sm-3 col-md-3 col-lg-3">
-    <%= fw.label :vertical_ft, "Vertical ft (optional):" %>
-    <%= fw.text_field :vertical_ft, class: 'form-control', placeholder: "Vertical ft. (optional)..." %>
   </div>
 
   <div class="col-sm-3 col-md-3 col-lg-3">
@@ -20,6 +16,12 @@
   <div class="col-sm-3 col-md-3 col-lg-3">
     <label class="hidden-xl">&nbsp;</label>
     <%= fw.submit "Save", class: "btn btn-submit" %>
+  </div>
+</div>
+
+<div class="row pull-right">
+  <div class="col-sm-6 col-md-6 col-lg-6">
+    <%= link_to "cancel", admin_facility_zones_path %>
   </div>
 </div>
 

@@ -1,14 +1,23 @@
-
+<br/>
+<div class="row">
 <%= form_for [:admin, @facility, @zone], remote: false do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+  <div class="col-sm-9 col-md-9 col-lg-9">
     <%= f.label :name, "Zone Name:" %>
     <%= f.text_field :name, class: 'form-control', placeholder: "Zone name..." %>
   </div>
 
-  <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+  <div class="col-sm-3 col-md-3 col-lg-3">
     <label class="hidden-xl">&nbsp;</label>
     <%= f.submit "Save", class: "btn btn-submit" %>
   </div>
+</div>
+
+
+<div class="row pull-right">
+  <div class="col-sm-6 col-md-6 col-lg-6">
+    <%= link_to "cancel", admin_facility_zones_path %>
+  </div>
+</div>
 <% end %>

@@ -1,8 +1,9 @@
-<br />
+<br/>
 <%= form_for [:admin, @facility, @sub_child_zone], remote: false do |fw| %>
   <%= render 'shared/error_messages', object: fw.object %>
 
-  <div class="col-sm-3 col-md-3 col-lg-3">
+<div class="row">
+  <div class="col-sm-6 col-md-6 col-lg-6">
     <%= fw.label :name, "Name:" %>
     <%= fw.text_field :name, class: 'form-control', placeholder: "Zone name..." %>
   </div>
@@ -18,5 +19,12 @@
     <label class="hidden-xl">&nbsp;</label>
     <%= fw.submit "Save", class: "btn btn-submit" %>
   </div>
+</div>
+
+<div class="row pull-right">
+  <div class="col-sm-6 col-md-6 col-lg-6">
+    <%= link_to "cancel", admin_facility_zones_path %>
+  </div>
+</div>
 
 <% end %>
