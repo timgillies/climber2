@@ -1,0 +1,36 @@
+<%= div_for(@facility_roles) do |f| %>
+<ol class="routelist">
+  <li>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          <p>
+            <%= f.facility.name %><% if f.facility.location? %> - <%= f.facility.location %> <% end %>
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <p><%= f.name %></p>
+        </div>
+
+
+        <div class="col-sm-2">
+          <% if f.confirmed? %>
+          <p><i class="glyphicon glyphicon-ok glyphicon-green"></i>  Confirmed</p>
+          <% else %>
+
+          <%= button_to "Confirm", confirm_facility_role_path(f), class: 'btn btn-primary btn-sm', method: :confirm, remote: false %>
+          <% end %>
+        </div>
+
+        <div class="col-xs-1 col-sm-1 col-md-1">
+          <p><%= link_to user_facility_role_path(current_user, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                      :method => :delete do %>
+                      <i class="glyphicon glyphicon-trash"></i>
+                      <%end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ol>
+<% end %>

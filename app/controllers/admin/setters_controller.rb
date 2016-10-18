@@ -1,6 +1,6 @@
 class Admin::SettersController < ApplicationController
   before_action :authenticate_user!,    only: [:index, :show, :edit, :update, :destroy]
-  before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
+  before_action :facility_admin,      only: [:index, :show, :edit, :update, :destroy]
 
   layout "admin"
 

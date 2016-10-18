@@ -10,14 +10,24 @@ Rails.application.routes.draw do
   get 'about'        => 'static_pages#about'
   get 'contact'      => 'static_pages#contact'
   get 'marketing'      => 'static_pages#marketing'
-  get 'social'      => 'static_pages#social'
+  get 'pricing'      => 'static_pages#pricing'
   get 'register'     => 'facilities#new'
 
   resources :users do
+    resources :facility_roles
     resources :facilities do
       resources :routes do
     resources :ticks
       end
+    end
+    member do
+      get :inbox
+    end
+  end
+
+  resources :facility_roles do
+    member do
+      post :confirm
     end
   end
 
@@ -41,7 +51,8 @@ Rails.application.routes.draw do
       resources :grades
       resources :zones
       resources :walls
-      resources :setters
+      resources :setters # delete after facility_roles is set up
+      resources :facility_roles
       resources :sub_child_zones
       resources :facility_grade_systems
 

@@ -1,6 +1,10 @@
 class Admin::FacilitiesController < ApplicationController
-  before_filter :authenticate_user!,    only: [:index, :show, :edit, :update, :destroy]
-  before_action :facility_admin,      only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :head_setter_role,          only: [:destroy]
+  before_action :setter_role,               except: [:index, :show]
+  before_action :marketing_role,            except: [:index, :show]
+
 
   layout "admin", except: [:index, :new]
 
@@ -12,7 +16,7 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def show
-    @facility = current_user.facilities.find(params[:id])
+    @facility = Facility.find(params[:id])
     @routes = @facility.routes.page(params[:page])
     @activeroutes = @facility.routes.where("enddate >= ?", Date.today)
     @facilityticks = Tick.where("facility_id = ?", @facility)
@@ -20,7 +24,7 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def new
-    @facility = current_user.facilities.new
+    @facility = Facility.new
   end
 
   def create

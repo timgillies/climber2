@@ -1,7 +1,8 @@
 class Admin::ZonesController < ApplicationController
-
-  before_action :authenticate_user!,    only: [:index, :show, :edit, :update, :destroy]
-  before_action :facilityroute_admin,      only: [:index, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :setter_role,               only: [:destroy]
+  before_action :marketing_role,            except: [:index, :show]
 
   layout "admin"
 

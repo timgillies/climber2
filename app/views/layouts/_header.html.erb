@@ -16,11 +16,11 @@
       <ul class="nav navbar-nav navbar navbar-left">
 
 
-        <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "admin") %>
+        <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "site_admin") %>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Route Management <b class="caret"></b>
+            Route Management  <b class="caret"></b>
           </a>
 
           <ul class="dropdown-menu">
@@ -36,7 +36,7 @@
           </ul>
         </li>
 
-        <% if current_user.role == "admin" %>
+        <% if current_user.role == "site_admin" %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Admin Tools <b class="caret"></b>
@@ -53,7 +53,7 @@
         <% else %>
 
         <li><%= link_to "Features & Details", marketing_path %></li>
-        <li><%= link_to "Request Beta Access", new_user_registration_path %></li>
+        <li><%= link_to "Request Beta Access", pricing_path %></li>
 
         <% end %>
 
@@ -66,9 +66,10 @@
           <% if user_signed_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <%= current_user.name %> <b class="caret"></b>
+              <%= current_user.name %> <% if FacilityRole.where("email = ?", current_user.email ).unconfirmed.count > 0 %><span class="badge badge-red"> <%= FacilityRole.where("email = ?", current_user.email ).unconfirmed.count %></span> <% end %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <li><%= link_to "Inbox", inbox_user_path(current_user) %><div class="badge badge-red"><%= FacilityRole.where("email = ?", current_user.email ).unconfirmed.count %></div></li>
               <li><%= link_to "Profile", user_path(current_user) %></li>
               <li><%= link_to "Settings", edit_user_registration_path(current_user) %></li>
               <li class="divider"></li>
@@ -78,7 +79,6 @@
             </ul>
           </li>
         <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
         <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
       </ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930231101) do
+ActiveRecord::Schema.define(version: 20161014212648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,19 @@ ActiveRecord::Schema.define(version: 20160930231101) do
   end
 
   add_index "facility_grade_systems", ["facility_id"], name: "index_facility_grade_systems_on_facility_id", using: :btree
+
+  create_table "facility_roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "facility_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "email"
+    t.boolean  "confirmed"
+  end
+
+  add_index "facility_roles", ["facility_id"], name: "index_facility_roles_on_facility_id", using: :btree
+  add_index "facility_roles", ["user_id"], name: "index_facility_roles_on_user_id", using: :btree
 
   create_table "grade_systems", force: :cascade do |t|
     t.string   "name"
@@ -274,6 +287,8 @@ ActiveRecord::Schema.define(version: 20160930231101) do
   add_foreign_key "facilities", "users"
   add_foreign_key "facility_grade_systems", "facilities"
   add_foreign_key "facility_grade_systems", "grade_systems"
+  add_foreign_key "facility_roles", "facilities"
+  add_foreign_key "facility_roles", "users"
   add_foreign_key "grade_systems", "facilities", on_delete: :nullify
   add_foreign_key "grade_systems", "users", on_delete: :nullify
   add_foreign_key "grades", "grade_systems", on_delete: :nullify

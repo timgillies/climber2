@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  has_many :facilities
+  has_many :facilities, :through => :facility_roles
   has_many :routes
   has_many :grades
   has_many :zones
@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :sub_child_zones
   has_many :grade_systems
   belongs_to :admin
+  belongs_to :facility_role
+  has_many :facility_roles
 
   attr_accessor :remember_token, :activation_token, :reset_token
 

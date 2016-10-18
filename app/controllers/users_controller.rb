@@ -53,6 +53,12 @@ class UsersController < ApplicationController
     @facilities = @user.facilities.page(params[:page])
   end
 
+  def inbox
+    @facility_roles = FacilityRole.where("email = ?", current_user.email).page(params[:page])
+  end
+
+
+
 
   private
 

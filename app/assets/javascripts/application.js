@@ -6,7 +6,6 @@
 //= require_tree .
 
 //= require moment
-//= require bootstrap-datetimepicker
 
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
