@@ -1,6 +1,6 @@
 class Admin::FacilityRolesController < ApplicationController
   before_action :authenticate_user!,        only: [:index, :new, :edit, :update, :destroy]
-  before_action :facility_admin,            only: [:index, :new, :edit, :update, :destroy]
+  before_action :facility_admin,            only: [:index, :edit, :update, :destroy]
   before_action :setter_role,               except: [:index, :show]
   before_action :marketing_role,            except: [:index, :show]
 

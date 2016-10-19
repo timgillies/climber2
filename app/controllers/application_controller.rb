@@ -16,10 +16,12 @@ class ApplicationController < ActionController::Base
 
   # Sets up facilities to list in Route Management dropdown
   def set_facilities
-    if current_user.role == "site_admin"
-      @userfacilities = Facility.all
-    else
-      @userfacilities = current_user.facilities.all if user_signed_in?
+    if user_signed_in?
+      if current_user.role == "site_admin"
+        @userfacilities = Facility.all
+      else
+        @userfacilities = current_user.facilities.all
+      end
     end
   end
 
@@ -56,7 +58,7 @@ class ApplicationController < ActionController::Base
   def facility_admin
     facility_controller_check
     @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
-    unless  (@facility_role_access.present? && facility_admin_roles.include?(@facility_role_access.name)) || current_user.role == "site_admin"
+    unless  ((@facility_role_access.present? && facility_admin_roles.include?(@facility_role_access.name)) || current_user.role == "site_admin") || ((params[:action] == 'new' || params[:action] == 'create') && current_user.role == "facility_admin")
       flash[:danger] = 'You are not authorized.  Please request access from your manager'
       redirect_to root_url
     end

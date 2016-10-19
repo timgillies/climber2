@@ -49,7 +49,7 @@ class Facility < ActiveRecord::Base
 
   # (after_create) - Creates relationship in FacilityRole table between facility_owner and facility
   def create_facility_role
-    self.facility_roles.create!(user_id: user.id, name: user.role, email: user.email, confirmed: true )
+    facility_roles.create!(facility_id: facility.id, user_id: user.id, name: 'facility_management', email: user.email, confirmed: true )
   end
 
 end
