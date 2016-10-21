@@ -1,13 +1,13 @@
+
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
       chart: {
-        renderTo: "wall_dist-<%= fz.id %>",
-        height: 50 * <%= raw @facility.walls.where("zone_id = ?", fz).count %>,
-        type: "bar",
+        renderTo: "rolegradedist-<%= f.id %>",
+        type: "column",
         style: {
           fontFamily: 'Helvetica',
-        },
+        }
       },
       title: {
         text: ""
@@ -45,13 +45,9 @@
         enabled: false
       },
       plotOptions: {
-        series: {
-          pointWidth: 20,
-        },
-        bar: {
+        column: {
           dataLabels: {
             enabled: true,
-
             style: {
               textShadow: '0 0 0 black',
               color: '#333',
@@ -68,14 +64,14 @@
           }
         }
       },
-      colors: (["#b6da6b", "#da8f6b", "#da6bb6"]),
+      colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
 
       series: [{
-          type: 'bar',
+          type: 'column',
           name: 'Routes',
-          data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, Route.current.where("wall_id = ? and zone_id = ?", f, fz).count ] } %>
+          data: <%= raw facility_grades.all.map {|fs| [fs.grade, Route.current.where("grade_id = ? AND setter_id = ?", fs, f.user.id).count] } %>
       }]
     });
   });
 </script>
-<div id="wall_dist-<%= fz.id %>" style="width:100%; height:100%; position:relative;"></div>
+<div id="rolegradedist-<%= f.id %>" style="width:100%; height:200px;"></div>

@@ -54,7 +54,7 @@ class Admin::RoutesController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-    @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
+    @facilitysetters = @facility.facility_roles.all.map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
   end
 
@@ -74,7 +74,7 @@ class Admin::RoutesController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-    @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
+    @facility.facility_roles.all.map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
     @route.facility_id = params[:facility_id]
     if @route.save
@@ -93,7 +93,7 @@ class Admin::RoutesController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-    @facilitysetters = @facility.setters.all.map{|fs| [fs.nick_name, fs.id]}
+    @facility.facility_roles.all.map{|fs| [fs.user.name, fs.user.id]}
     @route.facility_id = params[:facility_id]
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
 
@@ -165,7 +165,7 @@ class Admin::RoutesController < ApplicationController
   end
 
   def options_for_setter_select
-      @facility.setters.all.map{|fs| [fs.nick_name, fs.id ] }
+      @facility.facility_roles.all.map{|fs| [fs.user.name, fs.user.id]}
     # provides the list of available walls in the route list filters
   end
 

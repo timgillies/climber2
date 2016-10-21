@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       if current_user.role == "site_admin"
         @userfacilities = Facility.all
       else
-        @userfacilities = current_user.facilities.all
+        @userfacilities = current_user.facility_relationships.all
       end
     end
   end
@@ -34,7 +34,13 @@ class ApplicationController < ActionController::Base
   # checks if @facility is used within the facility controller or outside of it
   def facility_controller_check
     if params[:controller] == 'admin/facilities'
+      if params[:action] == 'new'
+        @facility = Facility.new
+      elsif params[:action] == 'create'
+        @facility = current_user.facilities.build(facility_params)
+      else
       @facility = Facility.find(params[:id])
+      end
     else
       @facility = Facility.find(params[:facility_id])
     end
@@ -43,8 +49,7 @@ class ApplicationController < ActionController::Base
 
   # redirects user to facility home if role does not have permission (based on "before_action" filters in controllers)
   def role_redirect(role)
-    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
-
+    facility_controller_check
     unless current_user.role == "site_admin" # overrides assigned facility roles
       if @facility_role_access.present? && @facility_role_access.name == role
           flash[:danger] = 'You are not authorized.  Contact your manager for access'
@@ -57,7 +62,6 @@ class ApplicationController < ActionController::Base
   # Confirms a relationship between the user and the facility based on the above roles
   def facility_admin
     facility_controller_check
-    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
     unless  ((@facility_role_access.present? && facility_admin_roles.include?(@facility_role_access.name)) || current_user.role == "site_admin") || ((params[:action] == 'new' || params[:action] == 'create') && current_user.role == "facility_admin")
       flash[:danger] = 'You are not authorized.  Please request access from your manager'
       redirect_to root_url

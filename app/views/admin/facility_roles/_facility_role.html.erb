@@ -12,7 +12,7 @@
         <% else %>
         <div class="col-sm-4">
           <p>
-            <%= f.email %>
+            <%= f.email if f.email%>
           </p>
         </div>
         <% end %>
@@ -44,6 +44,11 @@
           </p>
         </div>
       </div>
+      <row>
+        </div>
+            <%= render 'facilities/rolegradedist', :f => f %>
+        </div>
+      </row>
     </div>
   </li>
 </ol>

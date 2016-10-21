@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  has_many :facilities, :through => :facility_roles
+  has_many :facility_relationships, :through => :facility_roles, source: :facility
+  has_many :facilities
   has_many :routes
   has_many :grades
   has_many :zones
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save   :downcase_email
-  before_create :create_activation_digest
+  # before_create :create_activation_digest
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255},

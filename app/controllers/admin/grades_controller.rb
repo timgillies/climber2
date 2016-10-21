@@ -13,7 +13,7 @@ class Admin::GradesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @grade_system = GradeSystem.new
     @grade = Grade.new
-    @grades = Grade.order('discipline ASC', 'rank ASC').page(params[:page])
+    @grades = Grade.order('grade_system_id ASC', 'rank ASC').page(params[:page])
     @grade_systems = available_systems.order('facility_id ASC').page(params[:page])
     @facility_grade_system = FacilityGradeSystem.new
     @facility_grade_systems = FacilityGradeSystem.page(params[:page]).per(50)
@@ -22,7 +22,7 @@ class Admin::GradesController < ApplicationController
 
   def new
     @grade = Grade.new
-    @grades = Grade.all.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grades = Grade.all.order('grade_system_id ASC', 'rank ASC').page(params[:page]).per(50)
     @grade_systems = GradeSystem.available_systems.map{ |f| [f.name, f.id ] }
 
   end
@@ -32,7 +32,7 @@ class Admin::GradesController < ApplicationController
   end
 
   def create
-    @grades = Grade.all.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grades = Grade.all.order('grade_system_id ASC', 'rank ASC').page(params[:page]).per(50)
     @grade = current_user.grades.build(grade_params)
     @grade.rank = ((params[:range_start]).to_f + (params[:range_end]).to_f)/2
     @grade_system_select = GradeSystem.all.map{ |f| [f.name, f.id ] }
@@ -49,7 +49,7 @@ class Admin::GradesController < ApplicationController
   def update
     @grade_system = GradeSystem.find(params[:grade_system_id])
     @grade = @grade_system.grades.find(params[:id])
-    @grades = @grade_system.grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grades = @grade_system.grades.order('grade_system_id ASC', 'rank ASC').page(params[:page]).per(50)
 
     @grade.rank = ((params[:range_start]).to_f + (params[:range_end]).to_f)/2
 
@@ -65,7 +65,7 @@ class Admin::GradesController < ApplicationController
   def edit
     @grade_system = GradeSystem.find(params[:grade_system_id])
     @grade = @grade_system.grades.find(params[:id])
-    @grades = @grade_system.grades.order('discipline ASC', 'rank ASC').page(params[:page]).per(50)
+    @grades = @grade_system.grades.order('grade_system_id ASC', 'rank ASC').page(params[:page]).per(50)
 
   end
 

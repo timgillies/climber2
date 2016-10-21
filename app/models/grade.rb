@@ -11,7 +11,7 @@ class Grade < ActiveRecord::Base
   validates :grade_system_id, presence: true
   validates :grade, uniqueness: {  scope: [:grade_system_id] }
 
-  default_scope -> { order(rank: :asc) }
+  default_scope -> { order(rank: :asc, grade_system_id: :desc) }
 
 
   scope :boulder, -> {

@@ -20,9 +20,9 @@ module GradesHelper
     GradeSystem.joins(:facilities).where(:facilities => {:id => @facility.id})
   end
 
-# Joins grades to facilities via grade_system and facility_grade_syste relationships
+# Joins grades to facilities via grade_system and facility_grade_system relationships
   def facility_grades
-    Grade.joins(:facilities).where(:facilities => {:id => @facility.id} ).order('grade_systems.name ASC', 'grades.rank ASC')
+    Grade.joins(:facilities).where(:facilities => {:id => @facility.id} )
   end
 
 

@@ -24,11 +24,11 @@
           </a>
 
           <ul class="dropdown-menu">
+            <% @userfacilities.each do |f| %>
             <li>
-              <% @userfacilities.each do |f| %>
                 <%= link_to f.name + " " + f.location, admin_facility_path(f) %>
-              <% end %>
             </li>
+            <% end %>
             <li class="divider"></li>
             <li>
               <%= link_to "Add New Location", new_admin_facility_path %>
