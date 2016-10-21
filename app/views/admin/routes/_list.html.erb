@@ -33,10 +33,10 @@
           </div>
 
           <div class="col-md-3">
-              <h4><small><%= f.zone.name if f.zone %> / <%= f.wall.name if f.wall %></small></h4>
+              <h4><small><%= f.zone.name if f.zone %> / <%= f.wall.name if f.wall %> / <%= f.sub_child_zone.name if f.sub_child_zone %></small></h4>
           </div>
           <div class="col-md-2">
-            <h4><small><%= f.setter.nick_name if f.setter%></small></h4>
+            <h4><small><%= f.user.name if f.setter%></small></h4>
           </div>
           <div class="col-md-2">
             <h4><small>set <%= time_ago_in_words(f.created_at) %> ago</small></h4>

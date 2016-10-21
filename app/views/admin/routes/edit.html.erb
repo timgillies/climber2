@@ -1,18 +1,12 @@
-<% provide(:title, 'Edit routes') %>
+<% provide(:title, 'Add routes') %>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6">
-      <div class="routes">
-        <h1><small>Edit Route</small></h1>
+    <div class="col-sm-8">
+      <div class="headliner-line">
+        <h1>Add a route</h1>
       </div>
         <%= render 'admin/routes/form', object: @routes %>
-    </div>
-    <div class="col-sm-6">
-      <div class="routes">
-        <h1><small>Recently Added</small></h1>
-      </div>
-      <%= render 'admin/routes/recent', object: @recentroutes %>
     </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ class Route < ActiveRecord::Base
   belongs_to :facility
   belongs_to :zone
   belongs_to :wall
+  belongs_to :sub_child_zone
   belongs_to :user
   belongs_to :grade
   belongs_to :setter

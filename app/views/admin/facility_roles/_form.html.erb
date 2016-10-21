@@ -3,7 +3,7 @@
 <%= form_for [:admin, @facility, @facility_role], remote: false do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="col-sm-3 col-md-3 col-lg-3">
+  <div class="col-sm-6 col-md-6 col-lg-6">
     <%= f.label :email, "Recipient's Email Address:" %>
     <%= f.text_field :email, class: 'form-control', placeholder: "Enter email address" %>
   </div>

@@ -56,6 +56,7 @@ class Admin::RoutesController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.all.map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
+    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
   end
 
   def show

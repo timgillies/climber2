@@ -10,23 +10,37 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <%= f.label :color,"Color" %>
         <%= f.text_field :color, class: 'form-control', placeholder: "Route color" %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <%= f.label :grade_id,"Grade" %>
         <%= f.grouped_collection_select(:grade_id, facility_systems , :grades, :name, :id, :grade,
         { include_blank: 'Select grade' },
         {class: "form-control"}) %>
       </div>
     </div>
+
+    <% if @facility_role_access.name == "setter" %>
     <div class="row">
       <div class="col-sm-12">
+        <%= f.hidden_field :setter_id, :value => current_user.id %>
+      </div>
+    </div>
+
+    <% else %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label :setter_id,"Setter" %>
         <%= f.select(:setter_id, @facilitysetters,
         { include_blank: 'Select setter' },
         {class: "form-control"}) %>
       </div>
     </div>
+    <% end %>
+
     <div class="row">
       <div class="col-sm-12">
         <%= f.label :zone_id, "Zone" %>
@@ -72,6 +86,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <%= f.label :description, "Say something about the route" %>
         <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
       </div>
     </div>
