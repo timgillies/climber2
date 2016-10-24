@@ -37,6 +37,7 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'ratyrate'
+gem 'omniauth-facebook'
 
 
 # Use ActiveModel has_secure_password

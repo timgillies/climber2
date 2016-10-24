@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   post '/rate' => 'rater#create', :as => 'rate'
 
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'contact'      => 'static_pages#contact'
   get 'marketing'      => 'static_pages#marketing'
   get 'pricing'      => 'static_pages#pricing'
+  get 'privacy_policy'  => 'static_pages#privacy_policy'
+  get 'terms_of_service' => 'static_pages#terms_of_service'
   get 'register'     => 'facilities#new'
 
   resources :users do
