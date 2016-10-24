@@ -45,7 +45,9 @@
         </div>
       </div>
       <div class="row">
+        <% if f.confirmed? %>
           <%= render 'facilities/rolegradedist', :f => f %>
+        <% end %>
       </div>
     </div>
   </li>
