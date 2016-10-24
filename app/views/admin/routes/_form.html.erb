@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <% if @facility_role_access.name == "setter" %>
+    <% if @facility_role_access.present? && @facility_role_access.name == "setter" %>
     <div class="row">
       <div class="col-sm-12">
         <%= f.hidden_field :setter_id, :value => current_user.id %>
