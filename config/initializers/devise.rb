@@ -59,9 +59,8 @@ Devise.setup do |config|
   # enable it only for database (email + password) authentication.
   # config.params_authenticatable = true
 
-  config.omniauth # :facebook, '1752834271618804', '1e675a918d41c84d2f5d8b714f0e9da1',
-                  :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SEC'],
-                  callback_url: "http://climbconnect.com/users/auth/facebook/callback",
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SEC'],
+                  callback_url: "http://www.climbconnect.com/users/auth/facebook/callback",
                   scope: 'email, public_profile',
                   info_fields: 'name,email,first_name,last_name,gender,location',
                   display: 'popup'
