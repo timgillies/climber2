@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019174646) do
+ActiveRecord::Schema.define(version: 20161025165623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,6 +253,14 @@ ActiveRecord::Schema.define(version: 20161019174646) do
     t.string   "unconfirmed_email"
     t.string   "remember_token"
     t.string   "activation_token"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "image"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "link"
+    t.string   "gender"
+    t.string   "location"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
