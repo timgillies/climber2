@@ -60,7 +60,7 @@ Devise.setup do |config|
   # config.params_authenticatable = true
 
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SEC'],
-                  callback_url: "http://www.climbconnect.com/users/auth/facebook/callback",
+                  callback_url: "https://climbconnect.com/users/auth/facebook/callback",
                   scope: 'email, public_profile',
                   info_fields: 'name,email,first_name,last_name,gender,location',
                   display: 'popup'
