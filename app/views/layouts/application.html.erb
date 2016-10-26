@@ -41,7 +41,7 @@
 
       initializeFacebookSDK = ->
         FB.init
-          appId  : 'YOUR_APP_ID'
+          appId  : ENV['FACEBOOK_APP_ID']
           status : true
           cookie : true
           xfbml  : true
