@@ -1,34 +1,37 @@
-<div class="container">
+<div class="container-fluid">
   <div class="col-md-6 col-md-offset-3">
     <h2>CLIMB | CONNECT <small>BETA</small></h2>
+    <br/>
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: 'btn btn-facebook btn-md' %>
+    <br/>
+    <br/>
 
 
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, class: "form-control" %>
-      </div>
+        <div class="form-group">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
 
-      <div class="form-group">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-      </div>
+        <% if devise_mapping.rememberable? -%>
+          <label class="checkbox-inline">
+            <%= f.check_box :remember_me, checked: true, class: 'checkbox' %>
+            Remember me
+          </label>
+        <% end -%>
 
-      <% if devise_mapping.rememberable? -%>
-        <label class="checkbox-inline">
-          <%= f.check_box :remember_me, checked: true, class: 'checkbox' %>
-          Remember me
-        </label>
-      <% end -%>
+        <div class="actions">
+          <%= f.submit "Log in", class: "btn btn-submit btn-md" %>
+        </div>
+      <% end %>
+      <br/>
 
-      <div class="actions">
-        <%= f.submit "Log in", class: "btn btn-submit btn-md" %>
-      </div>
-    <% end %>
-    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-
-   <%= render "devise/shared/links" %>
+     <%= render "devise/shared/links" %>
 
   </div>
 </div>

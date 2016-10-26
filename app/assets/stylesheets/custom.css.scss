@@ -874,6 +874,23 @@ span.picture {
       color: #ffffff;
 }
 
+.btn-facebook {
+  background-image: url(asset-path('facebook-6-24.png'));
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  float: none;
+  margin: 0 7px 0 0;
+  padding-left: 40px;
+  background-color: #3b5998;
+  color: #ffffff;
+}
+
+.btn-facebook:hover {
+  background-color: #4e69a2;
+  color: #ffffff;
+}
+
 /*flash*/
 .alert-error {
     background-color: #f2dede;

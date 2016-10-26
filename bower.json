@@ -1,0 +1,21 @@
+{
+  "name": "climber2",
+  "homepage": "https://github.com/timgillies/climber2",
+  "authors": [
+    "Tim Gillies <timothy.gillies@colorado.edu>"
+  ],
+  "description": "climbconnect.com",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-select": "^1.10.0",
+    "bootstrap-social": "^5.0.0"
+  }
+}

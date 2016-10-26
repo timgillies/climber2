@@ -3,8 +3,10 @@
 
     <h2>CLIMB | CONNECT <small>BETA</small></h2>
 
-    <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
-
+    <br/>
+    <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, class: 'btn btn-facebook btn-md' %>
+    <br/>
+    <br/>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
