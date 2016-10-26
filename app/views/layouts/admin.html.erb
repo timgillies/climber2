@@ -9,49 +9,8 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
-
-    <script>
-      $ ->
-        loadFacebookSDK()
-        bindFacebookEvents() unless window.fbEventsBound
-
-      bindFacebookEvents = ->
-        $(document)
-          .on('page:fetch', saveFacebookRoot)
-          .on('page:change', restoreFacebookRoot)
-          .on('page:load', ->
-            FB?.XFBML.parse()
-          )
-        @fbEventsBound = true
-
-      saveFacebookRoot = ->
-        if $('#fb-root').length
-          @fbRoot = $('#fb-root').detach()
-
-      restoreFacebookRoot = ->
-        if @fbRoot?
-          if $('#fb-root').length
-            $('#fb-root').replaceWith @fbRoot
-          else
-            $('body').append @fbRoot
-
-      loadFacebookSDK = ->
-        window.fbAsyncInit = initializeFacebookSDK
-        $.getScript("//connect.facebook.net/en_US/sdk.js")
-
-      initializeFacebookSDK = ->
-        FB.init
-          appId  : ENV['FACEBOOK_APP_ID']
-          status : true
-          cookie : true
-          xfbml  : true
-          version: 'v2.7'
-    </script>
-
   </head>
   <body>
-
-
     <%= render 'layouts/header' %>
     <%= render 'layouts/adminheader' %>
     <div class="container">
@@ -60,6 +19,18 @@
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
+
+      <div id="fb-root"></div>
+        <script>
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=1752834271618804";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        </script>
+
     </div>
   </body>
 </html>
