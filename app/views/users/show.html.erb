@@ -1,3 +1,31 @@
 <% provide(:title, @user.name) %>
 
-Coming soon
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <div class="profile">
+      <div class="row">
+        <h1>
+        <% if @user.image? %>
+          <%= image_tag @user.image + "?type=large", class: "img-profile" %>
+        <% end %>
+          <%= @user.name %>
+        </h1>
+        edit
+      </div>
+      <br/>
+      <div class="row">
+        <p> Account Type:
+          <% if @user.role? %>
+            <%= @user.role.humanize if @user.role %></p>
+          <% else %>
+            Climber (Basic)
+          <% end %>
+        </p>
+      </div>
+      <div class="row">
+        <%= render 'users/roles', object: @user %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<%= div_for(@facility_roles) do |f| %>
+<ol class="profile">
+  <li>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <p>
+            <%= f.facility.name %><% if f.facility.location? %> - <%= f.facility.location %> <% end %>
+          </p>
+        </div>
+        <div class="col-sm-6">
+          <p><%= f.name.humanize %></p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ol>
+<% end %>

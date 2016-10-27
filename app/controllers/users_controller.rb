@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @facilities = @user.facilities.page(params[:page])
     @routes = @user.routes.page(params[:page])
+    @facility_roles = FacilityRole.where(user_id: @user, confirmed: true).page(params[:page])
   end
 
   def new

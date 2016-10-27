@@ -477,6 +477,46 @@ input {
   }
 }
 
+/* users */
+
+.img-profile-icon{
+ width: 25px;
+ height: 25px;
+ background-size: cover;
+ display: inline;
+ margin-right: 10px;
+
+}
+
+.img-profile{
+ width: 100px;
+ height: 100px;
+ background-size: cover;
+ display: inline;
+ vertical-align: bottom;
+ margin-right: 10px;
+
+}
+
+.profile {
+  list-style: none;
+  h1 {
+    display: inline;
+    vertical-align: bottom;
+    border-bottom: 1px solid $gray-lighter;
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-top: 0px;
+    font-weight: 300;
+    text-align: left;
+    color: $gray-light;
+  }
+}
+
 /* route list */
 
 .routelist {
