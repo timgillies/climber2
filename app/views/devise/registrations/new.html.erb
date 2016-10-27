@@ -4,9 +4,11 @@
     <h2>CLIMB | CONNECT <small>BETA</small></h2>
 
     <br/>
+    <div class="span7 text-center">
     <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, class: 'btn btn-facebook btn-md' %>
+    </div>
     <br/>
-    <br/>
+    <h2>Don't have Facebook? </h2>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
