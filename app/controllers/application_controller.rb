@@ -62,11 +62,12 @@ class ApplicationController < ActionController::Base
   # Confirms a relationship between the user and the facility based on the above roles
   def facility_admin
     facility_controller_check
-    unless  ((@facility_role_access.present? && facility_admin_roles.include?(@facility_role_access.name)) || current_user.role == "site_admin") || ((params[:action] == 'new' || params[:action] == 'create') && current_user.role == "facility_admin")
+    unless  (current_user.role == "site_admin" || current_user.role == "facility_admin")
       flash[:danger] = 'You are not authorized.  Please request access from your manager'
       redirect_to root_url
     end
   end
+
 
   # Roles for "before_action" filters
   def head_setter_role
@@ -102,6 +103,6 @@ protected
 
   def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :role) }
-      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :role) }
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :role, :gender, :zip, :avatar) }
   end
 end

@@ -215,7 +215,7 @@ textarea[type=text] {
     margin-bottom: 1px;
     font-weight: 300;
     text-align: left;
-    color: $gray;
+    color: $gray-darker;
     border-bottom: 1px solid $gray-lighter;
   }
 }
@@ -230,7 +230,7 @@ textarea[type=text] {
     letter-spacing: -1px;
     margin-bottom: 1px;
     text-align: left;
-    color: $gray;
+    color: $gray-darker;
   }
 }
 
@@ -503,9 +503,15 @@ input {
   h1 {
     display: inline;
     vertical-align: bottom;
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-bottom: 1px;
+    font-weight: 300;
+    text-align: left;
+    color: $gray-darker;
     border-bottom: 1px solid $gray-lighter;
-    font-size: 2em;
   }
+
 
   p {
     font-size: 1.2em;
@@ -514,6 +520,10 @@ input {
     font-weight: 300;
     text-align: left;
     color: $gray-light;
+  }
+
+  li {
+    border-bottom: 1px solid $gray-medium-light;
   }
 }
 

@@ -1,8 +1,8 @@
 <% provide(:title, @user.name) %>
 
 <div class="container-fluid">
-  <div class="col-sm-12">
-    <div class="profile">
+  <div class="profile">
+    <div class="col-sm-12">
       <div class="row">
         <h1>
         <% if @user.image? %>
@@ -10,22 +10,25 @@
         <% end %>
           <%= @user.name %>
         </h1>
-        edit
+        <%= link_to "edit", edit_user_path(@user) %>
       </div>
       <br/>
+    </div>
+    <div class="col-sm-12">
       <div class="row">
-        <p> Account Type:
+        <p><strong> Account Type:</strong>
           <% if @user.role? %>
-            <%= @user.role.humanize if @user.role %></p>
+            <%= @user.role.humanize if @user.role %>
           <% else %>
             Climber (Basic)
           <% end %>
         </p>
       </div>
+    </div>
+    <div class="col-sm-12">
       <div class="row">
         <%= render 'users/roles', object: @user %>
       </div>
-
     </div>
   </div>
 </div>

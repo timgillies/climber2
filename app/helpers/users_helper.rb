@@ -15,4 +15,11 @@ module UsersHelper
     ]
   end
 
+  def genders
+    [
+      ['Male', 'male'],
+      ['Female', 'female']
+    ]
+  end
+
 end

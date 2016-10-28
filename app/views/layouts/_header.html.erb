@@ -50,7 +50,9 @@
         </li>
         <% end %>
 
-        <% else %>
+        <% elsif user_signed_in? %>
+
+        <li><%= link_to "Facilities", facilities_path %></li>
 
         <li><%= link_to "Features & Details", marketing_path %></li>
         <li><%= link_to "Request Beta Access", new_user_registration_path %></li>
