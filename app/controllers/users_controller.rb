@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user,          only: [:edit, :update]
   before_action :admin_user,        only: :destroy
 
+  include UsersHelper
+
   def index
     @users = User.page(params[:page]).per(25)
   end
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @genders = genders
   end
 
   def create
@@ -31,6 +34,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @genders = genders
   end
 
   def update

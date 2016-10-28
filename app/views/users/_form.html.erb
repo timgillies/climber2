@@ -1,21 +1,34 @@
+<br/>
 <%= form_for @user do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
+  <% if @user.image? %>
   <div class="row">
-    <div class="col-sm-6">
-      <%= image_tag @user.avatar.url(:thumb) %>
-    </div>
-  </div>
+    <div class="col-sm-4">
+      <%= image_tag @user.image + "?type=large", class: "img-profile" %>
 
-  <div class="row">
-    <div class="col-sm-6">
+    </div>
+    <br/>
+      <% else %>
+    <div class="col-sm-4">
+      <%= image_tag @user.avatar.url(:thumb) %>
       <%= f.file_field :avatar, {class: 'form-control'} %>
     </div>
+      <% end %>
   </div>
+  <br/>
+
+  <p><strong> Account Type:</strong>
+    <% if @user.role? %>
+      <%= @user.role.humanize if @user.role %>
+    <% else %>
+      Climber (Basic)
+    <% end %>
+  </p>
 
   <div class="row">
     <div class="col-sm-6">
-      <%= f.select :role, options_for_select(roles), class: 'form-control', include_blank: "- Account Type -" %>
+      <%= f.select :role, options_for_select(roles), {include_blank: "Upgrade!..."}, {class: 'form-control'} %>
     </div>
   </div>
 
@@ -30,7 +43,7 @@
   <%= f.email_field :email, class: 'form-control' %>
 
   <%= f.label "Gender (optional)" %>
-  <%= f.select( :gender, options_for_select(genders), {include_blank: "Select gender..."}, {class: 'form-control'}) %>
+  <%= f.select( :gender, @genders , {include_blank: "Select gender..."}, {class: 'form-control'}) %>
 
   <%= f.label :zip, "Zip code" %>
   <%= f.text_field :zip, class: 'form-control' %>

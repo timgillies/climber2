@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "climb | connect", root_path, id: "logo", class: "tab" %>
+      <%= link_to "climb | connect #{image_tag('beta.png', class: "img-beta-icon")}".html_safe, root_path, id: "logo", class: "tab" %>
     </div>
     <div class="navbar-collapse collapse" id="navbar-ex2-collapse">
 
@@ -20,7 +20,7 @@
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Route Management  <b class="caret"></b>
+            Route Management <b class="caret"></b>
           </a>
 
           <ul class="dropdown-menu">
@@ -51,11 +51,12 @@
         <% end %>
 
         <% elsif user_signed_in? %>
+        <li><%= link_to "Route Management  #{image_tag('beta.png', class: "img-beta-icon")}".html_safe , new_admin_facility_path  %></li>
 
-        <li><%= link_to "Facilities", facilities_path %></li>
+        <% else %>
 
         <li><%= link_to "Features & Details", marketing_path %></li>
-        <li><%= link_to "Request Beta Access", new_user_registration_path %></li>
+        <li><%= link_to "Sign up  #{image_tag('beta.png', class: "img-beta-icon")}".html_safe , new_user_registration_path  %></li>
 
         <% end %>
 

@@ -30,6 +30,7 @@ class Admin::FacilitiesController < ApplicationController
   def create
     @facility = current_user.facilities.build(facility_params)
     if @facility.save
+      current_user.update_attribute(:role, 'facility_admin')
       flash[:success] = "Thank you for registering your facility"
       redirect_to root_url
 

@@ -135,6 +135,15 @@ p {
   font-weight: 700;
 }
 
+.img-beta-icon {
+   width: 25px;
+   height: 25px;
+   background-size: cover;
+   display: inline;
+   margin-right: 10px;
+}
+
+
 
 /* footer */
 
@@ -715,6 +724,13 @@ span.picture {
     background-color: #ffffff;
     border-style: none;
     margin-left: 1px;
+    .btn-submit, .btn-submit:hover, .btn-submit:active{
+      border-color: #52BE80;
+      background: #52BE80;
+      opacity: 1;
+      color: #ffffff;
+    }
+
   }
   .navbar-collapse {
     background-color: #ffffff;
