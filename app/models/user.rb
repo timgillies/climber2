@@ -24,8 +24,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/default-avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
-  VALID_ZIPCODE_REGEX = /\A\d{5}-\d{4}|\A\d{5}\z/
-  validates :zip, format: { with: VALID_ZIPCODE_REGEX }
+
 
 
   ratyrate_rater
