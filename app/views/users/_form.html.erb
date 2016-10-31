@@ -6,29 +6,34 @@
   <div class="row">
     <div class="col-sm-4">
       <%= image_tag @user.image + "?type=large", class: "img-profile" %>
-
     </div>
     <br/>
+  </div>
       <% else %>
+  <div class="row">
     <div class="col-sm-4">
       <%= image_tag @user.avatar.url(:thumb) %>
-      <%= f.file_field :avatar, {class: 'form-control'} %>
     </div>
-      <% end %>
   </div>
   <br/>
-
-  <p><strong> Account Type:</strong>
-    <% if @user.role? %>
-      <%= @user.role.humanize if @user.role %>
-    <% else %>
-      Climber (Basic)
-    <% end %>
-  </p>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= f.label "Upload image" %>
+      <%= f.file_field :avatar, {class: 'form-control'} %>
+    </div>
+  </div>
+      <% end %>
+  <br/>
 
   <div class="row">
-    <div class="col-sm-6">
-      <%= f.select :role, options_for_select(roles), {include_blank: "Upgrade!..."}, {class: 'form-control'} %>
+    <div class="col-sm-4">
+    <p><strong> Account Type:</strong>
+      <% if @user.role? %>
+        <%= @user.role.humanize if @user.role %>
+      <% else %>
+        Climber (Basic)
+      <% end %>
+    </p>
     </div>
   </div>
 

@@ -6,10 +6,15 @@
       <h2 class="hidden-xs">Route Management | Facility Analytics | Climb Tracking | January 2017</h2>
 
       <br/>
+      <% if current_user.present? %>
       <div class="row">
-        <%= render 'static_pages/prelaunch_signup_form', object: @leads %>
+        <%= render 'static_pages/add_route' %>
       </div>
-
+      <% else %>
+      <div class="row">
+        <%= render 'static_pages/signin_options' %>
+      </div>
+      <% end %>
 
     </div>
   </div>

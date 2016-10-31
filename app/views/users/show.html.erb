@@ -5,9 +5,12 @@
     <div class="col-sm-12">
       <div class="row">
         <h1>
-        <% if @user.image? %>
-          <%= image_tag @user.image + "?type=large", class: "img-profile" %>
-        <% end %>
+          <% if @user.image? %>
+            <%= image_tag @user.image + "?type=large", class: "img-profile" %>
+          <% else %>
+            <%= image_tag @user.avatar.url(:thumb), class: "img-profile" %>
+          <% end %>
+
           <%= @user.name %>
         </h1>
         <%= link_to "edit", edit_user_path(@user) %>

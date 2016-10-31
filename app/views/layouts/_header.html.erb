@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "climb | connect #{image_tag('beta.png', class: "img-beta-icon")}".html_safe, root_path, id: "logo", class: "tab" %>
+      <%= link_to "climb | connect", root_path, id: "logo", class: "tab" %>
     </div>
     <div class="navbar-collapse collapse" id="navbar-ex2-collapse">
 
@@ -69,7 +69,12 @@
           <% if user_signed_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <% if current_user.image? %><%= image_tag current_user.image ,:class=> "img-profile-icon" %><% end %><%= current_user.name %> <% if FacilityRole.where("email = ?", current_user.email ).unconfirmed.count > 0 %><span class="badge badge-red"> <%= FacilityRole.where("email = ?", current_user.email ).unconfirmed.count %></span> <% end %> <b class="caret"></b>
+              <% if current_user.image? %><%= image_tag current_user.image ,:class=> "img-profile-icon" %>
+              <% else %>
+              <%= image_tag current_user.avatar.url(:thumb), class: "img-profile-icon" %>
+              <% end %>
+
+              <%= current_user.name %> <% if FacilityRole.where("email = ?", current_user.email ).unconfirmed.count > 0 %><span class="badge badge-red"> <%= FacilityRole.where("email = ?", current_user.email ).unconfirmed.count %></span> <% end %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Inbox", inbox_user_path(current_user) %><div class="badge badge-red"><%= FacilityRole.where("email = ?", current_user.email ).unconfirmed.count %></div></li>

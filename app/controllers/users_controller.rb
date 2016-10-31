@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!,    only: [:index, :edit, :update, :destroy]
   before_action :correct_user,          only: [:edit, :update]
-  before_action :admin_user,        only: :destroy
+  before_action :admin_user,            only: :destroy
 
   include UsersHelper
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
-      redirect_back_or root_url
+      redirect_to user_path
     else
       render 'new'
     end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to(root_url)
+      redirect_to user_path
       # Handle a successful update.
     else
       render 'edit'
