@@ -1,57 +1,59 @@
 <br/>
-<%= form_for @user do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<div class="col-sm-12">
+  <%= form_for @user do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-  <% if @user.image? %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= image_tag @user.image + "?type=large", class: "img-profile" %>
+    <% if @user.image? %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= image_tag @user.image + "?type=large", class: "img-profile" %>
+      </div>
+      <br/>
+    </div>
+        <% else %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= image_tag @user.avatar.url(:thumb), class: "img-profile" %>
+      </div>
     </div>
     <br/>
-  </div>
-      <% else %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= image_tag @user.avatar.url(:thumb), class: "img-profile" %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label "Upload image" %>
+        <%= f.file_field :avatar, {class: 'form-control'} %>
+      </div>
     </div>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= f.label "Upload image" %>
-      <%= f.file_field :avatar, {class: 'form-control'} %>
+        <% end %>
+    <br/>
+
+    <div class="row">
+      <div class="col-sm-12">
+      <p><strong> Account Type:</strong>
+        <% if @user.role? %>
+          <%= @user.role.humanize if @user.role %>
+        <% else %>
+          Climber (Basic)
+        <% end %>
+      </p>
+      </div>
     </div>
-  </div>
-      <% end %>
-  <br/>
 
-  <div class="row">
-    <div class="col-sm-12">
-    <p><strong> Account Type:</strong>
-      <% if @user.role? %>
-        <%= @user.role.humanize if @user.role %>
-      <% else %>
-        Climber (Basic)
-      <% end %>
-    </p>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-  </div>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+    <%= f.label "Gender (optional)" %>
+    <%= f.select( :gender, @genders , {include_blank: "Select gender..."}, {class: 'form-control'}) %>
 
-  <%= f.label "Gender (optional)" %>
-  <%= f.select( :gender, @genders , {include_blank: "Select gender..."}, {class: 'form-control'}) %>
+    <%= f.label :zip, "Zip code" %>
+    <%= f.text_field :zip, class: 'form-control' %>
 
-  <%= f.label :zip, "Zip code" %>
-  <%= f.text_field :zip, class: 'form-control' %>
-
-  <%= f.submit "Save", class: "btn btn-submit" %>
-<% end %>
+    <%= f.submit "Save", class: "btn btn-submit" %>
+  <% end %>
+</div>

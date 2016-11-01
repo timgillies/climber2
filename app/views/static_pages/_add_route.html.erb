@@ -15,8 +15,20 @@
           </ul>
         </div>
 
+        <div class="btn-group btn-primary btn-md">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Find a route <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% @userfacilities.each do |f| %>
+            <li><%= link_to f.name + " " + f.location, admin_facility_routes_path(f) %></li>
+            <% end %>
+          </ul>
+        </div>
+
         <% elsif @userfacilities.count == 1 %>
           <%= link_to "Add routes", new_admin_facility_route_path(@userfacilities.first), class: "btn btn-primary btn-md" %>
+          <%= link_to "Find a route", admin_facility_routes_path(@userfacilities.first), class: "btn btn-primary btn-md" %>
         <% else %>
           <%= link_to "Register your facility", new_admin_facility_path, class: "btn btn-primary btn-md" %>
         <% end %>

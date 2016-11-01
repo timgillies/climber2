@@ -1,0 +1,33 @@
+  <div class="col-sm-12">
+    <div class="profile">
+      <div class="col-sm-12">
+        <div class="row">
+          <br/>
+            <% if @user.image? %>
+              <%= image_tag @user.image + "?type=large", class: "img-profile" %>
+            <% else %>
+              <%= image_tag @user.avatar.url(:thumb), class: "img-profile" %>
+            <% end %>
+        </div>
+        <br/>
+      </div>
+      <div class="col-sm-12">
+        <div class="row">
+          <p><strong> Account Type:</strong>
+            <% if @user.role? %>
+              <%= @user.role.humanize if @user.role %>
+            <% else %>
+              Climber (Basic)
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <%= render 'users/roles', object: @user %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
