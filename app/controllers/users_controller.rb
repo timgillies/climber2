@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @genders = genders
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @genders = genders
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to user_path

@@ -110,6 +110,10 @@ p {
   line-height: 1.7em;
 }
 
+li {
+  list-style: none;
+}
+
 /* header */
 
 #logo {
@@ -730,10 +734,7 @@ span.picture {
     background-color: #ffffff;
     border-style: none;
     margin-left: 1px;
-    .btn-submit, .btn-submit:hover, .btn-submit:active{
-      border-color: #52BE80;
-      background: #52BE80;
-      opacity: 1;
+    .btn-primary, .btn-primary:hover, .btn-primary:active{
       color: #ffffff;
     }
 

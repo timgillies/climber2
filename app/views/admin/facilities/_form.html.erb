@@ -3,10 +3,8 @@
   <br/>
 </div>
 
-<%= form_for([:admin,@facility]) do |f| %>
-  <%= render 'shared/error_messages', object: @facility %>
-
-
+<%= form_for [:admin, @facility] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
 <div class="col-sm-12 col-md-12 col-lg-12">
   <%= f.label :name, "Facility name" %>
@@ -18,7 +16,7 @@
   <%= f.label :addressline1, "Address" %>
   <%= f.text_field :addressline1, class: 'form-control' %>
 
-  <%= f.label :addressline2, "Address (line 2)" %>
+  <%= f.label :addressline2, "Address continued" %>
   <%= f.text_field :addressline2, class: 'form-control' %>
 </div>
 

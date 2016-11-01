@@ -4,20 +4,20 @@
 
   <% if @user.image? %>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-12">
       <%= image_tag @user.image + "?type=large", class: "img-profile" %>
     </div>
     <br/>
   </div>
       <% else %>
   <div class="row">
-    <div class="col-sm-4">
-      <%= image_tag @user.avatar.url(:thumb) %>
+    <div class="col-sm-12">
+      <%= image_tag @user.avatar.url(:thumb), class: "img-profile" %>
     </div>
   </div>
   <br/>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-12">
       <%= f.label "Upload image" %>
       <%= f.file_field :avatar, {class: 'form-control'} %>
     </div>
@@ -26,7 +26,7 @@
   <br/>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-12">
     <p><strong> Account Type:</strong>
       <% if @user.role? %>
         <%= @user.role.humanize if @user.role %>

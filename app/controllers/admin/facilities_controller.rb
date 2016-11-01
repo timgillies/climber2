@@ -6,7 +6,7 @@ class Admin::FacilitiesController < ApplicationController
   before_action :marketing_role,            except: [:new, :create, :index, :show]
 
 
-  layout "admin", except: [:index, :new]
+  layout "admin", except: [:index, :new, :create]
 
   include FacilitiesHelper
 
@@ -33,7 +33,6 @@ class Admin::FacilitiesController < ApplicationController
       current_user.update_attribute(:role, 'facility_admin')
       flash[:success] = "Thank you for registering your facility"
       redirect_to(admin_facility_path(@facility))
-
     else
       render 'new'
     end
