@@ -97,6 +97,6 @@ class Admin::FacilityTargetsController < ApplicationController
 
 
     def facility_target_params
-      params.require(:facility_target).permit(:facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :user_id)
+      params.require(:facility_target).permit(:value, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :user_id)
     end
 end

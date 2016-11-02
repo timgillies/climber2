@@ -1,5 +1,11 @@
 <% provide(:title, @facility.name ) %>
 
+<% if @routes.count == 0 %>
+
+  <h1><small>Start adding routes to see your analytics!</small></h1>
+
+  <% else %>
+
   <% @facility_systems.each do |fs| %>
 
   <% if fs.grades.count > 15 %>
@@ -36,3 +42,5 @@
       <%= render 'facilities/tick_summary' %>
   </div>
 </div>
+
+<% end %>

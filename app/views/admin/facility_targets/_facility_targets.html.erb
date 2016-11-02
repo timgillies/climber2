@@ -8,8 +8,12 @@
           <p><%= f.grade.grade if f.grade %></p>
 
         </div>
+        <div class="col-sm-6">
+            <p><%= f.zone.name if f.zone %> / <%= f.wall.name if f.wall %> </p>
+
+        </div>
         <div class="col-sm-2">
-            <p><%= f.zone.name if f.zone %> </p>
+            <p><%= f.value %></p>
 
         </div>
       </div>

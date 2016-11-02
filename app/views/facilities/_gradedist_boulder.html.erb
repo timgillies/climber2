@@ -45,6 +45,11 @@
         enabled: false
       },
       plotOptions: {
+        spline: {
+          marker: {
+              enabled: false
+          }
+        },
         column: {
           dataLabels: {
             enabled: true,
@@ -64,13 +69,18 @@
           }
         }
       },
-      colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
+      colors: (["#6bda8f", "#5499C7", "#da8f6b", "#da6bb6"]),
 
       series: [{
           type: 'column',
           name: 'Routes',
           data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).order('grade_systems.discipline ASC', 'grades.rank ASC').map {|f| [f.grade, Route.current.where("grade_id = ? AND facility_id = ?", f, @facility.id ).count] } %>
-      }]
+      },{
+          type: 'spline',
+          name: 'Target',
+          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).order('grade_systems.discipline ASC', 'grades.rank ASC').map {|f| [f.grade, FacilityTarget.where("grade_id = ? AND facility_id = ? AND zone_id IS NULL", f, @facility.id).sum(:value) ] } %>
+      }
+    ]
     });
   });
 </script>

@@ -32,6 +32,7 @@
       </div>
     </div>
 
+
     <div class="row">
       <div class="col-sm-12">
         <%= f.label :wall_id, "Sub-zone" %>
@@ -40,14 +41,7 @@
         {class: "form-control"}) %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.label :sub_child_zone_id, "Sub-child zone" %>
-        <%= f.grouped_collection_select(:sub_child_zone_id, Wall.where(facility_id: @facility.id) , :sub_child_zones, :name, :id, :name,
-        { include_blank: 'Select sub-child zone' },
-        {class: "form-control"}) %>
-      </div>
-    </div>
+
 
     <div class="row">
       <div class="col-sm-12">

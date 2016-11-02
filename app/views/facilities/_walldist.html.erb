@@ -49,6 +49,11 @@
         series: {
           pointWidth: 20,
         },
+        spline: {
+          marker: {
+              enabled: false
+          }
+        },
         bar: {
           dataLabels: {
             enabled: true,
@@ -69,13 +74,18 @@
           }
         }
       },
-      colors: (["#b6da6b", "#da8f6b", "#da6bb6"]),
+      colors: (["#b6da6b", "#5499C7", "#da6bb6"]),
 
       series: [{
           type: 'bar',
           name: 'Routes',
           data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, Route.current.where("wall_id = ? and zone_id = ?", f, fz).count ] } %>
-      }]
+      },{
+          type: 'spline',
+          name: 'Target',
+          data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, FacilityTarget.where("wall_id = ? AND grade_id IS NULL AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
+      }
+    ]
     });
   });
 </script>
