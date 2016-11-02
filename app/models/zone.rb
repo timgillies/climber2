@@ -4,6 +4,7 @@ class Zone < ActiveRecord::Base
   has_many    :walls
   has_many    :routes
   has_many    :sub_child_zones, :through => :walls
+  has_many :facility_targets
 
   validates :name, presence: true, uniqueness: {scope: :facility_id}, length: { maximum: 50}
 

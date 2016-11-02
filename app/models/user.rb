@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :walls
   has_many :setters
   has_many :ticks
+  has_many :facility_targets
   has_many :sub_child_zones
   has_many :grade_systems
   belongs_to :admin

@@ -1,0 +1,19 @@
+
+<%= div_for(@facility_targets) do |f| %>
+<ol class="routelist">
+  <li>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          <p><%= f.grade.grade if f.grade %></p>
+
+        </div>
+        <div class="col-sm-2">
+            <p><%= f.zone.name if f.zone %> </p>
+
+        </div>
+      </div>
+    </div>
+  </li>
+</ol>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028170143) do
+ActiveRecord::Schema.define(version: 20161101220035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,24 @@ ActiveRecord::Schema.define(version: 20161028170143) do
 
   add_index "facility_roles", ["facility_id"], name: "index_facility_roles_on_facility_id", using: :btree
   add_index "facility_roles", ["user_id"], name: "index_facility_roles_on_user_id", using: :btree
+
+  create_table "facility_targets", force: :cascade do |t|
+    t.integer  "facility_id"
+    t.integer  "user_id"
+    t.integer  "grade_id"
+    t.integer  "zone_id"
+    t.integer  "wall_id"
+    t.integer  "sub_child_zone_id"
+    t.integer  "value"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "facility_targets", ["facility_id"], name: "index_facility_targets_on_facility_id", using: :btree
+  add_index "facility_targets", ["grade_id"], name: "index_facility_targets_on_grade_id", using: :btree
+  add_index "facility_targets", ["sub_child_zone_id"], name: "index_facility_targets_on_sub_child_zone_id", using: :btree
+  add_index "facility_targets", ["wall_id"], name: "index_facility_targets_on_wall_id", using: :btree
+  add_index "facility_targets", ["zone_id"], name: "index_facility_targets_on_zone_id", using: :btree
 
   create_table "grade_systems", force: :cascade do |t|
     t.string   "name"
@@ -303,6 +321,12 @@ ActiveRecord::Schema.define(version: 20161028170143) do
   add_foreign_key "facility_grade_systems", "grade_systems"
   add_foreign_key "facility_roles", "facilities"
   add_foreign_key "facility_roles", "users"
+  add_foreign_key "facility_targets", "facilities"
+  add_foreign_key "facility_targets", "grades"
+  add_foreign_key "facility_targets", "sub_child_zones"
+  add_foreign_key "facility_targets", "users"
+  add_foreign_key "facility_targets", "walls"
+  add_foreign_key "facility_targets", "zones"
   add_foreign_key "grade_systems", "facilities", on_delete: :nullify
   add_foreign_key "grade_systems", "users", on_delete: :nullify
   add_foreign_key "grades", "grade_systems", on_delete: :nullify

@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       resources :facility_roles
       resources :sub_child_zones
       resources :facility_grade_systems
+      resources :facility_targets
 
     end
   end

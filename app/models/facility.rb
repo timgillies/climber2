@@ -8,6 +8,7 @@ class Facility < ActiveRecord::Base
   has_many :admins
   has_many :ticks
   has_many :sub_child_zones
+  has_many :facility_targets
   has_many :facility_grade_systems
   has_many :grade_systems, :through => :facility_grade_systems
   has_many :grades, :through => :grade_systems

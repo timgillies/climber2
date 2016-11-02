@@ -1,0 +1,18 @@
+<% provide(:title, 'Facility Targets') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="headliner-line">
+        <h1>Set a target</h1>
+        <br/>
+        <i>Targets will be used to indicate if you are
+        above or below your desired route count.</i>
+      </div>
+        <%= render 'admin/facility_targets/form', object: @facility_targets %>
+      <div class="headliner">
+        <h1>Your Targets</h1>
+      </div>
+        <%= render 'admin/facility_targets/facility_targets', object: @facility_targets %>
+    </div>
+  </div>
