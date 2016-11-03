@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.first_name = auth.extra.raw_info.first_name
       user.last_name = auth.extra.raw_info.last_name
+      user.first_name = info.first_name
+      user.last_name = info.last_name
       user.location = auth.info.location
       user.gender = auth.extra.raw_info.gender
       user.image = auth.info.image
