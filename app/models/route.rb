@@ -10,6 +10,7 @@ class Route < ActiveRecord::Base
   has_many :grades
   belongs_to :tick
 
+
   accepts_nested_attributes_for :ticks
 
 

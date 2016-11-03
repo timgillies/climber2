@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'contact'      => 'static_pages#contact'
   get 'marketing'      => 'static_pages#marketing'
   get 'pricing'      => 'static_pages#pricing'
+  post 'webhook'    => 'static_pages#webhook'
   get 'privacy_policy'  => 'static_pages#privacy_policy'
   get 'terms_of_service' => 'static_pages#terms_of_service'
   get 'register'     => 'facilities#new'
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
   end
 
   resources :leads
+
+  resources :charges
 
 
   namespace :admin do

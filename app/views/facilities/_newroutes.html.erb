@@ -19,11 +19,22 @@
         labels: {
           format: '{value: %a, %m/%d}'
         },
+        tickLength: 0,
+        minorTickLength: 0,
       },
       yAxis: {
         title: {
           text: ""
         },
+        labels: {
+          enabled: false
+        },
+        tickLength: 0,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        gridLineColor: 'transparent',
+        minorTickLength: 0,
+        lineColor: 'transparent',
         allowDecimals: false
       },
       credits: {
@@ -35,11 +46,14 @@
            + Highcharts.numberFormat(this.y, 0);
         }
       },
+      legend: {
+        enabled: false
+      },
       plotOptions: {
         column: {
           grouping: true,
           dataLabels: {
-            enabled: false,
+            enabled: true,
             style: {
               textShadow: '0 0 0 black',
               color: '#333',
@@ -56,15 +70,15 @@
           }
         }
       },
-      colors: (["#6bda8f", "#b6da6b", "#da8f6b", "#da6bb6"]),
+      colors: (["#5DADE2", "#b6da6b", "#da8f6b", "#da6bb6"]),
 
       series: [
-        <% { "Bouldering" => @facility.routes.boulder, "Sport Climbing" => @facility.routes.sport }.each do |type, routes| %>
+        <% { "Bouldering" => @facility.routes.all }.each do |type, routes| %>
         {
           name: "<%= type %>",
           pointInterval: <%= 1.day * 1000 %>,
-          pointStart: <%= 3.weeks.ago.to_i * 1000 %>,
-          data: <%= (3.weeks.ago.to_date..Date.today).map { |date| routes.set_on(date).to_f }.inspect %>
+          pointStart: <%= 2.weeks.ago.to_i * 1000 %>,
+          data: <%= (2.weeks.ago.to_date..Date.today).map { |date| routes.set_on(date).to_f }.inspect %>
         },
         <% end %>
         ]

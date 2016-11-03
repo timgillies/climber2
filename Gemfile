@@ -18,6 +18,8 @@ gem 'bcrypt', '3.1.7'
 gem 'faker', '1.6.6'
 gem 'bower-rails'
 gem 'bootstrap-select-rails'
+gem 'stripe'
+gem "omniauth-google-oauth2"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

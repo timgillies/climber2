@@ -6,6 +6,7 @@ class GradeSystem < ActiveRecord::Base
   has_many :facilities, :through => :facility_grade_systems
   belongs_to :facility_grade_system, :primary_key => :grade_system_id, :foreign_key => :id
   has_many :facility_grade_systems
+  has_many :routes, :through => :grades
 
 
   validates :discipline, presence: true
