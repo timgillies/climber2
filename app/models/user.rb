@@ -55,7 +55,7 @@ def self.from_omniauth(access_token)
        user = User.create(name: data["name"],
           email: data["email"],
           password: Devise.friendly_token[0,20],
-          image: data.["image"]
+          image: data["image"]
        )
    end
   user
