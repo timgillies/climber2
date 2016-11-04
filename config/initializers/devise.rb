@@ -64,7 +64,7 @@ Devise.setup do |config|
                   info_fields: 'name,email,first_name,last_name,gender,location',
                   display: 'popup'
 
-  config.omniauth :google_oauth2, "327433036995-ih1a2p8jc4bjobpfdk06to7klchhqnj2.apps.googleusercontent.com", "1mxMLwZpHz8RG6pVFU3EvbKC", { }
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], { }
 
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the

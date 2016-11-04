@@ -1,14 +1,12 @@
 <div class="container-fluid">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
 
     <h2>CLIMB | CONNECT <small>BETA</small></h2>
 
     <br/>
-    <div class="span7 text-center">
-    <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, class: 'btn btn-facebook btn-md' %>
-    </div>
+    <%= render 'static_pages/login_buttons' %>
     <br/>
-    <h2>Don't have Facebook? </h2>
+    <h2>Don't have either? </h2>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 

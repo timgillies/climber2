@@ -719,11 +719,26 @@ span.picture {
   border-style: none;
 }
 
-.navbar-default div.navbar-collapse {
+.navbar-inverse div.navbar-collapse {
   border-top: none;
   box-shadow: none;
   background-color: transparent;
+  li a {
+    color: #aeaeae;
+    &:hover {
+      color: #ffffff;
+    }
+    }
 }
+
+/*-- change navbar dropdown color --*/
+ .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
+   background-color: #ffffff;
+   color: $gray;
+   &:hover {
+     color: $gray-darker
+   }
+ }
 
 .navbar-header {
   border-style: none;
@@ -953,17 +968,36 @@ span.picture {
   background-repeat: no-repeat;
   background-size: contain;
   float: none;
-  margin: 0 7px 0 0;
   padding-left: 40px;
   background-color: #3b5998;
   color: #ffffff;
   border-width: thick;
+  display: inline-block;
 }
 
 .btn-facebook:hover {
   background-color: #4e69a2;
   color: #ffffff;
 }
+
+.btn-google {
+  background-image: url(asset-path('google-btn.png'));
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  float: none;
+  padding-left: 40px;
+  background-color: #4885ed;
+  color: #ffffff;
+  font-family: 'roboto', sans-serif;
+  border-width: thick;
+  display: inline-block;
+}
+
+.btn-google:hover {
+  color: #ffffff;
+}
+
 
 /*flash*/
 .alert-error {
