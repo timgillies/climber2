@@ -51,7 +51,19 @@ class User < ActiveRecord::Base
           user.confirmed_at = DateTime.now.to_date
         end
       end
-    user
+    user do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.extra.raw_info.first_name
+      user.last_name = auth.extra.raw_info.last_name
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.location = auth.info.location
+      user.gender = auth.extra.raw_info.gender
+      user.image = auth.info.image
+      user.name = auth.info.name
+      user.email = auth.info.email
+    end    
   end
 
 
