@@ -719,18 +719,35 @@ span.picture {
   border-style: none;
 }
 
+.navbar-inverse div.navbar-collapse {
+  border-top: none;
+  box-shadow: none;
+  background-color: transparent;
+  li a{
+    color: #aeaeae;
+    &:hover {
+      color: #ffffff;
+    }
+    }
+}
 
 
-
-/*-- change navbar dropdown color
+/*-- change navbar dropdown color --*/
  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
-
+   background-color: transparent;
    color: $gray-darker;
    &:hover {
+     background-color: $gray-lighter;
      color: $gray-darker
    }
  }
 
+ .navbar-default .navbar-nav .open .dropdown-menu {
+   background-color: #ffffff;
+ }
+
+
+/*-- change navbar dropdown color --*/
  .navbar-inverse div.navbar-collapse .navbar-custom {
    li a {
      color: #ffffff;
@@ -738,7 +755,7 @@ span.picture {
        color: $gray-darker
      }
    }
- } --*/
+ }
 
 
 .navbar-header {
@@ -960,15 +977,12 @@ span.picture {
 }
 
 .btn-primary {
-      background: #2E86C1;
-      border-color: #2E86C1;
-      color: #ffffff;
+  border: none;
+
 }
 
 .btn-primary:hover {
-      background: #2471A3;
-      border-color: #2471A3;
-      color: #ffffff;
+
 }
 
 .btn-facebook {
