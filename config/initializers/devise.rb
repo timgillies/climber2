@@ -62,7 +62,8 @@ Devise.setup do |config|
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SEC'],
                   scope: 'email, public_profile',
                   info_fields: 'name,email,first_name,last_name,gender,location',
-                  display: 'popup'
+                  display: 'popup',
+                  secure_image_url: true
 
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], { }
 
