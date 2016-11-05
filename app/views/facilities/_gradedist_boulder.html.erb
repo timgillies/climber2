@@ -75,7 +75,7 @@
       },{
           type: 'spline',
           name: 'Target',
-          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).order('grade_systems.discipline ASC', 'grades.rank ASC').map {|f| [f.grade, FacilityTarget.where("grade_id = ? AND facility_id = ? AND zone_id IS NULL", f, @facility.id).sum(:value) ] } %>
+          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).order('grade_systems.discipline ASC', 'grades.rank ASC').map {|f| [f.grade, FacilityTarget.where("grade_id = ? AND facility_id = ?", f, @facility.id).sum(:value) ] } %>
       }
     ]
     });

@@ -80,7 +80,7 @@
       },{
           type: 'spline',
           name: 'Target',
-          data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, FacilityTarget.where("wall_id = ? AND grade_id IS NULL AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
+          data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, FacilityTarget.where("wall_id = ? AND grade_id IS NULL", f).sum(:value) ] } %>
       }
     ]
     });
