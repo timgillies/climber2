@@ -736,6 +736,9 @@ span.picture {
  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
    background-color: transparent;
    color: $gray-darker;
+   padding-top:  7px;
+   padding-bottom: 7px;
+   display: inline-block;
    &:hover {
      background-color: $gray-lighter;
      color: $gray-darker
