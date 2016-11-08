@@ -1,17 +1,12 @@
-class ChargesController < ApplicationController
+class RegistrationsController < ApplicationController
 
-  protect_from_forgery :except => :webhook
 
   def new
-    @charge = Charge.new
+    @registration = Registration.new
+    @plans = Plan.all.map{ |f| ["#{f.name.capitalize.humanize}", f.id] }
   end
 
   def create
-
-    @charge = Charge.new charge_params.merge(email: stripe_params["stripeEmail"],
-                                                               card_token: stripe_params["stripeToken"])
-
-    raise "Please, check registration errors" unless @registration.valid?
     # Amount in cents
     @amount = 500
 
@@ -28,22 +23,24 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
-    @charge.save
-    redirect_to @charge, notice: 'Registration was successfully created.'
-
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
   end
 
-private
+
+  private
 
   def stripe_params
     params.permit :stripeEmail, :stripeToken
   end
 
-  def charge_params
-    params.require(:charge).permit(:user_id, :email, :card_token)
+  def registration_params
+    params.require(:registration).permit(:user_id, :plan_id, :email)
   end
+
+
+
+
 
 end

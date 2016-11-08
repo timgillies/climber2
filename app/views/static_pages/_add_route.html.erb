@@ -4,9 +4,9 @@
     <div class="span7 text-center">
       <div class="row">
         <% if @userfacilities.count > 1 %>
-        <div class="btn-group btn-primary btn-md btn-block">
-          <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Add Routes <span class="caret"></span>
+        <div class="btn-group btn-homeaction btn-block">
+          <button type="button" class="btn btn-homeaction btn-lg btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ADD ROUTES <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
             <% @userfacilities.each do |f| %>
@@ -16,9 +16,9 @@
         </div>
         <br/>
         <br/>
-        <div class="btn-group btn-primary btn-md btn-block">
-          <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Find Routes <span class="caret"></span>
+        <div class="btn-group btn-homeaction  btn-block">
+          <button type="button" class="btn btn-homeaction btn-lg btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            FIND ROUTES <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
             <% @userfacilities.each do |f| %>
@@ -28,10 +28,10 @@
         </div>
 
         <% elsif @userfacilities.count == 1 %>
-          <%= link_to "Add routes", new_admin_facility_route_path(@userfacilities.first), class: "btn btn-primary btn-md" %>
-          <%= link_to "Find a route", admin_facility_routes_path(@userfacilities.first), class: "btn btn-primary btn-md" %>
+          <%= link_to "ADD ROUTES", new_admin_facility_route_path(@userfacilities.first), class: "btn btn-homeaction btn-lg btn-block" %>
+          <%= link_to "FIND ROUTES", admin_facility_routes_path(@userfacilities.first), class: "btn btn-homeaction btn-lg btn-block" %>
         <% else %>
-          <%= link_to "Register your facility", new_admin_facility_path, class: "btn btn-primary btn-md" %>
+          <%= link_to "Register your facility", new_admin_facility_path, class: "btn btn-signup btn-lg" %>
         <% end %>
 
         </div>

@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   belongs_to :admin
   belongs_to :facility_role
   has_many :facility_roles
+  has_many :charges
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -51,7 +52,7 @@ class User < ActiveRecord::Base
           user.confirmed_at = DateTime.now.to_date
         end
       end
-    user 
+    user
   end
 
 

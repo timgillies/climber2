@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   resources :leads
 
+  resources :registrations
   resources :charges
 
 

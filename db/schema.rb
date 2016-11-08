@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101220035) do
+ActiveRecord::Schema.define(version: 20161107191114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20161101220035) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "charges", force: :cascade do |t|
+    t.string   "email"
+    t.string   "card_token"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "charges", ["user_id"], name: "index_charges_on_user_id", using: :btree
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
@@ -139,6 +149,13 @@ ActiveRecord::Schema.define(version: 20161101220035) do
     t.datetime "updated_at"
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.string   "description"
+  end
+
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -163,6 +180,18 @@ ActiveRecord::Schema.define(version: 20161101220035) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "registrations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "plan_id"
+    t.string   "card_token"
+    t.string   "email"
+  end
+
+  add_index "registrations", ["plan_id"], name: "index_registrations_on_plan_id", using: :btree
+  add_index "registrations", ["user_id"], name: "index_registrations_on_user_id", using: :btree
 
   create_table "routes", force: :cascade do |t|
     t.integer  "user_id"
@@ -316,6 +345,7 @@ ActiveRecord::Schema.define(version: 20161101220035) do
 
   add_foreign_key "admins", "facilities"
   add_foreign_key "admins", "users"
+  add_foreign_key "charges", "users", on_delete: :nullify
   add_foreign_key "facilities", "users"
   add_foreign_key "facility_grade_systems", "facilities"
   add_foreign_key "facility_grade_systems", "grade_systems"
@@ -331,6 +361,8 @@ ActiveRecord::Schema.define(version: 20161101220035) do
   add_foreign_key "grade_systems", "users", on_delete: :nullify
   add_foreign_key "grades", "grade_systems", on_delete: :nullify
   add_foreign_key "grades", "users"
+  add_foreign_key "registrations", "plans", on_delete: :nullify
+  add_foreign_key "registrations", "users"
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades", on_delete: :nullify
   add_foreign_key "routes", "setters", on_delete: :nullify

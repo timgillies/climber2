@@ -1,11 +1,12 @@
 <div class="container-fluid">
   <div class="home-body">
     <div class="center jumbotron">
+      <div class="hidden-xs">
+        <h1 id="logo-black">CLIMB | CONNECT<small> BETA</small></h1>
+        <h2>Route Management | Facility Analytics | Climb Tracking | January 2017</h2>
+        <br/>
+      </div>
 
-      <h1 id="logo-black">CLIMB | CONNECT<small> BETA</small></h1>
-      <h2 class="hidden-xs">Route Management | Facility Analytics | Climb Tracking | January 2017</h2>
-
-      <br/>
       <% if current_user.present? %>
       <div class="row">
         <%= render 'static_pages/add_route' %>
