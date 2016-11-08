@@ -549,11 +549,14 @@ input {
 /* route list */
 
 .routelist {
+  vertical-align: bottom;
   list-style: none;
   padding: 0px;
   display: inline;
   font-weight: 300;
-  color: $gray;
+  font-size: 0.8em;
+  letter-spacing: 0.0px;
+  color: $gray-light;
   li {
     padding: 0px 0;
     border-top: 1px solid $gray-medium-light;
@@ -600,14 +603,17 @@ input {
     margin-bottom: 0px;
     font-weight: 300;
     text-align: left;
-    color: $gray;
+    display: inline;
+    color: $gray-light;
   }
 
   h3 {
     font-size: 2em;
-    letter-spacing: -1px;
+    letter-spacing: 0.5px;
     margin-bottom: 0px;
-    font-weight: 300;
+    font-weight: lighter;
+    font-family: 'Oswald', sans-serif;
+    display: inline;
     text-align: left;
     color: $gray;
     margin-top: 0px;
@@ -619,10 +625,12 @@ input {
     margin-bottom: 0px;
     font-weight: lighter;
     text-align: left;
+    letter-spacing: 0.8px;
+    font-family: 'Oswald', sans-serif;
   }
 
   p {
-    font-size: 1.2em;
+    font-size: 1.7em;
     letter-spacing: -1px;
     margin-top: 0px;
     font-weight: 300;
@@ -959,15 +967,14 @@ span.picture {
   letter-spacing: 1px;
   opacity: 1;
   color: #CD6155;
-  margin-top: 5px;
+  display: inline-block;
+
 }
 
 .btn-expire:hover, .btn-expired, .btn-expired:hover{
   border-color: #CD6155;
   background: #CD6155;
-  opacity: 1;
   color: #ffffff;
-  margin-top: 5px;
 }
 
 .btn-tag, .btn-tagged:hover {
@@ -976,7 +983,6 @@ span.picture {
   background: #ffffff;
   opacity: 1;
   color: $gray-light;
-  margin-top: 5px;
   display: inline-block;
 }
 
@@ -985,9 +991,6 @@ span.picture {
   background: $gray-light;
   opacity: 1;
   color: #ffffff;
-  margin-top: 5px;
-  display: block;
-  width: 100%;
 }
 
 .btn-edit, .btn-edit:hover{
@@ -1005,17 +1008,17 @@ span.picture {
 }
 
 .btn-homeaction {
-  border: none;
   background: rgba(41, 128, 185, 0.4);
   color: $gray-lighter;
-  font-size: 0.9em;
+  font-size: 1.1em;
   letter-spacing: 1px;
 }
 
-.btn-homeaction:hover {
+.btn-homeaction:hover , .btn-homeaction:active{
   color: $gray-lighter;
   background: #2471A3;
 }
+
 
 .btn-facebook {
   background-image: url(asset-path('facebook-6-24.png'));
