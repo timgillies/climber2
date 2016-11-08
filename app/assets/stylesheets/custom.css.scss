@@ -975,6 +975,7 @@ span.picture {
   border-color: #CD6155;
   background: #CD6155;
   color: #ffffff;
+  display: inline-block;
 }
 
 .btn-tag, .btn-tagged:hover {
@@ -991,6 +992,8 @@ span.picture {
   background: $gray-light;
   opacity: 1;
   color: #ffffff;
+  display: inline-block;
+  width: 100%;
 }
 
 .btn-edit, .btn-edit:hover{
