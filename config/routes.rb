@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :plans
   resources :charges
 
-  post 'admin/subscriptions/webhook'      => 'admin/subscriptions#webhook'
+  post 'admin/subscriptions/webhook'      => 'admin/subscriptions#webhook' #webhook for Stripe
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
