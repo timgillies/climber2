@@ -1,18 +1,10 @@
-<%= form_for [@charge] do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
-
-<%= hidden_field_tag :user_id, current_user.id %>
-
-<form action="/charges" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_DvsqRdzbIZU1Qk2M4hem9GRY"
-    data-amount="2000"
-    data-name="Climb | Connect LLC"
-    data-description="Single Facility Subscription"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
-  </script>
-</form>
-
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="headliner-line">
+        <h1>Give us your money</h1>
+      </div>
+      <%= render 'charges/form', object: @charges %>
+    </div>
+  </div>
+</div>

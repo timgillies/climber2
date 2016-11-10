@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107191114) do
+ActiveRecord::Schema.define(version: 20161110220754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161107191114) do
     t.boolean  "custom"
     t.boolean  "vscale"
     t.boolean  "yds"
+    t.integer  "plan_id"
   end
 
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
@@ -154,6 +155,7 @@ ActiveRecord::Schema.define(version: 20161107191114) do
     t.datetime "updated_at",  null: false
     t.string   "name"
     t.string   "description"
+    t.decimal  "price"
   end
 
   create_table "rates", force: :cascade do |t|
@@ -247,6 +249,20 @@ ActiveRecord::Schema.define(version: 20161107191114) do
 
   add_index "sub_child_zones", ["facility_id"], name: "index_sub_child_zones_on_facility_id", using: :btree
   add_index "sub_child_zones", ["wall_id"], name: "index_sub_child_zones_on_wall_id", using: :btree
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "email"
+    t.string   "card_token"
+    t.integer  "user_id"
+    t.integer  "plan_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.date     "end_date"
+    t.string   "customer_id"
+    t.integer  "facility_id"
+  end
+
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "ticks", force: :cascade do |t|
     t.integer  "user_id"
@@ -346,6 +362,7 @@ ActiveRecord::Schema.define(version: 20161107191114) do
   add_foreign_key "admins", "facilities"
   add_foreign_key "admins", "users"
   add_foreign_key "charges", "users", on_delete: :nullify
+  add_foreign_key "facilities", "plans", on_delete: :nullify
   add_foreign_key "facilities", "users"
   add_foreign_key "facility_grade_systems", "facilities"
   add_foreign_key "facility_grade_systems", "grade_systems"
@@ -375,6 +392,9 @@ ActiveRecord::Schema.define(version: 20161107191114) do
   add_foreign_key "sub_child_zones", "facilities"
   add_foreign_key "sub_child_zones", "users"
   add_foreign_key "sub_child_zones", "walls"
+  add_foreign_key "subscriptions", "facilities", on_delete: :nullify
+  add_foreign_key "subscriptions", "plans", on_delete: :nullify
+  add_foreign_key "subscriptions", "users", on_delete: :nullify
   add_foreign_key "ticks", "facilities", on_delete: :nullify
   add_foreign_key "ticks", "routes", on_delete: :nullify
   add_foreign_key "ticks", "users"

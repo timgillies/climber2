@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'contact'      => 'static_pages#contact'
   get 'marketing'      => 'static_pages#marketing'
   get 'pricing'      => 'static_pages#pricing'
-  post 'webhook'    => 'static_pages#webhook'
   get 'privacy_policy'  => 'static_pages#privacy_policy'
   get 'terms_of_service' => 'static_pages#terms_of_service'
   get 'register'     => 'facilities#new'
@@ -36,15 +35,18 @@ Rails.application.routes.draw do
 
   resources :leads
 
-  resources :registrations
+  resources :plans
   resources :charges
 
+  post 'admin/subscriptions/webhook'      => 'admin/subscriptions#webhook'
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :grade_systems do
       resources :grades
     end
+
+
 
     resources :facilities do
       resources :routes do
@@ -54,6 +56,15 @@ Rails.application.routes.draw do
           post :untagged #output path - tagged_route/:id
         end
       end
+      resources :subscriptions
+
+      member do
+        get :plans
+        post :choose_free_plan
+        post :choose_basic_plan
+        post :choose_pro_plan
+      end
+
       resources :grades
       resources :zones
       resources :walls
@@ -67,6 +78,7 @@ Rails.application.routes.draw do
   end
 
   resources :facilities do
+
     resources :routes, only: [:index, :show]
     resources :grades, only: [:index, :show]
     resources :zones, only: [:index, :show]

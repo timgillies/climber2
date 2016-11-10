@@ -1,0 +1,67 @@
+<br/>
+<div class="container-fluid">
+  <div class="plan-list">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-free">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        FREE PLAN</h4>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead">
+                        <strong>$0 / month</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>30 routes per month</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>1 setter account</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>24/7 support</li>
+                </ul>
+                <div class="panel-footer">
+                    <%= button_to "Proceed",  choose_free_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-free', method: :choose_free_plan %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-basic">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        MONTHLY BASIC</h4>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead">
+                        <strong>$20 / month</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><i class="icon-ok text"></i>100 routes per month</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>5 setter accounts</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>24/7 support</li>
+                </ul>
+                <div class="panel-footer">
+                    <%= button_to "BUY NOW!",  choose_basic_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-basic', method: :choose_basic_plan %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-pro">
+                <div class="panel-heading">
+                    <h4 class="text-center">
+                        MONTHLY PRO</h4>
+                </div>
+                <div class="panel-body text-center">
+                    <p class="lead">
+                        <strong>$30 / month</strong></p>
+                </div>
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited routes</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited setter accounts</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>24/7 support</li>
+                </ul>
+                <div class="panel-footer">
+                  <%= button_to "BUY NOW!",  choose_pro_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-pro', method: :choose_pro_plan %>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

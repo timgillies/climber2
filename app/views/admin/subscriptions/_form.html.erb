@@ -1,0 +1,24 @@
+<br/>
+
+<%= form_for [:admin, @subscription], :html => {:class => "form-label"} do |f| %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+      <%= label_tag :card_number, "Credit Card Number " %>
+      <%= text_field_tag :card_number, nil, class: "input-block-level", "data-stripe" => "number", name: nil %>
+  </div>
+  <div class="field">
+      <%= label_tag :card_verification, "Security Code on Card (CVV)" %>
+      <%= text_field_tag :card_verification, nil, class: "input-block-level", "data-stripe" => "cvv", name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name,i| ["#{i+1} - #{name}", i+1] }), include_blank: false, "data-stripe" => "exp-month", class: "span2", name: nil %>
+    <%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp-year", class: "span1", name: nil %>
+  </div>
+  <div class="actions"><%= f.submit "Subscribe" %></div>
+<% end %>

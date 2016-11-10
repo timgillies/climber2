@@ -1,9 +1,9 @@
 <%= form_for [@charge] do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= hidden_field_tag :user_id, current_user.id %>
+<%= f.hidden_field :user_id, value: current_user.id %>
 
-
+<div class="actions">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_DvsqRdzbIZU1Qk2M4hem9GRY"
@@ -13,5 +13,6 @@
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-locale="auto">
   </script>
+</div>
 
 <% end %>

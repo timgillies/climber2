@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   belongs_to :admin
   belongs_to :facility_role
   has_many :facility_roles
-  has_many :charges
+  has_many :subscriptions
 
   attr_accessor :remember_token, :activation_token, :reset_token
 

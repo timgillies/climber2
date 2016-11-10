@@ -1,4 +1,5 @@
 class Plan < ActiveRecord::Base
 
-  has_many :registrations
+  has_many :subscriptions
+  has_many :facilities
 end

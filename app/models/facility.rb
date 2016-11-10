@@ -15,6 +15,7 @@ class Facility < ActiveRecord::Base
   belongs_to :facility_grade_system
   belongs_to :tick
   has_many :facility_roles
+  belongs_to :plan
 
   default_scope -> { order(created_at: :asc) }
   validates :name, presence: true
@@ -44,6 +45,10 @@ class Facility < ActiveRecord::Base
     else
       self.name
     end
+  end
+
+  def update_plan_choice(plan_id)
+    self.update_attribute(:plan_id, plan_id)
   end
 
   private

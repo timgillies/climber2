@@ -1,0 +1,18 @@
+<%= form_for [@subscription] do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= f.hidden_field :user_id, value: current_user.id %>
+
+<div class="actions">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_DvsqRdzbIZU1Qk2M4hem9GRY"
+    data-amount="2000"
+    data-name="Climb | Connect LLC"
+    data-description="Single Facility Subscription"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</div>
+
+<% end %>

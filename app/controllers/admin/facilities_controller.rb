@@ -6,7 +6,7 @@ class Admin::FacilitiesController < ApplicationController
   before_action :marketing_role,            except: [:new, :create, :index, :show]
 
 
-  layout "admin", except: [:index, :new, :create]
+  layout "admin", except: [:index, :new, :create, :plans]
 
   include FacilitiesHelper
 
@@ -31,8 +31,7 @@ class Admin::FacilitiesController < ApplicationController
     @facility = current_user.facilities.build(facility_params)
     if @facility.save
       current_user.update_attribute(:role, 'facility_admin')
-      flash[:success] = "Thank you for registering your facility"
-      redirect_to(admin_facility_path(@facility))
+      redirect_to(plans_admin_facility_path(@facility))
     else
       render 'new'
     end
@@ -62,12 +61,34 @@ class Admin::FacilitiesController < ApplicationController
     redirect_to admin_facilities_url
   end
 
+  def plans
+    @facility = Facility.find(params[:id])
+  end
+
+  def choose_free_plan
+    @facility = Facility.find(params[:id])
+    @facility.update_plan_choice("1")
+    redirect_to admin_facility_path(@facility)
+  end
+
+  def choose_basic_plan
+    @facility = Facility.find(params[:id])
+    @facility.update_plan_choice("2")
+    redirect_to new_admin_facility_subscription_path(@facility)
+  end
+
+  def choose_pro_plan
+    @facility = Facility.find(params[:id])
+    @facility.update_plan_choice("3")
+    redirect_to new_admin_facility_subscription_path(@facility)
+  end
+
 
 
   private
 
     def facility_params
-      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom, :vscale, :yds, :user_id)
+      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom, :vscale, :yds, :user_id, :plan_id)
     end
 
     # Before filters

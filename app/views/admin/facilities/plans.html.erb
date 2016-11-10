@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="headliner-line">
+        <h1> <%= @facility.name %></h1>
+      </div>
+      <%= render 'admin/facilities/plans', object: @plans %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<% provide(:title, "Thank you!") %>
+
+<div class="container">
+  <div class="col-sm-12">
+    <div class="routes">
+
+      <div class="row">
+        <div class="col-sm-6">
+            <p>Card Token: <strong><%= @subscription.card_token %></strong></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <p>Customer ID: <strong><%= @subscription.customer_id %></strong></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <p>Subscription End Date: <strong><%= @subscription.end_date %></strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
