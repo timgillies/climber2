@@ -11,6 +11,6 @@ class FacilityTarget < ActiveRecord::Base
   validates :zone_id, uniqueness: {scope: [:grade_id, :wall_id, :sub_child_zone_id]}
   validates :wall_id, uniqueness: {scope: [:zone_id, :sub_child_zone_id, :grade_id]}
   validates :sub_child_zone_id, uniqueness: {scope: [:zone_id, :wall_id, :grade_id]}
-  validates :grade_id, uniqueness: {scope: [:zone_id, :wall_id, :sub_child_zone_id]}
-  
+  validates :grade_id, presence: true, uniqueness: {scope: [:zone_id, :wall_id, :sub_child_zone_id]}
+
 end

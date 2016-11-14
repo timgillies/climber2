@@ -1,0 +1,55 @@
+
+<div class="routelist">
+    <h3>Facility setup checklist</h3>
+  <div class="tab">
+    <%= link_to edit_admin_facility_path(@facility) do %>
+          <p>
+          <% if @facility.name? %>
+            <i class="glyphicon glyphicon-ok glyphicon-green"></i>
+            <% else %>
+            <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
+            <% end %> Create your facility </p>
+    <%end %>
+
+
+      <%= link_to admin_facility_grades_path(@facility) do %>
+            <p>
+            <% if @facility.facility_grade_systems.count > 0 %>
+              <i class="glyphicon glyphicon-ok glyphicon-green"></i>
+              <% else %>
+              <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
+              <% end %> Select grading systems </p>
+      <%end %>
+
+
+      <%= link_to admin_facility_zones_path(@facility) do %>
+            <p>
+              <% if @facility.zones.count > 0 %>
+              <i class="glyphicon glyphicon-ok glyphicon-green"></i>
+              <% else %>
+              <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
+              <% end %> Set up zones within your facility </p>
+      <%end %>
+
+      <%= link_to admin_facility_facility_roles_path(@facility) do %>
+            <p>
+              <% if @facility.facility_roles.count > 1 %>
+              <i class="glyphicon glyphicon-ok glyphicon-green"></i>
+              <% else %>
+              <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
+              <% end %> Invite your team </p>
+      <%end %>
+
+
+      <%= link_to admin_facility_facility_targets_path(@facility) do %>
+            <p>
+              <% if @facility.facility_targets.count > 0 %>
+              <i class="glyphicon glyphicon-ok glyphicon-green"></i>
+              <% else %>
+              <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
+              <% end %> Set up route count targets </p>
+      <%end %>
+  </div>
+  <br/>
+</div>
+<%= link_to "ADD ROUTES", new_admin_facility_route_path(@userfacilities.first), class: "btn btn-homeaction btn-lg btn-block" %>

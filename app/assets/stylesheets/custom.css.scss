@@ -781,6 +781,10 @@ span.picture {
   color: #52BE80;
 }
 
+.glyphicon-gray {
+  color: $gray-lighter;
+}
+
 
 /* Navbar */
 
@@ -945,6 +949,22 @@ span.picture {
 .btn-signup:hover, .btn-signup:active{
   border-color: #58D68D;
   background: #58D68D;
+  opacity: 1;
+  color: #ffffff;
+}
+
+.btn-save{
+  border-color: #3498DB;
+  background: #3498DB;
+  opacity: 1;
+  color: #ffffff;
+  transition-duration: 0.5s;
+  letter-spacing: -0.0px;
+}
+
+.btn-save:hover, .btn-save:active{
+  border-color: #2471A3;
+  background: #2471A3;
   opacity: 1;
   color: #ffffff;
 }

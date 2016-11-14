@@ -1,55 +1,34 @@
 
 <br/>
 <div class="col-sm-12">
-  <%= form_for [:admin, @facility, @facility_target ] do |f| %>
+  <%= form_for [:admin, @facility, @facility_target ], :html => {:class => "form-label"} do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
   <div class="row">
-    <div class="col-md-12">
-      <%= f.label :value, "Desired number of routes" %>
-      <%= f.text_field :value, class: 'form-control', placeholder: "Enter a number..." %>
+    <div class="col-sm-4">
+      <%= f.label :grade_id,"Grade*" %>
+      <%= f.grouped_collection_select(:grade_id, facility_systems , :grades, :name, :id, :grade,
+      { include_blank: 'Select grade' },
+      {class: "form-control"}) %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.label :zone_id,"Zone*" %>
+      <%= f.select(:zone_id, @facilityzones,
+      { include_blank: 'Select primary zone' },
+      {class: "form-control"}) %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.label :value, "Target value*" %>
+      <%= f.text_field :value, class: 'form-control', placeholder: "Number of routes..." %>
     </div>
   </div>
-</div>
-  <i>Select desired attribute to assign value to.  You can set one or multiple attributes or you can select none to assign a value to your overall facility.</i>
-  <div class="col-sm-12">
-    <br/>
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.label :grade_id,"Grade" %>
-        <%= f.grouped_collection_select(:grade_id, facility_systems , :grades, :name, :id, :grade,
-        { include_blank: 'Select grade' },
-        {class: "form-control"}) %>
-      </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= f.submit "Save", class: "btn btn-submit" %>
     </div>
-
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.label :zone_id,"Zone" %>
-        <%= f.select(:zone_id, @facilityzones,
-        { include_blank: 'Select primary zone' },
-        {class: "form-control"}) %>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.label :wall_id, "Sub-zone" %>
-        <%= f.select(:wall_id, @facilitywalls,
-        { include_blank: 'Select sub-zone' },
-        {class: "form-control"}) %>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.submit "Save", class: "btn btn-submit" %>
-      </div>
-    </div>
-
+  </div>
   <br/>
-<% end %>
-
 </div>
+
+
+<% end %>

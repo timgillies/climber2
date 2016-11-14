@@ -1,0 +1,85 @@
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    new Highcharts.Chart({
+      chart: {
+        renderTo: "zonegradedist-<%= fz.id %>",
+        type: "column",
+        style: {
+          fontFamily: 'Helvetica',
+        }
+      },
+      title: {
+        text: ""
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          enabled: true
+        },
+        tickLength: 0,
+        minorGridLineWidth: 0,
+        minorTickLength: 0,
+      },
+      yAxis: {
+        title: {
+          text: ""
+        },
+        labels: {
+          enabled: false
+        },
+        tickLength: 0,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        gridLineColor: 'transparent',
+        minorTickLength: 0,
+        lineColor: 'transparent',
+        allowDecimals: false
+      },
+      credits: {
+        enabled: false
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        spline: {
+          marker: {
+              enabled: false
+          }
+        },
+        column: {
+          dataLabels: {
+            enabled: true,
+            style: {
+              textShadow: '0 0 0 black',
+              color: '#333',
+              fontFamily: 'Helvetica',
+              fontWeight: 'normal'
+            },
+            formatter: function() {
+                if (this.y != 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
+            }
+          }
+        }
+      },
+      colors: (["#6bda8f", "#5499C7", "#da8f6b", "#da6bb6"]),
+
+      series: [{
+          type: 'column',
+          name: 'Routes',
+          data: <%= raw facility_grades.all.map {|fs| [fs.grade, Route.current.where("grade_id = ? AND zone_id = ? AND facility_id = ?", fs, fz.id, @facility.id).count] } %>
+      },{
+          type: 'spline',
+          name: 'Target',
+          data: <%= raw facility_grades.all.map {|fs| [fs.grade, FacilityTarget.where("grade_id = ? AND zone_id = ? AND facility_id = ?", fs, fz.id, @facility.id).sum(:value) ] } %>
+        }
+      ]
+    });
+  });
+</script>
+<div id="zonegradedist-<%= fz.id %>" style="width:100%; height:200px;"></div>

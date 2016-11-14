@@ -1,6 +1,6 @@
 <br/>
 <div class="row">
-  <%= form_for [:admin, @facility, @wall], remote: false do |fw| %>
+  <%= form_for [:admin, @facility, @wall], :html => {:class => "form-label"}, remote: false do |fw| %>
   <%= render 'shared/error_messages', object: fw.object %>
 
   <div class="col-sm-6 col-md-6 col-lg-6">

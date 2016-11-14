@@ -3,6 +3,7 @@
 <%= form_for [:admin, @subscription], :html => {:class => "form-label"} do |f| %>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>

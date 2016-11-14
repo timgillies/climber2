@@ -1,5 +1,5 @@
 <br/>
-<%= form_for [:admin, @facility, @sub_child_zone], remote: false do |fw| %>
+<%= form_for [:admin, @facility, @sub_child_zone], :html => {:class => "form-label"}, remote: false do |fw| %>
   <%= render 'shared/error_messages', object: fw.object %>
 
 <div class="row">

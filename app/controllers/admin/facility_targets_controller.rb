@@ -88,8 +88,8 @@ class Admin::FacilityTargetsController < ApplicationController
 
 
     def destroy
-      Route.find(params[:id]).destroy
-      flash[:success] = "Route deleted"
+      FacilityTarget.find(params[:id]).destroy
+      flash[:success] = "Target deleted"
       redirect_to :back
     end
 

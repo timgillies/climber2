@@ -31,7 +31,7 @@ class Admin::FacilityRolesController < ApplicationController
     @facility_roles = FacilityRole.page(params[:page]) # makes "each" work in the partial
     @facility_role.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @facility_role.save
-      flash[:success] = "User added!"
+      flash[:success] = "#{ @facility_role.email } was successfully invited!"
       redirect_to(admin_facility_facility_roles_path(@facility))
     else
       render 'new'

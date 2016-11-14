@@ -1,10 +1,11 @@
-<% provide(:title, @facility.name ) %>
 
+<% provide(:title, @facility.name ) %>
+<div class="container-fluid">
 <% if @routes.count == 0 %>
 
-  <h1><small>Start adding routes to see your analytics!</small></h1>
+  <%= render 'admin/facilities/checklist' %>
 
-  <% else %>
+<% else %>
 
   <% @facility_systems.each do |fs| %>
 
@@ -37,5 +38,5 @@
   </div>
 </div>
 
-
+</div>
 <% end %>

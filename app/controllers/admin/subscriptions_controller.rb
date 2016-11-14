@@ -32,6 +32,7 @@ class Admin::SubscriptionsController < ApplicationController
     )
 
     @subscription.customer_id = customer.id
+    @subscription.plan_id = @facility.plan_id
 
     @subscription.save
     redirect_to admin_facility_subscription_path(@facility, @subscription), notice: 'Thank you for your payment!'
@@ -62,7 +63,7 @@ private
   end
 
   def subscription_params
-    params.require(:subscription).permit(:user_id, :email, :card_token, :customer_id, :facility_id, :end_date)
+    params.require(:subscription).permit(:user_id, :email, :card_token, :customer_id, :facility_id, :end_date, :plan_id)
   end
 
 end
