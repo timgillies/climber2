@@ -247,6 +247,7 @@ textarea[type=text] {
   list-style: none;
   font-style: normal;
   font-weight: 300;
+  display: inline;
   h1 {
     font-size: 1.7em;
     font-weight: 300;
@@ -254,6 +255,12 @@ textarea[type=text] {
     margin-bottom: 1px;
     text-align: left;
     color: $gray-darker;
+  }
+
+  .btn {
+    display: inline;
+    margin-top: 7px;
+    align-self: auto;
   }
 }
 
@@ -981,6 +988,24 @@ span.picture {
   border-color: #3498DB;
   opacity: 1;
   color: $gray;
+}
+
+.btn-nav, .btn-nav:hover, .btn-nav:active{
+  border-color: $gray-lighter;
+  background: $gray-lighter;
+  opacity: 1;
+  color: $gray-light;
+  transition-duration: 0.5s;
+  letter-spacing: -0.0px;
+}
+
+.btn-create, .btn-create:hover, .btn-create:active{
+  border-color: #3498DB;
+  background: #3498DB;
+  opacity: 1;
+  color: white;
+  transition-duration: 0.5s;
+  letter-spacing: -0.0px;
 }
 
 

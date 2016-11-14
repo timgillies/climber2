@@ -3,21 +3,23 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="btn-group pull-right" id="new_facility_role">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Invite Team Members <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><%= link_to "Invite team member", new_admin_facility_facility_role_path, remote: true %></li>
-        </ul>
+      <div class="headliner">
+        <h1 class="pull-left">Facility Team</h1>
+        <span class="btn-group pull-right">
+          <button type="button" class="btn btn-create dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Invite Team Members <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Invite team member", new_admin_facility_facility_role_path, remote: true %></li>
+          </ul>
+        </span>
       </div>
     </div>
   </div>
+  <div class="row" id="new_facility_role">
+  </div>
   <div class="row">
     <div class="col-sm-12">
-      <div class="headliner">
-        <h1>Facility Team</h1>
-      </div>
       <%= render 'admin/facility_roles/facility_role', object: @facility_roles %>
     </div>
   </div>

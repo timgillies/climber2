@@ -22,7 +22,7 @@
             </button>
             <span class="hidden-md hidden-lg hidden-sm hidden-xl">
               <ul>
-              <li class="pull-right"><%= link_to "Add Routes", new_admin_facility_route_path(@facility), class: "btn btn-primary btn-sm" %></li>
+              <li class="pull-right"><%= link_to "Add Routes", new_admin_facility_route_path(@facility), class: "btn btn-nav btn-md" %> <%= link_to "Find Routes", admin_facility_routes_path(@facility), class: "btn btn-nav btn-md" %></li>
               </ul>
             </span>
         </div>
@@ -31,13 +31,13 @@
         <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-left">
             <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "Home", admin_facility_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "Route Database", admin_facility_routes_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %>"><%= link_to "Add Routes", new_admin_facility_route_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %> hidden-xs"><%= link_to "Route Database", admin_facility_routes_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %> hidden-xs"><%= link_to "Add Routes", new_admin_facility_route_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "Zones", admin_facility_zones_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(new_admin_facility_setter_path(@facility)) %>"><%= link_to "Team", admin_facility_facility_roles_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "Grades", admin_facility_grades_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(edit_admin_facility_path(@facility)) %>"><%= link_to "Account", edit_admin_facility_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_facility_targets_path(@facility)) %>"><%= link_to "Targets", admin_facility_facility_targets_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(edit_admin_facility_path(@facility)) %>"><%= link_to "Facility", edit_admin_facility_path(@facility) %></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>

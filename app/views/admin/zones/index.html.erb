@@ -3,20 +3,22 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="btn-group pull-right" id="new_zone">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Create a Zone <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><%= link_to "New primary", new_admin_facility_zone_path, remote: true %></li>
-          <li><%= link_to "New child", new_admin_facility_wall_path, remote: true %></li>
-          <li><%= link_to "New sub-child", new_admin_facility_sub_child_zone_path, remote: true %></li>
-        </ul>
+      <div class="headliner">
+        <h1 class="pull-left">Facility Zones</h1>
+            <span class="btn-group pull-right">
+              <button type="button" class="btn btn-create dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Create a Zone <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "New primary", new_admin_facility_zone_path, remote: true %></li>
+                <li><%= link_to "New child", new_admin_facility_wall_path, remote: true %></li>
+                <li><%= link_to "New sub-child", new_admin_facility_sub_child_zone_path, remote: true %></li>
+              </ul>
+            </span>
       </div>
     </div>
   </div>
-  <div class="headliner">
-    <h1>Facility Zones</h1>
+  <div class="row" id="new_zone">
   </div>
   <div class="row">
     <div class="col-sm-12">

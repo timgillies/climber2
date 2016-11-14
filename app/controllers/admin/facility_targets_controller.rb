@@ -10,7 +10,7 @@ class Admin::FacilityTargetsController < ApplicationController
 
     def index
       @facility_target = FacilityTarget.new
-      @facility_targets = FacilityTarget.page(params[:page])
+      @facility_targets = @facility.facility_targets.page(params[:page])
       @facility = Facility.find(params[:facility_id])
       @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
       @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
