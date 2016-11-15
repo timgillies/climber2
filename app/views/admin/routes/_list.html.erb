@@ -61,7 +61,7 @@
               <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
           </div>
           <div class="col-xs-6 col-sm-8 col-md-8">
-            <div class="tab"><strong>Set by: </strong><%= f.user.name if f.setter%></div>
+            <div class="tab"><strong>Set by: </strong><%= f.user.name %></div>
           </div>
           <div class="col-xs-6 col-sm-4 col-md-4">
             <div class="tab text-right">set <%= time_ago_in_words(f.created_at) %> ago</div>

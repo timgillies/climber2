@@ -69,7 +69,7 @@ class Admin::RoutesController < ApplicationController
 
   def create
     @facility = Facility.find(params[:facility_id])
-    @route = current_user.routes.build(route_params)
+    @route = Route.new(route_params)
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
 
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
@@ -147,7 +147,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :setter_id, :discipline, :description, :active, :tagged)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged)
   end
 
   def options_for_grade_select
@@ -166,7 +166,7 @@ class Admin::RoutesController < ApplicationController
   end
 
   def options_for_setter_select
-      @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+      @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id.to_i]}
     # provides the list of available walls in the route list filters
   end
 

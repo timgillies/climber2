@@ -3,9 +3,9 @@ class Route < ActiveRecord::Base
   belongs_to :zone
   belongs_to :wall
   belongs_to :sub_child_zone
-  belongs_to :user
+  belongs_to :user, :class_name => "User", :foreign_key => "user_id", :primary_key => "id"
   belongs_to :grade
-  belongs_to :setter
+  belongs_to :set_by_id, :class_name => "User", :foreign_key => "user_id", :primary_key => "id"
   has_many :ticks
   has_many :grades
   belongs_to :tick
@@ -15,11 +15,12 @@ class Route < ActiveRecord::Base
 
 
   validates :color, presence: true
-  validates :setter, presence: true
+  validates :user_id, presence: true
   validates :setdate, presence: true
   validates :grade, presence: true
 
   default_scope -> { order(created_at: :desc) }
+
 
 
 # checks if route is active or expired.  true = active
@@ -120,7 +121,7 @@ scope :sorted_by, lambda { |sort_option|
   }
 
   scope :with_setter_id, lambda { |setter_ids|
-      where( 'setter_id = ?', setter_ids)
+      where( 'user_id = ?', setter_ids)
   }
 
   scope :with_status_id, lambda { |status_ids|

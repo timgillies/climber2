@@ -27,15 +27,15 @@
       <% if @facility_role_access.present? && @facility_role_access.name == "setter" %>
       <div class="row">
         <div class="col-sm-12">
-          <%= f.hidden_field :setter_id, :value => current_user.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
         </div>
       </div>
 
       <% else %>
       <div class="row">
         <div class="col-sm-12">
-          <%= f.label :setter_id,"Setter*" %>
-          <%= f.select(:setter_id, @facilitysetters,
+          <%= f.label :user_id, "Setter*" %>
+          <%= f.select(:user_id, @facilitysetters,
           { include_blank: 'Select setter' },
           {class: "form-control"}) %>
         </div>
@@ -87,7 +87,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <%= f.label :description, "Say something about the route" %>
+          <%= f.label :description, "Description" %>
           <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
         </div>
       </div>

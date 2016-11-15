@@ -7,15 +7,15 @@ class User < ActiveRecord::Base
 
   has_many :facility_relationships, :through => :facility_roles, source: :facility
   has_many :facilities
-  has_many :routes
+  has_many :routes_as_creator, :class_name => "Route", :foreign_key => "user_id"
   has_many :grades
   has_many :zones
   has_many :walls
-  has_many :setters
   has_many :ticks
   has_many :facility_targets
   has_many :sub_child_zones
   has_many :grade_systems
+  has_many :routes_as_setter, :class_name => "Route", :foreign_key => "set_by_id"
   belongs_to :admin
   belongs_to :facility_role
   has_many :facility_roles
