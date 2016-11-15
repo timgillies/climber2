@@ -67,7 +67,7 @@
       series: [{
           type: 'column',
           name: 'Routes',
-          data: <%= raw facility_grades.all.map {|fs| [fs.grade, Route.current.where("grade_id = ? AND setter_id = ? AND facility_id = ?", fs, f.user.id, @facility.id).count] } %>
+          data: <%= raw facility_grades.all.map {|fs| [fs.grade, Route.current.where("grade_id = ? AND user_id = ? AND facility_id = ?", fs, f.user.id, @facility.id).count] } %>
       }]
     });
   });

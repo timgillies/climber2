@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="row">
-        <% if Route.where(user_id: f.id).count > 0 %>
+        <% if Route.where(user_id: f.user_id).count > 0 %>
           <%= render 'facilities/rolegradedist', :f => f %>
         <% end %>
       </div>
