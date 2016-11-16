@@ -1,8 +1,12 @@
 class Admin::SubscriptionsController < ApplicationController
 
+  layout "admin"
+
   protect_from_forgery :except => :webhook
 
   def index
+    @facility = Facility.find(params[:facility_id])
+    @subscriptions = @facility.subscriptions.page(params[:page])
   end
 
   def new
@@ -33,9 +37,10 @@ class Admin::SubscriptionsController < ApplicationController
 
     @subscription.customer_id = customer.id
     @subscription.plan_id = @facility.plan_id
+    @subscription.stripe_subscription_id = customer.subscriptions['data'][0].id
 
     @subscription.save
-    redirect_to admin_facility_subscription_path(@facility, @subscription), notice: 'Thank you for your payment!'
+    redirect_to admin_facility_subscriptions_path(@facility), notice: 'Thank you for your payment!'
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -48,13 +53,29 @@ class Admin::SubscriptionsController < ApplicationController
     case event.type
       when "invoice.payment_succeeded" #renew subscription
         Subscription.find_by_customer_id(event.data.object.customer).renew
+      when 'invoice.payment_failed'
+        SUbscription.find_by_customer_ud(event.data.object.customer).cancel
     end
     render status: :ok, json: "success"
   end
 
   def show
+    @facility = Facility.find(params[:facility_id])
     @subscription = Subscription.find(params[:id])
   end
+
+  def cancel
+    @facility = Facility.find(params[:facility_id])
+    @subscription = Subscription.find(params[:id])
+    subscription = Stripe::Subscription.retrieve(@subscription.stripe_subscription_id)
+    subscription.delete(:at_period_end => true)
+
+    redirect_to admin_facility_subscriptions_path(@facility), notice: 'Your subscription has been cancelled.'
+
+  end
+
+
+
 
 private
 

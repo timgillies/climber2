@@ -443,6 +443,7 @@ input {
     background: #58D68D;
     color: #fff;
   }
+
 }
 
 /* Homepage */
@@ -1064,6 +1065,17 @@ span.picture {
   border-color: #da6bb6;
   opacity: 1;
   color: #ffffff;
+}
+
+/* Cancel subscription */
+
+.btn-cancel{
+  border-color: #CD6155;
+  background: #CD6155;
+  letter-spacing: 1px;
+  color: white;
+  display: inline-block;
+
 }
 
 .btn-expire{

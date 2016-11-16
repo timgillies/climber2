@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115043244) do
+ActiveRecord::Schema.define(version: 20161115215248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,11 +255,13 @@ ActiveRecord::Schema.define(version: 20161115043244) do
     t.string   "card_token"
     t.integer  "user_id"
     t.integer  "plan_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.date     "end_date"
     t.string   "customer_id"
     t.integer  "facility_id"
+    t.string   "stripe_subscription_id"
+    t.string   "stripe_last_four"
   end
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree

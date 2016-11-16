@@ -1,8 +1,8 @@
 class Admin::GradesController < ApplicationController
   before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :facility_admin,            only: [:index, :edit, :update, :destroy]
-  before_action :setter_role,               except: [:index, :show]
-  before_action :marketing_role,            except: [:index, :show]
+  before_action :setter_role,               except: [:edit, :update, :create, :index, :show]
+  before_action :marketing_role,            except: [:edit, :update, :create, :index, :show]
 
   include GradesHelper
   include GradeSystemsHelper

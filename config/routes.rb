@@ -56,13 +56,18 @@ Rails.application.routes.draw do
           post :untagged #output path - tagged_route/:id
         end
       end
-      resources :subscriptions
+      resources :subscriptions do
+        member do
+          post :cancel
+        end
+      end
 
       member do
         get :plans
         post :choose_free_plan
         post :choose_basic_plan
         post :choose_pro_plan
+
       end
 
       resources :grades

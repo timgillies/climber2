@@ -16,6 +16,7 @@ class Facility < ActiveRecord::Base
   belongs_to :tick
   has_many :facility_roles
   belongs_to :plan
+  has_many :subscriptions
 
   default_scope -> { order(created_at: :asc) }
   validates :name, presence: true

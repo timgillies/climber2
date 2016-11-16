@@ -18,6 +18,9 @@
         <div class="col-sm-6">
             <p>Subscription End Date: <strong><%= @subscription.end_date %></strong></p>
         </div>
+        <div class="col-xs-4 col-sm-2">
+          <%= button_to "Cancel", cancel_admin_facility_subscription_path(@facility, @subscription), class: "btn btn-cancel btn-xs", method: :cancel %>
+        </div>
       </div>
     </div>
   </div>

@@ -8,4 +8,6 @@ class Wall < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {scope: [:facility_id, :zone_id] }, length: { maximum: 50}
 
+  default_scope -> { order(created_at: :asc) }
+
 end

@@ -1,0 +1,29 @@
+
+<div class="headliner">
+  <h1>Subscription</h1>
+</div>
+
+  <%= div_for(@subscriptions) do |f| %>
+  <ol class="routelist">
+    <li>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-10">
+            <p><%= f.plan.description.humanize if f.plan %></p>
+          </div>
+          <div class="col-sm-2">
+              <p><%= number_to_currency(f.plan.price) if f.plan %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10">
+            <strong>Renewal Date: </strong><%= f.end_date %>
+          </div>
+          <div class="col-xs-4 col-sm-2">
+            <%= button_to "Cancel", cancel_admin_facility_subscription_path(f, @facility), class: "btn btn-cancel btn-xs", method: :cancel %>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
+  <% end %>
