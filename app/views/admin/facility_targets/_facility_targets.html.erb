@@ -4,16 +4,13 @@
   <li>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-2">
-          <p><%= f.grade.grade if f.grade %></p>
-
-        </div>
         <div class="col-xs-5">
-            <p><%= f.zone.name if f.zone %></p>
+          <h3><%= f.zone.name if f.zone %> > <%= f.grade.grade if f.grade %></h3>
 
         </div>
-        <div class="col-xs-2">
-            <p><%= f.value %></p>
+
+        <div class="col-xs-4">
+            <p>Target: <strong><%= f.value %></strong></p>
 
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1">
@@ -31,6 +28,11 @@
           </p>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>System: </strong><%= f.grade.grade_system.name %>
+        </div>
+
     </div>
   </li>
 </ol>

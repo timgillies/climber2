@@ -18,7 +18,6 @@ class Route < ActiveRecord::Base
   validates :user_id, presence: true
   validates :setdate, presence: true
   validates :grade, presence: true
-  validates :enddate, presence: true
 
   default_scope -> { order(created_at: :desc) }
 
@@ -26,11 +25,11 @@ class Route < ActiveRecord::Base
 
 # checks if route is active or expired.  true = active
   def active?
-    (Date.today - self.enddate).to_i <= 0
+    (self.enddate > Date.today if self.enddate) || (self.enddate.nil?)
   end
 
   def self.current
-    where("enddate > ?", Date.today)
+    where("enddate > ? OR enddate IS ?", Date.today, nil)
   end
 
 # counts number of routes set on given date
@@ -126,7 +125,7 @@ scope :sorted_by, lambda { |sort_option|
   }
 
   scope :with_status_id, lambda { |status_ids|
-      where( 'routes.enddate > ?', status_ids)
+      where( 'routes.enddate > ? OR routes.enddate IS ?', status_ids, nil)
   }
 
     # always include the lower boundary for semi open intervals
@@ -135,7 +134,7 @@ scope :sorted_by, lambda { |sort_option|
   }
 
   scope :with_enddate_lt, lambda { |reference_time|
-    where('routes.active = ?', reference_time)
+    where('routes.enddate = ?', reference_time)
   }
 
   def self.options_for_sorted_by

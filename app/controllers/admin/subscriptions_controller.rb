@@ -38,8 +38,25 @@ class Admin::SubscriptionsController < ApplicationController
     @subscription.customer_id = customer.id
     @subscription.plan_id = @facility.plan_id
     @subscription.stripe_subscription_id = customer.subscriptions['data'][0].id
+    @subscription.canceled_at = customer.subscriptions['data'][0].canceled_at
+    @subscription.start = customer.subscriptions['data'][0].start
+    @subscription.status = customer.subscriptions['data'][0].status
+    @subscription.trial_start = customer.subscriptions['data'][0].trial_start
+    @subscription.trial_end = customer.subscriptions['data'][0].trial_end
+    @subscription.current_period_start = customer.subscriptions['data'][0].current_period_start
+    @subscription.current_period_end = customer.subscriptions['data'][0].current_period_end
+    @subscription.ended_at = customer.subscriptions['data'][0].ended_at
+
 
     @subscription.save
+
+    # @subscription.update_attribute(:start, subscription['data'].start)
+    # @subscription.update_attribute(:trial_start, subscription['data'].trial_start)
+    # @subscription.update_attribute(:trial_end, subscription['data'].trial_end)
+    # @subscription.update_attribute(:current_period_start, subscription['data'].current_period_start)
+    # @subscription.update_attribute(:current_period_end, subscription['data'].current_period_end)
+    # @subscription.update_attribute(:ended_at, subscription['data'].ended_at)
+
     redirect_to admin_facility_subscriptions_path(@facility), notice: 'Thank you for your payment!'
 
   rescue Stripe::CardError => e
@@ -84,7 +101,20 @@ private
   end
 
   def subscription_params
-    params.require(:subscription).permit(:user_id, :email, :card_token, :customer_id, :facility_id, :end_date, :plan_id)
+    params.require(:subscription).permit( :start,
+                                          :status,
+                                          :trial_start,
+                                          :trial_end,
+                                          :current_period_start,
+                                          :current_period_end,
+                                          :ended_at,
+                                          :user_id,
+                                          :email,
+                                          :card_token,
+                                          :customer_id,
+                                          :facility_id,
+                                          :end_date,
+                                          :plan_id)
   end
 
 end

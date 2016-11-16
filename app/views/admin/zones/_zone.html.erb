@@ -4,11 +4,11 @@
     <li>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-5 col-xs-6">
+          <div class="col-sm-5 col-xs-5">
             <p><%= fz.name %></p>
           </div>
-          <div class="col-sm-5 col-xs-2">
-              <p><%= fz.routes.current.count %><span class="hidden-xs"> active routes</span> / <%= FacilityTarget.where(zone_id: fz.id).count %></p>
+          <div class="col-sm-5 col-xs-3">
+              <p><%= fz.routes.current.count %><span class="hidden-xs"> active routes</span> / <%= FacilityTarget.where(zone_id: fz.id).sum(:value) %></p>
           </div>
           <div class="col-xs-2 col-sm-1 col-md-1">
             <p><%= link_to edit_admin_facility_zone_path(@facility, fz ) do %>
@@ -32,9 +32,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 col-xs-12">
-            <% if fz.walls.count > 0 %>
             <%= render 'facilities/zonegradedist', :fz => fz %>
-            <% end %>
           </div>
         </div>
       </div>
