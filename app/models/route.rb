@@ -18,6 +18,7 @@ class Route < ActiveRecord::Base
   validates :user_id, presence: true
   validates :setdate, presence: true
   validates :grade, presence: true
+  validates :setdate, presence: true
 
   default_scope -> { order(created_at: :desc) }
 
