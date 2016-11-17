@@ -34,7 +34,8 @@ class Admin::FacilityRolesController < ApplicationController
       flash[:success] = "#{ @facility_role.email } was successfully invited!"
       redirect_to(admin_facility_facility_roles_path(@facility))
     else
-      render 'new'
+      flash[:danger] = "#{ @facility_role.email } was not added!  Please make sure #{ @facility_role.email } is not already assigned a role."
+      redirect_to(admin_facility_facility_roles_path(@facility))
     end
   end
 

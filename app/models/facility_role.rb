@@ -6,8 +6,7 @@ class FacilityRole < ActiveRecord::Base
 
   before_save :downcase_email
 
-  validates :email, uniqueness: {scope: [:facility_id]}
-  validates :user_id, uniqueness: {scope: [:facility_id]}
+  validates :email, presence: true, uniqueness: {scope: [:facility_id]}
 
   default_scope -> { order(name: :asc) }
 

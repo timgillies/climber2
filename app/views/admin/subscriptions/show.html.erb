@@ -5,30 +5,33 @@
     <div class="routes">
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <p><strong>Subscribed by: </strong><%= @subscription.user.name %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <p><strong>Subscription ID: </strong><%= @subscription.stripe_subscription_id %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">
-            <p><strong>Status: </strong><%= @subscription.status.capitalize %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-            <p><strong>Current Billing Period: </strong><%= Time.at(@subscription.current_period_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.current_period_end).strftime("%b %d, %Y") %></p>
+        <div class="col-sm-12">
+            <p><strong>Status: </strong><%= @subscription.status.to_s.capitalize %></p>
         </div>
       </div>
 
+      <% unless @subscription.current_period_start.nil? %>
+      <div class="row">
+        <div class="col-sm-12">
+            <p><strong>Current Billing Period: </strong><%= Time.at(@subscription.current_period_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.current_period_end).strftime("%b %d, %Y") %></p>
+        </div>
+      </div>
+      <% end %>
+
       <% unless @subscription.trial_start.nil? %>
         <div class="row">
-          <div class="col-sm-6">
-              <p><strong>Current Billing Period: </strong><%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %></p>
+          <div class="col-sm-12">
+              <p><strong>Trial Period: </strong><%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %></p>
           </div>
         </div>
       <% end %>
@@ -36,11 +39,13 @@
 
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <p><strong>Subscription End Date: <strong><%= @subscription.end_date %></strong></p>
         </div>
-        <div class="col-xs-4 col-sm-2">
-          <%= button_to "Cancel", cancel_admin_facility_subscription_path(@facility, @subscription), class: "btn btn-cancel btn-xs", method: :cancel %>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3 col-sm-offset-4 col-sm-4">
+          <%= button_to "Cancel", cancel_admin_facility_subscription_path(@facility, @subscription), class: "btn btn-cancel btn-sm", method: :cancel %>
         </div>
       </div>
     </div>
