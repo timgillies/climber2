@@ -23,6 +23,7 @@ class Route < ActiveRecord::Base
 
 
 
+
 # checks if route is active or expired.  true = active
   def active?
     (self.enddate > Date.today if self.enddate) || (self.enddate.nil?)
@@ -36,6 +37,7 @@ class Route < ActiveRecord::Base
   def self.set_on(date)
     where("date(setdate) = ?", date).count(:id)
   end
+
 
 # limits routes where the grade is a "boulder" grade
   def self.boulder

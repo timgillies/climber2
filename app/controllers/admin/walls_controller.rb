@@ -2,6 +2,7 @@ class Admin::WallsController < ApplicationController
   before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :setter_role,               only: [:destroy, :new, :create, :edit, :update]
+  before_action :guest_role,               only: [:destroy, :new, :create, :edit, :update]
   before_action :marketing_role,            except: [:index, :show]
 
   layout "admin"

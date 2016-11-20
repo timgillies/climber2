@@ -3,6 +3,7 @@ class Admin::FacilitiesController < ApplicationController
   before_action :facility_admin,            only: [:index, :show, :edit, :update, :destroy]
   before_action :head_setter_role,          only: [:destroy]
   before_action :setter_role,               except: [:new, :create, :index, :show]
+  before_action :guest_role,               except: [:new, :create, :index, :show]
   before_action :marketing_role,            except: [:new, :create, :index, :show]
 
 
@@ -88,7 +89,7 @@ class Admin::FacilitiesController < ApplicationController
   private
 
     def facility_params
-      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom, :vscale, :yds, :user_id, :plan_id)
+      params.require(:facility).permit(:name, :location, :addressline1, :addressline2, :city, :state, :zipcode, :custom, :vscale, :yds, :user_id, :plan_id, :days_from_start_date)
     end
 
     # Before filters

@@ -26,3 +26,40 @@ en:
       previous: "&lt; Previous"
       next: "Next &gt;"
       truncate: "..."
+
+  datetime:
+    distance_in_words:
+      short:
+          less_than_x_seconds:
+            one: "today"
+            other: "today"
+          x_seconds:
+            one: "today"
+            other: "today"
+          less_than_x_minutes:
+            one: "today"
+            other: "today"
+          x_minutes:
+            one: "today"
+            other: "today"
+          about_x_hours:
+            one: "today"
+            other: "today"
+          x_days:
+            one: "1 day"
+            other: "%{count} days"
+          about_x_months:
+            one: "1 month"
+            other: "%{count} months"
+          x_months:
+            one: "1 month"
+            other: "%{count} months"
+          about_x_years:
+            one: "1 year"
+            other: "%{count} years"
+          over_x_years:
+            one: "1 year"
+            other: "%{count} years"
+          almost_x_years:
+            one: "1 year"
+            other: "%{count} years"

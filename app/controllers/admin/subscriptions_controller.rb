@@ -79,6 +79,23 @@ class Admin::SubscriptionsController < ApplicationController
   def show
     @facility = Facility.find(params[:facility_id])
     @subscription = Subscription.find(params[:id])
+
+    subscription = Stripe::Subscription.retrieve(@subscription.stripe_subscription_id)
+    @subscription.update_attribute(:customer_id, subscription.id)
+    @subscription.update_attribute(:canceled_at, subscription.canceled_at)
+    @subscription.update_attribute(:start, subscription.start)
+    @subscription.update_attribute(:status, subscription.status)
+    @subscription.update_attribute(:trial_start, subscription.trial_start)
+    @subscription.update_attribute(:trial_end, subscription.trial_end)
+    @subscription.update_attribute(:current_period_start, subscription.current_period_start)
+    @subscription.update_attribute(:current_period_end, subscription.current_period_end)
+    @subscription.update_attribute(:ended_at, subscription.ended_at)
+    @subscription.update_attribute(:stripe_plan_id, subscription.plan.id)
+    @subscription.update_attribute(:stripe_plan_amount, subscription.plan.amount)
+    @subscription.update_attribute(:stripe_plan_interval, subscription.plan.interval)
+    @subscription.update_attribute(:stripe_plan_interval_count, subscription.plan.interval_count)
+    @subscription.update_attribute(:stripe_plan_created, subscription.plan.created)
+
   end
 
   def cancel
@@ -114,7 +131,11 @@ private
                                           :customer_id,
                                           :facility_id,
                                           :end_date,
-                                          :plan_id)
+                                          :plan_id,
+                                          :stripe_plan_id,
+                                          :stripe_plan_amount,
+                                          :stripe_plan_interval,
+                                          :stripe_plan_interval_count,
+                                          :stripe_plan_created)
   end
-
 end

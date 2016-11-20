@@ -32,6 +32,11 @@
   <%= f.text_field :zipcode, class: 'form-control' %>
 </div>
 
+<div class="col-sm-12 col-md-12 col-lg-12">
+  <%= f.label :days_from_start_date, "Set up default number of days routes will expire in.  Leave blank to require manual expiration of routes" %>
+  <%= f.text_field :days_from_start_date, class: 'form-control' %>
+</div>
+
   <br/>
 <div class="col-sm-12 col-md-12 col-lg-12">
   <%= f.submit "Save", class: "btn btn-save" %>

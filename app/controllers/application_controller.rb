@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   # Sets the role names that have access to the facility within the admin area
   def facility_admin_roles
-    ['facility_management', 'setter', 'head_setter', 'marketing']
+    ['facility_management', 'setter', 'head_setter', 'marketing', 'guest']
   end
 
 
@@ -88,6 +88,11 @@ class ApplicationController < ActionController::Base
   def marketing_role
     facility_controller_check
     role_redirect('marketing')
+  end
+
+  def guest_role
+    facility_controller_check
+    role_redirect('guest')
   end
 
 

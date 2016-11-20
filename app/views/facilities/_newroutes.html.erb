@@ -16,6 +16,7 @@
       },
       xAxis: {
         type: "datetime",
+        tickInterval: 24 * 3600 * 1000,
         labels: {
           format: '{value: %a, %m/%d}'
         },
@@ -49,6 +50,11 @@
       legend: {
         enabled: false
       },
+      setOptions: {
+        global : {
+            useUTC : false
+        }
+      },
       plotOptions: {
         column: {
           grouping: true,
@@ -77,7 +83,7 @@
         {
           name: "<%= type %>",
           pointInterval: <%= 1.day * 1000 %>,
-          pointStart: <%= 2.weeks.ago.to_i * 1000 %>,
+          pointStart: <%= 2.weeks.ago.at_midnight.to_i * 1000 %>,
           data: <%= (2.weeks.ago.to_date..Date.today).map { |date| routes.set_on(date).to_f }.inspect %>
         },
         <% end %>

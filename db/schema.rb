@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116210612) do
+ActiveRecord::Schema.define(version: 20161117205209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,13 +53,14 @@ ActiveRecord::Schema.define(version: 20161116210612) do
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "user_id"
     t.boolean  "custom"
     t.boolean  "vscale"
     t.boolean  "yds"
     t.integer  "plan_id"
+    t.integer  "days_from_start_date"
   end
 
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
@@ -255,14 +256,13 @@ ActiveRecord::Schema.define(version: 20161116210612) do
     t.string   "card_token"
     t.integer  "user_id"
     t.integer  "plan_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.date     "end_date"
     t.string   "customer_id"
     t.integer  "facility_id"
     t.string   "stripe_subscription_id"
     t.string   "stripe_last_four"
-    t.date     "canceled_at"
     t.integer  "start"
     t.string   "status"
     t.integer  "trial_start"
@@ -270,6 +270,12 @@ ActiveRecord::Schema.define(version: 20161116210612) do
     t.integer  "current_period_start"
     t.integer  "current_period_end"
     t.integer  "ended_at"
+    t.integer  "canceled_at"
+    t.string   "stripe_plan_id"
+    t.integer  "stripe_plan_amount"
+    t.string   "stripe_plan_interval"
+    t.integer  "stripe_plan_interval_count"
+    t.integer  "stripe_plan_created"
   end
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree

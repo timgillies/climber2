@@ -5,7 +5,8 @@ module FacilityRolesHelper
       ['Facility Management', 'facility_management'],
       ['Head Route Setter', 'head_setter'],
       ['Route Setter', 'setter'],
-      ['Marketing/Analytics', 'marketing']
+      ['Marketing/Analytics', 'marketing'],
+      ['Guest Setter', 'guest']
     ]
   end
 

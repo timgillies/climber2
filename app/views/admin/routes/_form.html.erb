@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <% if @facility_role_access.present? && @facility_role_access.name == "setter" %>
+      <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
       <div class="row">
         <div class="col-sm-12">
           <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -77,11 +77,13 @@
 
         </div>
         <div class="col-sm-6">
-          <%= f.label :enddate, "End Date" %>
+          <%= f.label :enddate, "End Date (set default in facility settings)" %>
           <% if params[:action] == "edit" %>
             <%= f.date_field :enddate, class: 'form-control' %>
+          <% elsif @facility.days_from_start_date.nil? %>
+            <%= f.date_field :enddate, :value => nil , class: 'form-control' %>
           <% else %>
-            <%= f.date_field :enddate, :value => 40.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
+            <%= f.date_field :enddate, :value => @facility.days_from_start_date.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
           <% end %>
         </div>
       </div>

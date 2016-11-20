@@ -611,9 +611,41 @@ input {
   }
 
   li {
-    border-bottom: 1px solid $gray-medium-light;
+      border-bottom: 1px solid $gray-medium-light;
   }
 }
+
+/* chart list */
+
+.chartlist {
+  vertical-align: bottom;
+  list-style: none;
+  padding: 0px;
+  display: inline;
+  font-weight: 300;
+  font-size: 0.8em;
+  letter-spacing: 0.0px;
+  color: $gray-light;
+  li {
+    margin-bottom: 5px;
+    padding: 0px 0;
+    border-top: 1px solid $gray-lighter;
+    position: relative;
+    margin-top: 5px;
+
+  }
+  p {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-top: 0px;
+    font-weight: 300;
+    text-align: left;
+    color: $gray-light;
+  }
+}
+
+
+
 
 /* route list */
 
@@ -627,8 +659,13 @@ input {
   letter-spacing: 0.0px;
   color: $gray-light;
   li {
-    padding: 0px 0;
-    border-top: 1px solid $gray-medium-light;
+    margin-bottom: 5px;
+    border-left: 7px solid #e2e2e2;
+    position: relative;
+    diplay: inline-block;
+    a {
+    }
+
   }
   .grade {
     margin-top: 5em;
@@ -716,7 +753,68 @@ input {
     color: $gray;
     text-decoration: none;
   }
+
+  .badge-today {
+    font-size: 1em;
+    font-weight: lighter;
+    background-color: #58D68D;
+  }
+
+  .badge-week {
+    font-size: 1em;
+    font-weight: lighter;
+    background-color: #58D68D;
+  }
+  .divider-line {
+    border-top: 1px solid #f2f2f2;
+    margin-bottom: 5px;
+  }
+  .red {
+    border-left: 7px solid #FFCDD2;
+  }
+
+  .purple {
+    border-left: 7px solid #D1C4E9;
+  }
+
+  .blue {
+    border-left: 7px solid #BBDEFB;
+  }
+
+  .green {
+    border-left: 7px solid #C8E6C9;
+  }
+
+  .yellow{
+    border-left: 7px solid #FFF9C4;
+  }
+
+  .orange {
+    border-left: 7px solid #FFE0B2;
+  }
+
+  .gray {
+    border-left: 7px solid #e2e2e2;
+  }
+
+  .black {
+    border-left: 7px solid #c2c2c2;
+  }
+
+  .white {
+    border-left: 7px solid #F2F4F4;
+  }
+
+  .pink {
+    border-left: 7px solid #F8BBD0;
+  }
+
+  .brown {
+    border-left: 7px solid #BCAAA4;
+  }
 }
+
+
 
 /* grades */
 
@@ -1079,34 +1177,29 @@ span.picture {
 }
 
 .btn-expire{
-  border-color: #CD6155;
-  background: #ffffff;
+  background: $gray-lighter;
   letter-spacing: 1px;
   opacity: 1;
-  color: #CD6155;
+  color: $gray-light;
   display: inline-block;
 
 }
 
 .btn-expire:hover, .btn-expired, .btn-expired:hover{
-  border-color: #CD6155;
-  background: #CD6155;
+  background: #F1948A;
   color: #ffffff;
   display: inline-block;
 }
 
 .btn-tag, .btn-tagged:hover {
-  border-color: $gray-light;
-
-  background: #ffffff;
+  background: $gray-lighter;
   opacity: 1;
   color: $gray-light;
   display: inline-block;
 }
 
 .btn-tag:hover, .btn-tagged {
-  border-color: $gray-light;
-  background: $gray-light;
+  background: #c2c2c2;
   opacity: 1;
   color: #ffffff;
   display: inline-block;
