@@ -13,7 +13,7 @@ module RoutesHelper
   end
 
   def days_ago(f)
-    from_time = Time.current
+    from_time = Date.today
     to_time = f.setdate.to_datetime
     distance_of_time_in_words(from_time, to_time, scope: 'datetime.distance_in_words.short')
   end

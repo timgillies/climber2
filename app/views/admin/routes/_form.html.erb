@@ -72,7 +72,7 @@
           <% if params[:action] == "edit" %>
             <%= f.date_field :setdate, class: 'form-control' %>
           <% else %>
-            <%= f.date_field :setdate, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
+            <%= f.date_field :setdate, :value => Date.today , class: 'form-control' %>
           <% end %>
 
         </div>
