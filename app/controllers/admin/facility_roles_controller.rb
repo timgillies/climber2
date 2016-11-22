@@ -31,8 +31,10 @@ class Admin::FacilityRolesController < ApplicationController
     @facility_role = @facility.facility_roles.build(facility_role_params)
     @facility_roles = FacilityRole.page(params[:page]) # makes "each" work in the partial
     @facility_role.facility_id = params[:facility_id] #this passes the facility ID through the field
+    @inviter = current_user
     if @facility_role.save
       flash[:success] = "#{ @facility_role.email } was successfully invited!"
+      FacilityRoleMailer.role_invite_email(@facility_role).deliver_now
       redirect_to(admin_facility_facility_roles_path(@facility))
     else
       flash[:danger] = "#{ @facility_role.email } was not added!  Please make sure #{ @facility_role.email } is not already assigned a role."

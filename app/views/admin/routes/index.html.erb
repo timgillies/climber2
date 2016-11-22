@@ -1,66 +1,67 @@
 <%= form_for_filterrific @filterrific do |f| %>
-  <div class="container-fluid">
-  <br/>
-    <div class="row">
-      <div class="col-md-12">
-        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <div class="form-group">
-          <%= f.text_field(
-            :search_query,
-            placeholder: '  Search by ID #',
-            class: 'filterrific-periodically-observed form-control'
-          ) %>
+  <div class="container-fluid bg-gray">
+    <div class="filter">
+      <div class="row">
+        <div class="col-md-12">
+          <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+          <div class="form-group">
+            <%= f.text_field(
+              :search_query,
+              placeholder: '  Search by ID #',
+              class: 'filterrific-periodically-observed form-control'
+            ) %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-6 col-sm-2 col-md-2">
-        <%= f.select(
-          :with_grade_id,
-          @filterrific.select_options[:with_grade_id],
-          { include_blank: 'All grades' },
-          {class: "form-control"}
-        ) %>
-      </div>
-      <div class="col-xs-6 col-sm-2 col-md-2">
-        <%= f.select(
-          :with_zone_id,
-          @filterrific.select_options[:with_zone_id],
-          { include_blank: 'All zones' },
-          {class: "form-control"}
-        ) %>
-      </div>
-      <div class="col-xs-6 col-sm-2 col-md-2">
-        <%= f.select(
-          :with_wall_id,
-          @filterrific.select_options[:with_wall_id],
-          { include_blank: 'All walls' },
-          {class: "form-control"}
-        ) %>
-      </div>
-      <div class="col-xs-6 col-sm-2 col-md-2">
-        <%= f.select(
-          :with_setter_id,
-          @filterrific.select_options[:with_setter_id],
-          { include_blank: 'All setters' },
-          {class: "form-control"}
-        ) %>
-      </div>
-      <div class="col-xs-6 col-sm-2 col-md-2">
-        <%= f.select(
-          :with_status_id,
-          @filterrific.select_options[:with_status_id],
-          { include_blank: 'All' },
-          {class: "form-control"}
-        ) %>
-      </div>
-      <div class="col-xs-6 col-sm-2 col-md-2">
-        <%= f.select(
-          :sorted_by,
-          @filterrific.select_options[:sorted_by],
-          { include_blank: 'Sort by' },
-          {class: "form-control"}
-        ) %>
+      <div class="row">
+        <div class="col-xs-6 col-sm-2 col-md-2">
+          <%= f.select(
+            :with_grade_id,
+            @filterrific.select_options[:with_grade_id],
+            { include_blank: 'All grades' },
+            {class: "form-control"}
+          ) %>
+        </div>
+        <div class="col-xs-6 col-sm-2 col-md-2">
+          <%= f.select(
+            :with_zone_id,
+            @filterrific.select_options[:with_zone_id],
+            { include_blank: 'All zones' },
+            {class: "form-control"}
+          ) %>
+        </div>
+        <div class="col-xs-6 col-sm-2 col-md-2">
+          <%= f.select(
+            :with_wall_id,
+            @filterrific.select_options[:with_wall_id],
+            { include_blank: 'All walls' },
+            {class: "form-control"}
+          ) %>
+        </div>
+        <div class="col-xs-6 col-sm-2 col-md-2">
+          <%= f.select(
+            :with_setter_id,
+            @filterrific.select_options[:with_setter_id],
+            { include_blank: 'All setters' },
+            {class: "form-control"}
+          ) %>
+        </div>
+        <div class="col-xs-6 col-sm-2 col-md-2">
+          <%= f.select(
+            :with_status_id,
+            @filterrific.select_options[:with_status_id],
+            { include_blank: 'All' },
+            {class: "form-control"}
+          ) %>
+        </div>
+        <div class="col-xs-6 col-sm-2 col-md-2">
+          <%= f.select(
+            :sorted_by,
+            @filterrific.select_options[:sorted_by],
+            { include_blank: 'Sort by' },
+            {class: "form-control"}
+          ) %>
+        </div>
       </div>
     </div>
   </div>

@@ -6,115 +6,29 @@
         <h2>Route Management | Facility Analytics | Climb Tracking | January 2017</h2>
         <br/>
       </div>
-
+      <div class="row">
       <% if current_user.present? %>
-      <div class="row">
         <%= render 'static_pages/add_route' %>
-      </div>
       <% else %>
-      <div class="row">
         <%= render 'static_pages/signin_options' %>
-      </div>
       <% end %>
-
+      </div>
     </div>
   </div>
 </div>
 
-<br/>
+<% unless current_user.present? && @userfacilities.count > 0 %>
 
-<div class="container routes">
-  <div class="col-md-6 col-sm-6 col-xs-6">
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-10">
-        <h1><small>Built for Climbing Gyms</small></h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-cloud"></span> Cloud-Based Route Management</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-stats"></span> Powerful Analytics </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-globe"></span> Custom Grading </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-user"></span> Member Engagement & Feedback </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-calendar"></span> Route Scheduling </h2>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 col-sm-6 col-xs-6">
-    <br/>
-    <br/>
-    <%= image_tag("Macbook-Screenshot.jpg" ,width: '100%', height: '100%') %>
+<div class="container-fluid bg-white hidden-xs">
+  <div class="marketing">
+    <%= render 'static_pages/marketing' %>
   </div>
 </div>
 
-<br/>
-
-<div class="container routes">
-  <div class="col-md-6 col-sm-6 col-xs-6">
-    <br/>
-    <div class="col-md-3 col-sm-3 col-xs-3">
-    </div>
-    <%= image_tag("iphone-screenshot.jpg" ,width: '40%', height: '40%') %>
+<div class="container-fluid bg-white hidden-sm hidden-md hidden-lg hidden-xl">
+  <div class="marketing-mobile">
+    <%= render 'static_pages/marketing_mobile' %>
   </div>
-  <div class="col-md-6 col-sm-6 col-xs-6">
-    <div class="row">
-      <div class="col-md-10">
-        <h1><small>Built for Climbers</small></h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-stats"></span> Powerful Climb Tracking </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-list-alt"></span> Custom Training Plans </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-fire"></span> Leaderboards and Mini Comps </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-comment"></span> Discuss Beta & Provide Feedback on Routes </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10">
-        <h2><span class="glyphicon glyphicon-user"></span> Meet Climbing Partners </h2>
-      </div>
-    </div>
-  </div>
-
 </div>
+
+<% end %>

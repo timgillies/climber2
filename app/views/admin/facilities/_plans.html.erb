@@ -13,12 +13,13 @@
                         <strong>$0 / month</strong></p>
                 </div>
                 <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited routes</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited routes per month</li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited setter account</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>3-month BETA access</li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i>24/7 support</li>
                 </ul>
                 <div class="panel-footer">
-                    <%= button_to "Proceed",  choose_free_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-free', method: :choose_free_plan %>
+                    <%= button_to "PROCEED",  choose_free_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-free', method: :choose_free_plan %>
                 </div>
             </div>
         </div>
@@ -26,19 +27,20 @@
             <div class="panel panel-basic">
                 <div class="panel-heading">
                     <h4 class="text-center">
-                        MONTHLY BASIC</h4>
+                        MONTHLY</h4>
                 </div>
                 <div class="panel-body text-center">
                     <p class="lead">
                         <strong>$20 / month</strong></p>
                 </div>
                 <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text"></i>100 routes per month</li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i>2 setter accounts</li>
+                    <li class="list-group-item"><i class="icon-ok text"></i>Unlimited routes per month</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited user accounts</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Billed Monthly</li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i>24/7 support</li>
                 </ul>
                 <div class="panel-footer">
-                    <%= button_to "BUY NOW!",  choose_basic_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-basic', method: :choose_basic_plan %>
+                    <%= button_to "PAY MONTHLY",  choose_basic_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-basic', method: :choose_basic_plan %>
                 </div>
             </div>
         </div>
@@ -46,19 +48,20 @@
             <div class="panel panel-pro">
                 <div class="panel-heading">
                     <h4 class="text-center">
-                        MONTHLY PRO</h4>
+                        ANNUAL</h4>
                 </div>
                 <div class="panel-body text-center">
                     <p class="lead">
-                        <strong>$30 / month</strong></p>
+                        <strong>$200 / year</strong></p>
                 </div>
                 <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited routes</li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited setter accounts</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited routes per month</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Unlimited user accounts</li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>Billed Annually</li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i>24/7 support</li>
                 </ul>
                 <div class="panel-footer">
-                  <%= button_to "BUY NOW!",  choose_pro_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-pro', method: :choose_pro_plan %>
+                  <%= button_to "PAY ANNUALLY",  choose_pro_plan_admin_facility_path(@facility), class: 'btn btn-lg btn-block btn-plan-pro', method: :choose_pro_plan %>
                 </div>
             </div>
         </div>

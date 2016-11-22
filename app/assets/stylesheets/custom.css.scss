@@ -56,6 +56,14 @@ a {
   margin-left: 40px;
 }
 
+.tripletab {
+  margin-left: 60px;
+}
+
+.center {
+  text-align: center;
+}
+
 .header {
   border-bottom: 1px solid $gray-lighter;
 }
@@ -80,6 +88,14 @@ a {
 
 .badge-red {
   background-color: #FF5733;
+}
+
+.bg-gray {
+  background-color: $gray-lighter;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  opacity: 50%;
 }
 
 
@@ -239,7 +255,7 @@ textarea[type=text] {
     font-weight: 300;
     text-align: left;
     color: $gray-darker;
-    border-bottom: 1px solid $gray-lighter;
+    border-bottom: 1px solid $gray-light;
   }
 }
 
@@ -490,6 +506,14 @@ input {
   color: $gray;
 }
 
+.bg-white {
+  background-color: white;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  opacity: 50%;
+}
+
 /* Admin Homepage */
 
 .admin-home-body {
@@ -498,16 +522,6 @@ input {
     background-position: top left;
     padding: 50px;
 }
-
-/* Route Index Filter container */
-
-.filter-body {
-    background-image: url(asset-path("papervector.jpeg"));
-    background-size: cover;
-    background-position: top left;
-    padding: 10px;
-}
-
 
 /* facilities */
 
@@ -644,7 +658,108 @@ input {
   }
 }
 
+/* Marketing */
 
+.marketing {
+  vertical-align: bottom;
+  list-style: none;
+  padding: 0px;
+  display: inline;
+  font-weight: 300;
+  font-size: 1.0em;
+  color: $gray;
+  li {
+    margin-bottom: 5px;
+    padding: 0px 0;
+    border-top: 1px solid $gray-lighter;
+    position: relative;
+    margin-top: 5px;
+
+  }
+  p {
+    font-size: 1.7vw;;
+    letter-spacing: -1px;
+    margin-top: 0px;
+    font-weight: 300;
+    text-align: left;
+    color: $gray;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    color: $gray;
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: -0.0px;
+    margin-bottom: 5px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $gray-lighter;
+    h3 {
+      text-align: right;
+    }
+  }
+
+  .center {
+    text-align: center
+  }
+}
+
+/* Marketing Mobile */
+
+.marketing-mobile {
+  text-align: center;
+  vertical-align: bottom;
+  list-style: none;
+  padding: 0px;
+  display: inline;
+  font-weight: 300;
+  font-size: 1.0em;
+  color: $gray;
+  li {
+    margin-bottom: 5px;
+    padding: 0px 0;
+    border-top: 1px solid $gray-lighter;
+    position: relative;
+    margin-top: 5px;
+
+  }
+  p {
+    font-size: 3.1vw;;
+    letter-spacing: -1px;
+    margin-top: 0px;
+    font-weight: 300;
+    text-align: left;
+    color: $gray;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    color: $gray;
+    font-size: 2.0em;
+    font-weight: bold;
+    letter-spacing: -0.0px;
+    margin-bottom: 5px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $gray-lighter;
+    h3 {
+      text-align: right;
+    }
+  }
+
+  .tab {
+    margin-left: 10px;
+  }
+}
+
+/* route list filter */
+
+.filter {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Oswald', sans-serif;
+}
 
 
 /* route list */
@@ -664,6 +779,19 @@ input {
     position: relative;
     diplay: inline-block;
     a {
+    }
+
+    h1 {
+      color: #52BE80;
+      font-size: 3em;
+      letter-spacing: -2px;
+      margin-bottom: 5px;
+      text-align: left;
+      border-bottom: 1px solid $gray-lighter;
+      h3 {
+        text-align: right;
+      }
+
     }
 
   }
@@ -895,6 +1023,10 @@ span.picture {
   color: $gray-lighter;
 }
 
+.glyphicon-center {
+  text-align: center;
+}
+
 
 /* Navbar */
 
@@ -909,7 +1041,7 @@ span.picture {
   li a{
     color: #aeaeae;
     font-size: 1.2em;
-    letter-spacing: 1px;
+    letter-spacing: -0.0px;
     font-family: 'Oswald', sans-serif;
     &:hover {
       color: #ffffff;
@@ -1242,7 +1374,8 @@ span.picture {
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
-  font-family: sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.0vw;
   float: none;
   padding-left: 40px;
   background-color: #3b5998;
@@ -1265,7 +1398,8 @@ span.picture {
   padding-left: 40px;
   background-color: #4885ed;
   color: #ffffff;
-  font-family: 'roboto', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.0vw;
   border-width: thick;
   display: inline-block;
 }

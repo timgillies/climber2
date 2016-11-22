@@ -3,43 +3,45 @@
 <%= form_for [:admin, @facility], :html => {:class => "form-label"} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-<div class="col-sm-12 col-md-12 col-lg-12">
-  <%= f.label :name, "Facility name*", class: "form-label" %>
-  <%= f.text_field :name, class: 'form-control' %>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <%= f.label :name, "Facility name*", class: "form-label" %>
+      <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :location, "Location name (optional)"%>
-  <%= f.text_field :location, class: 'form-control' %>
+      <%= f.label :location, "Location name (optional)"%>
+      <%= f.text_field :location, class: 'form-control' %>
 
-  <%= f.label :addressline1, "Address*" %>
-  <%= f.text_field :addressline1, class: 'form-control' %>
+      <%= f.label :addressline1, "Address*" %>
+      <%= f.text_field :addressline1, class: 'form-control' %>
 
-  <%= f.label :addressline2, "Address continued" %>
-  <%= f.text_field :addressline2, class: 'form-control' %>
-</div>
+      <%= f.label :addressline2, "Address continued" %>
+      <%= f.text_field :addressline2, class: 'form-control' %>
+    </div>
 
-<div class="col-sm-6 col-md-6 col-lg-6">
-  <%= f.label :city, "City*" %>
-  <%= f.text_field :city, class: 'form-control' %>
-</div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.label :city, "City*" %>
+      <%= f.text_field :city, class: 'form-control' %>
+    </div>
 
-  <div class="col-sm-6 col-md-6 col-lg-6">
-  <%= f.label :state, "State*" %>
-  <%= f.select(:state, options_for_select(us_states, selected: f.object.state ), { include_blank: 'Select state' }, { class: 'form-control' }) %>
-  </div>
 
-<div class="col-sm-12 col-md-12 col-lg-12">
-  <%= f.label :zipcode, "Zip code*" %>
-  <%= f.text_field :zipcode, class: 'form-control' %>
-</div>
+    <div class="col-sm-4 col-md-4 col-lg-">
+    <%= f.label :state, "State*" %>
+    <%= f.select(:state, options_for_select(us_states, selected: f.object.state ), { include_blank: 'Select state' }, { class: 'form-control' }) %>
+    </div>
 
-<div class="col-sm-12 col-md-12 col-lg-12">
-  <%= f.label :days_from_start_date, "Set up default number of days routes will expire in.  Leave blank to require manual expiration of routes" %>
-  <%= f.text_field :days_from_start_date, class: 'form-control' %>
-</div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.label :zipcode, "Zip code*" %>
+      <%= f.text_field :zipcode, class: 'form-control' %>
+    </div>
 
-  <br/>
-<div class="col-sm-12 col-md-12 col-lg-12">
-  <%= f.submit "Save", class: "btn btn-save" %>
-</div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <%= f.label :days_from_start_date, "Set up default number of days routes will expire in.  Leave blank to require manual expiration of routes" %>
+      <%= f.text_field :days_from_start_date, class: 'form-control' %>
+    </div>
+
+      <br/>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <%= f.submit "Save", class: "btn btn-save" %>
+    </div>
 
 <% end %>
