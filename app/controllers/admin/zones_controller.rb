@@ -21,31 +21,34 @@ class Admin::ZonesController < ApplicationController
   end
 
   def show
-    @zones = Zone.find(params[:id])
+    @zones = @facility.zones.page(params[:page])
   end
 
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @zone = current_user.zones.build(zone_params)
-    @zones = Zone.page(params[:page]) # makes "each" work in the partial
+    @zones = @facility.zones.page(params[:page]) # makes "each" work in the partial
     @zone.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @zone.save
       flash[:success] = "Zone created!"
       redirect_to(admin_facility_zones_path(@facility))
     else
-      render :new
+      flash[:danger] = "Zone not saved!"
+      render 'index'
     end
   end
 
   def update
     @facility = Facility.find(params[:facility_id])
+    @zones = @facility.zones.page(params[:page])
     @zone = @facility.zones.find(params[:id])
     if @zone.update_attributes(zone_params)
       flash[:success] = "Zone updated!"
       redirect_to(admin_facility_zones_path(@facility))
       # Handle a successful update.
     else
-      render :new
+      flash[:danger] = "Zone not saved!"
+      render 'index'
     end
   end
 

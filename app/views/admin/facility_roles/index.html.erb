@@ -5,13 +5,8 @@
     <div class="col-sm-12">
       <div class="headliner">
         <h1 class="pull-left">Facility Team</h1>
-        <span class="btn-group pull-right">
-          <button type="button" class="btn btn-create dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Invite Team Members <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Invite team member", new_admin_facility_facility_role_path, remote: true %></li>
-          </ul>
+        <span class="pull-right">
+            <%= link_to "Add team member", new_admin_facility_facility_role_path, remote: true, class: "btn btn-create", style: "display: inline-block" %>
         </span>
       </div>
     </div>

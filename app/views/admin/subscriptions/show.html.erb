@@ -1,81 +1,89 @@
 <% provide(:title, "#{@facility.name} Subscriptions") %>
 
   <div class="container-fluid">
-    <div class="routelist">
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Subscribed by: </strong><%= @subscription.user.name %>
-        </div>
+    <div class="col-sm-8 col-sm-offset-2 bg-gray">
+      <div class="form-gray">
+        <h1><span class="hidden-xs"><%= @subscription.stripe_plan_id.to_s.humanize if @subscription.stripe_plan_id %> - </span><%= @subscription.stripe_subscription_id if @subscription.stripe_subscription_id %></h1>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Subscription ID: </strong><%= @subscription.stripe_subscription_id if @subscription.stripe_subscription_id %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Status: </strong>
-            <%= @subscription.status.to_s.capitalize if @subscription.status %>
-            <% unless @subscription.canceled_at.nil? %>
-             - until <%= Time.at(@subscription.current_period_end).strftime("%b %d, %Y") %>
-            <% end %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Plan: </strong><%= @subscription.stripe_plan_id if @subscription.stripe_plan_id %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Amount: </strong><%= number_to_currency(@subscription.stripe_plan_amount.to_i / 100) if @subscription.stripe_plan_amount %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Interval: </strong><%= @subscription.stripe_plan_interval if @subscription.stripe_plan_interval %>
-        </div>
-      </div>
-
-      <% unless @subscription.current_period_start.nil? %>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Current Billing Period: </strong><%= Time.at(@subscription.current_period_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.current_period_end).strftime("%b %d, %Y") if @subscription.current_period_start %>
-        </div>
-      </div>
-      <% end %>
-
-      <% unless @subscription.trial_start.nil? %>
-        <div class="row">
-          <div class="col-sm-12">
-              <strong>Trial Period: </strong><%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") if @subscription.trial_start %>
+      <div class="container-fluid">
+        <br/>
+        <div class="routelist">
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Subscribed by: </strong><%= @subscription.user.name %>
+            </div>
           </div>
-        </div>
-      <% end %>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Subscription ID: </strong><%= @subscription.stripe_subscription_id if @subscription.stripe_subscription_id %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Status: </strong>
+                <%= @subscription.status.to_s.capitalize if @subscription.status %>
+                <% unless @subscription.canceled_at.nil? %>
+                 - until <%= Time.at(@subscription.current_period_end).strftime("%b %d, %Y") %>
+                <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Plan: </strong><%= @subscription.stripe_plan_id if @subscription.stripe_plan_id %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Amount: </strong><%= number_to_currency(@subscription.stripe_plan_amount.to_i / 100) if @subscription.stripe_plan_amount %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Interval: </strong><%= @subscription.stripe_plan_interval if @subscription.stripe_plan_interval %>
+            </div>
+          </div>
 
-      <% if @subscription.canceled_at.nil? %>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Renewal date: </strong><%= @subscription.end_date if @subscription.end_date %>
+          <% unless @subscription.current_period_start.nil? %>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Current Billing Period: </strong><%= Time.at(@subscription.current_period_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.current_period_end).strftime("%b %d, %Y") if @subscription.current_period_start %>
+            </div>
+          </div>
+          <% end %>
+
+          <% unless @subscription.trial_start.nil? %>
+            <div class="row">
+              <div class="col-sm-12">
+                  <strong>Trial Period: </strong><%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") if @subscription.trial_start %>
+              </div>
+            </div>
+          <% end %>
+
+          <% if @subscription.canceled_at.nil? %>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Renewal date: </strong><%= @subscription.end_date if @subscription.end_date %>
+            </div>
+          </div>
+          <% end %>
+
+          <% unless @subscription.canceled_at.nil? %>
+          <div class="row">
+            <div class="col-sm-12">
+                <strong>Canceled on: </strong><%= Time.at(@subscription.canceled_at).strftime("%b %d, %Y") if @subscription.canceled_at %>
+            </div>
+          </div>
+          <% end %>
+          <br/>
+          <% if @subscription.canceled_at.nil? %>
+          <div class="row">
+            <div class="col-xs-6 col-xs-offset-3 col-sm-offset-4 col-sm-4">
+              <%= button_to "Cancel", cancel_admin_facility_subscription_path(@facility, @subscription), class: "btn btn-cancel btn-sm", method: :cancel %>
+            </div>
+          </div>
+          <% end %>
+
         </div>
       </div>
-      <% end %>
-
-      <% unless @subscription.canceled_at.nil? %>
-      <div class="row">
-        <div class="col-sm-12">
-            <strong>Canceled on: </strong><%= Time.at(@subscription.canceled_at).strftime("%b %d, %Y") if @subscription.canceled_at %>
-        </div>
-      </div>
-      <% end %>
-
-      <% if @subscription.canceled_at.nil? %>
-      <div class="row">
-        <div class="col-xs-6 col-xs-offset-3 col-sm-offset-4 col-sm-4">
-          <%= button_to "Cancel", cancel_admin_facility_subscription_path(@facility, @subscription), class: "btn btn-cancel btn-sm", method: :cancel %>
-        </div>
-      </div>
-      <% end %>
-
     </div>
   </div>

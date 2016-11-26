@@ -255,6 +255,22 @@ textarea[type=text] {
     font-weight: 300;
     text-align: left;
     color: $gray-darker;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+.form-gray {
+  list-style: none;
+  font-style: normal;
+  font-weight: 300;
+  h1 {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-bottom: 1px;
+    font-weight: 300;
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    color: $gray-darker;
     border-bottom: 1px solid $gray-light;
   }
 }
@@ -1375,7 +1391,7 @@ span.picture {
   background-repeat: no-repeat;
   background-size: contain;
   font-family: 'Oswald', sans-serif;
-  font-size: 2.0vw;
+  font-size: 1.8vw;
   float: none;
   padding-left: 40px;
   background-color: #3b5998;
@@ -1399,13 +1415,17 @@ span.picture {
   background-color: #4885ed;
   color: #ffffff;
   font-family: 'Oswald', sans-serif;
-  font-size: 2.0vw;
+  font-size: 1.8vw;
   border-width: thick;
   display: inline-block;
 }
 
 .btn-google:hover {
   color: #ffffff;
+}
+
+.btn-mobile {
+  font-size: 3.2vw;
 }
 
 

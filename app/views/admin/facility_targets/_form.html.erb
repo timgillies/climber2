@@ -1,5 +1,6 @@
 
 <br/>
+<div class="container-fluid bg-gray">
 <div class="col-sm-12">
   <%= form_for [:admin, @facility, @facility_target ], :html => {:class => "form-label"} do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
@@ -23,12 +24,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12">
-      <%= f.submit "Save", class: "btn btn-submit" %>
-    </div>
+
+      <div class="col-sm-4 col-sm-offset-8">
+        <%= f.submit "Save", class: "btn btn-submit" %>
+      </div>
+
   </div>
-  <br/>
 </div>
-
-
+</div>
 <% end %>
+<br/>

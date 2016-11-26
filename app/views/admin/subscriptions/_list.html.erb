@@ -1,29 +1,30 @@
 
 <div class="headliner">
-  <h1>Subscription</h1>
+  <h1>Subscriptions</h1>
 </div>
 
   <%= div_for(@subscriptions) do |f| %>
   <ol class="routelist">
+    <div class="divider-line"></div>
     <li>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-10">
+          <div class="col-xs-8">
             <p><%= f.plan.description.humanize if f.plan %></p>
-          </div>
-          <div class="col-sm-2">
-              <p><%= number_to_currency(f.plan.price) if f.plan %> / mo</p>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-xs-12">
+            <strong>Amount: </strong><%= number_to_currency(f.plan.price) if f.plan %>
+          </div>
+          <div class="col-xs-12">
             <strong>Renewal Date: </strong><%= f.end_date %>
           </div>
-          <div class="col-xs-4 col-sm-2">
-            <%= link_to "Manage", admin_facility_subscription_path(@facility, f), class: "btn btn-save btn-xs" %>
-          </div>
-          <div class="col-xs-4 col-sm-2">
-            <%= button_to "Cancel", cancel_admin_facility_subscription_path(f, @facility), class: "btn btn-cancel btn-xs", method: :cancel %>
+
+          <div class="col-xs-12 col-sm-12">
+            <span class="pull-right">
+              <%= link_to "Manage", admin_facility_subscription_path(@facility, f), class: "btn btn-nav btn-sm" %>
+            </span>
           </div>
         </div>
       </div>

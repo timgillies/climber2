@@ -83,7 +83,7 @@ class Admin::RoutesController < ApplicationController
       flash[:success] = "Route created!"
       redirect_to(new_admin_facility_route_path(@facility))
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -105,13 +105,19 @@ class Admin::RoutesController < ApplicationController
 
   def update
     @facility = Facility.find(params[:facility_id])
+    @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+
+    @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
+
+    @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @route = Route.find(params[:id])
     if @route.update_attributes(route_params)
       flash[:success] = "Route updated"
       redirect_to(admin_facility_routes_path(@facility))
       # Handle a successful update.
     else
-      render 'new'
+      render :edit
     end
   end
 

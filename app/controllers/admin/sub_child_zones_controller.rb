@@ -18,14 +18,15 @@ class Admin::SubChildZonesController < ApplicationController
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @sub_child_zone = current_user.sub_child_zones.build(sub_child_zone_params)
-    @sub_child_zones = SubChildZone.page(params[:page]) # makes "each" work in the partial
+    @sub_child_zones = @facility.sub_child_zones.page(params[:page]) # makes "each" work in the partial
     @sub_child_zone.facility_id = params[:facility_id] #this passes the facility ID through the field
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     if @sub_child_zone.save
       flash[:success] = "Zone created!"
       redirect_to(admin_facility_zones_path(@facility))
     else
-      render 'new'
+      flash[:danger] = "Zone not saved!"
+      redirect_to(admin_facility_zones_path(@facility))
     end
   end
 
@@ -45,7 +46,8 @@ class Admin::SubChildZonesController < ApplicationController
       redirect_to(admin_facility_zones_path(@facility))
       # Handle a successful update.
     else
-      render :new
+      flash[:danger] = "Zone not saved!"
+      redirect_to(admin_facility_zones_path(@facility))
     end
   end
 

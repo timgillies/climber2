@@ -1,27 +1,35 @@
 <br/>
+<div class="container-fluid bg-gray">
   <%= form_for [:admin, @facility, @facility_role], :html => {:class => "form-label"}, remote: false do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-<div class="row">
-  <div class="col-sm-6 col-md-6 col-lg-6">
-    <%= f.label :email, "Recipient's Email Address:" %>
-    <%= f.text_field :email, class: 'form-control', placeholder: "Enter email address" %>
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <%= f.label :email, "Recipient's Email Address:" %>
+      <%= f.text_field :email, class: 'form-control', placeholder: "Enter email address" %>
+    </div>
+
+    <div class="col-sm-3 col-md-3 col-lg-3">
+      <%= f.label :name, "Assign role:" %>
+      <%= f.select(:name, @role_names ,{include_blank: "Select role..." },{class: "form-control"}) %>
+    </div>
+
+    <div class="col-sm-3 col-md-3 col-lg-3">
+      <label class="hidden-xl">&nbsp;</label>
+      <%= f.submit "Send", class: "btn btn-submit" %>
+    </div>
   </div>
 
-  <div class="col-sm-3 col-md-3 col-lg-3">
-    <%= f.label :name, "Assign role:" %>
-    <%= f.select(:name, @role_names ,{include_blank: "Select role..." },{class: "form-control"}) %>
-  </div>
 
-  <div class="col-sm-3 col-md-3 col-lg-3">
-    <label class="hidden-xl">&nbsp;</label>
-    <%= f.submit "Send", class: "btn btn-submit" %>
-  </div>
-</div>
-
-
-<div class="row pull-right">
-  <div class="col-sm-6 col-md-6 col-lg-6">
-    <%= link_to "cancel", admin_facility_facility_roles_path %>
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <i>Use the email address the user will sign up with.</i>
+    </div>
+    <span class="pull-right">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <%= link_to "cancel", admin_facility_facility_roles_path %>
+      </div>
+    </span>
   </div>
 </div>
 <% end %>
+<br/>

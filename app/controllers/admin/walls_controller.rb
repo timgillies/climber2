@@ -26,14 +26,15 @@ class Admin::WallsController < ApplicationController
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @wall = current_user.walls.build(wall_params)
-    @walls = Wall.page(params[:page]) # makes "each" work in the partial
+    @walls = @facility.walls.page(params[:page]) # makes "each" work in the partial
     @wall.facility_id = params[:facility_id] #this passes the facility ID through the field
     @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
     if @wall.save
       flash[:success] = "Zone created!"
       redirect_to(admin_facility_zones_path(@facility))
     else
-      render 'new'
+      flash[:danger] = "Zone not saved!"
+      redirect_to(admin_facility_zones_path(@facility))
     end
   end
 
@@ -46,7 +47,8 @@ class Admin::WallsController < ApplicationController
       redirect_to(admin_facility_zones_path(@facility))
       # Handle a successful update.
     else
-      render :new
+      flash[:danger] = "Zone not saved!"
+      redirect_to(admin_facility_zones_path(@facility))
     end
   end
 

@@ -41,6 +41,7 @@ class Admin::FacilityTargetsController < ApplicationController
     def create
       @facility = Facility.find(params[:facility_id])
       @facility_target = current_user.facility_targets.build(facility_target_params)
+      @facility_targets = @facility.facility_targets.page(params[:page]).per(500)
       @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
 
       @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
@@ -76,6 +77,7 @@ class Admin::FacilityTargetsController < ApplicationController
     def update
       @facility = Facility.find(params[:facility_id])
       @facility_target = FacilityTarget.find(params[:id])
+      @facility_targets = @facility.facility_targets.page(params[:page]).per(500)
       if @facility_target.update_attributes(facility_target_params)
         flash[:success] = "Route updated"
         redirect_to(admin_facility_facility_targets_path(@facility))
