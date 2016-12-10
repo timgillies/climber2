@@ -1084,6 +1084,14 @@ span.picture {
    opacity: 50%;
  }
 
+.white>li>a {
+   color: #aeaeae;
+   opacity: 50%;
+   &:hover {
+      color: white;
+   }
+ }
+
  .navbar-default .navbar-nav .open .dropdown-menu .divider {
    background-color: $gray-darker;
  }

@@ -14,11 +14,19 @@
           </div>
         </div>
         <div class="row">
+
+          <% unless f.current_period_start.nil? %>
+            <div class="col-xs-12">
+                <strong>Current Billing Period: </strong><%= Time.at(f.current_period_start).strftime("%b %d, %Y") %> to <%= Time.at(f.current_period_end).strftime("%b %d, %Y") if f.current_period_start %>
+            </div>
+          <% end %>
+
           <div class="col-xs-12">
-            <strong>Amount: </strong><%= number_to_currency(f.plan.price) if f.plan %>
-          </div>
-          <div class="col-xs-12">
-            <strong>Renewal Date: </strong><%= f.end_date %>
+              <strong>Status: </strong>
+              <%= f.status.to_s.capitalize if f.status %>
+              <% unless f.canceled_at.nil? %>
+               - until <%= Time.at(f.current_period_end).strftime("%b %d, %Y") %>
+              <% end %>
           </div>
 
           <div class="col-xs-12 col-sm-12">

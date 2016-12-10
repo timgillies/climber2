@@ -1,19 +1,29 @@
-<%= form_for [:admin, @facility, @subscription] do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
 
-<%= f.hidden_field :user_id, value: current_user.id %>
-<%= f.hidden_field :facility_id, value: @facility.id %>
+  <%= form_for [:admin, @facility, @subscription] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-<div class="actions">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_DvsqRdzbIZU1Qk2M4hem9GRY"
-    data-amount="<%= @facility.plan.price.to_i * 100 %>"
-    data-name="Climb | Connect"
-    data-description="<%= @facility.plan.description %>"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
-  </script>
-</div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :facility_id, value: @facility.id %>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= label_tag(:couponCode, 'Have a coupon code?') %>
+      <%= text_field_tag(:couponCode) %>
+    </div>
+  </div>
 
-<% end %>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="actions">
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_DvsqRdzbIZU1Qk2M4hem9GRY"
+          data-name="Climb | Connect"
+          data-description="<%= @facility.plan.description %>"
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto">
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <% end %>

@@ -95,6 +95,14 @@ class ApplicationController < ActionController::Base
     role_redirect('guest')
   end
 
+  def paid_subscriber
+    facility_controller_check
+    unless @facility.subscriptions.where(status: "active").count > 0 # overrides assigned facility roles
+          redirect_to new_admin_facility_subscription_path(@facility)
+
+    end
+  end
+
 
 
   def site_admin

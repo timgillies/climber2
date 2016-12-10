@@ -4,6 +4,7 @@ class Admin::RoutesController < ApplicationController
   before_action :setter_role,               only: [:destroy]
   before_action :guest_role,                only: [:destroy]
   before_action :marketing_role,            except: [:index, :show]
+  # before_action :paid_subscriber,           only: [:new, :create]
 
 
   layout "admin"

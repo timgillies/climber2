@@ -18,22 +18,59 @@ class Admin::SubscriptionsController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @subscription = Subscription.new subscription_params.merge(email: stripe_params["stripeEmail"], card_token: stripe_params["stripeToken"])
 
-    raise "Please, check payment errors" unless @subscription.valid?
-    # Amount in cents
-    @amount = 500
 
+    @amount = @facility.plan.price.to_i * 100
+    @final_amount = @amount
+
+    @code = params[:couponCode]
+
+    if !@code.blank?
+     @discount = get_discount(@code)
+
+       if @discount.nil?
+         flash[:error] = 'Coupon code is not valid or expired.'
+         redirect_to new_admin_facility_subscription_path(@facility)
+         return
+       else
+         @discount_amount = @amount * @discount
+         @final_amount = @amount - @discount_amount.to_i
+       end
+
+       charge_metadata = {
+         :coupon_code => @code,
+         :coupon_discount => (@discount * 100).to_s + "%"
+       }
+    end
+
+    charge_metadata ||= {}
+
+
+
+  if @code.blank?
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :plan => @facility.plan.name,
-      :source  => params[:stripeToken]
+      :source  => params[:stripeToken],
     )
+  else
+    customer = Stripe::Customer.create(
+      :email => params[:stripeEmail],
+      :plan => @facility.plan.name,
+      :source  => params[:stripeToken],
+      :coupon => @code,
+      :metadata    => charge_metadata
+    )
+  end
 
+  if @final_amount > 0
     charge = Stripe::Charge.create(
       :customer    => customer.id,
-      :amount      => @facility.plan.price.to_i * 100,
+      :amount      => @final_amount,
       :description => 'Rails Stripe customer',
-      :currency    => 'usd'
+      :currency    => 'usd',
+      :metadata    => charge_metadata
     )
+  end
 
     @subscription.customer_id = customer.id
     @subscription.plan_id = @facility.plan_id
@@ -57,11 +94,11 @@ class Admin::SubscriptionsController < ApplicationController
     # @subscription.update_attribute(:current_period_end, subscription['data'].current_period_end)
     # @subscription.update_attribute(:ended_at, subscription['data'].ended_at)
 
-    redirect_to admin_facility_subscriptions_path(@facility), notice: 'Thank you for your payment!'
+    redirect_to admin_facility_subscription_path(@facility, @subscription), notice: 'Thank you for subscribing!'
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_admin_subscription_path
+    redirect_to new_admin_facility_subscription_path(@facility)
   end
 
   def webhook
@@ -70,8 +107,8 @@ class Admin::SubscriptionsController < ApplicationController
     case event.type
       when "invoice.payment_succeeded" #renew subscription
         Subscription.find_by_customer_id(event.data.object.customer).renew
-      when 'invoice.payment_failed'
-        SUbscription.find_by_customer_ud(event.data.object.customer).cancel
+      when 'invoice.payment_failed' #cancel subscription
+        Subscription.find_by_customer_id(event.data.object.customer).cancel
     end
     render status: :ok, json: "success"
   end
@@ -81,7 +118,7 @@ class Admin::SubscriptionsController < ApplicationController
     @subscription = Subscription.find(params[:id])
 
     subscription = Stripe::Subscription.retrieve(@subscription.stripe_subscription_id)
-    @subscription.update_attribute(:customer_id, subscription.id)
+    @subscription.update_attribute(:customer_id, subscription.customer)
     @subscription.update_attribute(:canceled_at, subscription.canceled_at)
     @subscription.update_attribute(:start, subscription.start)
     @subscription.update_attribute(:status, subscription.status)
@@ -96,6 +133,9 @@ class Admin::SubscriptionsController < ApplicationController
     @subscription.update_attribute(:stripe_plan_interval_count, subscription.plan.interval_count)
     @subscription.update_attribute(:stripe_plan_created, subscription.plan.created)
 
+    @invoice_list = Stripe::Invoice.all(:customer => @subscription.customer_id)
+    @invoices = @invoice_list[:data]
+
   end
 
   def cancel
@@ -104,7 +144,7 @@ class Admin::SubscriptionsController < ApplicationController
     subscription = Stripe::Subscription.retrieve(@subscription.stripe_subscription_id)
     subscription.delete(:at_period_end => true)
 
-    redirect_to admin_facility_subscriptions_path(@facility), notice: 'Your subscription has been cancelled.'
+    redirect_to admin_facility_subscription_path(@facility, @subscription), notice: "Your subscription has been cancelled and will end on #{ Time.at(subscription.current_period_end).strftime("%m/%d/%Y") }"
 
   end
 
@@ -138,4 +178,19 @@ private
                                           :stripe_plan_interval_count,
                                           :stripe_plan_created)
   end
+
+  COUPONS = {
+    'CLIMBON' => 1.00,
+    'LAUNCH50' => 0.5,
+    'BETA3' => 1.00,
+    'BETA6' => 1.00
+  }
+
+  def get_discount(code)
+    # Normalize user input
+    code = code.gsub(/\s+/, '')
+    code = code.upcase
+    COUPONS[code]
+  end
+
 end

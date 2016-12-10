@@ -1,39 +1,24 @@
 <div class="container-fluid">
-  <div class="col-sm-6 col-sm-offset-3">
-    <div class="row">
-      <div class="headliner-line">
-        <h1><%= @facility.name %> <%= @facility.location if @facility.location %></h1>
-      </div>
-    </div>
-    <div class="row">
-      <%= @facility.addressline1 %>
-    </div>
-
-    <% unless @facility.addressline2 %>
+  <div class="col-sm-12">
+    <div class="container-fluid">
       <div class="row">
-        <%= @facility.addressline2 %>
+        <div class="headliner">
+          <h1><strong>CLIMB | CONNECT</strong> Pro</h1>
+        </div>
       </div>
-    <% end %>
 
-    <div class="row">
-      <%= @facility.city + ", " + @facility.state + " " + @facility.zipcode %>
-    </div>
+      <br/>
 
-    <br/>
+      <div class="row">
+        <strong>Description: </strong>CLIMB |  CONNECT <%= @facility.plan.name.humanize %>
+      </div>
+      <div class="row">
+        <strong>Monthly recurring charge: </strong><%= number_to_currency(@facility.plan.price) %>
+      </div>
+      <br/>
 
-    <div class="row">
-      <strong>Description: </strong><%= @facility.plan.name %>
-    </div>
-
-    <br/>
-    <div class="row">
-      <strong>Total Cost: </strong><%= number_to_currency(@facility.plan.price) %>
-    </div>
-    <br/>
-
-    <div class="row">
-      <div class="col-xs-offset-4">
-        <%= render 'admin/subscriptions/form2', object: @subscriptions %>
+      <div class="row">
+          <%= render 'admin/subscriptions/form2', object: @subscriptions %>
       </div>
     </div>
   </div>

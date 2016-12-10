@@ -19,7 +19,6 @@ class Route < ActiveRecord::Base
   validates :setdate, presence: true
   validates :grade, presence: true
 
-  default_scope -> { order(created_at: :desc) }
 
 
 
@@ -62,7 +61,6 @@ class Route < ActiveRecord::Base
     :with_wall_id,
     :with_setter_id,
     :with_status_id,
-    :with_setdate_gte
   ]
   )
   # define ActiveRecord scopes for
@@ -99,12 +97,6 @@ scope :sorted_by, lambda { |sort_option|
     # Joining on other tables is quite common in Filterrific, and almost
     # every ActiveRecord table has a 'created_at' column.
     order("routes.setdate #{ direction }")
-  when /^enddate_/
-    # Simple sort on the created_at column.
-    # Make sure to include the table name to avoid ambiguous column names.
-    # Joining on other tables is quite common in Filterrific, and almost
-    # every ActiveRecord table has a 'created_at' column.
-    order("routes.enddate #{ direction }")
   else
     raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
   end
