@@ -52,6 +52,8 @@ class Facility < ActiveRecord::Base
     self.update_attribute(:plan_id, plan_id)
   end
 
+
+
   private
 
   # (after_create) - Creates relationship in FacilityRole table between facility_owner and facility

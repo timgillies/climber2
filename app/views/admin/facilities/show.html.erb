@@ -9,31 +9,36 @@
 
   <% @facility_systems.each do |fs| %>
 
-  <% if fs.grades.count > 15 %>
-    <div class="col-md-12">
-  <% else %>
-    <div class="col-md-6">
+
+
+  <div class="container-fluid">
+    <div class="col-sm-12">
+      <div class="routelist">
+        <div class="row">
+            <h3> <%= fs.name %></h3>
+        </div>
+        <div class="row">
+          Total Active Routes: <%= Route.facility_system(fs).where(facility_id: @facility.id).current.count %>
+        </div>
+            <%= render 'facilities/gradedist_boulder', :fs => fs %>
+      </div>
+    </div>
+  </div>
+
   <% end %>
-  <div class="chart-header">
-    <h1> <%= fs.name %></h1>
+
+  <div class="col-sm-6">
+    <div class="routelist">
+      <h3>Routes by Zone</h3>
+    </div>
+      <%= render 'facilities/zonedist' %>
   </div>
-      <%= render 'facilities/gradedist_boulder', :fs => fs %>
-  </div>
-
-  <% end %>
-
-<div class="col-md-6">
-  <div class="chart-header">
-    <h1>Routes by Zone</h1>
-  </div>
-    <%= render 'facilities/zonedist' %>
-</div>
 
 
 
-
-<div class="row">
-  <div class="col-md-12">
+  <div class="col-sm-12">
+    <div class="routelist">
+      <h3>New Routes</h3>
       <%= render 'facilities/newroutes' %>
   </div>
 </div>

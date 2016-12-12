@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="col-sm-12">
-    <div class="container-fluid">
+    <div class="container-fluid bg-gray">
       <div class="row">
         <div class="headliner">
           <h1><strong>CLIMB | CONNECT</strong> Pro</h1>
@@ -8,6 +8,7 @@
       </div>
 
       <br/>
+
 
       <div class="row">
         <strong>Description: </strong>CLIMB |  CONNECT <%= @facility.plan.name.humanize %>
@@ -21,5 +22,16 @@
           <%= render 'admin/subscriptions/form2', object: @subscriptions %>
       </div>
     </div>
+      <div class="container-fluid bg-white hidden-xs">
+        <div class="marketing">
+          <%= render 'static_pages/marketing' %>
+        </div>
+      </div>
+
+      <div class="container-fluid bg-white hidden-sm hidden-md hidden-lg hidden-xl">
+        <div class="marketing-mobile">
+          <%= render 'static_pages/marketing_mobile' %>
+        </div>
+      </div>
   </div>
 </div>

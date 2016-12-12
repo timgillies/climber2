@@ -48,6 +48,14 @@ class Route < ActiveRecord::Base
     Route.joins(:grade).merge(Grade.where(:discipline => 'sport'))
   end
 
+  def self.facility_system(fs)
+    Route.joins(:grade).merge(Grade.where(:grade_system_id => fs))
+  end
+
+  def route_age
+    (setdate - Date.today).to_i
+  end
+
 # enables rating for routes
   ratyrate_rateable 'total'
 

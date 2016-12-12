@@ -1,59 +1,61 @@
 <%= div_for(@facility_roles) do |f| %>
 <ol class="chartlist">
   <li>
-    <div class="container-fluid">
-      <div class="row">
-        <br/>
-        <% if f.confirmed? %>
-        <div class="col-xs-6 col-sm-4">
-          <p>
-            <%= f.user.name %>
-          </p>
-        </div>
-        <% else %>
-        <div class="col-xs-6 col-sm-4">
-          <p>
-            <%= f.email if f.email%>
-          </p>
-        </div>
-        <% end %>
-        <div class="col-sm-4 hidden-xs">
-          <p><%= f.name.humanize if f.name %></p>
-        </div>
-
-
-        <div class="col-xs-3 col-sm-2">
+    <div class="routelist">
+      <div class="container-fluid">
+        <div class="row">
+          <br/>
           <% if f.confirmed? %>
-          <p><i class="glyphicon glyphicon-ok glyphicon-green"></i></p>
+          <div class="col-xs-6 col-sm-4">
+            <h3>
+              <%= f.user.name %>
+            <h3>
+          </div>
           <% else %>
-          <p>Invited</p>
+          <div class="col-xs-6 col-sm-4">
+            <h3>
+              <%= f.email if f.email%>
+            </h3>
+          </div>
+          <% end %>
+          <div class="col-sm-4 hidden-xs">
+            <%= f.name.humanize if f.name %>
+          </div>
+
+
+          <div class="col-xs-3 col-sm-2">
+            <% if f.confirmed? %>
+            <p><i class="glyphicon glyphicon-ok glyphicon-green"></i></p>
+            <% else %>
+            <p>Invited</p>
+            <% end %>
+          </div>
+
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <p><%= link_to edit_admin_facility_facility_role_path(@facility, f ) do %>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <%end %>
+            </p>
+          </div>
+
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <p><%= link_to admin_facility_facility_role_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                        :method => :delete do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <%end %>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 hidden-sm hidden-md hidden-lg hidden-xl">
+            <p><%= f.name.humanize if f.name %></p>
+          </div>
+        </div>
+        <div class="row">
+          <% if Route.where(user_id: f.user_id).count > 0 %>
+            <%= render 'facilities/rolegradedist', :f => f %>
           <% end %>
         </div>
-
-        <div class="col-xs-1 col-sm-1 col-md-1">
-          <p><%= link_to edit_admin_facility_facility_role_path(@facility, f ) do %>
-                      <i class="glyphicon glyphicon-cog"></i>
-                      <%end %>
-          </p>
-        </div>
-
-        <div class="col-xs-1 col-sm-1 col-md-1">
-          <p><%= link_to admin_facility_facility_role_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                      :method => :delete do %>
-                      <i class="glyphicon glyphicon-trash"></i>
-                      <%end %>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 hidden-sm hidden-md hidden-lg hidden-xl">
-          <p><%= f.name.humanize if f.name %></p>
-        </div>
-      </div>
-      <div class="row">
-        <% if Route.where(user_id: f.user_id).count > 0 %>
-          <%= render 'facilities/rolegradedist', :f => f %>
-        <% end %>
       </div>
     </div>
   </li>

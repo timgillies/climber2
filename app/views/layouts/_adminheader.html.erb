@@ -34,7 +34,7 @@
             <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %> hidden-xs"><%= link_to "Route Database", admin_facility_routes_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %> hidden-xs"><%= link_to "Add Routes", new_admin_facility_route_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "Zones", admin_facility_zones_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(new_admin_facility_setter_path(@facility)) %>"><%= link_to "Team", admin_facility_facility_roles_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(admin_facility_facility_roles_path(@facility)) %>"><%= link_to "Team", admin_facility_facility_roles_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "Grades", admin_facility_grades_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_facility_targets_path(@facility)) %>"><%= link_to "Targets", admin_facility_facility_targets_path(@facility) %></li>
             <li class="dropdown">

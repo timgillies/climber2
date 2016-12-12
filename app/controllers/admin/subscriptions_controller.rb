@@ -12,6 +12,7 @@ class Admin::SubscriptionsController < ApplicationController
   def new
     @facility = Facility.find(params[:facility_id])
     @subscription = Subscription.new
+    @facility.update_plan_choice("1")
   end
 
   def create

@@ -5,20 +5,28 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :facility_id, value: @facility.id %>
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-sm-4 col-xs-8">
       <%= label_tag(:couponCode, 'Have a coupon code?') %>
       <%= text_field_tag(:couponCode) %>
     </div>
   </div>
+  <i>Coupon will be reflected on invoice</i>
+
+
 
   <div class="row">
-    <div class="col-sm-8">
+    <br/>
+    <div class="col-sm-12">
       <div class="actions">
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="pk_test_DvsqRdzbIZU1Qk2M4hem9GRY"
-          data-name="Climb | Connect"
+          data-name="CLIMB | CONNECT"
           data-description="<%= @facility.plan.description %>"
+          data-amount="<%= @final_amount.to_i %>"
+          data-panel-label="Subscribe"
+          data-email="<%= current_user.email %>"
+          data-allow-remember-me="false"
           data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
           data-locale="auto">
         </script>

@@ -31,7 +31,7 @@ class Admin::FacilitiesController < ApplicationController
   def create
     @facility = current_user.facilities.build(facility_params)
     if @facility.save
-      @facility.update_plan_choice("3")    
+      @facility.update_plan_choice("1")    
       current_user.update_attribute(:role, 'facility_admin')
       redirect_to new_admin_facility_subscription_path(@facility)
     else
