@@ -1,40 +1,43 @@
 
 <%= div_for(@facility_targets) do |f| %>
 
-<ol class="routelist">
+<ol class="chartlist">
   <div class="divider-line"></div>
   <li>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-5 col-sm-6">
-          <h3><%= f.zone.name if f.zone %> > <%= f.grade.grade if f.grade %></h3>
+    <div class="routelist">
+      <div class="container-fluid">
+        <br/>
+        <div class="row">
+          <div class="col-xs-5 col-sm-6">
+            <h3><%= f.grade.grade if f.grade %> <%= f.zone.name if f.zone %></h3>
 
-        </div>
+          </div>
 
-        <div class="col-xs-4 col-sm-4">
-            <p>Target: <strong><%= f.value %></strong></p>
+          <div class="col-xs-4 col-sm-4">
+              <p>Target: <strong><%= f.value %></strong></p>
 
-        </div>
-        <div class="col-xs-1 col-sm-1 col-md-1">
-          <p><%= link_to edit_admin_facility_facility_target_path(@facility, f ) do %>
-                      <i class="glyphicon glyphicon-cog"></i>
-                      <%end %>
-          </p>
-        </div>
+          </div>
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h3><%= link_to edit_admin_facility_facility_target_path(@facility, f ) do %>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <%end %>
+            </h3>
+          </div>
 
-        <div class="col-xs-1 col-sm-1 col-md-1">
-          <p><%= link_to admin_facility_facility_target_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                      :method => :delete do %>
-                      <i class="glyphicon glyphicon-trash"></i>
-                      <%end %>
-          </p>
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h3><%= link_to admin_facility_facility_target_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                        :method => :delete do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <%end %>
+            </h3>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <strong>System: </strong><%= f.grade.grade_system.name %>
+          </div>
+
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <strong>System: </strong><%= f.grade.grade_system.name %>
-        </div>
-
     </div>
   </li>
 </ol>

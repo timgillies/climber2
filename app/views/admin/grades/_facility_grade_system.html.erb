@@ -6,38 +6,39 @@
 <%= div_for(@grade_systems) do |fs| %>
 <ol class="chartlist">
   <li>
-    <div class="container-fluid">
-      <div class="row">
-        <br/>
-        <div class="col-xs-7 col-sm-5">
-          <p><%= fs.name %></p>
+    <div class="routelist">
+      <div class="container-fluid">
+        <div class="row">
+          <br/>
+          <div class="col-xs-7 col-sm-5">
+            <h3><%= fs.name %></h3>
 
-        </div>
+          </div>
 
 
-        <div class="hidden-xs col-sm-5">
-          <% if fs.facility %>
-            <p><%= fs.facility.name %><%if fs.facility.location %> - <%= fs.facility.location %> <% end %> </p>
-          <% end %>
-        </div>
-
-        <div class="col-xs-5 col-sm-2 col-md-2">
-          <div id="use_system_form">
-            <% if FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
-            <%= render 'unuse_system', :fs => fs %>
-            <% else %>
-            <%= render 'use_system', :fs => fs %>
+          <div class="hidden-xs col-sm-5">
+            <% if fs.facility %>
+              <p><%= fs.facility.name %><%if fs.facility.location %> - <%= fs.facility.location %> <% end %> </p>
             <% end %>
           </div>
 
+          <div class="col-xs-5 col-sm-2 col-md-2">
+            <div id="use_system_form">
+              <% if FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
+              <%= render 'unuse_system', :fs => fs %>
+              <% else %>
+              <%= render 'use_system', :fs => fs %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <% if fs.grades.joins(:routes).count > 0 && FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
+          <%= render 'facilities/gradedist_boulder', :fs => fs %>
+          <% end %>
         </div>
       </div>
-      <div class="row">
-        <% if fs.grades.joins(:routes).count > 0 && FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
-        <%= render 'facilities/gradedist_boulder', :fs => fs %>
-        <% end %>
-      </div>
-    </div>
   </li>
 </ol>
 <% end %>

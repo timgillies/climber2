@@ -2,38 +2,40 @@
   <%= div_for @zones do |fz| %>
   <ol class="chartlist">
     <li>
-      <div class="container-fluid">
-        <div class="row">
-          <br/>
-          <div class="col-sm-5 col-xs-5">
-            <p><%= fz.name %></p>
-          </div>
-          <div class="col-sm-5 col-xs-3">
-              <p><%= fz.routes.current.count %><span class="hidden-xs"> active routes</span> / <%= FacilityTarget.where(zone_id: fz.id).sum(:value) %></p>
-          </div>
-          <div class="col-xs-2 col-sm-1 col-md-1">
-            <p><%= link_to edit_admin_facility_zone_path(@facility, fz ) do %>
-                        <i class="glyphicon glyphicon-cog"></i>
-            </p>            <% end %>
-          </div>
+      <div class="routelist">
+        <div class="container-fluid">
+          <div class="row">
+            <br/>
+            <div class="col-sm-5 col-xs-5">
+              <h3><%= fz.name %></h3>
+            </div>
+            <div class="col-sm-5 col-xs-3">
+                <p><%= fz.routes.current.count %><span class="hidden-xs"> active routes</span> / <%= FacilityTarget.where(zone_id: fz.id).sum(:value) %></p>
+            </div>
+            <div class="col-xs-2 col-sm-1 col-md-1">
+              <h3><%= link_to edit_admin_facility_zone_path(@facility, fz ) do %>
+                          <i class="glyphicon glyphicon-cog"></i>
+              </h3>            <% end %>
+            </div>
 
-          <div class="col-xs-2 col-sm-1 col-md-1">
-            <p><%= link_to admin_facility_zone_path(@facility, fz), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                        :method => :delete do %>
-                        <i class="glyphicon glyphicon-trash"></i>
-            </p>            <% end %>
+            <div class="col-xs-2 col-sm-1 col-md-1">
+              <h3><%= link_to admin_facility_zone_path(@facility, fz), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                          :method => :delete do %>
+                          <i class="glyphicon glyphicon-trash"></i>
+              </h3>            <% end %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-xs-12">
-            <% if fz.walls.count > 0 %>
-            <%= render 'facilities/walldist', :fz => fz %>
-            <% end %>
+          <div class="row">
+            <div class="col-md-6 col-xs-12">
+              <% if fz.walls.count > 0 %>
+              <%= render 'facilities/walldist', :fz => fz %>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 col-xs-12">
-            <%= render 'facilities/zonegradedist', :fz => fz %>
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+              <%= render 'facilities/zonegradedist', :fz => fz %>
+            </div>
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 <%= div_for(@facility_grade_systems.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id)) do |fg| %>
 <div class="col-xs-6">
-  <p><i class="glyphicon glyphicon-ok glyphicon-green"></i></p>
+  <h3><i class="glyphicon glyphicon-ok glyphicon-green"></i></h3>
 </div>
 
 <div class="col-xs-6">
   <%= link_to admin_facility_facility_grade_system_path(@facility, fg), remote: false,
               :method => :delete do %>
-              <p><i class="glyphicon glyphicon-remove"></i></p>
+              <h3><i class="glyphicon glyphicon-remove"></i></h3>
               <%end %>
 </div>
   <% end %>

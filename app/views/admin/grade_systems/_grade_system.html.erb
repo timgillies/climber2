@@ -2,38 +2,40 @@
 <%= div_for(@grade_systems) do |f| %>
 <ol class="chartlist">
   <li>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-4">
-          <p><%= f.name %></p>
+    <div class="routelist">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4">
+            <h3><%= f.name %></h3>
 
-        </div>
-        <div class="col-sm-2">
-            <p><%= f.grades.count %> grades</p>
+          </div>
+          <div class="col-sm-2">
+              <p><%= f.grades.count %> grades</p>
 
-        </div>
+          </div>
 
-        <div class="col-sm-4">
-          <% if f.facility %>
-            <p><%= f.facility.name %><%if f.facility.location %> - <%= f.facility.location %> <% end %> </p>
-          <% end %>
-        </div>
+          <div class="col-sm-4">
+            <% if f.facility %>
+              <p><%= f.facility.name %><%if f.facility.location %> - <%= f.facility.location %> <% end %> </p>
+            <% end %>
+          </div>
 
-        <div class="col-xs-1 col-sm-1 col-md-1">
+          <div class="col-xs-1 col-sm-1 col-md-1">
 
-          <h4><%= link_to edit_admin_grade_system_path(f) do %>
-                      <i class="glyphicon glyphicon-cog"></i>
-                      <%end %>
+            <h4><%= link_to edit_admin_grade_system_path(f) do %>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <%end %>
 
-          </h4>
-        </div>
+            </h4>
+          </div>
 
-        <div class="col-xs-1 col-sm-1 col-md-1">
-          <h4><%= link_to admin_grade_system_path(f), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                      :method => :delete do %>
-                      <i class="glyphicon glyphicon-trash"></i>
-                      <%end %>
-          </h4>
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h4><%= link_to admin_grade_system_path(f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                        :method => :delete do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <%end %>
+            </h4>
+          </div>
         </div>
       </div>
     </div>
