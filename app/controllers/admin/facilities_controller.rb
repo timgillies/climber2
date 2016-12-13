@@ -1,5 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
-  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!,        only: [:index, :show, :create, :edit, :update, :destroy]
+  before_action :logged_in_user,            only: [:new]
   before_action :facility_admin,            only: [:index, :show, :edit, :update, :destroy]
   before_action :head_setter_role,          only: [:destroy]
   before_action :setter_role,               except: [:new, :create, :index, :show]
@@ -31,8 +32,10 @@ class Admin::FacilitiesController < ApplicationController
   def create
     @facility = current_user.facilities.build(facility_params)
     if @facility.save
-      @facility.update_plan_choice("1")    
-      current_user.update_attribute(:role, 'facility_admin')
+      @facility.update_plan_choice("1")
+      unless current_user.role == "site_admin"
+        current_user.update_attribute(:role, 'facility_admin')
+      end
       redirect_to new_admin_facility_subscription_path(@facility)
     else
       render 'new'
@@ -98,6 +101,17 @@ class Admin::FacilitiesController < ApplicationController
     # Confirms an admin user.
     def admin_user
       redirect_to root_url unless current_user.admin?
+    end
+
+    def logged_in_user
+      unless logged_in?
+        redirect_to new_user_registration_path
+      end
+    end
+
+    # Returns true if the user is logged in, false otherwise.
+    def logged_in?
+      !current_user.nil?
     end
 
 end

@@ -10,6 +10,7 @@ class Admin::RoutesController < ApplicationController
   layout "admin"
 
   include GradesHelper
+  include RoutesHelper
 
   def index
     @facility = Facility.find(params[:facility_id])
@@ -52,6 +53,9 @@ class Admin::RoutesController < ApplicationController
     @route = Route.new
     @facility = Facility.find(params[:facility_id])
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+    @r_value = ric_values
+    @i_value = ric_values
+    @c_value = ric_values
 
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
@@ -77,6 +81,9 @@ class Admin::RoutesController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @r_value = ric_values
+    @i_value = ric_values
+    @c_value = ric_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
     @route.facility_id = params[:facility_id]
@@ -96,6 +103,9 @@ class Admin::RoutesController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @r_value = ric_values
+    @i_value = ric_values
+    @c_value = ric_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @route.facility_id = params[:facility_id]
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
@@ -111,6 +121,9 @@ class Admin::RoutesController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @r_value = ric_values
+    @i_value = ric_values
+    @c_value = ric_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @route = Route.find(params[:id])
     if @route.update_attributes(route_params)
@@ -155,7 +168,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity)
   end
 
   def options_for_grade_select

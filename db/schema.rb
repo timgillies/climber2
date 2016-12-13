@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209154019) do
+ActiveRecord::Schema.define(version: 20161213184931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,6 +213,9 @@ ActiveRecord::Schema.define(version: 20161209154019) do
     t.boolean  "tagged"
     t.integer  "sub_child_zone_id"
     t.integer  "set_by_id"
+    t.integer  "risk"
+    t.integer  "intensity"
+    t.integer  "complexity"
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree

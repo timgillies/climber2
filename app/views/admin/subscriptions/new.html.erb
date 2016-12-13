@@ -1,37 +1,23 @@
 <div class="container-fluid">
   <div class="col-sm-12">
     <div class="container-fluid bg-gray">
-      <div class="row">
-        <div class="headliner">
-          <h1><strong>CLIMB | CONNECT</strong> Pro</h1>
+      <div class="col-sm-6 col-md-5">
+        <div class="row">
+            <%= render 'admin/subscriptions/form2', object: @subscriptions %>
         </div>
       </div>
-
-      <br/>
-
-
-      <div class="row">
-        <strong>Description: </strong>CLIMB |  CONNECT <%= @facility.plan.name.humanize %>
-      </div>
-      <div class="row">
-        <strong>Monthly recurring charge: </strong><%= number_to_currency(@facility.plan.price) %>
-      </div>
-      <br/>
-
-      <div class="row">
-          <%= render 'admin/subscriptions/form2', object: @subscriptions %>
+      <div class="col-sm-6 col-md-7 hidden-xs hidden-sm">
+        <div class="marketing-checkout">
+          <%= render 'admin/subscriptions/marketing_checkout' %>
+        </div>
       </div>
     </div>
-      <div class="container-fluid bg-white hidden-xs">
-        <div class="marketing">
-          <%= render 'static_pages/marketing' %>
-        </div>
-      </div>
+    </div>
 
-      <div class="container-fluid bg-white hidden-sm hidden-md hidden-lg hidden-xl">
+      <div class="container-fluid bg-white hidden-md hidden-lg hidden-xl">
         <div class="marketing-mobile">
-          <%= render 'static_pages/marketing_mobile' %>
+          <%= render 'admin/subscriptions/marketing_mobile' %>
         </div>
       </div>
-  </div>
+    </div>
 </div>

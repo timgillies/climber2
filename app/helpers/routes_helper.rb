@@ -18,5 +18,12 @@ module RoutesHelper
     distance_of_time_in_words(from_time, to_time, scope: 'datetime.distance_in_words.short')
   end
 
+  def ric_values
+      [
+        ['Neutral', 0 ],
+        ['+1', 1 ]
+      ]
+  end
+
 
 end

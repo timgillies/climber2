@@ -1,4 +1,9 @@
 class Admin::SubscriptionsController < ApplicationController
+  before_action :authenticate_user!,        only: [:index, :new, :edit, :update, :destroy]
+  before_action :facility_admin,            only: [:index, :edit, :update, :destroy]
+  before_action :setter_role
+  before_action :guest_role
+  before_action :marketing_role
 
   layout "admin"
 
@@ -58,7 +63,7 @@ class Admin::SubscriptionsController < ApplicationController
       :email => params[:stripeEmail],
       :plan => @facility.plan.name,
       :source  => params[:stripeToken],
-      :coupon => @code,
+      :coupon => normalize_code(@code),
       :metadata    => charge_metadata
     )
   end
@@ -193,6 +198,12 @@ private
     code = code.gsub(/\s+/, '')
     code = code.upcase
     COUPONS[code]
+  end
+
+  def normalize_code(code)
+    # Normalize user input
+    code = code.gsub(/\s+/, '')
+    code = code.upcase
   end
 
 end
