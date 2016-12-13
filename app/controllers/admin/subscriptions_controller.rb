@@ -34,7 +34,7 @@ class Admin::SubscriptionsController < ApplicationController
      @discount = get_discount(@code)
 
        if @discount.nil?
-         flash[:error] = 'Coupon code is not valid or expired.'
+         flash[:error] = 'Coupon code is not valid or expired.  Your card was not charged.  Please try again.'
          redirect_to new_admin_facility_subscription_path(@facility)
          return
        else
