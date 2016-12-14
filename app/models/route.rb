@@ -14,6 +14,7 @@ class Route < ActiveRecord::Base
   accepts_nested_attributes_for :ticks
 
 
+
   validates :color, presence: true
   validates :user_id, presence: true
   validates :setdate, presence: true
@@ -60,7 +61,7 @@ class Route < ActiveRecord::Base
   ratyrate_rateable 'total'
 
   filterrific(
-  default_filter_params: { sorted_by: 'setdate_desc', with_status_id: Date.today },
+  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.today },
   available_filters: [
     :sorted_by,
     :search_query,
@@ -105,6 +106,12 @@ scope :sorted_by, lambda { |sort_option|
     # Joining on other tables is quite common in Filterrific, and almost
     # every ActiveRecord table has a 'created_at' column.
     order("routes.setdate #{ direction }")
+  when /^created_at_/
+    # Simple sort on the created_at column.
+    # Make sure to include the table name to avoid ambiguous column names.
+    # Joining on other tables is quite common in Filterrific, and almost
+    # every ActiveRecord table has a 'created_at' column.
+    order("routes.created_at #{ direction }")
   else
     raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
   end
@@ -141,8 +148,11 @@ scope :sorted_by, lambda { |sort_option|
 
   def self.options_for_sorted_by
     [
-      ['Newest first', 'setdate_desc'],
-      ['Oldest first', 'setdate_asc'],
+      ['Newest first (created date)', 'created_at_desc'],
+      ['Oldest first (created date)', 'created_at_asc'],
+      ['Newest first (set date)', 'setdate_desc'],
+      ['Oldest first (set date)', 'setdate_asc'],
+
     ]
   end
 

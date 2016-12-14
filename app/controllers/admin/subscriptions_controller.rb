@@ -190,7 +190,8 @@ private
     'LAUNCH50' => 0.5,
     'BETA3' => 1.00,
     'BETA6' => 1.00,
-    'PARTNER' => 1.00
+    'PARTNER' => 1.00,
+    'PARTNER100' => 1.00
   }
 
   def get_discount(code)
