@@ -24,6 +24,7 @@ class Admin::RoutesController < ApplicationController
         with_wall_id: options_for_wall_select,
         with_setter_id: options_for_setter_select,
         with_status_id: Route.options_for_status_select,
+        with_setdate: Date.today,
       },
       persistence_id: true,
     ) or return
