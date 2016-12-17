@@ -81,7 +81,7 @@
           name: "<%= type %>",
           pointInterval: <%= 1.day * 1000 %>,
           pointStart: <%= 2.weeks.ago.at_midnight.to_i * 1000 %>,
-          data: <%= (2.weeks.ago.to_date..Date.today).map { |date| routes.set_on(date).to_f }.inspect %>
+          data: <%= (2.weeks.ago.to_date..Date.current.in_time_zone).map { |date| routes.set_on(date).to_f }.inspect %>
         },
         <% end %>
         ]

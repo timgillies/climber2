@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   # Confirms a relationship between the user and the facility based on the above roles
   def facility_admin
     facility_controller_check
-    unless  (current_user.role == "site_admin" || current_user.role == "facility_admin")
+    unless  (current_user.role == "site_admin" || current_user.role == "facility_admin") && @facility_role_access.present?
       flash[:danger] = 'You are not authorized.  Please request access from your manager'
       redirect_to root_url
     end
@@ -102,8 +102,6 @@ class ApplicationController < ActionController::Base
 
     end
   end
-
-
 
   def site_admin
     unless current_user.role == "site_admin"

@@ -52,6 +52,14 @@
           }
         },
         bar: {
+          cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.series.options.data[this.category][2] ;
+                        }
+                    }
+                },
           dataLabels: {
             enabled: true,
 
@@ -76,7 +84,7 @@
       series: [{
           type: 'bar',
           name: 'Routes',
-          data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, Route.current.where("wall_id = ? and zone_id = ?", f, fz).count ] } %>
+          data: <%= raw @facility.walls.where("zone_id = ?", fz).order('name ASC').map {|f| [f.name, Route.current.where("wall_id = ? and zone_id = ?", f, fz).count, "https://www.climbconnect.com/admin/facilities/#{@facility.id}/routes?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_grade_id%5D=&filterrific%5Bwith_zone_id%5D=&filterrific%5Bwith_wall_id%5D=#{ f.id }&filterrific%5Bwith_setter_id%5D=&filterrific%5Bwith_status_id%5D=#{Date.current}&filterrific%5Bsorted_by%5D=created_at_desc&_=" ] } %>
       },{
           type: 'spline',
           name: 'Target',
