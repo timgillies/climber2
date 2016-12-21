@@ -18,7 +18,17 @@
   <%= div_for(@routes) do |f| %>
   <ol class="routelist">
     <div class="divider-line"></div>
-    <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
+
+
+    <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
+      <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
+
+      <% else %>
+
+      <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
+
+      <% end %>
+
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-10 col-sm-10 col-md-7 col-lg-7 col-xl-7">
