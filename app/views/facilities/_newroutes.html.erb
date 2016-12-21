@@ -1,6 +1,81 @@
 <script type="text/javascript" charset="utf-8">
   $(function() {
     new Highcharts.Chart({
+      exporting: {
+          sourceWidth: 800,
+          sourceHeight: 400,
+
+          // scale: 2 (default),
+          enabled: true,
+          filename: "new_routes",
+
+          buttons: {
+                contextButton: {
+                    menuItems: [{
+                        text: 'Export to PNG',
+                        onclick: function () {
+                            this.exportChart({
+                                width: 3200
+                            });
+                        }
+                    },{
+                        text: 'Export to PDF',
+                        onclick: function () {
+                            this.exportChart({
+                              type: 'application/pdf'
+                            });
+                        },
+                        separator: false
+                    },
+                  ]
+                }
+            },
+            chartOptions: {
+                title: {
+                    text: "<%= @facility.name + " " + @facility.location %>",
+                    style: {
+                        color: 'black',
+                        fontWeight: 'bold',
+                        fontFamily: "'Helvetica', sans-serif"
+                    }
+                },
+                subtitle: {
+                    text:  "New Routes"
+                },
+                credits: {
+                  enabled: true,
+                  text: 'www.climbconnect.com',
+                  href: 'https://www.climbconnect.com',
+                  position: {
+                    align: "right",
+                    verticalAlign: "bottom",
+                    x: -20,
+                    y: -4,
+                  }
+                },
+            }
+
+      },
+      navigation: {
+          buttonOptions: {
+              align: 'left',
+              verticalAlign: 'top',
+              y: -10,
+              theme: {
+                r: '0',
+                  states: {
+                      hover: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      },
+                      select: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      }
+                  }
+              }
+          }
+      },
       chart: {
         renderTo: "newroutes",
         type: "column",

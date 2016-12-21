@@ -1,6 +1,38 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* Don't print link hrefs */
+@media print {
+  a[href]:after {
+    content: none
+  }
+  .no-print, .no-print *
+  {
+      display: none !important;
+  }
+}
+
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+
+.highcharts-title {
+    fill: #434348;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    font-size: 3em;
+}
+.highcharts-subtitle {
+    font-family: 'Oswald', monospace;
+    font-style: italic;
+    fill: #7cb5ec;
+}
+
 
 
 
@@ -855,7 +887,7 @@ input {
   color: $gray-light;
   li {
     margin-bottom: 5px;
-    border-left: 7px solid #e2e2e2;
+    border-left: 15px solid #F2F4F4;
     position: relative;
     diplay: inline-block;
     a {
@@ -978,43 +1010,43 @@ input {
     margin-bottom: 5px;
   }
   .red {
-    border-left: 7px solid #FFCDD2;
+    border-left: 15px solid #EF5350;
   }
 
   .purple {
-    border-left: 7px solid #D1C4E9;
+    border-left: 15px solid #9B59B6;
   }
 
   .blue {
-    border-left: 7px solid #BBDEFB;
+    border-left: 15px solid #2980B9;
   }
 
   .green {
-    border-left: 7px solid #C8E6C9;
+    border-left: 15px solid #16A085;
   }
 
   .yellow{
-    border-left: 7px solid #FFF9C4;
+    border-left: 15px solid #F1C40F;
   }
 
   .orange {
-    border-left: 7px solid #FFE0B2;
+    border-left: 15px solid #FF7043;
   }
 
   .gray {
-    border-left: 7px solid #e2e2e2;
+    border-left: 15px solid #e2e2e2;
   }
 
   .black {
-    border-left: 7px solid #c2c2c2;
+    border-left: 15px solid $gray;
   }
 
   .white {
-    border-left: 7px solid #F2F4F4;
+    border-left: 15px solid #F2F4F4;
   }
 
   .pink {
-    border-left: 7px solid #F8BBD0;
+    border-left: 15px solid #EC407A;
   }
 
   .brown {
@@ -1022,7 +1054,11 @@ input {
   }
 
   .lime {
-    border-left: 7px solid #F0F4C3;
+    border-left: 15px solid #2ECC71;
+  }
+
+  .magenta {
+    border-left: 15px solid #CC3399;
   }
 }
 

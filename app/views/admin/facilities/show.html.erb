@@ -20,7 +20,9 @@
         <div class="row">
           Total Active Routes: <%= Route.facility_system(fs).where(facility_id: @facility.id).current.count %>
         </div>
+        <div class="row">
             <%= render 'facilities/gradedist_boulder', :fs => fs %>
+        </div>
       </div>
     </div>
   </div>
