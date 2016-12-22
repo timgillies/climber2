@@ -61,7 +61,7 @@ class Route < ActiveRecord::Base
   ratyrate_rateable 'total'
 
   filterrific(
-  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.current },
+  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.today },
   available_filters: [
     :sorted_by,
     :search_query,
@@ -158,7 +158,7 @@ scope :sorted_by, lambda { |sort_option|
 
   def self.options_for_status_select
     [
-      ['Active', Date.current ]
+      ['Active', Date.today ]
     ]
   end
 

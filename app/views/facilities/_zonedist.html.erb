@@ -11,6 +11,7 @@
 
           buttons: {
                 contextButton: {
+                    symbolStroke: '#e6e6e6',
                     menuItems: [{
                         text: 'Export to PNG',
                         onclick: function () {
@@ -37,7 +38,7 @@
             },
             chartOptions: {
                 title: {
-                    text: "<%= @facility.name + " " + @facility.location %>",
+                    text: "<%= @facility.name.gsub(/[^0-9a-z ]/i, '') + " " + @facility.location.gsub(/[^0-9a-z ]/i, '') %>",
                     style: {
                         color: 'black',
                         fontWeight: 'bold',
@@ -47,25 +48,14 @@
                 subtitle: {
                     text: "Facility Zones - <%= Date.current.strftime("%b %d, %Y") %>"
                 },
-                credits: {
-                  enabled: true,
-                  text: 'www.climbconnect.com',
-                  href: 'https://www.climbconnect.com',
-                  position: {
-                    align: "right",
-                    verticalAlign: "bottom",
-                    x: -20,
-                    y: -4,
-                  }
-                },
             }
 
       },
       navigation: {
           buttonOptions: {
-              align: 'left',
-              verticalAlign: 'top',
-              y: -10,
+              align: 'right',
+              verticalAlign: 'bottom',
+              y: 30,
               theme: {
                 r: '0',
                   states: {
@@ -83,6 +73,7 @@
       },
       chart: {
         renderTo: "zone_dist",
+        spacingBottom: 30,
         type: "bar",
         style: {
           fontFamily: 'Helvetica',
@@ -118,7 +109,18 @@
         allowDecimals: false
       },
       credits: {
-        enabled: false
+        enabled: true,
+        text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '') + " " + @facility.location.gsub(/[^0-9a-z ]/i, '') %>  |  www.climbconnect.com',
+        style: {
+          fontSize: "12px",
+        },
+        href: 'https://www.climbconnect.com',
+        position: {
+          align: "right",
+          verticalAlign: "bottom",
+          x: -40,
+          y: -4,
+        }
       },
       legend: {
         enabled: false
