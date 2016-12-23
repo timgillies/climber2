@@ -11,7 +11,7 @@
 
           buttons: {
                 contextButton: {
-                    symbolStroke: '#e6e6e6',
+                    symbolStroke: '#d5d5d5',
                     menuItems: [{
                         text: 'Export to PNG',
                         onclick: function () {
@@ -50,7 +50,7 @@
           buttonOptions: {
               align: 'right',
               verticalAlign: 'bottom',
-              y: 30,
+              y: 32,
               theme: {
                 r: '0',
                   states: {
@@ -68,7 +68,7 @@
       },
       chart: {
         renderTo: "newroutes",
-        spacingBottom: 30,
+        spacingBottom: 35,
         type: "column",
         style: {
           fontFamily: 'Helvetica',
@@ -103,7 +103,7 @@
       },
       credits: {
         enabled: true,
-        text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '') + " " + @facility.location.gsub(/[^0-9a-z ]/i, '') %>  |  www.climbconnect.com',
+        text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
         style: {
           fontSize: "12px",
         },
@@ -112,7 +112,7 @@
           align: "right",
           verticalAlign: "bottom",
           x: -40,
-          y: -4,
+          y: -8,
         }
       },
       tooltip: {
