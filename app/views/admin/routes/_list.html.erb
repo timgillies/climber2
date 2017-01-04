@@ -79,16 +79,18 @@
           <div class="col-xs-6 col-sm-4 col-md-4">
             <div class="tab text-right">
 
-                <% if f.user.image? %>
-                  <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
-                <% elsif f.user.avatar_file_name? %>
-                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
-                <% end %>
+
 
               <% if (days_ago(f) == "today") %>
                 <span class="badge badge-today">set <%= days_ago(f) %></span>
               <% else %>
                 set <%= days_ago(f) %> ago
+              <% end %>
+
+              <% if f.user.image? %>
+                <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
+              <% elsif f.user.avatar_file_name? %>
+                <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
               <% end %>
 
 
