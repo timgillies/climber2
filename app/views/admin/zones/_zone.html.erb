@@ -9,20 +9,28 @@
             <div class="col-sm-5 col-xs-5">
               <h3><%= fz.name %></h3>
             </div>
-            <div class="col-sm-5 col-xs-3">
+            <div class="col-sm-3 col-xs-3">
                 <p><%= fz.routes.current.count %><span class="hidden-xs"> active routes</span> / <%= FacilityTarget.where(zone_id: fz.id).sum(:value) %></p>
             </div>
-            <div class="col-xs-2 col-sm-1 col-md-1">
+            <div class="col-sm-2 hidden-xs no-print">
+              <%= button_to "expire all",  admin_facility_zone_mass_expire_path(@facility, fz ), class: 'btn btn-expire btn-xs', method: :mass_expire, data: {:confirm => 'Are you sure you want to expire all routes in this zone?'} %>
+            </div>
+            <div class="col-xs-2 col-sm-1 col-md-1 no-print">
               <h3><%= link_to edit_admin_facility_zone_path(@facility, fz ) do %>
                           <i class="glyphicon glyphicon-cog"></i>
               </h3>            <% end %>
             </div>
 
-            <div class="col-xs-2 col-sm-1 col-md-1">
+            <div class="col-xs-2 col-sm-1 col-md-1 no-print">
               <h3><%= link_to admin_facility_zone_path(@facility, fz), data: {:confirm => 'Are you sure? This cannot be undone.'},
                           :method => :delete do %>
                           <i class="glyphicon glyphicon-trash"></i>
               </h3>            <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 hidden-sm hidden-md hidden-lg hidden-xl pull-right no-print">
+              <%= button_to "expire all",  admin_facility_zone_mass_expire_path(@facility, fz ), class: 'btn btn-expire btn-xs', method: :mass_expire, data: {:confirm => 'Are you sure you want to expire all routes in this zone?'} %>
             </div>
           </div>
           <div class="row">

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
     resources :facilities do
       resources :routes do
+
         member do
           post :expire #output path - expire_route/:id
           post :tagged #output path - tagged_route/:id
@@ -71,7 +72,9 @@ Rails.application.routes.draw do
       end
 
       resources :grades
-      resources :zones
+      resources :zones do
+        post :mass_expire
+      end
       resources :walls
       resources :setters # delete after facility_roles is set up
       resources :facility_roles
@@ -90,6 +93,7 @@ Rails.application.routes.draw do
     resources :walls, only: [:index, :show]
     resources :setters, only: [:index, :show]
     resources :ticks
+
     member do
       get :leaderboard
       get :social

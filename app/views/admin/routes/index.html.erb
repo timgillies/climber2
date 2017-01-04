@@ -2,15 +2,24 @@
   <div class="container-fluid bg-gray">
     <div class="filter">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-sm-6">
           <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
           <div class="form-group">
+            <%= f.label :search_query,  "Filters" %>
             <%= f.text_field(
               :search_query,
               placeholder: '  Search by ID #',
               class: 'filterrific-periodically-observed form-control'
             ) %>
           </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+          <%= f.label :setdate,  "Set on (start range):" %>
+          <%= f.date_field :with_setdate_gte, include_blank: true, class: 'form-control date filterrific-periodically-observed' %>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+          <%= f.label :setdate,  "Set on (end range):" %>
+          <%= f.date_field :with_setdate_lt, include_blank: true, class: 'form-control date filterrific-periodically-observed' %>
         </div>
       </div>
       <div class="row">

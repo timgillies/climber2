@@ -58,6 +58,14 @@ class Admin::ZonesController < ApplicationController
     @zones = @facility.zones.page(params[:page])
   end
 
+  def mass_expire
+    @facility = Facility.find(params[:facility_id])
+    @zone = Zone.find(params[:zone_id])
+    @route = Route.where(zone_id: @zone.id )
+    @route.update_all( {:enddate => Date.yesterday})
+    redirect_to(admin_facility_zones_path(@facility))
+  end
+
   def destroy
     Zone.find(params[:id]).destroy
     flash[:success] = "Zone deleted"

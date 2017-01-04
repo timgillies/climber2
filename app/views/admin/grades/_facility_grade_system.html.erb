@@ -22,7 +22,7 @@
             <% end %>
           </div>
 
-          <div class="col-xs-5 col-sm-2 col-md-2">
+          <div class="col-xs-5 col-sm-2 col-md-2 no-print">
             <div id="use_system_form">
               <% if FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
               <%= render 'unuse_system', :fs => fs %>

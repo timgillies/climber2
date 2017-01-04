@@ -69,7 +69,9 @@ class Route < ActiveRecord::Base
     :with_zone_id,
     :with_wall_id,
     :with_setter_id,
-    :with_status_id
+    :with_status_id,
+    :with_setdate_gte,
+    :with_setdate_lt
   ]
   )
   # define ActiveRecord scopes for
@@ -138,12 +140,12 @@ scope :sorted_by, lambda { |sort_option|
   }
 
     # always include the lower boundary for semi open intervals
-  scope :with_setdate, lambda { |reference_time|
-    where('routes.setdate = ?', reference_time)
+  scope :with_setdate_gte, lambda { |reference_time|
+    where('routes.setdate >= ?', reference_time)
   }
 
-  scope :with_enddate_lt, lambda { |reference_time|
-    where('routes.enddate = ?', reference_time)
+  scope :with_setdate_lt, lambda { |reference_time|
+    where('routes.setdate <= ?', reference_time)
   }
 
   def self.options_for_sorted_by

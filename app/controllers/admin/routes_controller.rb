@@ -23,9 +23,9 @@ class Admin::RoutesController < ApplicationController
         with_zone_id: options_for_zone_select,
         with_wall_id: options_for_wall_select,
         with_setter_id: options_for_setter_select,
-        with_status_id: Route.options_for_status_select,
+        with_status_id: Route.options_for_status_select
       },
-      persistence_id: false,
+      persistence_id: true,
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.
     # You can paginate with will_paginate or kaminari.
@@ -140,6 +140,13 @@ class Admin::RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @route.update_attribute(:enddate, Date.yesterday)
     redirect_to(admin_facility_routes_path(@facility))
+  end
+
+  def mass_expire
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id])
+    @route.update_all( {:enddate => Date.yesterday}, {:zone_id => fz.id} )
+    redirect_to(admin_facility_zones_path(@facility))
   end
 
   def tagged
