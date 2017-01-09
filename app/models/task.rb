@@ -21,6 +21,8 @@ class Task < ActiveRecord::Base
     :task_with_zone_id,
     :task_with_setter_id,
     :task_with_status_id,
+    :task_with_setdate_gte,
+    :task_with_setdate_lt
   ]
   )
 
