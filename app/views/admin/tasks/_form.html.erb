@@ -101,7 +101,7 @@
     <div class="row">
       <div class="col-xs-12">
         <%= f.label :name, "Route name" %>
-        <%= f.text_field :name, :value=> params[:name], class: 'form-control', placeholder: "Route name (optional)" %>
+        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { placeholder: "Route name (optional)", class: 'form-control' } %>
       </div>
     </div>
 

@@ -41,8 +41,10 @@
             <h3>
               <% unless f.task_type == "route_task" %>
                 <span class="glyphicon glyphicon-wrench"></span>
+                <% else %>
+                <span class="glyphicon glyphicon-calendar"></span>
               <% end %>
-              <%= link_to f.task_description.upcase , admin_facility_task_path(@facility, f) if f.task_description %>
+              <%= link_to "MAINTENANCE ITEM" , admin_facility_task_path(@facility, f) if f.task_description %>
             </h3>
 
             <% else %>
@@ -51,6 +53,8 @@
               <% unless f.task_type == "route_task" %>
                 <span class="glyphicon glyphicon-wrench"></span>
 
+              <% else %>
+              <span class="glyphicon glyphicon-calendar"></span>
               <% end %>
 
               <%= link_to f.grade.grade + " "+ f.color.upcase , admin_facility_task_path(@facility, f) if f.grade %>
@@ -92,12 +96,12 @@
           <div class="col-sm-12">
               <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
           </div>
-          <div class="col-xs-4 col-sm-6 col-md-6">
+          <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="tab"><strong>
 
               <% if params[:controller] == "admin/tasks" %>
 
-              <% if f.assignee_id? %><span class="hidden-xs"> Assigned to:</span><% end %>
+              <% if f.assignee_id? %> Assigned to:<% end %>
 
                <% else %>
 
@@ -107,23 +111,37 @@
 
              </strong><%= f.assignee.name if f.assignee_id %></div>
           </div>
-          <div class="col-xs-8 col-sm-6 col-md-6">
+        </div>
+
+        <% if f.task_description? %>
+        <div class="row">
+          <div class="col-sm-12">
+            <span class="tab"><strong>Description: </strong><i><%= f.task_description %></i></span>
+          </div>
+        </div>
+        <% end %>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="tab text-right">
 
 
               <% unless params[:controller] == 'admin/tasks' %>
                 <% if (days_ago(f) == "today") %>
-                  <span class="badge badge-today">set <%= days_ago(f) %></span>
+                  <span class="badge badge-today">due <%= days_ago(f) %></span>
                 <% else %>
-                  set <%= days_ago(f) %> ago
+                  due on <%= days_ago(f) %>
                 <% end %>
               <% else %>
-              <% if f.completed_at? %>
+              <% if f.active? %>
+                <% if (days_ago(f) == "today") %>
+                  <span class="badge badge-today">due <%= days_ago(f) %></span>
+                <% elsif (days_ago(f).to_i < 8) %>
+                  due on <%= f.setdate.strftime("%A") %>
+                <% else %>
+                  due on <%= f.setdate.strftime("%A, %b %d, %Y") %>
+              <% end %>
+              <% elsif f.completed_at?%>
                 <span class="glyphicon glyphicon-ok glyphicon-green"></span> Completed on <%= f.completed_at.strftime("%b %d, %Y") %>
-              <% else %>
-                <% if f.setdate? %>
-                due on <%= f.setdate.strftime("%b %d, %Y") %>
-                <% end %>
               <% end %>
               <% end %>
 
@@ -142,13 +160,6 @@
           </div>
         </div>
 
-        <% if f.task_description? %>
-        <div class="row">
-          <div class="col-sm-12">
-            <span class="tab"><i><%= f.task_description %></i></span>
-          </div>
-        </div>
-        <% end %>
         <div class="row">
 
           <div class="hidden-md hidden-lg hidden-xl no-print">
