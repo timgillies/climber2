@@ -8,7 +8,7 @@
 
           // scale: 2 (default),
           enabled: true,
-          filename: "routes_<%= f.user.name %>",
+          filename: "routes_<%= f.user.name if f.user %>",
 
           buttons: {
                 contextButton: {
@@ -42,7 +42,7 @@
                     }
                 },
                 subtitle: {
-                    text:  "<%= f.user.name %>"
+                    text:  "<%= f.user.name if f.user %>"
                 },
             }
 

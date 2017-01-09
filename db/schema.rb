@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213184931) do
+ActiveRecord::Schema.define(version: 20170109023053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,6 +216,13 @@ ActiveRecord::Schema.define(version: 20161213184931) do
     t.integer  "risk"
     t.integer  "intensity"
     t.integer  "complexity"
+    t.string   "status"
+    t.text     "task_description"
+    t.integer  "task_number"
+    t.string   "task_type"
+    t.integer  "assigner_id"
+    t.integer  "assignee_id"
+    t.integer  "task_id"
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
@@ -282,6 +289,38 @@ ActiveRecord::Schema.define(version: 20161213184931) do
   end
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "assigner_id"
+    t.integer  "assignee_id"
+    t.integer  "facility_id"
+    t.string   "name"
+    t.string   "color"
+    t.date     "setdate"
+    t.date     "enddate"
+    t.integer  "grade_id"
+    t.integer  "zone_id"
+    t.integer  "wall_id"
+    t.string   "discipline"
+    t.text     "description"
+    t.boolean  "tagged"
+    t.integer  "sub_child_zone_id"
+    t.string   "status"
+    t.text     "task_description"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "task_type"
+    t.integer  "task_number"
+    t.integer  "completed_by_id"
+    t.date     "completed_at"
+    t.integer  "route_id"
+  end
+
+  add_index "tasks", ["facility_id"], name: "index_tasks_on_facility_id", using: :btree
+  add_index "tasks", ["grade_id"], name: "index_tasks_on_grade_id", using: :btree
+  add_index "tasks", ["sub_child_zone_id"], name: "index_tasks_on_sub_child_zone_id", using: :btree
+  add_index "tasks", ["wall_id"], name: "index_tasks_on_wall_id", using: :btree
+  add_index "tasks", ["zone_id"], name: "index_tasks_on_zone_id", using: :btree
 
   create_table "ticks", force: :cascade do |t|
     t.integer  "user_id"
@@ -415,6 +454,11 @@ ActiveRecord::Schema.define(version: 20161213184931) do
   add_foreign_key "subscriptions", "facilities", on_delete: :nullify
   add_foreign_key "subscriptions", "plans", on_delete: :nullify
   add_foreign_key "subscriptions", "users", on_delete: :nullify
+  add_foreign_key "tasks", "facilities", on_delete: :nullify
+  add_foreign_key "tasks", "grades", on_delete: :nullify
+  add_foreign_key "tasks", "sub_child_zones", on_delete: :nullify
+  add_foreign_key "tasks", "walls", on_delete: :nullify
+  add_foreign_key "tasks", "zones", on_delete: :nullify
   add_foreign_key "ticks", "facilities", on_delete: :nullify
   add_foreign_key "ticks", "routes", on_delete: :nullify
   add_foreign_key "ticks", "users"

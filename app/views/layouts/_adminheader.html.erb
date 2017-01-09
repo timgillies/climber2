@@ -33,10 +33,10 @@
             <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "Home", admin_facility_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %> hidden-xs"><%= link_to "Route Database", admin_facility_routes_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %> hidden-xs"><%= link_to "Add Routes", new_admin_facility_route_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(admin_facility_tasks_path(@facility)) %>"><%= link_to "Task List", admin_facility_tasks_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "Zones", admin_facility_zones_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_facility_roles_path(@facility)) %>"><%= link_to "Team", admin_facility_facility_roles_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "Grades", admin_facility_grades_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_facility_targets_path(@facility)) %>"><%= link_to "Targets", admin_facility_facility_targets_path(@facility) %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
@@ -44,6 +44,7 @@
               </a>
               <ul class="dropdown dropdown-menu white">
                 <li><%= link_to "Facility Info", edit_admin_facility_path(@facility) %></li>
+                <li><%= link_to "Targets", admin_facility_facility_targets_path(@facility) %></li>
                 <li><%= link_to "Subscriptions", admin_facility_subscriptions_path(@facility) %></li>
               </ul>
             </li>

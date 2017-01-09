@@ -6,6 +6,7 @@ class Grade < ActiveRecord::Base
   has_many :facility_grade_systems, :through => :grade_systems
   has_many :facilities, :through => :facility_grade_systems
   belongs_to :user
+  has_many    :tasks
   has_many :facility_targets
 
   validates :grade, presence: true

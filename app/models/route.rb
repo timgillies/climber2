@@ -9,16 +9,18 @@ class Route < ActiveRecord::Base
   has_many :ticks
   has_many :grades
   belongs_to :tick
+  belongs_to :tasks
 
 
   accepts_nested_attributes_for :ticks
 
 
 
-  validates :color, presence: true
-  validates :user_id, presence: true
-  validates :setdate, presence: true
-  validates :grade, presence: true
+  validates_presence_of :color, :unless => :status? #if status is blank, it validates presence of object
+  validates_presence_of :user_id
+  validates_presence_of :setdate, :unless => :status? #if status is blank, it validates presence of object
+  validates_presence_of :grade, :unless => :status? #if status is blank, it validates presence of object
+
 
 
 
@@ -74,6 +76,7 @@ class Route < ActiveRecord::Base
     :with_setdate_lt
   ]
   )
+
   # define ActiveRecord scopes for
   # :search_query, :sorted_by, :with_country_id, and :with_created_at_gte
 
@@ -155,6 +158,12 @@ scope :sorted_by, lambda { |sort_option|
       ['Newest first (set date)', 'setdate_desc'],
       ['Oldest first (set date)', 'setdate_asc'],
 
+    ]
+  end
+
+  def self.options_for_status_select
+    [
+      ['Active', Date.today ]
     ]
   end
 

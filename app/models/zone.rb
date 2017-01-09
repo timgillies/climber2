@@ -3,6 +3,7 @@ class Zone < ActiveRecord::Base
   belongs_to  :user
   has_many    :walls
   has_many    :routes
+  has_many    :tasks
   has_many    :sub_child_zones, :through => :walls
   has_many :facility_targets
 

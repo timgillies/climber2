@@ -153,7 +153,7 @@
       colors: (["#5DADE2", "#b6da6b", "#da8f6b", "#da6bb6"]),
 
       series: [
-        <% { "New routes" => @facility.routes.all }.each do |type, routes| %>
+        <% { "New routes" => @facility.routes.where( status: nil ) }.each do |type, routes| %>
         {
           name: "<%= type %>",
           pointInterval: <%= 1.day * 1000 %>,

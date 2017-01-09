@@ -668,7 +668,7 @@ input {
  height: 25px;
  vertical-align: bottom;
  background-size: cover;
- display: inline;
+ display: inline-block;
  margin-left: 10px;
  border-radius: 2px;
  opacity: .75;
@@ -1462,6 +1462,33 @@ span.picture {
   background: #F1948A;
   color: #ffffff;
   display: inline-block;
+}
+
+.btn-activate, .btn-completed:hover{
+  background: $gray-lighter;
+  letter-spacing: 1px;
+  opacity: 1;
+  color: $gray-light;
+  display: inline-block;
+  width: 100%;
+  li a {
+    color: $gray-light;
+    display: block;
+  }
+
+}
+
+.btn.btn-activate:hover, .btn-completed{
+  background: #58D68D;
+  letter-spacing: 1px;
+  opacity: 1;
+  color: white;
+  display: block;
+  li a i {
+    color: $gray-light;
+    display: block;
+  }
+
 }
 
 .btn-tag, .btn-tagged:hover {

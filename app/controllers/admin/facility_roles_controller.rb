@@ -8,15 +8,16 @@ class Admin::FacilityRolesController < ApplicationController
 
   include FacilityRolesHelper
   include FacilitiesHelper
+  include GradesHelper
 
   layout "admin"
 
   def index
     @facility = Facility.find(params[:facility_id])
     @facility_role = FacilityRole.new
-    @facility_roles = @facility.facility_roles.page(params[:page])
+    @facility_roles = @facility.facility_roles.page(params[:page]).per(2000)
     @role_names = role_names # populates drop down of role names for creating a new facility user
-    @facility_systems = facility_systems.page(params[:page])
+    @facility_systems = facility_systems.page(params[:page]).per(2000)
   end
 
   def new

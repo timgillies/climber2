@@ -29,5 +29,12 @@ module RoutesHelper
       ]
   end
 
+  def route_status_values
+      [
+        ['Route to be set', 'route_task' ],
+        ['Other', 'non_route_task']
+      ]
+  end
+
 
 end

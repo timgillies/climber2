@@ -20,20 +20,24 @@
     <div class="divider-line"></div>
 
 
-    <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
-      <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
+      <% if f.color? %>
+        <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
+          <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
 
+          <% else %>
+
+          <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
+
+          <% end %>
       <% else %>
-
-      <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
-
+        <li>
       <% end %>
 
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-10 col-sm-10 col-md-7 col-lg-7 col-xl-7">
             <h3>
-              <%= link_to f.grade.grade + " "+ f.color.upcase , admin_facility_route_path(@facility, f) %>
+              <%= link_to f.grade.grade + " "+ f.color.upcase , admin_facility_route_path(@facility, f) if f.grade %>
             </h3>
             <h2> <%= f.name %></h2>
           </div>
@@ -49,48 +53,62 @@
             </div>
 
             <div class="col-md-2 no-print">
-              <% if f.tagged? %>
-              <%= button_to untagged_admin_facility_route_path(@facility, f ), class: 'btn btn-tagged btn-xs', remote: true, method: :untagged do %>
-                    <i class="glyphicon glyphicon-ok"></i> tagged
-                    <%end %>
-              <% else %>
-              <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :tagged, remote: true %>
-              <% end %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :expire, remote: false %>
             </div>
           </div>
-          <div class="col-xs-1 no-print">
+          <div class="col-xs-2 col-sm-1 no-print">
               <h3><%= link_to edit_admin_facility_route_path(@facility, f ) do %>
-                <i class="glyphicon glyphicon-cog"></i>
+                <i class="glyphicon glyphicon-cog pull-right"></i>
               <%end %>
             </h3>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
-              <div class="tab"><strong>Route ID: </strong><%= f.id %></div>
+              <div class="tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.id %></div>
 
           </div>
           <div class="col-sm-12">
               <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
           </div>
-          <div class="col-xs-6 col-sm-8 col-md-8">
-            <div class="tab"><strong>Set by: </strong><%= f.user.name %></div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="tab"><strong>
+
+              <% if params[:controller] == "admin/tasks" %>
+
+               Assigned to:
+
+               <% else %>
+
+               Set by:
+
+               <% end %>
+
+             </strong><%= f.user.name if f.user %></div>
           </div>
-          <div class="col-xs-6 col-sm-4 col-md-4">
+          <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="tab text-right">
 
 
-
-              <% if (days_ago(f) == "today") %>
-                <span class="badge badge-today">set <%= days_ago(f) %></span>
+              <% unless params[:controller] == 'admin/tasks' %>
+                <% if (days_ago(f) == "today") %>
+                  <span class="badge badge-today">set <%= days_ago(f) %></span>
+                <% else %>
+                  set <%= days_ago(f) %> ago
+                <% end %>
               <% else %>
-                set <%= days_ago(f) %> ago
+                <% if f.setdate? %>
+                due on <%= f.setdate.strftime("%b %d, %Y") %>
+                <% end %>
               <% end %>
 
-              <% if f.user.image? %>
-                <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
-              <% elsif f.user.avatar_file_name? %>
-                <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
+
+              <% if f.user %>
+                <% if f.user.image? %>
+                  <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
+                <% elsif f.user.avatar_file_name? %>
+                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
+                <% end %>
               <% end %>
 
 
@@ -112,13 +130,7 @@
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <% if f.tagged? %>
-              <%= button_to untagged_admin_facility_route_path(@facility, f ), class: 'btn btn-tagged btn-xs btn-block', method: :untagged, remote: true do %>
-                    <i class="glyphicon glyphicon-ok"></i> tagged
-                    <%end %>
-              <% else %>
-              <%= button_to "tag",  tagged_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :tagged, remote: true %>
-              <% end %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :expire, remote: false %>
             </div>
           </div>
         </div>

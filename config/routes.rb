@@ -55,6 +55,7 @@ Rails.application.routes.draw do
           post :expire #output path - expire_route/:id
           post :tagged #output path - tagged_route/:id
           post :untagged #output path - tagged_route/:id
+          post :create_task
         end
       end
       resources :subscriptions do
@@ -81,7 +82,13 @@ Rails.application.routes.draw do
       resources :sub_child_zones
       resources :facility_grade_systems
       resources :facility_targets
-
+      resources :tasks do
+        member do
+          post :activate_route #output path - activate_route/:id
+          post :complete_task
+          post :un_complete_task
+        end
+      end
     end
   end
 

@@ -5,6 +5,7 @@ class Admin::RoutesController < ApplicationController
   before_action :guest_role,                only: [:destroy]
   before_action :marketing_role,            except: [:index, :show]
   before_action :paid_subscriber,           only: [:new, :create]
+  before_action :route_owner,               only: [:edit, :update]
 
 
   layout "admin"
@@ -32,7 +33,7 @@ class Admin::RoutesController < ApplicationController
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @routes = @facility.routes.filterrific_find(@filterrific).page(params[:page]).per(50)
+    @routes = @facility.routes.where(status: nil).filterrific_find(@filterrific).page(params[:page]).per(50)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -56,6 +57,7 @@ class Admin::RoutesController < ApplicationController
     @r_value = ric_values
     @i_value = ric_values
     @c_value = ric_values
+    @route_status = route_status_values
 
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
@@ -84,10 +86,15 @@ class Admin::RoutesController < ApplicationController
     @r_value = ric_values
     @i_value = ric_values
     @c_value = ric_values
+    @route_status = route_status_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
     @route.facility_id = params[:facility_id]
     if @route.save
+      if @route.task_id?
+      @task = Task.find_by(id: @route.task_id)
+      @task.update_attributes(status: 'completed', completed_by_id: @route.user_id, completed_at: DateTime.current)
+      end
       flash[:success] = "Route created!"
       redirect_to(new_admin_facility_route_path(@facility))
     else
@@ -106,6 +113,7 @@ class Admin::RoutesController < ApplicationController
     @r_value = ric_values
     @i_value = ric_values
     @c_value = ric_values
+    @route_status = route_status_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @route.facility_id = params[:facility_id]
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
@@ -124,6 +132,7 @@ class Admin::RoutesController < ApplicationController
     @r_value = ric_values
     @i_value = ric_values
     @c_value = ric_values
+    @route_status = route_status_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @route = Route.find(params[:id])
     if @route.update_attributes(route_params)
@@ -163,6 +172,12 @@ class Admin::RoutesController < ApplicationController
     redirect_to(admin_facility_routes_path(@facility))
   end
 
+  def create_task
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id]) # find original object
+    redirect_to(new_admin_facility_task_path(:name => @route.name, :grade_id => @route.grade_id, :color => @route.color, :zone_id => @route.zone_id, :wall_id => @route.wall_id, :sub_child_zone_id => @route.sub_child_zone_id, :description => @route.description, :route_id => @route.id, :task_type => 'non_route_task' ))
+  end
+
 
 
   def destroy
@@ -175,7 +190,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity, :status, :task_description, :task_id)
   end
 
   def options_for_grade_select
