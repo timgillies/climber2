@@ -16,10 +16,10 @@ class Route < ActiveRecord::Base
 
 
 
-  validates_presence_of :color, :unless => :status? #if status is blank, it validates presence of object
+  validates_presence_of :color
   validates_presence_of :user_id
-  validates_presence_of :setdate, :unless => :status? #if status is blank, it validates presence of object
-  validates_presence_of :grade, :unless => :status? #if status is blank, it validates presence of object
+  validates_presence_of :setdate
+  validates_presence_of :grade
 
 
 

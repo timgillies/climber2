@@ -1,4 +1,4 @@
-<%= form_for_filterrific @filterrific_tasks do |f| %>
+<%= form_for_filterrific @filterrific do |f| %>
   <div class="container-fluid bg-gray">
     <div class="filter">
       <div class="row">
@@ -14,7 +14,7 @@
           <%= f.label :user,  "Assigned to" %>
           <%= f.select(
             :task_with_setter_id,
-            @filterrific_tasks.select_options[:task_with_setter_id],
+            @filterrific.select_options[:task_with_setter_id],
             { include_blank: 'All setters' },
             {class: "form-control"}
           ) %>
@@ -23,7 +23,7 @@
           <%= f.label :zone,  "Zone" %>
           <%= f.select(
             :task_with_zone_id,
-            @filterrific_tasks.select_options[:task_with_zone_id],
+            @filterrific.select_options[:task_with_zone_id],
             { include_blank: 'All zones' },
             {class: "form-control"}
           ) %>
@@ -32,7 +32,7 @@
           <%= f.label :status,  "Status" %>
           <%= f.select(
             :task_with_status_id,
-            @filterrific_tasks.select_options[:task_with_status_id],
+            @filterrific.select_options[:task_with_status_id],
             { include_blank: 'All' },
             {class: "form-control"}
           ) %>

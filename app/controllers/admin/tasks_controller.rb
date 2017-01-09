@@ -12,7 +12,7 @@ class Admin::TasksController < ApplicationController
 
   def index
     @facility = Facility.find(params[:facility_id])
-    @filterrific_tasks = initialize_filterrific(
+    @filterrific = initialize_filterrific(
       Task,
       params[:filterrific],
       select_options: {
@@ -23,14 +23,14 @@ class Admin::TasksController < ApplicationController
         task_with_setter_id: options_for_setter_select,
         task_with_status_id: Task.options_for_status_select
       },
-      persistence_id: true,
+      persistence_id: 'shared_key',
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.
     # You can paginate with will_paginate or kaminari.
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @tasks = @facility.tasks.all.filterrific_find(@filterrific_tasks).page(params[:page]).per(50)
+    @tasks = @facility.tasks.all.filterrific_find(@filterrific).page(params[:page]).per(50)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

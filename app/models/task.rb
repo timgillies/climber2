@@ -18,14 +18,9 @@ class Task < ActiveRecord::Base
   default_filter_params: { task_sorted_by: 'created_at_desc', task_with_status_id: 'active' },
   available_filters: [
     :task_sorted_by,
-    :task_search_query,
-    :task_with_grade_id,
     :task_with_zone_id,
-    :task_with_wall_id,
     :task_with_setter_id,
     :task_with_status_id,
-    :task_with_setdate_gte,
-    :task_with_setdate_lt
   ]
   )
 
@@ -91,16 +86,16 @@ scope :task_sorted_by, lambda { |sort_option|
   }
 
   scope :task_with_status_id, lambda { |status_ids|
-      where( 'tasks.status = ?', status_ids)
+      where( 'status = ?', status_ids)
   }
 
     # always include the lower boundary for semi open intervals
   scope :task_with_setdate_gte, lambda { |reference_time|
-    where('tasks.setdate >= ?', reference_time)
+    where('setdate >= ?', reference_time)
   }
 
   scope :task_with_setdate_lt, lambda { |reference_time|
-    where('tasks.setdate <= ?', reference_time)
+    where('setdate <= ?', reference_time)
   }
 
   def self.options_for_sorted_by
