@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     data = auth.info
-    user = User.where(:email => data["email"]).first
+    user = User.where(:email => data.email).first
 
       unless user
         where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -46,7 +46,6 @@ class User < ActiveRecord::Base
           user.last_name = auth.extra.raw_info.last_name
           user.first_name = auth.info.first_name
           user.last_name = auth.info.last_name
-          user.location = auth.info.location
           user.gender = auth.extra.raw_info.gender
           user.image = auth.info.image
           user.name = auth.info.name
