@@ -6,8 +6,8 @@
 
 
 jQuery ->
-  $('#route_wall_id').parent().hide()
-  $('#route_sub_child_zone_id').parent().hide()
+  $('#route_wall_id').parent().show()
+  $('#route_sub_child_zone_id').parent().show()
   walls = $('#route_wall_id').html()
   $('#route_zone_id').change ->
     zone = $('#route_zone_id :selected').text()
@@ -20,7 +20,7 @@ jQuery ->
       $('#route_wall_id').parent().hide()
 
   jQuery ->
-      $('#route_sub_child_zone_id').parent().hide()
+      $('#route_sub_child_zone_id').parent().show()
       sub_child_zones = $('#route_sub_child_zone_id').html()
       $('#route_zone_id').change ->
           $('#route_sub_child_zone_id').empty

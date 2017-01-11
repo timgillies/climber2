@@ -96,7 +96,7 @@ class Admin::RoutesController < ApplicationController
       @task.update_attributes(status: 'completed', completed_by_id: @route.user_id, completed_at: DateTime.current)
       end
       flash[:success] = "Route created!"
-      redirect_to(new_admin_facility_route_path(@facility))
+      redirect_to(admin_facility_routes_path(@facility))
     else
       render :new
     end

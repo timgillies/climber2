@@ -14,6 +14,11 @@ class Task < ActiveRecord::Base
   has_many :grades
   belongs_to :tick
 
+  validates_presence_of :zone, :if => :wall_id? #if status is blank, it does not validates presence of object
+  validates_presence_of :wall, :if => :sub_child_zone_id? #if status is blank, it does not validates presence of object
+  validates_presence_of :zone, :if => :sub_child_zone_id? #if status is blank, it does not validates presence of object
+
+
   filterrific(
   default_filter_params: { task_sorted_by: 'created_at_desc', task_with_status_id: 'active' },
   available_filters: [

@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  $('#task_wall_id').parent().hide()
-  $('#task_sub_child_zone_id').parent().hide()
+  $('#task_wall_id').parent().show()
+  $('#task_sub_child_zone_id').parent().show()
   walls = $('#task_wall_id').html()
   $('#task_zone_id').change ->
     zone = $('#task_zone_id :selected').text()
@@ -17,9 +17,9 @@ jQuery ->
       $('#task_wall_id').parent().hide()
 
   jQuery ->
-      $('#task_sub_child_zone_id').parent().hide()
+      $('#task_sub_child_zone_id').parent().show()
       sub_child_zones = $('#task_sub_child_zone_id').html()
-      $('#task_zone_id').change ->
+      $('#task_zone_id').select ->
           $('#task_sub_child_zone_id').empty
           $('#task_sub_child_zone_id').parent().hide()
       $('#task_wall_id').change ->
@@ -31,5 +31,3 @@ jQuery ->
         else
           $('#task_sub_child_zone_id').empty
           $('#task_sub_child_zone_id').parent().hide()
-
-     

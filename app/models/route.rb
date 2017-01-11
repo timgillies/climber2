@@ -21,6 +21,10 @@ class Route < ActiveRecord::Base
   validates_presence_of :setdate
   validates_presence_of :grade
 
+  validates_presence_of :zone, :if => :wall_id? #if status is blank, it does not validates presence of object
+  validates_presence_of :wall, :if => :sub_child_zone_id? #if status is blank, it does not validates presence of object
+  validates_presence_of :zone, :if => :sub_child_zone_id? #if status is blank, it does not validates presence of object
+
 
 
 
