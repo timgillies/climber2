@@ -75,6 +75,9 @@ class Admin::TasksController < ApplicationController
     if @task.save
       @task.update_attribute(:task_number, (@facility.id.to_s + current_user.id.to_s + "000" + @task.id.to_s).to_i)
       flash[:success] = "Task created!"
+      if @task.assignee_id?
+        TaskMailer.task_assignment_email(@task).deliver_now
+      end
       redirect_to(admin_facility_tasks_path(@facility))
     else
       render :new

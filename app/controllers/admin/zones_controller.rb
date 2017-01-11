@@ -66,6 +66,19 @@ class Admin::ZonesController < ApplicationController
     redirect_to(admin_facility_zones_path(@facility))
   end
 
+  def mass_create_tasks
+    @facility = Facility.find(params[:facility_id])
+    @zone = Zone.find(params[:zone_id])
+    @target = FacilityTarget.where(zone_id: @zone.id)
+
+    target = @target.each do |target|
+      Task.create({assigner_id: current_user.id, setdate: Date.current, color: "", facility_id: @facility.id, grade_id: target.grade_id, zone_id: target.zone_id, status: 'active', task_type: 'route_task'})
+    end
+
+    redirect_to(admin_facility_tasks_path(@facility))
+  end
+
+
   def destroy
     Zone.find(params[:id]).destroy
     flash[:success] = "Zone deleted"

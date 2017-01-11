@@ -75,6 +75,7 @@ Rails.application.routes.draw do
       resources :grades
       resources :zones do
         post :mass_expire
+        post :mass_create_tasks
       end
       resources :walls
       resources :setters # delete after facility_roles is set up

@@ -1,0 +1,14 @@
+Hi, <%= @assignee.name %>
+===============================================
+
+You've been assigned a task on Climb | Connect.
+
+<% if @task.task_type == 'route_task' %>
+  Add new route:
+  <%= @task.grade.grade if @task.grade %>
+  <%= @task.zone.name if @task.zone %>
+  <% end %>
+
+Please access the link below to view your task.
+
+<%= link_to "See task", admin_facility_tasks_path(@task.facility_id) %>

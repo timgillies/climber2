@@ -2,6 +2,33 @@
   <div class="container-fluid bg-gray">
     <div class="filter">
       <div class="row">
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <%= f.label :user,  "Filters" %>
+          <%= f.select(
+            :task_with_setter_id,
+            @filterrific.select_options[:task_with_setter_id],
+            { include_blank: 'All setters' },
+            {class: "form-control"}
+          ) %>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <label class="hidden-xs">&nbsp;</label>
+          <%= f.select(
+            :task_with_zone_id,
+            @filterrific.select_options[:task_with_zone_id],
+            { include_blank: 'All zones' },
+            {class: "form-control"}
+          ) %>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <label class="hidden-xs">&nbsp;</label>
+          <%= f.select(
+            :task_with_status_id,
+            @filterrific.select_options[:task_with_status_id],
+            { include_blank: 'All' },
+            {class: "form-control"}
+          ) %>
+        </div>
         <div class="col-xs-6 col-sm-3 col-md-3">
           <%= f.label :setdate,  "Due date (start range):" %>
           <%= f.date_field :task_with_setdate_gte, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
@@ -10,39 +37,16 @@
           <%= f.label :setdate,  "Due date (end range):" %>
           <%= f.date_field :task_with_setdate_lt, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
         </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.label :user,  "Assigned to" %>
-          <%= f.select(
-            :task_with_setter_id,
-            @filterrific.select_options[:task_with_setter_id],
-            { include_blank: 'All setters' },
-            {class: "form-control"}
-          ) %>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.label :zone,  "Zone" %>
-          <%= f.select(
-            :task_with_zone_id,
-            @filterrific.select_options[:task_with_zone_id],
-            { include_blank: 'All zones' },
-            {class: "form-control"}
-          ) %>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.label :status,  "Status" %>
-          <%= f.select(
-            :task_with_status_id,
-            @filterrific.select_options[:task_with_status_id],
-            { include_blank: 'All' },
-            {class: "form-control"}
-          ) %>
-        </div>
       </div>
       <div class="row">
-        <div class="pull-right">
-          <%= link_to "Create new task", new_admin_facility_task_path, remote: false, class: "btn btn-create", style: "display: inline-block" %>
+        <div class="col-xs-12">
+          <span class="pull-right">
+            <%= link_to(
+              'Reset filters',
+              reset_filterrific_url
+            ) %>
+          </span>
         </div>
-
       </div>
     </div>
   </div>

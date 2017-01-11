@@ -4,13 +4,11 @@
       <%= page_entries_info @routes  %>
     </div>
     <div class="col-xs-4">
-      <span class="pull-right">
-        <%= link_to(
-          'Reset filters',
-          reset_filterrific_url
-        ) %>
-      </span>
+      <div class="pull-right">
+        <%= link_to "Create new route", new_admin_facility_route_path, remote: false, class: "btn btn-create", style: "display: inline-block" %>
+      </div>
     </div>
+
   </div>
 
   <br />

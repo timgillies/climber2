@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @assignee.name %>!</h1>
+    <p>
+      You've been assigned a task on Climb | Connect.<br>
+    </p>
+
+    <% if @task.task_type == 'route_task' %>
+      <h1>Add new route: </h1>
+      <p><strong>Grade: </strong><%= @task.grade.grade if @task.grade %></p>
+      <p><strong>Location: </strong><%= @task.zone.name if @task.zone %></p>
+      <p><strong>Due Date: </strong><%= @task.setdate if @task.setdate %></p>
+      <% end %>
+    <p>
+      <p><strong>Description: </strong><i><%= @task.task_description if @task.task_description %></i></p>.<br>
+    </p>
+
+    <%= link_to "See task", admin_facility_tasks_path(@task.facility_id) %>
+
+  </body>
+</html>

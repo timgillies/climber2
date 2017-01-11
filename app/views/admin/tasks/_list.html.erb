@@ -4,13 +4,11 @@
       <%= page_entries_info @tasks  %>
     </div>
     <div class="col-xs-4">
-      <span class="pull-right">
-        <%= link_to(
-          'Reset filters',
-          reset_filterrific_url
-        ) %>
-      </span>
+      <div class="pull-right">
+        <%= link_to "Create new task", new_admin_facility_task_path, remote: false, class: "btn btn-create", style: "display: inline-block" %>
+      </div>
     </div>
+
   </div>
 
   <br />
@@ -41,10 +39,13 @@
             <h3>
               <% unless f.task_type == "route_task" %>
                 <span class="glyphicon glyphicon-wrench"></span>
+                <%= link_to "MAINTENANCE ITEM" , admin_facility_task_path(@facility, f) if f.task_description %>
+
                 <% else %>
                 <span class="glyphicon glyphicon-calendar"></span>
+                <%= link_to "NEW ROUTE" , admin_facility_task_path(@facility, f) if f.task_description %>
+
               <% end %>
-              <%= link_to "MAINTENANCE ITEM" , admin_facility_task_path(@facility, f) if f.task_description %>
             </h3>
 
             <% else %>
@@ -90,18 +91,20 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-              <div class="tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.task_number %></div>
+              <div class="task-tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.task_number %></div>
 
           </div>
           <div class="col-sm-12">
-              <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
+              <div class="task-tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="tab"><strong>
+            <div class="task-tab"><strong>
 
               <% if params[:controller] == "admin/tasks" %>
 
-              <% if f.assignee_id? %> Assigned to:<% end %>
+              <% if f.assignee_id? %> Assigned to:
+
+              <% end %>
 
                <% else %>
 
@@ -116,13 +119,13 @@
         <% if f.task_description? %>
         <div class="row">
           <div class="col-sm-12">
-            <span class="tab"><strong>Description: </strong><i><%= f.task_description %></i></span>
+            <span class="task-tab"><strong>Description: </strong><i><%= f.task_description %></i></span>
           </div>
         </div>
         <% end %>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="tab text-right">
+            <div class="task-task-tab text-right">
 
 
               <% unless params[:controller] == 'admin/tasks' %>
@@ -151,6 +154,8 @@
                   <%= image_tag f.assignee.image ,:class=> "img-setter-icon" %>
                 <% elsif f.assignee.avatar_file_name? %>
                   <%= image_tag f.assignee.avatar.url(:thumb), class: "img-setter-icon" %>
+                <% else %>
+                  <span class="img-setter-icon hidden-xs"><%= f.assignee.name %><span>
                 <% end %>
               <% end %>
 

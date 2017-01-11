@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi, <%= @invitee.email %></h1>
+    <h1>Hi <%= @invitee.email %>,</h1>
     <p>
-      You've been invited to join a facility on Climb | Connect.<br>
+      You've been invited to join <%= @invitee.facility.name %> on Climb Connect.<br>
     </p>
     <p>
       Please access the link below to create an account and confirm your role.<br>
