@@ -72,7 +72,9 @@ class Admin::ZonesController < ApplicationController
     @target = FacilityTarget.where(zone_id: @zone.id)
 
     target = @target.each do |target|
-      Task.create({assigner_id: current_user.id, setdate: Date.current, color: "", facility_id: @facility.id, grade_id: target.grade_id, zone_id: target.zone_id, status: 'active', task_type: 'route_task'})
+      target.value.times do
+        Task.create({assigner_id: current_user.id, setdate: Date.current, color: "", facility_id: @facility.id, grade_id: target.grade_id, zone_id: target.zone_id, status: 'active', task_type: 'route_task'})
+      end
     end
 
     redirect_to(admin_facility_tasks_path(@facility))
