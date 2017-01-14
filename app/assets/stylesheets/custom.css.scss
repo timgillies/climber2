@@ -89,7 +89,7 @@ a {
 }
 
 .task-tab {
-  margin-left: 48px;
+  margin-left: 15px;
 }
 
 .tripletab {
@@ -132,6 +132,10 @@ a {
   padding-left: 30px;
   padding-right: 30px;
   opacity: 50%;
+  border-width: 10px;
+  border-color: $gray;
+  border-radius: 2px;
+  border: 1px solid #bbb;
 }
 
 .bg-darkgray {
@@ -278,6 +282,35 @@ textarea[type=text] {
 .form-label {
   font-family: 'Oswald', sans-serif;
 }
+
+/* Modal Styling */
+
+.modal-body {
+}
+
+
+.modal-title {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  font-weight: bold;
+  h4 {
+    display: inline-block;
+    color: white;
+    small {
+      color: $gray;
+    }
+  }
+}
+
+.modal-header {
+  background: #52BE80;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+
+
+
 
 
 /* headliner */
@@ -1022,6 +1055,12 @@ input {
     background-color: #58D68D;
   }
 
+  .badge-late {
+    font-size: 1em;
+    font-weight: lighter;
+    background-color: #F1948A;
+  }
+
   .badge-week {
     font-size: 1em;
     font-weight: lighter;
@@ -1358,10 +1397,10 @@ span.picture {
 }
 
 .btn-addnew{
-  background: #ffffff;
+  background: $gray;
   border-color: $gray;
   opacity: 1;
-  color: $gray;
+  color: $gray-lighter;
 }
 
 .btn-addnew:hover{
@@ -1381,12 +1420,18 @@ span.picture {
 }
 
 .btn-create, .btn-create:hover, .btn-create:active{
-  border-color: #3498DB;
-  background: #3498DB;
+  border: none;
+  background: #2e8ece;
   opacity: 1;
   color: white;
   transition-duration: 0.5s;
   letter-spacing: -0.0px;
+}
+
+.btn-close, .btn-close:hover {
+  background: $gray-lighter;
+  opacity: 1;
+  color: $gray-light;
 }
 
 

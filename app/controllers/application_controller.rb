@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_facilities
+  before_action :set_new_route_variables
+
+  include RoutesHelper
+  include GradesHelper
 
 
 
@@ -24,6 +28,26 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+def set_new_route_variables
+    if ((params[:facility_id].blank?) && (params[:controller] == 'admin/facilities')) || (params[:facility_id].present?)
+
+      @route = Route.new
+      facility_controller_check
+      @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+      @r_value = ric_values
+      @i_value = ric_values
+      @c_value = ric_values
+      @route_status = route_status_values
+
+      @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
+
+      @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+      @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+      @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
+      @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
+  end
+end
 
   # Sets the role names that have access to the facility within the admin area
   def facility_admin_roles
@@ -113,9 +137,11 @@ class ApplicationController < ActionController::Base
   def route_owner
     facility_controller_check
     @route = Route.find(params[:id])
-      unless current_user == @route.user || current_user == "site_admin" || ["facility_management", "head_setter"].include?(@facility_role_access.name)
-      flash[:danger] = 'You cannot edit this route.  You may flag this route to have your manager or the route owner update the route.'
-      redirect_to admin_facility_routes_url(@facility)
+    unless current_user.role == "site_admin"
+       unless current_user == @route.user || ["facility_management", "head_setter"].include?(@facility_role_access)
+         flash[:danger] = 'You cannot edit this route.  You may flag this route to have your manager or the route owner update the route.'
+         redirect_to admin_facility_routes_url(@facility)
+      end
     end
   end
 

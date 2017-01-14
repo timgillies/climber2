@@ -3,6 +3,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
+      <div class="headliner">
+        <h1 class="pull-left">Available grading systems</h1>
+        <span class="pull-right no-print">
+            <%= mail_to "lee@climbconnect.com", "Request custom grading", remote: false, class: "btn btn-close", style: "display: inline-block" %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
       <%= render 'admin/grades/facility_grade_system', object: @grade_systems %>
     </div>
   </div>

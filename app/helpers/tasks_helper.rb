@@ -14,10 +14,11 @@ module TasksHelper
       ]
   end
 
-  def days_ago(f)
-    from_time = Date.yesterday.in_time_zone.to_datetime
+  def task_days_ago(f)
+    from_time = Date.current.in_time_zone.to_datetime
     to_time = f.setdate.to_datetime
     distance_of_time_in_words(to_time, from_time, scope: 'datetime.distance_in_words.short')
   end
+
 
 end

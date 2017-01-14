@@ -3,10 +3,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 bg-gray">
-      <div class="form-gray">
-        <h1>Edit Route Information</h1>
+      <%= form_for [:admin, @facility, @route], :html => {:class => "form-label"} do |f| %>
+      <div class="row">
+        <br/>
+        <%= render 'shared/error_messages', object: f.object %>
       </div>
-        <%= render 'admin/routes/form', object: @routes %>
+        <%= render 'admin/routes/form', object: @routes, :f => f %>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.submit "Save", class: "btn btn-save" %>
+          </div>
+        </div>
+        <% end %>
     </div>
   </div>
 </div>

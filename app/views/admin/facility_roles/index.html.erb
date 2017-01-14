@@ -6,7 +6,7 @@
       <div class="headliner">
         <h1 class="pull-left">Team</h1>
         <span class="pull-right no-print">
-            <%= link_to "Add team member", new_admin_facility_facility_role_path, remote: true, class: "btn btn-create", style: "display: inline-block" %>
+            <%= link_to "Add team member", '#newFacilityRoleModal', data: { toggle: "modal"}, remote: false, class: "btn btn-create", style: "display: inline-block" %>
         </span>
       </div>
     </div>
@@ -19,3 +19,25 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+
+  <div class="modal fade" id="newFacilityRoleModal" tabindex="-1" role="dialog" aria-labelledby="newFacilityRoleModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="modal-title" id="newFacilityRoleModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @facility.name %> <%= @facility.location if @facility.location %></small></h4></span>
+        </div>
+        <div class="modal-body row">
+          <%= form_for [:admin, @facility, @facility_role], :html => {:class => "form-label"}, remote: false do |f| %>
+              <%= render 'admin/facility_roles/form', :f => f %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, class: "btn btn-save" %>
+          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>

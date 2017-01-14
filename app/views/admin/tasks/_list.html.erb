@@ -5,7 +5,7 @@
     </div>
     <div class="col-xs-4">
       <div class="pull-right">
-        <%= link_to "Create new task", new_admin_facility_task_path, remote: false, class: "btn btn-create", style: "display: inline-block" %>
+        <%= link_to "Create new task", "#newTaskModal", data: { toggle: "modal"}, remote: false, class: "btn btn-create", style: "display: inline-block" %>
       </div>
     </div>
 
@@ -129,20 +129,22 @@
 
 
               <% unless params[:controller] == 'admin/tasks' %>
-                <% if (days_ago(f) == "today") %>
-                  <span class="badge badge-today">due <%= days_ago(f) %></span>
+                <% if (task_days_ago(f) == "today") %>
+                  <span class="badge badge-today">due <%= task_days_ago(f) %> ago</span>
+                <% elsif f.setdate.to_i < Date.current.to_i %>
+                <span class="badge badge-late">due <%= task_days_ago(f) %> ago</span>
                 <% else %>
-                  due on <%= days_ago(f) %>
+                  due on <%= task_days_ago(f) %>
                 <% end %>
               <% else %>
               <% if f.active? %>
-                <% if (days_ago(f) == "today") %>
-                  <span class="badge badge-today">due <%= days_ago(f) %></span>
-                <% elsif (days_ago(f).to_i < 8) %>
-                  due on <%= f.setdate.strftime("%A") %>
+                <% if (task_days_ago(f) == "today") %>
+                  <span class="badge badge-today">due <%= task_days_ago(f) %> ago</span>
+                  <% elsif f.setdate < Date.current %>
+                  <span class="badge badge-late">due <%= task_days_ago(f) %> ago</span>
                 <% else %>
                   due on <%= f.setdate.strftime("%A, %b %d, %Y") %>
-              <% end %>
+                <% end %>
               <% elsif f.completed_at?%>
                 <span class="glyphicon glyphicon-ok glyphicon-green"></span> Completed on <%= f.completed_at.strftime("%b %d, %Y") %>
               <% end %>
@@ -191,3 +193,29 @@
 
   <%= paginate @tasks %>
 </div>
+
+<!-- Modal -->
+
+  <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="modal-title" id="newTaskModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @facility.name %> <%= @facility.location if @facility.location %></small></h4></span>
+        </div>
+        <div class="modal-body row">
+          <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
+            <% if(params[:name]) %>
+              <%= render 'admin/tasks/prepopulated_form', :f => f %>
+            <% else %>
+              <%= render 'admin/tasks/form', :f => f %>
+            <% end %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, class: "btn btn-save" %>
+          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>

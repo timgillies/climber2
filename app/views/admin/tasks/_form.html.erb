@@ -1,13 +1,9 @@
-
-
-
-
-
-<br/>
 <div class="col-sm-12">
-  <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
+  <div class="form-gray">
+    <h1>Task info</h1>
+  </div>
+  <br/>
     <%= render 'shared/error_messages', object: f.object %>
-
     <div class="row">
       <div class="col-xs-12 col-sm-6">
         <%= f.label :task_type, "New task type*" %>
@@ -34,13 +30,12 @@
         <% else %>
           <%= f.date_field :setdate, :value => Date.tomorrow , class: 'form-control' %>
         <% end %>
-
       </div>
-        <div class="col-xs-12 col-sm-6">
-          <%= f.label :status, "Task status*" %>
-          <%= f.select(:status, @task_status ,{ include_blank: false },
-          {class: "form-control"}) %>
-        </div>
+      <div class="col-xs-12 col-sm-6">
+        <%= f.label :status, "Task status*" %>
+        <%= f.select(:status, @task_status ,{ include_blank: false },
+        {class: "form-control"}) %>
+      </div>
     </div>
 
     <div class="row">
@@ -116,14 +111,6 @@
       </div>
     </div>
 
-    <br/>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= f.submit "Save", class: "btn btn-save" %>
-      </div>
-    </div>
-
 
   <br/>
-<% end %>
 </div>

@@ -5,8 +5,10 @@
           <br/>
             <% if @user.image? %>
               <%= image_tag @user.image + "?type=large", class: "img-profile" %>
-            <% else %>
+            <% elsif @user.avatar? %>
               <%= image_tag @user.avatar.url(:thumb), class: "img-profile" %>
+            <% else %>
+              <%= gravatar_for(@user)%>
             <% end %>
         </div>
         <br/>
