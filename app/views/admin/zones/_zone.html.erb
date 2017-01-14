@@ -33,10 +33,10 @@
           </div>
           <div class="row">
             <div class="col-xs-6 hidden-sm hidden-md hidden-lg hidden-xl pull-right no-print">
-              <%= button_to "create tasks",  admin_facility_zone_mass_create_tasks_path(@facility, fz ), class: 'btn btn-expire btn-xs', method: :mass_create_tasks, data: {:confirm => 'Are you sure you want to expire all routes in this zone?'} %>
+              <%= button_to "create tasks",  admin_facility_zone_mass_create_tasks_path(@facility, fz ), class: 'btn btn-expire btn-xs', method: :mass_create_tasks, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} %>
             </div>
             <div class="col-xs-6 hidden-sm hidden-md hidden-lg hidden-xl pull-right no-print">
-              <%= button_to "expire routes",  admin_facility_zone_mass_expire_path(@facility, fz ), class: 'btn btn-expire btn-xs', method: :mass_expire, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} %>
+              <%= button_to "expire routes",  admin_facility_zone_mass_expire_path(@facility, fz ), class: 'btn btn-expire btn-xs', method: :mass_expire, data: {:confirm => 'Are you sure you want to expire all routes in this zone?'} %>
             </div>
           </div>
 

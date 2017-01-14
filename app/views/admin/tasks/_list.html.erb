@@ -130,8 +130,12 @@
 
               <% unless params[:controller] == 'admin/tasks' %>
                 <% if (task_days_ago(f) == "today") %>
-                  <span class="badge badge-today">due <%= task_days_ago(f) %> ago</span>
-                <% elsif f.setdate.to_i < Date.current.to_i %>
+                  <% unless f.setdate == Date.current %>
+                    due on <%= f.setdate.strftime("%A, %b %d, %Y") %>
+                  <% else %>
+                  <span class="badge badge-today">due <%= task_days_ago(f) %></span>
+                  <% end %>
+                <% elsif f.setdate < Date.current %>
                 <span class="badge badge-late">due <%= task_days_ago(f) %> ago</span>
                 <% else %>
                   due on <%= task_days_ago(f) %>
@@ -139,7 +143,11 @@
               <% else %>
               <% if f.active? %>
                 <% if (task_days_ago(f) == "today") %>
-                  <span class="badge badge-today">due <%= task_days_ago(f) %> ago</span>
+                <% if f.setdate == Date.tomorrow %>
+                  due tomorrow
+                <% else %>
+                <span class="badge badge-today">due <%= task_days_ago(f) %></span>
+                <% end %>
                   <% elsif f.setdate < Date.current %>
                   <span class="badge badge-late">due <%= task_days_ago(f) %> ago</span>
                 <% else %>

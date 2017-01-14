@@ -3,7 +3,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 bg-gray">
-        <%= render 'admin/tasks/form', object: @tasks %>
+      <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+        <%= render 'admin/tasks/form', object: @tasks, :f => f %>
+        <br/>
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.submit "Save", class: "btn btn-save" %>
+          </div>
+        </div>
+        <% end %>
     </div>
   </div>
 </div>

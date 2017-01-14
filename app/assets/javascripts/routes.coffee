@@ -22,15 +22,10 @@ jQuery ->
   jQuery ->
       $('#route_sub_child_zone_id').parent().show()
       sub_child_zones = $('#route_sub_child_zone_id').html()
-      $('#route_zone_id').change ->
-          $('#route_sub_child_zone_id').empty
-          $('#route_sub_child_zone_id').parent().hide()
+
       $('#route_wall_id').change ->
         wall = $('#route_wall_id :selected').text()
         options = $(sub_child_zones).filter("optgroup[label='#{wall}']").html()
         if options
           $('#route_sub_child_zone_id').html(options)
           $('#route_sub_child_zone_id').parent().show()
-        else
-          $('#route_sub_child_zone_id').empty
-          $('#route_sub_child_zone_id').parent().hide()
