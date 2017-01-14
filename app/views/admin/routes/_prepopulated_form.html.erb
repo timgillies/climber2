@@ -1,7 +1,5 @@
 
-<br/>
 <div class="col-sm-12">
-  <%= form_for [:admin, @facility, @route], :html => {:class => "form-label"} do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <% if params[:controller] == 'admin/tasks' %>
@@ -130,16 +128,5 @@
           </div>
         </div>
       </div>
-
-
-      <br/>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.submit "Save & Complete Task", class: "btn btn-save" %>
-        </div>
-      </div>
-
-
     <br/>
-  <% end %>
 </div>

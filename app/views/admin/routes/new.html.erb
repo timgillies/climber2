@@ -1,4 +1,4 @@
-<% provide(:title, 'Edit') %>
+<% provide(:title, 'New Route') %>
 
 <div class="container-fluid">
   <div class="row">
@@ -8,7 +8,11 @@
         <br/>
         <%= render 'shared/error_messages', object: f.object %>
       </div>
-        <%= render 'admin/routes/form', object: @routes, :f => f %>
+      <% if(params[:name]) %>
+      <%= render 'admin/routes/prepopulated_form', object: @routes, :f => f %>
+      <% else %>
+      <%= render 'admin/routes/form', object: @routes, :f => f %>
+      <% end %>
         <div class="row">
           <div class="col-xs-12">
             <%= f.submit "Save", class: "btn btn-save" %>
