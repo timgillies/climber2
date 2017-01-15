@@ -285,6 +285,11 @@ textarea[type=text] {
 
 /* Modal Styling */
 
+body.modal-open {
+    overflow: hidden;
+}
+
+
 .modal-body {
 }
 
