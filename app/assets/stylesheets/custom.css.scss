@@ -285,12 +285,11 @@ textarea[type=text] {
 
 /* Modal Styling */
 
-body.modal-open {
-    overflow: hidden;
-}
 
 
 .modal-body {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
 }
 
 
