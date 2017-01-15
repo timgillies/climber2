@@ -288,6 +288,13 @@ textarea[type=text] {
 .modal { -webkit-overflow-scrolling: auto; }
 
 
+.modal-body {
+  input, select, textarea {
+      font-size: 16px;
+  }
+}
+
+
 .modal-title {
   font-size: 1.7em;
   letter-spacing: -1px;
