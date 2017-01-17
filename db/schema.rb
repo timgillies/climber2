@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109023053) do
+ActiveRecord::Schema.define(version: 20170117161242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,8 +203,8 @@ ActiveRecord::Schema.define(version: 20170109023053) do
     t.string   "color"
     t.date     "setdate"
     t.date     "enddate"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "grade_id"
     t.integer  "zone_id"
     t.integer  "wall_id"
@@ -223,6 +223,10 @@ ActiveRecord::Schema.define(version: 20170109023053) do
     t.integer  "assigner_id"
     t.integer  "assignee_id"
     t.integer  "task_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree

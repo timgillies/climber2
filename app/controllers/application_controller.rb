@@ -138,7 +138,7 @@ end
     facility_controller_check
     @route = Route.find(params[:id])
     unless current_user.role == "site_admin"
-       unless current_user == @route.user || ["facility_management", "head_setter"].include?(@facility_role_access)
+       unless current_user == @route.user || ["facility_management", "head_setter"].include?(@facility_role_access.name)
          flash[:danger] = 'You cannot edit this route.  You may flag this route to have your manager or the route owner update the route.'
          redirect_to admin_facility_routes_url(@facility)
       end

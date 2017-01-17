@@ -44,6 +44,15 @@
       </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="row">
+      <br/>
+      <div class="col-sm-12">
+          <%= image_tag @route.image.url(:medium) if @route.image.exists? %>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-xs-12">
         <%= render 'routes/totalticks' %>
