@@ -14,7 +14,8 @@ class Route < ActiveRecord::Base
 
   accepts_nested_attributes_for :ticks
 
-
+  # has_attached_file :image, styles: { medium: "300", thumb: "100x100#" }
+  # validates_attachment_content_type :image, :content_type => ['image/jpg', 'image/png', 'image/gif', 'image/jpeg']
 
   validates_presence_of :color
   validates_presence_of :user_id
@@ -25,8 +26,7 @@ class Route < ActiveRecord::Base
   validates_presence_of :wall, :if => :sub_child_zone_id? #if status is blank, it does not validates presence of object
   validates_presence_of :zone, :if => :sub_child_zone_id? #if status is blank, it does not validates presence of object
 
-  has_attached_file :image, styles: { medium: "300", thumb: "100x100#" }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
 
 
 

@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 bg-gray">
-      <%= form_for [:admin, @facility, @route], :html => {:class => "form-label"} do |f| %>
+      <%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => true } do |f| %>
       <div class="row">
         <br/>
         <%= render 'shared/error_messages', object: f.object %>

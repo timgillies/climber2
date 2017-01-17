@@ -91,7 +91,7 @@ class Admin::RoutesController < ApplicationController
 
   def create
     @facility = Facility.find(params[:facility_id])
-    @route = Route.new(route_params)
+    @route = Route.create( route_params )
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
 
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
@@ -204,7 +204,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity, :status, :task_description, :task_id, :image)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity, :status, :task_description, :task_id)
   end
 
   def options_for_grade_select

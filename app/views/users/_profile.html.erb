@@ -5,7 +5,7 @@
           <br/>
             <% if @user.image? %>
               <%= image_tag @user.image + "?type=large", class: "img-profile" %>
-            <% elsif @user.avatar? %>
+            <% elsif @user.avatar.exists? %>
               <%= image_tag @user.avatar.url(:thumb), class: "img-profile" %>
             <% else %>
               <%= gravatar_for(@user)%>
