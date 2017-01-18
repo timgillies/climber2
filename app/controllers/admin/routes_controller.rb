@@ -104,6 +104,7 @@ class Admin::RoutesController < ApplicationController
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
     @route.facility_id = params[:facility_id]
+
     if @route.save
       if @route.task_id?
       @task = Task.find_by(id: @route.task_id)
@@ -112,6 +113,10 @@ class Admin::RoutesController < ApplicationController
       flash[:success] = "Route created!"
       redirect_to(admin_facility_routes_path(@facility))
     else
+      unless @route.valid?
+        @route.image.clear
+        @route.image.queued_for_write.clear
+      end
       render :new
     end
   end
@@ -204,7 +209,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity, :status, :task_description, :task_id)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity, :status, :task_description, :task_id, :image)
   end
 
   def options_for_grade_select

@@ -44,6 +44,15 @@
       </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="row">
+      <br/>
+      <div class="col-sm-12">
+        <% if @route.image.exists? %>
+          <%= image_tag @route.image.url, class: "img-route-show" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="row">
