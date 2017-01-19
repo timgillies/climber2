@@ -23,7 +23,6 @@
           <%= f.label :grade_id,"Grade*" %>
           <%= f.grouped_collection_select(:grade_id, facility_systems , :grades, :name, :id, :grade,
           params[:grade_id] ? { :selected => params[:grade_id] } : { include_blank: 'Select grade' },
-
           {class: "form-control"}) %>
         </div>
       </div>
@@ -34,8 +33,11 @@
 
       <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
       <div class="row">
-
+        <div class="col-xs-12">
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        </div>
       </div>
+
 
       <% else %>
       <div class="row">
@@ -107,25 +109,34 @@
         <h1>Additional Details</h1>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-        <%= f.label :risk, "(Optional)" %>
-          <div class="container-fluid">
-            <div class="col-md-4">
-              <%= f.label :risk, "Risk" %>
-              <%= f.select(:risk, @r_value ,{class: "form-control"}) %>
-            </div>
-
-            <div class="col-md-4">
-              <%= f.label :intensity, "Intensity" %>
-              <%= f.select(:intensity, @i_value ,{class: "form-control"}) %>
-            </div>
-
-
-            <div class="col-md-4">
-              <%= f.label :complexity, "Complexity" %>
-              <%= f.select(:complexity, @c_value ,{class: "form-control"}) %>
-            </div>
+          <div class="col-md-4">
+            <%= f.label :risk, "Risk" %>
+            <%= f.select(:risk, @r_value ,{ include_blank: false },
+            {class: "form-control"}) %>
           </div>
+
+          <div class="col-md-4">
+            <%= f.label :intensity, "Intensity" %>
+            <%= f.select(:intensity, @i_value ,{ include_blank: false },
+            {class: "form-control"}) %>
+          </div>
+
+
+          <div class="col-md-4">
+            <%= f.label :complexity, "Complexity" %>
+            <%= f.select(:complexity, @c_value ,{ include_blank: false },
+            {class: "form-control"}) %>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.label "Upload image" %>
+          <%= f.file_field :image, {class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= image_tag @route.image.url(:thumb) if @route.image.exists? %>
         </div>
       </div>
     <br/>

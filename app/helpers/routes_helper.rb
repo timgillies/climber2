@@ -36,5 +36,9 @@ module RoutesHelper
       ]
   end
 
+def filter_results_count
+  @filterrific.to_hash.except!('with_status_id','sorted_by').count.to_i
+end
+
 
 end

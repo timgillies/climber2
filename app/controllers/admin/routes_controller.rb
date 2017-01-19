@@ -109,6 +109,8 @@ class Admin::RoutesController < ApplicationController
       if @route.task_id?
       @task = Task.find_by(id: @route.task_id)
       @task.update_attributes(status: 'completed', completed_by_id: @route.user_id, completed_at: DateTime.current)
+      @old_route = Route.find_by(id: @task.route_id)
+      @old_route.update_attribute(:enddate, Date.yesterday)
       end
       flash[:success] = "Route created!"
       redirect_to(admin_facility_routes_path(@facility))

@@ -131,9 +131,7 @@ a {
   padding: 20px;
   padding-left: 30px;
   padding-right: 30px;
-  opacity: 50%;
   border-width: 10px;
-  border-color: $gray;
   border-radius: 2px;
   border: 1px solid #bbb;
 }
@@ -225,7 +223,8 @@ li {
 }
 
 .img-route-show {
-  width: 300px;
+  width: 100%;
+
 }
 
 
@@ -635,7 +634,9 @@ input {
   padding: 20px;
   padding-left: 30px;
   padding-right: 30px;
-  opacity: 50%;
+  border-width: 10px;
+  border-radius: 2px;
+  border: 1px solid $gray-lighter;
 }
 
 /* Admin Homepage */
@@ -1056,6 +1057,7 @@ input {
     font-weight: 300;
     text-align: left;
     color: $gray-light;
+    margin-bottom: 0px;
   }
 
   li {
@@ -1140,6 +1142,46 @@ input {
   .magenta {
     border-left: 15px solid rgba(255, 51, 153, 0.75);
   }
+}
+
+/* route show */
+
+.routeshow {
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    display: inline-block;
+    border: none;
+    color: $gray;
+  }
+  h2 {
+    display: inline-block;
+  }
+  p {
+    font-size: 1.2em;
+    letter-spacing: 0.0px;
+  }
+  li {
+    margin-left: -15px;
+  }
+
+  .img-setter-icon{
+   width: 50px;
+   height: 50px;
+   vertical-align: bottom;
+   background-size: cover;
+   display: inline;
+   margin-left: 10px;
+   border-radius: 2px;
+   opacity: .75;
+   float: right;
+  }
+
+  .divider-line {
+    border-top: 1px solid #bbb;
+    margin-bottom: 5px;
+  }
+
+
 }
 
 

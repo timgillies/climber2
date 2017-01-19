@@ -14,7 +14,7 @@ class Route < ActiveRecord::Base
 
   accepts_nested_attributes_for :ticks
 
-  has_attached_file :image, styles: { medium: "300", thumb: "100x100#" }
+  has_attached_file :image, styles: { medium: "600", thumb: "100x100#" }
   validates_attachment_content_type :image, :content_type => ['image/jpg', 'image/png', 'image/gif', 'image/jpeg']
 
   validates_presence_of :color

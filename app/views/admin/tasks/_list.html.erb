@@ -39,11 +39,11 @@
             <h3>
               <% unless f.task_type == "route_task" %>
                 <span class="glyphicon glyphicon-wrench"></span>
-                <%= link_to "MAINTENANCE ITEM" , admin_facility_task_path(@facility, f) if f.task_description %>
+                <%= link_to "MAINTENANCE ITEM" , edit_admin_facility_task_path(@facility, f) if f.task_description %>
 
                 <% else %>
                 <span class="glyphicon glyphicon-calendar"></span>
-                <%= link_to "NEW ROUTE" , admin_facility_task_path(@facility, f) if f.task_description %>
+                <%= link_to "NEW ROUTE" , edit_admin_facility_task_path(@facility, f) if f.task_description %>
 
               <% end %>
             </h3>
@@ -58,7 +58,7 @@
               <span class="glyphicon glyphicon-calendar"></span>
               <% end %>
 
-              <%= link_to f.grade.grade + " "+ f.color.upcase , admin_facility_task_path(@facility, f) if f.grade %>
+              <%= link_to f.grade.grade + " "+ f.color.upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
             </h3>
 
             <% end %>

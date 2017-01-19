@@ -93,6 +93,11 @@ class Admin::TasksController < ApplicationController
     end
   end
 
+  def show
+    @task = Task.find(params[:id])
+    @facility = Facility.find(params[:facility_id])
+  end
+
   def edit
     @facility = Facility.find(params[:facility_id])
     @task = Task.find(params[:id])
@@ -154,7 +159,7 @@ class Admin::TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :assignee_id, :assigner_id, :discipline, :description, :active, :tagged, :status, :task_description, :task_type)
+    params.require(:task).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :assignee_id, :assigner_id, :route_id, :discipline, :description, :active, :tagged, :status, :task_description, :task_type)
   end
 
   def options_for_grade_select

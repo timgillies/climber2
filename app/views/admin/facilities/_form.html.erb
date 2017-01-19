@@ -10,10 +10,10 @@
       <%= f.label :location, "Location name"%>
       <%= f.text_field :location, placeholder: "ex. South Location", class: 'form-control' %>
 
-      <%= f.label :addressline1, "Address*" %>
+      <%= f.label :addressline1, "Address Line 1*" %>
       <%= f.text_field :addressline1, class: 'form-control' %>
 
-      <%= f.label :addressline2, "Address continued" %>
+      <%= f.label :addressline2, "Address Line 2" %>
       <%= f.text_field :addressline2, class: 'form-control' %>
     </div>
 
@@ -24,13 +24,18 @@
 
 
     <div class="col-sm-4 col-md-4 col-lg-">
-    <%= f.label :state, "State*" %>
-    <%= f.select(:state, options_for_select(us_states, selected: f.object.state ), { include_blank: 'Select state' }, { class: 'form-control' }) %>
+    <%= f.label :state, "State/Province/Region*" %>
+    <%= f.text_field :state, class: 'form-control' %>
     </div>
 
     <div class="col-sm-4 col-md-4 col-lg-4">
-      <%= f.label :zipcode, "Zip code*" %>
-      <%= f.text_field :zipcode, class: 'form-control' %>
+      <%= f.label :zipcode, "ZIP/Postal Code*" %>
+      <%= f.text_field :zipcode, placeholder: "ex. AZ", class: 'form-control' %>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.label :country, "Country*" %>
+      <%= f.select(:country, options_for_select(country_list, selected: f.object.country ), { include_blank: 'Select country' }, { class: 'form-control' }) %>
     </div>
 
       <br/>

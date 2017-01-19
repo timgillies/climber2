@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117161242) do
+ActiveRecord::Schema.define(version: 20170118205443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170117161242) do
     t.boolean  "yds"
     t.integer  "plan_id"
     t.integer  "days_from_start_date"
+    t.string   "country"
   end
 
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree

@@ -1,90 +1,100 @@
-<%= form_for_filterrific @filterrific do |f| %>
-  <div class="container-fluid bg-gray">
-    <div class="filter">
-      <div class="row">
-        <div class="col-md-6 col-sm-6">
-          <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-          <div class="form-group">
-            <%= f.label :search_query,  "Filters" %>
-            <%= f.text_field(
-              :search_query,
-              placeholder: '  Search by ID #',
-              class: 'filterrific-periodically-observed form-control'
-            ) %>
+<div class="container-fluid">
+  <div class="pull-right">
+    <button class="btn btn-close" type="button" data-toggle="collapse" data-target="#routeFilters" aria-expanded="false" aria-controls="routeFilters">
+      Filters
+    </button>
+  </div>
+</div>
+<div class="collapse" id="routeFilters">
+  <br>
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="container-fluid bg-white">
+        <div class="filter">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+              <div class="form-group">
+                <%= f.label :search_query,  "Filters" %>
+                <%= f.text_field(
+                  :search_query,
+                  placeholder: '  Search by ID #',
+                  class: 'filterrific-periodically-observed form-control'
+                ) %>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+              <%= f.label :setdate,  "Set on (start range):" %>
+              <%= f.date_field :with_setdate_gte, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+              <%= f.label :setdate,  "Set on (end range):" %>
+              <%= f.date_field :with_setdate_lt, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <%= f.select(
+                :with_grade_id,
+                @filterrific.select_options[:with_grade_id],
+                { include_blank: 'All grades' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <%= f.select(
+                :with_zone_id,
+                @filterrific.select_options[:with_zone_id],
+                { include_blank: 'All zones' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <%= f.select(
+                :with_wall_id,
+                @filterrific.select_options[:with_wall_id],
+                { include_blank: 'All sub-zones' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <%= f.select(
+                :with_setter_id,
+                @filterrific.select_options[:with_setter_id],
+                { include_blank: 'All setters' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <%= f.select(
+                :with_status_id,
+                @filterrific.select_options[:with_status_id],
+                { include_blank: 'All' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <%= f.select(
+                :sorted_by,
+                @filterrific.select_options[:sorted_by],
+                { include_blank: 'Sort by' },
+                {class: "form-control"}
+              ) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <span class="pull-right">
+                <%= link_to(
+                  'Reset filters',
+                  reset_filterrific_url
+                ) %>
+              </span>
+            </div>
           </div>
         </div>
-        <div class="col-xs-6 col-sm-3 col-md-3">
-          <%= f.label :setdate,  "Set on (start range):" %>
-          <%= f.date_field :with_setdate_gte, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
-        </div>
-        <div class="col-xs-6 col-sm-3 col-md-3">
-          <%= f.label :setdate,  "Set on (end range):" %>
-          <%= f.date_field :with_setdate_lt, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
-        </div>
       </div>
-      <div class="row">
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.select(
-            :with_grade_id,
-            @filterrific.select_options[:with_grade_id],
-            { include_blank: 'All grades' },
-            {class: "form-control"}
-          ) %>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.select(
-            :with_zone_id,
-            @filterrific.select_options[:with_zone_id],
-            { include_blank: 'All zones' },
-            {class: "form-control"}
-          ) %>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.select(
-            :with_wall_id,
-            @filterrific.select_options[:with_wall_id],
-            { include_blank: 'All sub-zones' },
-            {class: "form-control"}
-          ) %>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.select(
-            :with_setter_id,
-            @filterrific.select_options[:with_setter_id],
-            { include_blank: 'All setters' },
-            {class: "form-control"}
-          ) %>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.select(
-            :with_status_id,
-            @filterrific.select_options[:with_status_id],
-            { include_blank: 'All' },
-            {class: "form-control"}
-          ) %>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2">
-          <%= f.select(
-            :sorted_by,
-            @filterrific.select_options[:sorted_by],
-            { include_blank: 'Sort by' },
-            {class: "form-control"}
-          ) %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <span class="pull-right">
-            <%= link_to(
-              'Reset filters',
-              reset_filterrific_url
-            ) %>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+    <% end %>
+</div>
 <br />
 <%= render(
 partial: 'admin/routes/list',
