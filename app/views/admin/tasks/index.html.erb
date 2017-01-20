@@ -1,3 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header">
+      <h1 class="hidden-xs"> Task List </h1>
+      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"> Tasks </h1>
+    <span class="pull-right">
+      <%= link_to "Create new task", "#newTaskModal", data: { toggle: "modal"}, remote: false, class: "btn btn-create", style: "display: inline-block;" %>
+      <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#taskFilters" aria-expanded="false" aria-controls="taskFilters">
+        Filters <span class="glyphicon glyphicon-filter"></span>
+      </button>
+    </span>
+    <div class="divider-line"></div>
+  </div>
+  </div>
+</div>
+<div class="collapse" id="taskFilters">
+  <br>
+
 <%= form_for_filterrific @filterrific do |f| %>
   <div class="container-fluid bg-gray">
     <div class="filter">
@@ -51,6 +69,7 @@
     </div>
   </div>
 <% end %>
+</div>
 <br />
 <%= render(
 partial: 'admin/tasks/list',

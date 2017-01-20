@@ -133,7 +133,6 @@ a {
   padding-right: 30px;
   border-width: 10px;
   border-radius: 2px;
-  border: 1px solid #bbb;
 }
 
 .bg-darkgray {
@@ -636,7 +635,6 @@ input {
   padding-right: 30px;
   border-width: 10px;
   border-radius: 2px;
-  border: 1px solid $gray-lighter;
 }
 
 /* Admin Homepage */
@@ -1144,6 +1142,15 @@ input {
   }
 }
 
+.routelist-header {
+  h1{
+    font-family: 'Oswald', sans-serif;
+    display: inline;
+    font-size: 2.5em;
+    color: #ccc;
+  }
+}
+
 /* route show */
 
 .routeshow {
@@ -1481,7 +1488,7 @@ span.picture {
 }
 
 .btn-create, .btn-create:hover, .btn-create:active{
-  border: none;
+  border-color: #2e8ece;
   background: #2e8ece;
   opacity: 1;
   color: white;
@@ -1494,6 +1501,21 @@ span.picture {
   opacity: 1;
   color: $gray-light;
   letter-spacing: -0.0px;
+}
+
+.btn-filter, .btn-filter:hover {
+  background: white;
+  opacity: 1;
+  color: #555;
+  letter-spacing: -0.0px;
+  border-color: #ccc;
+}
+
+.btn-photo, .btn-photo:hover {
+  background: white;
+  opacity: 1;
+  color: $gray-light;
+  letter-spacing: 0.0px;
 }
 
 

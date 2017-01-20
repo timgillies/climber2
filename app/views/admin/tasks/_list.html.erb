@@ -1,17 +1,17 @@
 <div id="filterrific_results_task_admin">
   <div class="row">
-    <div class="col-xs-8">
+    <div class="col-xs-12">
       <%= page_entries_info @tasks  %>
-    </div>
-    <div class="col-xs-4">
-      <div class="pull-right">
-        <%= link_to "Create new task", "#newTaskModal", data: { toggle: "modal"}, remote: false, class: "btn btn-create", style: "display: inline-block" %>
-      </div>
+
+      <% if task_filter_results_count > 0 %>
+        (<%= task_filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>) - <%= link_to(
+              'Reset filters',
+              reset_filterrific_url
+            ) %>
+      <% end %>
     </div>
 
   </div>
-
-  <br />
 
   <%= div_for(@tasks) do |f| %>
   <ol class="routelist">

@@ -20,5 +20,9 @@ module TasksHelper
     distance_of_time_in_words(to_time, from_time, scope: 'datetime.distance_in_words.short')
   end
 
+  def task_filter_results_count
+    @filterrific.to_hash.except!('task_with_status_id','task_sorted_by').count.to_i
+  end
+
 
 end
