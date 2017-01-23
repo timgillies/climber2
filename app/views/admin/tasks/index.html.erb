@@ -4,10 +4,10 @@
       <h1 class="hidden-xs"> Task List </h1>
       <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"> Tasks </h1>
     <span class="pull-right">
-      <%= link_to "Create new task", "#newTaskModal", data: { toggle: "modal"}, remote: false, class: "btn btn-create", style: "display: inline-block;" %>
       <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#taskFilters" aria-expanded="false" aria-controls="taskFilters">
         Filters <span class="glyphicon glyphicon-filter"></span>
       </button>
+      <%= link_to "Create new task", "#newTaskModal", data: { toggle: "modal"}, remote: false, class: "btn btn-close", style: "display: inline-block;" %>
     </span>
     <div class="divider-line"></div>
   </div>

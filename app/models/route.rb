@@ -12,6 +12,7 @@ class Route < ActiveRecord::Base
   belongs_to :tasks
 
 
+
   accepts_nested_attributes_for :ticks
 
   has_attached_file :image, styles: { medium: "600", thumb: "100x100#" }

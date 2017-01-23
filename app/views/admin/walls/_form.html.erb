@@ -1,29 +1,18 @@
 <br/>
-<div class="container-fluid bg-gray">
+<div class="container-fluid">
   <div class="row">
-    <%= form_for [:admin, @facility, @wall], :html => {:class => "form-label"}, remote: false do |fw| %>
-    <%= render 'shared/error_messages', object: fw.object %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-    <div class="col-sm-6 col-md-6 col-lg-6">
-      <%= fw.label :name, "Child zone name:" %>
-      <%= fw.text_field :name, class: 'form-control', placeholder: "Child zone name..." %>
+    <div class="col-sm-6">
+      <%= f.label :name, "Child zone name:" %>
+      <%= f.text_field :name, class: 'form-control', placeholder: "Child zone name..." %>
     </div>
 
-    <div class="col-sm-3 col-md-3 col-lg-3">
-      <%= fw.label :zone_id, "Choose parent zone:" %>
-      <%= fw.select(:zone_id, @facilityzones,{include_blank: "Parent zone..." },{class: "form-control"}) %>
-    </div>
-
-    <div class="col-sm-3 col-md-3 col-lg-3">
-      <label class="hidden-xl">&nbsp;</label>
-      <%= fw.submit "Save", class: "btn btn-submit" %>
-    </div>
-  </div>
-
-  <div class="row pull-right">
-    <div class="col-sm-6 col-md-6 col-lg-6">
-      <%= link_to "cancel", admin_facility_zones_path %>
+    <div class="col-sm-6">
+      <%= f.label :zone_id, "Choose parent zone:" %>
+      <%= f.select(:zone_id, @facilityzones,
+      params[:zone_id] ? { :selected => params[:zone_id] } : { include_blank: "Select parent zone..." },
+      {class: "form-control"}) %>
     </div>
   </div>
 </div>
-  <% end %>

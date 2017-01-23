@@ -1,9 +1,6 @@
 <% provide(:title, @route.name) %>
-
-<div class="container-fluid routelist routeshow">
-  <div class="container-fluid bg-white">
-    <div class="col-sm-12">
-      <div class="container-fluid ">
+      <div class="container-fluid routelist routeshow ">
+        <div class="col-md-10 col-md-offset-1 col-xs-12">
         <% if @route.color? %>
           <% if ["light", "dark", "neon", "hot"].include?(@route.color.split(/\W+/).first.downcase.to_s) %>
             <div class="<%= @route.color.split(/\W+/).second.downcase.to_s %>">
@@ -19,7 +16,7 @@
           <h1>
             <span class="tab"><%= @route.grade.grade + " "+ @route.color.upcase %>
           </h1>
-          <h2> <%= @route.name if @route.name %></h2></span>
+          <h2 class="tab"> <%= @route.name if @route.name %></h2></span>
           <span class="pull-right hidden-xs">
             <% if @route.user %>
               <% if @route.user.image? %>
@@ -40,62 +37,59 @@
           </div>
         </div>
       -->
-      <br>
-      <div class="divider-line"></div>
-      <br>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-12">
-            <span class="doubltab"><strong>Color: </strong> <%= @route.color %></span>
-            <span class="pull-right">
-              <% unless params[:controller] == 'admin/tasks' %>
-                <% if (days_ago(@route) == "today") %>
-                  <span class="badge badge-today">set <%= days_ago(@route) %></span>
-                <% else %>
-                  set <%= days_ago(@route) %> ago
-                <% end %>
-              <% else %>
-                <% if @route.setdate? %>
-                due on <%= f.setdate.strftime("%b %d, %Y") %>
-                <% end %>
-              <% end %>
-          </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <span class="doubltab"><strong>Setter: </strong> <%= @route.user.name if @route.user %></span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <span class="doubltab"><strong>Location: </strong><%= @route.zone.name if @route.zone %><%= " > " + @route.wall.name if @route.wall %> <%= " > " + @route.sub_child_zone.name if @route.sub_child_zone %></span>
-          </div>
-        </div>
+          <br>
+          <div class="divider-line"></div>
+          <br>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <span class="doubltab"><strong>Color: </strong> <%= @route.color %></span>
+                <span class="pull-right">
+                  <% unless params[:controller] == 'admin/tasks' %>
+                    <% if (days_ago(@route) == "today") %>
+                      <span class="badge badge-today">set <%= days_ago(@route) %></span>
+                    <% else %>
+                      set <%= days_ago(@route) %> ago
+                    <% end %>
+                  <% else %>
+                    <% if @route.setdate? %>
+                    due on <%= f.setdate.strftime("%b %d, %Y") %>
+                    <% end %>
+                  <% end %>
+              </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <span class="doubltab"><strong>Setter: </strong> <%= @route.user.name if @route.user %></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <span class="doubltab"><strong>Location: </strong><%= @route.zone.name if @route.zone %><%= " > " + @route.wall.name if @route.wall %> <%= " > " + @route.sub_child_zone.name if @route.sub_child_zone %></span>
+              </div>
+            </div>
 
-        <% if @route.description? %>
-        <div class="row">
-          <br/>
-          <div class="col-sm-12">
-              <span class="doubltab"><i><%= @route.description %></i></span>
+            <% if @route.description? %>
+            <div class="row">
+              <br/>
+              <div class="col-sm-12">
+                  <span class="doubltab"><i><%= @route.description %></i></span>
+              </div>
+            </div>
+            <% end %>
+          </div>
+
+        <div class="col-xs-12 col-sm-8">
+          <div class="row">
+              <% if @route.image.exists? %>
+                  <br>
+              <%= link_to image_tag(@route.image.url(:medium), class: "img-route-show") , "#routeShowModal", data: { toggle: "modal"} %></li>
+              <% end %>
           </div>
         </div>
-        <% end %>
-      </div>
       </div>
     </div>
-    <div class="col-sm-12">
-      <div class="row">
-        <div class="col-xs-8 tab">
-          <% if @route.image.exists? %>
-              <br>
-          <%= link_to image_tag(@route.image.url(:medium), class: "img-route-show") , "#routeShowModal", data: { toggle: "modal"} %></li>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!--

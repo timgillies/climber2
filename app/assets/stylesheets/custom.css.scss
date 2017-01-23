@@ -55,7 +55,7 @@ body {
   padding: 0px;
   padding-top: 65px;
   padding-bottom: 0px;
-  font-family: 'myriad-pro' , sans-serif;
+  font-family: sans-serif;
   font-weight: 300;
 
 }
@@ -133,6 +133,7 @@ a {
   padding-right: 30px;
   border-width: 10px;
   border-radius: 2px;
+  border-color: #2e8ece
 }
 
 .bg-darkgray {
@@ -300,20 +301,29 @@ textarea[type=text] {
 .modal-title {
   font-size: 1.7em;
   letter-spacing: -1px;
-  font-weight: bold;
+  font-weight: 300;
   h4 {
     display: inline-block;
-    color: white;
+    font-weight: 300;
+    color: rgba(0,0,0, 0.5);
     small {
-      color: $gray;
+      color: $gray-light;
+      font-family: 'Lato', sans-serif;
     }
   }
 }
 
 .modal-header {
-  background: #52BE80;
+  background-image: url(asset-path('white_vector.png'));
+  background-size: cover;
+  background-position: center;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+.close {
+float: right;
+font-size: 30px;
 }
 
 
@@ -943,7 +953,16 @@ input {
 .filter {
   margin-top: 0px;
   margin-bottom: 0px;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Lato', sans-serif;
+  label {
+    font-family: 'Oswald', sans-serif;
+    color: $gray-light;
+  }
+  h2 {
+    font-family: 'Oswald', sans-serif;
+    margin: 0px;
+    float: left;
+  }
 }
 
 
@@ -956,8 +975,9 @@ input {
   display: inline;
   font-weight: 300;
   font-size: 0.8em;
-  letter-spacing: 0.0px;
+  letter-spacing: 0.2px;
   color: $gray-light;
+  font-family: 'Lato', sans-serif;
   li {
     margin-bottom: 5px;
     border-left: 15px solid #F2F4F4;
@@ -973,11 +993,14 @@ input {
       margin-bottom: 5px;
       text-align: left;
       border-bottom: 1px solid $gray-lighter;
+      font-family: 'Oswald', sans-serif;
       h3 {
         text-align: right;
+        letter-spacing: 0.4px;
       }
 
     }
+
 
   }
   .grade {
@@ -1056,6 +1079,7 @@ input {
     text-align: left;
     color: $gray-light;
     margin-bottom: 0px;
+    display: inline-block;
   }
 
   li {
@@ -1072,12 +1096,14 @@ input {
     font-size: 1em;
     font-weight: lighter;
     background-color: #58D68D;
+    font-family: sans-serif;
   }
 
   .badge-late {
     font-size: 1em;
     font-weight: lighter;
     background-color: #F1948A;
+    font-family: sans-serif;
   }
 
   .badge-week {
@@ -1147,7 +1173,7 @@ input {
     font-family: 'Oswald', sans-serif;
     display: inline;
     font-size: 2.5em;
-    color: #ccc;
+    color: #bbb;
   }
 }
 
@@ -1162,6 +1188,7 @@ input {
   }
   h2 {
     display: inline-block;
+    letter-spacing: -0.4px;
   }
   p {
     font-size: 1.2em;
@@ -1284,14 +1311,18 @@ span.picture {
   box-shadow: none;
   background-color: transparent;
   li a{
-    color: #aeaeae;
-    font-size: 1.2em;
-    letter-spacing: -0.0px;
-    font-family: 'Oswald', sans-serif;
+    color: #ccc;
+    font-size: 1.0em;
+    letter-spacing: -0.4px;
+    font-family: 'Lato', sans-serif;
     &:hover {
       color: #ffffff;
     }
     }
+}
+
+.left-no-margin {
+  margin-left:-20px;
 }
 
 
@@ -1299,7 +1330,7 @@ span.picture {
  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
    background-color: transparent;
    font-size: 1.2em;
-   font-family: 'Oswald', sans-serif;
+   font-family: 'Lato', sans-serif;
    padding-top:  7px;
    padding-bottom: 7px;
    display: inline-block;
@@ -1346,6 +1377,16 @@ span.picture {
     background-color: #ffffff;
     border-style: none;
     margin-left: 1px;
+    li>a {
+      color: #999;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+    a:active, li:active, li:hover, a:hover, a:active{
+      color: #ddd;
+      background-color: #888;
+
+    }
     .btn-primary, .btn-primary:hover, .btn-primary:active{
       color: #ffffff;
     }
@@ -1358,6 +1399,15 @@ span.picture {
     border-style: none;
     float: left;
   }
+}
+
+.header-text {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: -1.0px;
+  li a{
+    color: #eee;
+  }
+
 }
 
 @media (min-width: 768px){
@@ -1506,7 +1556,7 @@ span.picture {
 .btn-filter, .btn-filter:hover {
   background: white;
   opacity: 1;
-  color: #555;
+  color: $gray-light;
   letter-spacing: -0.0px;
   border-color: #ccc;
 }
@@ -1593,6 +1643,7 @@ span.picture {
   opacity: 1;
   color: $gray-light;
   display: inline-block;
+    transition-duration: 0.0s;
 
 }
 
@@ -1629,14 +1680,14 @@ span.picture {
 
 }
 
-.btn-tag, .btn-tagged:hover {
+.btn-tag, .btn-tagged:hover, .btn-tag:hover {
   background: $gray-lighter;
   opacity: 1;
   color: $gray-light;
   display: inline-block;
 }
 
-.btn-tag:hover, .btn-tagged {
+.btn-tagged {
   background: #c2c2c2;
   opacity: 1;
   color: #ffffff;

@@ -7,11 +7,19 @@ class Admin::ZonesController < ApplicationController
 
   layout "admin"
 
+  include FacilitiesHelper
+  include GradesHelper
+
+
+
   def index
     @facility = Facility.find(params[:facility_id])
     @zones = @facility.zones.page(params[:page])
     @wall = Wall.new
     @facilityzones = @facility.zones.all.map{|fw| [fw.name, fw.id ] }
+    @zone = Zone.new
+    @sub_child_zone = SubChildZone.new
+    @facility_systems = facility_systems.page(params[:page])
   end
 
   def new
@@ -22,6 +30,8 @@ class Admin::ZonesController < ApplicationController
 
   def show
     @zones = @facility.zones.page(params[:page])
+    @facility_systems = facility_systems.page(params[:page])
+
   end
 
   def create
@@ -33,8 +43,7 @@ class Admin::ZonesController < ApplicationController
       flash[:success] = "Zone created!"
       redirect_to(admin_facility_zones_path(@facility))
     else
-      flash[:danger] = "Zone not saved!"
-      render 'index'
+      render 'new'
     end
   end
 
@@ -47,8 +56,7 @@ class Admin::ZonesController < ApplicationController
       redirect_to(admin_facility_zones_path(@facility))
       # Handle a successful update.
     else
-      flash[:danger] = "Zone not saved!"
-      render 'index'
+      render 'edit'
     end
   end
 
@@ -56,6 +64,16 @@ class Admin::ZonesController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @zone = Zone.find(params[:id])
     @zones = @facility.zones.page(params[:page])
+  end
+
+  def show
+    @facility = Facility.find(params[:facility_id])
+    @zone = Zone.find(params[:id])
+    @wall = Wall.new
+    @sub_child_zone = SubChildZone.new
+    @zones = @facility.zones.page(params[:page])
+    @facility_systems = facility_systems.page(params[:page])
+
   end
 
   def mass_expire

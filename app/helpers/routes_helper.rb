@@ -40,5 +40,13 @@ def filter_results_count
   @filterrific.to_hash.except!('with_status_id','sorted_by').count.to_i
 end
 
+def facility_system_route_count(fs, fz)
+  Route.current.where(grade_id: Grade.where(grade_system_id: fs.id), facility_id: @facility.id, zone_id: fz.id).count
+end
+
+def facility_system_target_count(fs, fz)
+  FacilityTarget.where(grade_id: Grade.where(grade_system_id: fs.id), facility_id: @facility.id, zone_id: fz.id).count
+end
+
 
 end

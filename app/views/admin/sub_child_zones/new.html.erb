@@ -6,7 +6,13 @@
       <div class="routes">
         <h1><small>Add new wall</small></h1>
       </div>
-      <%= render 'admin/sub_child_zones/form', object: @walls %>
+      <%= form_for [:admin, @facility, @sub_child_zone], :html => {:class => "form-label"}, remote: false do |f| %>
+      <%= render 'admin/sub_child_zones/form', object: @sub_child_zones, f: f  %>
+      <div class="col-sm-3 col-md-3 col-lg-3">
+        <label class="hidden-xl">&nbsp;</label>
+        <%= f.submit "Save", class: "btn btn-submit" %>
+      </div>
+      <% end %>
     </div>
   </div>
   <br/>

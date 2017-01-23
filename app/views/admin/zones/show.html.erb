@@ -1,1 +1,62 @@
-<h2>Coming soon</h2>
+<%= render 'admin/zones/modals', object: @zones %>
+
+<% provide(:title, 'Zones') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="routelist-header">
+        <h1><%= @zone.name %></h1>
+        <span class="btn-group pull-right no-print tab">
+          <button type="button" class="btn btn-close dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add sub-zones <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to "New sub-zone", "#newWallModal", data: { toggle: "modal"} %></li>
+            <li><%= link_to "New sub-child zone", "#newSubChildZoneModal", data: { toggle: "modal"} %></li>
+          </ul>
+        </span>
+        <span><%= link_to "edit name", "#editZoneModal", data: { toggle: "modal"}, class: "btn btn-close pull-right tab" %></span>
+      </div>
+      <% @facility_systems.each do |fs| %>
+        <% if (facility_system_route_count(fs, @zone) > 0) || (facility_system_target_count(fs, @zone) > 0) %>
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+              <%= render 'facilities/zonegradedist', :fz => @zone, :fs => fs  %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="routelist-header">
+        <h1>Sub-zones</h1>
+      </div>
+    <%= render 'admin/zones/zone_children', object: @zone %>
+    </div>
+  </div>
+</div>
+
+<!-- Zone Modal -->
+
+  <div class="modal fade" id="editZoneModal" tabindex="-1" role="dialog" aria-labelledby="editZoneModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="modal-title" id="editZoneModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @facility.name %> <%= @facility.location if @facility.location %></small></h4></span>
+        </div>
+        <div class="modal-body row">
+          <%= form_for [:admin, @facility, @zone], :html => {:class => "form-label"}, remote: false do |f| %>
+              <%= render 'admin/zones/form', :f => f %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, class: "btn btn-save" %>
+          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>

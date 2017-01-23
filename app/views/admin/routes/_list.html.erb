@@ -1,21 +1,25 @@
 <div id="filterrific_results_admin">
   <div class="row">
     <div class="col-xs-12">
-      <%= page_entries_info @routes  %>
-
+      <div class="routelist">
+      <h2><%= page_entries_info @routes  %>
       <% if filter_results_count > 0 %>
-        (<%= filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>) - <%= link_to(
-              'Reset filters',
-              reset_filterrific_url
-            ) %>
+        (<%= filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>)
       <% end %>
+      </h2>
+      <span class="pull-right">
+        <%= link_to(
+          'Reset filters',
+          reset_filterrific_url
+        ) %>
+      </span>
+    </div>
     </div>
 
   </div>
   <%= div_for(@routes) do |f| %>
   <ol class="routelist">
     <div class="divider-line"></div>
-
 
       <% if f.color? %>
         <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
@@ -50,7 +54,7 @@
             </div>
 
             <div class="col-md-2 no-print">
-              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :expire, remote: false %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :create_task, remote: false %>
             </div>
           </div>
           <div class="col-xs-2 col-sm-1 no-print">

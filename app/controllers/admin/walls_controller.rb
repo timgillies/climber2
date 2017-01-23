@@ -33,8 +33,7 @@ class Admin::WallsController < ApplicationController
       flash[:success] = "Zone created!"
       redirect_to(admin_facility_zones_path(@facility))
     else
-      flash[:danger] = "Zone not saved!"
-      redirect_to(admin_facility_zones_path(@facility))
+      render 'new'
     end
   end
 

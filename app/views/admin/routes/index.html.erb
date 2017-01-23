@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="routelist-header">
-      <h1 class="hidden-xs"> Route Database </h1>
-      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"> Routes </h1>
+      <h1 class="hidden-xs">Route Database </h1>
+      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl">Routes </h1>
     <span class="pull-right">
-      <%= link_to "Create new route", "#newRouteModal", data: { toggle: "modal"}, remote: false, class: "btn btn-create", style: "display: inline-block;" %>
       <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#routeFilters" aria-expanded="false" aria-controls="routeFilters">
         Filters <span class="glyphicon glyphicon-filter"></span>
       </button>
+      <%= link_to "Create new route", "#newRouteModal", data: { toggle: "modal"}, remote: false, class: "btn btn-close", style: "display: inline-block;" %>
     </span>
     <div class="divider-line"></div>
   </div>

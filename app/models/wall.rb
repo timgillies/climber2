@@ -8,6 +8,8 @@ class Wall < ActiveRecord::Base
   has_many    :tasks
 
   validates :name, presence: true, uniqueness: {scope: [:facility_id, :zone_id] }, length: { maximum: 50}
+  validates :zone_id, presence: true
+
 
   default_scope -> { order(created_at: :asc) }
 

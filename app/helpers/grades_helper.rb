@@ -20,9 +20,14 @@ module GradesHelper
     GradeSystem.joins(:facilities).where(:facilities => {:id => @facility.id})
   end
 
+  def facility_system_route_count(fs)
+    Route.current.where(grade_id: Grade.where(grade_system_id: fs.id), facility_id: @facility.id).count
+  end
+
+
 # Joins grades to facilities via grade_system and facility_grade_system relationships
   def facility_grades
-    Grade.joins(:facilities).where(:facilities => {:id => @facility.id} )
+    Grade.joins(:facilities).where(:facilities => {:id => @facility.id})
   end
 
 
@@ -33,6 +38,10 @@ module GradesHelper
 
   def self.sport
     Route.joins(:grade_system).where("grade_systems.discipline =?", 'sport')
+  end
+
+  def tester_method
+    :grade_id
   end
 
 

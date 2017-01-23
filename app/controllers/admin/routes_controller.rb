@@ -1,6 +1,6 @@
 class Admin::RoutesController < ApplicationController
-  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy, :mass_expire]
+  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy, :mass_expire]
   before_action :setter_role,               only: [:destroy]
   before_action :guest_role,                only: [:destroy]
   before_action :marketing_role,            except: [:index, :show]
@@ -172,11 +172,18 @@ class Admin::RoutesController < ApplicationController
     redirect_to(admin_facility_routes_path(@facility))
   end
 
-  def mass_expire
+  def mass_expire_2
     @facility = Facility.find(params[:facility_id])
-    @route = Route.find(params[:id])
+    @routes = @facility.routes.where(status: nil).filterrific_find(@filterrific).page(params[:page]).per(50)
     @route.update_all( {:enddate => Date.yesterday}, {:zone_id => fz.id} )
     redirect_to(admin_facility_zones_path(@facility))
+  end
+
+  def mass_expire
+    @facility = Facility.find(params[:facility_id])
+    @routes = @facility.routes.where(status: nil).filterrific_find(@filterrific).page(params[:page])
+    @routes.update_all( {:enddate => Date.yesterday} )
+    redirect_to(admin_facility_routes_path(@facility))
   end
 
   def tagged
