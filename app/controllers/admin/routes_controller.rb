@@ -6,6 +6,7 @@ class Admin::RoutesController < ApplicationController
   before_action :marketing_role,            except: [:index, :show]
   before_action :paid_subscriber,           only: [:new, :create]
   before_action :route_owner,               only: [:edit, :update]
+  before_action :demo_facility,             except: [:index, :show, :new]
 
 
   layout "admin"
@@ -110,7 +111,9 @@ class Admin::RoutesController < ApplicationController
       @task = Task.find_by(id: @route.task_id)
       @task.update_attributes(status: 'completed', completed_by_id: @route.user_id, completed_at: DateTime.current)
       @old_route = Route.find_by(id: @task.route_id)
-      @old_route.update_attribute(:enddate, Date.yesterday)
+      if (defined?(@old_route)).nil?
+        @old_route.update_attribute(:enddate, Date.yesterday)
+      end
       end
       flash[:success] = "Route created!"
       redirect_to(admin_facility_routes_path(@facility))

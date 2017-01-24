@@ -86,7 +86,7 @@ end
   # Confirms a relationship between the user and the facility based on the above roles
   def facility_admin
     facility_controller_check
-    unless  current_user.role == "site_admin" || (@facility_role_access.present? && current_user.role == "facility_admin")
+    unless  current_user.role == "site_admin" || (@facility_role_access.present? && current_user.role == "facility_admin") || (@facility.demo?)
       flash[:danger] = 'You are not authorized.  Please request access from your manager'
       redirect_to root_url
     end
@@ -121,9 +121,8 @@ end
 
   def paid_subscriber
     facility_controller_check
-    unless @facility.subscriptions.where(status: "active").count > 0 # overrides assigned facility roles
+    unless @facility.subscriptions.where(status: "active").count > 0
           redirect_to new_admin_facility_subscription_path(@facility)
-
     end
   end
 
@@ -141,6 +140,15 @@ end
        unless current_user == @route.user || ["facility_management", "head_setter"].include?(@facility_role_access.name)
          flash[:danger] = 'You cannot edit this route.  You may flag this route to have your manager or the route owner update the route.'
          redirect_to admin_facility_routes_url(@facility)
+      end
+    end
+  end
+
+  def demo_facility
+    unless current_user.role == "site_admin"
+      if @facility.demo?
+        flash[:success] = "Whoa there!  You can't save anything in DEMO mode, but hopefully you're getting psyched about Climb Connect."
+        redirect_to :back
       end
     end
   end
