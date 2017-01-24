@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   has_many :facility_targets
   has_many :sub_child_zones
   has_many :grade_systems
-  has_many :routes_as_setter, :class_name => "Route", :foreign_key => "set_by_id"
   has_many :tasks_as_assigner, :class_name => "Task", :foreign_key => "assigner_id"
   has_many :tasks_as_assignee, :class_name => "Task", :foreign_key => "assignee_id"
   has_many :tasks_as_completer, :class_name => "Task", :foreign_key => "completed_by_id"

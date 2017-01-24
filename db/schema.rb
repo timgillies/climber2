@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118205443) do
+ActiveRecord::Schema.define(version: 20170123154155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,7 +213,6 @@ ActiveRecord::Schema.define(version: 20170118205443) do
     t.text     "description"
     t.boolean  "tagged"
     t.integer  "sub_child_zone_id"
-    t.integer  "set_by_id"
     t.integer  "risk"
     t.integer  "intensity"
     t.integer  "complexity"
@@ -232,7 +231,6 @@ ActiveRecord::Schema.define(version: 20170118205443) do
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
   add_index "routes", ["grade_id"], name: "index_routes_on_grade_id", using: :btree
-  add_index "routes", ["set_by_id"], name: "index_routes_on_set_by_id", using: :btree
   add_index "routes", ["sub_child_zone_id"], name: "index_routes_on_sub_child_zone_id", using: :btree
   add_index "routes", ["user_id", "facility_id", "created_at"], name: "index_routes_on_user_id_and_facility_id_and_created_at", using: :btree
   add_index "routes", ["user_id"], name: "index_routes_on_user_id", using: :btree
@@ -445,10 +443,8 @@ ActiveRecord::Schema.define(version: 20170118205443) do
   add_foreign_key "registrations", "users"
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades", on_delete: :nullify
-  add_foreign_key "routes", "setters", column: "set_by_id"
   add_foreign_key "routes", "sub_child_zones", on_delete: :nullify
   add_foreign_key "routes", "users"
-  add_foreign_key "routes", "users", column: "set_by_id"
   add_foreign_key "routes", "walls", on_delete: :nullify
   add_foreign_key "routes", "zones", on_delete: :nullify
   add_foreign_key "setters", "facilities", on_delete: :nullify

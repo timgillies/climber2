@@ -54,6 +54,12 @@ gem 'paperclip', "~> 5.0.0"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
+  gem 'vcr'
 end
 
 group :test do
@@ -61,6 +67,7 @@ group :test do
   gem 'mini_backtrace'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'webmock'
 end
 
 group :development do
@@ -68,7 +75,7 @@ group :development do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring',  '~> 1.7.2'
 end
 
 group :production do
