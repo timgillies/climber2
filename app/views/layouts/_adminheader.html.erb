@@ -6,6 +6,8 @@
         <p class="navbar-btn">
           <% if @facility.demo? %>
             <span class="badge badge-demo pull-right">DEMO</span>
+            <% else %>
+            <span class="badge badge-role pull-right"><%= @facility_role_access.name.humanize.upcase if @facility_role_access %></span>
           <% end %>
         </p><h1><%= @facility.name %><small> <%= @facility.location %></small></h1>
       </div>

@@ -157,7 +157,7 @@ end
   end
 
   def facility_is_demo
-    @facility.demo == true
+    @facility.demo == true if @facility
   end
 
   def filter_reset
