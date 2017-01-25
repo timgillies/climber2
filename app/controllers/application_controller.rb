@@ -125,7 +125,7 @@ end
   def paid_subscriber
     facility_controller_check
     unless @facility.subscriptions.where(status: "active").count > 0
-          redirect_to new_admin_facility_subscription_path(@facility)
+      redirect_to new_admin_facility_subscription_path(@facility)
     end
   end
 

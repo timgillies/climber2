@@ -525,6 +525,14 @@ input {
     overflow: auto;
     padding: 10px 0;
   }
+
+  .badge-demo {
+    font-size: 0.7em;
+    font-weight: lighter;
+    background-color: #ff80ca;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.4px;
+  }
 }
 
  /* -------  Subscription Plans ------- */
@@ -1220,7 +1228,6 @@ input {
     border-top: 1px solid #bbb;
     margin-bottom: 5px;
   }
-
 
 }
 

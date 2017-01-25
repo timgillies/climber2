@@ -1,9 +1,9 @@
 class Admin::SubscriptionsController < ApplicationController
   before_action :authenticate_user!,        :unless => :facility_is_demo
   before_action :facility_admin,            :unless => :facility_is_demo
-  before_action :setter_role,              except: [:webhook], :unless => :facility_is_demo
+  before_action :setter_role,              except: [:new, :create, :webhook], :unless => :facility_is_demo
   before_action :guest_role,                except: [:webhook], :unless => :facility_is_demo
-  before_action :marketing_role,            except: [:webhook], :unless => :facility_is_demo
+  before_action :marketing_role,            except: [:new, :create, :webhook], :unless => :facility_is_demo
   before_action :demo_facility
 
 
