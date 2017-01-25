@@ -31,7 +31,7 @@
             ROUTE MANAGEMENT <b class="caret"></b>
           </a>
 
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu scrollable-menu" role="menu">
             <% @userfacilities.each do |f| %>
             <li>
                 <%= link_to f.name + " " + f.location, admin_facility_path(f) %>

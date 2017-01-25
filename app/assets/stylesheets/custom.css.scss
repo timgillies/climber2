@@ -122,6 +122,12 @@ a {
   display: inline;
 }
 
+.scrollable-menu {
+    height: auto;
+    max-height: 500px;
+    overflow-x: hidden;
+}
+
 .badge-red {
   background-color: #FF5733;
 }
