@@ -37,7 +37,7 @@ class Admin::FacilitiesController < ApplicationController
       unless current_user.role == "site_admin"
         current_user.update_attribute(:role, 'facility_admin')
       end
-      redirect_to new_admin_facility_subscription_path(@facility)
+      redirect_to admin_facility_path(@facility)
     else
       render 'new'
     end
