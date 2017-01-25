@@ -1,11 +1,11 @@
 class Admin::RoutesController < ApplicationController
-  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy, :mass_expire]
-  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy, :mass_expire]
-  before_action :setter_role,               only: [:destroy]
-  before_action :guest_role,                only: [:destroy]
-  before_action :marketing_role,            except: [:index, :show]
-  before_action :paid_subscriber,           only: [:new, :create]
-  before_action :route_owner,               only: [:edit, :update]
+  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy, :mass_expire], :unless => :facility_is_demo
+  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy, :mass_expire], :unless => :facility_is_demo
+  before_action :setter_role,               only: [:destroy], :unless => :facility_is_demo
+  before_action :guest_role,                only: [:destroy], :unless => :facility_is_demo
+  before_action :marketing_role,            except: [:index, :show], :unless => :facility_is_demo
+  before_action :paid_subscriber,           only: [:new, :create], :unless => :facility_is_demo
+  before_action :route_owner,               only: [:edit, :update], :unless => :facility_is_demo
   before_action :demo_facility,             except: [:index, :show, :new]
 
 
@@ -28,7 +28,6 @@ class Admin::RoutesController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
-    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
     @facility = Facility.find(params[:facility_id])
     @filterrific = initialize_filterrific(
       Route,
@@ -79,7 +78,6 @@ class Admin::RoutesController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
-    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
   end
 
   def show
@@ -111,9 +109,9 @@ class Admin::RoutesController < ApplicationController
       @task = Task.find_by(id: @route.task_id)
       @task.update_attributes(status: 'completed', completed_by_id: @route.user_id, completed_at: DateTime.current)
       @old_route = Route.find_by(id: @task.route_id)
-      if (defined?(@old_route)).nil?
-        @old_route.update_attribute(:enddate, Date.yesterday)
-      end
+        if @task.route_id?
+          @old_route.update_attribute(:enddate, Date.yesterday)
+        end
       end
       flash[:success] = "Route created!"
       redirect_to(admin_facility_routes_path(@facility))

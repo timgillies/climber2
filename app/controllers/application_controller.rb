@@ -45,7 +45,11 @@ def set_new_route_variables
       @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
       @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
       @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
-      @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
+      if user_signed_in?
+        @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
+      else
+        @facility_role_access = nil
+      end
   end
 end
 
@@ -68,7 +72,6 @@ end
     else
       @facility = Facility.find(params[:facility_id])
     end
-    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
   end
 
   # redirects user to facility home if role does not have permission (based on "before_action" filters in controllers)
@@ -86,7 +89,7 @@ end
   # Confirms a relationship between the user and the facility based on the above roles
   def facility_admin
     facility_controller_check
-    unless  current_user.role == "site_admin" || (@facility_role_access.present? && current_user.role == "facility_admin") || (@facility.demo?)
+    unless  current_user.role == "site_admin" || (@facility_role_access.present? && current_user.role == "facility_admin")
       flash[:danger] = 'You are not authorized.  Please request access from your manager'
       redirect_to root_url
     end
@@ -145,12 +148,16 @@ end
   end
 
   def demo_facility
-    unless current_user.role == "site_admin"
+    unless user_signed_in? && current_user.role == "site_admin"
       if @facility.demo?
-        flash[:success] = "Whoa there!  You can't save anything in DEMO mode, but hopefully you're getting psyched about Climb Connect."
+        flash[:success] = "Whoa there!  You can't do that in demo mode, but hopefully you're getting psyched about Climb Connect."
         redirect_to :back
       end
     end
+  end
+
+  def facility_is_demo
+    @facility.demo == true
   end
 
   def filter_reset

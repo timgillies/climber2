@@ -314,7 +314,7 @@ textarea[type=text] {
 }
 
 .modal-header {
-  background-image: url(asset-path('white_vector.png'));
+  background-image: url(asset-path('white_vector_banner.jpg'));
   background-size: cover;
   background-position: center;
   border-top-left-radius: 5px;
@@ -645,6 +645,12 @@ input {
   padding-right: 30px;
   border-width: 10px;
   border-radius: 2px;
+}
+
+.bg-vector {
+  background-image: url(asset-path('white_vector.png'));
+  background-size: cover;
+  background-position: center;
 }
 
 /* Admin Homepage */
@@ -1496,6 +1502,22 @@ span.picture {
 .btn-signup:hover, .btn-signup:active{
   border-color: #58D68D;
   background: #58D68D;
+  opacity: 1;
+  color: #ffffff;
+}
+
+.btn-demo{
+  border-color: #FF33AA;
+  background: #FF33AA;
+  opacity: 1;
+  color: #ffffff;
+  transition-duration: 0.5s;
+  letter-spacing: -0.0px;
+}
+
+.btn-demo:hover, .btn-demo:active{
+  border-color: #FF33AA;
+  background: r#FF33AA;
   opacity: 1;
   color: #ffffff;
 }

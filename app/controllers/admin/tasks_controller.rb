@@ -1,7 +1,9 @@
 class Admin::TasksController < ApplicationController
 
-  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :demo_facility,             except: [:index, :show, :new]
+
 
 
 
@@ -20,7 +22,6 @@ class Admin::TasksController < ApplicationController
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id.to_i]}
-    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
     @filterrific = initialize_filterrific(
       Task,
       params[:filterrific],
@@ -66,7 +67,6 @@ class Admin::TasksController < ApplicationController
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id.to_i]}
-    @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
   end
 
   def create

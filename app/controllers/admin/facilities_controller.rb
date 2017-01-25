@@ -1,11 +1,12 @@
 class Admin::FacilitiesController < ApplicationController
-  before_action :authenticate_user!,        only: [:index, :show, :create, :edit, :update, :destroy]
-  before_action :logged_in_user,            only: [:new]
-  before_action :facility_admin,            only: [:index, :show, :edit, :update, :destroy]
-  before_action :head_setter_role,          only: [:destroy]
-  before_action :setter_role,               except: [:new, :create, :index, :show]
-  before_action :guest_role,               except: [:new, :create, :index, :show]
-  before_action :marketing_role,            except: [:new, :create, :index, :show]
+  before_action :authenticate_user!,        only: [:index, :show, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :facility_admin,            only: [:index, :show, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :head_setter_role,          only: [:destroy], :unless => :facility_is_demo
+  before_action :setter_role,               except: [:new, :create, :index, :show], :unless => :facility_is_demo
+  before_action :guest_role,               except: [:new, :create, :index, :show], :unless => :facility_is_demo
+  before_action :marketing_role,            except: [:new, :create, :index, :show], :unless => :facility_is_demo
+  before_action :demo_facility,             except: [:index, :show, :new]
+
 
 
   layout "admin", except: [:index, :new, :create, :plans]

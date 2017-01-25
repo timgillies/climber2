@@ -1,9 +1,11 @@
 class Admin::FacilityTargetsController < ApplicationController
-    before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
-    before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy]
-    before_action :setter_role,               only: [:destroy]
-    before_action :guest_role,                only: [:index, :show, :new, :create, :edit, :update, :destroy]
-    before_action :marketing_role,            except: [:index, :show]
+    before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+    before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+    before_action :setter_role,               only: [:destroy], :unless => :facility_is_demo
+    before_action :guest_role,                only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+    before_action :marketing_role,            except: [:index, :show], :unless => :facility_is_demo
+    before_action :demo_facility,             except: [:index, :show, :new]
+
 
     include FacilityTargetsHelper
 
@@ -27,7 +29,6 @@ class Admin::FacilityTargetsController < ApplicationController
       @facilitysubchildzones = @facility.sub_child_zones.all.map{|fw| [fw.name, fw.id ] }
       @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
       @recentfacility_targets = @facility.facility_targets.order("created_at DESC").page(params[:page]).limit(10)
-      @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
     end
 
     def show

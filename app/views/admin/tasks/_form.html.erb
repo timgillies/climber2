@@ -12,6 +12,7 @@
         {class: "form-control"}) %>
       </div>
 
+      <% if user_signed_in? %>
       <div class="col-xs-12 col-sm-6">
         <%= f.label :assignee_id, "Assigned to*" %>
         <%= f.select(:assignee_id, @facilitysetters,
@@ -19,6 +20,7 @@
         {class: "form-control"}) %>
         <%= f.hidden_field :assigner_id, :value => current_user.id %>
       </div>
+      <% end %>
     </div>
 
     <div class="row">

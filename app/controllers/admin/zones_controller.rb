@@ -1,9 +1,11 @@
 class Admin::ZonesController < ApplicationController
-  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  before_action :setter_role,               only: [:destroy, :new, :create, :edit, :update]
-  before_action :guest_role,               only: [:destroy, :new, :create, :edit, :update]
-  before_action :marketing_role,            except: [:index, :show]
+  before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :setter_role,               only: [:destroy, :new, :create, :edit, :update], :unless => :facility_is_demo
+  before_action :guest_role,               only: [:destroy, :new, :create, :edit, :update], :unless => :facility_is_demo
+  before_action :marketing_role,            except: [:index, :show], :unless => :facility_is_demo
+  before_action :demo_facility,             except: [:index, :show, :new]
+
 
   layout "admin"
 
