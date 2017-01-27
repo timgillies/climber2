@@ -82,7 +82,7 @@
 <div class="home-divider-line"></div>
 
 <div class="container-fluid">
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <div class="hero-unit">
         <h1>Your Routes, Anywhere</h1>
         <p>Access your routes from anywhere.  With Climb Connect, your routes are in the palm of your hand.  Stay on top of your facility and be the hero of the day. #setsmart</p>
@@ -94,8 +94,8 @@
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
     </div>
   </div>
-  <div class="col-sm-4">
-    <%= image_tag("iphonemockup.jpg" ,width: '75%', height: '75%') %>
+  <div class="col-sm-5">
+    <%= image_tag("apple-device-mockup.jpg" ,width: '100%', height: '100%') %>
   </div>
 </div>
 
@@ -103,7 +103,7 @@
 
 <div class="container-fluid">
   <br>
-  <div class="col-sm-5 bg-gray-gradient">
+  <div class="col-sm-5 bg-gray-gradient hidden-xs">
     <br>
     <%= render 'static_pages/route_list' %>
   </div>
@@ -118,10 +118,13 @@
         <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
         <% end %>
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
-
+      </div>
+    </div>
+    <div class="col-xs-12 bg-gray-gradient hidden-sm hidden-md hidden-lg hidden-xl">
+      <br>
+      <%= render 'static_pages/route_list' %>
     </div>
   </div>
-</div>
 
 <div class="home-divider-line"></div>
 
@@ -149,7 +152,7 @@
 
 <div class="container-fluid">
   <br>
-  <div class="col-sm-6 bg-gray-gradient">
+  <div class="col-sm-6 bg-gray-gradient hidden-xs">
     <br>
     <%= render 'static_pages/task_list' %>
   </div>
@@ -164,6 +167,10 @@
         <% end %>
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
     </div>
+  </div>
+  <div class="col-xs-12 bg-gray-gradient hidden-sm hidden-md hidden-lg hidden-xl">
+    <br>
+    <%= render 'static_pages/task_list' %>
   </div>
 </div>
 

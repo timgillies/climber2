@@ -730,7 +730,7 @@ input {
   bottom: auto;
   text-shadow: none;
   .box {
-    padding: 5px 10px 60px 10px;
+    padding: 5px 5px 60px 5px;
     @media (min-width:641px) {
     top: 20%;
     padding: 40px 50px 70px 50px;
@@ -741,7 +741,7 @@ input {
     top: 30%;
     bottom: auto;
     h1 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       @media (min-width:641px) {
       font-size: 4.0rem;
       }
@@ -750,7 +750,7 @@ input {
       color: #bbb;
     }
     h2 {
-      font-size: 1.0rem;
+      font-size: 3.0vw;
       color: #eee;
       @media (min-width:641px) {
       font-size: 1.5rem;
@@ -760,8 +760,7 @@ input {
       font-family: 'Lato', sans-serif;
     }
     h3 a{
-      font-size: 1.2rem;
-      font-weight: bold;
+      font-size: 3.2vw;
       @media (min-width:641px) {
       font-size: 2.0rem;
       font-weight: 300;
@@ -2038,5 +2037,6 @@ background-color: #fff; /* CHANGE BACKGROUND HERE*/
 border-radius: 6px;
 font-family: 'Lato', sans-serif;
 h1 {
+  text-align: left;
 }
 }
