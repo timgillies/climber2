@@ -62,29 +62,29 @@
 
         <% elsif user_signed_in? %>
 
-          <% unless Route.where(user_id: current_user.id).count > 0 %>
+        <li><%= link_to "Facility Setup" , new_admin_facility_path  %></li>
 
-            <li>
-              <p class="navbar-btn">
-                <%= button_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-md", method: 'get'  %>
-              </p>
-            </li>
+        <% unless Route.where(user_id: current_user.id).count > 0 %>
 
-          <% end %>
-        <li><%= link_to "Route Management" , new_admin_facility_path  %></li>
+          <li>
+            <p class="navbar-btn">
+              <%= button_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-md", method: 'get'  %>
+            </p>
+          </li>
+
+        <% end %>
 
 
 
         <% else %>
+
+        <li><%= link_to "Features & Details", marketing_path %></li>
 
         <li>
           <p class="navbar-btn">
             <%= button_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-md", method: 'get'  %>
           </p>
         </li>
-
-        <li><%= link_to "Features & Details", marketing_path %></li>
-
 
         <% end %>
 

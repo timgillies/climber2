@@ -1,5 +1,5 @@
 class Admin::FacilitiesController < ApplicationController
-  before_action :authenticate_user!,        only: [:index, :show, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :authenticate_user!,        only: [:new, :index, :show, :create, :edit, :update, :destroy], :unless => :facility_is_demo
   before_action :facility_admin,            only: [:index, :show, :edit, :update, :destroy], :unless => :facility_is_demo
   before_action :head_setter_role,          only: [:destroy], :unless => :facility_is_demo
   before_action :setter_role,               except: [:new, :create, :index, :show], :unless => :facility_is_demo
@@ -31,7 +31,6 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def create
-    @facility = current_user.facilities.build(facility_params)
     if @facility.save
       @facility.update_plan_choice("1")
       unless current_user.role == "site_admin"

@@ -1,0 +1,176 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    new Highcharts.Chart({
+      exporting: {
+          sourceWidth: 800,
+          sourceHeight: 400,
+
+          // scale: 2 (default),
+          enabled: false,
+          filename: "routes__1",
+
+          buttons: {
+                contextButton: {
+                    symbolStroke: '#d5d5d5',
+                    menuItems: [{
+                        text: 'Export to PNG',
+                        onclick: function () {
+                            this.exportChart({
+                                width: 3200
+                            });
+                        }
+                    },{
+                        text: 'Export to PDF',
+                        onclick: function () {
+                            this.exportChart({
+                              type: 'application/pdf'
+                            });
+                        },
+                        separator: false
+                    },
+                  ]
+                }
+            },
+            chartOptions: {
+                title: {
+                    text: "hey",
+                    style: {
+                        color: 'black',
+                        fontWeight: 'bold',
+                        fontFamily: "'Helvetica', sans-serif"
+                    }
+                },
+                subtitle: {
+                    text:  "deo"
+                },
+            }
+
+      },
+      navigation: {
+          buttonOptions: {
+              align: 'right',
+              verticalAlign: 'bottom',
+              y: 32,
+              theme: {
+                r: '0',
+                  states: {
+                      hover: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      },
+                      select: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      }
+                  }
+              }
+          }
+      },
+      chart: {
+        renderTo: "wall_dist-1",
+        height: 50 * 6,
+        spacingBottom: 35,
+        type: "bar",
+        style: {
+          fontFamily: 'Helvetica',
+        },
+      },
+      title: {
+        text: ""
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          enabled: true,
+        },
+        tickLength: 0,
+        minorGridLineWidth: 0,
+        minorTickLength: 0,
+        categories: ['Wave Wall', 'Mushroom', 'Lead Wall', 'Horseshoe', 'Cave', 'Kids Zone'],
+      },
+      yAxis: {
+        title: {
+          text: ""
+        },
+        labels: {
+          enabled: false,
+        },
+        tickLength: 0,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        gridLineColor: 'transparent',
+        minorTickLength: 0,
+        lineColor: 'transparent',
+        allowDecimals: false,
+        categories: ['Blue Wall', 'Green Wall', 'V2', 'V3', 'V4', 'V5'],
+      },
+      credits: {
+        enabled: false,
+        text: '<%= @demo_facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
+        style: {
+          fontSize: "12px",
+        },
+        href: false,
+        position: {
+          align: "right",
+          verticalAlign: "bottom",
+          x: -40,
+          y: -8,
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          pointWidth: 20,
+        },
+        spline: {
+          marker: {
+              enabled: false
+          }
+        },
+        bar: {
+          cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.series.options.data[this.category][2] ;
+                        }
+                    }
+                },
+          dataLabels: {
+            enabled: true,
+
+            style: {
+              textShadow: '0 0 0 black',
+              color: '#333',
+              fontFamily: 'Helvetica',
+              fontWeight: 'normal'
+            },
+            formatter: function() {
+                if (this.y != 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
+            }
+          }
+        }
+      },
+      colors: (["#da6bb6","#5499C7"]),
+
+      series: [{
+          type: 'bar',
+          name: 'Routes',
+          data: [ 12, 15, 22, 25, 18, 7]
+      },{
+          type: 'spline',
+          name: 'Target',
+          data: [ 12, 15, 22, 25, 18, 7]
+      }
+    ]
+    });
+  });
+</script>
+<div id="wall_dist-1" style="width:100%; height:100%; position:relative;"></div>

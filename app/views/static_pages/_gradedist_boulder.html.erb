@@ -1,0 +1,153 @@
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    new Highcharts.Chart({
+      exporting: {
+          sourceWidth: 800,
+          sourceHeight: 400,
+
+          // scale: 2 (default),
+          enabled: false,
+          filename: "Demo",
+
+            chartOptions: {
+                title: {
+                    text: "Demo",
+                    style: {
+                        color: 'black',
+                        fontWeight: 'bold',
+                        fontFamily: "'Helvetica', sans-serif"
+                    }
+                },
+                subtitle: {
+                    text: "Demo"
+                },
+            }
+
+      },
+      navigation: {
+          buttonOptions: {
+              align: 'right',
+              verticalAlign: 'bottom',
+              y: 32,
+              theme: {
+                r: '0',
+                  states: {
+                      hover: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      },
+                      select: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      }
+                  }
+              }
+          }
+      },
+
+      chart: {
+
+        renderTo: "gradedist_boulder-1",
+        spacingBottom: 35,
+        type: "column",
+        style: {
+          fontFamily: 'Helvetica',
+        }
+
+      },
+      title: {
+        text: ""
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          enabled: true
+        },
+        tickLength: 0,
+        minorTickLength: 0,
+        categories: ['V0', 'V1', 'V2', 'V3', 'V4', 'V5',
+               'V6', 'V7', 'V8', 'V9', 'V10+'],
+      },
+      yAxis: {
+        title: {
+          text: ""
+        },
+        labels: {
+          enabled: false
+        },
+        tickLength: 0,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        gridLineColor: 'transparent',
+        minorTickLength: 0,
+        lineColor: 'transparent',
+        allowDecimals: false
+      },
+      credits: {
+        enabled: false,
+        text: '<%= @demo_facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
+        style: {
+          fontSize: "12px",
+        },
+        href: false,
+        position: {
+          align: "right",
+          verticalAlign: "bottom",
+          x: -40,
+          y: -8,
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        spline: {
+          marker: {
+              enabled: false
+          }
+        },
+        column: {
+          cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.series.options.data[this.category][2] ;
+                        }
+                    }
+                },
+          dataLabels: {
+            enabled: true,
+            style: {
+              textShadow: '0 0 0 black',
+              color: '#333',
+              fontFamily: 'Helvetica',
+              fontWeight: 'normal'
+            },
+            formatter: function() {
+                if (this.y != 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
+            }
+          }
+        }
+      },
+      colors: (["#6bda8f", "#5499C7", "#da8f6b", "#da6bb6"]),
+
+      series: [{
+          type: 'column',
+          name: 'Routes',
+          data: [ 1, 5, 7, 9, 11, 9, 7, 5, 2, 1 ,1],
+          url: 'test'
+      },{
+          type: 'spline',
+          name: 'Target',
+          data: [ 1, 4, 7, 10, 11, 9, 5, 5, 3, 1 ,1],
+      }
+    ]
+    });
+  });
+</script>
+<div id="gradedist_boulder-1" style="width:100%; height:200px;"></div>
