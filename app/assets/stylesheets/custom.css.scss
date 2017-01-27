@@ -751,15 +751,20 @@ input {
     }
     h2 {
       font-size: 1.0rem;
+      color: #eee;
       @media (min-width:641px) {
       font-size: 1.5rem;
+      color: #bbb;
+      font-weight: 300;
       }
       font-family: 'Lato', sans-serif;
     }
     h3 {
       font-size: 1.2rem;
+      font-weight: bold;
       @media (min-width:641px) {
       font-size: 2.0rem;
+      font-weight: 300;
       }
       font-family: 'Lato', sans-serif;
       color: #e2d512;
@@ -770,14 +775,16 @@ input {
       margin-right: -0px;
       font-family: 'Lato', sans-serif;
       font-size: 0.6rem;
+      color: #fff;
       @media (min-width:641px) {
       font-size: 1.0rem;
       padding-top: 30px;
       margin-bottom: -65px;
       margin-right: -40px;
+      color: #bbb;
       }
       text-align: right;
-      color: #bbb;
+
     }
   }
 }
