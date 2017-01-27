@@ -759,7 +759,7 @@ input {
       }
       font-family: 'Lato', sans-serif;
     }
-    h3 {
+    h3 a{
       font-size: 1.2rem;
       font-weight: bold;
       @media (min-width:641px) {
@@ -768,6 +768,7 @@ input {
       }
       font-family: 'Lato', sans-serif;
       color: #e2d512;
+      text-decoration: none;
     }
     .photo-credit {
       padding-top: 30px;
