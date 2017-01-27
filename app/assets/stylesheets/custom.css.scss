@@ -688,7 +688,7 @@ input {
 }
 
 .bg-gray-gradient {
-  background: linear-gradient(#aaa, #fff);
+  background: linear-gradient(#fff, #ccc);
   background-size: cover;
   background-position: center;
   border-radius: 4px;
@@ -720,23 +720,65 @@ input {
 }
 
 .carousel-caption {
-    text-shadow: none;
+  top: 0%;
+  @media (max-width:320px) {
+  top: -5.5%;
+  }
+  @media (min-width:641px) {
+  top: 20%;
+  }
+  bottom: auto;
+  text-shadow: none;
+  .box {
+    padding: 5px 10px 60px 10px;
+    @media (min-width:641px) {
+    top: 20%;
+    padding: 40px 50px 70px 50px;
+    }
     background-color: #000;
     opacity: 0.7;
     border-radius: 6px;
     top: 30%;
     bottom: auto;
-  h1 {
-    font-family: sans-serif;
-    font-weight: 700;
-    color: #bbb;
-  }
-  h2 {
-    font-family: 'Lato', sans-serif;
-  }
-  h3 {
-    font-family: 'Lato', sans-serif;
-    color: #e2d512;
+    h1 {
+      font-size: 1.8rem;
+      @media (min-width:641px) {
+      font-size: 4.0rem;
+      }
+      font-family: sans-serif;
+      font-weight: 700;
+      color: #bbb;
+    }
+    h2 {
+      font-size: 1.0rem;
+      @media (min-width:641px) {
+      font-size: 1.5rem;
+      }
+      font-family: 'Lato', sans-serif;
+    }
+    h3 {
+      font-size: 1.2rem;
+      @media (min-width:641px) {
+      font-size: 2.0rem;
+      }
+      font-family: 'Lato', sans-serif;
+      color: #e2d512;
+    }
+    .photo-credit {
+      padding-top: 30px;
+      margin-bottom: -58px;
+      margin-right: -0px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      @media (min-width:641px) {
+      font-size: 1.0rem;
+      padding-top: 30px;
+      margin-bottom: -65px;
+      margin-right: -40px;
+      }
+      text-align: right;
+      color: #bbb;
+    }
   }
 }
 

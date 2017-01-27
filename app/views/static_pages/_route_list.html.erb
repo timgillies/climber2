@@ -26,7 +26,7 @@
           </div>
 
           <div class="col-xs-2 col-sm-2 no-print">
-              <h3><%= link_to "#" do %>
+              <h3><%= link_to "#", remote: true do %>
                 <i class="glyphicon glyphicon-cog pull-right"></i>
               <%end %>
             </h3>
@@ -99,7 +99,7 @@
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "create task",  "#", class: 'btn btn-tag btn-xs', remote: false %>
+              <%= button_to "create task",  "#", class: 'btn btn-tag btn-xs', remote: true %>
             </div>
           </div>
         </div>

@@ -4,34 +4,64 @@
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
     <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <%= image_tag("leepayne.jpg", alt: "hello", class: "img-responsive") %>
-      <div class="carousel-caption hidden-xs">
+      <div class="carousel-caption">
+        <div class="box">
             <h1>CLIMB | CONNECT</h1>
             <h2>Route Management | Task Management | Facility Analytics</h2>
             <h3>Join now and your first 100 routes are free!</h3>
+            <div class="photo-credit">
+              <span class="glyphicon glyphicon-camera"></span> Denver Bouldering Club | Denver, CO
+            </div>
+        </div>
       </div>
     </div>
     <div class="item">
-      <%= image_tag("tjsetting.jpg", alt: "hello", class: "img-responsive") %>
-      <div class="carousel-caption hidden-xs">
+      <%= image_tag("highpoint-exterior.jpg", alt: "hello", class: "img-responsive") %>
+      <div class="carousel-caption">
+        <div class="box">
             <h1>CLIMB | CONNECT</h1>
             <h2>Route Management | Task Management | Facility Analytics</h2>
             <h3>Join now and your first 100 routes are free!</h3>
+            <div class="photo-credit">
+              <span class="glyphicon glyphicon-camera"></span> High Point Climbing + Fitness | Chattanooga, TN
+            </div>
+        </div>
       </div>
     </div>
     <div class="item">
-      <%= image_tag("leeblue.jpg", alt: "hello", class: "img-responsive") %>
-      <div class="carousel-caption hidden-xs">
+      <%= image_tag("spot_climber.jpg", alt: "hello", class: "img-responsive") %>
+      <div class="carousel-caption">
+        <div class="box">
             <h1>CLIMB | CONNECT</h1>
             <h2>Route Management | Task Management | Facility Analytics</h2>
             <h3>Join now and your first 100 routes are free!</h3>
+            <div class="photo-credit">
+              <span class="glyphicon glyphicon-camera"></span> The Spot Gym | Boulder, CO
+            </div>
+        </div>
       </div>
     </div>
+    <div class="item">
+      <%= image_tag("highpoint-interior.jpg", alt: "hello", class: "img-responsive") %>
+      <div class="carousel-caption">
+        <div class="box">
+            <h1>CLIMB | CONNECT</h1>
+            <h2>Route Management | Task Management | Facility Analytics</h2>
+            <h3>Join now and your first 100 routes are free!</h3>
+            <div class="photo-credit">
+              <span class="glyphicon glyphicon-camera"></span> High Point Climbing + Fitness | Chattanooga, TN
+            </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Controls -->
@@ -56,7 +86,12 @@
     <div class="hero-unit">
         <h1>Your Routes, Anywhere</h1>
         <p>Access your routes from anywhere.  With Climb Connect, your routes are in the palm of your hand.  Stay on top of your facility and be the hero of the day. #setsmart</p>
-        <p><%= link_to "Start Today »", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-create btn-large" %></p>
+        <% if current_user.present? %>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% else %>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% end %>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
     </div>
   </div>
   <div class="col-sm-4">
@@ -75,8 +110,15 @@
   <div class="col-sm-7">
     <div class="hero-unit">
         <h1>Route Database</h1>
-        <p>Unlimited storage in a helpful and easy to use database.  Expire routes and create maintenenace tasks for specific routes.  Take photos of routes and save 'em for later.  You never know when you'll want to re-create an old classic from your route setting glory days. #setsmart </p>
-        <p><%= link_to "Start Today »", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-create btn-large pull-right" %></p>
+        <p>Unlimited storage in a helpful and easy to use database.  Expire routes and create maintenance tasks for specific routes.  Take photos of routes and save 'em for later.  You never know when you'll want to re-create an old classic from your route setting glory days. #setsmart </p>
+
+        <% if current_user.present? %>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% else %>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% end %>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+
     </div>
   </div>
 </div>
@@ -88,7 +130,12 @@
     <div class="hero-unit">
         <h1>Analytics</h1>
         <p>You don't need an MBA to be an analytics pro.  Show off your work and keep your facility organized with Climb Connect analytics. #setsmart</p>
-        <p><%= link_to "Start Today »", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-create btn-large" %></p>
+        <% if current_user.present? %>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% else %>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% end %>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
     </div>
   </div>
   <div class="col-sm-6">
@@ -110,7 +157,12 @@
     <div class="hero-unit">
         <h1>Get Things Done</h1>
         <p>Have your day planned before you get out of bed.  Create and assign tasks, manage your team, and stay organize with Climb Connect. #setsmart</p>
-        <p><%= link_to "Start Today »", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-create btn-large pull-right" %></p>
+        <% if current_user.present? %>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% else %>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% end %>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
     </div>
   </div>
 </div>
@@ -124,7 +176,12 @@
     <div class="hero-unit">
         <h1>Customize Your Facility</h1>
         <p>Organize your facility by zones, create targets, and maximize your route setting potential in each area of your gym.  Strip entire zones and bulk create route setting tasks based on targets that you set. #setsmart</p>
-        <p><%= link_to "Start Today »", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-create btn-large pull-right" %></p>
+        <% if current_user.present? %>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% else %>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% end %>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
     </div>
   </div>
   <div class="col-sm-4">

@@ -53,7 +53,7 @@
           </div>
 
           <div class="col-xs-2 col-sm-1 no-print">
-              <h3><%= link_to "#" do %>
+              <h3><%= link_to "#", remote: true do %>
                 <i class="glyphicon glyphicon-cog pull-right"></i>
               <%end %>
             </h3>
@@ -122,7 +122,7 @@
             <br/>
             <div class="col-xs-6 col-sm-6">
               <% if f.task_type == 'route_task'  && f.active? %>
-                <%= button_to "#", class: 'btn btn-activate btn-xs', remote: false do %>
+                <%= button_to "#", class: 'btn btn-activate btn-xs', remote: true do %>
                       move to routes <i class="glyphicon glyphicon-share-alt"></i>
                       <%end %>
               <% end %>
