@@ -8,7 +8,14 @@ class FacilityRole < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: {scope: [:facility_id]}
 
-  default_scope -> { order(name: :asc) }
+  default_scope -> { order("
+    CASE
+      WHEN name = 'facility_management' THEN '1'
+      WHEN name = 'headsetter' THEN '2'
+      WHEN name = 'setter' THEN '3'
+      WHEN name = 'marketing' THEN '5'
+      WHEN name = 'guest' THEN '4'
+    END")}
 
 
 private
