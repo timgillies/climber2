@@ -10,11 +10,11 @@ class FacilityRole < ActiveRecord::Base
 
   default_scope -> { order("
     CASE
-      WHEN name = 'facility_management' THEN '1'
-      WHEN name = 'head_setter' THEN '2'
-      WHEN name = 'setter' THEN '3'
-      WHEN name = 'marketing' THEN '4'
-      WHEN name = 'guest' THEN '5'
+      WHEN facility_roles.name = 'facility_management' THEN '1'
+      WHEN facility_roles.name = 'head_setter' THEN '2'
+      WHEN facility_roles.name = 'setter' THEN '3'
+      WHEN facility_roles.name = 'marketing' THEN '4'
+      WHEN facility_roles.name = 'guest' THEN '5'
     END")}
 
 
