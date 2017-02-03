@@ -1,21 +1,22 @@
+<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => true } do |f| %>
 
 <div class="col-sm-12">
     <%= render 'shared/error_messages', object: f.object %>
 
     <% if params[:controller] == 'admin/tasks' %>
-    <%= render 'admin/routes/task_form', object: f.object, :f => f %>
+    <%= render 'admin/routes/task_form', object: f.object %>
     <% end %>
 
       <div class="row">
         <div class="col-xs-12">
           <%= f.label :name, "Route name" %>
-          <%= f.text_field :name, :value=> params[:name], class: 'form-control', placeholder: "Route name (optional)" %>
+          <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { :value=> f.object.name, class: 'form-control' } %>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <%= f.label :color,"Color*" %>
-          <%= f.text_field :color, :value=> params[:color], class: 'form-control', placeholder: "Route color" %>
+          <%= f.text_field :color, params[:color] ? { :value=> params[:color], class: 'form-control' } : { :value=> f.object.color, class: 'form-control' } %>
         </div>
       </div>
       <div class="row">
@@ -101,7 +102,7 @@
       <div class="row">
         <div class="col-xs-12">
           <%= f.label :description, "Description" %>
-          <%= f.text_area :description, value: params[:description], class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
+          <%= f.text_area :description, params[:description] ? { :value=> params[:description], class: 'form-control', placeholder: "Description (optional)", rows: "2" } : { :value=> f.object.description, class: 'form-control', placeholder: "Description (optional)", rows: "2" }  %>
         </div>
       </div>
 
@@ -133,5 +134,12 @@
           <%= image_tag @route.image.url(:thumb) if @route.image.exists? %>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.submit "Save", class: "btn btn-save" %>
+        </div>
+      </div>
     <br/>
 </div>
+<% end %>

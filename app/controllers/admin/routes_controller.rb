@@ -65,6 +65,7 @@ class Admin::RoutesController < ApplicationController
   end
 
   def new
+
     @route = Route.new
     @facility = Facility.find(params[:facility_id])
     @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
@@ -78,6 +79,7 @@ class Admin::RoutesController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
+    
   end
 
   def show

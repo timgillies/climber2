@@ -10,7 +10,7 @@ jQuery ->
   $('#route_sub_child_zone_id').parent().show()
   walls = $('#route_wall_id').html()
   $('#route_zone_id').change ->
-    zone = $('#route_zone_id :selected').text()
+    zone = $('#route_zone_id :seleced').text()
     options = $(walls).filter("optgroup[label='#{zone}']").html()
     if options
       $('#route_wall_id').html(options)
@@ -19,13 +19,33 @@ jQuery ->
       $('#route_wall_id').empty
       $('#route_wall_id').parent().hide()
 
-  jQuery ->
-      $('#route_sub_child_zone_id').parent().show()
-      sub_child_zones = $('#route_sub_child_zone_id').html()
 
-      $('#route_wall_id').change ->
-        wall = $('#route_wall_id :selected').text()
-        options = $(sub_child_zones).filter("optgroup[label='#{wall}']").html()
-        if options
-          $('#route_sub_child_zone_id').html(options)
-          $('#route_sub_child_zone_id').parent().show()
+  jQuery ->
+    zone = $('input[name="route[zone_id]"]:checked').val()
+
+    $('.walls').hide()
+
+    if zone > 0
+      $('#zone_wall_'+zone).clone().appendTo('#wall_render')
+
+    else
+    $('input[name="route[zone_id]"]').change ->
+      $('#wall_render').html('');
+      zone = $('input[name="route[zone_id]"]:checked').val()
+      $('#zone_wall_'+zone).clone().appendTo('#wall_render')
+
+
+
+  jQuery ->
+    grade = $('input[name="route[grade_system_virtual]"]:checked').val()
+
+    $('.grade-').hide()
+
+    if grade > 0
+      $('#grade_system_'+grade).clone().appendTo('#grade_render')
+    else
+
+    $('input[name="route[grade_system_virtual]"]').change ->
+      $('#grade_render').html('');
+      grade = $('input[name="route[grade_system_virtual]"]:checked').val()
+      $('#grade_system_'+grade).clone().appendTo('#grade_render')

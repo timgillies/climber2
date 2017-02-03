@@ -2,23 +2,13 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 bg-gray">
-      <%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => true } do |f| %>
+    <div class="col-sm-8 col-sm-offset-2">
       <div class="row">
         <br/>
-        <%= render 'shared/error_messages', object: f.object %>
       </div>
-      <% if(params[:task_id]) %>
-      <%= render 'admin/routes/prepopulated_form', object: @routes, :f => f %>
-      <% else %>
-      <%= render 'admin/routes/form', object: @routes, :f => f %>
-      <% end %>
-        <div class="row">
-          <div class="col-xs-12">
-            <%= f.submit "Save", class: "btn btn-save" %>
-          </div>
-        </div>
-        <% end %>
+
+      <%= render 'admin/routes/form', object: @routes  %>
+
     </div>
   </div>
 </div>

@@ -1,30 +1,67 @@
+<% if params[:action] == 'new' %>
+<div id="new_route">
+</div>
+<% end %>
+<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => true } do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
 
-<div class="col-sm-12">
-  <div class="form-gray">
+
+<div class="col-sm-12 bg-form">
+  <div class="routelist-header">
     <h1>Route Information</h1>
   </div>
+  <div class="divider-line"></div>
   <br/>
       <div class="row">
         <div class="col-xs-12">
           <%= f.label :name, "Route name" %>
-          <%= f.text_field :name, class: 'form-control', placeholder: "Route name (optional)" %>
+          <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control', placeholder: "Route name (optional)" } : { value: f.object.name, class: 'form-control', placeholder: "Route name (optional)" } %>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <%= f.label :color,"Color*" %>
-          <%= f.text_field :color, class: 'form-control', placeholder: "Route color" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :grade_id,"Grade*" %>
-          <%= f.grouped_collection_select(:grade_id, facility_systems , :grades, :name, :id, :grade,
-          { include_blank: 'Select grade' },
-          {class: "form-control"}) %>
+          <%= f.text_field :color, params[:color] ? {value: params[:color], class: 'form-control', placeholder: "Route color" } : {value: f.object.color, class: 'form-control', placeholder: "Route color" }  %>
         </div>
       </div>
 
+
+      <div class="row">
+        <div class="col-xs-12">
+          Grade
+          <div class="route-form">
+            <div id="donate">
+              <% facility_systems.each do |fs| %>
+                <label class="pink"><%= f.radio_button :grade_system_virtual, fs.id, Grade.where(id: params[:grade_id].to_i, grade_system_id: fs.id).first ? { checked: true } : {checked: f.object.grade_id.to_i.eql?(Grade.where(id: f.object.grade_id.to_i, grade_system_id: fs.id.to_i).first.try(:id)) } %>
+                  <span><%= fs.name %></span>
+                </label>
+                <div class="grade-">
+                  <div id="grade_system_<%= fs.id %>">
+                    <div class="route-form">
+                      <div id="donate">
+                        <% Grade.where(grade_system_id: fs.id).each do |fsg| %>
+                            <label class="blue"><%= f.radio_button :grade_id, fsg.id, params[:grade_id].to_i == fsg.id.to_i ? { checked: true } : {checked: f.object.grade_id.to_i.eql?(fsg.id.to_i) } %>
+                              <span><%= fsg.grade %></span>
+                            </label>
+                          <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="grade_render">
+          </div>
+        </div>
+      </div>
 
       <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
       <div class="row">
@@ -36,38 +73,68 @@
       <% else %>
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :user_id, "Setter*" %>
-          <%= f.select(:user_id, @facilitysetters,
-          { include_blank: 'Select setter' },
-          {class: "form-control"}) %>
+          Setter
+          <div class="route-form">
+            <div id="donate">
+              <% @facilitysetters.each do |fs| %>
+                <label class="yellow"><%= f.radio_button :user_id, fs[1], params[:assignee_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.user_id.eql?(fs[1].to_i) }  %>
+                  <span><%= fs[0] %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
       <% end %>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :zone_id, "Zone" %>
-          <%= f.select(:zone_id, @facilityzones,
-          { include_blank: 'Select primary zone' },
-          {class: "form-control"}) %>
+
+    <div class="row">
+      <div class="col-xs-12">
+        Zone
+        <div class="route-form">
+          <div id="donate">
+            <% @facilityzones.each do |fs| %>
+              <label class="pink"><%= f.radio_button :zone_id, fs[1], params[:zone_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.zone_id.eql?(fs[1].to_i) } %>
+                <span><%= fs[0] %></span>
+              </label>
+              <div class="walls">
+                <div id="zone_wall_<%= fs[1] %>">
+                  <div class="route-form">
+                    <div id="donate">
+                        <% Wall.where(zone_id: fs[1]).each do |fsg| %>
+                            <label class="blue"><%= f.radio_button :wall_id, fsg.id, params[:wall_id].to_i == fsg.id.to_i ? { checked: true } : {checked: f.object.wall_id.eql?(fsg.id) } %>
+                              <span><%= fsg.name %></span>
+                            </label>
+                        <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :wall_id, "Sub-zone" %>
-          <%= f.grouped_collection_select(:wall_id, Zone.where(facility_id: @facility.id) , :walls, :name, :id, :name,
-          { include_blank: 'Select child zone' },
-          {class: "form-control"}) %>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="wall_render">
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :sub_child_zone_id, "Sub-child zone" %>
-          <%= f.grouped_collection_select(:sub_child_zone_id, Wall.where(facility_id: @facility.id) , :sub_child_zones, :name, :id, :name,
-          { include_blank: 'Select sub-child zone' },
-          {class: "form-control"}) %>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="sub_zone_render">
         </div>
       </div>
+    </div>
+
+
+
       <div class="row">
         <div class="col-xs-6">
           <%= f.label :setdate, "Set Date*" %>
@@ -90,40 +157,73 @@
         </div>
       </div>
 
+
+
+
+      <button class="btn btn-close" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Additional details...
+      </button>
+      <div class="row">
+        <br>
+        <br>
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="well">
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.label :description, "Description" %>
+              <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.label :sub_child_zone_id, "Sub-child zone" %>
+              <%= f.grouped_collection_select(:sub_child_zone_id, Wall.where(facility_id: @facility.id) , :sub_child_zones, :name, :id, :name,
+              { include_blank: 'Select sub-child zone' },
+              {class: "form-control"}) %>
+            </div>
+          </div>
+
+          <div class="row">
+
+
+            <div class="col-md-4">
+              <%= f.label :risk, "Risk" %>
+              <%= f.select(:risk, @r_value ,{ include_blank: false },
+              {class: "form-control"}) %>
+            </div>
+
+            <div class="col-md-4">
+              <%= f.label :intensity, "Intensity" %>
+              <%= f.select(:intensity, @i_value ,{ include_blank: false },
+              {class: "form-control"}) %>
+            </div>
+
+
+            <div class="col-md-4">
+              <%= f.label :complexity, "Complexity" %>
+              <%= f.select(:complexity, @c_value ,{ include_blank: false },
+              {class: "form-control"}) %>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <%= image_tag @route.image.url(:thumb) if @route.image.exists? %>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <%= f.hidden_field :task_id, params[:task_id] ? { :value => params[:task_id] } : { :value => nil } %>
+
+
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :description, "Description" %>
-          <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
+          <%= f.submit "Save", class: "btn btn-save" %>
         </div>
       </div>
-      <div class="form-gray">
-        <h1>Additional Details (Optional)</h1>
-      </div>
-      <br/>
-      <div class="row">
-          <div class="col-md-4">
-            <%= f.label :risk, "Risk" %>
-            <%= f.select(:risk, @r_value ,{ include_blank: false },
-            {class: "form-control"}) %>
-          </div>
 
-          <div class="col-md-4">
-            <%= f.label :intensity, "Intensity" %>
-            <%= f.select(:intensity, @i_value ,{ include_blank: false },
-            {class: "form-control"}) %>
-          </div>
-
-
-          <div class="col-md-4">
-            <%= f.label :complexity, "Complexity" %>
-            <%= f.select(:complexity, @c_value ,{ include_blank: false },
-            {class: "form-control"}) %>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <%= image_tag @route.image.url(:thumb) if @route.image.exists? %>
-        </div>
-      </div>
-    <br/>
 </div>
+
+<% end %>

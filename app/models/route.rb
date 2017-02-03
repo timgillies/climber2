@@ -184,4 +184,7 @@ scope :sorted_by, lambda { |sort_option|
   def self.total_on(date)
     where("date(setdate) = ?", date)
   end
+
+  def grade_system_virtual
+  end
 end
