@@ -103,28 +103,31 @@
 
 <div class="container-fluid">
   <br>
-  <div class="col-sm-5 bg-gray-gradient hidden-xs">
+  <div class="col-sm-4 hidden-xs">
     <br>
-    <%= render 'static_pages/route_list' %>
+    <%= image_tag("route-setter.jpg" ,width: '100%', height: '100%') %>
   </div>
-  <div class="col-sm-7">
+  <div class="col-sm-8">
     <div class="hero-unit">
-        <h1>Route Database</h1>
-        <p>Unlimited storage in a helpful and easy to use database.  Expire routes and create maintenance tasks for specific routes.  Take photos of routes and save 'em for later.  You never know when you'll want to re-create an old classic from your route setting glory days. #setsmart </p>
-
+      <h1>Route Setters First</h1>
+      <p>We're building Climb Connect with route setters in mind first.
+        It's about staying organized, managing your team, and managing your most important product, your routes.
+        We get it, it's an extra step in the route setting process and we want to make sure it's as easy and as helpful as possible.
+        Soon, Climb Connect will be for your climbers, too.
+        They'll be able to track ascents, keep project lists, post videos, and interact with other climbers, all based on the routes your setting.  Get started today.  #setsmart</p>
         <% if current_user.present? %>
         <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
         <% else %>
         <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
         <% end %>
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
-      </div>
-    </div>
-    <div class="col-xs-12 bg-gray-gradient hidden-sm hidden-md hidden-lg hidden-xl">
-      <br>
-      <%= render 'static_pages/route_list' %>
     </div>
   </div>
+  <div class="col-xs-12 hidden-sm hidden-md hidden-lg hidden-xl">
+    <br>
+    <%= image_tag("route-setter.jpg" ,width: '100%', height: '100%') %>
+  </div>
+</div>
 
 <div class="home-divider-line"></div>
 
@@ -132,7 +135,7 @@
   <div class="col-sm-6">
     <div class="hero-unit">
         <h1>Analytics</h1>
-        <p>You don't need an MBA to be an analytics pro.  Show off your work and keep your facility organized with Climb Connect analytics. #setsmart</p>
+        <p>You don't need an MBA to be an analytics pro.  Show off your work and impress your boss with Climb Connect analytics. #setsmart</p>
         <% if current_user.present? %>
         <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
         <% else %>
@@ -152,6 +155,56 @@
 
 <div class="container-fluid">
   <br>
+  <div class="col-sm-5 bg-gray-gradient hidden-xs">
+    <br>
+    <%= render 'static_pages/route_list' %>
+  </div>
+  <div class="col-sm-7">
+    <div class="hero-unit">
+        <h1>Route Database</h1>
+        <p>Unlimited storage in a helpful and easy to use database.  Add routes and upload photos from your mobile with only a few taps.  Strip routes and create maintenance tasks based on specific routes. #setsmart </p>
+
+        <% if current_user.present? %>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% else %>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
+        <% end %>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+      </div>
+    </div>
+    <div class="col-xs-12 bg-gray-gradient hidden-sm hidden-md hidden-lg hidden-xl">
+      <br>
+      <%= render 'static_pages/route_list' %>
+    </div>
+  </div>
+
+  <div class="home-divider-line"></div>
+
+  <div class="container-fluid">
+    <div class="col-sm-8">
+      <div class="hero-unit">
+          <h1>Customize Your Facility</h1>
+          <p>Set up custom grading scales and organize your facility by zones. Create targets and maximize your route setting potential in each area of your gym. #setsmart</p>
+          <% if current_user.present? %>
+          <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
+          <% else %>
+          <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
+          <% end %>
+          <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <br>
+      <br>
+      <%= render 'static_pages/walldist' %>
+    </div>
+
+  </div>
+
+
+<div class="home-divider-line"></div>
+
+<div class="container-fluid">
   <div class="col-sm-6 bg-gray-gradient hidden-xs">
     <br>
     <%= render 'static_pages/task_list' %>
@@ -159,7 +212,7 @@
   <div class="col-sm-6">
     <div class="hero-unit">
         <h1>Get Things Done</h1>
-        <p>Have your day planned before you get out of bed.  Create and assign tasks, manage your team, and stay organize with Climb Connect. #setsmart</p>
+        <p>Have your day planned before you get out of bed.  Create and assign tasks, manage your team, and stay organize. Strip entire zones and bulk create route setting tasks based on targets that you set. #setsmart</p>
         <% if current_user.present? %>
         <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
         <% else %>
@@ -174,27 +227,26 @@
   </div>
 </div>
 
-
-
 <div class="home-divider-line"></div>
 
 <div class="container-fluid">
   <div class="col-sm-8">
     <div class="hero-unit">
-        <h1>Customize Your Facility</h1>
-        <p>Organize your facility by zones, create targets, and maximize your route setting potential in each area of your gym.  Strip entire zones and bulk create route setting tasks based on targets that you set. #setsmart</p>
+        <h1>Talk to us!</h1>
+        <p>We don't wear headsets all day, but we do want to make sure you have everything you need to get set up.  Shoot us an email and we'll respond as quickly as we can to make sure you have what you need.  Or better yet, come climb with us if you're in the Denver area! #setsmart</p>
         <% if current_user.present? %>
         <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
         <% else %>
         <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
         <% end %>
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+        <p><%= mail_to "lee@climbconnect.com", "Say Hello", class: "btn btn-close btn-large" %></p>
     </div>
   </div>
   <div class="col-sm-4">
     <br>
     <br>
-    <%= render 'static_pages/walldist' %>
+    <%= image_tag("lets-do-this.jpg" ,width: '100%', height: '100%') %>
   </div>
 
 </div>
