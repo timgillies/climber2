@@ -30,8 +30,6 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
-  Paperclip::Attachment.default_options[:url] = :s3_domain_url
-
   config.paperclip_defaults = {
   storage: :s3,
   s3_credentials: {
