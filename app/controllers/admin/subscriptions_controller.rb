@@ -4,7 +4,7 @@ class Admin::SubscriptionsController < ApplicationController
   before_action :setter_role,              except: [:new, :create, :webhook], :unless => :facility_is_demo
   before_action :guest_role,                except: [:webhook], :unless => :facility_is_demo
   before_action :marketing_role,            except: [:new, :create, :webhook], :unless => :facility_is_demo
-  before_action :demo_facility
+  before_action :demo_facility,              except: [:webhook]
 
 
   layout "admin"
