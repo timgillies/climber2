@@ -303,6 +303,15 @@ textarea[type=text] {
   font-family: 'Oswald', sans-serif;
 }
 
+.badge-today {
+  font-size: 0.8em;
+  font-weight: lighter;
+  background-color: #58D68D;
+  font-family: sans-serif;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+
 /* Modal Styling */
 
 .modal { -webkit-overflow-scrolling: auto; }
@@ -1797,8 +1806,8 @@ span.picture {
   background: $gray-lighter;
   opacity: 1;
   color: $gray-light;
-  transition-duration: 0.5s;
   letter-spacing: -0.0px;
+  display: inline;
 }
 
 .btn-create, .btn-create:hover, .btn-create:active{

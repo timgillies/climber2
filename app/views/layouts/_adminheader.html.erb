@@ -28,7 +28,7 @@
             </button>
             <span class="hidden-md hidden-lg hidden-sm hidden-xl">
               <ul>
-              <li class="pull-right"><%= link_to "New Route", new_admin_facility_route_path(@facility), class: "btn btn-nav btn-md" %> <%= link_to  "View Routes", admin_facility_routes_path(@facility), class: "btn btn-nav btn-md" %></li>
+              <li class="pull-right"><%= link_to "New Route", new_admin_facility_route_path(@facility), class: "btn btn-nav" %> <%= link_to  "View Tasks", admin_facility_tasks_path(@facility), class: "btn btn-nav" %></li>
               </ul>
             </span>
         </div>
@@ -37,9 +37,9 @@
         <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-left">
             <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "HOME", admin_facility_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %> hidden-xs"><%= link_to "ROUTES", admin_facility_routes_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "ROUTES", admin_facility_routes_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %> hidden-xs"><%= link_to "ADD ROUTES", new_admin_facility_route_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_tasks_path(@facility)) %>"><%= link_to "TASK LIST", admin_facility_tasks_path(@facility) %></li>
+            <li class="<%= 'active' if current_page?(admin_facility_tasks_path(@facility)) %> hidden-xs"><%= link_to "TASK LIST", admin_facility_tasks_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "ZONES", admin_facility_zones_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_facility_roles_path(@facility)) %>"><%= link_to "TEAM", admin_facility_facility_roles_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "GRADING", admin_facility_grades_path(@facility) %></li>

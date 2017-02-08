@@ -10,7 +10,15 @@ FactoryGirl.define do
     password '12345678'
     password_confirmation '12345678'
     id '1'
-    role 'facility_admin'
+  end
+end
+
+FactoryGirl.define do
+  factory :facility_admin, :class => 'User' do
+    email
+    password '12345678'
+    password_confirmation '12345678'
+    id '1'
 
   end
 end
