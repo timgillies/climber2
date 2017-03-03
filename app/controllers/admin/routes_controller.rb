@@ -79,7 +79,7 @@ class Admin::RoutesController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
-    
+
   end
 
   def show
@@ -206,7 +206,7 @@ class Admin::RoutesController < ApplicationController
   def create_task
     @facility = Facility.find(params[:facility_id])
     @route = Route.find(params[:id]) # find original object
-    redirect_to(new_admin_facility_task_path(:name => @route.name, :grade_id => @route.grade_id, :color => @route.color, :zone_id => @route.zone_id, :wall_id => @route.wall_id, :sub_child_zone_id => @route.sub_child_zone_id, :description => @route.description, :route_id => @route.id, :task_type => 'non_route_task' ))
+    redirect_to(new_admin_facility_task_path(:name => @route.name, :grade_id => @route.grade_id, :color => @route.color, :color_hex => @route.color_hex, :zone_id => @route.zone_id, :wall_id => @route.wall_id, :sub_child_zone_id => @route.sub_child_zone_id, :description => @route.description, :route_id => @route.id, :task_type => 'non_route_task' ))
   end
 
 
@@ -221,7 +221,7 @@ class Admin::RoutesController < ApplicationController
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity, :status, :task_description, :task_id, :image)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :user_id, :discipline, :description, :active, :tagged, :risk, :intensity, :complexity, :status, :task_description, :task_id, :image, :color_hex)
   end
 
   def options_for_grade_select

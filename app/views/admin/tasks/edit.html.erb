@@ -2,10 +2,9 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 bg-gray">
-      <div class="form-gray">
-
-        <h1>Update Task #<%= @task.task_number %></h1>
+    <div class="col-sm-8 col-sm-offset-2 bg-form">
+      <div class="routelist-header">
+        <h1>Task #<%= @task.task_number %></h1>
       </div>
       <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
       <%= render 'shared/error_messages', object: f.object %>

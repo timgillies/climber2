@@ -1,0 +1,23 @@
+<% provide(:title, 'New Color') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="row">
+        <div class="routelist-header">
+          <h1>Custom Colors</h1>
+        </div>
+      </div>
+
+      <%= render(
+      partial: 'admin/custom_colors/form'
+      ) %>
+
+      <%= render(
+      partial: 'admin/custom_colors/list',
+      locals: { custom_colors: @custom_colors }
+      ) %>
+
+    </div>
+  </div>
+</div>

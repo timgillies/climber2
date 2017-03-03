@@ -48,5 +48,31 @@ def facility_system_target_count(fs, fz)
   FacilityTarget.where(grade_id: Grade.where(grade_system_id: fs.id), facility_id: @facility.id, zone_id: fz.id).count
 end
 
+def color_options
+  [
+    ['Red','#EF5350'],
+    ['Pink', '#FF33AA'],
+    ['Purple','#7e57c2'],
+    ['Blue','#2980b9'],
+    ['Green','#16B085'],
+    ['Lime','#CDDC39'],
+    ['Yellow','#fdd835'],
+    ['Orange','#FF9800'],
+    ['Brown','#996655'],
+    ['White','#e2e4e4'],
+    ['Gray','#999999'],
+    ['Black','#626262'],
+    ['Other','#e2e4e4'],
+  ]
+end
+
+# Looks up color_options array by hex value and returns the name of the color
+def color_name(hex)
+  (color_options + custom_color_options).detect { |color, value| value == hex }
+end
+
+def custom_color_options
+  CustomColor.where(facility_id: @facility.id).map{|color| [color.color_name, color.color_hex]}
+end
 
 end

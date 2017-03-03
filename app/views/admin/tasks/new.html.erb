@@ -2,7 +2,10 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 bg-gray">
+    <div class="col-sm-8 col-sm-offset-2 bg-form">
+      <div class="routelist-header">
+        <h1>New Task</h1>
+      </div>
       <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
 
       <%= render 'shared/error_messages', object: f.object %>

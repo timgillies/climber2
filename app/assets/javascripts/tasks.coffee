@@ -31,3 +31,34 @@ jQuery ->
         else
           $('#task_sub_child_zone_id').empty
           $('#task_sub_child_zone_id').parent().hide()
+
+
+      jQuery ->
+        zone = $('input[name="task[zone_id]"]:checked').val()
+
+        $('.walls').hide()
+
+        if zone > 0
+          $('#zone_wall_'+zone).clone().appendTo('#wall_render')
+
+        else
+        $('input[name="task[zone_id]"]').change ->
+          $('#wall_render').html('');
+          zone = $('input[name="task[zone_id]"]:checked').val()
+          $('#zone_wall_'+zone).clone().appendTo('#wall_render')
+
+
+
+      jQuery ->
+        grade = $('input[name="task[grade_system_virtual]"]:checked').val()
+
+        $('.grade-').hide()
+
+        if grade > 0
+          $('#grade_system_'+grade).clone().appendTo('#grade_render')
+        else
+
+        $('input[name="task[grade_system_virtual]"]').change ->
+          $('#grade_render').html('');
+          grade = $('input[name="task[grade_system_virtual]"]:checked').val()
+          $('#grade_system_'+grade).clone().appendTo('#grade_render')

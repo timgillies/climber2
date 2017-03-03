@@ -6,12 +6,36 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 
-<div class="col-sm-12 bg-form">
-  <div class="routelist-header">
+<div class="col-sm-12 bg-form gray-labels">
+  <div class="routeform-header">
     <h1>Route Information</h1>
   </div>
   <div class="divider-line"></div>
   <br/>
+
+    <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      </div>
+    </div>
+
+    <% else %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.label :user_id, "Setter*" %>
+        <div class="route-form">
+          <div id="donate">
+            <% @facilitysetters.each do |fs| %>
+              <label class="gray"><%= f.radio_button :user_id, fs[1], params[:assignee_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.user_id.eql?(fs[1].to_i) }  %>
+                <span><%= fs[0] %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
       <div class="row">
         <div class="col-xs-12">
           <%= f.label :name, "Route name" %>
@@ -20,19 +44,35 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :color,"Color*" %>
-          <%= f.text_field :color, params[:color] ? {value: params[:color], class: 'form-control', placeholder: "Route color" } : {value: f.object.color, class: 'form-control', placeholder: "Route color" }  %>
+          <%= f.label :color_hex, "Color*" %><%= link_to "manage colors", admin_facility_custom_colors_path(@facility), class: "pull-right"%>
+          <div class="route-form">
+            <div id="donate">
+              <% (color_options + custom_color_options ).each do |fs| %>
+                <label style="background-color:<%= fs[1] %>; color: #fff "><%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1]) }  %>
+                  <span><%= fs[0] %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.label :color, "Color Description" %>
+          <%= f.text_field :color, params[:color] ? {value: params[:color], class: 'form-control', placeholder: "Color Description" } : {value: f.object.color, class: 'form-control', placeholder: "Color Description (optional)" }  %>
         </div>
       </div>
 
 
+
+
       <div class="row">
         <div class="col-xs-12">
-          Grade
+          <%= f.label :grade_id, "Grade*" %>
           <div class="route-form">
             <div id="donate">
               <% facility_systems.each do |fs| %>
-                <label class="pink"><%= f.radio_button :grade_system_virtual, fs.id, Grade.where(id: params[:grade_id].to_i, grade_system_id: fs.id).first ? { checked: true } : {checked: f.object.grade_id.to_i.eql?(Grade.where(id: f.object.grade_id.to_i, grade_system_id: fs.id.to_i).first.try(:id)) } %>
+                <label class="gray"><%= f.radio_button :grade_system_virtual, fs.id, Grade.where(id: params[:grade_id].to_i, grade_system_id: fs.id).first ? { checked: true } : {checked: f.object.grade_id.to_i.eql?(Grade.where(id: f.object.grade_id.to_i, grade_system_id: fs.id.to_i).first.try(:id)) } %>
                   <span><%= fs.name %></span>
                 </label>
                 <div class="grade-">
@@ -63,38 +103,16 @@
         </div>
       </div>
 
-      <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-        </div>
-      </div>
 
-      <% else %>
-      <div class="row">
-        <div class="col-xs-12">
-          Setter
-          <div class="route-form">
-            <div id="donate">
-              <% @facilitysetters.each do |fs| %>
-                <label class="yellow"><%= f.radio_button :user_id, fs[1], params[:assignee_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.user_id.eql?(fs[1].to_i) }  %>
-                  <span><%= fs[0] %></span>
-                </label>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
 
 
     <div class="row">
       <div class="col-xs-12">
-        Zone
+        <%= f.label :zone_id, "Zone" %>
         <div class="route-form">
           <div id="donate">
             <% @facilityzones.each do |fs| %>
-              <label class="pink"><%= f.radio_button :zone_id, fs[1], params[:zone_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.zone_id.eql?(fs[1].to_i) } %>
+              <label class="gray"><%= f.radio_button :zone_id, fs[1], params[:zone_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.zone_id.eql?(fs[1].to_i) } %>
                 <span><%= fs[0] %></span>
               </label>
               <div class="walls">

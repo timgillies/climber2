@@ -1,18 +1,23 @@
 <% provide(:title, @route.name) %>
       <div class="container-fluid routelist routeshow ">
         <div class="col-md-10 col-md-offset-1 col-xs-12">
-        <% if @route.color? %>
-          <% if ["light", "dark", "neon", "hot"].include?(@route.color.split(/\W+/).first.downcase.to_s) %>
-            <div class="<%= @route.color.split(/\W+/).second.downcase.to_s %>">
+          <% if @route.color_hex? %>
+            <div style="border-left: 15px solid <%= @route.color_hex %>">
+              <% if @route.color? %>
+                <% if ["light", "dark", "neon", "hot"].include?(@route.color.split(/\W+/).first.downcase.to_s) %>
+                  <div class="<%= @route.color.split(/\W+/).second.downcase.to_s %>">
 
-            <% else %>
+                  <% else %>
 
-            <div class="<%= @route.color.split(/\W+/).first.downcase.to_s %>">
+                  <div class="<%= @route.color.split(/\W+/).first.downcase.to_s %>">
 
-            <% end %>
-        <% else %>
+                <% end %>
+              <% else %>
           <div>
         <% end %>
+      </div>
+      <% end %>
+
           <h1>
             <span class="tab"><%= @route.grade.grade + " "+ @route.color.upcase %>
           </h1>

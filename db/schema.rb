@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124191116) do
+ActiveRecord::Schema.define(version: 20170302221326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20170124191116) do
 
   add_index "charges", ["user_id"], name: "index_charges_on_user_id", using: :btree
 
+  create_table "custom_colors", force: :cascade do |t|
+    t.string   "color_hex"
+    t.string   "color_name"
+    t.string   "text_color_hex"
+    t.integer  "user_id"
+    t.integer  "facility_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
@@ -63,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170124191116) do
     t.integer  "days_from_start_date"
     t.string   "country"
     t.boolean  "demo"
+    t.boolean  "standard_colors"
   end
 
   add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
@@ -228,6 +239,7 @@ ActiveRecord::Schema.define(version: 20170124191116) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "color_hex"
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
@@ -318,6 +330,7 @@ ActiveRecord::Schema.define(version: 20170124191116) do
     t.integer  "completed_by_id"
     t.date     "completed_at"
     t.integer  "route_id"
+    t.string   "color_hex"
   end
 
   add_index "tasks", ["facility_id"], name: "index_tasks_on_facility_id", using: :btree
@@ -424,6 +437,8 @@ ActiveRecord::Schema.define(version: 20170124191116) do
   add_foreign_key "admins", "facilities"
   add_foreign_key "admins", "users"
   add_foreign_key "charges", "users", on_delete: :nullify
+  add_foreign_key "custom_colors", "facilities", on_delete: :nullify
+  add_foreign_key "custom_colors", "users", on_delete: :nullify
   add_foreign_key "facilities", "plans", on_delete: :nullify
   add_foreign_key "facilities", "users"
   add_foreign_key "facility_grade_systems", "facilities"

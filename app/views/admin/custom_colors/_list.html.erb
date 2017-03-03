@@ -1,0 +1,30 @@
+<div id="color_list">
+
+  <%= div_for(@custom_colors) do |f| %>
+  <ol class="routelist">
+    <div class="divider-line"></div>
+      <li style="border-left: 15px solid <%= f.color_hex %>">
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-10">
+            <h3>
+                <%= f.color_name + " "+ f.color_hex %>
+            </h3>
+          </div>
+            <div class="col-xs-2 pull-right">
+              <h3> <%= link_to admin_facility_custom_color_path(@facility, f),
+                          :method => :delete do %>
+                          <i class="glyphicon glyphicon-trash pull-right"></i>
+                          <% end %>
+              </h3>
+            </div>
+
+          </div>
+
+        </div>
+    </li>
+  </ol>
+  <% end %>
+  <%= paginate @custom_colors %>
+</div>

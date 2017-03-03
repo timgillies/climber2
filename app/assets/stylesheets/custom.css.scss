@@ -44,6 +44,13 @@
     fill: #7cb5ec;
 }
 
+.container-fluid {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 
 /* mixins, variables, etc. */
 
@@ -157,6 +164,15 @@ a {
   border-radius: 6px;
   .divider-line{
     border-bottom: 1px solid #eee;
+  }
+}
+
+.routeform-header {
+  h1{
+    font-family: 'Oswald', sans-serif;
+    display: inline;
+    font-size: 2.5em;
+    color: #666;
   }
 }
 
@@ -403,8 +419,8 @@ font-size: 30px;
     font-weight: 300;
     text-align: left;
     font-family: 'Oswald', sans-serif;
-    color: $gray-darker;
-    border-bottom: 1px solid $gray-light;
+    color: #777;
+    border-bottom: 1px solid #bbb;
   }
 }
 
@@ -1131,6 +1147,21 @@ input {
   }
 }
 
+.gray-labels {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Lato', sans-serif;
+  label {
+    font-family: 'Oswald', sans-serif;
+    color:#999;
+  }
+  h2 {
+    font-family: 'Oswald', sans-serif;
+    margin: 0px;
+    float: left;
+  }
+}
+
 /* route form */
 
 .collapsing {
@@ -1202,8 +1233,27 @@ input {
       color:#fff;
   }
   #donate .gray {
+      background-color:#F7F7F7;
+      color:#999;
+  }
+
+  #donate .purple {
+      background-color:#8833ff;
+      color:#fff;
+  }
+
+  #donate-green input:checked + span {
+      background-color: #2ECC71;
+      color:#F7F7F7;
+  }
+
+  #donate-green .gray {
       background-color:#ddd;
-      color:#333;
+      color:#aaa;
+  }
+
+  #donate-color input:checked + span {
+      border: 2px solid #333;
   }
 }
 
@@ -1358,27 +1408,27 @@ input {
     margin-bottom: 5px;
   }
   .red {
-    border-left: 15px solid rgba(239, 83, 80, 0.75);
+    border-left: 15px solid rgba(239, 83, 80, 1);
   }
 
   .purple {
-    border-left: 15px solid rgba(126, 87, 194, 0.75);
+    border-left: 15px solid rgba(126, 87, 194, 1);
   }
 
   .blue {
-    border-left: 15px solid rgba(41, 128, 185, 0.75);
+    border-left: 15px solid rgba(41, 128, 185, 1);
   }
 
   .green {
-    border-left: 15px solid rgba(22, 176, 133, 0.75);
+    border-left: 15px solid rgba(22, 176, 133, 1);
   }
 
   .yellow{
-    border-left: 15px solid rgba(253, 216, 53, 0.75);
+    border-left: 15px solid rgba(253, 216, 53, 1);
   }
 
   .orange {
-    border-left: 15px solid rgba(255, 152, 0, 0.75);
+    border-left: 15px solid rgba(255, 152, 0, 1);
   }
 
   .gray {
@@ -1394,19 +1444,19 @@ input {
   }
 
   .pink {
-    border-left: 15px solid rgba(255, 51, 170, .75);
+    border-left: 15px solid rgba(255, 51, 170, 1);
   }
 
   .brown {
-    border-left: 15px solid rgba(153, 102, 85, 0.75);
+    border-left: 15px solid rgba(153, 102, 85, 1);
   }
 
   .lime {
-    border-left: 15px solid rgba(205, 220, 57, 0.75);
+    border-left: 15px solid rgba(205, 220, 57, 1);
   }
 
   .magenta {
-    border-left: 15px solid rgba(255, 51, 153, 0.75);
+    border-left: 15px solid rgba(255, 51, 153, 1);
   }
 }
 
@@ -1702,7 +1752,6 @@ span.picture {
 
 .btn, .btn-group {
   font-weight: normal;
-  transition-duration: 0.5s;
   font-weight: 300;
   vertical-align: bottom;
   border-radius: 2px;
@@ -1921,7 +1970,7 @@ span.picture {
 }
 
 .btn-expire:hover, .btn-expired, .btn-expired:hover{
-  background: #F1948A;
+  background: #888;
   color: #ffffff;
   display: inline-block;
 }

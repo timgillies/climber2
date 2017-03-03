@@ -11,6 +11,7 @@ class Admin::TasksController < ApplicationController
 
   include TasksHelper
   include GradesHelper
+  include RoutesHelper
 
   def index
     @task = Task.new
@@ -138,7 +139,7 @@ class Admin::TasksController < ApplicationController
   def activate_route
     @facility = Facility.find(params[:facility_id])
     @task = Task.find(params[:id]) # find original object
-    redirect_to(new_admin_facility_route_path(:name => @task.name, :grade_id => @task.grade_id, :color => @task.color, :assignee_id => @task.assignee_id, :zone_id => @task.zone_id, :wall_id => @task.wall_id, :sub_child_zone_id => @task.sub_child_zone_id, :description => @task.description, :task_id => @task.id ))
+    redirect_to(new_admin_facility_route_path(:name => @task.name, :grade_id => @task.grade_id, :color => @task.color, :color_hex => @task.color_hex, :assignee_id => @task.assignee_id, :zone_id => @task.zone_id, :wall_id => @task.wall_id, :sub_child_zone_id => @task.sub_child_zone_id, :description => @task.description, :task_id => @task.id ))
   end
 
   def complete_task
@@ -159,7 +160,7 @@ class Admin::TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :assignee_id, :assigner_id, :route_id, :discipline, :description, :active, :tagged, :status, :task_description, :task_type)
+    params.require(:task).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :sub_child_zone_id, :set_by_id, :assignee_id, :assigner_id, :route_id, :discipline, :description, :active, :tagged, :status, :task_description, :task_type, :color_hex)
   end
 
   def options_for_grade_select

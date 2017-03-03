@@ -135,5 +135,8 @@ scope :task_sorted_by, lambda { |sort_option|
     (self.status == "completed")
   end
 
+  def grade_system_virtual
+  end
+
 
 end

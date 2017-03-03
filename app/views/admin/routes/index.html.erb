@@ -7,7 +7,7 @@
       <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#routeFilters" aria-expanded="false" aria-controls="routeFilters">
         Filters <span class="glyphicon glyphicon-filter"></span>
       </button>
-      <%= link_to "Create new route", "#newRouteModal", data: { toggle: "modal"}, remote: false, class: "btn btn-close", style: "display: inline-block;" %>
+      <%= link_to "Create new route", new_admin_facility_route_path(@facility), class: "btn btn-close", style: "display: inline-block;" %>
     </span>
     <div class="divider-line"></div>
   </div>

@@ -7,7 +7,7 @@
       <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#taskFilters" aria-expanded="false" aria-controls="taskFilters">
         Filters <span class="glyphicon glyphicon-filter"></span>
       </button>
-      <%= link_to "Create new task", "#newTaskModal", data: { toggle: "modal"}, remote: false, class: "btn btn-close", style: "display: inline-block;" %>
+      <%= link_to "Create new task", new_admin_facility_task_path(@facility), remote: false, class: "btn btn-close", style: "display: inline-block;" %>
     </span>
     <div class="divider-line"></div>
   </div>

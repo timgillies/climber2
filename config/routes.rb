@@ -85,6 +85,7 @@ Rails.application.routes.draw do
       resources :sub_child_zones
       resources :facility_grade_systems
       resources :facility_targets
+      resources :custom_colors
       resources :tasks do
         member do
           post :activate_route #output path - activate_route/:id

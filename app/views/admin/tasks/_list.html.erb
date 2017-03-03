@@ -18,18 +18,17 @@
     <div class="divider-line"></div>
 
 
-      <% if f.color? %>
-        <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
-          <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
-
-          <% else %>
-
-          <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
-
-          <% end %>
+    <% if f.color_hex? %>
+    <li style="border-left: 15px solid <%= f.color_hex %>">
+    <% elsif f.color? %>
+      <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
+        <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
       <% else %>
-        <li>
+        <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
       <% end %>
+    <% else %>
+    <li>
+    <% end %>
 
       <div class="container-fluid">
         <div class="row">
@@ -58,7 +57,13 @@
               <span class="glyphicon glyphicon-calendar"></span>
               <% end %>
 
-              <%= link_to f.grade.grade + " "+ f.color.upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
+              <% if f.color? %>
+                <%= link_to f.grade.grade + " "+ f.color.upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
+              <% elsif (color_name(f.color_hex)).nil? %>
+                <%= link_to f.grade.grade , edit_admin_facility_task_path(@facility, f) if f.grade %>
+              <% else %>
+                <%= link_to f.grade.grade + " "+ color_name(f.color_hex)[0].upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
+              <% end %>
             </h3>
 
             <% end %>

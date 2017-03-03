@@ -13,6 +13,7 @@ class Facility < ActiveRecord::Base
   has_many :grade_systems, :through => :facility_grade_systems
   has_many :grades, :through => :grade_systems
   has_many :tasks
+  has_many :custom_colors
   belongs_to :facility_grade_system
   belongs_to :tick
   has_many :facility_roles

@@ -5,20 +5,11 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
-  factory :user, :class => 'User' do
+  factory :user, class: User do
     email
+    name 'test_user'
     password '12345678'
     password_confirmation '12345678'
-    id '1'
-  end
-end
-
-FactoryGirl.define do
-  factory :facility_admin, :class => 'User' do
-    email
-    password '12345678'
-    password_confirmation '12345678'
-    id '1'
-
+    confirmed_at Date.today
   end
 end
