@@ -50,7 +50,10 @@
             <div id="donate">
               <div id="donate-colors">
                 <% (color_options + custom_color_options ).each do |fs| %>
-                  <label style="background-color:<%= fs[1] %>; color: #fff "><%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1]) }  %>
+                  <% if fs[1] == '#F9F9F8' %><label style="background-color:<%= fs[1] %>; color: #444 ">
+                    <% else %><label style="background-color:<%= fs[1] %>; color: #fff ">
+                      <% end %>
+                    <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1]) }  %>
                     <span><%= fs[0] %></span>
                   </label>
                 <% end %>

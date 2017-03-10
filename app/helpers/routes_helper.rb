@@ -59,7 +59,7 @@ def color_options
     ['Yellow','#fdd835'],
     ['Orange','#FF9800'],
     ['Brown','#996655'],
-    ['White','#e2e4e4'],
+    ['White', '#F9F9F8'],
     ['Gray','#999999'],
     ['Black','#626262'],
     ['Other','#e2e4e4'],

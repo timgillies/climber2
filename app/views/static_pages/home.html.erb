@@ -1,6 +1,5 @@
 <script>
 $('.navbar').css('background-color', 'transparent');
-$('.navbar-collapse').css('background-color', 'gba(0,0,0,.8)');
 $(document).ready(function(){
    var scroll_start = 0;
    var startchange = $('#startchange');
@@ -16,7 +15,14 @@ $(document).ready(function(){
    });
     }
 });
+
+$('#hamburger').click(function() {
+    $('.navbar').css({
+        'background-color': 'rgba(0,0,0,.8)',
+    });
+});
 </script>
+
 <div class="home-body">
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="50000">
 

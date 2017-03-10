@@ -329,19 +329,18 @@ textarea[type=text] {
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
 
   h1 {
     margin-top: 5px;
     font-size: 2.0em;
     color: #000;
     opacity: 0.6;
-    letter-spacing: -2.5px;
   }
   p {
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: #000;
     opacity: 0.5;
-    letter-spacing: -2.0px;
     text-align: center;
   }
   .divider-line {
@@ -349,7 +348,7 @@ textarea[type=text] {
     margin-bottom: 5px;
   }
   label {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #000;
     opacity: 0.5;
   }
@@ -1637,15 +1636,8 @@ span.picture {
     line-height: 50px;
     margin-bottom: -20px;
     border-color: transparent;
-    @media (max-width: 420px) {
-      line-height: 10px;
-      margin-bottom: -20px;
-    }
-    &:active {
-      background-color: transparent;
-    }
-    &:focus {
-      background-color: transparent;
+    @media (max-width: 768px) {
+      line-height: 20px;
     }
 }
 
@@ -1675,6 +1667,8 @@ span.picture {
   li a{
     color: #ccc;
     font-size: 1.0em;
+    color: #fff;
+    background-color: transparent;
     @media (max-width: 420px) {
         font-size: 1.1em;
         margin-bottom: 1px;
@@ -1755,9 +1749,17 @@ span.picture {
    }
  }
 
-
 .navbar-header {
-  border-style: none;
+  @media (max-width: 768px) {
+    border-style: none;
+    line-height: 55px;
+    margin-bottom: 10px;
+  }
+}
+
+.navbar-toggle {
+    margin-top: 18px;
+    margin-bottom: -10px;
 }
 
 #admin-header {
