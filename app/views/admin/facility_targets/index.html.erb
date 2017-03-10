@@ -2,18 +2,18 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <div class="headliner-line">
-        <h1>Set a target</h1>
-        <br/>
+      <div class="routelist-header bg-gray">
+        <h1 class="hidden-xs"><strong>Factility</strong>Targets </h1>
+      </div>
+    </div>
+    <div class="row">
+        <br>
         <i>Targets will be used to indicate if you are
         above or below your desired route count.</i>
-      </div>
         <%= render 'admin/facility_targets/form', object: @facility_targets %>
         <%= page_entries_info @facility_targets  %>
         <br/>
         <br/>
         <%= render 'admin/facility_targets/facility_targets', object: @facility_targets %>
-      </div>
-  </div>
+    </div>
 </div>

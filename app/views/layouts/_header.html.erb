@@ -1,5 +1,7 @@
+
+
 <!-- Navbar static top -->
-<div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+<div class="navbar navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex2-collapse">
@@ -8,21 +10,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "climb | connect", root_path, id: "logo", class: "tab" %>
+      <span class="logo"><%= link_to (image_tag 'cc_white_horizontal.png'), root_path, class: "logo" %></span>
     </div>
     <div class="navbar-collapse collapse navbar-custom" id="navbar-ex2-collapse">
 
       <!-- Left nav -->
-      <ul class="nav navbar-nav navbar navbar-left">
+      <ul class="nav navbar-nav navbar-left">
 
 
         <% if current_user.present? && (current_user.role == "facility_admin" || current_user.role == "site_admin") %>
         <% unless Route.where(user_id: current_user.id).count > 0 %>
 
           <li>
-            <p class="navbar-btn">
-              <%= button_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-md", method: 'get'  %>
-            </p>
+              <%= link_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
           </li>
 
         <% end %>
@@ -30,7 +30,6 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             ROUTE MANAGEMENT <b class="caret"></b>
           </a>
-
           <ul class="dropdown-menu scrollable-menu" role="menu">
             <% @userfacilities.each do |f| %>
             <li>
@@ -67,9 +66,7 @@
         <% unless Route.where(user_id: current_user.id).count > 0 %>
 
           <li>
-            <p class="navbar-btn">
-              <%= button_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-md", method: 'get'  %>
-            </p>
+            <%= link_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
           </li>
 
         <% end %>
@@ -78,12 +75,10 @@
 
         <% else %>
 
-        <li><%= link_to "Features & Details", marketing_path %></li>
+        <li><%= link_to "Features & Details", root_url + "#features" %></li>
 
         <li>
-          <p class="navbar-btn">
-            <%= button_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-md", method: 'get'  %>
-          </p>
+          <%= link_to "Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
         </li>
 
         <% end %>
@@ -116,9 +111,7 @@
           </li>
         <% else %>
         <li>
-          <p class="navbar-btn">
-            <%= button_to "Start for free!" , new_user_registration_path, class: "btn btn-create btn-md", method: 'get'  %>
-          </p>
+            <%= link_to "sign up" , new_user_registration_path, method: 'get'  %>
         </li>
         <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
@@ -127,3 +120,4 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div>
+<span id="startchange"></span>

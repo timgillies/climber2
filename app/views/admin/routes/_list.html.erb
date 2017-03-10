@@ -19,7 +19,6 @@
   </div>
   <%= div_for(@routes) do |f| %>
   <ol class="routelist">
-    <div class="divider-line"></div>
 
       <% if f.color_hex? %>
       <li style="border-left: 15px solid <%= f.color_hex %>">
@@ -98,7 +97,7 @@
 
               <% unless params[:controller] == 'admin/tasks' %>
                 <% if (days_ago(f) == "today") %>
-                  <span class="badge badge-today">set <%= days_ago(f) %></span>
+                  <span>set <%= days_ago(f) %></span>
                 <% else %>
                   set <%= days_ago(f) %> ago
                 <% end %>

@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="routelist-header">
-      <h1 class="hidden-xs">Route Database </h1>
+    <div class="routelist-header bg-gray">
+      <h1 class="hidden-xs"><strong>Route</strong>Database </h1>
       <h1 class="hidden-sm hidden-md hidden-lg hidden-xl">Routes </h1>
     <span class="pull-right">
       <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#routeFilters" aria-expanded="false" aria-controls="routeFilters">
         Filters <span class="glyphicon glyphicon-filter"></span>
       </button>
-      <%= link_to "Create new route", new_admin_facility_route_path(@facility), class: "btn btn-close", style: "display: inline-block;" %>
+      <%= link_to "new route", new_admin_facility_route_path(@facility), class: "btn btn-close", style: "display: inline-block;" %>
     </span>
     <div class="divider-line"></div>
   </div>

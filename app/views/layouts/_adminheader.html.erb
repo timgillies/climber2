@@ -1,5 +1,5 @@
+<div class="container-fluid">
 <!-- Left nav -->
-<div class="container">
   <div class="routes">
     <div class="row">
       <div class="col-sm-12">
@@ -9,15 +9,14 @@
             <% else %>
             <span class="badge badge-role pull-right"><%= @facility_role_access.name.humanize.upcase if @facility_role_access %></span>
           <% end %>
-        </p><h1><%= @facility.name %><small> <%= @facility.location %></small></h1>
+        </p><h1><strong><%= @facility.name %></strong><%= @facility.location %></h1>
       </div>
     </div>
   </div>
 
 
-  <div class="container">
     <div id="admin-header">
-      <nav class="navbar navbar-default" role="navigation">
+      <nav class="navbar navbar" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex1-collapse">
@@ -28,7 +27,7 @@
             </button>
             <span class="hidden-md hidden-lg hidden-sm hidden-xl">
               <ul>
-              <li class="pull-right"><%= link_to "New Route", new_admin_facility_route_path(@facility), class: "btn btn-nav" %> <%= link_to  "View Tasks", admin_facility_tasks_path(@facility), class: "btn btn-nav" %></li>
+              <li class="pull-right"><%= link_to "Add Route", new_admin_facility_route_path(@facility), class: "btn btn-close" %> <%= link_to  "Tasks", admin_facility_tasks_path(@facility), class: "btn btn-close" %></li>
               </ul>
             </span>
         </div>
@@ -59,7 +58,6 @@
       </nav>
     </div>
   </div>
-</div>
 
 
 <!-- Modal

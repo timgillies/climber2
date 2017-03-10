@@ -29,13 +29,14 @@
                   <% unless f.canceled_at.nil? %>
                    - until <%= Time.at(f.current_period_end).strftime("%b %d, %Y") %>
                   <% end %>
-                
+
             </div>
 
             <div class="col-xs-12 col-sm-12">
               <span class="pull-right">
-                <%= link_to "Manage", admin_facility_subscription_path(@facility, f), class: "btn btn-nav btn-sm" %>
+                <%= link_to "Manage", admin_facility_subscription_path(@facility, f), class: "btn btn-filter btn-sm" %>
               </span>
+
             </div>
           </div>
         </div>
