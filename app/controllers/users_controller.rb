@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.page(params[:page]).per(25)
+    @user = User.find(params[:id])
   end
 
   def show
@@ -62,6 +63,7 @@ class UsersController < ApplicationController
 
   def inbox
     @facility_roles = FacilityRole.where("email = ?", current_user.email).page(params[:page])
+    @user = User.find(params[:id])
   end
 
 
