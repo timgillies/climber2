@@ -51,7 +51,7 @@
                 <%= link_to f.route.grade.grade + " "+ color_name(f.route.color_hex,f.route.facility)[0].upcase , edit_user_tick_path(@user, f) if f.route.grade %>
               <% end %>
             </h3>
-            <h2> <%= f.route.name %></h2><span class="pull-right"><h2><% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %></h2><h3> | <%= f.tick_type %></span></h3>
+            <h2> <% if f.present? %><%= f.route.name %></h2><span class="pull-right"><h2><% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %></h2><h3> | <%= f.tick_type %></span></h3> <% end %>
           </div>
 
         </div>
@@ -84,7 +84,7 @@
               <%= link_to f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase , edit_user_tick_path(@user, f) if f.grade  %>
             <% end %>
           </h3>
-          <h2> <%= f.name %></h2><span class="pull-right"><h2><% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %></h2><h3> | <%= f.tick_type %></span></h3>
+          <h2> <% if f.present? %><%= f.name %></h2><span class="pull-right"><h2><% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %></h2><h3> | <%= f.tick_type %></span></h3><% end %>
         </div>
       </div>
 
