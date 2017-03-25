@@ -1,11 +1,19 @@
 module TicksHelper
 
-  def types
+  def tick_types
     [
       ['Onsight', 'onsight'],
       ['Flash', 'flash'],
       ['Redpoint', 'redpoint'],
-      ['Project (1 attempt)', 'project']
+      ['Project attempt', 'project']
+    ]
+  end
+
+  def rope_tick_types
+    [
+      ['Top Rope', 0],
+      ['Lead', 1],
+      ['Boulder', 0]
     ]
   end
 

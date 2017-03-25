@@ -4,26 +4,27 @@ class RoutesController < ApplicationController
   layout "user"
 
   def index
-    @facility = Facility.find(params[:facility_id])
+    @user = User.find(params[:user_id])
     @filterrific = initialize_filterrific(
       Route,
       params[:filterrific],
       select_options: {
         sorted_by: Route.options_for_sorted_by,
+        with_facility_id: options_for_facility_select,
         with_grade_id: options_for_grade_select,
         with_zone_id: options_for_zone_select,
         with_wall_id: options_for_wall_select,
         with_setter_id: options_for_setter_select,
-        with_status_id: Route.options_for_status_select,
+        with_status_id: Route.options_for_status_select
       },
-      persistence_id: true,
+      persistence_id: 'shared_key',
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.
     # You can paginate with will_paginate or kaminari.
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @routes = @facility.routes.filterrific_find(@filterrific).page(params[:page])
+    @routes = Route.where(status: nil).filterrific_find(@filterrific).page(params[:page]).per(50)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -59,11 +60,11 @@ class RoutesController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:user_id])
     @route = Route.find(params[:id])
-    @tick = current_user.ticks.build
+    @tick = Tick.new
     @totalticks = Tick.where("route_id = ?", @route)
     @userticks = current_user.ticks.where("route_id = ?", @route)
-    @facility = Facility.find(params[:facility_id])
     @averagerating = Rate.where("rateable_id = ?", @route).average(:stars)
     @ratingcount = Rate.where("rateable_id = ?", @route).count(:stars)
   end
@@ -131,27 +132,34 @@ class RoutesController < ApplicationController
     params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :discipline, :description, :active)
   end
 
+  def options_for_facility_select
+    Facility.where(id: climber_facilities).all.map{|fz| [fz.name, fz.id ] }
+    # provides the list of available grades in the route list filters
+  end
+
+
+
   def options_for_grade_select
-    if @facility.custom?
-      @facility.grades.all.map{|fg| [fg.grade, fg.id ] }
-    else
-      Grade.where(system: ['yds','vscale']).map{|sg| [sg.grade, sg.id ] }
-    end
+    Route.where(facility_id: climber_facilities).pluck(:grade_id).uniq.map{|sg| [Grade.where(id: sg).first , sg ] }
     # provides the list of available grades in the route list filters
   end
 
   def options_for_zone_select
-      @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+    Zone.where(facility_id: climber_facilities).all.map{|fz| [fz.name, fz.id ] }
     # provides the list of available zones in the route list filters
   end
 
   def options_for_wall_select
-      @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    Wall.where(facility_id: climber_facilities).all.map{|fz| [fz.name, fz.id ] }
+
+    #  climber_facilities.walls.all.map{|fw| [fw.name, fw.id ] }
     # provides the list of available walls in the route list filters
   end
 
   def options_for_setter_select
-      @facility.setters.all.map{|fs| [fs.nick_name, fs.id ] }
+    climber_facilities.all.map{|fz| [fz.name, fz.id ] }
+
+  #    climber_facilities.setters.all.map{|fs| [fs.nick_name, fs.id ] }
     # provides the list of available walls in the route list filters
   end
 

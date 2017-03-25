@@ -67,12 +67,46 @@ def color_options
 end
 
 # Looks up color_options array by hex value and returns the name of the color
-def color_name(hex)
-  (color_options + custom_color_options).detect { |color, value| value == hex }
+def color_name(hex,facility)
+  (color_options + custom_color_options(facility)).detect { |color, value| value == hex }
 end
 
-def custom_color_options
-  CustomColor.where(facility_id: @facility.id).map{|color| [color.color_name, color.color_hex]}
+def custom_color_options(facility)
+  CustomColor.where(facility_id: facility).map{|color| [color.color_name, color.color_hex]}
+end
+
+
+def climber_facilities
+  Facility.joins(:facility_roles).where(:facility_roles => {:user_id => current_user.id})
+end
+
+def route_grades
+  Route.joins(:grades)
+end
+
+
+def previous_next
+  if Grade.previous(@route).present? && Grade.next(@route).present?
+    [
+      [Grade.previous(@route).grade, Grade.previous(@route).id.to_i],
+      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i],
+      [Grade.next(@route).grade, Grade.next(@route).id.to_i]
+    ]
+  elsif Grade.previous(@route).present?
+    [
+      [Grade.previous(@route).grade, Grade.previous(@route).id.to_i],
+      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i]
+    ]
+  elsif Grade.next(@route).present?
+    [
+      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i],
+      [Grade.next(@route).grade, Grade.next(@route).id.to_i]
+    ]
+  else
+    [
+      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i]
+    ]
+  end
 end
 
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
 
+
   root                  'static_pages#home'
   get 'help'         => 'static_pages#help'
   get 'about'        => 'static_pages#about'
@@ -17,9 +18,11 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :facility_roles
+    resources :routes
+    resources :ticks
     resources :facilities do
       resources :routes do
-    resources :ticks
+        resources :ticks
       end
     end
     member do

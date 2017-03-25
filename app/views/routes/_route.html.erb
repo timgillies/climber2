@@ -1,7 +1,115 @@
-<li id="route-<%= route.id %>">
-  <span class="name"><%= route.name %></span>
-  <%= link_to "edit",  edit_facility_route_path(@facility, route) %>
-  <span class="timestamp">
-    Created <%= time_ago_in_words(route.created_at) %> ago.
-  </span>
-</li>
+
+<% provide(:title, @route.name) %>
+      <div class="container-fluid routelist routeshow">
+        <div class="col-xs-12 bg-gray">
+          <% if @route.color_hex? %>
+            <div style="border-left: 15px solid <%= @route.color_hex %>">
+          <div>
+        <% end %>
+      </div>
+          <h1>
+            <span class="tab">
+              <% if @route.color? %>
+                <%= link_to @route.grade.grade + " "+ @route.color.upcase , "#" %>
+              <% elsif (color_name(@route.color_hex, @facility)).nil? %>
+                <%= link_to @route.grade.grade , "#" %>
+              <% else %>
+                <%= link_to @route.grade.grade + " "+ color_name(@route.color_hex, @facility)[0].upcase , "#" %>
+              <% end %>
+          </h1>
+          <h2 class="tab"> <%= @route.name if @route.name %></h2></span>
+          <span class="pull-right hidden-xs">
+            <% if @route.user %>
+              <% if @route.user.image? %>
+                <%= image_tag @route.user.image ,:class=> "img-setter-icon" %>
+              <% elsif @route.user.avatar_file_name? %>
+                <%= image_tag @route.user.avatar.url(:thumb), class: "img-setter-icon" %>
+              <% end %>
+            <% end %>
+          </span>
+        </div>
+      <!-- Rating system
+        <div class="row">
+          <div class="col-sm-12">
+
+            <% if current_user %>
+              <h2><%= (rating_for @route, "total", disable_after_rate: false) %><small><%= @averagerating.to_s + " / " + @ratingcount.to_s + " votes" %></small></h2>
+            <% end %>
+          </div>
+        </div>
+      -->
+          <br>
+          <div class="divider-line"></div>
+          <br>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <span><p><strong> <%= @route.facility.name %></strong> <%= @route.facility.location %></p></span>
+
+                    <span class="pull-right">
+                        <% unless params[:controller] == 'admin/tasks' %>
+                          <% if (days_ago(@route) == "today") %>
+                            <span class="badge badge-today">set <%= days_ago(@route) %></span>
+                          <% else %>
+                            set <%= days_ago(@route) %> ago
+                          <% end %>
+                        <% else %>
+                          <% if @route.setdate? %>
+                          due on <%= f.setdate.strftime("%b %d, %Y") %>
+                          <% end %>
+                        <% end %>
+                    </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <span><strong>Location: </strong><%= @route.zone.name if @route.zone %><%= " > " + @route.wall.name if @route.wall %> <%= " > " + @route.sub_child_zone.name if @route.sub_child_zone %></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <span><strong>Setter: </strong> <%= @route.user.name if @route.user %></span>
+              </div>
+            </div>
+
+            <% if @route.description? %>
+            <div class="row">
+              <br/>
+              <div class="col-sm-12">
+                  <span><i><%= @route.description %></i></span>
+              </div>
+            </div>
+            <% end %>
+          </div>
+
+        <div class="col-xs-12 col-sm-8">
+          <div class="row">
+              <% if @route.image.exists? %>
+                  <br>
+              <%= link_to image_tag(@route.image.url(:medium), class: "img-route-show") , "#routeShowModal", data: { toggle: "modal"} %></li>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- Modal -->
+
+  <div class="modal fade" id="routeShowModal" tabindex="-1" role="dialog" aria-labelledby="routeShowModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="modal-title" id="routeShowModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @route.facility.name %> <%= @route.facility.location if @route.facility.location %></small></h4></span>
+        </div>
+        <div class="modal-body row">
+          <%= image_tag @route.image.url, class: "img-route-show"%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>

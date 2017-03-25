@@ -81,7 +81,9 @@ class Route < ActiveRecord::Base
     :with_setter_id,
     :with_status_id,
     :with_setdate_gte,
-    :with_setdate_lt
+    :with_setdate_lt,
+    :with_facility_id,
+
   ]
   )
 
@@ -148,6 +150,10 @@ scope :sorted_by, lambda { |sort_option|
 
   scope :with_status_id, lambda { |status_ids|
       where( 'routes.enddate > ? OR routes.enddate IS ?', status_ids, nil)
+  }
+
+  scope :with_facility_id, lambda { |facility_ids|
+      where( 'facility_id = ?', facility_ids)
   }
 
     # always include the lower boundary for semi open intervals

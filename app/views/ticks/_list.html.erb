@@ -1,0 +1,109 @@
+<div id="filterrific_tick_results">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="routelist">
+      <h2><%= page_entries_info @ticks  %>
+      </h2>
+      <span class="pull-right">
+        <%= link_to(
+          'Reset filters',
+          reset_filterrific_url
+        ) %>
+      </span>
+    </div>
+    </div>
+
+  </div>
+
+<% @tick_dates.each do |tick_date| %>
+  <ol class="routelist">
+    <div class="date-list">
+      <li>
+        <h3><%= Date.strptime(tick_date.to_s, '%Y-%m-%d').to_date.strftime('%A | %Y-%m-%d') %></h3>
+      </li>
+    </div>
+
+  <% @ticks.where(date: tick_date).each do |f| %>
+  <ol class="routelist">
+    <% if f.route_id? %>
+
+      <% if f.route.color_hex? %>
+      <li style="border-left: 15px solid <%= f.route.color_hex %>">
+      <% elsif f.route.color? %>
+        <% if ["light", "dark", "neon", "hot"].include?(f.route.color.split(/\W+/).first.downcase.to_s) %>
+          <li class="<%= f.route.color.split(/\W+/).second.downcase.to_s %>">
+          <% else %>
+          <li class="<%= f.route.color.split(/\W+/).first.downcase.to_s %>">
+          <% end %>
+      <% else %>
+      <li>
+      <% end %>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>
+              <% if f.route.color? %>
+                <%= link_to f.route.grade.grade + " "+ f.route.color.upcase , edit_user_tick_path(@user, f) if f.route.grade %>
+              <% elsif (color_name(f.route.color_hex,f.route.facility)).nil? %>
+                <%= link_to f.route.grade.grade , edit_user_tick_path(@user, f) if f.route.grade %>
+              <% else %>
+                <%= link_to f.route.grade.grade + " "+ color_name(f.route.color_hex,f.route.facility)[0].upcase , edit_user_tick_path(@user, f) if f.route.grade %>
+              <% end %>
+            </h3>
+            <h2> <%= f.route.name %></h2><span class="pull-right"><h2><% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %></h2><h3> | <%= f.tick_type %></span></h3>
+          </div>
+
+        </div>
+      </div>
+    </li>
+
+    <% else %>
+
+    <% if f.color_hex? %>
+    <li style="border-left: 15px solid <%= f.color_hex %>">
+    <% elsif f.color? %>
+      <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
+        <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
+        <% else %>
+        <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
+        <% end %>
+    <% else %>
+    <li>
+    <% end %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>
+            <% if f.color? %>
+              <%= link_to f.grade.grade + " "+ f.color.upcase , edit_user_tick_path(@user, f) if f.grade %>
+            <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+              <%= link_to f.grade.grade , edit_user_tick_path(@user, f) if f.grade %>
+            <% else %>
+              <%= link_to f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase , edit_user_tick_path(@user, f) if f.grade  %>
+            <% end %>
+          </h3>
+          <h2> <%= f.name %></h2><span class="pull-right"><h2><% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %></h2><h3> | <%= f.tick_type %></span></h3>
+        </div>
+      </div>
+
+      <div class="row">
+
+
+      </div>
+    </div>
+  </li>
+
+  <% end %>
+  </ol>
+  <% end %>
+
+
+</ol>
+<% end %>
+
+
+
+  <%= paginate @ticks %>
+</div>

@@ -1,3 +1,5 @@
+<% if @tick.route_id.present? %>
+
 <%= render(
 partial: 'routes/route',
 locals: { route: @route }
@@ -7,3 +9,12 @@ locals: { route: @route }
 partial: 'ticks/route_tick_form',
 locals: { tick: @tick }
 ) %>
+
+<% else %>
+
+<%= render(
+partial: 'ticks/form',
+locals: { tick: @tick }
+) %>
+
+<% end %>

@@ -8,6 +8,7 @@ class Grade < ActiveRecord::Base
   belongs_to :user
   has_many    :tasks
   has_many :facility_targets
+  has_many :ticks
 
   validates :grade, presence: true
   validates :grade_system_id, presence: true
@@ -40,6 +41,20 @@ class Grade < ActiveRecord::Base
   def self.boulder
     Route.joins(:grade).merge(Grade.where(:discipline => 'boulder'))
   end
+
+
+def self.next(current_route)
+    Grade.where(grade_system_id: Grade.where(id: current_route.grade_id).first.grade_system_id ).where("rank > ?", Grade.where(id: current_route.grade_id).first.rank).first
+end
+
+def self.actual(current_route)
+    Grade.where(grade_system_id: Grade.where(id: current_route.grade_id).first.grade_system_id ).where("rank = ?", Grade.where(id: current_route.grade_id).first.rank).first
+end
+
+def self.previous(current_route)
+    Grade.where(grade_system_id: Grade.where(id: current_route.grade_id).first.grade_system_id ).where("rank < ?", Grade.where(id: current_route.grade_id).first.rank).last
+end
+
 
 
 

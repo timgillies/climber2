@@ -1,7 +1,22 @@
 <% provide(:title, 'Ticks') %>
 
-<div class="container">
-  <div class="routes">
-    <h1>Ticks</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-gray">
+      <h1 class="hidden-xs"><strong>Ascent</strong>List </h1>
+      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl">Routes </h1>
+    <span class="pull-right">
+      <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#routeFilters" aria-expanded="false" aria-controls="routeFilters">
+        Filters <span class="glyphicon glyphicon-filter"></span>
+      </button>
+      <%= link_to "new ascent", new_user_tick_path(current_user), class: "btn btn-close", style: "display: inline-block;" %>
+    </span>
+    <div class="divider-line"></div>
+  </div>
   </div>
 </div>
+
+<%= render(
+partial: 'ticks/list',
+locals: { ticks: @ticks }
+) %>

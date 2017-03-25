@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302221326) do
+ActiveRecord::Schema.define(version: 20170320201615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -345,10 +345,21 @@ ActiveRecord::Schema.define(version: 20170302221326) do
     t.string   "tick_type"
     t.string   "description"
     t.date     "date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "facility_id"
     t.boolean  "lead"
+    t.string   "name"
+    t.string   "color_hex"
+    t.integer  "grade_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "color"
+    t.integer  "zone_id"
+    t.integer  "wall_id"
+    t.integer  "grade_vote_id"
   end
 
   add_index "ticks", ["facility_id"], name: "index_ticks_on_facility_id", using: :btree
@@ -477,8 +488,11 @@ ActiveRecord::Schema.define(version: 20170302221326) do
   add_foreign_key "tasks", "walls", on_delete: :nullify
   add_foreign_key "tasks", "zones", on_delete: :nullify
   add_foreign_key "ticks", "facilities", on_delete: :nullify
+  add_foreign_key "ticks", "grades", on_delete: :nullify
   add_foreign_key "ticks", "routes", on_delete: :nullify
   add_foreign_key "ticks", "users"
+  add_foreign_key "ticks", "walls", on_delete: :nullify
+  add_foreign_key "ticks", "zones", on_delete: :nullify
   add_foreign_key "walls", "facilities"
   add_foreign_key "walls", "users"
   add_foreign_key "walls", "zones", on_delete: :nullify

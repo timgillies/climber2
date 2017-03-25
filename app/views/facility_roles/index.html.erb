@@ -1,0 +1,22 @@
+<% provide(:title, 'Facility Team') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-gray">
+      <h1><strong>My Facilities</strong> </h1>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+  <div class="row">
+    <%= render 'facility_roles/facility_role', object: @facility_roles %>
+  </div>
+  <div class="row">
+    <div class="routelist-header bg-gray">
+      <h1><strong>All Facilities</strong> </h1>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+  <div class="row">
+    <%= render 'facility_roles/facility_list', object: @facilities %>
+  </div>
+</div>

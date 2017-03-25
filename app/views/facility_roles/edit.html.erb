@@ -1,0 +1,26 @@
+<% provide(:title, 'Facility Team') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="headliner-line">
+        <h1>Edit team members</h1>
+      </div>
+      <%= form_for [:admin, @facility, @facility_role], :html => {:class => "form-label"}, remote: false do |f| %>
+      <div class="row">
+        <%= render 'shared/error_messages', object: f.object %>
+      </div>
+      <%= render 'admin/facility_roles/form', object: @facility_roles, :f => f %>
+      <div class="col-sm-3 col-md-3 col-lg-3">
+        <label class="hidden-xl">&nbsp;</label>
+
+        <% if params[:action] == "edit" %>
+          <%= f.submit "Save", class: "btn btn-submit" %>
+        <% else %>
+          <%= f.submit "Send", class: "btn btn-submit" %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

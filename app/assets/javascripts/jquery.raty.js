@@ -58,6 +58,7 @@
       });
     },
 
+
     _adjustCallback: function() {
       var options = ['number', 'readOnly', 'score', 'scoreName', 'target'];
 
@@ -730,7 +731,7 @@
     click        : undefined,
     half         : false,
     halfShow     : true,
-    hints        : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+    hints        : ['Come on', 'Ehh', 'Okay', 'Nice', 'Stoked!'],
     iconRange    : undefined,
     mouseout     : undefined,
     mouseover    : undefined,

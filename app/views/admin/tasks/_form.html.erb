@@ -162,7 +162,7 @@
       <%= f.label :color_hex, "Color*" %><%= link_to "manage colors", admin_facility_custom_colors_path(@facility), class: "pull-right"%>
       <div class="route-form">
         <div id="donate">
-          <% (color_options+ custom_color_options ).each do |fs| %>
+          <% (color_options+ custom_color_options(@facility) ).each do |fs| %>
             <label style="background-color:<%= fs[1] %>; color: #fff "><%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1]) }  %>
               <span><%= fs[0] %></span>
             </label>

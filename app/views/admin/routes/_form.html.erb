@@ -49,7 +49,7 @@
           <div class="route-form">
             <div id="donate">
               <div id="donate-colors">
-                <% (color_options + custom_color_options ).each do |fs| %>
+                <% (color_options + custom_color_options(@facility) ).each do |fs| %>
                   <% if fs[1] == '#F9F9F8' %><label style="background-color:<%= fs[1] %>; color: #444 ">
                     <% else %><label style="background-color:<%= fs[1] %>; color: #fff ">
                       <% end %>

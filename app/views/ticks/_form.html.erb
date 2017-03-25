@@ -1,23 +1,175 @@
 
-<h1><small>Add Tick</small></h1>
-
-<%= form_for [current_user, @facility, @route, @tick] do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-
-  <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d'), class: 'form-control' %>
-  <%= f.text_field :description, class: 'form-control', placeholder: "Notes..."%>
-
-<div class="col-xs-3">
-  <%= f.submit "Onsight", class: "btn btn-onsight" %>
+<% if params[:action] == 'new' %>
+<div id="new_route">
 </div>
-<div class="col-xs-3">
-  <%= f.submit "Flash", class: "btn btn-flash" %>
-</div>
-<div class="col-xs-3">
-  <%= f.submit "Redpoint", class: "btn btn-redpoint" %>
-</div>
-<div class="col-xs-3">
-  <%= f.submit "Project", class: "btn btn-project" %>
+<% end %>
+<%= form_for [current_user, @tick], :html => {:class => "form-label", :multipart => true } do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+
+<div class="gray-labels">
+  <div class="bg-gray">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.label :grade_id, "Grade*" %>
+        <div class="route-form">
+          <div id="donate">
+            <% GradeSystem.where(category: 'outdoor').all.each do |fs| %>
+              <label class="gray"><%= f.radio_button :grade_system_virtual, fs.id, Grade.where(id: params[:grade_id].to_i, grade_system_id: fs.id).first ? { checked: true } : {checked: f.object.grade_id.to_i.eql?(Grade.where(id: f.object.grade_id.to_i, grade_system_id: fs.id.to_i).first.try(:id)) } %>
+                <span><%= fs.name %></span>
+              </label>
+              <div class="grade-">
+                <div id="grade_system_<%= fs.id %>">
+                  <div class="route-form">
+                    <div id="donate">
+                      <% Grade.where(grade_system_id: fs.id).each do |fsg| %>
+                          <label class="blue"><%= f.radio_button :grade_id, fsg.id, params[:grade_id].to_i == fsg.id.to_i ? { checked: true } : {checked: f.object.grade_id.to_i.eql?(fsg.id.to_i) } %>
+                            <span><%= fsg.grade %></span>
+                          </label>
+                        <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="grade_render">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.label :tick_type, "Ascent" %>
+        <div class="route-form">
+          <div id="donate">
+            <% tick_types.each do |fs| %>
+              <label class="gray"><%= f.radio_button :tick_type, fs[1], params[:tick_type] == fs[1] ? { checked: true } : {checked: f.object.tick_type.eql?(fs[1]) } %>
+                <span><%= fs[0] %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.label :lead, "Climb Type" %>
+        <div class="route-form">
+          <div id="donate">
+            <% rope_tick_types.each do |fs| %>
+              <label class="gray"><%= f.radio_button :lead, fs[1], params[:lead] == fs[1] ? { checked: true } : {checked: f.object.lead.eql?(fs[1]) } %>
+                <span><%= fs[0] %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.label :name, "Route name" %>
+          <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.label :color_hex, "Color" %>
+          <div class="route-form">
+            <div id="donate">
+              <div id="donate-colors">
+                <% (color_options).each do |fs| %>
+                  <% if fs[1] == '#F9F9F8' %><label style="background-color:<%= fs[1] %>; color: #444 ">
+                    <% else %><label style="background-color:<%= fs[1] %>; color: #fff ">
+                      <% end %>
+                    <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1]) }  %>
+                    <span><%= fs[0] %></span>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-3">
+          <%= f.label :date, "Date*" %>
+          <% if params[:action] == "edit" %>
+            <%= f.date_field :date, class: 'form-control' %>
+          <% else %>
+            <%= f.date_field :date, :value => Date.current , class: 'form-control' %>
+          <% end %>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.label :image,"Photo" %><span class="badge badge-today">new!</span>
+          <%= f.file_field :image, {class: 'form-control'}  %>
+        </div>
+      </div>
+      <br>
+
+
+
+
+      <button class="btn btn-close" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Additional details...
+      </button>
+      <div class="row">
+        <br>
+        <br>
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="well">
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.label :description, "Description" %>
+              <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
+            </div>
+          </div>
+
+          <div class="row">
+        </div>
+
+        </div>
+      </div>
+
+      <%= f.hidden_field :task_id, params[:task_id] ? { :value => params[:task_id] } : { :value => nil } %>
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.submit "Save", class: "btn btn-save" %>
+        </div>
+      </div>
+    </div>
 </div>
 
 <% end %>

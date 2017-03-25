@@ -1,0 +1,7 @@
+<%= form_for [@user, @facility_role], remote: false do |fg| %>
+    <div><%= hidden_field_tag :name, 'climber' %></div>
+    <div><%= hidden_field_tag :facility_id, f.id %></div>
+    <div><%= hidden_field_tag :confirmed, true %></div>
+    <div><%= hidden_field_tag :email, @user.email %></div>
+    <%= fg.submit "Add to my facilities", class: "btn btn-create btn-sm" %>
+<% end %>

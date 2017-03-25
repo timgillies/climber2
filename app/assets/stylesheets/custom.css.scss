@@ -160,6 +160,20 @@ a {
   border-radius: 4px;
 }
 
+.bg-blue-gradient {
+  background-color: #eee;
+  background: linear-gradient(to right, #00a69c, #1b75bb);
+  padding: 20px;
+  border-radius: 4px;
+  color: white;
+}
+
+.bg-dark-gray {
+  background-color: #aaa;
+  padding: 20px;
+  border-radius: 4px;
+}
+
 .bg-form {
   border: 1px solid #bbb;
   padding: 15px;
@@ -252,6 +266,23 @@ li {
   width: 100%;
 
 }
+
+.ratings {
+  img {
+    height: 25px;
+    margin-top: 10px;
+  }
+  display: inline-block;
+}
+
+.raty-hints {
+  display: none;
+}
+
+img.raty-cancel {
+  display: none;
+}
+
 
 
 
@@ -723,12 +754,9 @@ input {
 }
 
 .bg-white {
-  background-color: white;
+  background-color: #eee;
   padding: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-width: 10px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .bg-vector {
@@ -1184,9 +1212,11 @@ input {
     font-weight: 200;
   }
   h2 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
+    font-weight: 200;
     color: $gray-light;
+    text-align: left;
   }
   input[type=text] {
       border-radius: 3px;
@@ -1199,6 +1229,11 @@ input {
     border-radius: 3px;
     box-shadow: none;
     font-size: 16px;
+  }
+
+  .divider-line {
+    border-top: 1px solid #888;
+    margin-bottom: 5px;
   }
 }
 
@@ -1489,6 +1524,15 @@ input {
   .magenta {
     border-left: 15px solid rgba(255, 51, 153, 1);
   }
+
+  .date-list li {
+    background-color: #fff;
+    color: #fff;
+    border-left: 15px solid #fff;
+    h3 {
+      color: #888;
+    }
+  }
 }
 
 .routelist-header {
@@ -1506,10 +1550,11 @@ input {
 
 .routeshow {
   h1 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     display: inline-block;
     border: none;
     color: $gray;
+    font-weight: 200;
   }
   h2 {
     display: inline-block;
@@ -1536,7 +1581,7 @@ input {
   }
 
   .divider-line {
-    border-top: 1px solid #bbb;
+    border-top: 1px solid #888;
     margin-bottom: 5px;
   }
 
@@ -1630,6 +1675,7 @@ span.picture {
     background-color: rgba(0,0,0,.8);
     border: none;
     margin-top: -1px;
+    padding-top: 7px;
 }
 
 .navbar-nav li a {
@@ -1638,6 +1684,9 @@ span.picture {
     border-color: transparent;
     @media (max-width: 768px) {
       line-height: 20px;
+    }
+    img {
+      vertical-align: text-bottom;
     }
 }
 

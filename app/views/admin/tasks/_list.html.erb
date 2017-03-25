@@ -58,10 +58,10 @@
 
               <% if f.color? %>
                 <%= link_to f.grade.grade + " "+ f.color.upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
-              <% elsif (color_name(f.color_hex)).nil? %>
+              <% elsif (color_name(f.color_hex, @facility)).nil? %>
                 <%= link_to f.grade.grade , edit_admin_facility_task_path(@facility, f) if f.grade %>
               <% else %>
-                <%= link_to f.grade.grade + " "+ color_name(f.color_hex)[0].upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
+                <%= link_to f.grade.grade + " "+ color_name(f.color_hex,@facility)[0].upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
               <% end %>
             </h3>
 
