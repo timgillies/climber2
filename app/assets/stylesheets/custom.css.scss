@@ -1675,7 +1675,9 @@ span.picture {
     background-color: rgba(0,0,0,.8);
     border: none;
     margin-top: -1px;
-    padding-top: 7px;
+    @media (min-width: 768px) {
+      padding-top: 7px;
+    }
 }
 
 .navbar-nav li a {
