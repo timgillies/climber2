@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       if current_user.role == "site_admin"
         @userfacilities = Facility.all
       else
-        @userfacilities = current_user.facility_relationships.where.not(role: 'climber')
+        @userfacilities = current_user.facility_relationships.all
       end
     end
   end
