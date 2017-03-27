@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_facilities
 
+
   include RoutesHelper
   include GradesHelper
 
