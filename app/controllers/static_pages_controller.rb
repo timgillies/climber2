@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
   def home
     if user_signed_in?
       if @userfacilities.count > 0
-        redirect_to admin_facility_path(@userfacilities.all)
+        redirect_to admin_facility_path(@userfacilities.first)
       end
     end
     @user = User.new
