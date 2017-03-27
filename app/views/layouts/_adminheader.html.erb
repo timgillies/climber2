@@ -4,6 +4,11 @@
     <div class="row">
       <div class="col-sm-12">
         <p class="navbar-btn">
+          <% if @facility.demo? %>
+            <span class="badge badge-demo pull-right">DEMO</span>
+            <% else %>
+            <span class="badge badge-role pull-right"><%= @facility_role_access.name.humanize.upcase if @facility_role_access %></span>
+          <% end %>
         </p><h1><strong><%= @facility.name %></strong><%= @facility.location %></h1>
       </div>
     </div>

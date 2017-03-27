@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_facilities
-  before_action :set_new_route_variables
+  before_action :set_facility_role_access
 
   include RoutesHelper
   include GradesHelper
@@ -19,6 +19,9 @@ class ApplicationController < ActionController::Base
 
 
   # Sets up facilities to list in Route Management dropdown
+  # facility_relationships refers to the user/facility model association
+    #  has_many :facility_relationships, :through => :facility_roles, source: :facility
+
   def set_facilities
     if user_signed_in?
       if current_user.role == "site_admin"
@@ -29,9 +32,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-def set_new_route_variables
+def set_facility_role_access
     if ((params[:facility_id].blank?) && (params[:controller] == 'admin/facilities')) || (params[:facility_id].present?)
-
+      facility_controller_check
       @route = Route.new
       facility_controller_check
       @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
@@ -46,7 +49,7 @@ def set_new_route_variables
       @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
       @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
       if user_signed_in?
-        @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
+        @facility_role_access = FacilityRole.where.not(name: 'climber').find_by(facility_id: @facility.id, user_id: current_user.id)
       else
         @facility_role_access = nil
       end
