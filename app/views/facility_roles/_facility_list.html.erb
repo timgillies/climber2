@@ -1,4 +1,4 @@
-<%= div_for(@facilities) do |f| %>
+<%= div_for(@facilities.where(public: true)) do |f| %>
 <ol class="chartlist">
   <li>
     <div class="routelist">

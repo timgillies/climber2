@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     @genders = genders
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"

@@ -58,32 +58,3 @@
       </nav>
     </div>
   </div>
-
-
-<!-- Modal
-
-  <div class="modal fade" id="newRouteModal" tabindex="-1" role="dialog" aria-labelledby="newRouteModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <span class="modal-title" id="newRouteModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @facility.name %> <%= @facility.location if @facility.location %></small></h4></span>
-        </div>
-        <div class="modal-body row">
-          <%= form_for [:admin, @facility, @route], :html => {:class => "form-label"} do |f| %>
-          <% if(params[:name]) %>
-          <%= render 'admin/routes/prepopulated_form', :f => f %>
-          <% else %>
-          <%= render 'admin/routes/form', :f => f %>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <%= f.button :submit, class: "btn btn-save" %>
-          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
- -->

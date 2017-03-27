@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_facilities
-  before_action :set_new_route_variables
 
   include RoutesHelper
   include GradesHelper
@@ -24,34 +23,11 @@ class ApplicationController < ActionController::Base
       if current_user.role == "site_admin"
         @userfacilities = Facility.all
       else
-        @userfacilities = current_user.facility_relationships.all
+        @userfacilities = current_user.facility_relationships.where.not(role: 'climber')
       end
     end
   end
 
-def set_new_route_variables
-    if ((params[:facility_id].blank?) && (params[:controller] == 'admin/facilities')) || (params[:facility_id].present?)
-
-      @route = Route.new
-      facility_controller_check
-      @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
-      @r_value = ric_values
-      @i_value = ric_values
-      @c_value = ric_values
-      @route_status = route_status_values
-
-      @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
-
-      @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-      @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
-      @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
-      if user_signed_in?
-        @facility_role_access = FacilityRole.find_by(facility_id: @facility.id, user_id: current_user.id)
-      else
-        @facility_role_access = nil
-      end
-  end
-end
 
   # Sets the role names that have access to the facility within the admin area
   def facility_admin_roles
