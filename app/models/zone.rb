@@ -12,4 +12,6 @@ class Zone < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "600", thumb: "100x100#", square: "300x300#" }
   validates_attachment_content_type :image, :content_type => ['image/jpg', 'image/png', 'image/gif', 'image/jpeg']
 
+  default_scope -> { order(created_at: :asc) }
+
 end
