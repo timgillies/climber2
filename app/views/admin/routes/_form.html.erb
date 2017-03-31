@@ -1,8 +1,7 @@
-<div id="route_form">
-<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => false, :id => 'routeForm' }, remote: true do |f| %>
-<div id="form_errors">
+<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => false }, authenticity_token: true, remote: false do |f| %>
+
 <%= render 'shared/error_messages', object: f.object %>
-</div>
+
 
 
 <div class="gray-labels">
@@ -255,4 +254,3 @@
 </div>
 
 <% end %>
-</div>
