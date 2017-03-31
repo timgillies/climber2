@@ -2,7 +2,7 @@
     <ol class="routelist">
       <div class="col-sm-12">
         <%= link_to admin_facility_zone_path(@facility, fz ) do %>
-        <li>
+        <li style="border: none;">
           <div class="col-sm-12 col-xs-12">
             <h3><%= link_to fz.name, admin_facility_zone_path(@facility, fz ) %>
             <small><span class="pull-right"><%= fz.routes.current.count %> active <%= 'route'.pluralize(fz.routes.current.count) %></span></small></h3>
