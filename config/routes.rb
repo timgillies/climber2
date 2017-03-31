@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 
 
 
+
     resources :facilities do
       resources :routes do
 
@@ -84,7 +85,11 @@ Rails.application.routes.draw do
       end
       resources :walls
       resources :setters # delete after facility_roles is set up
-      resources :facility_roles
+      resources :facility_roles do
+        member do
+          post :resend_invite
+        end
+      end
       resources :sub_child_zones
       resources :facility_grade_systems
       resources :facility_targets

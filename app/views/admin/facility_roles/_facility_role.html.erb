@@ -1,65 +1,78 @@
+<!-- start of zone list -->
+<br>
+<div class="row">
 <%= div_for(@facility_roles) do |f| %>
-<ol class="chartlist">
-  <li>
-    <div class="routelist">
-      <div class="container-fluid">
-        <div class="row">
-          <br/>
-          <% if f.confirmed? %>
-          <div class="col-xs-9 col-sm-8">
-            <div class="row">
-            <h3>
-              <%= f.user.name %>
-            </h3>
-            </div>
-            <div class="row">
-              <p><%= f.name.humanize if f.name %></p>
-            </div>
-          </div>
-          <% else %>
-          <div class="col-xs-9 col-sm-8">
-            <div class="row">
-              <h3>
-                <%= f.email if f.email%>
-              </h3>
-            </div>
-            <div class="row">
-              <p><%= f.name.humanize if f.name %></p>
-            </div>
-          </div>
-          <% end %>
-
-
-          <div class="col-xs-3 col-sm-2 hidden-xs">
+  <ol class="routelist">
+    <div class="col-sm-12">
+      <li>
+        <div class="col-sm-12">
+          <h3>
             <% if f.confirmed? %>
-            <h3><i class="glyphicon glyphicon-ok glyphicon-green"></i></h3>
+                <%= f.user.name %>
+              <small><span class="pull-right">  <%= f.name.humanize if f.name %></span><span class="glyphicon glyphicon-ok"></span></small>
             <% else %>
-            <p>Invited</p>
+                <%= f.email if f.email%>
+              <small><span class="pull-right">  <%= f.name.humanize if f.name %></span><span class="glyphicon glyphicon-envelope"></span></small>
             <% end %>
-          </div>
+          </h3>
+        </div>
 
-          <div class="col-xs-1 col-sm-1 col-md-1 no-print">
-            <h3><%= link_to edit_admin_facility_facility_role_path(@facility, f ) do %>
-                        <i class="glyphicon glyphicon-cog"></i>
-                        <%end %>
-            </h3>
-          </div>
+        <div class="col-sm-12">
+          <div class="divider-line"></div>
+        </div>
 
-          <div class="col-xs-1 col-sm-1 col-md-1 no-print">
-            <h3><%= link_to admin_facility_facility_role_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                        :method => :delete do %>
-                        <i class="glyphicon glyphicon-trash"></i>
-                        <%end %>
-            </h3>
+
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-2 hidden-xs">
+              <% if f.user_id? %>
+                <% if User.where(id: f.user_id).first.avatar.exists? %>
+                  <%= image_tag(User.where(id: f.user_id).first.avatar.url(:medium), class: 'img-zone-list') if User.where(id: f.user_id).first.avatar.exists? %>
+                <% else %>
+                  <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-sm-10">
+              <% if Route.where(user_id: f.user_id).count > 0 %>
+                <%= render 'facilities/rolegradedist', :f => f %>
+              <% end %>
+            </div>
+
+            <div class="col-sm-12">
+
+                <% if f.confirmed? %>
+                <div class="col-xs-10 col-sm-10 hidden-xs">
+                  <h3 class="pull-right"><i class="glyphicon glyphicon-ok glyphicon-green"></i></h3>
+                </div>
+                <% else %>
+                <div class="col-xs-7 col-md-8">
+
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                  <%= button_to "resend invite",  resend_invite_admin_facility_facility_role_path(@facility, f ), class: 'btn btn-expire btn-md', method: :resend_invite, remote: true %>
+                </div>
+                <% end %>
+
+              <div class="col-xs-3 col-sm-1 col-md-1 no-print">
+                <h3 class="pull-right"><%= link_to admin_facility_facility_role_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                            :method => :delete do %>
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <%end %>
+                </h3>
+              </div>
+              <div class="col-xs-3 col-sm-1 col-md-1 no-print">
+                <h3><%= link_to edit_admin_facility_facility_role_path(@facility, f ) do %>
+                            <i class="glyphicon glyphicon-cog"></i>
+                            <%end %>
+                </h3>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="row">
-          <% if Route.where(user_id: f.user_id).count > 0 %>
-            <%= render 'facilities/rolegradedist', :f => f %>
-          <% end %>
-        </div>
-      </div>
+      </li>
     </div>
-  </li>
-</ol>
-<% end %>
+  </ol>
+  <% end %>
+</div>

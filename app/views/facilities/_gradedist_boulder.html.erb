@@ -38,7 +38,7 @@
                     style: {
                         color: 'black',
                         fontWeight: 'bold',
-                        fontFamily: "'Helvetica', sans-serif"
+                        fontFamily: "'Montserrat', sans-serif"
                     }
                 },
                 subtitle: {
@@ -74,7 +74,7 @@
         spacingBottom: 35,
         type: "column",
         style: {
-          fontFamily: 'Helvetica',
+          fontFamily: 'Montserrat',
         }
 
       },
@@ -105,7 +105,7 @@
         allowDecimals: false
       },
       credits: {
-        enabled: true,
+        enabled: false,
         text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
         style: {
           fontSize: "12px",
@@ -140,9 +140,9 @@
             enabled: true,
             style: {
               textShadow: '0 0 0 black',
-              color: '#333',
-              fontFamily: 'Helvetica',
-              fontWeight: 'normal'
+              color: '#444',
+              fontFamily: 'Montserrat',
+              fontWeight: 'thin'
             },
             formatter: function() {
                 if (this.y != 0) {

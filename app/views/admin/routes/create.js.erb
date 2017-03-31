@@ -1,0 +1,4 @@
+<% js = escape_javascript(
+  render(partial: 'admin/routes/form', locals: { route: @route })
+) %>
+$("#route_form").html("<%= js %>");

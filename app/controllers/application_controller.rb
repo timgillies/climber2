@@ -47,7 +47,6 @@ def set_facility_role_access
 
       @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
       @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
-      @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
       if user_signed_in?
         @facility_role_access = FacilityRole.where.not(name: 'climber').find_by(facility_id: @facility.id, user_id: current_user.id)
       else

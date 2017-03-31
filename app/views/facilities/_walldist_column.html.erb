@@ -6,7 +6,7 @@
           sourceHeight: 400,
 
           // scale: 2 (default),
-          enabled: true,
+          enabled: false,
           filename: "routes__<%= @facility.name.downcase %>_<%= fz.name.downcase %>",
 
           buttons: {
@@ -37,7 +37,7 @@
                     style: {
                         color: 'black',
                         fontWeight: 'bold',
-                        fontFamily: "'Helvetica', sans-serif"
+                        fontFamily: "'Montserrat', sans-serif"
                     }
                 },
                 subtitle: {
@@ -67,11 +67,12 @@
           }
       },
       chart: {
+        backgroundColor:'transparent',
         renderTo: "wall_dist-<%= fz.id %>",
         spacingBottom: 35,
         type: "column",
         style: {
-          fontFamily: 'Helvetica',
+          fontFamily: 'Montserrat',
         },
       },
       title: {
@@ -102,7 +103,7 @@
         allowDecimals: false
       },
       credits: {
-        enabled: true,
+        enabled: false,
         text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
         style: {
           fontSize: "12px",
@@ -128,6 +129,7 @@
           }
         },
         column: {
+          borderColor: 'transparent',
           cursor: 'pointer',
                 point: {
                     events: {
@@ -141,9 +143,9 @@
 
             style: {
               textShadow: '0 0 0 black',
-              color: '#333',
-              fontFamily: 'Helvetica',
-              fontWeight: 'normal'
+              color: '#444',
+              fontFamily: 'Montserrat',
+              fontWeight: 'thin'
             },
             formatter: function() {
                 if (this.y != 0) {

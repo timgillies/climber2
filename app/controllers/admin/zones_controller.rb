@@ -75,6 +75,8 @@ class Admin::ZonesController < ApplicationController
     @sub_child_zone = SubChildZone.new
     @zones = @facility.zones.page(params[:page])
     @facility_systems = facility_systems.page(params[:page])
+    @routes = @facility.routes.where('enddate > ? AND zone_id = ?', Date.today, @zone).page(params[:page]).per(50)
+
 
   end
 
@@ -113,6 +115,6 @@ class Admin::ZonesController < ApplicationController
   private
 
     def zone_params
-      params.require(:zone).permit(:name, :facility_id, :user_id)
+      params.require(:zone).permit(:name, :facility_id, :user_id, :image)
     end
   end

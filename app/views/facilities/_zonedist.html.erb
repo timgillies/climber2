@@ -42,7 +42,7 @@
                     style: {
                         color: 'black',
                         fontWeight: 'bold',
-                        fontFamily: "'Helvetica', sans-serif"
+                        fontFamily: "'Montserrat', sans-serif"
                     }
                 },
                 subtitle: {
@@ -76,7 +76,7 @@
         spacingBottom: 35,
         type: "bar",
         style: {
-          fontFamily: 'Helvetica',
+          fontFamily: 'Montserrat',
         }
       },
       title: {
@@ -109,7 +109,7 @@
         allowDecimals: false
       },
       credits: {
-        enabled: true,
+        enabled: false,
         text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
         style: {
           fontSize: "12px",
@@ -144,9 +144,9 @@
             enabled: true,
             style: {
               textShadow: '0 0 0 black',
-              color: '#333',
-              fontFamily: 'Helvetica',
-              fontWeight: 'normal'
+              color: '#444',
+              fontFamily: 'Montserrat',
+              fontWeight: 'thin'
             },
             formatter: function() {
                 if (this.y != 0) {
@@ -163,11 +163,11 @@
       series: [{
           type: 'bar',
           name: 'Routes',
-          data: <%= raw @facility.zones.all.order('name ASC').map {|f| [f.name, Route.current.where("zone_id = ?", f).count, "https://www.climbconnect.com/admin/facilities/#{@facility.id}/routes?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_grade_id%5D=&filterrific%5Bwith_zone_id%5D=#{ f.id }&filterrific%5Bwith_wall_id%5D=&filterrific%5Bwith_setter_id%5D=&filterrific%5Bwith_status_id%5D=#{Date.current}&filterrific%5Bsorted_by%5D=created_at_desc&_=" ] } %>
+          data: <%= raw @facility.zones.all.map {|f| [f.name, Route.current.where("zone_id = ?", f).count, "https://www.climbconnect.com/admin/facilities/#{@facility.id}/routes?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_grade_id%5D=&filterrific%5Bwith_zone_id%5D=#{ f.id }&filterrific%5Bwith_wall_id%5D=&filterrific%5Bwith_setter_id%5D=&filterrific%5Bwith_status_id%5D=#{Date.current}&filterrific%5Bsorted_by%5D=created_at_desc&_=" ] } %>
       },{
           type: 'spline',
           name: 'Target',
-          data: <%= raw raw @facility.zones.all.order('name ASC').map {|f| [f.name, FacilityTarget.where("zone_id = ? AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
+          data: <%= raw raw @facility.zones.all.map {|f| [f.name, FacilityTarget.where("zone_id = ? AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
       }
     ]
     });

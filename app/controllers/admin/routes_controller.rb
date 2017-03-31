@@ -111,14 +111,16 @@ class Admin::RoutesController < ApplicationController
           @old_route.update_attribute(:enddate, Date.yesterday)
         end
       end
-      flash[:success] = "Route added!"
-      redirect_to(admin_facility_routes_path(@facility))
-    else
-      unless @route.valid?
-        @route.image.clear
-        @route.image.queued_for_write.clear
+      respond_to do |format|
+        format.html { redirect_to(admin_facility_routes_path(@facility)) }
+        format.js
       end
-      render :new
+
+    else
+      respond_to do |format|
+        format.html { redirect_to(new_admin_facility_route_path(@facility)) }
+        format.js { render json: @route.errors, status: :unprocessable_entity }
+      end
     end
   end
 

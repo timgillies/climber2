@@ -1,0 +1,4 @@
+
+    <% if (facility_system_route_count(fs, fz) > 0) || (facility_system_target_count(fs, fz) > 0) %>
+      <%= render 'facilities/zonegradedist', :fz => fz, :fs => fs  %>
+    <% end %>

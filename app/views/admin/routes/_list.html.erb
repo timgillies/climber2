@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="routelist">
+        <% if params[:controller] == 'admin/routes' %>
       <h2><%= page_entries_info @routes  %>
+
       <% if filter_results_count > 0 %>
         (<%= filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>)
       <% end %>
@@ -13,6 +15,7 @@
           reset_filterrific_url
         ) %>
       </span>
+      <% end %>
     </div>
     </div>
 
@@ -48,6 +51,8 @@
           </div>
 
 
+
+
           <div class="hidden-xs hidden-sm no-print">
             <div class="col-md-2">
               <% if f.active? %>
@@ -58,7 +63,7 @@
             </div>
 
             <div class="col-md-2 no-print">
-              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :create_task, remote: false %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-xs', method: :create_task, remote: false %>
             </div>
           </div>
           <div class="col-xs-2 col-sm-1 no-print">
@@ -68,6 +73,7 @@
             </h3>
           </div>
         </div>
+        <div class="divider-line"></div>
         <div class="row">
           <div class="col-sm-12">
               <div class="tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.id %></div>
@@ -135,7 +141,7 @@
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-tag btn-xs', method: :expire, remote: false %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-xs', method: :expire, remote: false %>
             </div>
           </div>
         </div>

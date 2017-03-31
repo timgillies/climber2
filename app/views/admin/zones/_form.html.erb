@@ -9,5 +9,14 @@
       <%= f.text_field :name, class: 'form-control', placeholder: "ex. Wave wall" %>
     </div>
 
+      <div class="col-xs-12">
+        <%= f.label :image,"Photo" %>
+        <%= f.file_field :image, {class: 'form-control'}  %>
+      </div>
+
+      <div class="col-sm-12">
+        <%= image_tag @zone.image.url(:thumb) if @zone.image.exists? %>
+      </div>
+
   </div>
 </div>

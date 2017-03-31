@@ -1,17 +1,9 @@
-
-
-<% if params[:action] == 'new' %>
-<div id="new_route">
-</div>
-<% end %>
-<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => true } do |f| %>
+<div id="route_form">
+<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => true, :id => 'routeForm' }, remote: true do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
 
 <div class="gray-labels">
-  <div class="routeform-header bg-gray">
-    <h1><strong>Route</strong>Information</h1>
-  </div>
   <br>
   <div class="bg-gray">
     <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
@@ -261,7 +253,4 @@
 </div>
 
 <% end %>
-
-<script>
-document.getElementById("donate-colors").style.color = "blue";
-</script>
+</div>

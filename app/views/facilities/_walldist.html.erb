@@ -37,7 +37,7 @@
                     style: {
                         color: 'black',
                         fontWeight: 'bold',
-                        fontFamily: "'Helvetica', sans-serif"
+                        fontFamily: "'Montserrat', sans-serif"
                     }
                 },
                 subtitle: {
@@ -67,12 +67,13 @@
           }
       },
       chart: {
+        backgroundColor:'transparent',
         renderTo: "wall_dist-<%= fz.id %>",
         height: 50 * <%= raw @facility.walls.where("zone_id = ?", fz).count %>,
         spacingBottom: 35,
         type: "bar",
         style: {
-          fontFamily: 'Helvetica',
+          fontFamily: 'Montserrat',
         },
       },
       title: {
@@ -103,7 +104,7 @@
         allowDecimals: false
       },
       credits: {
-        enabled: true,
+        enabled: false,
         text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
         style: {
           fontSize: "12px",
@@ -142,9 +143,9 @@
 
             style: {
               textShadow: '0 0 0 black',
-              color: '#333',
-              fontFamily: 'Helvetica',
-              fontWeight: 'normal'
+              color: '#444',
+              fontFamily: 'Montserrat',
+              fontWeight: 'thin'
             },
             formatter: function() {
                 if (this.y != 0) {

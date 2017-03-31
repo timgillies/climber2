@@ -70,6 +70,12 @@ class Admin::FacilityRolesController < ApplicationController
     redirect_to :back
   end
 
+  def resend_invite
+    @facility_role = FacilityRole.find(params[:id])
+    FacilityRoleMailer.role_invite_email(@facility_role).deliver_now
+    redirect_to(admin_facility_facility_roles_path(@facility))
+  end
+
   private
 
     def facility_role_params

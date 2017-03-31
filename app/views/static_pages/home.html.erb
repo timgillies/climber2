@@ -39,31 +39,7 @@ $('#hamburger').click(function() {
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="col-sm-7">
-    <div class="hero-unit">
-      <div id="features"></div>
-      <br>
-        <%= image_tag('cc_black_horizontal.svg' ,width: '60%', height: '60%') %>
 
-        <p><br>Introducing, Climb Connect.  It's time climbing gyms start thinking about their routes as their most important product. #setsmart</p>
-        <% if current_user.present? %>
-        <p><%= link_to "Pre-Launch Access »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
-        <% else %>
-        <p><%= link_to "Pre-Launch Access »", new_user_registration_path, class: "btn btn-create btn-large pull-right tab" %></p>
-        <% end %>
-        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
-    </div>
-  </div>
-  <div class="col-sm-5">
-    <br>
-    <br>
-    <br>
-    <%= image_tag("apple-device-mockup1.svg", width: '100%', height: '100%') %>
-  </div>
-</div>
-
-<div class="home-divider-line"></div>
 
 <div class="container-fluid">
   <br>
@@ -76,7 +52,7 @@ $('#hamburger').click(function() {
       <h1>Route Setters First</h1>
       <p>We're building Climb Connect with route setters in mind first.
         We've worked with some of the best in the industry to make sure it creates value in their everyday workflow.  It's about staying organized, managing your team, and staying connected.  And ultimately, we want
-        Climb Connect to be the standard that climbers use, too.  They'll be able to track ascents, keep projects lists, post videos, and interact with other climbers, all based on the routes your setting.
+        Climb Connect to be the standard that climbers use, too.  They'll be able to track ascents, keep projects lists, post videos, and interact with other climbers, all based on the routes you're setting.
         Get started today.  #setsmart</p>
         <% if current_user.present? %>
         <p><%= link_to "Pre-Launch Access »", new_admin_facility_path, class: "btn btn-create btn-large pull-right tab" %></p>
