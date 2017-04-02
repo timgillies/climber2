@@ -21,6 +21,10 @@ class TicksController < ApplicationController
     @tick.route_id = params[:route_id]
     @ticks = Tick.page(params[:page]) # makes "each" work in the partial
 
+    if params[:route_id]
+      @tick.grade_id = Route.where(id: params[:route_id]).first.grade_id
+    end
+
     if @tick.save
       flash[:success] = "Ascent Saved!"
       redirect_to user_routes_path(current_user)

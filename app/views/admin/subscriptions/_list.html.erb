@@ -1,13 +1,15 @@
-
-<div class="headliner">
-  <h1>Subscriptions</h1>
+<div class="row">
+  <div class="routelist-header bg-blue-gradient">
+    <h1>ZONES</h1>
+  </div>
 </div>
+<br>
 
+<div class="row">
   <%= div_for(@subscriptions) do |f| %>
-  <ol class="chartlist">
-    <div class="divider-line"></div>
-    <li>
-      <div class="routelist">
+  <ol class="routelist">
+    <li style="border: none;">
+      <div>
         <div class="container-fluid">
           <div class="row">
             <br/>
@@ -44,3 +46,4 @@
     </li>
   </ol>
   <% end %>
+</div>

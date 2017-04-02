@@ -1,34 +1,36 @@
 
 <br/>
-<div class="container-fluid gray-labels bg-gray">
-    <%= form_for [:admin, @facility, @facility_target ], :html => {:class => "form-label"} do |f| %>
+<div class="gray-labels">
+<div class="container-fluid bg-gray">
+    <%= form_for [:admin, @facility, @facility_target ], :html => {:class => "form-label", :id => "targetForm"}, remote: true  do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <%= f.label :grade_id,"Grade*" %>
         <%= f.grouped_collection_select(:grade_id, facility_systems , :grades, :name, :id, :grade,
         { include_blank: 'Select grade' },
         {class: "form-control"}) %>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <%= f.label :zone_id,"Zone*" %>
         <%= f.select(:zone_id, @facilityzones,
         { include_blank: 'Select primary zone' },
         {class: "form-control"}) %>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <%= f.label :value, "Target value*" %>
         <%= f.text_field :value, class: 'form-control', placeholder: "Number of routes..." %>
       </div>
+      <div class="col-sm-3">
+        <%= f.label "Submit" %>
+        <%= f.submit "Save", class: "btn btn-submit" %>
+      </div>
     </div>
-    <div class="row">
 
-        <div class="col-sm-4 col-sm-offset-8">
-          <%= f.submit "Save", class: "btn btn-submit" %>
-        </div>
 
-    </div>
+
+</div>
 </div>
 <% end %>
 <br/>

@@ -52,9 +52,12 @@ class Admin::FacilityTargetsController < ApplicationController
       @recentfacility_targets = @facility.facility_targets.order("created_at DESC").page(params[:page]).limit(10)
       @facility_target.facility_id = params[:facility_id]
       if @facility_target.save
-        flash[:success] = "Target created!"
-        redirect_to(admin_facility_facility_targets_path(@facility))
+        respond_to do |format|
+          format.html { redirect_to(admin_facility_facility_targets_path(@facility)) }
+          format.js
+        end
       else
+        flash[:success] = "Oops, Please make sure you filled out the form correctly"
         render 'index'
       end
     end
@@ -89,12 +92,14 @@ class Admin::FacilityTargetsController < ApplicationController
     end
 
 
-
-
     def destroy
-      FacilityTarget.find(params[:id]).destroy
-      flash[:success] = "Target deleted"
-      redirect_to :back
+      @facility_target = FacilityTarget.find(params[:id])
+      if @facility_target.delete
+        respond_to do |format|
+          format.html { redirect_to :back }
+          format.js
+        end
+      end
     end
 
     private

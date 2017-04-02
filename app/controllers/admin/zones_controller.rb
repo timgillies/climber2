@@ -75,8 +75,13 @@ class Admin::ZonesController < ApplicationController
     @sub_child_zone = SubChildZone.new
     @zones = @facility.zones.page(params[:page])
     @facility_systems = facility_systems.page(params[:page])
-    @routes = @facility.routes.where('enddate > ? AND zone_id = ?', Date.today, @zone).page(params[:page]).per(50)
+    @routes = @facility.routes.where('enddate >= ? AND zone_id = ?', Date.today, @zone).page(params[:page]).per(50)
 
+    # Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
+    end
 
   end
 
@@ -107,9 +112,10 @@ class Admin::ZonesController < ApplicationController
 
 
   def destroy
+    @facility = Facility.find(params[:facility_id])
     Zone.find(params[:id]).destroy
     flash[:success] = "Zone deleted"
-    redirect_to :back
+    redirect_to admin_facility_zones_path(@facility)
   end
 
   private

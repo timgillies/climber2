@@ -107,6 +107,8 @@ GEM
     ffi (1.9.10)
     filterrific (2.0.5)
       rails (>= 3.1.0)
+    flatpickr_rails (1.0.0)
+      railties (>= 3.0)
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -351,6 +353,7 @@ DEPENDENCIES
   factory_girl_rails
   faker (= 1.6.6)
   filterrific
+  flatpickr_rails
   guard
   guard-minitest
   guard-rspec

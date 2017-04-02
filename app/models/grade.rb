@@ -16,6 +16,12 @@ class Grade < ActiveRecord::Base
 
   default_scope -> { order(grade_system_id: :asc, rank: :asc) }
 
+  scope :desc, ->  { order(rank: :desc) }
+
+  def self.with_grade_nearest_to(grade_rank)
+    order("abs(grades.rank - #{grade_rank})")
+  end
+
 
   scope :boulder, -> {
   where(:discipline => 'boulder')

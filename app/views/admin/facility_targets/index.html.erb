@@ -2,8 +2,8 @@
 
 <div class="container-fluid">
   <div class="row">
-      <div class="routelist-header bg-gray">
-        <h1 class="hidden-xs"><strong>Factility</strong>Targets </h1>
+      <div class="routelist-header bg-blue-gradient">
+        <h1 class="hidden-xs"><strong>Facility</strong>Targets </h1>
       </div>
     </div>
     <div class="row">
@@ -11,9 +11,13 @@
         <i>Targets will be used to indicate if you are
         above or below your desired route count.</i>
         <%= render 'admin/facility_targets/form', object: @facility_targets %>
-        <%= page_entries_info @facility_targets  %>
         <br/>
-        <br/>
-        <%= render 'admin/facility_targets/facility_targets', object: @facility_targets %>
+        <div id="facility_targets">
+          <div class="col-sm-12">
+            <div class="row">
+              <%= render 'admin/facility_targets/facility_targets', object: @facility_targets %>
+            </div>
+          </div>
+        </div>
     </div>
 </div>

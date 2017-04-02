@@ -12,6 +12,9 @@ class Tick < ActiveRecord::Base
   default_scope -> { order(date: :desc) }
 
 
+  scope :grade_desc, -> { joins(:grade).order('grades.rank desc') }
+
+
   scope :onsight, -> {
   where(:tick_type => "onsight")
   }

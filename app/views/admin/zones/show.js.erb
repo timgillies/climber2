@@ -1,0 +1,4 @@
+<% js = escape_javascript(
+  render(partial: 'admin/zones/routelist', locals: { routes: @routes })
+) %>
+$("#zone_route_list").html("<%= js %>");

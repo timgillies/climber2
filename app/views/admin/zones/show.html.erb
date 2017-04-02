@@ -2,23 +2,17 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="routelist-header bg-gray">
+    <div class="routelist-header bg-blue-gradient">
       <h1><strong>Zone</strong> </h1>
       <span class="btn-group pull-right no-print">
-
-        <h1 class="tab"><%= link_to admin_facility_zone_path(@facility, @zone), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                    :method => :delete do %>
-                    <i class="glyphicon glyphicon-trash"></i>
-                   <% end %>
-        </h1>
-
-      <span class="tab"><%= link_to "edit", "#editZoneModal", data: { toggle: "modal"}, class: "btn btn-close pull-right tab" %></span>
       <button type="button" class="btn btn-close dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Add sub-zones <span class="caret"></span>
+        Zone Actions <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
         <li><%= link_to "New sub-zone", "#newWallModal", data: { toggle: "modal"} %></li>
-        <li><%= link_to "New sub-child zone", "#newSubChildZoneModal", data: { toggle: "modal"} %></li>
+        <li><%= link_to "edit", "#editZoneModal", data: { toggle: "modal"} %></li>
+        <li><%= link_to "delete", admin_facility_zone_path(@facility, @zone), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                    :method => :delete %></li>
       </ul>
     </span>
 
@@ -33,7 +27,7 @@
         <% end %>
       </div>
       <div class="row">
-        <%= render 'admin/routes/list', object: @routes %>
+        <%= render 'admin/zones/routelist', object: @routes %>
       </div>
     </div>
     <div class="col-sm-6">

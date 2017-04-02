@@ -163,10 +163,11 @@ a {
 
 .bg-blue-gradient {
   background-color: #eee;
-  background: linear-gradient(to right, #00a69c, #1b75bb);
+  background: linear-gradient(60deg, #e32666, #d7348c);
   padding: 20px;
   border-radius: 4px;
   color: white;
+  box-shadow: 2px 2px 2px #aaa;
 }
 
 .bg-dark-gray {
@@ -190,7 +191,7 @@ a {
     font-weight: 200;
     display: inline;
     font-size: 2.0em;
-    color: #444;
+    color: #fff;
   }
 }
 
@@ -1339,7 +1340,7 @@ input {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   li {
-    background-color: #ccc;
+    background-color: #ddd;
     margin-bottom: 10px;
     border-left: 15px solid #444;
     position: relative;
@@ -1362,6 +1363,46 @@ input {
 
     }
 
+
+  }
+
+
+  .circle {
+    height: 45px;
+    width: 45px;
+    font-size: 25px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%; /* may require vendor prefixes */
+    background: linear-gradient(60deg, #1b75bb, #00b1ff);
+    color: white;
+    position: absolute;
+    line-height: 45px;
+  }
+
+  .large-circle {
+    height: 75px;
+    width: 75px;
+    font-size: 25px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%; /* may require vendor prefixes */
+    background: linear-gradient(60deg, #1b75bb, #00b1ff);
+    color: white;
+    position: absolute;
+    .text {
+      font-size: 12px;
+      margin-top: -10px !important;
+      position: relative;
+      display: block;
+    }
+  }
+
+  .responsive {
+
+    position: sticky;
 
   }
 
@@ -1529,11 +1570,25 @@ input {
   }
 
   .date-list li {
-    background-color: #fff;
+
     color: #fff;
-    border-left: 15px solid #fff;
+    background-color: #eee;
+    border-left: #aaa;
     h3 {
       color: #888;
+    }
+    .ticklist {
+      li {
+
+        color: #fff;
+        background-color: #fff;
+        border-left: #aaa;
+        box-shadow: none;
+        margin-left: -40px;
+        h3 {
+          color: #888;
+        }
+      }
     }
   }
 }
@@ -1543,7 +1598,7 @@ input {
     font-family: 'Montserrat', sans-serif;
     display: inline;
     font-size: 2.0em;
-    color: #444;
+    color: #fff;
     text-transform: uppercase;
     font-weight: 200;
   }
@@ -1641,7 +1696,7 @@ span.picture {
 }
 
 .glyphicon-trash {
-  color: #f3817f;
+  color: #888;
   transition-duration: 0.25s;
 }
 
