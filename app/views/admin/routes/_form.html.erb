@@ -32,7 +32,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <%= f.label :user_id, "Setter*", class: "sr-only" %>
+        <%= f.label :user_id, "Setter*" %>
         <div class="route-form">
           <div id="donate">
             <% @facilitysetters.each do |fs| %>
@@ -168,7 +168,7 @@
           <% if params[:action] == "edit" %>
             <%= f.date_field :name, params[:setdate] ? { :value=> params[:setdate] , class: 'form-control' } : { value: f.object.setdate, class: 'form-control' } %>
           <% else %>
-            <%= f.date_field :setdate, :value => Date.current , class: 'form-control', id: 'setdate-input' %>
+            <%= f.date_field :setdate, :value => Date.current , class: 'form-control' %>
           <% end %>
 
         </div>
