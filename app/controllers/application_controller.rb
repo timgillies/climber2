@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       if current_user.role == "site_admin"
         @userfacilities = Facility.all
       else
-        @userfacilities = current_user.facility_relationships.all
+        @userfacilities = current_user.facility_relationships.includes(:facility_roles).where.not(facility_roles: {name: 'climber'}).all
       end
     end
   end

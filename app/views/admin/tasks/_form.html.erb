@@ -1,11 +1,11 @@
 <div class="col-sm-12 gray-labels">
   <div class="form-gray">
-    <h1>Task info</h1>
+    <h1>Task details</h1>
   </div>
   <br/>
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-            <%= f.label :task_type,"Type" %>
+            <%= f.label :task_type,"Type", class: "sr-only" %>
             <div class="route-form">
               <div id="donate">
                 <% @task_type.each do |fs| %>
@@ -15,13 +15,14 @@
                 <% end %>
               </div>
             </div>
-
       </div>
     </div>
+
+    <br>
       <% if user_signed_in? %>
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :assignee_id,"Assigned To" %>
+          <%= f.label :assignee_id,"Assigned To", class: "sr-only" %>
           <div class="route-form">
             <div id="donate">
               <% @facilitysetters.each do |fs| %>
@@ -36,6 +37,8 @@
         </div>
       </div>
       <% end %>
+
+      <br>
 
     <div class="row">
       <div class="col-xs-12 col-sm-6">

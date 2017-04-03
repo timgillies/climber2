@@ -17,7 +17,14 @@
   </div>
   <br>
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12">
+        <%= render 'facilities/zonedist', object: @zones %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
       <div class="row">
         <%= div_for @zones do |fz| %>
           <%= render 'admin/zones/zone', object: @zones, :fz => fz %>

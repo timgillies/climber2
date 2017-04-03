@@ -16,6 +16,13 @@
 <div class="gray-labels">
   <br>
   <div class="bg-white">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.label :name, "Route name" %>
+        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
+      </div>
+    </div>
+    
     <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
     <div class="row">
       <div class="col-xs-12">
@@ -24,12 +31,7 @@
     </div>
 
     <% else %>
-    <div class="row">
-      <div class="col-xs-12">
-        <%= f.label :name, "Route name" %>
-        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
-      </div>
-    </div>
+
     <div class="row">
       <div class="col-xs-12">
         <%= f.label :user_id, "Setter*" %>
@@ -45,6 +47,8 @@
       </div>
     </div>
     <% end %>
+
+
 
       <div class="row">
         <div class="col-xs-12">
@@ -166,7 +170,7 @@
         <div class="col-xs-6">
           <%= f.label :setdate, "Set Date*" %>
           <% if params[:action] == "edit" %>
-            <%= f.date_field :name, params[:setdate] ? { :value=> params[:setdate] , class: 'form-control' } : { value: f.object.setdate, class: 'form-control' } %>
+            <%= f.date_field :setdate, params[:setdate] ? { :value=> params[:setdate] , class: 'form-control' } : { value: f.object.setdate, class: 'form-control' } %>
           <% else %>
             <%= f.date_field :setdate, :value => Date.current , class: 'form-control' %>
           <% end %>

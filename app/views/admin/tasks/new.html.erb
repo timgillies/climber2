@@ -2,10 +2,16 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 bg-gray">
-      <div class="routelist-header">
-        <h1>New Task</h1>
-      </div>
+    <div class="gray-labels routeform-header bg-blue-gradient">
+      <h1><strong>Task</strong>Info</h1>
+    </div>
+    <br>
+    <% if params[:route_id] %>
+    <%= render(partial: 'routes/route', locals: { route: Route.find(params[:route_id]) }) %>
+    <% end %>
+    <br>
+    <div class="col-sm-12 bg-white">
+
       <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
 
       <%= render 'shared/error_messages', object: f.object %>
