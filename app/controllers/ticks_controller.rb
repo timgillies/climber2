@@ -27,7 +27,7 @@ class TicksController < ApplicationController
 
     if @tick.save
       flash[:success] = "Ascent Saved!"
-      redirect_to user_routes_path(current_user)
+      redirect_to user_ticks_path(current_user)
     else
       render 'new'
     end

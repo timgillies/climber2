@@ -15,7 +15,7 @@
 
 <div class="gray-labels">
   <br>
-  <div class="bg-gray">
+  <div class="bg-white">
     <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
     <div class="row">
       <div class="col-xs-12">
@@ -26,11 +26,17 @@
     <% else %>
     <div class="row">
       <div class="col-xs-12">
-        <%= f.label :user_id, "Setter*" %>
+        <%= f.label :name, "Route name" %>
+        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.label :user_id, "Setter*", class: "sr-only" %>
         <div class="route-form">
           <div id="donate">
             <% @facilitysetters.each do |fs| %>
-              <label class="blue"><%= f.radio_button :user_id, fs[1], params[:assignee_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.user_id.eql?(fs[1].to_i) }  %>
+              <label class="gray"><%= f.radio_button :user_id, fs[1], params[:assignee_id].to_i == fs[1].to_i ? { checked: true } : {checked: f.object.user_id.eql?(fs[1].to_i) }  %>
                 <span><%= fs[0] %></span>
               </label>
             <% end %>
@@ -39,12 +45,7 @@
       </div>
     </div>
     <% end %>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :name, "Route name" %>
-          <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
-        </div>
-      </div>
+
       <div class="row">
         <div class="col-xs-12">
           <%= f.label :color_hex, "Color* " %><%= link_to " manage colors", admin_facility_custom_colors_path(@facility) %>
@@ -160,7 +161,7 @@
     </div>
 
 
-
+<br>
       <div class="row">
         <div class="col-xs-6">
           <%= f.label :setdate, "Set Date*" %>

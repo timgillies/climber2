@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    flatpickr("#setdate-input", {
+        dateFormat: 'm/d/Y',
+        defaultDate: "today"
+    });
+  });
+</script>
+
 
 <% if params[:action] == 'new' %>
 <div id="new_route">
@@ -15,10 +24,24 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-xs-3">
+        <%= f.label :date, "Date*", class: "sr-only" %>
+        <% if params[:action] == "edit" %>
+          <%= f.date_field :date, class: 'form-control' %>
+        <% else %>
+          <%= f.date_field :date, :value => Date.current , class: 'form-control', id: 'setdate-input' %>
+        <% end %>
+
+      </div>
+    </div>
+
+    <br>
+
 
     <div class="row">
       <div class="col-xs-12">
-        <%= f.label :grade_id, "Grade*" %>
+        <%= f.label :grade_id, "Grade*", class: "sr-only" %>
         <div class="route-form">
           <div id="donate">
             <% GradeSystem.where(category: 'outdoor').all.each do |fs| %>
@@ -51,45 +74,12 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <%= f.label :tick_type, "Ascent" %>
-        <div class="route-form">
-          <div id="donate">
-            <% tick_types.each do |fs| %>
-              <label class="gray"><%= f.radio_button :tick_type, fs[1], params[:tick_type] == fs[1] ? { checked: true } : {checked: f.object.tick_type.eql?(fs[1]) } %>
-                <span><%= fs[0] %></span>
-              </label>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <%= f.label :lead, "Climb Type" %>
-        <div class="route-form">
-          <div id="donate">
-            <% rope_tick_types.each do |fs| %>
-              <label class="gray"><%= f.radio_button :lead, fs[1], params[:lead] == fs[1] ? { checked: true } : {checked: f.object.lead.eql?(fs[1]) } %>
-                <span><%= fs[0] %></span>
-              </label>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :name, "Route name" %>
-          <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :color_hex, "Color" %>
+          <%= f.label :color_hex, "Color", class: "sr-only" %>
           <div class="route-form">
             <div id="donate">
               <div id="donate-colors">
@@ -107,33 +97,50 @@
         </div>
       </div>
 
-
-      <div class="row">
-        <div class="col-xs-3">
-          <%= f.label :date, "Date*" %>
-          <% if params[:action] == "edit" %>
-            <%= f.date_field :date, class: 'form-control' %>
-          <% else %>
-            <%= f.date_field :date, :value => Date.current , class: 'form-control' %>
-          <% end %>
-
-        </div>
-      </div>
-
-
-
-
-
-
-
-
+      <br>
 
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :image,"Photo" %><span class="badge badge-today">new!</span>
-          <%= f.file_field :image, {class: 'form-control'}  %>
+          <%= f.label :tick_type, "Ascent Type", class: "sr-only" %>
+          <div class="route-form">
+            <div id="donate">
+              <% tick_types.each do |fs| %>
+                <label class="gray"><%= f.radio_button :tick_type, fs[1], params[:tick_type] == fs[1] ? { checked: true } : {checked: f.object.tick_type.eql?(fs[1]) } %>
+                  <span><%= fs[0] %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.label :lead, "Climb Type", class: "sr-only" %>
+          <div class="route-form">
+            <div id="donate">
+              <% rope_tick_types.each do |fs| %>
+                <label class="gray"><%= f.radio_button :lead, fs[1], params[:lead] == fs[1] ? { checked: true } : {checked: f.object.lead.eql?(fs[1]) } %>
+                  <span><%= fs[0] %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
       <br>
 
 
@@ -152,6 +159,19 @@
             <div class="col-xs-12">
               <%= f.label :description, "Description" %>
               <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.label :name, "Route name" %>
+              <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.label :image,"Photo" %><span class="badge badge-today">new!</span>
+              <%= f.file_field :image, {class: 'form-control'}  %>
             </div>
           </div>
 

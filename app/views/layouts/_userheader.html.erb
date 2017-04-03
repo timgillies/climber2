@@ -29,8 +29,8 @@
           <ul class="nav navbar-nav navbar-left">
             <li class="<%= 'active' if current_page?('#') %>"><%= link_to "HOME", '#' %></li>
             <li class="<%= 'active' if current_page?('#') %>"><%= link_to "PROJECTS", '#' %></li>
-            <li class="<%= 'active' if current_page?('#') %> hidden-xs"><%= link_to "TICK LIST", user_ticks_path(current_user) %></li>
-            <li class="<%= 'active' if current_page?('#') %> hidden-xs"><%= link_to "BROWSE ROUTES", user_routes_path(current_user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "TICK LIST", user_ticks_path(current_user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "BROWSE ROUTES", user_routes_path(current_user) %></li>
             <li class="<%= 'active' if current_page?('#') %>"><%= link_to "NEW ASCENT", new_user_tick_path(current_user) %></li>
             <li class="<%= 'active' if current_page?('#') %>"><%= link_to "MY FACILITIES", user_facility_roles_path(current_user) %></li>
             <li class="dropdown">
