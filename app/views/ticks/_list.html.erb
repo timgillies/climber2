@@ -23,6 +23,11 @@
         <br>
         <br>
         <div class="container-fluid">
+          <div class="hidden-sm hidden-md hidden-lg">
+            <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
+            <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
+            <br>
+          </div>
           <div class='col-sm-6'>
           <% @ticks.where(date: tick_date).each do |f| %>
           <ol class="ticklist">
@@ -107,12 +112,10 @@
   <% end %>
 </div>
 <div class="col-sm-6">
-<div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
-
-
-
-<div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
-
+  <div class="hidden-xs">
+    <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
+    <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
+  </div>
 </div>
 </div>
 </li>

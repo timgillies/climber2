@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400|Raleway:200,300,400|Roboto:300,400|Architects+Daughter|Permanent+Marker');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400|Roboto:300,400|Architects+Daughter');
+@import 'bootstrap-datetimepicker';
 
 /* Don't print link hrefs */
 @media print {
@@ -156,6 +157,13 @@ a {
 
 .bg-gray {
   background-color: #ccc;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px #aaa;
+}
+
+.bg-form-gray {
+  background-color: #888;
   padding: 20px;
   border-radius: 4px;
   box-shadow: 2px 2px 2px #aaa;
@@ -620,6 +628,9 @@ input {
   margin: 0;
   h1 {
     font-size: 2.7em;
+    @media (max-width: 768px) {
+      font-size: 1.7em;
+    }
     letter-spacing: -2px;
     margin-bottom: 5px;
     text-align: left;
@@ -1300,7 +1311,7 @@ input {
       letter-spacing: -0.5px;
       background-color: #fff;
       color: #fff;
-      font-weight: 400;
+      font-weight: 200;
       box-shadow: 2px 2px 2px #aaa;
 
 
@@ -1308,7 +1319,7 @@ input {
 
   #donate label span {
       text-align:center;
-      font-size: 14px;
+      font-size: 16px;
       padding: 12px;
       display: block;
 
@@ -1422,7 +1433,7 @@ input {
     border-radius: 50%; /* may require vendor prefixes */
     background: linear-gradient(60deg, #1b75bb, #00b1ff);
     color: white;
-    position: absolute;
+    margin: 20px;
     .text {
       font-size: 12px;
       margin-top: -10px !important;
@@ -1921,7 +1932,7 @@ span.picture {
       margin-top: 3px;
       margin-bottom: 3px;
       font-size: 1.0em;
-      @media (max-width: 420px) {
+      @media (max-width: 768px) {
           font-size: 1.3em;
       }
     }

@@ -1,6 +1,6 @@
 <script type="text/javascript">
   $(document).ready(function(){
-    flatpickr("#setdate-input-tick", {
+    flatpickr("#setdate-input", {
         dateFormat: 'm/d/Y',
         defaultDate: "today"
     });
@@ -25,12 +25,12 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-3">
+      <div class="col-xs-12">
         <%= f.label :date, "Date*", class: "sr-only" %>
         <% if params[:action] == "edit" %>
           <%= f.date_field :date, class: 'form-control' %>
         <% else %>
-          <%= f.date_field :date, :value => Date.current , class: 'form-control', id: 'setdate-input-tick' %>
+          <%= f.date_field :date, :value => Date.current , class: 'form-control' %>
         <% end %>
 
       </div>
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-
+    <br>
 
 
       <div class="row">

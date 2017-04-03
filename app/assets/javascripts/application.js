@@ -12,3 +12,4 @@
 //= require highcharts/highcharts-more
 //= require highcharts/modules/exporting
 //= require flatpickr
+//= require bootstrap-datetimepicker
