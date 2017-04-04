@@ -43,8 +43,6 @@ gem 'omniauth-facebook'
 gem 'paperclip', "~> 5.0.0"
 gem 'aws-sdk', '~> 2.3'
 gem 'jquery-minicolors-rails'
-gem 'flatpickr_rails'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

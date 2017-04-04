@@ -28,12 +28,6 @@ class Route < ActiveRecord::Base
 
 
 
-
-
-
-
-
-
 # checks if route is active or expired.  true = active
   def active?
     (self.enddate > Date.today if self.enddate) || (self.enddate.nil?)
@@ -83,7 +77,6 @@ class Route < ActiveRecord::Base
     :with_setdate_gte,
     :with_setdate_lt,
     :with_facility_id,
-
   ]
   )
 

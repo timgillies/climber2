@@ -1,12 +1,3 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-    flatpickr("#setdate-input", {
-        dateFormat: 'm/d/Y',
-        defaultDate: "today"
-    });
-  });
-</script>
-
 <%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => false }, authenticity_token: true, remote: false do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
@@ -22,7 +13,7 @@
         <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
       </div>
     </div>
-    
+
     <% if (@facility_role_access.present? && @facility_role_access.name == 'guest') || (@facility_role_access.present? && @facility_role_access.name == 'setter') %>
     <div class="row">
       <div class="col-xs-12">

@@ -57,7 +57,6 @@ class Admin::FacilityTargetsController < ApplicationController
           format.js
         end
       else
-        flash[:success] = "Oops, Please make sure you filled out the form correctly"
         render 'index'
       end
     end

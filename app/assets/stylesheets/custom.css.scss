@@ -1,7 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Montserrat:200,400|Roboto:300,400|Architects+Daughter');
-@import 'bootstrap-datetimepicker';
 
 /* Don't print link hrefs */
 @media print {
@@ -2044,6 +2043,22 @@ span.picture {
   &:hover {
     color: $gray-light;
   }
+}
+
+.btn-join {
+  margin-top: 80px;
+  border: none;
+  background: linear-gradient(60deg, #e32666, #d7348c);
+  width: 200px;
+  color: #fff;
+}
+
+.btn-signin {
+  margin-top: 25px;
+  border: none;
+  background: linear-gradient(60deg, #e32666, #d7348c);
+  width: 200px;
+  color: #fff;
 }
 
 .btn-submit{

@@ -33,6 +33,14 @@ $('#hamburger').click(function() {
       <%= image_tag("homepage-chalkbag-logo.jpg", alt: "hello", class: "img-responsive") %>
       <div class="carousel-caption">
 
+        <% unless user_signed_in? %>
+
+        <%= link_to "Join", root_path, class: "btn btn-join btn-lg" %>
+        <%= link_to "sign in", root_path, class: "btn btn-signin btn-lg" %>
+
+        <% end %>
+
+
       </div>
     </div>
 

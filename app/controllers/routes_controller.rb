@@ -18,7 +18,7 @@ class RoutesController < ApplicationController
         with_setter_id: options_for_setter_select,
         with_status_id: Route.options_for_status_select
       },
-      persistence_id: 'shared_key',
+      persistence_id: true,
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.
     # You can paginate with will_paginate or kaminari.
