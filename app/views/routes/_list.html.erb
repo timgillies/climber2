@@ -52,18 +52,18 @@
           <div class="hidden-xs hidden-sm no-print">
             <div class="col-md-2">
               <% if f.active? %>
-                <%= button_to "add project",  "#", class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
+                <%= link_to "add project",  "#", class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
               <% else %>
-                <%= button_to "remove project",  "#", class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
+                <%= link_to "remove project",  "#", class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
               <% end %>
             </div>
 
             <div class="col-md-2 no-print">
-              <%= button_to "quick tick",  "#", class: 'btn btn-tag btn-xs', method: :create_task, remote: false %>
+              <%= link_to "quick tick",  "#", class: 'btn btn-expire btn-xs', method: :create_task, remote: false %>
             </div>
 
             <div class="col-md-2 no-print">
-              <%= link_to "add ascent",  user_facility_route_path(current_user, f.facility, f), class: 'btn btn-tag btn-xs', remote: false %>
+              <%= link_to "add ascent",  user_facility_route_path(current_user, f.facility, f), class: 'btn btn-expire btn-xs', remote: false %>
             </div>
           </div>
         </div>
@@ -131,14 +131,14 @@
             <br/>
             <div class="col-xs-6 col-sm-6">
               <% if f.active? %>
-                <%= button_to "add project",  "#", class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
+                <%= link_to "add project",  "#", class: 'btn btn-expire btn-xs', method: :expire, remote: true %>
               <% else %>
-                <%= button_to "remove project",  "#", class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
+                <%= link_to "remove project",  "#", class: 'btn btn-expired btn-xs', method: :expire, remote: true %>
               <% end %>
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "add ascent",  "#", class: 'btn btn-tag btn-xs', method: :expire, remote: false %>
+              <%= link_to "add ascent",  "#", class: 'btn btn-expire btn-xs', method: :expire, remote: false %>
             </div>
           </div>
         </div>
