@@ -18,14 +18,14 @@ class RoutesController < ApplicationController
         with_setter_id: options_for_setter_select,
         with_status_id: Route.options_for_status_select
       },
-      persistence_id: true,
+      persistence_id: false,
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.
     # You can paginate with will_paginate or kaminari.
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @routes = Route.where(status: nil, facility_id: @userfacilities_check).filterrific_find(@filterrific).page(params[:page]).per(50)
+    @routes = Route.where(status: nil).filterrific_find(@filterrific).page(params[:page]).per(50)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

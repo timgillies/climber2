@@ -83,7 +83,7 @@ class Route < ActiveRecord::Base
   # define ActiveRecord scopes for
   # :search_query, :sorted_by, :with_country_id, and :with_created_at_gte
 
-  scope :search_query, lambda { |query|
+scope :search_query, lambda { |query|
   # Searches the students table on the 'first_name' and 'last_name' columns.
   # Matches using LIKE, automatically appends '%' to each term.
   # LIKE is case INsensitive with MySQL, however it is case
@@ -102,7 +102,7 @@ class Route < ActiveRecord::Base
   # change the number of OR conditions.
   num_or_conds = 1
   where("routes.id = ?", terms)
-}
+  }
 
 scope :sorted_by, lambda { |sort_option|
   # extract the sort direction from the param value.
@@ -165,12 +165,6 @@ scope :sorted_by, lambda { |sort_option|
       ['Newest first (set date)', 'setdate_desc'],
       ['Oldest first (set date)', 'setdate_asc'],
 
-    ]
-  end
-
-  def self.options_for_status_select
-    [
-      ['Active', Date.today ]
     ]
   end
 

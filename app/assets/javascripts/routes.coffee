@@ -3,8 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-
-
 jQuery ->
   $('#route_wall_id').parent().show()
   $('#route_sub_child_zone_id').parent().show()

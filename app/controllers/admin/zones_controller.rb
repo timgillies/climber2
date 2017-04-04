@@ -77,11 +77,7 @@ class Admin::ZonesController < ApplicationController
     @facility_systems = facility_systems.page(params[:page])
     @routes = @facility.routes.where('enddate >= ? AND zone_id = ?', Date.today, @zone).page(params[:page]).per(50)
 
-    # Respond to html for initial page load and to js for AJAX filter updates.
-    respond_to do |format|
-      format.html
-      format.js
-    end
+
 
   end
 

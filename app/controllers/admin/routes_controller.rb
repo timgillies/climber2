@@ -169,6 +169,7 @@ class Admin::RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @route.update_attribute(:enddate, Date.yesterday)
     redirect_to(admin_facility_routes_path(@facility))
+
   end
 
   def mass_expire_2

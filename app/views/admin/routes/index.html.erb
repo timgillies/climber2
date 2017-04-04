@@ -103,9 +103,6 @@
     <% end %>
 </div>
 <br />
-<div id="filterrific_results_admin">
-<%= render(
-partial: 'admin/routes/list',
-locals: { routes: @routes }
-) %>
-</div>
+
+
+<%= render( 'admin/routes/list', routes: @routes )%>

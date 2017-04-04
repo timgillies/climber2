@@ -14,9 +14,6 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "bootstrap-select": "^1.10.0",
-    "bootstrap-social": "^5.0.0",
-  },
+
   "private": true
 }
