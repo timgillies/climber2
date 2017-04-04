@@ -35,8 +35,8 @@ $('#hamburger').click(function() {
 
         <% unless user_signed_in? %>
 
-        <%= link_to "Join", root_path, class: "btn btn-join btn-lg" %>
-        <%= link_to "sign in", root_path, class: "btn btn-signin btn-lg" %>
+        <%= link_to "Join", new_user_registration_path, class: "btn btn-join btn-lg" %>
+        <%= link_to "sign in", new_user_session_path, class: "btn btn-signin btn-lg" %>
 
         <% end %>
 
