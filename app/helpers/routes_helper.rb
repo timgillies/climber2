@@ -85,26 +85,26 @@ def route_grades
 end
 
 
-def previous_next
-  if Grade.previous(@route).present? && Grade.next(@route).present?
+def previous_next(route)
+  if Grade.previous(route).present? && Grade.next(route).present?
     [
-      [Grade.previous(@route).grade, Grade.previous(@route).id.to_i],
-      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i],
-      [Grade.next(@route).grade, Grade.next(@route).id.to_i]
+      [Grade.previous(route).grade, Grade.previous(route).id.to_i],
+      [Grade.actual(route).grade, Grade.actual(route).id.to_i],
+      [Grade.next(route).grade, Grade.next(route).id.to_i]
     ]
-  elsif Grade.previous(@route).present?
+  elsif Grade.previous(route).present?
     [
-      [Grade.previous(@route).grade, Grade.previous(@route).id.to_i],
-      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i]
+      [Grade.previous(route).grade, Grade.previous(route).id.to_i],
+      [Grade.actual(route).grade, Grade.actual(route).id.to_i]
     ]
-  elsif Grade.next(@route).present?
+  elsif Grade.next(route).present?
     [
-      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i],
-      [Grade.next(@route).grade, Grade.next(@route).id.to_i]
+      [Grade.actual(route).grade, Grade.actual(route).id.to_i],
+      [Grade.next(route).grade, Grade.next(route).id.to_i]
     ]
   else
     [
-      [Grade.actual(@route).grade, Grade.actual(@route).id.to_i]
+      [Grade.actual(route).grade, Grade.actual(route).id.to_i]
     ]
   end
 end

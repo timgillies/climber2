@@ -12,11 +12,12 @@ class TicksController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @ticks = Tick.where(user_id: @user).page(params[:page])
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
+    @ticks = Tick.where(user_id: @user).page(params[:page]).per(5000000)
   end
 
   def create
+    @user = User.find(params[:user_id])
     @tick = current_user.ticks.build(tick_params)
     @tick.route_id = params[:route_id]
     @ticks = Tick.page(params[:page]) # makes "each" work in the partial
@@ -27,7 +28,7 @@ class TicksController < ApplicationController
 
     if @tick.save
       flash[:success] = "Ascent Saved!"
-      redirect_to user_ticks_path(current_user)
+      redirect_to user_routes_path(@user)
     else
       render 'new'
     end
@@ -62,6 +63,8 @@ class TicksController < ApplicationController
       render :edit
     end
   end
+
+
 
   private
 

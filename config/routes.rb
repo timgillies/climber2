@@ -18,7 +18,16 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :facility_roles
-    resources :routes
+    resources :routes do
+      member do
+        post :quick_flash #output path - expire_route/:id
+        post :quick_redpoint #output path - tagged_route/:id
+        post :quick_project 
+        post :quick_tick
+      end
+      resources :ticks
+    end
+
     resources :ticks
     resources :facilities do
       resources :routes do

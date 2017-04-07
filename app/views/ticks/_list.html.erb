@@ -58,7 +58,7 @@
                         <% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %>
                       </h2>
                       <% end %>
-                      <h3> | <%= f.tick_type %></h3>
+                      <h3> | <%= f.tick_type.humanize %></h3>
                     </span>
 
                   </div>
@@ -115,7 +115,6 @@
   <div class="hidden-xs">
     <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
     <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
-  </div>
 </div>
 </div>
 </li>

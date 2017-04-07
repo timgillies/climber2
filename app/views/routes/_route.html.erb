@@ -3,12 +3,11 @@
       <div class="container-fluid routelist routeshow">
         <div class="col-xs-12 bg-white">
           <% if route.color_hex? %>
-            <div style="border-left: 15px solid <%= route.color_hex %>">
-          <div>
-        <% end %>
-      </div>
-          <h1>
+            <div style="border-left: 15px solid <%= route.color_hex %>"></div>
+          <% end %>
+
             <span class="tab">
+            <h1>
               <% if route.color? %>
                 <%= link_to route.grade.grade + " "+ route.color.upcase , "#" %>
               <% elsif (color_name(route.color_hex, @facility)).nil? %>
@@ -16,7 +15,7 @@
               <% else %>
                 <%= link_to route.grade.grade + " "+ color_name(route.color_hex, @facility)[0].upcase , "#" %>
               <% end %>
-          </h1>
+            </h1>
           <h2 class="tab"> <%= route.name if route.name %></h2></span>
           <span class="pull-right hidden-xs">
             <% if route.user %>
@@ -27,7 +26,6 @@
               <% end %>
             <% end %>
           </span>
-        </div>
       <!-- Rating system
         <div class="row">
           <div class="col-sm-12">

@@ -83,7 +83,7 @@
       <div class="col-sm-12">
         <div class="route-form">
           <div id="donate">
-            <% previous_next.each do |fs| %>
+            <% previous_next(@route).each do |fs| %>
               <label class="gray"><%= f.radio_button :grade_vote_id, fs[1], params[:grade_vote_id] == fs[1] ? { checked: true } : {checked: f.object.grade_vote_id.eql?(fs[1]) } %>
                 <span><%= fs[0] %></span>
               </label>

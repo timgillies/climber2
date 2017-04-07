@@ -77,6 +77,8 @@ class Route < ActiveRecord::Base
     :with_setdate_gte,
     :with_setdate_lt,
     :with_facility_id,
+    :with_zone_id_checkbox,
+    :with_facility_id_checkbox
   ]
   )
 
@@ -156,6 +158,14 @@ scope :sorted_by, lambda { |sort_option|
 
   scope :with_setdate_lt, lambda { |reference_time|
     where('routes.setdate <= ?', reference_time)
+  }
+
+  scope :with_zone_id_checkbox, lambda { |zone_ids_checkbox|
+      where( 'zone_id = ?', zone_ids_checkbox)
+  }
+
+  scope :with_facility_id_checkbox, lambda { |facility_ids_checkbox|
+      where( 'facility_id = ?', facility_ids_checkbox)
   }
 
   def self.options_for_sorted_by

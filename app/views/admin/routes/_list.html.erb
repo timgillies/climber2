@@ -55,14 +55,14 @@
           <div class="hidden-xs hidden-sm no-print">
             <div class="col-md-2">
               <% if f.active? %>
-                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire, remote: true %>
+                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: true %>
               <% else %>
-                <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-sm', method: :expire, remote: true %>
+                <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-md', method: :expire, remote: true %>
               <% end %>
             </div>
 
             <div class="col-md-2 no-print">
-              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :create_task, remote: false %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :create_task, remote: false %>
             </div>
           </div>
           <div class="col-xs-2 col-sm-1 no-print">
@@ -132,14 +132,14 @@
             <br/>
             <div class="col-xs-6 col-sm-6">
               <% if f.active? %>
-                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire, remote: true %>
+                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: true %>
               <% else %>
-                <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-sm', method: :expire, remote: true %>
+                <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-md', method: :expire, remote: true %>
               <% end %>
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire, remote: false %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: false %>
             </div>
           </div>
         </div>

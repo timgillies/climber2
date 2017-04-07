@@ -11,9 +11,10 @@
   </div>
   </div>
 </div>
+<%= form_for_filterrific @filterrific do |f| %>
 <div class="collapse" id="routeFilters">
   <br>
-    <%= form_for_filterrific @filterrific do |f| %>
+
       <div class="container-fluid bg-gray">
         <div class="filter">
           <div class="row">
@@ -99,8 +100,30 @@
           </div>
         </div>
       </div>
-    <% end %>
+
+
 </div>
+
+<br>
+
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="route-form">
+      <div id="donate">
+        <% Zone.where(facility_id: @userfacilities_check).each do |zone| %>
+          <label class="green"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
+            <span><%= zone.name %></span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% end %>
 <br />
 <%= render(
 partial: 'routes/list',

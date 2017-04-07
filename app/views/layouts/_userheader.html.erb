@@ -5,7 +5,12 @@
       <div class="col-sm-12">
         <p class="navbar-btn">
 
-        </p><h1><%= current_user.name if current_user.name %></h1>
+        </p>
+        <h1><% if current_user.image? %><%= image_tag current_user.image ,:class=> "img-profile-medium" %>
+        <% else %>
+        <%= image_tag current_user.avatar.url(:thumb), class: "img-profile-medium" %>
+        <% end %>
+        <%= current_user.name if current_user.name %></h1>
       </div>
     </div>
   </div>

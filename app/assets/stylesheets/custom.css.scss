@@ -99,6 +99,14 @@ a {
 
 .tab {
   margin-left: 20px;
+
+}
+
+.mobile-tab {
+  margin-left: 20px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    }
 }
 
 .doubletab {
@@ -450,12 +458,24 @@ textarea[type=text] {
   }
 }
 
+.modal {
+  opacity: 0.7;
+}
+
 .modal-header {
-  background-image: url(asset-path('white_vector_banner.jpg'));
+  background: #444;
+  opacity: .7;
   background-size: cover;
   background-position: center;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  color: white;
+
+}
+
+.modal-body {
+  background: #eee;
+  margin: 5px;
 }
 
 .close {
@@ -631,12 +651,12 @@ input {
       font-size: 1.7em;
     }
     letter-spacing: -2px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     text-align: left;
     font-weight: 200;
-    border-bottom: 1px solid $gray-lighter;
     text-transform: uppercase;
     color: #444;
+    display: inline-block;
     h3 {
       text-align: right;
     }
@@ -990,6 +1010,16 @@ input {
  background-size: cover;
  display: inline;
  margin-right: 10px;
+
+}
+
+.img-profile-medium{
+ width: 50px;
+ height: 50px;
+ background-size: cover;
+ display: inline;
+ margin-right: 10px;
+ vertical-align: bottom;
 
 }
 
@@ -1351,8 +1381,9 @@ input {
   }
 
   #donate .green {
-      background-color:#2ECC71;
+      background: linear-gradient(60deg, #00adee, #1b75bb);
       color:#fff;
+      font-size: 8px;
   }
   #donate .gray {
     background-color: #ddd;
@@ -1442,6 +1473,47 @@ input {
     }
   }
 
+  .tick-circle {
+    height: 50px;
+    width: 50px;
+    font-size: 18px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%; /* may require vendor prefixes */
+    background: linear-gradient(60deg, #2bb573, #8cc53f);
+    color: white;
+    margin: 20px;
+    .text {
+      font-size: 8px;
+      margin-top: -4px !important;
+      position: relative;
+      display: block;
+    }
+  }
+
+  .project {
+    background: linear-gradient(60deg, #185a9d, #43cea2);
+
+  }
+
+  .flash {
+    background: linear-gradient(60deg, #ed2a7b, #faaf40);
+  }
+
+  .redpoint {
+    background: linear-gradient(60deg, #4776e6, #8e54e9);
+
+  }
+
+  .attempt {
+    background: linear-gradient(60deg, #9d50bb, #6e48aa);
+
+  }
+
+
+
+
   .responsive {
 
     position: sticky;
@@ -1487,11 +1559,12 @@ input {
   h2 {
     font-size: 1.2em;
     letter-spacing: -0.5px;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     font-weight: 300;
     text-align: left;
     display: inline;
-    color: #444;
+    color: #777;
   }
 
   h3 {
@@ -1559,6 +1632,20 @@ input {
     margin-top: 5px;
     margin-bottom: 5px;
   }
+
+  .divider-line-light {
+    border-top: 1px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .right-divider-line-light {
+    border-right: 1px solid #ccc;
+    margin-right: 5px;
+    margin-left: 5px;
+    display: inline;
+  }
+
   .red {
     border-left: 15px solid rgba(239, 83, 80, 1);
   }
@@ -1775,8 +1862,10 @@ span.picture {
     background-color: rgba(0,0,0,.8);
     border: none;
     margin-top: -1px;
+    margin-bottom: -10px;
     @media (min-width: 768px) {
       padding-top: 7px;
+
     }
 }
 
@@ -2257,29 +2346,30 @@ span.picture {
 }
 
 .btn-expire, .btn-expire:hover{
-  background: #ddd;
+    background: linear-gradient(60deg, #888, #bbb);
+  border: none;
   opacity: 1;
-  color: #888;
+  color: #eee;
   letter-spacing: 0.5px;
-  opacity: 1;
   display: block;
-  font-family: 'Architects Daughter', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 200;
   text-transform: uppercase;
+  box-shadow: 2px 2px 2px #aaa;
+
   a {
-    color: #888;
+    color: #eee;
+    display: block;
   }
 
 }
-.btn-expire:hover{
-  color: #f3817f;
-}
+
 
 .btn-expired, .btn-expired:hover{
   background: #f3817f;
   color: #ffffff;
   display: inline-block;
-  font-family: 'Architects Daughter', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
 }
 

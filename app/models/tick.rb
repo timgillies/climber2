@@ -52,6 +52,19 @@ class Tick < ActiveRecord::Base
     self.where(user_id: user.id).first.created_at
   end
 
+  def self.attempt_overall_count(route, user)
+    self.where(route_id: route.id, user_id: user.id ).count
+  end
+
+  def self.send_overall_count(route, user, project)
+    self.where(route_id: route.id, user_id: user.id ).where.not(tick_type: project).count
+  end
+
+  def self.send_type_count(route, user, tick_type)
+    self.where(route_id: route.id, user_id: user.id, tick_type: tick_type ).count
+  end
+
+
 
 
 

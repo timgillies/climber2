@@ -36,7 +36,6 @@ def set_facility_role_access
     if ((params[:facility_id].blank?) && (params[:controller] == 'admin/facilities')) || (params[:facility_id].present?)
       facility_controller_check
       @route = Route.new
-      facility_controller_check
       @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
       @r_value = ric_values
       @i_value = ric_values
@@ -100,27 +99,22 @@ end
 
   # Roles for "before_action" filters
   def head_setter_role
-    facility_controller_check
     role_redirect('head_setter')
   end
 
   def setter_role
-    facility_controller_check
     role_redirect('setter')
   end
 
   def facility_management_role
-    facility_controller_check
     role_redirect('facility_management')
   end
 
   def marketing_role
-    facility_controller_check
     role_redirect('marketing')
   end
 
   def guest_role
-    facility_controller_check
     role_redirect('guest')
   end
 

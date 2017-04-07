@@ -5,6 +5,7 @@ class RoutesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
+    @tick = Tick.new
     @userfacilities_check = current_user.facility_relationships.all
     @filterrific = initialize_filterrific(
       Route,
@@ -125,6 +126,40 @@ class RoutesController < ApplicationController
     flash[:success] = "Route deleted"
     redirect_to :back
   end
+
+  def quick_flash
+    @user = User.find(params[:user_id])
+    @route = Route.find(params[:id])
+    @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'flash', date: Date.current)
+    @tick.save
+    redirect_to (user_routes_path(@user))
+  end
+
+  def quick_redpoint
+    @user = User.find(params[:user_id])
+    @route = Route.find(params[:id])
+    @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'redpoint', date: Date.current)
+    @tick.save
+    redirect_to (user_routes_path(@user))
+  end
+
+  def quick_project
+    @user = User.find(params[:user_id])
+    @route = Route.find(params[:id])
+    @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'project', date: Date.current)
+    @tick.save
+    redirect_to (user_routes_path(@user))
+  end
+
+  def quick_tick
+    @user = User.find(params[:user_id])
+    @route = Route.find(params[:id])
+    @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'quick_add', date: Date.current)
+    @tick.save
+    redirect_to (user_routes_path(@user))
+  end
+
+
 
   private
 
