@@ -48,6 +48,16 @@ $('#hamburger').click(function() {
 
         <% end %>
 
+      <% if user_signed_in? %>
+        <% if FacilityRole.where(email: current_user.email, user_id: nil).count > 0 %>
+          <div class="center">
+            <p>You have <%= FacilityRole.where(email: current_user.email, user_id: nil).count %> pending <%= "invite".pluralize(FacilityRole.where(email: current_user.email, user_id: nil).count ) %> </p>
+
+          <%= link_to "confirm", inbox_user_path(current_user), class: "btn btn-signin btn-lg" %>
+          </div>
+        <% end %>
+      <% end %>
+
 
       </div>
     </div>
