@@ -1,7 +1,6 @@
 
 <%= div_for(@demo_facility.routes.current.last(3)) do |f| %>
   <ol class="routelist">
-    <div class="divider-line"></div>
 
       <% if f.color? %>
         <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
@@ -99,7 +98,7 @@
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "create task",  "#", class: 'btn btn-tag btn-xs', remote: true %>
+              <%= button_to "create task",  "#", class: 'btn btn-expire btn-xs', remote: true %>
             </div>
           </div>
         </div>
