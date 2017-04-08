@@ -1,0 +1,13 @@
+$('#routeForm')[0].reset();
+$('body').scrollTop(0);
+$('#grade_render').html('');
+$('#wall_render').html('');
+
+
+
+
+
+var $successMessageDiv = $('#successMessage'); // get the reference of the div
+$successMessageDiv.show().html('Route saved!'); // show and set the message
+setTimeout(function(){ $successMessageDiv.fadeOut();}, 1500); // 3 seconds later, hide
+                                                             // and clear the message

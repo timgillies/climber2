@@ -208,6 +208,8 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    parsley-rails (2.7.0.0)
+      railties (>= 3.0.0)
     pg (0.17.1)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -362,6 +364,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   paperclip (~> 5.0.0)
+  parsley-rails
   pg (= 0.17.1)
   puma (= 3.1.0)
   rails (= 4.2.6)

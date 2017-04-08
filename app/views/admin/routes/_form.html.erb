@@ -1,16 +1,20 @@
-<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", :multipart => false }, authenticity_token: true, remote: false do |f| %>
+
+<%= form_for [:admin, @facility, @route], :html => {:class => "form-label", id: 'routeForm', :multipart => false, 'data-parsley-validate' => '', 'data-parsley-error-message' => "required" }, authenticity_token: true, remote: true do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
 
+<div id="successMessage" style="display: none">
+ <!-- Here I want to place a message. It should be visible for 3 seconds.Then clear the      div to get ready for the next message. -->
+</div>
 
 
-<div class="gray-labels">
+<div class="gray-labels white">
   <br>
-  <div class="bg-white">
-    <div class="row">
+  <div class="bg-routeform">
+    <div class="row large-label">
       <div class="col-xs-12">
-        <%= f.label :name, "Route name" %>
-        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control' } : { value: f.object.name, class: 'form-control' } %>
+        <%= f.label :name, "Route name", class: "sr-only" %>
+        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control', placeholder: "Route Name"} : { value: f.object.name, class: 'form-control', placeholder: "Route Name"} %>
       </div>
     </div>
 
@@ -25,7 +29,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <%= f.label :user_id, "Setter*" %>
+        <%= f.label :user_id, "Setter*", class: "sr-only" %>
         <div class="route-form">
           <div id="donate">
             <% @facilitysetters.each do |fs| %>
@@ -39,11 +43,13 @@
     </div>
     <% end %>
 
-
+    <br>
 
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :color_hex, "Color* " %><%= link_to " manage colors", admin_facility_custom_colors_path(@facility) %>
+
+          <%= f.label :color_hex, "Color* ", class: "sr-only"  %>
+          <div id="color_error"></div>
           <div class="route-form">
             <div id="donate">
               <div id="donate-colors">
@@ -51,7 +57,7 @@
                   <% if fs[1] == '#F9F9F8' %><label style="background-color:<%= fs[1] %>; color: #444 ">
                     <% else %><label style="background-color:<%= fs[1] %>; color: #fff ">
                       <% end %>
-                    <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1]) }  %>
+                    <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true, required: true, 'data-parsley-errors-container' => "#color_error"} : {checked: f.object.color_hex.eql?(fs[1]), required: true, 'data-parsley-errors-container' => "#color_error" }  %>
                     <span><%= fs[0] %></span>
                   </label>
                 <% end %>
@@ -60,10 +66,11 @@
           </div>
         </div>
       </div>
+      <br>
       <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :color, "Color Description" %>
-          <%= f.text_field :color, params[:color] ? {value: params[:color], class: 'form-control' } : {value: f.object.color, class: 'form-control' }  %>
+        <div class="col-xs-12 col-sm-6">
+          <%= f.label :color, "Color Description", class: "sr-only" %>
+          <%= f.text_field :color, params[:color] ? {value: params[:color], class: 'form-control', placeholder: "color text description (optional)..." } : {value: f.object.color, class: 'form-control', placeholder: "color text description (optional)..." }  %>
         </div>
       </div>
 
@@ -72,7 +79,8 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :grade_id, "Grade*" %>
+          <%= f.label :grade_id, "Grade*", class: "sr-only" %>
+          <div id="grade_error"></div>
           <div class="route-form">
             <div id="donate">
               <% facility_systems.each do |fs| %>
@@ -84,7 +92,7 @@
                     <div class="route-form">
                       <div id="donate">
                         <% Grade.where(grade_system_id: fs.id).each do |fsg| %>
-                            <label class="blue"><%= f.radio_button :grade_id, fsg.id, params[:grade_id].to_i == fsg.id.to_i ? { checked: true } : {checked: f.object.grade_id.to_i.eql?(fsg.id.to_i) } %>
+                            <label class="blue"><%= f.radio_button :grade_id, fsg.id, params[:grade_id].to_i == fsg.id.to_i ? { checked: true, required: true, 'data-parsley-errors-container' => "#grade_error" } : {checked: f.object.grade_id.to_i.eql?(fsg.id.to_i), required: true, 'data-parsley-errors-container' => "#grade_error"} %>
                               <span><%= fsg.grade %></span>
                             </label>
                           <% end %>
@@ -108,11 +116,11 @@
       </div>
 
 
-
+      <br>
 
     <div class="row">
       <div class="col-xs-12">
-        <%= f.label :zone_id, "Zone" %>
+        <%= f.label :zone_id, "Zone", class: "sr-only"  %>
         <div class="route-form">
           <div id="donate">
             <% @facilityzones.each do |fs| %>
@@ -156,60 +164,56 @@
     </div>
 
 
-<br>
       <div class="row">
         <div class="col-xs-6">
-          <%= f.label :setdate, "Set Date*" %>
+          <%= f.label :setdate, "Set Date*" %> <div id="date_error"></div>
           <% if params[:action] == "edit" %>
-            <%= f.date_field :setdate, params[:setdate] ? { :value=> params[:setdate] , class: 'form-control' } : { value: f.object.setdate, class: 'form-control' } %>
+            <%= f.date_field :setdate, params[:setdate] ? { :value=> params[:setdate] , class: 'form-control', required: true, 'data-parsley-errors-container' => "#date_error" } : { value: f.object.setdate, class: 'form-control', required: true, 'data-parsley-errors-container' => "#date_error" } %>
           <% else %>
-            <%= f.date_field :setdate, :value => Date.current , class: 'form-control' %>
+            <%= f.date_field :setdate, :value => Date.current , class: 'form-control', required: true, 'data-parsley-errors-container' => "#date_error" %>
           <% end %>
 
         </div>
-        <div class="col-xs-6">
-          <%= f.label :enddate, "End Date" %>
-          <% if params[:action] == "edit" %>
-            <%= f.date_field :enddate, class: 'form-control' %>
-          <% elsif @facility.days_from_start_date.nil? %>
-            <%= f.date_field :enddate, :value => nil , class: 'form-control' %>
-          <% else %>
-            <%= f.date_field :enddate, :value => @facility.days_from_start_date.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
-          <% end %>
-        </div>
+
       </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <%= f.label :image,"Photo" %>
-          <%= f.file_field :image, {class: 'form-control'}  %>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <%= image_tag @route.image.url(:thumb) if @route.image.exists? %>
-        </div>
-      </div>
       <br>
 
 
 
 
-      <button class="btn btn-close" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <button class="btn btn-moredetails" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Additional details...
       </button>
-      <div class="row">
-        <br>
-        <br>
-      </div>
+
+
       <div class="collapse" id="collapseExample">
+        <div class="row">
+          <br>
+          <br>
+        </div>
         <div class="well">
+          <div class="row">
+            <div class="col-sm-12">
+              <%= image_tag @route.image.url(:thumb) if @route.image.exists? %>
+            </div>
+          </div>
           <div class="row">
             <div class="col-xs-12">
               <%= f.label :description, "Description" %>
               <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
             </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <%= f.label :enddate, "End Date" %>
+            <% if params[:action] == "edit" %>
+              <%= f.date_field :enddate, class: 'form-control' %>
+            <% elsif @facility.days_from_start_date.nil? %>
+              <%= f.date_field :enddate, :value => nil , class: 'form-control' %>
+            <% else %>
+              <%= f.date_field :enddate, :value => @facility.days_from_start_date.days.from_now.strftime('%Y-%m-%d'), class: 'form-control' %>
+            <% end %>
           </div>
 
           <div class="row">
@@ -251,6 +255,7 @@
 
 
       <div class="row">
+              <br>
         <div class="col-xs-12">
           <%= f.submit "Save", class: "btn btn-save" %>
         </div>

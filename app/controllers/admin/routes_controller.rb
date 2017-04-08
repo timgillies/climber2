@@ -103,6 +103,9 @@ class Admin::RoutesController < ApplicationController
     @route.facility_id = params[:facility_id]
 
     if @route.save
+      unless @route.user_id?
+        @route.update_attributes(user_id: current_user.id)
+      end
       if @route.task_id?
       @task = Task.find_by(id: @route.task_id)
       @task.update_attributes(status: 'completed', completed_by_id: @route.user_id, completed_at: DateTime.current)
@@ -110,9 +113,12 @@ class Admin::RoutesController < ApplicationController
         if @task.route_id?
           @old_route.update_attribute(:enddate, Date.yesterday)
         end
+
       end
-      flash[:success] = "Route added!"
-      redirect_to(admin_facility_routes_path(@facility))
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
       unless @route.valid?
         @route.image.clear

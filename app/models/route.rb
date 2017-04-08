@@ -17,7 +17,6 @@ class Route < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "600", thumb: "100x100#" }
   validates_attachment_content_type :image, :content_type => ['image/jpg', 'image/png', 'image/gif', 'image/jpeg']
 
-  validates_presence_of :user_id
   validates_presence_of :setdate
   validates_presence_of :grade
   validates_presence_of :color_hex

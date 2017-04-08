@@ -1,0 +1,25 @@
+<div id="tick_counts_<%= f.id %>">
+
+  <div class="pull-right">
+  <% if Tick.send_type_count(f, current_user, "flash") > 0 %>
+    <div class="tick-circle flash">
+      <%= Tick.send_type_count(f, current_user, "flash") %>
+      <span class="text"><%= "flash".pluralize(Tick.send_type_count(f, current_user, "flash")) %></span>
+    </div>
+  <% end %>
+
+  <% if Tick.send_type_count(f, current_user, "redpoint") > 0 %>
+    <div class="tick-circle redpoint">
+      <%= Tick.send_type_count(f, current_user, "redpoint") %>
+      <span class="text"><%= "redpnt".pluralize(Tick.send_type_count(f, current_user, "redpoint")) %></span>
+    </div>
+  <% end %>
+
+  <% if Tick.send_type_count(f, current_user, "project") > 0 %>
+    <div class="tick-circle project">
+      <%= Tick.send_type_count(f, current_user, "project") %>
+      <span class="text"><%= "project".pluralize(Tick.send_type_count(f, current_user, "project")) %></span>
+    </div>
+  <% end %>
+  </div>
+</div>

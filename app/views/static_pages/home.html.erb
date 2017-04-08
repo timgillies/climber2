@@ -23,6 +23,9 @@ $('#hamburger').click(function() {
 });
 </script>
 
+<meta name="description" content="Manage routesetting and track your climbing with Climb Connect.  Start today!" />
+<meta name="keywords" content="routesetting route setting climbing gym climb tracker gym management" />
+
 <div class="home-body">
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="50000">
 
@@ -30,7 +33,12 @@ $('#hamburger').click(function() {
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
+      <div class="hidden-xs">
       <%= image_tag("homepage-chalkbag-logo.jpg", alt: "hello", class: "img-responsive") %>
+      </div>
+      <div class="hidden-sm hidden-md hidden-lg">
+      <%= image_tag("cc_chalkbag.jpg", alt: "hello", class: "img-responsive") %>
+      </div>
       <div class="carousel-caption">
 
         <% unless user_signed_in? %>
@@ -48,7 +56,7 @@ $('#hamburger').click(function() {
 </div>
 
 
-
+<div id="features"></div>
 <div class="container-fluid">
   <br>
   <div class="col-sm-5 hidden-xs">
