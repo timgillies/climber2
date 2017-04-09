@@ -15,6 +15,9 @@ class UsersController < ApplicationController
     @facilities = @user.facilities.page(params[:page])
     @routes = @user.routes.page(params[:page])
     @facility_roles = FacilityRole.where(user_id: @user, confirmed: true).page(params[:page])
+
+    @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
+    @ticks = Tick.where(user_id: @user).page(params[:page]).per(5000000)
   end
 
   def new

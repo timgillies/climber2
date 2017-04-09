@@ -1,12 +1,29 @@
-<% provide(:title, current_user.name ) %>
+<% provide(:title, 'Ticks') %>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <div class="headliner-line">
-        <h1> <%= @user.name %></h1>
-          <%= render 'users/profile', object: @user %>
-      </div>
-    </div>
+    <div class="routelist-header bg-blue-gradient">
+      <h1 class="hidden-xs"><strong>Ascent</strong>List </h1>
+      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"><strong>tick</strong>list </h1>
+    <span class="pull-right">
+      <span class="hidden-xs"><%= link_to "new ascent", new_user_tick_path(current_user), class: "btn btn-close", style: "display: inline-block;" %></span>
+    </span>
+  </div>
   </div>
 </div>
+
+<br>
+
+<div class="bg-white">
+<%= render(
+partial: 'ticks/user_ticks',
+locals: { ticks: @ticks }
+) %>
+</div>
+
+<br>
+
+<%= render(
+partial: 'ticks/list',
+locals: { ticks: @ticks }
+) %>
