@@ -64,7 +64,7 @@ class Route < ActiveRecord::Base
   ratyrate_rateable 'total'
 
   filterrific(
-  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.current },
+  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.today },
   available_filters: [
     :sorted_by,
     :search_query,

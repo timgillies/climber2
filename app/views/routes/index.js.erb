@@ -1,4 +1,1 @@
-<% js = escape_javascript(
-  render(partial: 'routes/list', locals: { routes: @routes })
-) %>
-$("#filterrific_results").html("<%= js %>");
+$("#filterrific_results").html("<%= j (render(partial: 'routes/list', locals: { routes: @routes })) %>");

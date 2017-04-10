@@ -22,14 +22,14 @@
     }
 }
 
-@media (max-width: 420px) {
-    .container {
-      padding: 2px;
-      margin: 2px;
+@media (max-width: 768px) {
+    .container-fluid {
+      padding: 0px;
+      margin: 0px;
     }
 
     body {
-      padding: 0;
+      padding: 0px;
     }
   }
 
@@ -75,6 +75,9 @@ body {
   padding-bottom: 0px;
   font-family: sans-serif;
   font-weight: 300;
+  @media (max-width: 768px) {
+    margin: -10px;
+  }
 
 }
 
@@ -678,7 +681,7 @@ input {
   h1 {
     font-size: 2.7em;
     @media (max-width: 768px) {
-      font-size: 1.7em;
+      font-size: 1.3em;
     }
     letter-spacing: -2px;
     margin-bottom: 2px;
@@ -843,7 +846,8 @@ input {
 
 .bg-white {
   background-color: #eee;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-radius: 4px;
   box-shadow: 2px 2px 2px #aaa;
 
@@ -853,6 +857,10 @@ input {
 .bg-routeform {
   background-color: #aaa;
   padding: 20px;
+  @media (max-width:768px) {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
   border-radius: 4px;
   box-shadow: 2px 2px 2px #aaa;
   background-size: cover;
@@ -1551,6 +1559,12 @@ input[type=attachment] {
     }
 
 
+  }
+
+  .white-links {
+    a {
+      color: #eee;
+    }
   }
 
 
@@ -2503,7 +2517,7 @@ span.picture {
 }
 
 .btn-expire, .btn-expire:hover{
-    background: linear-gradient(60deg, #888, #bbb);
+    background: linear-gradient(60deg, #666, #888);
   border: none;
   opacity: 1;
   color: #eee;
@@ -2874,7 +2888,7 @@ background-color: #fff; /* CHANGE BACKGROUND HERE*/
 border-radius: 6px;
 font-family: 'Montserrat', sans-serif;
 h1 {
-  font-family: 'Architects Daughter', sans-serif;
+
   text-align: left;
   font-weight: 200;
 }

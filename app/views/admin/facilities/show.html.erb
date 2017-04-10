@@ -1,6 +1,6 @@
 
 <% provide(:title, @facility.name ) %>
-<div class="container-fluid">
+
 <% if @routes.count == 0 %>
 
   <%= render 'admin/facilities/checklist' %>
@@ -11,7 +11,7 @@
 
 
 
-  <div class="container-fluid">
+
     <div class="col-sm-12">
       <div class="routelist">
         <div class="row">
@@ -25,25 +25,30 @@
         </div>
       </div>
     </div>
-  </div>
+
 
   <% end %>
 
   <div class="col-sm-6">
     <div class="routelist">
+      <div class="row">
       <h3>Routes by Zone</h3>
+
+        <%= render 'facilities/zonedist' %>
+      </div>
     </div>
-      <%= render 'facilities/zonedist' %>
   </div>
 
 
 
   <div class="col-sm-12">
     <div class="routelist">
+      <div class="row">
       <h3>New Routes</h3>
       <%= render 'facilities/newroutes' %>
+    </div>
   </div>
 </div>
 
-</div>
+
 <% end %>
