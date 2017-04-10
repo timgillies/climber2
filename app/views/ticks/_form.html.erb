@@ -1,22 +1,14 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-    flatpickr("#setdate-input", {
-        dateFormat: 'm/d/Y',
-        defaultDate: "today"
-    });
-  });
-</script>
 
-
-<% if params[:action] == 'new' %>
-<div id="new_route">
-</div>
-<% end %>
-<%= form_for [current_user, @tick], :html => {:class => "form-label", :multipart => true } do |f| %>
+<%= form_for [current_user, @tick], :html => {:class => "form-label", id: 'tickForm', :multipart => true }, remote: true do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
+<div id="successMessage" style="display: none">
+ <!-- Here I want to place a message. It should be visible for 3 seconds.Then clear the      div to get ready for the next message. -->
+</div>
 
-<div class="gray-labels">
+
+<div class="gray-labels white">
+  <br>
   <div class="bg-routeform">
     <div class="row">
       <div class="col-xs-12">

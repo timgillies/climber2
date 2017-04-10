@@ -85,25 +85,3 @@
       </div>
     </div>
     <% end %>
-
-  <!-- Sub-child zone Modal -->
-
-    <div class="modal fade" id="newSubChildZoneModal" tabindex="-1" role="dialog" aria-labelledby="newSubChildZoneModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span class="modal-title" id="newSubChildZoneModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @facility.name %> <%= @facility.location if @facility.location %></small></h4></span>
-          </div>
-          <div class="modal-body row">
-            <%= form_for [:admin, @facility, @sub_child_zone], :html => {:class => "form-label"}, remote: false do |f| %>
-                <%= render 'admin/sub_child_zones/form', :f => f %>
-          </div>
-          <div class="modal-footer">
-            <%= f.button :submit, class: "btn btn-save" %>
-            <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>

@@ -1344,8 +1344,6 @@ input {
       border: none;
       background: linear-gradient(60deg, #444, #666);
       color: #eee;
-
-
   }
 
   input[type=date] {
@@ -1370,6 +1368,18 @@ input[type=attachment] {
   border: none;
   background: linear-gradient(60deg, #444, #666);
   color: #eee;
+}
+
+select {
+  padding: 20px;
+  border: none;
+  background: linear-gradient(60deg, #444, #666);
+  color: #eee;
+  height: 47px;
+  padding-left: 40px;
+  text-transform: uppercase;
+
+
 }
 
 
@@ -1508,6 +1518,57 @@ input[type=attachment] {
   #donate .pink {
     background: linear-gradient(60deg, #00adee, #1b75bb);
       color:#fff;
+  }
+
+
+  #donate-colors {
+      margin:0px;
+      float:left;
+  }
+
+  #donate-colors label {
+      float:left;
+      width: auto;
+      min-width: 50px;
+      margin: 4px;
+      border-radius:4px;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      background-color: #ccc;
+      color: #666;
+      font-weight: 200;
+      box-shadow: 2px 2px 2px #aaa;
+
+
+  }
+
+  #donate-colors label span {
+      text-align:center;
+      font-size: 16px;
+      padding: 12px;
+      @media (max-width: 768px) {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+
+      display: block;
+
+  }
+
+  #donate-colors label input {
+      position:absolute;
+      top:-20px;
+  }
+
+  #donate-colors input:checked + span {
+      background-color:#444;
+      color:#F7F7F7;
+
   }
 
 }
@@ -2464,45 +2525,75 @@ span.picture {
 
 
 .btn-flash{
-  background: #ffffff;
-  border-color: #b6da6b;
+  background: linear-gradient(60deg, #fa9040, #d73463);
+  border: none;
   opacity: 1;
-  color: #b6da6b;
+  color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 7px;
+  }
 }
 
 .btn-flash:hover{
-  background: #b6da6b;
-  border-color: #b6da6b;
+  background: linear-gradient(60deg, #fa9040, #d73463);
+  border: none;
   opacity: 1;
-  color: #ffffff;
+  color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 7px;
+  }
 }
 
 .btn-redpoint{
-  background: #ffffff;
-  border-color: #da8f6b;
+  background: linear-gradient(60deg, #e32666, #d7348c);
+  border: none;
   opacity: 1;
-  color: #da8f6b;
+  color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 7px;
+  }
 }
 
 .btn-redpoint:hover{
-  background: #da8f6b;
-  border-color: #da8f6b;
+  background: linear-gradient(60deg, #e32666, #d7348c);
+  border: none;
   opacity: 1;
-  color: #ffffff;
+  color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 7px;
+  }
 }
 
 .btn-project{
-  background: #ffffff;
-  border-color: #da6bb6;
+  background: linear-gradient(60deg, #d7348c, #8e54e9);
+  border: none;
   opacity: 1;
-  color: #da6bb6;
+  color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 7px;
+  }
+
 }
 
 .btn-project:hover{
-  background: #da6bb6;
-  border-color: #da6bb6;
+  background: linear-gradient(60deg, #d7348c, #8e54e9);
+  border: none;
   opacity: 1;
-  color: #ffffff;
+  color: #eee;
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 7px;
+  }
 }
 
 /* Cancel subscription */
@@ -2531,6 +2622,10 @@ span.picture {
   a {
     color: #eee;
     display: block;
+  }
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 7px;
   }
 
 }
@@ -2859,7 +2954,7 @@ span.picture {
 #successMessage {
   margin-top: 10px;
     background-color: #eee;
-    background: linear-gradient(60deg, #1b75bb, #00b1ff);
+    background: linear-gradient(60deg, #2BB573, #39B44A);
     padding: 10px;
     padding-left: 20px;
     border-radius: 4px;

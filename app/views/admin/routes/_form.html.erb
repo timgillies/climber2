@@ -51,17 +51,13 @@
           <%= f.label :color_hex, "Color* ", class: "sr-only"  %>
           <div id="color_error"></div>
           <div class="route-form">
-            <div id="donate">
-              <div id="donate-colors">
+            <div id="donate-colors">
                 <% (color_options + custom_color_options(@facility) ).each do |fs| %>
-                  <% if fs[1] == '#F9F9F8' %><label style="background-color:<%= fs[1] %>; color: #444 ">
-                    <% else %><label style="background-color:<%= fs[1] %>; color: #fff ">
-                      <% end %>
+                    <label style="border-left: 15px solid <%= fs[1] %>;">
                     <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true, required: true, 'data-parsley-errors-container' => "#color_error"} : {checked: f.object.color_hex.eql?(fs[1]), required: true, 'data-parsley-errors-container' => "#color_error" }  %>
                     <span><%= fs[0] %></span>
                   </label>
                 <% end %>
-              </div>
             </div>
           </div>
         </div>
@@ -197,6 +193,12 @@
           <div class="row">
             <div class="col-sm-12">
               <%= image_tag @route.image.url(:thumb) if @route.image.exists? %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= f.label :image,"Photo" %><span class="badge badge-today">new!</span>
+              <%= f.file_field :image, {class: 'form-control'}  %>
             </div>
           </div>
           <div class="row">

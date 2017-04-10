@@ -75,7 +75,7 @@ class Admin::ZonesController < ApplicationController
     @sub_child_zone = SubChildZone.new
     @zones = @facility.zones.page(params[:page])
     @facility_systems = facility_systems.page(params[:page])
-    @routes = @facility.routes.where('enddate >= ? AND zone_id = ?', Date.today, @zone).page(params[:page]).per(50)
+    @routes = @facility.routes.where('enddate >= ? AND zone_id = ?', Date.current, @zone).page(params[:page]).per(50)
 
 
 

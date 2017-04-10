@@ -21,7 +21,7 @@ class Admin::FacilitiesController < ApplicationController
   def show
     @facility = Facility.find(params[:id])
     @routes = @facility.routes.page(params[:page])
-    @activeroutes = @facility.routes.where("enddate >= ?", Date.today)
+    @activeroutes = @facility.routes.where("enddate >= ?", Date.current)
     @facilityticks = Tick.where("facility_id = ?", @facility)
     @facility_systems = facility_systems.page(params[:page])
   end

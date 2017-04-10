@@ -6,8 +6,9 @@
             <div style="border-left: 15px solid <%= route.color_hex %>"></div>
           <% end %>
 
-            <span class="tab">
-            <h1>
+
+            <h1 style="border-left: 15px solid <%= route.color_hex %>">
+              <span class="tab">
               <% if route.color? %>
                 <%= link_to route.grade.grade + " "+ route.color.upcase , "#" %>
               <% elsif (color_name(route.color_hex, @facility)).nil? %>
@@ -44,7 +45,7 @@
               <div class="col-sm-12">
                 <span><p><strong> <%= route.facility.name %></strong> <%= route.facility.location %></p></span>
 
-                    <span class="pull-right">
+                    <span class="pull-right hidden-xs">
                         <% unless params[:controller] == 'admin/tasks' %>
                           <% if (days_ago(route) == "today") %>
                             <span class="badge badge-today">set <%= days_ago(route) %></span>
@@ -67,6 +68,23 @@
             <div class="row">
               <div class="col-sm-12">
                 <span><strong>Setter: </strong> <%= route.user.name if route.user %></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <span class="pull-right hidden-sm hidden-md hidden-lg">
+                    <% unless params[:controller] == 'admin/tasks' %>
+                      <% if (days_ago(route) == "today") %>
+                        <span class="badge badge-today">set <%= days_ago(route) %></span>
+                      <% else %>
+                        set <%= days_ago(route) %> ago
+                      <% end %>
+                    <% else %>
+                      <% if route.setdate? %>
+                      set on <%= route.setdate.strftime("%b %d, %Y") %>
+                      <% end %>
+                    <% end %>
+                </span>
               </div>
             </div>
 
@@ -102,7 +120,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <span class="modal-title" id="routeShowModal"><h4><strong>CLIMB | CONNECT </strong><small><%= route.facility.name %> <%= route.facility.location if route.facility.location %></small></h4></span>
+          <span class="modal-title" id="routeShowModal"><span class="logo"><%= link_to (image_tag 'cc_white_horizontal.png'), root_path, class: "logo" %></span></span>
         </div>
         <div class="modal-body row">
           <%= image_tag route.image.url, class: "img-route-show"%>

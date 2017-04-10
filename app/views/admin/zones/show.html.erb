@@ -34,23 +34,27 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="bg-white">
-            <% @facility_systems.each do |fs| %>
-              <% if (facility_system_route_count(fs, @zone) > 0) || (facility_system_target_count(fs, @zone) > 0) %>
-              <div class="routelist">
-                <h3><%= fs.name %></h3>
-              </div>
-              <div class="divider-line"></div>
-            <%= render 'facilities/zonegradedist', :fz => @zone, :fs => fs  %>
+            <div class="container-fluid">
+              <% @facility_systems.each do |fs| %>
+                <% if (facility_system_route_count(fs, @zone) > 0) || (facility_system_target_count(fs, @zone) > 0) %>
+                <div class="routelist">
+                  <h3><%= fs.name %></h3>
+                </div>
+                <div class="divider-line"></div>
+              <%= render 'facilities/zonegradedist', :fz => @zone, :fs => fs  %>
+              <% end %>
             <% end %>
-          <% end %>
+            </div>
           </div>
           <br>
           <div class="bg-white">
-            <div class="routelist">
-              <h3>Sub-zones</h3>
+            <div class="container-fluid">
+              <div class="routelist">
+                <h3>Sub-zones</h3>
+              </div>
+              <div class="divider-line"></div>
+                <%= render 'facilities/walldist_column', fz: @zone %>
             </div>
-            <div class="divider-line"></div>
-              <%= render 'facilities/walldist_column', fz: @zone %>
           </div>
         </div>
       </div>

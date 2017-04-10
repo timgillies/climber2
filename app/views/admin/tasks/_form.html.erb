@@ -71,6 +71,7 @@
       </div>
     </div>
 
+
     <div class="form-gray">
       <h1>Route Information (optional)</h1>
       "Routes to be set" tasks can be edited and converted to active routes once set
@@ -164,12 +165,13 @@
     <div class="col-xs-12">
       <%= f.label :color_hex, "Color*" %><%= link_to "manage colors", admin_facility_custom_colors_path(@facility), class: "pull-right"%>
       <div class="route-form">
-        <div id="donate">
-          <% (color_options+ custom_color_options(@facility) ).each do |fs| %>
-            <label style="background-color:<%= fs[1] %>; color: #fff "><%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1]) }  %>
-              <span><%= fs[0] %></span>
-            </label>
-          <% end %>
+        <div id="donate-colors">
+            <% (color_options + custom_color_options(@facility) ).each do |fs| %>
+                <label style="border-left: 15px solid <%= fs[1] %>;">
+                <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true, required: true, 'data-parsley-errors-container' => "#color_error"} : {checked: f.object.color_hex.eql?(fs[1]), required: true, 'data-parsley-errors-container' => "#color_error" }  %>
+                <span><%= fs[0] %></span>
+              </label>
+            <% end %>
         </div>
       </div>
     </div>
@@ -220,6 +222,7 @@
     </div>
   </div>
 </div>
+
 
 
   <br/>

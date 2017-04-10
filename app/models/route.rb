@@ -29,11 +29,11 @@ class Route < ActiveRecord::Base
 
 # checks if route is active or expired.  true = active
   def active?
-    (self.enddate > Date.today if self.enddate) || (self.enddate.nil?)
+    (self.enddate > Date.current if self.enddate) || (self.enddate.nil?)
   end
 
   def self.current
-    where("enddate > ? OR enddate IS ?", Date.today, nil)
+    where("enddate > ? OR enddate IS ?", Date.current, nil)
   end
 
 # counts number of routes set on given date
@@ -64,7 +64,7 @@ class Route < ActiveRecord::Base
   ratyrate_rateable 'total'
 
   filterrific(
-  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.today },
+  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.current },
   available_filters: [
     :sorted_by,
     :search_query,
@@ -179,7 +179,7 @@ scope :sorted_by, lambda { |sort_option|
 
   def self.options_for_status_select
     [
-      ['Active', Date.today ]
+      ['Active', Date.current ]
     ]
   end
 
