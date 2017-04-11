@@ -51,7 +51,7 @@
                         <%= link_to f.route.grade.grade, edit_user_tick_path(@user, f) if f.route.grade %>
                       <% end %>
                     </h3>
-                    <h2> <%= f.route.zone.name %></h2>
+                    <h2> <%= f.route.zone.name if f.route.zone %></h2>
                     <span class="pull-right">
                       <% if f.grade_id? %>
                       <h2>
