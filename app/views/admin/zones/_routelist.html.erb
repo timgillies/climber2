@@ -1,27 +1,8 @@
 <div id="zone_route_list">
   <div class="row">
-    <div class="col-xs-12">
-      <div class="routelist">
-        <% if params[:controller] == 'admin/routes' %>
-        <h2><%= page_entries_info @routes  %>
-
-          <% if filter_results_count > 0 %>
-            (<%= filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>)
-          <% end %>
-          <span class="pull-right">
-            <%= link_to(
-              'Reset filters',
-              reset_filterrific_url
-            ) %>
-          </span>
-        </h2>
-        <br>
-        <% end %>
-      </div>
-    </div>
 
   </div>
-  <%= div_for(@routes) do |f| %>
+  <%= div_for(@zone_routes) do |f| %>
   <ol class="routelist">
 
       <% if f.color_hex? %>
@@ -123,14 +104,14 @@
             <br/>
             <div class="col-xs-6 col-sm-6">
               <% if f.active? %>
-                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire, remote: true %>
+                <%= button_to "expire",  expire_zone_show_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire_zone_show, remote: true %>
               <% else %>
-                <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-sm', method: :expire, remote: true %>
+                <%= button_to "expired",  expire_zone_show_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-sm', method: :expire_zone_show, remote: true %>
               <% end %>
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire, remote: false %>
+              <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire_zone_show, remote: false %>
             </div>
           </div>
         </div>
@@ -139,5 +120,4 @@
   </ol>
   <% end %>
 
-  <%= paginate @routes %>
 </div>

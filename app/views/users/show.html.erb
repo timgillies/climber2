@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="routelist-header bg-blue-gradient">
-      <h1 class="hidden-xs"><strong>Ascent</strong>List </h1>
+      <h1 class="hidden-xs">home </h1>
       <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"><strong>tick</strong>list </h1>
     <span class="pull-right">
       <span class="hidden-xs"><%= link_to "new ascent", new_user_tick_path(current_user), class: "btn btn-close", style: "display: inline-block;" %></span>
@@ -14,16 +14,10 @@
 
 <br>
 
-<div class="bg-white">
-<%= render(
-partial: 'ticks/user_ticks',
-locals: { ticks: @ticks }
-) %>
+<div class="bg-dark-gray">
+  <div class="routelist">
+    <h3 class="tab">This page is still in development </h3>
+  </div>
 </div>
 
 <br>
-
-<%= render(
-partial: 'ticks/list',
-locals: { ticks: @ticks }
-) %>

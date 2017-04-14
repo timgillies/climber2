@@ -1,19 +1,106 @@
-<div id="filterrific_results">
+<div id="recent_routes">
   <div class="row">
-    <div class="col-md-12">
-      <%= page_entries_info @recentroutes  %>
-    </div>
-  </div>
+    <br>
 
-  <table class="table table-hover table-condensed">
-      <%= div_for(@recentroutes) do |r| %>
-      <tr>
-        <td><%= button_to r.id, admin_facility_route_path(@facility, r ), :class => 'btn btn-default btn-xs', method: :get %></td>
-        <td><%= r.grade.grade if r.grade %></td>
-        <td><%= r.color %></td>
-        <td><%= r.setter.nick_name if r.setter %></td>
-        <td><%= button_to "edit",  edit_admin_facility_route_path(@facility, r ), class: 'btn btn-default btn-xs', method: :get %></td>
-     </tr>
-    <% end %>
-  </table>
+  </div>
+  <%= div_for(@recent_routes) do |f| %>
+  <ol class="routelist">
+
+      <% if f.color_hex? %>
+      <li style="border-left: 15px solid <%= f.color_hex %>">
+      <% elsif f.color? %>
+        <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
+          <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
+          <% else %>
+          <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
+          <% end %>
+      <% else %>
+      <li>
+      <% end %>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-10 col-sm-10 col-md-11">
+            <h3>
+              <% if f.color? %>
+                <%= link_to f.grade.grade + " "+ f.color.upcase , admin_facility_route_path(@facility, f) if f.grade %>
+              <% elsif (color_name(f.color_hex, @facility)).nil? %>
+                <%= link_to f.grade.grade , admin_facility_route_path(@facility, f) if f.grade %>
+              <% else %>
+                <%= link_to f.grade.grade + " "+ color_name(f.color_hex, @facility)[0].upcase , admin_facility_route_path(@facility, f) if f.grade %>
+              <% end %>
+            </h3>
+            <h2> <%= f.name %></h2>
+          </div>
+
+
+
+
+
+          <div class="col-xs-2 col-sm-1 no-print">
+              <h3><%= link_to edit_admin_facility_route_path(@facility, f ) do %>
+                <i class="glyphicon glyphicon-cog pull-right"></i>
+              <%end %>
+            </h3>
+          </div>
+        </div>
+        <div class="divider-line"></div>
+        <div class="row">
+          <div class="col-sm-12">
+              <div class="tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.id %></div>
+
+          </div>
+          <div class="col-sm-12">
+              <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="tab"><strong>
+
+              <% if params[:controller] == "admin/tasks" %>
+
+               Assigned to:
+
+               <% else %>
+
+               Set by:
+
+               <% end %>
+
+             </strong><%= f.user.name if f.user %></div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="tab text-right">
+
+
+              <% unless params[:controller] == 'admin/tasks' %>
+                <% if (days_ago(f) == "today") %>
+                  <span>set <%= days_ago(f) %></span>
+                <% else %>
+                  set <%= days_ago(f) %> ago
+                <% end %>
+              <% else %>
+                <% if f.setdate? %>
+                due on <%= f.setdate.strftime("%b %d, %Y") %>
+                <% end %>
+              <% end %>
+
+
+              <% if f.user %>
+                <% if f.user.image? %>
+                  <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
+                <% elsif f.user.avatar_file_name? %>
+                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
+                <% end %>
+              <% end %>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ol>
+  <% end %>
+
 </div>

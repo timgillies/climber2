@@ -1,3 +1,4 @@
+
   <div class="row">
     <ol class="routelist">
       <div class="col-sm-12">
@@ -19,15 +20,17 @@
           <% if params[:action] == 'show' %>
           <div class="col-md-12 col-xs-12">
             <div class="row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-sm-4 col-xs-12">
                 <% if fz.image.exists? %>
                   <%= image_tag(fz.image.url(:square), class: 'img-zone-list') if fz.image.exists? %>
                 <% else %>
                   <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
                 <% end %>
               </div>
-
-            </div>
+              <div class="col-sm-8">
+                    <%= render 'admin/zones/zone_stats', object: @zone %>
+                </div>
+              </div>
           </div>
 
           <% else %>
@@ -60,7 +63,7 @@
                 <%= button_to "create tasks",  admin_facility_zone_mass_create_tasks_path(@facility, fz ), class: 'btn btn-expire btn-md', method: :mass_create_tasks, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} %>
               </div>
               <div class="col-xs-6 col-sm-6 pull-right no-print">
-                <%= button_to "expire routes",  admin_facility_zone_mass_expire_path(@facility, fz ), class: 'btn btn-expire btn-md', method: :mass_expire, data: {:confirm => 'Are you sure you want to expire all routes in this zone?'} %>
+                <%= button_to "expire all routes",  admin_facility_zone_mass_expire_path(@facility, fz ), class: 'btn btn-expire btn-md', method: :mass_expire, data: {:confirm => 'Are you sure you want to expire all routes in this zone?'} %>
               </div>
             </div>
           </div>

@@ -18,6 +18,20 @@ module RoutesHelper
     distance_of_time_in_words(from_time, to_time, scope: 'datetime.distance_in_words.short')
   end
 
+  def route_age(f)
+    from_time = Date.today.in_time_zone.to_datetime
+    to_time = f.setdate.to_datetime
+    ((to_time - from_time) * -1).to_i
+  end
+
+  def total_age(routes)
+      if routes.current.count > 0
+        routes.current.map {|f| [route_age(f).to_i] }.inject(:+).sum
+      end
+  end
+
+
+
   def ric_values
       [
         ['Neutral', 0 ],

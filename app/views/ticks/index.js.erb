@@ -1,0 +1,2 @@
+$("#tick_daily_summary").html("<%= j (render(partial: 'ticks/daily_summary', locals: { ticks: @ticks })) %>");
+$("#user_ticks").html("<%= j (render(partial: 'ticks/user_ticks', locals: { ticks: @ticks })) %>");

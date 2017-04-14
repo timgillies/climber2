@@ -1,0 +1,17 @@
+<br>
+
+<% if @zone.routes.current.climb_type("boulder").count > 0 %>
+  <div class="circle-wrapper">
+    <div class="large-circle responsive"><%= @zone.routes.current.climb_type("boulder").count %><span class="text"><%= "boulder".pluralize(@facility.routes.current.count) %></span></div>
+  </div>
+<% end %>
+
+<% if @zone.routes.current.climb_type("sport").count > 0 %>
+  <div class="circle-wrapper">
+    <div class="large-circle responsive"><%= @zone.routes.current.climb_type("sport").count %><span class="text"><%= "route".pluralize(@facility.routes.current.count) %></span></div>
+  </div>
+<% end %>
+
+<div class="circle-wrapper">
+  <div class="large-circle responsive"><%= (total_age(@zone.routes) / @zone.routes.current.count) if @zone.routes.current.count > 0 %><span class="text"><%= "avg. age" %></span></div>
+</div>

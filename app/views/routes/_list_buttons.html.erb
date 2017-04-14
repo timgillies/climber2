@@ -1,0 +1,34 @@
+<div id="tick_count_<%= f.id %>">
+
+<div class="no-print">
+  <div class="col-xs-4 col-sm-2">
+      <% if Tick.send_type_count(f, current_user, "project") < 1 %>
+        <%= button_to "PRJCT", quick_project_user_route_path(current_user, f), class: 'btn btn-pretick btn-md', method: :quick_project, remote: true %>
+      <% else %>
+        <%= button_to "PRJCT (#{ Tick.send_type_count(f, current_user, "project")})", quick_project_user_route_path(current_user, f), class: 'btn btn-project btn-md', method: :quick_project, remote: true %>
+      <% end %>
+  </div>
+
+  <div class="col-xs-4 col-sm-2">
+    <% if Tick.send_type_count(f, current_user, "redpoint") < 1 %>
+      <%= button_to "REDPNT", quick_redpoint_user_route_path(current_user, f), class: 'btn btn-pretick btn-md', method: :quick_redpoint, remote: true %>
+    <% else %>
+      <%= button_to "RDPT (#{ Tick.send_type_count(f, current_user, "redpoint")})", quick_redpoint_user_route_path(current_user, f), class: 'btn btn-redpoint btn-md', method: :quick_redpoint, remote: true %>
+    <% end %>
+  </div>
+
+  <div class="col-xs-4 col-sm-2 no-print">
+    <% if Tick.send_type_count(f, current_user, "flash") < 1 %>
+    <%= button_to "FLASH", quick_flash_user_route_path(current_user, f), class: 'btn btn-pretick btn-md', method: :quick_flasj, remote: true %>
+    <% else %>
+    <%= button_to "FLASH (#{ Tick.send_type_count(f, current_user, "flash")})", quick_flash_user_route_path(current_user, f), class: 'btn btn-flash btn-md', method: :quick_flash, remote: true %>
+    <% end %>
+  </div>
+
+</div>
+
+
+  <div class="hidden-sm hidden-md hidden-lg>"><br></div>
+
+
+</div>

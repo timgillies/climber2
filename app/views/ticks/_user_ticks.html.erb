@@ -1,3 +1,4 @@
+<div id="user_ticks">
 <script type="text/javascript" charset="utf-8">
   $(function() {
     var perShapeGradient = {
@@ -181,8 +182,8 @@
         {
           name: "<%= type %>",
           pointInterval: <%= 1.day * 1000 %>,
-          pointStart: <%= 2.weeks.ago.at_midnight.to_i * 1000 %>,
-          data: <%= (2.weeks.ago.to_date..Date.current.in_time_zone).map { |date| ticks.total_on(date).to_f }.inspect %>
+          pointStart: <%= @ticks.last.date.at_midnight.to_i * 1000 %>,
+          data: <%= user_ticks_chart_series( @ticks, @ticks.last.date ) %>
         },
         <% end %>
         ]
@@ -190,3 +191,5 @@
   });
 </script>
 <div id="newroutes" style="width:100%; height:200px;"></div>
+
+</div>

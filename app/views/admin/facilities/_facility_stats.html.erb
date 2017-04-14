@@ -1,0 +1,13 @@
+<br>
+<div class="circle-wrapper">
+  <div class="large-circle responsive"><%= @facility.routes.current.count %><span class="text"><%= "total" %></span></div>
+</div>
+<div class="circle-wrapper">
+  <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").count %><span class="text"><%= "boulder".pluralize(@facility.routes.current.count) %></span></div>
+</div>
+<div class="circle-wrapper">
+  <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").count %><span class="text"><%= "route".pluralize(@facility.routes.current.count) %></span></div>
+</div>
+<div class="circle-wrapper">
+  <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.count) if @facility.routes.current.count > 0  %><span class="text"><%= "avg. age" %></span></div>
+</div>

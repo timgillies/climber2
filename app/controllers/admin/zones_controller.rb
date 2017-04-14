@@ -22,6 +22,7 @@ class Admin::ZonesController < ApplicationController
     @zone = Zone.new
     @sub_child_zone = SubChildZone.new
     @facility_systems = facility_systems.page(params[:page])
+
   end
 
   def new
@@ -30,11 +31,6 @@ class Admin::ZonesController < ApplicationController
     @zones = @facility.zones.page(params[:page])
   end
 
-  def show
-    @zones = @facility.zones.page(params[:page])
-    @facility_systems = facility_systems.page(params[:page])
-
-  end
 
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
@@ -75,11 +71,9 @@ class Admin::ZonesController < ApplicationController
     @sub_child_zone = SubChildZone.new
     @zones = @facility.zones.page(params[:page])
     @facility_systems = facility_systems.page(params[:page])
-    @routes = @facility.routes.where('enddate >= ? AND zone_id = ?', Date.current, @zone).page(params[:page]).per(50)
-
-
-
+    @zone_routes = @facility.routes.current.where(zone_id: @zone).page(params[:page]).per(500)
   end
+
 
   def mass_expire
     @facility = Facility.find(params[:facility_id])

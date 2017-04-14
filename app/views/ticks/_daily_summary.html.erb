@@ -1,15 +1,10 @@
 
+<div id="tick_daily_summary">
   <div class="row">
     <div class="col-xs-12">
       <div class="routelist">
       <h2><%= page_entries_info @ticks  %>
       </h2>
-      <span class="pull-right">
-        <%= link_to(
-          'Reset filters',
-          reset_filterrific_url
-        ) %>
-      </span>
     </div>
     </div>
 
@@ -24,8 +19,17 @@
         <br>
         <div class="container-fluid">
           <div class="hidden-sm hidden-md hidden-lg">
-            <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
-            <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
+            <div class="circle-wrapper">
+              <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
+            </div>
+
+            <div class="circle-wrapper">
+              <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "attempt".pluralize(@ticks.total_on(tick_date)) %></span></div>
+            </div>
+
+            <div class="circle-wrapper">
+              <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
+            </div>
             <br>
           </div>
           <div class='col-sm-6'>
@@ -58,7 +62,7 @@
                         <% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %>
                       </h2>
                       <% end %>
-                      <h3> | <%= f.tick_type.humanize %></h3>
+                      <h3> | <%= f.tick_type.humanize if f.tick_type %></h3>
                     </span>
 
                   </div>
@@ -94,7 +98,7 @@
                        <% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %>
                      </h2>
                      <% end %>
-                     <h3> | <%= f.tick_type %></h3>
+                     <h3> | <%= f.tick_type if f.tick_type %></h3>
                    </span>
 
                 </div>
@@ -113,8 +117,21 @@
 </div>
 <div class="col-sm-6">
   <div class="hidden-xs">
-    <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
-    <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").total_on(tick_date)) %></span></div>
+    </div>
+
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "attempt".pluralize(@ticks.total_on(tick_date)) %></span></div>
+    </div>
+
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").total_on(tick_date).to_f)/(@ticks.total_on(tick_date).to_f)*100), precision: 0) %><span class="text"><%= "send rate" %></span></div>
+    </div>
+
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
+    </div>
 </div>
 </div>
 </li>
@@ -123,6 +140,4 @@
 </ol>
 <% end %>
 
-
-
-  <%= paginate @ticks %>
+</div>

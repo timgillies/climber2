@@ -132,7 +132,7 @@ class RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'flash', date: Date.current)
     @tick.save
-    redirect_to (user_routes_path(@user))
+    redirect_to (user_route_tick_path(current_user, @route, @tick))
   end
 
   def quick_redpoint
@@ -140,7 +140,7 @@ class RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'redpoint', date: Date.current)
     @tick.save
-    redirect_to (user_routes_path(@user))
+    redirect_to (user_route_tick_path(current_user, @route, @tick))
   end
 
   def quick_project
@@ -148,7 +148,7 @@ class RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'project', date: Date.current)
     @tick.save
-    redirect_to (user_routes_path(@user))
+    redirect_to (user_route_tick_path(current_user, @route, @tick))
   end
 
   def quick_tick
@@ -156,7 +156,7 @@ class RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'quick_add', date: Date.current)
     @tick.save
-    redirect_to (user_routes_path(@user))
+    redirect_to (user_route_tick_path(current_user, @route, @tick))
   end
 
 

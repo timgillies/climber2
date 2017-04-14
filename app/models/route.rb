@@ -14,7 +14,7 @@ class Route < ActiveRecord::Base
 
   accepts_nested_attributes_for :ticks
 
-  has_attached_file :image, styles: { medium: "600", thumb: "100x100#" }
+  has_attached_file :image, styles: { medium: "600", thumb: "100x100#" }, default_url: "default-avatar.png"
   validates_attachment_content_type :image, :content_type => ['image/jpg', 'image/png', 'image/gif', 'image/jpeg']
 
   validates_presence_of :setdate
@@ -42,23 +42,21 @@ class Route < ActiveRecord::Base
   end
 
 
-# limits routes where the grade is a "boulder" grade
-  def self.boulder
-    Route.joins(:grade).merge(Grade.where(:discipline => 'boulder'))
+  def average_age
+    current.map {|f| [route_age(f).to_i] }.inject(:+).sum
   end
 
-# limits routes where the grade is a "sport" grade
-  def self.sport
-    Route.joins(:grade).merge(Grade.where(:discipline => 'sport'))
+
+# allows to call "sport" or "boulder" climb types
+  def self.climb_type(discipline)
+    self.where(grade_id: Grade.where(grade_system_id: GradeSystem.where(discipline: discipline).all).all)
   end
 
   def self.facility_system(fs)
     Route.joins(:grade).merge(Grade.where(:grade_system_id => fs))
   end
 
-  def route_age
-    (setdate - Date.today).to_i
-  end
+
 
 # enables rating for routes
   ratyrate_rateable 'total'

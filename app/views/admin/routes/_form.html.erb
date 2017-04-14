@@ -3,9 +3,7 @@
 
 <%= render 'shared/error_messages', object: f.object %>
 
-<div id="successMessage" style="display: none">
- <!-- Here I want to place a message. It should be visible for 3 seconds.Then clear the      div to get ready for the next message. -->
-</div>
+
 
 
 <div class="gray-labels white">
@@ -14,7 +12,7 @@
     <div class="row large-label">
       <div class="col-xs-12">
         <%= f.label :name, "Route name", class: "sr-only" %>
-        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control', placeholder: "Route Name"} : { value: f.object.name, class: 'form-control', placeholder: "Route Name"} %>
+        <%= f.text_field :name, params[:name] ? { :value=> params[:name], class: 'form-control', placeholder: "Route Name (optional)"} : { value: f.object.name, class: 'form-control', placeholder: "Route Name (optional)"} %>
       </div>
     </div>
 
@@ -29,7 +27,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <%= f.label :user_id, "Setter*", class: "sr-only" %>
+        <%= f.label :user_id, "Setter" %>
         <div class="route-form">
           <div id="donate">
             <% @facilitysetters.each do |fs| %>
@@ -48,7 +46,7 @@
       <div class="row">
         <div class="col-xs-12">
 
-          <%= f.label :color_hex, "Color* ", class: "sr-only"  %>
+          <%= f.label :color_hex, "Color* "  %>
           <div id="color_error"></div>
           <div class="route-form">
             <div id="donate-colors">
@@ -64,7 +62,7 @@
       </div>
       <br>
       <div class="row">
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-12">
           <%= f.label :color, "Color Description", class: "sr-only" %>
           <%= f.text_field :color, params[:color] ? {value: params[:color], class: 'form-control', placeholder: "color text description (optional)..." } : {value: f.object.color, class: 'form-control', placeholder: "color text description (optional)..." }  %>
         </div>
@@ -75,7 +73,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <%= f.label :grade_id, "Grade*", class: "sr-only" %>
+          <%= f.label :grade_id, "Grade*" %>
           <div id="grade_error"></div>
           <div class="route-form">
             <div id="donate">
@@ -116,7 +114,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <%= f.label :zone_id, "Zone", class: "sr-only"  %>
+        <%= f.label :zone_id, "Zone"  %>
         <div class="route-form">
           <div id="donate">
             <% @facilityzones.each do |fs| %>
@@ -161,7 +159,7 @@
 
 
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-12">
           <%= f.label :setdate, "Set Date*" %> <div id="date_error"></div>
           <% if params[:action] == "edit" %>
             <%= f.date_field :setdate, params[:setdate] ? { :value=> params[:setdate] , class: 'form-control', required: true, 'data-parsley-errors-container' => "#date_error" } : { value: f.object.setdate, class: 'form-control', required: true, 'data-parsley-errors-container' => "#date_error" } %>
@@ -207,7 +205,7 @@
               <%= f.text_area :description, class: 'form-control', placeholder: "Description (optional)", rows: "2" %>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-12">
             <%= f.label :enddate, "End Date" %>
             <% if params[:action] == "edit" %>
               <%= f.date_field :enddate, class: 'form-control' %>

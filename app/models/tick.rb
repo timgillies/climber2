@@ -7,7 +7,7 @@ class Tick < ActiveRecord::Base
   belongs_to :grade
 
   # enables rating for routes
-    ratyrate_rateable 'tick_route_rating'
+  ratyrate_rateable 'tick_route_rating'
 
   default_scope -> { order(date: :desc) }
 
@@ -30,6 +30,49 @@ class Tick < ActiveRecord::Base
   scope :project, -> {
   where(:tick_type => "project")
   }
+
+  filterrific(
+    default_filter_params: { with_date_gte: 7.days.ago.to_date },
+    available_filters: [
+      :search_query,
+      :with_date_gte,
+      :with_date_lt
+    ]
+    )
+
+    # define ActiveRecord scopes for
+    # :search_query, :sorted_by, :with_country_id, and :with_created_at_gte
+
+  scope :search_query, lambda { |query|
+    # Searches the students table on the 'first_name' and 'last_name' columns.
+    # Matches using LIKE, automatically appends '%' to each term.
+    # LIKE is case INsensitive with MySQL, however it is case
+    # sensitive with PostGreSQL. To make it work in both worlds,
+    # we downcase everything.
+    return nil  if query.blank?
+
+    # condition query, parse into individual keywords
+    terms = query
+
+    # replace "*" with "%" for wildcard searches,
+    # append '%', remove duplicate '%'s
+
+    # configure number of OR conditions for provision
+    # of interpolation arguments. Adjust this if you
+    # change the number of OR conditions.
+    num_or_conds = 1
+    where("ticks.id = ?", terms)
+    }
+
+
+      # always include the lower boundary for semi open intervals
+    scope :with_date_gte, lambda { |reference_time|
+      where('ticks.date >= ?', reference_time)
+    }
+
+    scope :with_date_lt, lambda { |reference_time|
+      where('ticks.date <= ?', reference_time)
+    }
 
   def self.lead?
     where(lead: true)
@@ -64,10 +107,9 @@ class Tick < ActiveRecord::Base
     self.where(route_id: route.id, user_id: user.id, tick_type: tick_type ).count
   end
 
-
-
-
-
+  def self.total_send_overall_count(user, project)
+    self.where(user_id: user.id ).where.not(tick_type: project)
+  end
 
 
 

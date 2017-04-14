@@ -2,7 +2,7 @@
 <br/>
 <div class="gray-labels">
 <div class="container-fluid bg-gray">
-    <%= form_for [:admin, @facility, @facility_target ], :html => {:class => "form-label", :id => "targetForm"}, remote: true  do |f| %>
+    <%= form_for [:admin, @facility, @facility_target ], :html => {:id => "targetForm"}, remote: true  do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
     <div class="row">

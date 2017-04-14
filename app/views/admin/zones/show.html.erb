@@ -1,5 +1,6 @@
 <% provide(:title, 'Zones') %>
 
+
 <div class="container-fluid">
   <div class="row">
     <div class="routelist-header bg-blue-gradient">
@@ -27,7 +28,7 @@
         <% end %>
       </div>
       <div class="row">
-        <%= render 'admin/zones/routelist', route: @routes %>
+        <%= render 'admin/zones/routelist', object: @zone_routes %>
       </div>
     </div>
     <div class="col-sm-6">

@@ -74,7 +74,7 @@ class Admin::RoutesController < ApplicationController
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
-    @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
+    @recent_routes = @facility.routes.current.order("created_at DESC").limit(10)
 
   end
 
@@ -99,7 +99,7 @@ class Admin::RoutesController < ApplicationController
     @c_value = ric_values
     @route_status = route_status_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
-    @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
+    @recent_routes = @facility.routes.current.order("created_at DESC").limit(10)
     @route.facility_id = params[:facility_id]
 
     if @route.save
@@ -142,8 +142,7 @@ class Admin::RoutesController < ApplicationController
     @route_status = route_status_values
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @route.facility_id = params[:facility_id]
-    @recentroutes = @facility.routes.order("created_at DESC").page(params[:page]).limit(10)
-
+    @recent_routes = @facility.routes.current.order("created_at DESC").limit(10)
     @facilitydisciplines = facility_grades.map{ |fg| [fg.discipline, fg.discipline ] }
 
   end
@@ -159,11 +158,14 @@ class Admin::RoutesController < ApplicationController
     @i_value = ric_values
     @c_value = ric_values
     @route_status = route_status_values
+    @recent_routes = @facility.routes.current.order("created_at DESC").limit(10)
     @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
     @route = Route.find(params[:id])
     if @route.update_attributes(route_params)
-      flash[:success] = "Route updated"
-      redirect_to(admin_facility_routes_path(@facility))
+      respond_to do |format|
+        format.html
+        format.js
+      end
       # Handle a successful update.
     else
       render :edit
@@ -175,6 +177,14 @@ class Admin::RoutesController < ApplicationController
     @route = Route.find(params[:id])
     @route.update_attribute(:enddate, Date.yesterday)
     redirect_to(admin_facility_routes_path(@facility))
+  end
+
+  def expire_zone_show #allows expiring from zone show page
+    @facility = Facility.find(params[:facility_id])
+    @route = Route.find(params[:id])
+    @route.update_attribute(:enddate, Date.yesterday)
+    @zone = @route.zone_id
+    redirect_to(admin_facility_zone_path(@facility, @zone))
   end
 
   def mass_expire_2

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       member do
         post :quick_flash #output path - expire_route/:id
         post :quick_redpoint #output path - tagged_route/:id
-        post :quick_project 
+        post :quick_project
         post :quick_tick
       end
       resources :ticks
@@ -71,6 +71,7 @@ Rails.application.routes.draw do
           post :tagged #output path - tagged_route/:id
           post :untagged #output path - tagged_route/:id
           post :create_task
+          post :expire_zone_show #expire from zone show page
         end
       end
       resources :subscriptions do
