@@ -70,8 +70,7 @@ $gray-medium-light: #eaeaea;
 
 body {
   background-color: #EFF0F1;
-  background-image: -webkit-linear-gradient(top, #F8F8F9, #EFF0F1);
-  background-image: linear-gradient(to bottom,#F8F8F9, #EFF0F1);
+  background-color: #fff; /* CHANGE BACKGROUND HERE*/
   padding: 0px;
   padding-top: 65px;
   padding-bottom: 0px;
@@ -2236,7 +2235,7 @@ span.picture {
   }
   .navbar {
     color: black;
-    background-color: #F8F8F9;
+    background-color: #fff;
     border-style: none;
     margin-left: 1px;
     font-family: 'Montserrat', sans-serif;
@@ -2271,7 +2270,7 @@ span.picture {
 
   }
   .navbar-collapse {
-    background-color: #F8F8F9;
+    background-color: #fff;
   }
   .navbar-toggle {
     border-style: none;
@@ -3002,6 +3001,7 @@ font-size: 18px;
 font-weight: 200;
 line-height: 30px;
 color: inherit;
+background-color: #EFF0F1; /* CHANGE BACKGROUND HERE*/
 background-color: #fff; /* CHANGE BACKGROUND HERE*/
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;
