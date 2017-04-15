@@ -29,6 +29,9 @@ class Facility < ActiveRecord::Base
 
   after_create :create_facility_role
 
+  has_attached_file :logo_image, styles: { large: "600", medium: "300", thumb: "200x200#" }, default_url: "default-avatar.png"
+  validates_attachment_content_type :logo_image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
   def self.yds?
     where(yds: true)
   end

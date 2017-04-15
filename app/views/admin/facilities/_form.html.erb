@@ -5,7 +5,7 @@
             <h1><strong>Facility</strong>Information</h1>
           </div>
           <br>
-          <div class="container-fluid bg-gray">
+          <div class="container-fluid bg-routeform">
 
           <div class="col-sm-12 col-md-12 col-lg-12">
             <%= f.label :name, "Company name*", class: "form-label" %>
@@ -41,6 +41,11 @@
             <%= f.label :country, "Country*" %>
             <%= f.select(:country, options_for_select(country_list, selected: f.object.country ), { include_blank: 'Select country' }, { class: 'form-control' }) %>
           </div>
+
+            <div class="col-xs-12">
+              <%= f.label :logo_image,"Photo" %>
+              <%= f.file_field :logo_image, {class: 'form-control'}  %>
+            </div>
 
             <br/>
           <div class="col-sm-12 col-md-12 col-lg-12">

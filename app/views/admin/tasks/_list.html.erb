@@ -79,7 +79,7 @@
           </div>
 
 
-          <div class="hidden-xs hidden-sm no-print button-links white-links">
+          <div class="hidden-xs hidden-sm no-print button-links">
             <div class="col-md-2">
               <% if f.task_type == 'route_task'  && f.active? %>
                 <%= link_to activate_route_admin_facility_task_path(@facility, f), class: 'btn btn-expire btn-md', method: :activate_route, remote: false do %>
@@ -189,7 +189,7 @@
 
         <div class="row">
 
-          <div class="hidden-md hidden-lg hidden-xl no-print white-links">
+          <div class="hidden-md hidden-lg hidden-xl no-print">
             <br/>
             <div class="col-xs-6 col-sm-6">
               <% if f.task_type == 'route_task'  && f.active? %>
