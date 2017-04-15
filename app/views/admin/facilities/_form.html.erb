@@ -42,8 +42,14 @@
             <%= f.select(:country, options_for_select(country_list, selected: f.object.country ), { include_blank: 'Select country' }, { class: 'form-control' }) %>
           </div>
 
+
+          <div class="col-xs-12">
+            <%= image_tag @facility.logo_image.url(:thumb) if @facility.logo_image.exists? %>
+          </div>
+
+
             <div class="col-xs-12">
-              <%= f.label :logo_image,"Photo" %>
+              <%= f.label :logo_image,"Logo Image" %>
               <%= f.file_field :logo_image, {class: 'form-control'}  %>
             </div>
 

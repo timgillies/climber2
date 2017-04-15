@@ -69,13 +69,12 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  background-color: #F8F8F9;
+  background-color: #fff;
   padding: 0px;
   padding-top: 65px;
   padding-bottom: 0px;
   font-family: sans-serif;
   font-weight: 300;
-
   @media (max-width: 768px) {
     margin: -10px;
   }
@@ -666,26 +665,6 @@ input {
 
 /* Facilities index */
 
-.img-facility-logo-medium {
-  height: 60px;
-  background-size: cover;
-  display: inline;
-  margin-right: 10px;
-  vertical-align: bottom;
-  margin-top: 5px;
-}
-
-.img-facility-logo-small {
-  height: 25px;
-  background-size: cover;
-  display: inline;
-  margin-right: 10px;
-  margin-top: 18px;
-  vertical-align: top;
-  float: right;
-
-}
-
 .users {
   list-style: none;
   margin: 0;
@@ -710,7 +689,7 @@ input {
   list-style: none;
   margin: 0;
   h1 {
-    font-size: 2.0em;
+    font-size: 2.7em;
     @media (max-width: 768px) {
       font-size: 1.3em;
     }
@@ -886,7 +865,7 @@ input {
 }
 
 .bg-routeform {
-  background-color: #ddd;
+  background-color: #eee;
   padding: 20px;
   @media (max-width:768px) {
     padding-left: 7px;
@@ -1019,6 +998,13 @@ input {
 }
 
 /* facilities */
+
+.img-facility-logo-medium {
+   height: 50px;
+   background-size: cover;
+   display: inline;
+   margin-right: 10px;
+}
 
 .facilities {
   list-style: none;
@@ -1366,7 +1352,6 @@ input {
   }
   input[type=text], input[type=date] {
       margin-left: 4px;
-      margin-right: 4px;
       border-radius: 4px;
       box-shadow: none;
       font-size: 16px;
@@ -1407,6 +1392,7 @@ select {
   background: linear-gradient(60deg, #444, #666);
   color: #eee;
   height: 47px;
+  padding-left: 40px;
   text-transform: uppercase;
 
 
@@ -1416,7 +1402,6 @@ select {
   .large-label {
     input[type=text] {
       margin-left: 4px;
-      margin-right: 4px;
       font-size: 16px;
       padding: 12px;
       background-color: #ccc;
@@ -1431,18 +1416,18 @@ select {
   }
 
   ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #666;
+    color:    #888;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #666;
+   color:    #fff;
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #666;
+   color:    #fff;
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #666;
+   color:    #fff;
 }
 
   .divider-line {
@@ -1617,13 +1602,11 @@ select {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   li {
-    background-color: #ddd;
+    background-color: #eee;
     margin-bottom: 10px;
     border-left: 15px solid #444;
     position: relative;
     border-radius: 4px;
-    box-shadow: 2px 2px 2px #aaa;
-
 
 
     a {
@@ -1646,7 +1629,7 @@ select {
 
     .button-links {
       a {
-        color: #666;
+        color: #eee;
         display: inline-block;
       }
     }
@@ -1691,8 +1674,8 @@ select {
     color: white;
     margin: 20px;
     .text {
-      font-size: 10px;
-      margin-top: -6px !important;
+      font-size: 12px;
+      margin-top: -10px !important;
       position: relative;
       display: block;
     }
@@ -1793,7 +1776,7 @@ select {
   }
 
   h3 {
-    font-size: 2.7em;
+    font-size: 2em;
     letter-spacing: -1.0px;
     margin-bottom: 0px;
     font-weight: 200;
@@ -1801,11 +1784,6 @@ select {
     text-align: left;
     color: #777;
     margin-top: 0px;
-    vertical-align: bottom;
-    @media (max-width: 768px) {
-      font-size: 2.0em;
-    }
-
   }
 
   h4 {
@@ -2242,11 +2220,8 @@ span.picture {
 #admin-header {
 
   .navbar .navbar-toggle {
-
     margin-top: 15px;
     margin-bottom: -10px;
-
-
 
   }
   .navbar-nav li a {
@@ -2256,9 +2231,8 @@ span.picture {
       }
   }
   .navbar {
-    vertical-align: baseline;
     color: black;
-    background-color: #F8F8F9;
+    background-color: #ffffff;
     border-style: none;
     margin-left: 1px;
     font-family: 'Montserrat', sans-serif;
@@ -2293,7 +2267,7 @@ span.picture {
 
   }
   .navbar-collapse {
-    background-color: #F8F8F9;
+    background-color: #ffffff;
   }
   .navbar-toggle {
     border-style: none;
@@ -2574,74 +2548,76 @@ span.picture {
   color: #ffffff;
 }
 
-.btn-pretick{
-  background-color: #ccc;
-  border: none;
-  opacity: 1;
-  color: #666;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
 
 .btn-flash{
-  background: linear-gradient(60deg, #d73463, #fa9040);
+  background: linear-gradient(60deg, #fa9040, #d73463);
   border: none;
-  opacity: 0.9;
+  opacity: 1;
   color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
   @media (max-width: 768px) {
     font-size: 10px;
+    padding: 7px;
   }
 }
 
 .btn-flash:hover{
-  background: linear-gradient(60deg, #d73463, #fa9040);
+  background: linear-gradient(60deg, #fa9040, #d73463);
   border: none;
   opacity: 1;
   color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
   @media (max-width: 768px) {
     font-size: 10px;
+    padding: 7px;
   }
 }
 
 .btn-redpoint{
-  background: linear-gradient(60deg, #d7348c, #e32666);
+  background: linear-gradient(60deg, #e32666, #d7348c);
   border: none;
-  opacity: 0.9;
+  opacity: 1;
   color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
   @media (max-width: 768px) {
     font-size: 10px;
+    padding: 7px;
   }
 }
 
 .btn-redpoint:hover{
-  background: linear-gradient(60deg, #d7348c, #e32666);
+  background: linear-gradient(60deg, #e32666, #d7348c);
   border: none;
   opacity: 1;
   color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
   @media (max-width: 768px) {
     font-size: 10px;
+    padding: 7px;
   }
 }
 
 .btn-project{
-  background: linear-gradient(60deg, #8e54e9, #d7348c);
+  background: linear-gradient(60deg, #d7348c, #8e54e9);
   border: none;
-  opacity: 0.9;
+  opacity: 1;
   color: #eee;
+  box-shadow: 2px 2px 2px #aaa;
   @media (max-width: 768px) {
     font-size: 10px;
+    padding: 7px;
   }
 
 }
 
 .btn-project:hover{
-  background: linear-gradient(60deg, #8e54e9, #d7348c);
+  background: linear-gradient(60deg, #d7348c, #8e54e9);
   border: none;
   opacity: 1;
   color: #eee;
   @media (max-width: 768px) {
     font-size: 10px;
+    padding: 7px;
   }
 }
 
@@ -2657,10 +2633,10 @@ span.picture {
 }
 
 .btn-expire, .btn-expire:hover{
-  background-color: #ccc;
+    background: linear-gradient(60deg, #666, #888);
   border: none;
   opacity: 1;
-  color: #666;
+  color: #eee;
   letter-spacing: 0.5px;
   display: block;
   font-family: 'Montserrat', sans-serif;
@@ -2674,6 +2650,7 @@ span.picture {
   }
   @media (max-width: 768px) {
     font-size: 10px;
+    padding: 10px;
   }
 
 }
@@ -2685,6 +2662,7 @@ span.picture {
   border: none;
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
+  box-shadow: 2px 2px 2px #aaa;
 
 }
 
@@ -2753,10 +2731,9 @@ span.picture {
 }
 
 .btn-blue, .btn-blue:hover  {
-  background: linear-gradient(60deg, #1b75bb, #00b1ff);
-  border: none;
-  opacity: 0.9;
-  color: #eee;
+  background: #2e8ece;
+  opacity: 1;
+  color: #ffffff;
   display: inline;
   width: 100%;
 }
@@ -3025,7 +3002,7 @@ font-size: 18px;
 font-weight: 200;
 line-height: 30px;
 color: inherit;
-background-color: #F8F8F9;
+background-color: #fff; /* CHANGE BACKGROUND HERE*/
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;
 border-radius: 6px;

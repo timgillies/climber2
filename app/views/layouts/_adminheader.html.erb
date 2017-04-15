@@ -1,13 +1,17 @@
-<div class="container-fluid">
+
+    <div class="container-fluid">
 <!-- Left nav -->
   <div class="routes">
     <div class="row">
       <div class="col-sm-12">
         <p class="navbar-btn">
         </p>
-          <h1 class="hidden-xs">
+        <h1>
+          <% if @facility.logo_image? %>
+            <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-medium"), admin_facility_path(@facility)) %>
+          <% end %>
             <strong><%= @facility.name %></strong><%= @facility.location %>
-          </h1>
+        </h1>
       </div>
     </div>
   </div>
@@ -24,31 +28,12 @@
               <span class="icon-bar"></span>
             </button>
             <span class="hidden-md hidden-lg hidden-sm hidden-xl">
-              <span>
-              <% if @facility.logo_image? %>
-                <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-small"), admin_facility_path(@facility), class: "pull-left") %>
-              <% else %>
-              <span class="routes">
-                <h1>
-                    <strong><%= @facility.name %></strong><%= @facility.location %>
-                </h1>
-              </span>
-              <% end %>
-              </span>
-              <span class="hidden-md hidden-lg hidden-sm hidden-xl">
-                <span class="pull-right"><%= link_to "Add Route", new_admin_facility_route_path(@facility), class: "btn btn-md btn-blue" %> <%= link_to  "Tasks", admin_facility_tasks_path(@facility), class: "btn btn-md btn-blue" %></span>
-              </span>
+              <span class="pull-right"><%= link_to "Add Route", new_admin_facility_route_path(@facility), class: "btn btn-md btn-blue" %> <%= link_to  "Tasks", admin_facility_tasks_path(@facility), class: "btn btn-md btn-blue" %></span>
             </span>
         </div>
 
-
         <!-- Collect the nav links, forms, and other content for toggling -->
-
         <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
-          <% if @facility.logo_image? %>
-          <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-medium"), admin_facility_path(@facility), class: "pull-left hidden-xs") %>
-          <% end %>
-
           <ul class="nav navbar-nav navbar-left">
             <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "HOME", admin_facility_path(@facility) %></li>
             <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "ROUTES", admin_facility_routes_path(@facility) %></li>
