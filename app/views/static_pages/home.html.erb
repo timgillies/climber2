@@ -126,7 +126,7 @@ $('#hamburger').click(function() {
 
 <div class="container-fluid">
   <br>
-  <div class="col-sm-5 bg-gray-gradient hidden-xs">
+  <div class="col-sm-5 hidden-xs">
     <br>
     <%= render 'static_pages/route_list' %>
   </div>
@@ -143,7 +143,7 @@ $('#hamburger').click(function() {
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
       </div>
     </div>
-    <div class="col-xs-12 bg-gray-gradient hidden-sm hidden-md hidden-lg hidden-xl">
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg hidden-xl">
       <br>
       <%= render 'static_pages/route_list' %>
     </div>
@@ -176,7 +176,7 @@ $('#hamburger').click(function() {
 <div class="home-divider-line"></div>
 
 <div class="container-fluid">
-  <div class="col-sm-6 bg-gray-gradient hidden-xs">
+  <div class="col-sm-6 hidden-xs">
     <br>
     <%= render 'static_pages/task_list' %>
   </div>
@@ -192,7 +192,7 @@ $('#hamburger').click(function() {
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
     </div>
   </div>
-  <div class="col-xs-12 bg-gray-gradient hidden-sm hidden-md hidden-lg hidden-xl">
+  <div class="col-xs-12 hidden-sm hidden-md hidden-lg hidden-xl">
     <br>
     <%= render 'static_pages/task_list' %>
   </div>

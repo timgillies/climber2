@@ -51,7 +51,7 @@
             <h2> <%= f.name %></h2>
           </div>
 
-          <div class="col-xs-2 col-sm-1 no-print">
+          <div class="col-xs-2 col-sm-1 no-print button-links">
               <h3><%= link_to "#", remote: true do %>
                 <i class="glyphicon glyphicon-cog pull-right"></i>
               <%end %>
@@ -119,9 +119,9 @@
 
           <div class="no-print">
             <br/>
-            <div class="col-xs-6 col-sm-6">
+            <div class="col-xs-6 col-sm-6 button-links">
               <% if f.task_type == 'route_task'  && f.active? %>
-                <%= button_to "#", class: 'btn btn-expire btn-xs', remote: true do %>
+                <%= link_to "#", class: 'btn btn-expire btn-md', remote: true do %>
                       move to routes <i class="glyphicon glyphicon-share-alt"></i>
                       <%end %>
               <% end %>
@@ -129,7 +129,7 @@
 
             <div class="col-xs-6 col-sm-6 no-print">
               <% if f.active? %>
-              <%= button_to "mark as done",  "#", class: 'btn btn-expire btn-xs', remote: true %>
+              <%= link_to "mark as done",  "#", class: 'btn btn-expire btn-md', remote: true %>
               <% end %>
             </div>
           </div>
