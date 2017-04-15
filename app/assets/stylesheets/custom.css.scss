@@ -667,11 +667,23 @@ input {
 /* Facilities index */
 
 .img-facility-logo-medium {
-  height: 50px;
+  height: 60px;
   background-size: cover;
   display: inline;
   margin-right: 10px;
   vertical-align: bottom;
+  margin-top: 5px;
+}
+
+.img-facility-logo-small {
+  height: 25px;
+  background-size: cover;
+  display: inline;
+  margin-right: 10px;
+  margin-top: 18px;
+  vertical-align: top;
+  float: right;
+
 }
 
 .users {
@@ -2230,8 +2242,11 @@ span.picture {
 #admin-header {
 
   .navbar .navbar-toggle {
+
     margin-top: 15px;
     margin-bottom: -10px;
+
+
 
   }
   .navbar-nav li a {
@@ -2241,6 +2256,7 @@ span.picture {
       }
   }
   .navbar {
+    vertical-align: baseline;
     color: black;
     background-color: #F8F8F9;
     border-style: none;
