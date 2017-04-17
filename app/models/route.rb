@@ -9,6 +9,9 @@ class Route < ActiveRecord::Base
   has_many :grades
   belongs_to :tick
   belongs_to :tasks
+  has_many :custom_colors, {:through=>:facilities, :source=>:custom_color}
+
+
 
 
 

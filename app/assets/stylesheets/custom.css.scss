@@ -1384,25 +1384,11 @@ input {
 
 }
 
-input[type=attachment] {
-  margin-left: 4px;
-  border-radius: 4px;
-  box-shadow: none;
-  font-size: 16px;
-  padding: 8px;
-  text-transform: uppercase;
-  border: none;
-  background: linear-gradient(60deg, #444, #666);
-  color: #eee;
-  box-shadow: 0 1px 2px rgba(0,0,0,.25);
-
-}
-
 select {
   padding: 20px;
   border: none;
-  background: linear-gradient(60deg, #444, #666);
-  color: #eee;
+  background-color: #ccc;
+  color: #666;
   height: 47px;
   text-transform: uppercase;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);

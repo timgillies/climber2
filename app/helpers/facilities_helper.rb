@@ -306,4 +306,32 @@ def facility_systems
 end
 
 
+def user_ticks_chart_series(ticks, start_time)
+
+  ticks_by_day = ticks.where(:date => start_time..Date.current).
+              group("date(date)").
+              select("date, count(id) as tick_count")
+    (start_time.to_date..Date.current).map do |date|
+      tick = ticks_by_day.detect { |tick| tick.date.to_date == date }
+      tick && tick.tick_count.to_f || 0
+    end.inspect
+
+end
+
+
+# attempt at speeding up the gradedist_boulder chart but this doesn;t work yet
+def facility_grades_chart_series(grade_system)
+
+  routes_by_grade = Route.current.where(grade_id: Grade.where(grade_system_id: grade_system), facility_id: @facility.id).
+              group("grade_id").
+              select("grade_id, count(id) as route_count")
+    (facility_grades.where(grade_system_id: grade_system).order('grades.rank ASC')).map do |grade|
+      route = routes_by_grade.detect { |route| route.grade_id == grade }
+      route && route.route_count.to_i || 0
+    end.inspect
+
+end
+
+
+
 end

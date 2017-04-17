@@ -1,4 +1,4 @@
-      <%= form_for [:admin, @facility], :html => {:class => "form-label"} do |f| %>
+      <%= form_for [:admin, @facility], :html => {:class => "form-label", :multipart => true} do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="gray-labels">
           <div class="routeform-header bg-blue-gradient">
@@ -43,14 +43,14 @@
           </div>
 
 
-          <div class="col-xs-12">
+          <div class="col-sm-12">
             <%= image_tag @facility.logo_image.url(:thumb) if @facility.logo_image.exists? %>
           </div>
 
 
-            <div class="col-xs-12">
+            <div class="col-sm-12">
               <%= f.label :logo_image,"Logo Image" %>
-              <%= f.file_field :logo_image, {class: 'form-control'}  %>
+              <%= f.file_field :logo_image, class: 'btn-expire btn-lg'  %>
             </div>
 
             <br/>
