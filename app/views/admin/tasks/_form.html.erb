@@ -168,7 +168,7 @@
         <div id="donate-colors">
             <% (color_options + custom_color_options(@facility) ).each do |fs| %>
                 <label style="border-left: 15px solid <%= fs[1] %>;">
-                <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true, required: true, 'data-parsley-errors-container' => "#color_error"} : {checked: f.object.color_hex.eql?(fs[1]), required: true, 'data-parsley-errors-container' => "#color_error" }  %>
+                <%= f.radio_button :color_hex, fs[1], params[:color_hex] == fs[1] ? { checked: true } : {checked: f.object.color_hex.eql?(fs[1])}  %>
                 <span><%= fs[0] %></span>
               </label>
             <% end %>

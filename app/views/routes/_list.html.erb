@@ -46,13 +46,13 @@
             </h3>
             <h2> <%= f.name %></h2>
 
-            <span class="pull-right"><%= f.id %></span>
+            <span class="pull-right"><%= (image_tag f.facility.logo_image.url(:medium), class: "img-facility-logo-medium") if f.facility.logo_image %></span>
           </div>
 
         </div>
         <div class="row">
           <div class="col-sm-12">
-              <div class="mobile-tab"><h2><strong><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></strong></h2></div>
+              <div class="mobile-tab"><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
           </div>
 
           <div class="col-sm-12">
@@ -82,7 +82,7 @@
         </div>
 
         <br>
-        
+
         <div class="row">
             <%= render(partial: 'routes/list_buttons', locals: { f: f }) %>
         </div>

@@ -148,8 +148,8 @@ end
   def demo_facility
     unless user_signed_in? && current_user.role == "site_admin"
       if @facility.demo?
-        flash[:success] = "Whoa there!  You can't do that in demo mode, but hopefully you're getting psyched about Climb Connect."
-        redirect_to :back
+        flash[:success] = "Whoa there!  You can't do that in demo mode.  Join and start managing your facility today."
+        redirect_to admin_facility_path(@facility)
       end
     end
   end
