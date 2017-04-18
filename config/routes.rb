@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     end
     member do
       get :inbox
+      get :home
     end
   end
 

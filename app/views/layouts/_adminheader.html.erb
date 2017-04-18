@@ -1,12 +1,11 @@
 
-    <div class="container-fluid">
+    <div class="bg-profile-header">
 
 <!-- Left nav -->
   <div class="routes">
     <div class="row">
       <div class="col-sm-12">
-        <p class="navbar-btn">
-        </p>
+
         <h1>
           <% if @facility.logo_image? %>
             <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-medium"), admin_facility_path(@facility)) %>

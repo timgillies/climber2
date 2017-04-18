@@ -62,7 +62,7 @@
             <div class="mobile-tab"><%= f.user.name if f.user %></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="mobile-tab text-right">
+            <div class="mobile-tab text-right hidden-sm hidden-md hidden-lg hidden-xl">
 
 
               <% unless params[:controller] == 'admin/tasks' %>
@@ -86,6 +86,8 @@
         <div class="row">
             <%= render(partial: 'routes/list_buttons', locals: { f: f }) %>
         </div>
+
+
 
 
 

@@ -14,12 +14,14 @@
 
 <br>
 
+<% if @ticks.present? %>
 <div class="bg-white">
 <%= render(
 partial: 'ticks/user_ticks',
 locals: { ticks: @ticks }
 ) %>
 </div>
+<% end %>
 
 <br>
 
@@ -43,6 +45,7 @@ locals: { ticks: @ticks }
   </div>
 
 <% end %>
+
 
 <%= render(
 partial: 'ticks/daily_summary',

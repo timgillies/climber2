@@ -1,0 +1,11 @@
+<br>
+<div class="top-10">
+<h1>  Newest Routes</h1>
+<ul>
+  <% @top_10_sends.each do |send| %>
+  <li>
+    <strong><%= send.grade.grade %></strong> <%= send.user.name %>
+  </li>
+  <% end %>
+</ul>
+</div>

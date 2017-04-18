@@ -26,8 +26,8 @@ class TicksController < ApplicationController
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @tick_dates = Tick.where(user_id: @user.id).filterrific_find(@filterrific).map { |tick| tick.date }.uniq
-    @ticks = Tick.where(user_id: @user).filterrific_find(@filterrific).page(params[:page]).per(5000000)
+    @tick_dates = Tick.order(date: :desc).where(user_id: @user.id).filterrific_find(@filterrific).map { |tick| tick.date }.uniq
+    @ticks = Tick.order(date: :desc).where(user_id: @user).filterrific_find(@filterrific).page(params[:page]).per(5000000)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

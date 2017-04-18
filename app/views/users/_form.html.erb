@@ -1,5 +1,5 @@
 <br/>
-<div class="col-sm-12">
+<div class="col-sm-12 gray-labels bg-routeform">
   <%= form_for @user do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
@@ -53,7 +53,8 @@
 
     <%= f.label :zip, "Zip code" %>
     <%= f.text_field :zip, class: 'form-control' %>
+    <br>
 
-    <%= f.submit "Save", class: "btn btn-submit" %>
+    <%= f.submit "Save", class: "btn btn-save" %>
   <% end %>
 </div>

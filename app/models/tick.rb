@@ -9,7 +9,6 @@ class Tick < ActiveRecord::Base
   # enables rating for routes
   ratyrate_rateable 'tick_route_rating'
 
-  default_scope -> { order(date: :desc) }
 
 
   scope :grade_desc, -> { joins(:grade).order('grades.rank desc') }

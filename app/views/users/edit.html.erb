@@ -3,10 +3,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <div class="headliner-line">
-        <h1> Edit your profile</h1>
-          <%= render 'users/form', object: @user %>
+      <div class="row">
+        <div class="gray-labels routeform-header bg-blue-gradient">
+          <h1> Your info</h1>
+        </div>
       </div>
+        <div class="row">
+            <%= render 'users/form', object: @user %>
+        </div>
     </div>
   </div>
 </div>

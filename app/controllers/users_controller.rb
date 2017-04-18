@@ -70,6 +70,25 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def home
+    @user = User.find(params[:id])
+    @userfacilities_check = current_user.facility_relationships.all
+
+    @tick_feed = Tick.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: @userfacilities_check)).includes(:user, :grade, :route, :facility)
+    @new_route_feed = Route.where(facility_id: @userfacilities_check).where('routes.created_at > ?', 6.days.ago.to_date).order(created_at: :desc).includes(:zone, :grade, :facility)
+
+    @news_feed = @tick_feed + @new_route_feed
+
+    #newest first
+    @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
+
+    @top_10_sends = Tick.includes(:grade, :user).where.not(tick_type: "project").grade_desc.take(10)
+
+    # gets top 10 routes based on ratings cache average
+    @top_10_routes = Route.where(facility_id: @userfacilities_check).includes(:grade, :facility).where(id: RatingCache.where(cacheable_type: "Route").order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
+
+  end
+
 
 
 

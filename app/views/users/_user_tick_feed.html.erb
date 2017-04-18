@@ -1,0 +1,36 @@
+
+<ol class="activity-feed">
+  <% @news_feed.each do |news_item| %>
+  <% if news_item.instance_of? Tick %>
+	<li class="feed-item" data-content="&#xf00c;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="green">
+		<section>
+			<input type="checkbox" id="expand_tick_<%= news_item.id %>" name="expand_tick_<%= news_item.id %>" />
+			<label for="expand_tick_<%= news_item.id %>">
+				<strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.route.facility.name %></strong>
+			</label>
+			<main class="content">
+        <span class="glyphicon glyphicon-heart"></span>
+			</main>
+		</section>
+	</li>
+
+  <% elsif news_item.instance_of? Route %>
+
+  <li class="feed-item" data-content="&#xf067;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="blue">
+    <section>
+      <input type="checkbox" id="expand_route_<%= news_item.id %>" name="expand_route_<%= news_item.id %>" />
+      <label for="expand_route_<%= news_item.id %>">
+        <strong><%= news_item.facility.name if news_item.facility %></strong> added a new <strong> <%= news_item.grade.grade if news_item.grade %></strong> in <%= news_item.zone.name if news_item.zone %>
+      </label>
+      <main class="content">
+        Hello
+
+      </main>
+    </section>
+  </li>
+
+  <% end %>
+
+
+  <% end %>
+</ol>

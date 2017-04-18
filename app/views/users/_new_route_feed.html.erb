@@ -1,0 +1,17 @@
+
+<ol class="activity-feed">
+	<% @new_route_feed.each do |route| %>
+	<li class="feed-item" data-content="&#xf067;" data-time="<%= time_ago_in_words(route.created_at) %> ago" data-color="blue">
+		<section>
+			<input type="checkbox" id="expand_<%= route.id %>" name="expand_<%= route.id %>" />
+			<label for="expand_<%= route.id %>">
+				<strong><%= route.facility.name if route.facility %></strong> added a new <strong> <%= route.grade.grade if route.grade %></strong> in <%= route.zone.name if route.zone %>
+			</label>
+			<main class="content">
+				Hello
+
+			</main>
+		</section>
+	</li>
+	<% end %>
+</ol>

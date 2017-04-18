@@ -59,12 +59,11 @@
                     <span class="pull-right">
                       <% if f.grade_id? %>
                       <h2>
-                        <% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %>
+                        <% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
                       </h2>
                       <% end %>
-                      <h3> | <%= f.tick_type.humanize if f.tick_type %></h3>
+                      <h2><%= f.tick_type.humanize if f.tick_type %></h2>
                     </span>
-
                   </div>
 
                 </div>
@@ -95,10 +94,10 @@
                    <span class="pull-right">
                      <% if f.grade_id? %>
                      <h2>
-                       <% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %><% end %>
+                       <% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
                      </h2>
                      <% end %>
-                     <h3> | <%= f.tick_type if f.tick_type %></h3>
+                     <h2><%= f.tick_type if f.tick_type %></h2>
                    </span>
 
                 </div>
