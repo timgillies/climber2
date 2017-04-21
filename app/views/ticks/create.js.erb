@@ -2,6 +2,8 @@ $('body').scrollTop(0);
 $('#grade_render').html('');
 $('#wall_render').html('');
 $('#tickForm')[0].reset();
+$("#user-stats").html("<%= j (render(partial: 'users/user_stats')) %>");
+
 
 
 

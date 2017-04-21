@@ -1,19 +1,15 @@
+<% provide(:title, @route.facility.name) %>
+
 <div class="container-fluid">
-  <div class="row">
-    <div class="routelist-header bg-blue-gradient">
-      <h1><strong>Route</strong>info </h1>
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-sm-4 hidden-xs">
+          <%= render 'users/user_stats', object: @user_tick_feed %>
+          <%= render 'users/top10sends', object: @user_tick_feed %>
+          <%= render 'users/top10routes', object: @user_tick_feed %>
+          <%= render 'users/newest10routes', object: @user_tick_feed %>
+        </div>
+        <div class="col-sm-8">
+            <%= render 'routes/show_partial', object: @user_tick_feed %>
+        </div>
+      </div>
 </div>
-
-<br>
-
-<%= render(
-partial: 'routes/route',
-locals: { route: @route }
-) %>
-
-<%= render(
-partial: 'ticks/route_tick_form',
-locals: { tick: @tick }
-) %>

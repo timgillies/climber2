@@ -1,7 +1,7 @@
 
 <br/>
 <div class="gray-labels">
-<div class="container-fluid bg-gray">
+<div class="container-fluid bg-routeform">
     <%= form_for [:admin, @facility, @facility_target ], :html => {:id => "targetForm"}, remote: true  do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
@@ -24,7 +24,7 @@
       </div>
       <div class="col-sm-3">
         <%= f.label "Submit" %>
-        <%= f.submit "Save", class: "btn btn-submit" %>
+        <%= f.submit "Save", class: "btn btn-save btn-lg" %>
       </div>
     </div>
 

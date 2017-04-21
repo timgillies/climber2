@@ -7,6 +7,8 @@
         <div class="row">
           <br/>
           <% if f.confirmed? %>
+          <%= link_to facility_path(f.facility_id) do %>
+
           <div class="col-xs-11 col-sm-11">
             <div class="row">
             <h3>
@@ -17,6 +19,7 @@
               <p><%= f.name.humanize if f.name %></p>
             </div>
           </div>
+          <% end %>
           <% else %>
           <div class="col-xs-11 col-sm-11">
             <div class="row">
@@ -32,9 +35,9 @@
 
 
           <div class="col-xs-1 col-sm-1 col-md-1 no-print">
-            <h3><%= link_to user_facility_role_path(@user, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+            <h3><%= link_to user_facility_role_path(@user, f),
                         :method => :delete do %>
-                        <i class="glyphicon glyphicon-trash"></i>
+                        <i class="glyphicon glyphicon-remove"></i>
                         <%end %>
             </h3>
           </div>

@@ -1,10 +1,12 @@
-<% provide(:title, 'All Grades') %>
-<h1>Custom Grades</h1>
+<% provide(:title, 'Facility Grading') %>
 
-<%= will_paginate %>
-
-<ul class="grades">
-  <%= render @grades %>
-</ul>
-
-<%= will_paginate %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1> Grading </h1>
+    </div>
+  </div>
+  <div class="row">
+    <%= render 'grades/facility_grade_system', object: @grade_systems %>
+  </div>
+</div>

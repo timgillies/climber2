@@ -1,9 +1,67 @@
-<ul class="grades">
-  <% @zones.each do |zone| %>
-    <li>
-      <%= zone.name  %>
-      <%= link_to "edit",  edit_facility_zone_path(@facility, zone ) %>
-      <%= link_to "delete", zone , method: :delete %> 
-    </li>
-  <% end %>
-</ul>
+
+  <div class="row">
+    <ol class="routelist">
+      <div class="col-sm-12">
+        <%= link_to facility_zone_path(@facility, fz ) do %>
+        <li style="border: none;">
+          <div class="col-sm-12 col-xs-12">
+            <h3><%= link_to fz.name, facility_zone_path(@facility, fz ) %>
+            <small><span class="pull-right"><%= fz.routes.current.count %> active <%= 'route'.pluralize(fz.routes.current.count) %></span></small></h3>
+          </div>
+
+          <div class="col-xs-12">
+            <div class="divider-line"></div>
+          </div>
+
+
+
+
+
+          <% if params[:action] == 'show' %>
+          <div class="col-md-12 col-xs-12">
+            <div class="row">
+              <div class="col-sm-4 col-xs-12">
+                <% if fz.image.exists? %>
+                  <%= image_tag(fz.image.url(:square), class: 'img-zone-list') if fz.image.exists? %>
+                <% else %>
+                  <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
+                <% end %>
+              </div>
+              <div class="col-sm-8">
+                    <%= render 'admin/zones/zone_stats', object: @zone %>
+                </div>
+              </div>
+          </div>
+
+          <% else %>
+
+          <div class="col-md-12 col-xs-12">
+            <div class="row">
+              <div class="col-sm-3 col-xs-12">
+                <% if fz.image.exists? %>
+                  <%= image_tag(fz.image.url(:square), class: 'img-zone-list') if fz.image.exists? %>
+                <% else %>
+                  <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
+                <% end %>
+              </div>
+              <div class="col-sm-9 col-xs-12">
+                <% @facility_systems.each do |fs| %>
+                  <% if (facility_system_route_count(fs, fz) > 0) || (facility_system_target_count(fs, fz) > 0) %>
+                <%= render 'facilities/zonegradedist_list', :fz => fz, :fs => fs  %>
+                <% end %>
+              <% end %>
+              </div>
+            </div>
+          </div>
+
+          <% end %>
+
+
+
+
+
+        </li>
+          <% end %>
+      </div>
+    </ol>
+  </div>

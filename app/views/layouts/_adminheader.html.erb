@@ -16,46 +16,47 @@
     </div>
   </div>
 
+    <div class="container-fluid">
+      <div id="admin-header">
+        <nav class="navbar" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <span class="hidden-md hidden-lg hidden-sm hidden-xl">
+                <span class="pull-right"><%= link_to "Add Route", new_admin_facility_route_path(@facility), class: "btn btn-md btn-purple" %> <%= link_to  "Tasks", admin_facility_tasks_path(@facility), class: "btn btn-md btn-purple" %></span>
+              </span>
+          </div>
 
-    <div id="admin-header">
-      <nav class="navbar navbar" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex1-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <span class="hidden-md hidden-lg hidden-sm hidden-xl">
-              <span class="pull-right"><%= link_to "Add Route", new_admin_facility_route_path(@facility), class: "btn btn-md btn-blue" %> <%= link_to  "Tasks", admin_facility_tasks_path(@facility), class: "btn btn-md btn-blue" %></span>
-            </span>
-        </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-left">
+              <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "HOME", admin_facility_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "ROUTES", admin_facility_routes_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %> hidden-xs"><%= link_to "ADD ROUTES", new_admin_facility_route_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_tasks_path(@facility)) %> hidden-xs"><%= link_to "TASK LIST", admin_facility_tasks_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "ZONES", admin_facility_zones_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_facility_roles_path(@facility)) %>"><%= link_to "TEAM", admin_facility_facility_roles_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "GRADING", admin_facility_grades_path(@facility) %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
-          <ul class="nav navbar-nav navbar-left">
-            <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "HOME", admin_facility_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "ROUTES", admin_facility_routes_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(new_admin_facility_route_path(@facility)) %> hidden-xs"><%= link_to "ADD ROUTES", new_admin_facility_route_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_tasks_path(@facility)) %> hidden-xs"><%= link_to "TASK LIST", admin_facility_tasks_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "ZONES", admin_facility_zones_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_facility_roles_path(@facility)) %>"><%= link_to "TEAM", admin_facility_facility_roles_path(@facility) %></li>
-            <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "GRADING", admin_facility_grades_path(@facility) %></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-                FACILITY <b class="caret"></b>
-              </a>
-              <ul class="dropdown dropdown-menu white">
-                <li><%= link_to "Facility Info", edit_admin_facility_path(@facility) %></li>
-                <li><%= link_to "Targets", admin_facility_facility_targets_path(@facility) %></li>
-                <li><%= link_to "Manage Colors", admin_facility_custom_colors_path(@facility) %></li>
-                <li><%= link_to "Subscriptions", admin_facility_subscriptions_path(@facility) %></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </nav>
+                  FACILITY <b class="caret"></b>
+                </a>
+                <ul class="dropdown dropdown-menu white">
+                  <li><%= link_to "Facility Info", edit_admin_facility_path(@facility) %></li>
+                  <li><%= link_to "Targets", admin_facility_facility_targets_path(@facility) %></li>
+                  <li><%= link_to "Manage Colors", admin_facility_custom_colors_path(@facility) %></li>
+                  <li><%= link_to "Subscriptions", admin_facility_subscriptions_path(@facility) %></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </nav>
+      </div>
     </div>
   </div>

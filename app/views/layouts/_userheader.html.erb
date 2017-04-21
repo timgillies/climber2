@@ -3,14 +3,12 @@
   <div class="routes">
     <div class="row">
       <div class="col-sm-12">
-        <p class="navbar-btn">
 
-        </p>
-        <h1><% if current_user.image? %><%= image_tag current_user.image ,:class=> "img-profile-medium" %>
+        <h1><% if @user.image? %><%= image_tag @user.image ,:class=> "img-profile-medium" %>
         <% else %>
-        <%= image_tag current_user.avatar.url(:thumb), class: "img-profile-medium" %>
+        <%= image_tag @user.avatar.url(:thumb), class: "img-profile-medium" %>
         <% end %>
-        <%= current_user.name if current_user.name %></h1>
+        <%= @user.name if @user.name %></h1>
       </div>
     </div>
   </div>
@@ -28,18 +26,21 @@
               <span class="icon-bar"></span>
             </button>
             <span class="hidden-md hidden-lg hidden-sm hidden-xl">
-              <span class="pull-right"><%= link_to "New Ascent", new_user_tick_path(@user), class: "btn btn-md btn-blue" %> <%= link_to  "Ticks", user_ticks_path(@user), class: "btn btn-md btn-blue" %></span>
+              <span class="pull-right"><%= link_to "New Ascent", new_user_tick_path(current_user), class: "btn btn-md btn-purple" %> <%= link_to  "Ticks", user_ticks_path(current_user), class: "btn btn-md btn-purple" %></span>
             </span>
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+
+          <% if @user == current_user %>
           <ul class="nav navbar-nav navbar-left">
-            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "HOME", home_user_path(current_user) %></li>
-            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "TICK LIST", user_ticks_path(current_user) %></li>
-            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "BROWSE ROUTES", user_routes_path(current_user) %></li>
-            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "NEW ASCENT", new_user_tick_path(current_user) %></li>
-            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "MY FACILITIES", user_facility_roles_path(current_user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "HOME", home_user_path(@user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "TICK LIST", user_ticks_path(@user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "BROWSE ROUTES", user_routes_path(@user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "NEW ASCENT", new_user_tick_path(@user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "MY FACILITIES", user_facility_roles_path(@user) %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
@@ -51,6 +52,15 @@
               </ul>
             </li>
           </ul>
+
+          <% else %>
+
+          <ul class="nav navbar-nav navbar-left">
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "PROFILE", home_user_path(@user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "TICK LIST", user_ticks_path(@user) %></li>
+          </ul>
+
+          <% end %>
         </div><!-- /.navbar-collapse -->
       </nav>
     </div>

@@ -1,20 +1,15 @@
-<% provide(:title, 'Facility Team') %>
+<% provide(:title, 'Your Facilities') %>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="routelist-header bg-blue-gradient">
-      <h1><strong>My Facilities</strong> </h1>
-    </div>
-  </div>
-  <div class="row">
-    <%= render 'facility_roles/facility_role', object: @facility_roles %>
-  </div>
-  <div class="row">
-    <div class="routelist-header bg-gray">
-      <h1><strong>All Facilities</strong> </h1>
-    </div>
-  </div>
-  <div class="row">
-    <%= render 'facility_roles/facility_list', object: @facilities %>
-  </div>
+      <div class="row">
+        <div class="col-sm-4 hidden-xs">
+          <%= render 'users/user_stats', object: @user_tick_feed %>
+          <%= render 'users/top10sends', object: @user_tick_feed %>
+          <%= render 'users/top10routes', object: @user_tick_feed %>
+          <%= render 'users/newest10routes', object: @user_tick_feed %>
+        </div>
+        <div class="col-sm-8">
+            <%= render 'facility_roles/index_partial', object: @user_tick_feed %>
+        </div>
+      </div>
 </div>

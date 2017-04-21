@@ -29,7 +29,13 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <%= render 'layouts/adminheader' %>
+
+    <% if (user_signed_in? && @userfacilities.include?(@facility)) || @facility.demo? %>
+      <%= render 'layouts/adminheader' %>
+    <% else %>
+      <%= render 'layouts/facilityheader' %>
+    <% end %>
+
     <div class="container-fluid">
       <br/>
       <%= render 'layouts/messages' %>

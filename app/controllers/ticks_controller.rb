@@ -8,11 +8,14 @@ class TicksController < ApplicationController
     @tick = Tick.new
     @user = User.find(params[:user_id])
     @tick.route_id = params[:route_id]
+    @userfacilities_check = current_user.facility_relationships.all
+    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
   end
 
 
   def index
     @user = User.find(params[:user_id])
+    @userfacilities_check = current_user.facility_relationships.all
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
 
     @filterrific = initialize_filterrific(
@@ -27,7 +30,7 @@ class TicksController < ApplicationController
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
     @tick_dates = Tick.order(date: :desc).where(user_id: @user.id).filterrific_find(@filterrific).map { |tick| tick.date }.uniq
-    @ticks = Tick.order(date: :desc).where(user_id: @user).filterrific_find(@filterrific).page(params[:page]).per(5000000)
+    @ticks = Tick.where(user_id: @user).filterrific_find(@filterrific).page(params[:page]).per(5000000)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -49,7 +52,9 @@ class TicksController < ApplicationController
     @user = User.find(params[:user_id])
     @tick = current_user.ticks.build(tick_params)
     @tick.route_id = params[:route_id]
-    @ticks = Tick.page(params[:page]) # makes "each" work in the partial
+    # Put this in model eventually
+    @userfacilities_check = current_user.facility_relationships.all
+    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
 
     if params[:route_id]
       @tick.grade_id = Route.where(id: params[:route_id]).first.grade_id
@@ -68,6 +73,9 @@ class TicksController < ApplicationController
   def show
     @tick = Tick.find(params[:id])
     @route = Route.find(params[:route_id])
+    @user = User.find(params[:user_id])
+    @userfacilities_check = current_user.facility_relationships.all
+    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
   end
 
   def edit

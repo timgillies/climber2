@@ -1,11 +1,15 @@
 <br>
-<div class="top-10">
-<h1>  Newest Routes</h1>
+<div class="top-10 row">
+  <div class="header bg-top-10">
+    <h1>Newest Routes</h1>
+  </div>
 <ul>
-  <% @top_10_sends.each do |send| %>
-  <li>
-    <strong><%= send.grade.grade %></strong> <%= send.user.name %>
-  </li>
+  <% Route.newest_ten(@userfacilities_check).each do |route| %>
+    <%= link_to user_route_path(current_user, route) do %>
+      <li>
+        <strong><%= route.grade.grade %></strong> <%= route.zone.name if route.zone %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 </div>

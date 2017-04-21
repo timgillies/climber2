@@ -1,36 +1,24 @@
-<% provide(:title, @facility.name ) %>
+<% provide(:title, "Home") %>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
 
-
-<div class="row">
-  <div class="col-md-6">
-      <%= render 'facilities/gradedist_boulder' %>
-  </div>
-
-  <% if facility_grades.where("discipline =?","sport").count > 0 %>
-
-  <div class="col-md-6">
-      <%= render 'facilities/gradedist_sport' %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-      <%= render 'facilities/zonedist' %>
-  </div>
-</div>
-  <% else %>
-
-  <div class="col-md-6">
-      <%= render 'facilities/zonedist' %>
-  </div>
-</div>
-
-<% end %>
-
-
-
-<div class="row">
-  <div class="col-md-6">
-      <%= render 'facilities/newroutes' %>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+            <%= render 'facilities/facility_stats', object: @facility %>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="gray-labels routeform-header bg-blue-gradient">
+              <h1> NEWS FEED</h1>
+            </div>
+              <%= render 'facilities/facility_activity_feed' %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,17 +1,18 @@
-<% provide(:title, 'Ticks') %>
+<% provide(:title, current_user.name + ' New Ascent') %>
 
 <div class="container-fluid">
   <div class="row">
-  <div class="gray-labels routeform-header bg-blue-gradient">
-    <h1><strong>Ascent</strong>Information</h1>
-  </div>
-</div>
-  <br>
-
-  <div class="row">
     <div class="col-sm-12">
       <div class="row">
-        <%= render 'ticks/form', object: @ticks %>
+        <div class="col-sm-4 hidden-xs">
+          <%= render 'users/user_stats', object: @user_tick_feed %>
+          <%= render 'users/top10sends', object: @user_tick_feed %>
+          <%= render 'users/top10routes', object: @user_tick_feed %>
+          <%= render 'users/newest10routes', object: @user_tick_feed %>
+        </div>
+        <div class="col-sm-8">
+            <%= render 'ticks/new_partial', object: @user_tick_feed %>
+        </div>
       </div>
     </div>
   </div>

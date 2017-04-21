@@ -1,12 +1,31 @@
 class RoutesController < ApplicationController
   before_action :authenticate_user!,    only: [:show]
+  before_action :check_layout
 
-  layout "user"
+
+layout :check_layout
+
+def check_layout
+  if params[:facility_id].present?
+    'admin'
+  else
+    'user'
+  end
+end
+
+
 
   def index
     @user = User.find(params[:user_id])
     @tick = Tick.new
-    @userfacilities_check = current_user.facility_relationships.all
+    if params[:facility_id].present?
+      @facility = Facility.find(params[:facility_id])
+      @userfacilities_check = @facility
+    else
+      @userfacilities_check = current_user.facility_relationships.all
+    end
+
+    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date)
     @filterrific = initialize_filterrific(
       Route,
       params[:filterrific],
@@ -62,6 +81,7 @@ class RoutesController < ApplicationController
   end
 
   def show
+
     @user = User.find(params[:user_id])
     @route = Route.find(params[:id])
     @tick = Tick.new
@@ -69,6 +89,10 @@ class RoutesController < ApplicationController
     @userticks = current_user.ticks.where("route_id = ?", @route)
     @averagerating = Rate.where("rateable_id = ?", @route).average(:stars)
     @ratingcount = Rate.where("rateable_id = ?", @route).count(:stars)
+
+    @userfacilities_check = current_user.facility_relationships.all
+    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date)
+
   end
 
   def create

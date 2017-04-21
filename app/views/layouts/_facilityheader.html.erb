@@ -1,0 +1,50 @@
+
+    <div class="bg-profile-header">
+
+<!-- Left nav -->
+  <div class="routes">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <h1>
+          <% if @facility.logo_image? %>
+            <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-medium"), admin_facility_path(@facility)) %>
+          <% end %>
+            <strong><%= @facility.name %></strong><%= @facility.location %>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid">
+      <div id="admin-header">
+        <nav class="navbar navbar" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <span class="hidden-md hidden-lg hidden-sm hidden-xl">
+                <span class="pull-right"><%= link_to "Routes", user_routes_path(current_user, @facility), class: "btn btn-md btn-purple" %> <%= link_to  "My Home", home_user_path(current_user), class: "btn btn-md btn-purple" %></span>
+              </span>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-left">
+              <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "HOME", facility_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "ROUTES", user_facility_routes_path(current_user, @facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "Analytics", analytics_facility_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "ZONES", facility_zones_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "GRADING", facility_grades_path(@facility) %></li>
+
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </nav>
+      </div>
+    </div>
+  </div>

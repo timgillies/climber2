@@ -1,18 +1,67 @@
+<br>
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
-      <%= page_entries_info @facilities  %>
+    <% if @routes.count == 0 %>
+
+    <div class="col-sm-12">
+
+        <div class="row">
+
+
+
+
+          <%= render 'admin/facilities/checklist' %>
+        </div>
+    </div>
+
+  <% end %>
+
+
+
+    <% facility_systems.each do |fs| %>
+
+
+
+
+      <div class="col-sm-12">
+        <div class="routelist">
+          <div class="row">
+              <h3> <%= fs.name %></h3>
+          </div>
+          <div class="row">
+            Total Active Routes: <%= Route.facility_system(fs).where(facility_id: @facility.id).current.count %>
+          </div>
+          <div class="row">
+              <%= render 'facilities/gradedist_boulder', :fs => fs %>
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+
+    <div class="col-sm-6">
+      <div class="routelist">
+        <div class="row">
+        <h3>Routes by Zone</h3>
+
+          <%= render 'facilities/zonedist' %>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-12">
+      <div class="routelist">
+        <div class="row">
+        <h3>New Routes</h3>
+        <%= render 'facilities/newroutes' %>
+      </div>
     </div>
   </div>
 
-  <br />
 
-  <ol class="list-group">
-    <%= div_for(@facilities) do |f| %>
-    <li class="list-group-item clearfix">
-      <h3 class="pull-left">
-        <%= link_to f.name,  facility_path(f) %><br />
-        <small><%= f.addressline1 + " " + f.city + ", " + f.state + " " + f.zipcode %></small>
-      </h3>
-    </li>
-    <% end %>
-  </ol>
+
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div id="user-stats">
+  <div class="top-10 home-stats row">
+    <div class="header bg-top-10">
+      <h1>User Stats</h1>
+    </div>
+
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").count %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").count) %></span></div>
+    </div>
+
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><%= @ticks.count %><span class="text"><%= "attempt".pluralize(@ticks.count) %></span></div>
+    </div>
+
+    <div class="circle-wrapper">
+
+      <div class="large-circle responsive">
+        <% if @ticks.present? %>
+          <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").count.to_f)/(@ticks.count.to_f)*100), precision: 0) %>
+        <% else %>
+            0
+        <% end %>
+      <span class="text"><%= "send rate" %></span></div>
+    </div>
+
+    <div class="circle-wrapper">
+      <div class="large-circle responsive">
+        <% if @ticks.present? %>
+          <%= @ticks.where.not(tick_type: "project").grade_desc.first.grade.grade %>
+          <% else %>
+          0
+        <% end %>
+        <span class="text">hardest</span></div>
+    </div>
+
+    <div class="header bg-top-10">
+      <h1>user facilities</h1>
+    </div>
+      <ul>
+        <% @userfacilities_check.each do |facility| %>
+          <%= link_to facility_path(facility) do %>
+            <li>
+              <%= facility.name %>
+            <li>
+          <% end %>
+        <% end %>
+      <ul>
+  </div>
+</div>

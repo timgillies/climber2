@@ -31,7 +31,7 @@ class Tick < ActiveRecord::Base
   }
 
   filterrific(
-    default_filter_params: { with_date_gte: 7.days.ago.to_date },
+    default_filter_params: { with_date_gte: 6.days.ago.beginning_of_day.to_date },
     available_filters: [
       :search_query,
       :with_date_gte,
@@ -109,6 +109,16 @@ class Tick < ActiveRecord::Base
   def self.total_send_overall_count(user, project)
     self.where(user_id: user.id ).where.not(tick_type: project)
   end
+
+
+  def self.tick_feed(facility)
+    self.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility)
+  end
+
+  def self.top_ten(facility)
+    self.includes(:grade, :user).where(route_id: Route.where(facility_id: facility)).where.not(tick_type: "project").grade_desc.take(10)
+  end
+
 
 
 

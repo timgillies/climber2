@@ -90,25 +90,30 @@
       <ul class="nav navbar-nav navbar-right">
 
           <% if user_signed_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <li>
+              <%= link_to home_user_path(current_user) do %>
               <% if current_user.image? %><%= image_tag current_user.image ,:class=> "img-profile-icon" %>
               <% else %>
               <%= image_tag current_user.avatar.url(:thumb), class: "img-profile-icon" %>
               <% end %>
 
-              <%= current_user.name.upcase %> <% if FacilityRole.where("email = ?", current_user.email ).unconfirmed.count > 0 %><span class="badge badge-red"> <%= FacilityRole.where("email = ?", current_user.email ).unconfirmed.count %></span> <% end %> <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Inbox", inbox_user_path(current_user) %><div class="badge badge-red"><%= FacilityRole.where("email = ?", current_user.email ).unconfirmed.count %></div></li>
-              <li><%= link_to "Profile", user_path(current_user) %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-              <li class="divider"></li>
-              <li>
+              <%= current_user.name.upcase %>
+
+              <% end %>
+
+            </li>
+
+              <li class="hidden-xs">
+                <%= link_to destroy_user_session_path , method: :delete do %>
+                  <i class="fa fa-power-off power-off"></i>
+                  <% end %>
+              </li>
+
+
+              <li class="hidden-sm hidden-md hidden-lg">
                 <%= link_to "Log out", destroy_user_session_path , method: :delete %>
               </li>
-            </ul>
-          </li>
+
         <% else %>
         <li>
             <%= link_to "pre-launch access" , new_user_registration_path, method: 'get'  %>

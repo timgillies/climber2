@@ -1,4 +1,9 @@
 class Facility < ActiveRecord::Base
+
+  def to_param
+   [id, name.parameterize].join("-")
+  end
+
   has_many :users, :through => :facility_roles
   belongs_to :user
   has_many :routes

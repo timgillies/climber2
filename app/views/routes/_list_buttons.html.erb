@@ -1,7 +1,7 @@
 <div id="tick_count_<%= f.id %>">
 
 <div class="no-print">
-  <div class="col-xs-4 col-sm-2">
+  <div class="col-xs-4 col-sm-4">
       <% if Tick.send_type_count(f, current_user, "project") < 1 %>
         <%= button_to "PRJCT", quick_project_user_route_path(current_user, f), class: 'btn btn-pretick btn-md', method: :quick_project, remote: true %>
       <% else %>
@@ -9,7 +9,7 @@
       <% end %>
   </div>
 
-  <div class="col-xs-4 col-sm-2">
+  <div class="col-xs-4 col-sm-4">
     <% if Tick.send_type_count(f, current_user, "redpoint") < 1 %>
       <%= button_to "REDPNT", quick_redpoint_user_route_path(current_user, f), class: 'btn btn-pretick btn-md', method: :quick_redpoint, remote: true %>
     <% else %>
@@ -17,33 +17,13 @@
     <% end %>
   </div>
 
-  <div class="col-xs-4 col-sm-2">
+  <div class="col-xs-4 col-sm-4">
     <% if Tick.send_type_count(f, current_user, "flash") < 1 %>
     <%= button_to "FLASH", quick_flash_user_route_path(current_user, f), class: 'btn btn-pretick btn-md', method: :quick_flasj, remote: true %>
     <% else %>
     <%= button_to "FLASH (#{ Tick.send_type_count(f, current_user, "flash")})", quick_flash_user_route_path(current_user, f), class: 'btn btn-flash btn-md', method: :quick_flash, remote: true %>
     <% end %>
   </div>
-
-  <div class="col-sm-6 hidden-">
-    <div class="mobile-tab text-right hidden-xs">
-
-
-      <% unless params[:controller] == 'admin/tasks' %>
-        <% if (days_ago(f) == "today") %>
-          <span>set <%= days_ago(f) %></span>
-        <% else %>
-          set <%= days_ago(f) %> ago
-        <% end %>
-      <% else %>
-        <% if f.setdate? %>
-        due on <%= f.setdate.strftime("%b %d, %Y") %>
-        <% end %>
-      <% end %>
-
-    </div>
-  </div>
-
 </div>
 
 

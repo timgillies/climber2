@@ -35,17 +35,6 @@ class ApplicationController < ActionController::Base
 def set_facility_role_access
     if ((params[:facility_id].blank?) && (params[:controller] == 'admin/facilities')) || (params[:facility_id].present?)
       facility_controller_check
-      @route = Route.new
-      @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
-      @r_value = ric_values
-      @i_value = ric_values
-      @c_value = ric_values
-      @route_status = route_status_values
-
-      @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
-
-      @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-      @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
       if user_signed_in?
         @facility_role_access = FacilityRole.where.not(name: 'climber').find_by(facility_id: @facility.id, user_id: current_user.id)
       else

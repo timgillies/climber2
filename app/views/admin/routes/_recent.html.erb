@@ -68,8 +68,8 @@
 
              </strong><%= f.user.name if f.user %></div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="tab text-right">
+          <div class="col-xs-5 col-sm-5">
+            <div class="text-right">
 
 
               <% unless params[:controller] == 'admin/tasks' %>
@@ -83,17 +83,18 @@
                 due on <%= f.setdate.strftime("%b %d, %Y") %>
                 <% end %>
               <% end %>
+            </div>
+          </div>
 
-
+          <div class="col-xs-1 col-sm-1">
+            <div class="tab text-right">
               <% if f.user %>
                 <% if f.user.image? %>
-                  <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
+                  <%= image_tag f.user.image ,:class=> "img-setter-icon-list" %>
                 <% elsif f.user.avatar_file_name? %>
-                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
+                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon-list" %>
                 <% end %>
               <% end %>
-
-
 
             </div>
           </div>

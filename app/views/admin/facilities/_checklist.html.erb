@@ -1,53 +1,53 @@
 
-<div class="routelist">
+<div class="top-10 home-stats get-started">
 
   <div class="tab">
     <%= link_to edit_admin_facility_path(@facility) do %>
-          <p>
+          <h1>
           <% if @facility.name? %>
             <i class="glyphicon glyphicon-ok glyphicon-green"></i>
             <% else %>
             <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
-            <% end %> Create your facility </p><br>
+            <% end %> Create your facility </h1><br>
     <%end %>
 
 
       <%= link_to admin_facility_grades_path(@facility) do %>
-            <p>
+            <h1>
             <% if @facility.facility_grade_systems.count > 0 %>
               <i class="glyphicon glyphicon-ok glyphicon-green"></i>
               <% else %>
               <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
-              <% end %> Select grading systems </p><br>
+              <% end %> Select grading systems </h1><br>
       <%end %>
 
 
       <%= link_to admin_facility_zones_path(@facility) do %>
-            <p>
+            <h1>
               <% if @facility.zones.count > 0 %>
               <i class="glyphicon glyphicon-ok glyphicon-green"></i>
               <% else %>
               <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
-              <% end %> Set up zones within your facility </p><br>
+              <% end %> Set up zones within your facility </h1><br>
       <%end %>
 
       <%= link_to admin_facility_facility_roles_path(@facility) do %>
-            <p>
+            <h1>
               <% if @facility.facility_roles.count > 1 %>
               <i class="glyphicon glyphicon-ok glyphicon-green"></i>
               <% else %>
               <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
-              <% end %> Invite your team </p><br>
+              <% end %> Invite your team </h1><br>
       <%end %>
 
 
       <%= link_to admin_facility_facility_targets_path(@facility) do %>
-            <p>
+            <h1>
               <% if @facility.facility_targets.count > 0 %>
               <i class="glyphicon glyphicon-ok glyphicon-green"></i>
               <% else %>
               <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
-              <% end %> Set up route count targets </p><br>
+              <% end %> Set up route count targets </h1><br>
       <%end %>
   </div>
   <br/>

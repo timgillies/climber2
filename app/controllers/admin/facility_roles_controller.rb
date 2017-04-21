@@ -17,7 +17,7 @@ class Admin::FacilityRolesController < ApplicationController
   def index
     @facility = Facility.find(params[:facility_id])
     @facility_role = FacilityRole.new
-    @facility_roles = @facility.facility_roles.page(params[:page]).per(2000)
+    @facility_roles = @facility.facility_roles.admin.includes(:user).page(params[:page]).per(2000)
     @role_names = role_names # populates drop down of role names for creating a new facility user
     @facility_systems = facility_systems.page(params[:page]).per(2000)
   end
@@ -25,14 +25,14 @@ class Admin::FacilityRolesController < ApplicationController
   def new
     @facility_role = FacilityRole.new
     @facility = Facility.find(params[:facility_id])
-    @facility_roles = @facility.facility_roles.page(params[:page])
+    @facility_roles = @facility.facility_roles.admin.includes(:user).page(params[:page]).per(2000)
     @role_names = role_names
   end
 
   def create
     @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @facility_role = @facility.facility_roles.build(facility_role_params)
-    @facility_roles = FacilityRole.page(params[:page]) # makes "each" work in the partial
+    @facility_roles = @facility.facility_roles.admin.includes(:user).page(params[:page]).per(2000)
     @facility_role.facility_id = params[:facility_id] #this passes the facility ID through the field
     @inviter = current_user
     if @facility_role.save
@@ -60,7 +60,7 @@ class Admin::FacilityRolesController < ApplicationController
   def edit
     @facility = Facility.find(params[:facility_id])
     @facility_role = FacilityRole.find(params[:id])
-    @facility_roles = @facility.facility_roles.page(params[:page])
+    @facility_roles = @facility.facility_roles.admin.includes(:user).page(params[:page]).per(2000)
     @role_names = role_names
   end
 

@@ -17,6 +17,10 @@ class FacilityRole < ActiveRecord::Base
       WHEN facility_roles.name = 'guest' THEN '5'
     END")}
 
+    scope :admin, -> {
+    where.not(:name => 'climber')
+    }
+
 
 private
 

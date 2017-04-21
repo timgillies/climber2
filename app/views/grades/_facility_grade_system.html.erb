@@ -1,0 +1,30 @@
+<br>
+<%= div_for(@grade_systems) do |fs| %>
+<ol class="routelist">
+  <li style="border: none;">
+    <div>
+      <div class="container-fluid">
+        <div class="row">
+          <br/>
+          <div class="col-xs-7 col-sm-5">
+            <h3><%= fs.name %></h3>
+
+          </div>
+
+
+          <div class="hidden-xs col-sm-5">
+            <% if fs.facility %>
+              <p><%= fs.facility.name %><%if fs.facility.location %> - <%= fs.facility.location %> <% end %> </p>
+            <% end %>
+          </div>
+
+        </div>
+        <div class="row">
+          <% if fs.grades.joins(:routes).count > 0 && FacilityGradeSystem.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).count > 0 %>
+          <%= render 'facilities/gradedist_boulder', :fs => fs %>
+          <% end %>
+        </div>
+      </div>
+  </li>
+</ol>
+<% end %>

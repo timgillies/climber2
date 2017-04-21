@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     @facilities = @user.facilities.page(params[:page])
     @routes = @user.routes.page(params[:page])
     @facility_roles = FacilityRole.where(user_id: @user, confirmed: true).page(params[:page])
-
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
     @ticks = Tick.where(user_id: @user).page(params[:page]).per(5000000)
   end
@@ -74,19 +73,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @userfacilities_check = current_user.facility_relationships.all
 
-    @tick_feed = Tick.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: @userfacilities_check)).includes(:user, :grade, :route, :facility)
-    @new_route_feed = Route.where(facility_id: @userfacilities_check).where('routes.created_at > ?', 6.days.ago.to_date).order(created_at: :desc).includes(:zone, :grade, :facility)
+    #refactored tick_feed and new_route_feed into respective models
+    @news_feed = Tick.tick_feed(@userfacilities_check) + Route.new_route_feed(@userfacilities_check)
 
-    @news_feed = @tick_feed + @new_route_feed
-
-    #newest first
+    #combines new ticks and new routes, newest first
     @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
 
-    @top_10_sends = Tick.includes(:grade, :user).where.not(tick_type: "project").grade_desc.take(10)
-
-    # gets top 10 routes based on ratings cache average
-    @top_10_routes = Route.where(facility_id: @userfacilities_check).includes(:grade, :facility).where(id: RatingCache.where(cacheable_type: "Route").order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
-
+    @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
   end
 
 

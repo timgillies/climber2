@@ -191,4 +191,19 @@ scope :sorted_by, lambda { |sort_option|
 
   def grade_system_virtual
   end
+
+# defines what shows up in newsfeed for new routes
+  def self.new_route_feed(facility)
+    self.where(facility_id: facility).where('routes.created_at > ?', 6.days.ago.to_date).order(created_at: :desc).includes(:zone, :grade, :facility)
+  end
+
+# gets top 10 routes based on ratings cache average
+  def self.top_ten(facility)
+    Route.where(facility_id: facility).includes(:grade, :facility, :rating_cache).where(id: RatingCache.where(cacheable_type: "Route").order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
+  end
+
+  def self.newest_ten(facility)
+    Route.where(facility_id: facility).includes(:grade, :facility, :zone).order('routes.setdate desc').limit(10)
+  end
+
 end

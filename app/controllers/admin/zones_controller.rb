@@ -22,7 +22,6 @@ class Admin::ZonesController < ApplicationController
     @zone = Zone.new
     @sub_child_zone = SubChildZone.new
     @facility_systems = facility_systems.page(params[:page])
-
   end
 
   def new

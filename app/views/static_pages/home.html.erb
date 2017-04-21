@@ -57,8 +57,8 @@ $('#hamburger').click(function() {
           </div>
         <% else %>
 
-        <%= link_to "climbers", user_path(current_user), class: "btn btn-join btn-lg" %>
-        <%= link_to "gym owners", new_admin_facility_path, class: "btn btn-signin btn-lg" %>
+        <%= link_to "climb smart", home_user_path(current_user), class: "btn btn-join btn-lg" %>
+        <%= link_to "set smart", new_admin_facility_path, class: "btn btn-signin btn-lg" %>
 
         <% end %>
 

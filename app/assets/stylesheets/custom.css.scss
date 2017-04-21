@@ -208,6 +208,10 @@ a {
   border-radius: 4px;
 }
 
+.bg-messages {
+  background-color: #444;
+}
+
 .bg-form {
   border: 1px solid #bbb;
   padding: 15px;
@@ -973,6 +977,7 @@ input {
 }
 
 .bg-routeform {
+  /* background: linear-gradient(60deg, #526494, #604484); */
   background-color: #ddd;
   padding: 20px;
   @media (max-width:768px) {
@@ -1167,6 +1172,16 @@ input {
 
 .bg-profile-header {
   background: linear-gradient(60deg, #47cf73, #2cb5e8);
+  background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(60deg,
+      rgba(71, 207, 115, 0.8),
+      rgba(44, 181, 232, 0.8)
+    ),
+    /* bottom, image */
+    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
+    background-size: cover;
+    background-position: center;
   margin-top: -75px;
   padding-top: 75px;
   padding-right: 20px;
@@ -1204,16 +1219,17 @@ input {
 
 }
 
-.img-setter-icon{
+.img-setter-icon-list{
  width: 25px;
  height: 25px;
  vertical-align: bottom;
  background-size: cover;
  display: inline;
- margin-left: 10px;
  border-radius: 2px;
- opacity: .75;
-
+ opacity: 1;
+ position: absolute;
+ right: 12px;
+ top: -10px;
 
 }
 
@@ -1453,7 +1469,7 @@ input {
     margin-top: 10px;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
-    color: #444;
+    color: #666;
     font-weight: 200;
   }
   h2 {
@@ -1610,6 +1626,9 @@ select {
   #donate input:checked + span {
       background-color:#444;
       color:#F7F7F7;
+
+      box-shadow: 4px 4px 2px rgba(255,255,255,.5);
+
 
   }
 
@@ -1819,6 +1838,19 @@ select {
       position: relative;
       display: block;
     }
+  }
+
+  .img-facility-logo-list {
+    height: 40px;
+    @media (max-width: 768px) {
+      height: 30px;
+    }
+    position: absolute;
+    right: 5px;
+    background-size: cover;
+    display: inline;
+    margin-right: 10px;
+    vertical-align: bottom;
   }
 
   .project {
@@ -2197,6 +2229,16 @@ span.picture {
   text-align: center;
 }
 
+.power-off {
+  transition: all .35s ease;
+  font-size: 24px;
+  color: #52BE80;
+
+}
+.power-off:hover {
+  color: #e32666;
+}
+
 
 /* Navbar */
 
@@ -2252,7 +2294,7 @@ span.picture {
     font-size: 1.0em;
     color: #ccc;
     background-color: transparent;
-    @media (max-width: 420px) {
+    @media (max-width: 768px) {
         font-size: 1.1em;
         margin-bottom: 1px;
     }
@@ -2288,7 +2330,7 @@ span.picture {
    font-size: 1.1em;
    -webkit-box-shadow: none;
    box-shadow: none;
-   @media (max-width: 420px) {
+   @media (max-width: 768px) {
        font-size: 1.3em;
        background-color: transparent;
        padding: 12px;
@@ -2590,6 +2632,20 @@ span.picture {
   color: #ffffff;
 }
 
+.btn-add {
+  border-color: none;
+  opacity: .8;
+  background: linear-gradient(60deg, #526494, #604484);
+  color: #ffffff;
+}
+
+.btn-add:hover, .btn-add:active {
+  border-color: none;
+  opacity: 1;
+  background: linear-gradient(60deg, #526494, #604484);
+  color: #ffffff;
+}
+
 .btn-addnew{
   background: $gray;
   border-color: $gray;
@@ -2637,7 +2693,7 @@ span.picture {
 }
 
 .btn-close, .btn-close:hover {
-  background: #fff;
+  background: #F8F8F9;
   opacity: 1;
   color: #444;
   letter-spacing: -0.0px;
@@ -2732,7 +2788,7 @@ span.picture {
 }
 
 .btn-project{
-  background: linear-gradient(60deg, #8e54e9, #d7348c);
+  background: linear-gradient(60deg, #526494, #d7348c);
   border: none;
   opacity: 0.9;
   color: #eee;
@@ -2743,7 +2799,7 @@ span.picture {
 }
 
 .btn-project:hover{
-  background: linear-gradient(60deg, #8e54e9, #d7348c);
+  background: linear-gradient(60deg, #526494, #d7348c);
   border: none;
   opacity: 1;
   color: #eee;
@@ -2867,6 +2923,24 @@ span.picture {
   width: 100%;
 }
 
+.btn-purple, .btn-purple:hover {
+  border: none;
+  opacity: 0.8;
+  background: #444;
+  color: #ffffff;
+  display: inline;
+  width: 100%;
+}
+
+.btn-purple:hover, .btn-purple:active {
+  border: none;
+  opacity: 1;
+  background: #444;
+  color: #ffffff;
+  display: inline;
+  width: 100%;
+}
+
 .btn-edit, .btn-edit:hover{
   border-color: #ffffff;
   background: #ffffff;
@@ -2985,6 +3059,10 @@ span.picture {
     ul {
       list-style: none;
     }
+ }
+
+ .alert-danger {
+   margin-top: -65px;
  }
 
 .list-group {
@@ -3157,7 +3235,7 @@ font-family: 'Montserrat', sans-serif;
 
 	list-style-type: none;
 	padding: 0;
-	margin: 50px 0px 50px 35px;
+	margin: 50px 0px 50px 25px;
 	.feed-item {
 		position: relative;
 		min-height: 60px;
@@ -3168,12 +3246,12 @@ font-family: 'Montserrat', sans-serif;
 		&:before {
 			content: attr(data-time);
 			display: flex;
-			width: 100px;
+			width: 200px;
 			position: absolute;
-			text-align: center;
-			justify-content: center;
-			align-items: center;
-			left: -50px;
+			text-align: left;
+			justify-content: left;
+			align-items: left;
+			left: -20px;
 			top: -22px;
 			font-size: 12px;
 			color: #999;
@@ -3247,19 +3325,17 @@ input[type="checkbox"] {
 }
 
 .content {
-	max-height: 0;
-	overflow: hidden;
-	blockquote {
-		position: relative;
-		&:before {
-			content: '';
-			position: absolute;
-			left: -25px;
-			top: 0;
-			height: 100%;
-			border-left: 2px solid #fcd000;
-		}
-	}
+  border-top: 1px solid #fcd000;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.feed-ratings {
+  img {
+    height: 25px;
+    margin-bottom: 5px;
+  }
+  display: inline-block;
 }
 
 [data-color=red] { &:after { background-color: #ff3c41 !important; } }
@@ -3273,25 +3349,153 @@ input[type="checkbox"] {
 
 
 .top-10 {
-    font-family: 'Montserrat', sans-serif;
-    background-color: white;
-    //width: auto;
-    //display: inline-block;
-    padding: 10px 15px;
-    border-radius: 4px;
-    border: 1px solid #f0f0f0;
-    h1 {
-      text-align: left;
-      margin: 5px;
-      font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  //width: auto;
+  //display: inline-block;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+  @media (min-width: 768px) {
+    margin-right: 0px;
+  }
+  .header {
+    h1{
+      font-family: 'Montserrat', sans-serif;
+      display: inline;
+      font-size: 1.0em;
+      color: #fff;
       text-transform: uppercase;
       font-weight: 200;
-      border-bottom: 1px solid #f0f0f0;
+      letter-spacing: 0.5px;
 
     }
+    border: none;
+    margin-bottom: 7px;
+  }
 
-    li {
-      margin-left: -20px;
+  .bg-top-10 {
+
+    background-color: #999;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 4px;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  }
+
+  li {
+    margin-left: -20px;
+  }
+
+  .circle-wrapper {
+    margin: 5px;
+    display: inline-block;
+  }
+
+.circle {
+  height: 45px;
+  width: 45px;
+  font-size: 25px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, #1b75bb, #00b1ff);
+  color: white;
+  position: absolute;
+  line-height: 45px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+
+}
+
+.large-circle {
+  height: 75px;
+  width: 75px;
+  font-size: 20px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, #1b75bb, #00b1ff);
+  color: white;
+  margin: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  .text {
+    font-size: 10px;
+    margin-top: -6px !important;
+    position: relative;
+    display: block;
+  }
+}
+
+.tick-circle {
+  height: 50px;
+  width: 50px;
+  font-size: 18px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, #2bb573, #8cc53f);
+  color: white;
+  margin: 20px;
+  .text {
+    font-size: 8px;
+    margin-top: -4px !important;
+    position: relative;
+    display: block;
+  }
+}
+}
+
+.home-stats {
+  color: #eee;
+
+
+  background: linear-gradient(rgba(82, 100, 148, 0.95), rgba(96, 68, 132, .95));
+  background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(60deg,
+      rgba(82, 100, 148, 0.95),
+      rgba(96, 68, 132, .95)
+    ),
+    /* bottom, image */
+    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
+    background-size: cover;
+    background-position: center;
+
+  a {
+    color: #eee;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: #eee;
+  }
+
+  .bg-top-10 {
+
+    background-color: transparent;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 4px;
+    color: white;
+    box-shadow: none;
+    h1 {
+      font-size: 20px;
+      color: #eee;
     }
+  }
 
+  h1 {
+    font-weight: 200;
+    text-align: left;
+    font-size: 2.0em;
+  }
+
+}
+
+.get-started {
+  background: linear-gradient(60deg, #ff5f6d, #ffc371);
 }

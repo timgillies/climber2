@@ -67,8 +67,8 @@
 
              </strong><%= f.user.name if f.user %></div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="tab text-right">
+          <div class="col-xs-5 col-sm-5">
+            <div class="text-right">
 
 
               <% unless params[:controller] == 'admin/tasks' %>
@@ -82,17 +82,18 @@
                 due on <%= f.setdate.strftime("%b %d, %Y") %>
                 <% end %>
               <% end %>
+            </div>
+          </div>
 
-
+          <div class="col-xs-1 col-sm-1">
+            <div class="tab text-right">
               <% if f.user %>
                 <% if f.user.image? %>
-                  <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
+                  <%= image_tag f.user.image ,:class=> "img-setter-icon-list" %>
                 <% elsif f.user.avatar_file_name? %>
-                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
+                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon-list" %>
                 <% end %>
               <% end %>
-
-
 
             </div>
           </div>
@@ -100,8 +101,10 @@
 
         <div class="row">
 
+        <% if params[:controller] == 'admin/zones' %>
           <div class="no-print">
             <br/>
+
             <div class="col-xs-6 col-sm-6">
               <% if f.active? %>
                 <%= button_to "expire",  expire_zone_show_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire_zone_show, remote: true %>
@@ -110,10 +113,13 @@
               <% end %>
             </div>
 
+
             <div class="col-xs-6 col-sm-6 no-print">
               <%= button_to "create task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-sm', method: :expire_zone_show, remote: false %>
             </div>
+
           </div>
+        <% end %>
         </div>
       </div>
     </li>

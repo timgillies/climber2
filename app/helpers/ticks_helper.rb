@@ -19,7 +19,7 @@ module TicksHelper
 
   def tick_date_filters
     [
-      ['1 week', 7.days.ago.to_date],
+      ['1 week', 6.days.ago.beginning_of_day.to_date],
       ['1 month', 1.month.ago.to_date],
       ['6 months', 6.months.ago.to_date],
       ['1 year', 1.year.ago.to_date],

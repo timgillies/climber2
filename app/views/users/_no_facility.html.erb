@@ -1,0 +1,23 @@
+<br>
+<div class="top-10 home-stats get-started">
+
+  <div class="tab">
+    <h1> Lets get started! </h1>
+
+    <%= link_to edit_user_path(current_user) do %>
+          <h1>
+
+            <i class="glyphicon glyphicon-ok glyphicon-green"></i>
+            Set up your profile </h1><br>
+    <%end %>
+
+    <%= link_to user_facility_roles_path(current_user) do %>
+          <h1>
+
+            <i class="glyphicon glyphicon-ok glyphicon-gray"></i>
+            Add Your Facilities </h1><br>
+    <%end %>
+
+
+  </div>
+</div>

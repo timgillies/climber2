@@ -1,53 +1,15 @@
-<% provide(:title, 'Ticks') %>
+<% provide(:title, current_user.name + ' Ascents') %>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="routelist-header bg-blue-gradient">
-      <h1 class="hidden-xs"><strong>Ascent</strong>List </h1>
-      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"><strong>tick</strong>list </h1>
-    <span class="pull-right">
-      <span class="hidden-xs"><%= link_to "new ascent", new_user_tick_path(current_user), class: "btn btn-close", style: "display: inline-block;" %></span>
-    </span>
-  </div>
-  </div>
-</div>
-
-<br>
-
-<% if @ticks.present? %>
-<div class="bg-white">
-<%= render(
-partial: 'ticks/user_ticks',
-locals: { ticks: @ticks }
-) %>
-</div>
-<% end %>
-
-<br>
-
-<%= form_for_filterrific @filterrific do |f| %>
-
-
-
-
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="route-form">
-        <div id="donate">
-          <% tick_date_filters.each do |zone| %>
-            <label class="green"><%= f.radio_button :with_date_gte, zone[1] %>
-              <span><%= zone[0] %></span>
-            </label>
-          <% end %>
+      <div class="row">
+        <div class="col-sm-4 hidden-xs">
+          <%= render 'users/user_stats' %>
+          <%= render 'users/top10sends', object: @user_tick_feed %>
+          <%= render 'users/top10routes', object: @user_tick_feed %>
+          <%= render 'users/newest10routes', object: @user_tick_feed %>
+        </div>
+        <div class="col-sm-8">
+            <%= render 'ticks/index_partial', object: @user_tick_feed %>
         </div>
       </div>
-    </div>
-  </div>
-
-<% end %>
-
-
-<%= render(
-partial: 'ticks/daily_summary',
-locals: { ticks: @ticks }
-) %>
+</div>

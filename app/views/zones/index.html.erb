@@ -1,2 +1,34 @@
-<h1>Zones#index</h1>
-<p>Find me in app/views/zones/index.html.erb</p>
+<% provide(:title, 'Zones') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1>ZONES</h1>
+  </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12">
+        <%= render 'facilities/zonedist', object: @zones %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <%= div_for @zones do |fz| %>
+          <%= render 'zones/zone', object: @zones, :fz => fz %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="row">
+        <div class="col-sm-12">
+        <%= render 'facilities/zonedist', object: @zones %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
