@@ -1,27 +1,32 @@
-
-
-<% provide(:title, 'Ticks') %>
+<% provide(:title, "Home") %>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="routelist-header bg-blue-gradient">
-      <h1 class="hidden-xs">home </h1>
-      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"><strong>tick</strong>list </h1>
-    <span class="pull-right">
-      <span class="hidden-xs"><%= link_to "new ascent", new_user_tick_path(current_user), class: "btn btn-close", style: "display: inline-block;" %></span>
-    </span>
-  </div>
+    <div class="col-sm-12">
+      <div class="row">
+
+      </div>
+      <div class="row">
+        <div class="col-sm-4 hidden-xs">
+          <%= render 'users/user_stats' %>
+          <%= render 'users/top10sends' %>
+          <%= render 'users/top10routes' %>
+          <%= render 'users/newest10routes' %>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+              <div class="gray-labels routeform-header bg-blue-gradient">
+                <h1>activity</h1>
+              </div>
+              <% unless @userfacilities_check.count < 1 %>
+                <%= render 'users/user_news_feed' %>
+              <% else %>
+              <%= render 'users/no_facility' %>
+
+                <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<br>
-
-<div class="bg-dark-gray">
-  <div class="routelist">
-    <h3 class="tab">This page is still in development </h3>
-  </div>
-</div>
-
-
-
-<br>

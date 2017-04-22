@@ -53,7 +53,7 @@ class Admin::FacilitiesController < ApplicationController
       redirect_to(admin_facility_path(@facility))
       # Handle a successful update.
     else
-      flash[:danger] = "Facility not saved"
+      flash[:error] = "Facility not saved"
       render 'edit'
     end
   end

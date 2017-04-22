@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!,    only: [:index, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   include UsersHelper
 
@@ -17,6 +18,13 @@ class UsersController < ApplicationController
     @facility_roles = FacilityRole.where(user_id: @user, confirmed: true).page(params[:page])
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
     @ticks = Tick.where(user_id: @user).page(params[:page]).per(5000000)
+    @userfacilities_check = current_user.facility_relationships.all
+
+    #refactored tick_feed and new_route_feed into respective models
+    @news_feed = @user.ticks.tick_feed(@userfacilities_check) + @user.routes.new_route_feed(@userfacilities_check)
+
+    #combines new ticks and new routes, newest first
+    @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
   end
 
   def new
@@ -85,6 +93,8 @@ class UsersController < ApplicationController
 
 
 
+
+
   private
 
   def user_params
@@ -97,8 +107,11 @@ class UsersController < ApplicationController
   # Confirms the correct user
   def correct_user
     @user = User.find(params[:id])
+    unless (current_user == @user || current_user.role == "site_admin")
+    redirect_to(root_url)
+    flash[:warning] = "You can't access that!"
+    end
 
-    redirect_to(root_url) unless (current_user == @user || current_user.role == "site_admin")
   end
 
 end

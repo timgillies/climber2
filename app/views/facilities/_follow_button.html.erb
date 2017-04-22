@@ -1,0 +1,6 @@
+
+<% if FacilityRole.where(facility_id: @facility.id, user_id: current_user.id).exists? %>
+  <%= link_to "unfollow", user_facility_unfollow_facility_path(current_user, @facility), method: :unfollow_facility, class: "btn btn-md btn-follow" %>
+<% else %>
+  <%= link_to "follow", user_facility_follow_facility_path(current_user, @facility), method: :follow_facility, class: "btn btn-md btn-follow" %>
+<% end %>

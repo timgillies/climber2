@@ -48,7 +48,7 @@ class Admin::WallsController < ApplicationController
       redirect_to(admin_facility_zones_path(@facility))
       # Handle a successful update.
     else
-      flash[:danger] = "Zone not saved!"
+      flash[:error] = "Zone not saved!"
       redirect_to(admin_facility_zones_path(@facility))
     end
   end

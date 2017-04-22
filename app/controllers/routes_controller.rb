@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :authenticate_user!,    only: [:show]
+  before_action :authenticate_user!
   before_action :check_layout
 
 

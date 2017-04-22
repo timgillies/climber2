@@ -5,16 +5,16 @@
 
 
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.count %><span class="text"><%= "total" %></span></div>
+    <div class="large-circle responsive"><%= @facility.routes.current.length %><span class="text"><%= "total" %></span></div>
   </div>
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").count %><span class="text"><%= "boulder".pluralize(@facility.routes.current.count) %></span></div>
+    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").length %><span class="text"><%= "boulder".pluralize(@facility.routes.current.length) %></span></div>
   </div>
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").count %><span class="text"><%= "route".pluralize(@facility.routes.current.count) %></span></div>
+    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").length %><span class="text"><%= "route".pluralize(@facility.routes.current.length) %></span></div>
   </div>
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.count) if @facility.routes.current.count > 0  %><span class="text"><%= "avg. age" %></span></div>
+    <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.length) if @facility.routes.current.length > 0  %><span class="text"><%= "avg. age" %></span></div>
   </div>
 
   <div class="header bg-top-10">
@@ -22,11 +22,24 @@
   </div>
     <ul>
       <% @facility.zones.each do |zone| %>
+      <% if params[:controller][0..4] == 'admin' %>
+        <%= link_to admin_facility_zone_path(zone.facility_id, zone) do %>
+          <li>
+            <%= zone.name %>
+          </li>
+        <% end %>
+      <% else %>
         <%= link_to facility_zone_path(zone.facility_id, zone) do %>
           <li>
             <%= zone.name %>
           </li>
         <% end %>
       <% end %>
+      <% end %>
     <ul>
+
+    <br>
+    <%= render 'facilities/follow_button' %>
+
+
 </div>

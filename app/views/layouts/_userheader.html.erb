@@ -56,7 +56,7 @@
           <% else %>
 
           <ul class="nav navbar-nav navbar-left">
-            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "PROFILE", home_user_path(@user) %></li>
+            <li class="<%= 'active' if current_page?('#') %>"><%= link_to "PROFILE", user_path(@user) %></li>
             <li class="<%= 'active' if current_page?('#') %>"><%= link_to "TICK LIST", user_ticks_path(@user) %></li>
           </ul>
 

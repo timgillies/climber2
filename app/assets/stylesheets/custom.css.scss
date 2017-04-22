@@ -2420,7 +2420,7 @@ span.picture {
     }
 
     a:active, li:active, li:hover, a:hover, a:active{
-      color: #444;
+      color: #eee;
       background-color: transparent;
     }
 
@@ -2633,16 +2633,31 @@ span.picture {
 }
 
 .btn-add {
-  border-color: none;
+  border: none;
   opacity: .8;
   background: linear-gradient(60deg, #526494, #604484);
   color: #ffffff;
 }
 
 .btn-add:hover, .btn-add:active {
-  border-color: none;
+  border: none;
   opacity: 1;
   background: linear-gradient(60deg, #526494, #604484);
+  color: #ffffff;
+}
+
+.btn-follow {
+  border: none;
+  opacity: .8;
+  background: linear-gradient(60deg, #e32666, #d7348c);
+  color: #ffffff;
+  display: inline-block;
+}
+
+.btn-follow:hover, .btn-follow:active {
+  border: none;
+  opacity: 1;
+  background: linear-gradient(60deg, #e32666, #d7348c);
   color: #ffffff;
 }
 
@@ -3011,6 +3026,46 @@ span.picture {
   font-size: 3.2vw;
 }
 
+.btn-circle {
+  position: absolute;
+  top: -10px;
+  height: 35px;
+  width: 35px;
+  font-size: 25px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border: none;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: transparent;
+  color: #888;
+  margin: 0px;
+  box-shadow: none;
+  .text {
+    font-size: 6px;
+    margin-top: -4px !important;
+    position: relative;
+    display: block;
+    text-align: center;
+  }
+}
+
+label input[type="checkbox"] ~ i.fa.fa-square-o{
+    color: #c8c8c8;    display: inline;
+}
+label input[type="checkbox"] ~ i.fa.fa-check-square-o{
+    display: none;
+}
+label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
+    display: none;
+}
+label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
+    color: #7AA3CC;    display: inline;
+}
+label:hover input[type="checkbox"] ~ i.fa {
+color: #7AA3CC;
+}
+
 
 /*flash*/
 .alert-error {
@@ -3111,7 +3166,7 @@ span.picture {
 }
 
 .img-zone-list {
-   width: 150px;
+   width: 100px;
    @media (max-width: 768px) {
      width: 100%;
    }

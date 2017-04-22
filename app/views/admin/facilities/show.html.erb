@@ -1,77 +1,29 @@
-
 <% provide(:title, @facility.name ) %>
 
 <div class="container-fluid">
   <div class="row">
-    <% if @routes.count == 0 %>
-
     <div class="col-sm-12">
-
-        <div class="row">
-
-
-
-
-          <%= render 'admin/facilities/checklist' %>
-        </div>
-    </div>
-
-  <% else %>
-  <div class="col-sm-6">
-    <div class="routelist">
       <div class="row">
-          <h3>Overview</h3>
-      </div>
 
+      </div>
       <div class="row">
-          <%= render 'admin/facilities/facility_stats', :facility => @facility %>
-      </div>
-    </div>
-      <br>
-  </div>
-
-
-    <% @facility_systems.each do |fs| %>
-
-
-
-
-      <div class="col-sm-12">
-        <div class="routelist">
+        <div class="col-sm-4">
+            <%= render 'facilities/facility_stats', object: @facility %>
+            <div class="hidden-xs">
+              <%= render 'users/top10sends' %>
+              <%= render 'users/top10routes' %>
+              <%= render 'users/newest10routes' %>
+            </div>
+        </div>
+        <div class="col-sm-8">
           <div class="row">
-              <h3> <%= fs.name %></h3>
-          </div>
-          <div class="row">
-            Total Active Routes: <%= Route.facility_system(fs).where(facility_id: @facility.id).current.count %>
-          </div>
-          <div class="row">
-              <%= render 'facilities/gradedist_boulder', :fs => fs %>
+            <div class="gray-labels routeform-header bg-blue-gradient">
+              <h1> summary</h1>
+            </div>
+              <%= render 'admin/facilities/show_partial' %>
           </div>
         </div>
       </div>
-
-
-    <% end %>
-
-    <div class="col-sm-6">
-      <div class="routelist">
-        <div class="row">
-        <h3>Routes by Zone</h3>
-
-          <%= render 'facilities/zonedist' %>
-        </div>
-      </div>
     </div>
-
-    <div class="col-sm-12">
-      <div class="routelist">
-        <div class="row">
-        <h3>New Routes</h3>
-        <%= render 'facilities/newroutes' %>
-      </div>
-    </div>
-  </div>
-
-<% end %>
   </div>
 </div>

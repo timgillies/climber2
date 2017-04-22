@@ -1,29 +1,25 @@
-<% provide(:title, 'Add task') %>
+
+<% provide(:title, @facility.name ) %>
 
 <div class="container-fluid">
   <div class="row">
-    <div class="gray-labels routeform-header bg-blue-gradient">
-      <h1><strong>Task</strong>Info</h1>
-    </div>
+    <div class="col-sm-12">
+      <div class="row">
 
-    <% if params[:route_id] %>
-    <%= render(partial: 'routes/route', locals: { route: Route.find(params[:route_id]) }) %>
-    <% end %>
-    <br>
-    <div class="col-sm-12 bg-routeform">
-
-      <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
-
-      <%= render 'shared/error_messages', object: f.object %>
-
-        <%= render 'admin/tasks/form', object: @tasks, :f => f %>
-        <br/>
-        <div class="row">
-          <div class="col-xs-12">
-            <%= f.submit "Save", class: "btn btn-save" %>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 hidden-xs">
+            <%= render 'facilities/facility_stats', object: @facility %>
+              <%= render 'users/top10sends' %>
+              <%= render 'users/top10routes' %>
+              <%= render 'users/newest10routes' %>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+              <%= render 'admin/tasks/new_partial' %>
           </div>
         </div>
-        <% end %>
+      </div>
     </div>
   </div>
 </div>

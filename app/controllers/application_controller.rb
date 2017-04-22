@@ -69,7 +69,7 @@ end
     facility_controller_check
     unless current_user.role == "site_admin" # overrides assigned facility roles
       if @facility_role_access.present? && @facility_role_access.name == role
-          flash[:danger] = 'You are not authorized.  Contact your manager for access'
+          flash[:error] = 'You are not authorized.  Contact your manager for access'
           redirect_to admin_facility_path(@facility)
       end
     end
@@ -80,7 +80,7 @@ end
   def facility_admin
     facility_controller_check
     unless  current_user.role == "site_admin" || (@facility_role_access.present? && current_user.role == "facility_admin")
-      flash[:danger] = 'You are not authorized.  Please request access from your manager'
+      flash[:error] = 'You are not authorized.  Please request access from your manager'
       redirect_to root_url
     end
   end
@@ -118,7 +118,7 @@ end
 
   def site_admin
     unless current_user.role == "site_admin"
-      flash[:danger] = 'Page not found'
+      flash[:warning] = 'Page not found'
       redirect_to root_url
     end
   end
@@ -128,7 +128,7 @@ end
     @route = Route.find(params[:id])
     unless current_user.role == "site_admin"
        unless current_user == @route.user || ["facility_management", "head_setter"].include?(@facility_role_access.name)
-         flash[:danger] = 'You cannot edit this route.  You may flag this route to have your manager or the route owner update the route.'
+         flash[:warning] = 'You cannot edit this route.  You may flag this route to have your manager or the route owner update the route.'
          redirect_to admin_facility_routes_url(@facility)
       end
     end
@@ -137,7 +137,7 @@ end
   def demo_facility
     unless user_signed_in? && current_user.role == "site_admin"
       if @facility.demo?
-        flash[:success] = "Whoa there!  You can't do that in demo mode.  Join and start managing your facility today."
+        flash[:warning] = "Whoa there!  You can't do that in demo mode.  Join and start managing your facility today."
         redirect_to admin_facility_path(@facility)
       end
     end
@@ -150,6 +150,8 @@ end
   def filter_reset
     filterrific[reset_filterrific]
   end
+
+
 
 protected
 

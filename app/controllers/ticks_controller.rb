@@ -62,7 +62,7 @@ class TicksController < ApplicationController
 
     if @tick.save
       respond_to do |format|
-        format.html { redirect_to(user_routes_path(@user)) }
+        format.html { [flash[:success] = "Success!", redirect_to(user_routes_path(@user))] }
         format.js
       end
     else

@@ -4,7 +4,7 @@
     <h1>Newest Routes</h1>
   </div>
 <ul>
-  <% Route.newest_ten(@userfacilities_check).each do |route| %>
+    <% Route.newest_ten(@userfacilities_check).each do |route| %>
     <%= link_to user_route_path(current_user, route) do %>
       <li>
         <strong><%= route.grade.grade %></strong> <%= route.zone.name if route.zone %>

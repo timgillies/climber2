@@ -1,4 +1,6 @@
 class FacilityRolesController < ApplicationController
+  before_action :authenticate_user!
+
 
 layout 'user'
 
@@ -33,9 +35,10 @@ layout 'user'
     @facility_role = @user.facility_roles.build(facility_role_params)
     @facility_roles = FacilityRole.where(user_id: @user).page(params[:page])
     if @facility_role.save
+      flash[:success] = "Success!"
       redirect_to(user_facility_roles_path(@user))
     else
-      flash[:danger] = "#{ @facility_role.email } was not added!  Please make sure #{ @facility_role.email } is not already assigned a role."
+      flash[:error] = "#{ @facility_role.email } was not added!  Please make sure #{ @facility_role.email } is not already assigned a role."
       redirect_to(user_facility_roles_path(@user))
     end
   end

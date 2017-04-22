@@ -40,7 +40,7 @@ class Admin::FacilityRolesController < ApplicationController
       FacilityRoleMailer.role_invite_email(@facility_role).deliver_now
       redirect_to(admin_facility_facility_roles_path(@facility))
     else
-      flash[:danger] = "#{ @facility_role.email } was not added!  Please make sure #{ @facility_role.email } is not already assigned a role."
+      flash[:error] = "#{ @facility_role.email } was not added!  Please make sure #{ @facility_role.email } is not already assigned a role."
       redirect_to(admin_facility_facility_roles_path(@facility))
     end
   end

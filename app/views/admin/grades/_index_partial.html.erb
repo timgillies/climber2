@@ -1,0 +1,15 @@
+<% provide(:title, 'Facility Grading') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1> Grading </h1>
+        <span class="pull-right">
+          <%= mail_to "lee@climbconnect.com", "custom grading", remote: false, class: "btn btn-close", style: "display: inline-block;" %>
+        </span>
+    </div>
+  </div>
+  <div class="row">
+    <%= render 'admin/grades/facility_grade_system', object: @grade_systems %>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row">
+    <% if @routes.count == 0 %>
+    <div class="col-sm-12">
+        <div class="row">
+          <br>
+          <%= render 'admin/facilities/checklist' %>
+        </div>
+    </div>
+
+  <% else %>
+  <br>
+    <% @facility_systems.each do |fs| %>
+
+
+
+
+      <div class="col-sm-12">
+        <div class="routelist">
+          <div class="row">
+              <h3> <%= fs.name %></h3>
+          </div>
+          <div class="row">
+            Total Active Routes: <%= Route.facility_system(fs).where(facility_id: @facility.id).current.count %>
+          </div>
+          <div class="row">
+              <%= render 'facilities/gradedist_boulder', :fs => fs %>
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+
+    <div class="col-sm-6">
+      <div class="routelist">
+        <div class="row">
+        <h3>Routes by Zone</h3>
+
+          <%= render 'facilities/zonedist' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="routelist">
+        <div class="row">
+        <h3>New Routes</h3>
+        <%= render 'facilities/newroutes' %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+  </div>
+</div>

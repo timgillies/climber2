@@ -1,4 +1,6 @@
 class GradesController < ApplicationController
+  before_action :authenticate_user!
+
 
 
   layout :check_layout

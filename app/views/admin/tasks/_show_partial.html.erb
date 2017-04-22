@@ -1,0 +1,109 @@
+<% provide(:title, @task.name) %>
+
+<div class="container-fluid">
+  <div class="container-fluid bg-gray">
+    <div class="col-sm-6">
+      <div class="container routelist routeshow">
+        <% if @task.color? %>
+          <% if ["light", "dark", "neon", "hot"].include?(@task.color.split(/\W+/).first.downcase.to_s) %>
+            <div class="<%= @task.color.split(/\W+/).second.downcase.to_s %>">
+
+            <% else %>
+
+            <div class="<%= @task.color.split(/\W+/).first.downcase.to_s %>">
+
+            <% end %>
+        <% else %>
+          <div>
+        <% end %>
+          <h1>
+            <span class="tab"><%= @task.grade.grade + " "+ @task.color.upcase %>
+          </h1>
+          <h2> <%= @task.name if @task.name %></h2></span>
+          <span class="pull-right">
+            <% if @task.user %>
+              <% if @task.user.image? %>
+                <%= image_tag @task.user.image ,:class=> "img-setter-icon" %>
+              <% elsif @task.user.avatar_file_name? %>
+                <%= image_tag @task.user.avatar.url(:thumb), class: "img-setter-icon" %>
+              <% end %>
+            <% end %>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <p class="tab"><strong>Color: </strong> <%= @task.color if @task.color %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+              <p class="tab"><strong>Setter: </strong> <%= @task.user.name if @task.user %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+              <p class="tab"><strong>Location: </strong><%= @task.zone.name if @task.zone %><%= " > " + @task.wall.name if @task.wall %> <%= " > " + @task.sub_child_zone.name if @task.sub_child_zone %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <span class="tab">
+              <% unless params[:controller] == 'admin/tasks' %>
+                <% if (days_ago(@task) == "today") %>
+                  <span class="badge badge-today">set <%= days_ago(@task) %></span>
+                <% else %>
+                  set <%= days_ago(@task) %> ago
+                <% end %>
+              <% else %>
+                <% if @task.setdate? %>
+                due on <%= @task.setdate.strftime("%b %d, %Y") %>
+                <% end %>
+              <% end %>
+          </span>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-sm-12">
+              <p class="tab"><i><%= @task.description %></i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="col-sm-6">
+    <br class="hidden-sm hidden-md hidden-lg">
+    <div class="row">
+      <div class="col-sm-12">
+        <% if @task.image.exists? %>
+        <%= link_to image_tag(@task.image.url, class: "img-route-show") , "#routeShowModal", data: { toggle: "modal"} %></li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-xs-12">
+        <%= render 'routes/totalticks' %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+  <div class="modal fade" id="routeShowModal" tabindex="-1" role="dialog" aria-labelledby="routeShowModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="modal-title" id="routeShowModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @facility.name %> <%= @facility.location if @facility.location %></small></h4></span>
+        </div>
+        <div class="modal-body row">
+          <%= image_tag @task.image.url, class: "img-route-show"%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>

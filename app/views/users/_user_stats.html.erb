@@ -5,18 +5,18 @@
     </div>
 
     <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").count %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").count) %></span></div>
+      <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").length %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").length) %></span></div>
     </div>
 
     <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @ticks.count %><span class="text"><%= "attempt".pluralize(@ticks.count) %></span></div>
+      <div class="large-circle responsive"><%= @ticks.length %><span class="text"><%= "attempt".pluralize(@ticks.length) %></span></div>
     </div>
 
     <div class="circle-wrapper">
 
       <div class="large-circle responsive">
         <% if @ticks.present? %>
-          <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").count.to_f)/(@ticks.count.to_f)*100), precision: 0) %>
+          <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").length.to_f)/(@ticks.length.to_f)*100), precision: 0) %>
         <% else %>
             0
         <% end %>
@@ -41,7 +41,7 @@
           <%= link_to facility_path(facility) do %>
             <li>
               <%= facility.name %>
-            <li>
+            </li>
           <% end %>
         <% end %>
       <ul>

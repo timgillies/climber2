@@ -42,27 +42,25 @@
             <div class="col-sm-12">
 
                 <% if f.confirmed? %>
-                <div class="col-xs-10 col-sm-10 hidden-xs">
+                <div class="col-xs-6 col-sm-6 hidden-xs">
                   <h3 class="pull-right"><i class="glyphicon glyphicon-ok glyphicon-green"></i></h3>
                 </div>
                 <% else %>
-                <div class="col-xs-7 col-md-8">
 
-                </div>
-                <div class="col-xs-6 col-sm-3 col-md-2">
-                  <%= button_to "resend invite",  resend_invite_admin_facility_facility_role_path(@facility, f ), class: 'btn btn-expire btn-md', method: :resend_invite, remote: true %>
+                <div class="col-xs-6 col-sm-6">
+                  <%= button_to "resend invite",  resend_invite_admin_facility_facility_role_path(@facility, f ), class: 'btn btn-add btn-md', method: :resend_invite, remote: true %>
                 </div>
                 <% end %>
 
-              <div class="col-xs-3 col-sm-1 col-md-1 no-print">
+              <div class="col-xs-3 col-sm-3 no-print">
                 <h3 class="pull-right"><%= link_to admin_facility_facility_role_path(@facility, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
                             :method => :delete do %>
                             <i class="glyphicon glyphicon-trash"></i>
                             <%end %>
                 </h3>
               </div>
-              <div class="col-xs-3 col-sm-1 col-md-1 no-print">
-                <h3><%= link_to edit_admin_facility_facility_role_path(@facility, f ) do %>
+              <div class="col-xs-3 col-sm-3 no-print">
+                <h3 class="pull-right"><%= link_to edit_admin_facility_facility_role_path(@facility, f ) do %>
                             <i class="glyphicon glyphicon-cog"></i>
                             <%end %>
                 </h3>
