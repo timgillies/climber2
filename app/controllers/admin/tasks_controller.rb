@@ -22,7 +22,7 @@ class Admin::TasksController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id.to_i]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @filterrific = initialize_filterrific(
       Task,
       params[:filterrific],
@@ -67,7 +67,7 @@ class Admin::TasksController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id.to_i]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
   end
 
   def create
@@ -80,7 +80,7 @@ class Admin::TasksController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @task_type = task_type_values
     @task_status = task_status_values
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id.to_i]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @task.facility_id = params[:facility_id]
     if @task.save
       @task.update_attribute(:task_number, (@facility.id.to_s + current_user.id.to_s + "000" + @task.id.to_s).to_i)
@@ -109,7 +109,7 @@ class Admin::TasksController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @task_type = task_type_values
     @task_status = task_status_values
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @task.facility_id = params[:facility_id]
 
     @facilitydisciplines = facility_grades.map{ |fg| [fg.discipline, fg.discipline ] }
@@ -125,7 +125,7 @@ class Admin::TasksController < ApplicationController
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
     @task_type = task_type_values
     @task_status = task_status_values
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @task = Task.find(params[:id])
     if @task.update_attributes(task_params)
       flash[:success] = "Task updated"

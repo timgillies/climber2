@@ -36,7 +36,7 @@
 
       <div class="container-fluid">
         <div class="row">
-          <div class="col-xs-10 col-sm-10 col-md-7 col-lg-7 col-xl-7">
+          <div class="col-xs-10 col-sm-10 col-md-5 col-lg-7 col-xl-7">
             <h3>
               <% if f.color? %>
                 <%= link_to f.grade.grade + " "+ f.color.upcase , admin_facility_route_path(@facility, f) if f.grade %>
@@ -53,7 +53,7 @@
 
 
           <div class="hidden-xs hidden-sm no-print">
-            <div class="col-md-2">
+            <div class="col-md-3">
               <% if f.active? %>
                 <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: true %>
               <% else %>
@@ -61,8 +61,8 @@
               <% end %>
             </div>
 
-            <div class="col-md-2 no-print">
-              <%= button_to "task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :create_task, remote: false %>
+            <div class="col-md-3 no-print">
+              <%= button_to "new task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :create_task, remote: false %>
             </div>
           </div>
           <div class="col-xs-2 col-sm-1 no-print">
@@ -141,7 +141,7 @@
             </div>
 
             <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: false %>
+              <%= button_to "new task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: false %>
             </div>
           </div>
         </div>

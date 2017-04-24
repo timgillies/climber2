@@ -23,7 +23,7 @@ class Admin::RoutesController < ApplicationController
     @route_status = route_status_values
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @facility = Facility.find(params[:facility_id])
     @filterrific = initialize_filterrific(
       Route,
