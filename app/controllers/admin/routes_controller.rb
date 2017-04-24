@@ -73,7 +73,7 @@ class Admin::RoutesController < ApplicationController
     @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
 
     @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @recent_routes = @facility.routes.current.order("created_at DESC").includes(:zone, :wall, :user, :grade ).limit(10)
 
   end
@@ -98,7 +98,7 @@ class Admin::RoutesController < ApplicationController
     @i_value = ric_values
     @c_value = ric_values
     @route_status = route_status_values
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @recent_routes = @facility.routes.current.order("created_at DESC").limit(10)
     @route.facility_id = params[:facility_id]
 
@@ -140,7 +140,7 @@ class Admin::RoutesController < ApplicationController
     @i_value = ric_values
     @c_value = ric_values
     @route_status = route_status_values
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @route.facility_id = params[:facility_id]
     @recent_routes = @facility.routes.current.order("created_at DESC").limit(10)
     @facilitydisciplines = facility_grades.map{ |fg| [fg.discipline, fg.discipline ] }
@@ -159,7 +159,7 @@ class Admin::RoutesController < ApplicationController
     @c_value = ric_values
     @route_status = route_status_values
     @recent_routes = @facility.routes.current.order("created_at DESC").limit(10)
-    @facilitysetters = @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id]}
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @route = Route.find(params[:id])
     if @route.update_attributes(route_params)
       respond_to do |format|
