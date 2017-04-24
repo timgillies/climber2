@@ -25,7 +25,7 @@
 
     <div class="circle-wrapper">
       <div class="large-circle responsive">
-        <% if @ticks.present? %>
+        <% if @ticks.where.not(tick_type: "project").present? %>
           <%= @ticks.where.not(tick_type: "project").grade_desc.first.grade.grade if @ticks.where.not(tick_type: "project").grade_desc.first.grade %>
           <% else %>
           0
