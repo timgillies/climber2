@@ -9,9 +9,9 @@
       <div class="row">
         <div class="col-sm-4 hidden-xs">
             <%= render 'facilities/facility_stats', object: @facility %>
-              <%= render 'users/top10sends' %>
-              <%= render 'users/top10routes' %>
-              <%= render 'users/newest10routes' %>
+            <%= render 'facilities/top10sends', object: @facility %>
+            <%= render 'facilities/top10routes', object: @facility %>
+            <%= render 'facilities/newest10routes', object: @facility %>
         </div>
         <div class="col-sm-8">
           <div class="row">

@@ -13,10 +13,10 @@
         <% else %>
 
         <div class="col-sm-4 hidden-xs">
-          <%= render 'facilities/facility_stats' %>
-          <%= render 'users/top10sends', object: @user_tick_feed %>
-          <%= render 'users/top10routes', object: @user_tick_feed %>
-          <%= render 'users/newest10routes', object: @user_tick_feed %>
+          <%= render 'facilities/facility_stats', object: @facility %>
+          <%= render 'facilities/top10sends', object: @facility %>
+          <%= render 'facilities/top10routes', object: @facility %>
+          <%= render 'facilities/newest10routes', object: @facility %>
         </div>
         <% end %>
 

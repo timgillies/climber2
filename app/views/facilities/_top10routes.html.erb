@@ -1,0 +1,16 @@
+<br>
+<div class="top-10 row">
+  <div class="header bg-top-10">
+    <h1>Top Routes</h1>
+  </div>
+  <ul>
+    <% Route.top_ten(@facility).each do |route| %>
+      <%= link_to facility_route_path(route.facility_id, route) do %>
+        <li>
+          <strong><%= route.grade.grade if route.grade %></strong> <%= route.facility.name if route.facility %> <strong><%= RatingCache.where(cacheable_id: route.id).first.avg.to_s %></strong>
+          <%= image_tag('star-on.png', style: 'height: 16px; text-align: bottom;') %> (<%= RatingCache.where(cacheable_id: route.id).first.qty %>)
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
