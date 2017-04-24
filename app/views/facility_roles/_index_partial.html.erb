@@ -14,6 +14,38 @@
     </div>
   </div>
   <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
+    <div>
+      <br>
+          <div class="container-fluid bg-routeform">
+            <div class="gray-labels">
+              <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                  <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+                  <div class="form-group">
+                    <%= f.text_field(
+                      :search_query,
+                      placeholder: '  Search by Name',
+                      class: 'filterrific-periodically-observed form-control'
+                    ) %>
+                  </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-4">
+                  <%= f.select(
+                    :with_state,
+                    @filterrific.select_options[:with_state],
+                    { include_blank: 'state' },
+                    {class: "form-control"}
+                  ) %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+
     <%= render 'facility_roles/facility_list', object: @facilities %>
   </div>
 </div>

@@ -200,7 +200,7 @@ end
 
 
   def options_for_grade_select
-    Route.where(facility_id: climber_facilities).pluck(:grade_id).uniq.map{|sg| [Grade.where(id: sg).first , sg ] }
+    Grade.joins(:facility_grade_systems).merge(FacilityGradeSystem.where(facility_id: @userfacilities_check)).uniq.map{|sg| [sg.grade , sg.id ] }
     # provides the list of available grades in the route list filters
   end
 

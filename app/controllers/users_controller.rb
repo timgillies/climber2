@@ -88,6 +88,7 @@ class UsersController < ApplicationController
     @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
 
     @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
+    @admin_facility_roles = FacilityRole.where(user_id: @user).where.not(name: 'climber').page(params[:page])
   end
 
 

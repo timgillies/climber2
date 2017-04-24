@@ -1,19 +1,21 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-    $(".readonly-star .star").each(function() {
-      $(this).raty('set', { readOnly: true });
-    });
-  });
-</script>
-
 <ol class="activity-feed">
   <% @news_feed.each do |news_item| %>
   <% if news_item.instance_of? Tick %>
 	<li class="feed-item" data-content="&#xf00c;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="green">
 		<section>
+			<% if news_item.route_id %>
+			<%= link_to facility_route_path(news_item.route.facility_id, news_item.route_id) do %>
 			<div for="expand_tick_<%= news_item.id %>">
 				<strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.route.facility.name %></strong>
 			</div>
+			<% end %>
+			<% else %>
+			<%= link_to user_path(news_item.user_id) do %>
+			<div for="expand_tick_<%= news_item.id %>">
+				<strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.route.facility.name %></strong>
+			</div>
+			<% end %>
+			<% end %>
 			<main class="content">
         <div>
           <% if news_item.description %>

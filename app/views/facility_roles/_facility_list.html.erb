@@ -1,39 +1,42 @@
+<div id="filterrific_facility_results">
 <br>
-<%= div_for(@facilities.where(public: true)) do |f| %>
-<ol class="routelist">
-  <li style="border: none;">
-    <div class="col-sm-12">
-      <div class="container-fluid">
-        <div class="row">
-          <br/>
-          <%= link_to facility_path(f) do %>
-          <div class="col-xs-9 col-sm-19">
+  <%= div_for(@facilities.where(public: true)) do |f| %>
+    <ol class="routelist">
+      <li style="border: none;">
+        <div class="col-sm-12">
+          <div class="container-fluid">
             <div class="row">
-            <h3>
-              <% if FacilityRole.where("facility_id = ? and user_id = ?", f.id, @user.id).count > 0 %>
-              <span class="glyphicon glyphicon-ok glyphicon-green"></span>
-              <% end %>
-              <%= f.name %>
-            </h3>
-            </div>
-            <% end %>
-            <div class="row">
-              <p><%= f.addressline1 + " " + f.city + ", " + f.state %></p>
+              <br/>
+              <%= link_to facility_path(f) do %>
+              <div class="col-xs-9 col-sm-19">
+                <div class="row">
+                <h3>
+                  <% if FacilityRole.where("facility_id = ? and user_id = ?", f.id, @user.id).count > 0 %>
+                  <span class="glyphicon glyphicon-ok glyphicon-green"></span>
+                  <% end %>
+                  <%= f.name %>
+                </h3>
+                </div>
+                <% end %>
+                <div class="row">
+                  <p><%= f.addressline1 + " " + f.city + ", " + f.state %></p>
+                </div>
+              </div>
+
+
+                <div id="use_system_form">
+                  <% if FacilityRole.where("facility_id = ? and user_id = ?", f.id, @user.id).count > 0 %>
+
+                  <% else %>
+                  <%= render 'join_facility', :f => f %>
+                  <% end %>
+                </div>
+
             </div>
           </div>
-
-
-            <div id="use_system_form">
-              <% if FacilityRole.where("facility_id = ? and user_id = ?", f.id, @user.id).count > 0 %>
-
-              <% else %>
-              <%= render 'join_facility', :f => f %>
-              <% end %>
-            </div>
-
         </div>
-      </div>
-    </div>
-  </li>
-</ol>
-<% end %>
+      </li>
+    </ol>
+  <% end %>
+    <%= paginate @facilities %>
+</div>

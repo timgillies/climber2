@@ -2,11 +2,13 @@ class FacilityRolesController < ApplicationController
   before_action :authenticate_user!
 
 
-layout 'user'
+  layout 'user'
+
+  include FacilitiesHelper
+
 
   def index
     @user = User.find(params[:user_id])
-    @facilities = Facility.all.page(params[:page]).per(2000)
     @facility_role = FacilityRole.new
     @facility_roles = FacilityRole.where(user_id: @user).page(params[:page])
 
@@ -24,7 +26,38 @@ layout 'user'
         @newest_10_routes = Route.where(facility_id: @userfacilities_check).includes(:grade, :facility, :zone).order('routes.setdate desc').limit(10)
         @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date)
     # -------------------------------------------------
-  end
+
+    @filterrific = initialize_filterrific(
+        Facility,
+        params[:filterrific],
+        select_options: {
+          with_state: options_for_state_select,
+        },
+        persistence_id: true,
+      ) or return
+      # Get an ActiveRecord::Relation for all students that match the filter settings.
+      # You can paginate with will_paginate or kaminari.
+      # NOte: filterrific_find returns an ActiveRecord Relation that can be
+      # chained with other scopes to further narrow down the scope of the list,
+      # e.g., to apply permissions or to hard coded exclude certain types of records.
+      @facilities = Facility.filterrific_find(@filterrific).page(params[:page]).per(50)
+
+      # Respond to html for initial page load and to js for AJAX filter updates.
+      respond_to do |format|
+        format.html
+        format.js
+      end
+
+    # Recover from invalid param sets, e.g., when a filter refers to the
+    # database id of a record that doesn’t exist any more.
+    # In this case we reset filterrific and discard all filter params.
+    rescue ActiveRecord::RecordNotFound => e
+      # There is an issue with the persisted param_set. Reset it.
+      puts "Had to reset filterrific params: #{ e.message }"
+      redirect_to(reset_filterrific_url(format: :html)) and return
+    end
+
+
 
   def show
     @user = User.find(params[:user_id])
@@ -64,6 +97,11 @@ layout 'user'
 
     def facility_role_params
       params.permit(:email, :name, :user_id, :confirmed, :facility_id)
+    end
+
+    def options_for_state_select
+      us_states
+      # provides the list of available grades in the route list filters
     end
 
 
