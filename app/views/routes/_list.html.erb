@@ -49,11 +49,11 @@
             <% else %>
             <h3>
               <% if f.color? %>
-                <%= link_to f.grade.grade + " "+ f.color.upcase , user_path(@user, f) if f.grade %>
+                <%= link_to f.grade.grade + " "+ f.color.upcase , facility_route_path(f.facility_id, f) if f.grade %>
               <% elsif (color_name(f.color_hex,f.facility)).nil? %>
-                <%= link_to f.grade.grade , user_route_path(@user, f) if f.grade %>
+                <%= link_to f.grade.grade , facility_route_path(f.facility_id, f) if f.grade %>
               <% else %>
-                <%= link_to f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase , user_route_path(@user, f) if f.grade %>
+                <%= link_to f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase , facility_route_path(f.facility_id, f) if f.grade %>
               <% end %>
             </h3>
             <% end %>

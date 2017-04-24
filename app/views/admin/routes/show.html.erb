@@ -1,28 +1,24 @@
+<% provide(:title, @facility.name ) %>
+
 <div class="container-fluid">
   <div class="row">
-    <div class="routelist-header bg-blue-gradient">
-      <h1 class="hidden-xs"><strong>Route</strong>info </h1>
-        <h1 class="hidden-sm hidden-md hidden-lg hidden-xl">Route </h1>
+    <div class="col-sm-12">
+      <div class="row">
+
+      </div>
+      <div class="row">
+        <div class="col-sm-4 hidden-xs">
+            <%= render 'facilities/facility_stats', object: @facility %>
+              <%= render 'users/top10sends' %>
+              <%= render 'users/top10routes' %>
+              <%= render 'users/newest10routes' %>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+              <%= render 'admin/routes/show_partial' %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<br>
-
-<%= render(
-partial: 'routes/route',
-locals: { route: @route }
-) %>
-
-
-
-
-<!--
-  <div class="row">
-    <div class="col-xs-12">
-        <%= render 'routes/totalticks' %>
-    </div>
-  </div>
-</div>
-
--->

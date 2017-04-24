@@ -5,7 +5,7 @@
   </div>
 <ul>
     <% Route.newest_ten(@userfacilities_check).each do |route| %>
-    <%= link_to user_route_path(current_user, route) do %>
+    <%= link_to facility_route_path(route.facility_id, route) do %>
       <li>
         <strong><%= route.grade.grade %></strong> <%= route.zone.name if route.zone %>
       </li>

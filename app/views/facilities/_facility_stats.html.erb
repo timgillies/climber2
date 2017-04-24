@@ -5,16 +5,22 @@
 
 
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.length %><span class="text"><%= "total" %></span></div>
+    <div class="large-circle responsive"><%= @facility.routes.current.size %><span class="text"><%= "total" %></span></div>
   </div>
+
+  <% unless (@facility.routes.current.climb_type("boulder").size == 0) && (@facility.routes.current.climb_type("sport").size) > 0 %>
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").length %><span class="text"><%= "boulder".pluralize(@facility.routes.current.length) %></span></div>
+    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").size %><span class="text"><%= "boulder".pluralize(@facility.routes.current.size) %></span></div>
   </div>
+  <% end %>
+
+  <% unless (@facility.routes.current.climb_type("sport").size == 0) && (@facility.routes.current.climb_type("boulder").size) > 0 %>
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").length %><span class="text"><%= "route".pluralize(@facility.routes.current.length) %></span></div>
+    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").size %><span class="text"><%= "route".pluralize(@facility.routes.current.size) %></span></div>
   </div>
+  <% end %>
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.length) if @facility.routes.current.length > 0  %><span class="text"><%= "avg. age" %></span></div>
+    <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.size) if @facility.routes.current.size > 0  %><span class="text"><%= "avg. age" %></span></div>
   </div>
 
   <div class="header bg-top-10">

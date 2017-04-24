@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1 class="hidden-xs"><strong>Route</strong>info </h1>
+        <h1 class="hidden-sm hidden-md hidden-lg hidden-xl">Route </h1>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<%= render(
+partial: 'routes/route',
+locals: { route: @route }
+) %>
+
+
+
+
+<!--
+  <div class="row">
+    <div class="col-xs-12">
+        <%= render 'routes/totalticks' %>
+    </div>
+  </div>
+</div>
+
+-->
