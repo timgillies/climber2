@@ -252,7 +252,7 @@ class Admin::RoutesController < ApplicationController
   end
 
   def options_for_setter_select
-      @facility.facility_roles.where(confirmed: true).map{|fs| [fs.user.name, fs.user.id.to_i]}
+      @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     # provides the list of available walls in the route list filters
   end
 
