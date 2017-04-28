@@ -20,7 +20,7 @@ class FacilityRolesController < ApplicationController
         @news_feed = @tick_feed + @new_route_feed
         #newest first
         @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
-        @top_10_sends = Tick.includes(:grade, :user).where(route_id: Route.where(facility_id: @userfacilities_check)).where.not(tick_type: "project").grade_desc.take(10)
+        @top_10_sends = Tick.includes(:grade, :user).where(route_id: Route.where(facility_id: @userfacilities_check)).ascent.grade_desc.take(10)
         # gets top 10 routes based on ratings cache average
         @top_10_routes = Route.where(facility_id: @userfacilities_check).includes(:grade, :facility, :rating_cache).where(id: RatingCache.where(cacheable_type: "Route").order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
         @newest_10_routes = Route.where(facility_id: @userfacilities_check).includes(:grade, :facility, :zone).order('routes.setdate desc').limit(10)

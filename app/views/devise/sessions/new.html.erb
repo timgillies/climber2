@@ -21,15 +21,8 @@
             <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
           </div>
 
-          <% if devise_mapping.rememberable? -%>
-            <label class="checkbox-inline">
-              <%= f.check_box :remember_me, checked: true, class: 'checkbox' %>
-              Remember me
-            </label>
-          <% end -%>
-
           <div class="actions">
-            <%= f.submit "Log in", class: "btn btn-save btn-md" %>
+            <%= f.submit "Log in", class: "btn btn-save btn-lg" %>
           </div>
         <% end %>
         <br/>

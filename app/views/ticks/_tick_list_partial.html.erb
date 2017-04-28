@@ -81,11 +81,8 @@
               <div class="row">
                 <div class="col-xs-12">
                   <h3>
-                    <% if @user == current_user %>
                       <%= link_to f.grade.grade, edit_user_tick_path(@user, f) if f.grade  %>
-                    <% else %>
-                        <%= f.grade.grade %>
-                    <% end %>
+
                   </h3>
 
                    <span class="pull-right">

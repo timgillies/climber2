@@ -1,0 +1,75 @@
+<% Tick.where(route_id: @route.id, user_id: current_user.id).each do |f| %>
+  <ol class="routelist ticklist">
+    <% if f.route_id? %>
+
+      <% if f.route.color_hex? %>
+      <li style="border-left: 15px solid <%= f.route.color_hex %>">
+      <% else %>
+      <li>
+      <% end %>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>
+
+              <%= link_to f.date , edit_user_tick_path(@user, f) if f.date %>
+
+            </h3>
+              <% if f.grade_id? %>
+              <h2>
+                <% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
+              </h2>
+              <% end %>
+              <h2><%= f.tick_type.humanize if f.tick_type %></h2>
+              <span class="pull-right">
+                <h3 class="pull-right"><%= link_to user_tick_path(current_user, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                            :method => :delete do %>
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <%end %>
+                </h3>
+              </span>
+
+          </div>
+
+        </div>
+      </div>
+    </li>
+
+    <% else %>
+
+    <% if f.color_hex? %>
+    <li style="border-left: 15px solid <%= f.color_hex %>">
+    <% else %>
+    <li>
+    <% end %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>
+            <%= link_to f.date , edit_user_tick_path(@user, f) if f.date %>
+          </h3>
+
+           <span class="pull-right">
+             <% if f.grade_id? %>
+             <h2>
+               <% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
+             </h2>
+             <% end %>
+             <h2><%= f.tick_type if f.tick_type %></h2>
+           </span>
+
+        </div>
+      </div>
+
+      <div class="row">
+
+
+      </div>
+    </div>
+  </li>
+
+  <% end %>
+  </ol>
+<% end %>

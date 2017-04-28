@@ -86,7 +86,7 @@ def color_name(hex,facility)
 end
 
 def custom_color_options(facility)
-  CustomColor.where(facility_id: facility).map{|color| [color.color_name, color.color_hex]}
+  CustomColor.includes(:facility).where(facility_id: facility).map{|color| [color.color_name, color.color_hex]}
 end
 
 

@@ -4,34 +4,44 @@
       <h1>User Stats</h1>
     </div>
 
-    <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").length %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").length) %></span></div>
-    </div>
 
-    <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @ticks.length %><span class="text"><%= "attempt".pluralize(@ticks.length) %></span></div>
-    </div>
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle responsive">
+        <%= @ticks.total_send_overall_count(@user, "project").length %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").length) %></span></div>
+      </div>
+    <% end %>
 
-    <div class="circle-wrapper">
 
-      <div class="large-circle responsive">
-        <% if @ticks.present? %>
-          <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").length.to_f)/(@ticks.length.to_f)*100), precision: 0) %>
-        <% else %>
-            0
-        <% end %>
-      <span class="text"><%= "send rate" %></span></div>
-    </div>
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle responsive"><%= @ticks.length %><span class="text"><%= "attempt".pluralize(@ticks.length) %></span></div>
+      </div>
+    <% end %>
 
-    <div class="circle-wrapper">
-      <div class="large-circle responsive">
-        <% if @ticks.where.not(tick_type: "project").present? %>
-          <%= @ticks.where.not(tick_type: "project").grade_desc.first.grade.grade if @ticks.where.not(tick_type: "project").grade_desc.first.grade %>
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle responsive">
+          <% if @ticks.present? %>
+            <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").length.to_f)/(@ticks.length.to_f)*100), precision: 0) %>
           <% else %>
-          0
-        <% end %>
-        <span class="text">hardest</span></div>
-    </div>
+              0
+          <% end %>
+        <span class="text"><%= "send rate" %></span></div>
+      </div>
+    <% end %>
+
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle responsive">
+          <% if @ticks.ascent.present? %>
+            <%= @ticks.ascent.grade_desc.first.grade.grade if @ticks.ascent.grade_desc.first.grade %>
+            <% else %>
+            0
+          <% end %>
+          <span class="text">hardest</span></div>
+      </div>
+    <% end %>
 
     <div class="header bg-top-10">
       <h1>user facilities</h1>
@@ -40,7 +50,7 @@
         <% @userfacilities_check.each do |facility| %>
           <%= link_to facility_path(facility) do %>
             <li>
-              <%= facility.name %>
+              <%= facility.name %><%= (" " + facility.location) if facility.location %>
             </li>
           <% end %>
         <% end %>

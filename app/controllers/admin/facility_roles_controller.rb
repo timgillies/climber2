@@ -39,6 +39,11 @@ class Admin::FacilityRolesController < ApplicationController
       flash[:success] = "#{ @facility_role.email } was successfully invited!"
       FacilityRoleMailer.role_invite_email(@facility_role).deliver_now
       redirect_to(admin_facility_facility_roles_path(@facility))
+    elsif FacilityRole.where(facility_id: @facility.id, email: @facility_role.email).present?
+       @existing_facility_role = FacilityRole.where(facility_id: @facility.id, email: @facility_role.email).first
+       @existing_facility_role.update_attributes(name: @facility_role.name)
+       flash[:success] = "#{ @existing_facility_role.user.name } was updated to #{ @existing_facility_role.name } !"
+       redirect_to(admin_facility_facility_roles_path(@facility))
     else
       flash[:error] = "#{ @facility_role.email } was not added!  Please make sure #{ @facility_role.email } is not already assigned a role."
       redirect_to(admin_facility_facility_roles_path(@facility))

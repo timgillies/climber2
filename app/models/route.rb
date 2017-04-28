@@ -206,4 +206,6 @@ scope :sorted_by, lambda { |sort_option|
     Route.where(facility_id: facility).includes(:grade, :facility, :zone).order('routes.setdate desc').limit(10)
   end
 
+
+
 end

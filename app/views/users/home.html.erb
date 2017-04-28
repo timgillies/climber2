@@ -7,11 +7,14 @@
 
       </div>
       <div class="row">
-        <div class="col-sm-4 hidden-xs">
+        <div class="col-sm-4">
           <%= render 'users/user_stats' %>
+          <div class="hidden-sm hidden-md hidden-lg"><br></div>
+        <div class="hidden-xs">
           <%= render 'users/top10sends' %>
           <%= render 'users/top10routes' %>
           <%= render 'users/newest10routes' %>
+        </div>
         </div>
         <div class="col-sm-8">
           <% unless @admin_facility_roles.count < 1 %>

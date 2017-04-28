@@ -2,13 +2,15 @@
 <div class="bg-profile-header">
   <div class="routes">
     <div class="row">
-      <div class="col-sm-12">
 
+      <div class="col-sm-12">
+        <%= link_to home_user_path(current_user) do %>
         <h1><% if @user.image? %><%= image_tag @user.image ,:class=> "img-profile-medium" %>
         <% else %>
         <%= image_tag @user.avatar.url(:thumb), class: "img-profile-medium" %>
         <% end %>
         <%= @user.name if @user.name %></h1>
+        <% end %>
       </div>
     </div>
   </div>

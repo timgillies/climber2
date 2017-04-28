@@ -4,10 +4,10 @@
     <h1>Top Sends</h1>
   </div>
 <ul>
-  <% Tick.top_ten(@userfacilities_check).each do |send| %>
+  <% Tick.top_ten_climbers(@userfacilities_check).each do |send| %>
     <%= link_to user_path(send.user_id) do %>
       <li>
-        <strong><%= send.grade.grade %></strong> <%= send.user.name %>
+        <strong><%= send.grade.grade %></strong> <%= send.route.facility.name if send.route.facility %> - <%= send.user.name %>
       </li>
     <% end %>
   <% end %>

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       resources :ticks
     end
 
-    resources :ticks
+    resources :ticks 
     resources :facilities do
       post :unfollow_facility
       post :follow_facility #output path - /users/:user_id/facilities/:facility_id/follow_facility(.:format), user_facility_follow_facility

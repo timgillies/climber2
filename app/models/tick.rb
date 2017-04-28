@@ -90,6 +90,10 @@ class Tick < ActiveRecord::Base
     end
   end
 
+  def self.ascent
+    where.not(tick_type: 'project')
+  end
+
   def start_date(user)
     self.where(user_id: user.id).first.created_at
   end
@@ -103,7 +107,7 @@ class Tick < ActiveRecord::Base
   end
 
   def self.send_type_count(route, user, tick_type)
-    self.where(route_id: route.id, user_id: user.id, tick_type: tick_type ).length
+    self.where(route_id: route.id, user_id: user.id, tick_type: tick_type).length
   end
 
   def self.total_send_overall_count(user, project)
@@ -116,7 +120,11 @@ class Tick < ActiveRecord::Base
   end
 
   def self.top_ten(facility)
-    self.includes(:grade, :user).where(route_id: Route.where(facility_id: facility)).where.not(tick_type: "project").grade_desc.take(10)
+    self.includes(:grade, :user).where(route_id: Route.where(facility_id: facility)).ascent.grade_desc.take(10)
+  end
+
+  def self.top_ten_climbers(facility)
+    self.includes(:grade, :user).where(route_id: Route.includes(:facility).where(facility_id: facility)).ascent.grade_desc.take(10).uniq{ |s| s.user_id }
   end
 
 

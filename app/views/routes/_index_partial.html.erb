@@ -92,7 +92,7 @@
 <div class="row">
     <div class="route-form">
       <div id="donate">
-        <% Zone.where(facility_id: @userfacilities_check).each do |zone| %>
+        <% Zone.includes(:facility).where(facility_id: @userfacilities_check).each do |zone| %>
           <label class="green"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
             <span><%= zone.name %></span>
           </label>

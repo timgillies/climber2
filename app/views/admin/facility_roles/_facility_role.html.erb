@@ -26,10 +26,14 @@
           <div class="row">
             <div class="col-sm-2 hidden-xs">
               <% if f.user_id? %>
-                <% if User.where(id: f.user_id).first.avatar.exists? %>
-                  <%= image_tag(User.where(id: f.user_id).first.avatar.url(:medium), class: 'img-zone-list') if User.where(id: f.user_id).first.avatar.exists? %>
-                <% else %>
-                  <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
+                <%= link_to home_user_path(f.user_id) do %>
+                  <% if User.where(id: f.user_id).first.image? %>
+                    <%= image_tag User.where(id: f.user_id).first.image ,:class=> "img-zone-list" %>
+                  <% elsif User.where(id: f.user_id).first.avatar.exists? %>
+                    <%= image_tag User.where(id: f.user_id).first.avatar.url(:thumb), class: "img-zone-list" %>
+                  <% else %>
+                    <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>

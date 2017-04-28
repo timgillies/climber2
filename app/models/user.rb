@@ -59,6 +59,8 @@ class User < ActiveRecord::Base
 
 
 
+
+
   private
 
     # Converts email to all lower-case
