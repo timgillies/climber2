@@ -182,8 +182,8 @@
         {
           name: "<%= type %>",
           pointInterval: <%= 1.day * 1000 %>,
-          pointStart: <%= @ticks.first.date.at_midnight.to_i * 1000 %>,
-          data: <%= user_ticks_chart_series( @ticks, @ticks.first.date ) %>
+          pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
+          data: <% if @ticks.present? %><%= user_ticks_chart_series( @ticks, @ticks.first.date ) %> <% end %>
         },
         <% end %>
         ]
