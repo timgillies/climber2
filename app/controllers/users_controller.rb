@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @facility_roles = FacilityRole.where(user_id: @user, confirmed: true).page(params[:page])
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
     @ticks = Tick.where(user_id: @user).page(params[:page]).per(5000000)
-    @userfacilities_check = current_user.facility_relationships.all
+    @userfacilities_check = @user.facility_relationships.all
 
     #refactored tick_feed and new_route_feed into respective models
     @news_feed = @user.ticks.tick_feed(@userfacilities_check) + @user.routes.new_route_feed(@userfacilities_check)
