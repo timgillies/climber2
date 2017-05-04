@@ -116,7 +116,7 @@ class Tick < ActiveRecord::Base
 
 
   def self.tick_feed(facility)
-    self.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility)
+    self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility)
   end
 
   def self.top_ten(facility)

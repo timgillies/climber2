@@ -24,7 +24,7 @@
                   <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
                   <div class="form-group">
                     <%= f.text_field(
-                      :search_query,
+                      :facility_search_query,
                       placeholder: '  Search by Name',
                       class: 'filterrific-periodically-observed form-control'
                     ) %>
@@ -38,6 +38,16 @@
                     { include_blank: 'state' },
                     {class: "form-control"}
                   ) %>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <span class="pull-right">
+                      <%= link_to(
+                        'Reset filters',
+                        reset_filterrific_url
+                      ) %>
+                    </span>
+                  </div>
                 </div>
 
               </div>

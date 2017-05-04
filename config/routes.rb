@@ -28,7 +28,11 @@ Rails.application.routes.draw do
       resources :ticks
     end
 
-    resources :ticks 
+    resources :ticks do
+      collection do #collection gets index of ticks rather than specific tick ID
+        get :tick_list
+      end
+    end
     resources :facilities do
       post :unfollow_facility
       post :follow_facility #output path - /users/:user_id/facilities/:facility_id/follow_facility(.:format), user_facility_follow_facility

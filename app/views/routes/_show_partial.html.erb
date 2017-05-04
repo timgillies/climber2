@@ -7,11 +7,9 @@ locals: { route: @route }
 
 <br>
 
-<div class="row">
-  <div class="routelist-header bg-blue-gradient">
-    <h1><strong>Your</strong>ticks </h1>
-  </div>
-</div>
+<%= link_to "#newTickModal", data: { toggle: "modal"}, class: "btn btn-save btn-lg pull-right" do %>
+      Log new tick
+      <% end %>
 <br>
 
 <div class="row">
@@ -21,9 +19,29 @@ locals: { route: @route }
 ) %>
 </div>
 
-<div class="row">
-<%= render(
-partial: 'ticks/route_tick_form',
-locals: { tick: @tick }
-) %>
-</div>
+
+
+<!-- Zone Modal -->
+
+  <div class="modal fade" id="newTickModal" tabindex="-1" role="dialog" aria-labelledby="newTickModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="modal-title" id="newTickModal"><%= link_to (image_tag 'cc-white-horizontal.svg'), root_path, class: "logo" %></span>
+        </div>
+        <div class="modal-body row">
+          <%= form_for [current_user, @route.facility , @route, @tick], :html => {:class => "form-label", :multipart => true } do |f| %>
+            <%= render(
+            partial: 'ticks/route_tick_form',
+            locals: { f: f }
+            ) %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, class: "btn btn-save" %>
+          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>

@@ -12,7 +12,7 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:id])
     @routes = @facility.routes.page(params[:page])
     @activeroutes = @facility.routes.where("enddate >= ?", Date.current)
-    @facilityticks = Tick.where("facility_id = ?", @facility)
+    @facilityticks = Tick.ascent.where("facility_id = ?", @facility)
 
     #refactored tick_feed and new_route_feed into respective models
     @news_feed = Tick.tick_feed(@facility) + Route.new_route_feed(@facility)

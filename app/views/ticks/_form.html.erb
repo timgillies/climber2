@@ -30,6 +30,31 @@
 
     <br>
 
+    <% if @userfacilities_check.size > 0 %>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.label :facility_id, "Facility", class: "sr-only" %>
+        <div class="route-form">
+          <div id="donate">
+            <% @userfacilities_check.each do |fs| %>
+              <label class="gray"><%= f.radio_button :facility_id, fs.id, params[:facility_id] == fs.id ? { checked: true } : {checked: f.object.tick_type.eql?(fs.id) } %>
+                <span><%= fs.name %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% else %>
+
+    <%= link_to "Add your facilities", user_facility_roles_path(current_user), class: "btn btn-save btn-lg tab" %>
+
+    <% end %>
+
+<br>
+<br>
 
     <div class="row">
       <div class="col-xs-12">

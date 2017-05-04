@@ -33,7 +33,7 @@
           <ul class="dropdown-menu scrollable-menu" role="menu">
             <% @userfacilities.each do |f| %>
             <li>
-                <%= link_to f.name + " " + f.location, admin_facility_path(f) %>
+                <%= link_to f.name + " " + f.location, admin_facility_path(f) if f.location %>
             </li>
             <% end %>
             <li class="divider"></li>

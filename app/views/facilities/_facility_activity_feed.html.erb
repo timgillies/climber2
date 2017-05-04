@@ -5,7 +5,16 @@
 		<section>
       <%= link_to facility_route_path(news_item.route.facility_id, news_item.id) do %>
 			<div for="expand_tick_<%= news_item.id %>">
-				<strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.route.facility.name %></strong>
+        <span>
+          <% if news_item.user %>
+            <% if news_item.user.image? %>
+              <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
+            <% elsif news_item.user.avatar_file_name? %>
+              <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+            <% end %>
+          <% end %>
+        </span>
+				<strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> (<%= news_item.tick_type %>) at <strong><%= news_item.route.facility.name %></strong>
 			</div>
       <% end %>
 			<main class="content">

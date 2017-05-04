@@ -65,30 +65,31 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-              <div class="mobile-tab"><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
+              <div class="mobile-tab"><strong><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></strong></div>
           </div>
 
           <div class="col-sm-12">
-              <div class="mobile-tab"><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+              <div class="mobile-tab"><strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></strong></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="mobile-tab"><%= f.user.name if f.user %></div>
+            <div class="mobile-tab"><strong><%= f.user.name if f.user %></strong></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="mobile-tab text-right">
 
-
-              <% unless params[:controller] == 'admin/tasks' %>
-                <% if (days_ago(f) == "today") %>
-                  <span>set <%= days_ago(f) %></span>
+              <strong>
+                <% unless params[:controller] == 'admin/tasks' %>
+                  <% if (days_ago(f) == "today") %>
+                    <span>set <%= days_ago(f) %></span>
+                  <% else %>
+                    set <%= days_ago(f) %> ago
+                  <% end %>
                 <% else %>
-                  set <%= days_ago(f) %> ago
+                  <% if f.setdate? %>
+                  due on <%= f.setdate.strftime("%b %d, %Y") %>
+                  <% end %>
                 <% end %>
-              <% else %>
-                <% if f.setdate? %>
-                due on <%= f.setdate.strftime("%b %d, %Y") %>
-                <% end %>
-              <% end %>
+              </strong>
 
             </div>
           </div>

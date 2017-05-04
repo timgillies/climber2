@@ -1,27 +1,8 @@
 <br>
 <div class="container-fluid">
   <div class="row">
-    <% if @routes.count == 0 %>
-
-    <div class="col-sm-12">
-
-        <div class="row">
-
-
-
-
-          <%= render 'admin/facilities/checklist' %>
-        </div>
-    </div>
-
-  <% end %>
-
-
 
     <% facility_systems.each do |fs| %>
-
-
-
 
       <div class="col-sm-12">
         <div class="routelist">

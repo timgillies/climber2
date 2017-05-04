@@ -33,7 +33,7 @@ class FacilityRolesController < ApplicationController
         select_options: {
           with_state: options_for_state_select,
         },
-        persistence_id: true,
+        persistence_id: false,
       ) or return
       # Get an ActiveRecord::Relation for all students that match the filter settings.
       # You can paginate with will_paginate or kaminari.

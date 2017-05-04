@@ -11,6 +11,9 @@ class Route < ActiveRecord::Base
   belongs_to :tasks
   belongs_to :rating_cache
   has_many :custom_colors, {:through=>:facilities, :source=>:custom_color}
+  has_many :grade_systems, :through=>:grades
+
+
 
 
 

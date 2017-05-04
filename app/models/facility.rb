@@ -68,7 +68,7 @@ class Facility < ActiveRecord::Base
   filterrific(
   default_filter_params: {  },
   available_filters: [
-    :search_query,
+    :facility_search_query,
     :with_state,
   ]
   )
@@ -76,7 +76,7 @@ class Facility < ActiveRecord::Base
   # define ActiveRecord scopes for
   # :search_query, :sorted_by, :with_country_id, and :with_created_at_gte
 
-  scope :search_query, lambda { |query|
+  scope :facility_search_query, lambda { |query|
     # Searches the students table on the 'first_name' and 'last_name' columns.
     # Matches using LIKE, automatically appends '%' to each term.
     # LIKE is case INsensitive with MySQL, however it is case

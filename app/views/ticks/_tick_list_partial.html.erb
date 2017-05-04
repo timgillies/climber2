@@ -1,7 +1,19 @@
-
-<div id="tick_daily_summary">
+<div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="routelist-header bg-blue-gradient">
+      <h1 class="hidden-xs">Ascents</h1>
+      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"><strong>tick</strong>list </h1>
+    <span class="pull-right">
+      <span class="hidden-xs"><%= link_to "daily summary", user_ticks_path(current_user), class: "btn btn-close", style: "display: inline-block;" %></span>
+    </span>
+  </div>
+  </div>
+</div>
+
+<br>
+
+<div id="tick_list">
+  <div class="row">
       <div class="routelist">
       <h2><%= page_entries_info @ticks  %>
       </h2>
@@ -10,31 +22,14 @@
 
   </div>
 
-<% @tick_dates.each do |tick_date| %>
-  <ol class="routelist">
-    <div class="date-list">
-      <li>
-        <h3 style="color: #444;" class="tab"><%= Date.strptime(tick_date.to_s, '%Y-%m-%d').to_date.strftime('%A | %Y-%m-%d') %></h3>
-        <br>
-        <br>
-        <div class="container-fluid">
-          <div class="hidden-sm hidden-md hidden-lg">
-            <div class="circle-wrapper">
-              <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
-            </div>
 
-            <div class="circle-wrapper">
-              <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "attempt".pluralize(@ticks.total_on(tick_date)) %></span></div>
-            </div>
+<div class="date-list row">
 
-            <div class="circle-wrapper">
-              <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
-            </div>
-            <br>
-          </div>
-          <div class='col-sm-6'>
-          <% ((@ticks.includes(:route, :grade).where(date: tick_date).ascent.grade_desc.limit(5)) + (@ticks.includes(:route, :grade).where(date: tick_date, tick_type: "project").grade_desc.limit(5)))[0..4].each do |f| %>
-          <ol class="ticklist">
+
+        <div class="row">
+          <div class='col-sm-12'>
+          <% @ticks.includes(:route, :grade, :user).order('created_at desc').each do |f| %>
+          <ol class="routelist ticklist">
 
             <% if f.route_id? %>
 
@@ -48,20 +43,54 @@
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12">
+                    <h2> <%= f.date.strftime('%A , %m/%d') if f.date %> - <%= f.route.zone.name if f.route.zone %></h2>
+
+                  </div>
+
+                  <div class="col-xs-8">
                     <h3>
 
                         <%= link_to f.route.grade.grade , facility_route_path(f.route.facility_id, f.route_id) if f.route.grade %>
 
                     </h3>
-                    <h2> <%= f.route.zone.name if f.route.zone %></h2>
+                    <% if f.grade_id? %>
+                    <h2>
+                      <% if GradeSystem.includes(:grades, :routes).where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
+                    </h2>
+                    <% end %>
+                    <h2><%= f.tick_type.humanize if f.tick_type %></h2>
+
+                  </div>
+
+                  <% if current_user == @user %>
+                  <div class="col-xs-4">
+
                     <span class="pull-right">
-                      <% if f.grade_id? %>
-                      <h2>
-                        <% if GradeSystem.where(id: f.route.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
-                      </h2>
-                      <% end %>
-                      <h2><%= f.tick_type.humanize if f.tick_type %></h2>
+
+                      <h3 class="pull-right"><%= link_to user_tick_path(current_user, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                                  :method => :delete do %>
+                                  <i class="glyphicon glyphicon-trash"></i>
+                                  <%end %>
+                      </h3>
                     </span>
+                  </div>
+
+                  <% end %>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs-12">
+
+
+                    <span><i>
+                      <% if f.description %>
+                      <h2> <%= f.description if f.description %></h2>
+                      <% else %>
+                      <h2>No description</h2>
+                      <% end %>
+                    </i>
+                    </span>
+
                   </div>
 
                 </div>
@@ -80,25 +109,55 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12">
-                  <h3>
-                      <%= link_to f.grade.grade, edit_user_tick_path(@user, f) if f.grade  %>
-
-                  </h3>
-
-                   <span class="pull-right">
-                     <% if f.grade_id? %>
-                     <h2>
-                       <% if GradeSystem.where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
-                     </h2>
-                     <% end %>
-                     <h2><%= f.tick_type if f.tick_type %></h2>
-                   </span>
+                  <h2> <%= f.date.strftime('%A , %m/%d') if f.date %> <%= (" - " + f.facility.name) if f.facility %></h2>
 
                 </div>
+
+                <div class="col-xs-8">
+                  <h3>
+
+                      <%= link_to f.grade.grade , edit_user_tick_path(f.user_id, f) if f.grade %>
+
+                  </h3>
+                  <% if f.grade_id? %>
+                  <h2>
+                    <% if GradeSystem.includes(:grades).where(id: f.grade.grade_system_id).first.discipline == 'sport' %><%= f.rope_climb_type_in_words %> | <% end %>
+                  </h2>
+                  <% end %>
+                  <h2><%= f.tick_type.humanize if f.tick_type %></h2>
+
+                </div>
+
+                <% if current_user == @user %>
+                <div class="col-xs-4">
+
+                  <span class="pull-right">
+
+                    <h3 class="pull-right"><%= link_to user_tick_path(current_user, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                                :method => :delete do %>
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <%end %>
+                    </h3>
+                  </span>
+                </div>
+
+                <% end %>
               </div>
 
               <div class="row">
+                <div class="col-xs-12">
 
+
+                  <span><i>
+                    <% if f.description %>
+                    <h2> <%= f.description if f.description %></h2>
+                    <% else %>
+                    <h2>No description</h2>
+                    <% end %>
+                  </i>
+                  </span>
+
+                </div>
 
               </div>
             </div>
@@ -108,29 +167,6 @@
           </ol>
   <% end %>
 </div>
-<div class="col-sm-6">
-  <div class="hidden-xs">
-    <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").total_on(tick_date)) %></span></div>
-    </div>
 
-    <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "attempt".pluralize(@ticks.total_on(tick_date)) %></span></div>
-    </div>
-
-    <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").total_on(tick_date).to_f)/(@ticks.total_on(tick_date).to_f)*100), precision: 0) %><span class="text"><%= "send rate" %></span></div>
-    </div>
-
-    <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
-    </div>
 </div>
-</div>
-</li>
-
-
-</ol>
-<% end %>
-
 </div>
