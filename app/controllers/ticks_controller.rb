@@ -15,7 +15,7 @@ class TicksController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @userfacilities_check = current_user.facility_relationships.all
+    @userfacilities_check = @user.facility_relationships.all
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
 
     @filterrific = initialize_filterrific(
@@ -50,7 +50,7 @@ class TicksController < ApplicationController
   def tick_list
 
     @user = User.find(params[:user_id])
-    @userfacilities_check = current_user.facility_relationships.all
+    @userfacilities_check = @user.facility_relationships.all
 
     @filterrific = initialize_filterrific(
       Tick,
@@ -63,7 +63,7 @@ class TicksController < ApplicationController
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @ticks = Tick.where(user_id: @user).filterrific_find(@filterrific).page(params[:page]).per(5000000)
+    @ticks = Tick.where(user_id: @user.id).filterrific_find(@filterrific).page(params[:page]).per(5000000)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

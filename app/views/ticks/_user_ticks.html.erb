@@ -178,7 +178,7 @@
         ],
 
       series: [
-        <% { "Ascents" => @user.ticks}.each do |type, ticks| %>
+        <% { "Ascents" => @ticks}.each do |type, ticks| %>
         {
           name: "<%= type %>",
           pointInterval: <%= 1.day * 1000 %>,
