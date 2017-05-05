@@ -2790,17 +2790,18 @@ span.picture {
 
 .btn-follow {
   border: none;
-  opacity: .8;
-  background: linear-gradient(60deg, #e32666, #d7348c);
+  opacity: 1.0;
+  background: linear-gradient(60deg, #ff5f6d, #ffc371);
   color: #ffffff;
   display: inline-block;
   width: 100%;
+  font-weight: 400;
 }
 
 .btn-follow:hover, .btn-follow:active {
   border: none;
   opacity: 1;
-  background: linear-gradient(60deg, #e32666, #d7348c);
+  background: linear-gradient(60deg, #ff5f6d, #ffc371);
   color: #ffffff;
 }
 
