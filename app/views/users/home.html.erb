@@ -26,6 +26,29 @@
             </div>
           <% end %>
 
+          <% if @route %>
+            <div class="row">
+                <div class="gray-labels routeform-header bg-blue-gradient">
+                  <h1>Discover</h1>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+              <%= render(
+              partial: 'users/featured_route',
+              locals: { route: @route }
+              ) %>
+            </div>
+            <br>
+          <% end %>
+
+          <div class="row">
+              <div class="gray-labels routeform-header bg-blue-gradient">
+                <h1>Week Summary</h1>
+              </div>
+          </div>
+          <br>
           <% if @ticks.present? %>
           <div class="row">
             <div class="bg-white">

@@ -59,6 +59,8 @@ class Route < ActiveRecord::Base
     self.where(grade_id: Grade.where(grade_system_id: GradeSystem.where(discipline: discipline).all).all)
   end
 
+
+
   def self.facility_system(fs)
     Route.joins(:grade).merge(Grade.where(:grade_system_id => fs))
   end
@@ -195,6 +197,8 @@ scope :sorted_by, lambda { |sort_option|
   def grade_system_virtual
   end
 
+
+
 # defines what shows up in newsfeed for new routes
   def self.new_route_feed(facility)
     self.where(facility_id: facility).where('routes.created_at > ?', 6.days.ago.to_date).order(created_at: :desc).includes(:zone, :grade, :facility)
@@ -202,7 +206,7 @@ scope :sorted_by, lambda { |sort_option|
 
 # gets top 10 routes based on ratings cache average
   def self.top_ten(facility)
-    Route.where(facility_id: facility).includes(:grade, :facility, :rating_cache).where(id: RatingCache.where(cacheable_type: "Route").order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
+    Route.includes(:grade, :facility, :rating_cache).where(facility_id: facility).where(id: RatingCache.where(cacheable_type: "Route").order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
   end
 
   def self.newest_ten(facility)

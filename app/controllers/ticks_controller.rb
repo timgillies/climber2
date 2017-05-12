@@ -91,15 +91,30 @@ class TicksController < ApplicationController
 
     if params[:route_id]
       @tick.grade_id = Route.where(id: params[:route_id]).first.grade_id
+    elsif @tick.facility_id
+
+      #creates new zone named "climber generated" if it doesn't already exist
+      unless Zone.where(facility_id: @tick.facility_id, name: "Climber Generated").present?
+        @zone = Zone.new(facility_id: @tick.facility_id, name: 'Climber Generated', user_id: current_user.id)
+        @zone.save
+      else
+        @zone = Zone.where(facility_id: @tick.facility_id, name: "Climber Generated").first
+      end
+
+      @route = Route.new(facility_id: @tick.facility_id, zone_id: @zone.id, setdate: @tick.date, grade_id: @tick.grade_id, color_hex: @tick.color_hex, user_id: current_user.id)
+      @route.save
+      @tick.update_attributes(route_id: @route.id)
     end
 
     if @tick.save
+
       if params[:route_id]
         respond_to do |format|
           format.html { [flash[:success] = "Success!", redirect_to(facility_route_path(Route.where(id: params[:route_id]).first.facility_id, params[:route_id]))] }
           format.js
         end
       else
+
         respond_to do |format|
           format.html { [flash[:success] = "Success!", redirect_to(user_routes_path(@user))] }
           format.js
@@ -122,19 +137,14 @@ class TicksController < ApplicationController
     @tick= Tick.find(params[:id])
     @user = User.find(params[:user_id])
     @route = @tick.route
-    @facility = @tick.route.facility
-  end
-
-  def edit
-    @tick= Tick.find(params[:id])
-    @user = User.find(params[:user_id])
-    @route = @tick.route
+    @userfacilities_check = @user.facility_relationships.all
   end
 
   def update
     @tick= Tick.find(params[:id])
     @user = User.find(params[:user_id])
     @route = @tick.route
+    @userfacilities_check = @user.facility_relationships.all
     if @tick.update_attributes(tick_params)
       flash[:success] = "Ascent updated"
       redirect_to(user_ticks_path(@user))

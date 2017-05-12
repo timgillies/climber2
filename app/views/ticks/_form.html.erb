@@ -38,7 +38,7 @@
         <div class="route-form">
           <div id="donate">
             <% @userfacilities_check.each do |fs| %>
-              <label class="gray"><%= f.radio_button :facility_id, fs.id, params[:facility_id] == fs.id ? { checked: true } : {checked: f.object.tick_type.eql?(fs.id) } %>
+              <label class="gray"><%= f.radio_button :facility_id, fs.id, params[:facility_id] == fs.id ? { checked: true } : {checked: f.object.facility_id.eql?(fs.id) } %>
                 <span><%= fs.name %></span>
               </label>
             <% end %>

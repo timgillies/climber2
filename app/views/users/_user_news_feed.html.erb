@@ -1,6 +1,6 @@
 <ol class="activity-feed">
   <% @news_feed.each do |news_item| %>
-  <% if news_item.instance_of? Tick %>
+  <% if (news_item.instance_of? Tick) && (news_item.route_id.present?) %>
 	<li class="feed-item" data-content="&#xf00c;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="green">
 		<section>
 			<% if news_item.route_id %>
@@ -38,6 +38,44 @@
 		</section>
 	</li>
 
+  <% elsif (news_item.instance_of? Tick) && (news_item.facility_id.present?) %>
+  <li class="feed-item" data-content="&#xf00c;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="green">
+    <section>
+      <% if news_item.facility_id %>
+      <%= link_to facility_path(news_item.facility_id) do %>
+      <div for="expand_tick_<%= news_item.id %>">
+        <% if news_item.user %>
+          <% if news_item.user.image? %>
+            <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
+          <% elsif news_item.user.avatar_file_name? %>
+            <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+          <% end %>
+        <% end %>
+        <strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.facility.name %></strong>
+      </div>
+      <% end %>
+      <% else %>
+      <%= link_to user_path(news_item.user_id) do %>
+      <div for="expand_tick_<%= news_item.id %>">
+        <strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.facility.name %></strong>
+      </div>
+      <% end %>
+      <% end %>
+      <main class="content">
+        <div>
+          <% if news_item.description %>
+          <%= news_item.description %>
+          <% end %>
+
+          <% if news_item.image_file_name %>
+          <%= image_tag(news_item.image.url(:medium)) %>
+          <% end %>
+
+        </div>
+      </main>
+    </section>
+  </li>
+
   <% elsif news_item.instance_of? Route %>
 
   <li class="feed-item" data-content="&#xf067;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="blue">
@@ -51,7 +89,7 @@
             <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
           <% end %>
         <% end %>
-        <strong><%= news_item.facility.name if news_item.facility %></strong> added a new <strong> <%= news_item.grade.grade if news_item.grade %></strong> in <%= news_item.zone.name if news_item.zone %>
+        <strong><%= news_item.user.name if news_item.user %></strong> added a new <strong> <%= news_item.grade.grade if news_item.grade %></strong> in the <%= news_item.zone.name if news_item.zone %> zone at <strong><%= (news_item.facility.name) if news_item.facility %></strong>
       </div>
       <% end %>
       <main class="content">

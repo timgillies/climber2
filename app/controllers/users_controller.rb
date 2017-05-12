@@ -81,14 +81,29 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @userfacilities_check = current_user.facility_relationships.all
 
-    #refactored tick_feed and new_route_feed into respective models
-    @news_feed = Tick.tick_feed(@userfacilities_check) + Route.new_route_feed(@userfacilities_check)
+    # refactored tick_feed and new_route_feed into respective models
+    @news_feed = Tick.tick_feed(@userfacilities_check) + Route.new_route_feed(@userfacilities_check) + Tick.no_route_tick_feed(@userfacilities_check)
 
-    #combines new ticks and new routes, newest first
+    # combines new ticks and new routes, newest first
     @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
 
     @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
     @admin_facility_roles = FacilityRole.where(user_id: @user).where.not(name: 'climber').page(params[:page])
+
+
+    if (@ticks.ascent.count > 1) && (Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.previous(@ticks.ascent.grade_desc.first)).first)
+      # featured route take your hardest ascent and then takes the next grade down
+      @route = Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.previous(@ticks.ascent.grade_desc.first)).where.not(id: Tick.where(user_id: @user.id).pluck(:route_id)).first
+
+    elsif (@ticks.ascent.count > 0) && (Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.where(id: @ticks.ascent.grade_desc.first.grade_id).first).first)
+      # returns top rated route for the climber's gyms
+      @route = Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.where(id: @ticks.ascent.grade_desc.first.grade_id).first).where.not(id: Tick.where(user_id: @user.id).pluck(:route_id)).first
+
+    elsif Route.current.where(id: Route.top_ten(@userfacilities_check)).first
+      # returns top rated route for the climber's gyms
+      @route = Route.current.where(id: Route.top_ten(@userfacilities_check)).where.not(id: Tick.where(user_id: @user.id).pluck(:route_id)).first
+    end
+
   end
 
 

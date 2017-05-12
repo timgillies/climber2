@@ -13,12 +13,13 @@
                 <div class="col-xs-11 col-sm-11">
                   <div class="row">
                   <h3>
-                    <%= f.facility.name %>
+                    <strong><%= f.facility.name %></strong><%= f.facility.location if f.facility.location %>
                   </h3>
                   </div>
                   <div class="row">
                     <p><%= f.name.humanize if f.name %></p>
                   </div>
+
                 </div>
                 <% end %>
               <% else %>
@@ -27,7 +28,7 @@
               <div class="col-xs-11 col-sm-11">
                 <div class="row">
                 <h3>
-                  <%= f.facility.name %>
+                  <strong><%= f.facility.name %></strong><%= f.facility.location if f.facility.location %>
                 </h3>
                 </div>
                 <div class="row">
@@ -46,6 +47,7 @@
             <div class="row">
               <p><%= f.name.humanize if f.name %></p>
             </div>
+
           </div>
           <% end %>
 

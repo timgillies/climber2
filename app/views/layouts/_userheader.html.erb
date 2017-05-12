@@ -28,7 +28,11 @@
               <span class="icon-bar"></span>
             </button>
             <span class="hidden-md hidden-lg hidden-sm hidden-xl">
-              <span class="pull-right"><%= link_to "New Ascent", new_user_tick_path(current_user), class: "btn btn-md btn-purple" %> <%= link_to  "Ticks", user_ticks_path(current_user), class: "btn btn-md btn-purple" %></span>
+              <span class="pull-right">
+                <%= link_to "New Tick", new_user_tick_path(current_user), class: "btn btn-md btn-purple" %>
+                <%= link_to "Routes", user_routes_path(current_user), class: "btn btn-md btn-purple" %>
+                <%= link_to  "Ticks", user_ticks_path(current_user), class: "btn btn-md btn-purple" %>
+              </span>
             </span>
 
         </div>

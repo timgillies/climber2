@@ -35,7 +35,8 @@ class Tick < ActiveRecord::Base
     available_filters: [
       :search_query,
       :with_date_gte,
-      :with_date_lt
+      :with_date_lt,
+      :with_date_eq
     ]
     )
 
@@ -71,6 +72,10 @@ class Tick < ActiveRecord::Base
 
     scope :with_date_lt, lambda { |reference_time|
       where('ticks.date <= ?', reference_time)
+    }
+
+    scope :with_date_eq, lambda { |reference_time|
+      where('ticks.date = ?', reference_time)
     }
 
   def self.lead?
@@ -117,6 +122,10 @@ class Tick < ActiveRecord::Base
 
   def self.tick_feed(facility)
     self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility)
+  end
+
+  def self.no_route_tick_feed(facility)
+    self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).where(facility_id: facility).includes(:user, :grade, :facility)
   end
 
   def self.top_ten(facility)

@@ -14,22 +14,31 @@
   <ol class="routelist">
     <div class="date-list">
       <li>
-        <h3 style="color: #444;" class="tab"><%= Date.strptime(tick_date.to_s, '%Y-%m-%d').to_date.strftime('%A | %Y-%m-%d') %></h3>
+        <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
+          <h3 style="color: #444;" class="tab"><%= Date.strptime(tick_date.to_s, '%Y-%m-%d').to_date.strftime('%A | %Y-%m-%d') %></h3>
+        <% end %>
+        <p class="tab"><%= link_to "see all", "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}", class: "btn btn-expire" %></p>
         <br>
         <br>
         <div class="container-fluid">
           <div class="hidden-sm hidden-md hidden-lg">
+            <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
             <div class="circle-wrapper">
               <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_on(tick_date)) %></span></div>
             </div>
+            <% end %>
 
+            <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
             <div class="circle-wrapper">
               <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "attempt".pluralize(@ticks.total_on(tick_date)) %></span></div>
             </div>
+            <% end %>
 
+            <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
             <div class="circle-wrapper">
               <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
             </div>
+            <% end %>
             <br>
           </div>
           <div class='col-sm-6'>
@@ -99,38 +108,47 @@
 
                 </div>
               </div>
-
-              <div class="row">
-
-
-              </div>
             </div>
           </li>
 
+
+
           <% end %>
+
           </ol>
+
   <% end %>
 </div>
 <div class="col-sm-6">
   <div class="hidden-xs">
+    <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
     <div class="circle-wrapper">
       <div class="large-circle responsive"><%= @ticks.total_send_overall_count(@user, "project").total_on(tick_date) %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").total_on(tick_date)) %></span></div>
     </div>
+    <% end %>
 
+    <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
     <div class="circle-wrapper">
       <div class="large-circle responsive"><%= @ticks.total_on(tick_date) %><span class="text"><%= "attempt".pluralize(@ticks.total_on(tick_date)) %></span></div>
     </div>
+    <% end %>
 
+    <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
     <div class="circle-wrapper">
       <div class="large-circle responsive"><%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").total_on(tick_date).to_f)/(@ticks.total_on(tick_date).to_f)*100), precision: 0) %><span class="text"><%= "send rate" %></span></div>
     </div>
+    <% end %>
 
+    <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
     <div class="circle-wrapper">
       <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
     </div>
+    <% end %>
 </div>
 </div>
 </li>
+
+
 
 
 </ol>

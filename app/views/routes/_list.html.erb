@@ -57,7 +57,7 @@
               <% end %>
             </h3>
             <% end %>
-            <h2> <%= f.name %></h2>
+            <h2> <%= f.name %> <%= "#" + f.id.to_s %></h2>
 
             <span class="pull-right"><%= (image_tag f.facility.logo_image.url(:medium), class: "img-facility-logo-list") if f.facility.logo_image %></span>
           </div>

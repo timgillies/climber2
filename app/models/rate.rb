@@ -4,4 +4,12 @@ class Rate < ActiveRecord::Base
 
   #attr_accessible :rate, :dimension
 
+  def self.average_rating(object)
+    where(rateable_id: object).average(:stars)
+  end
+
+  def self.rating_count(object)
+    where(rateable_id: object).count(:stars)
+  end
+
 end

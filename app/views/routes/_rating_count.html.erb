@@ -1,0 +1,9 @@
+<div id="rating_count">
+  <div class="row">
+    <div class="col-sm-12 ratings">
+      <% if current_user %>
+        <%= (rating_for route, "total", disable_after_rate: false) %><%= Rate.average_rating(route).to_s + " / " + Rate.rating_count(route).to_s + " votes" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@
   <% if news_item.instance_of? Tick %>
 	<li class="feed-item" data-content="&#xf00c;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="green">
 		<section>
-      <%= link_to facility_route_path(news_item.route.facility_id, news_item.id) do %>
+      <%= link_to facility_route_path(news_item.route.facility_id, news_item.route_id) do %>
 			<div for="expand_tick_<%= news_item.id %>">
         <span>
           <% if news_item.user %>

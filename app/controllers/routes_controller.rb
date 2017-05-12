@@ -92,7 +92,6 @@ end
 
     @userfacilities_check = current_user.facility_relationships.all
     @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date)
-
   end
 
   def create
