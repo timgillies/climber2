@@ -129,6 +129,7 @@ Rails.application.routes.draw do
     resources :walls, only: [:index, :show]
     resources :setters, only: [:index, :show]
     resources :ticks
+    resources :facility_roles
 
     member do
       get :leaderboard

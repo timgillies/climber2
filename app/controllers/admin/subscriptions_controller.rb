@@ -1,6 +1,6 @@
 class Admin::SubscriptionsController < ApplicationController
   before_action :authenticate_user!,        except: [:webhook], :unless => :facility_is_demo
-  before_action :facility_admin,            except: [:webhook], :unless => :facility_is_demo
+  before_action :facility_admin,            except: [:webhook, :new, :create], :unless => :facility_is_demo
   before_action :setter_role,              except: [:new, :create, :webhook], :unless => :facility_is_demo
   before_action :guest_role,                except: [:webhook], :unless => :facility_is_demo
   before_action :marketing_role,            except: [:new, :create, :webhook], :unless => :facility_is_demo
@@ -102,7 +102,19 @@ class Admin::SubscriptionsController < ApplicationController
     # @subscription.update_attribute(:current_period_end, subscription['data'].current_period_end)
     # @subscription.update_attribute(:ended_at, subscription['data'].ended_at)
 
-    redirect_to admin_facility_subscription_path(@facility, @subscription), notice: 'Thank you for subscribing!'
+    redirect_to new_facility_facility_role_path(@facility), notice: 'Thank you for subscribing!'
+
+    @facility_role = FacilityRole.where(facility_id: @facility, user_id: current_user).first
+    if @facility_role
+      @facility_role.update_attributes(name: 'facility_management')
+    else
+      @facility_role = FacilityRole.new(user_id: current_user.id, facility_id: @facility.id, confirmed: true, email: current_user.email, name: 'facility_management')
+      @facility_role.save
+    end
+
+    unless current_user.role == "site_admin"
+      current_user.update_attribute(:role, 'facility_admin')
+    end
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

@@ -66,6 +66,18 @@ class FacilitiesController < ApplicationController
     end
   end
 
+  def management
+    @facility = Facility.find(params[:facility_id])
+    @facility_role = FacilityRole.new(user_id: current_user.id, name: 'facility_management',  confirmed: true, email: current_user.email, facility_id: @facility.id)
+    if @facility_role.save
+      flash[:success] = "You are now following #{ @facility.name }"
+      redirect_to (facility_path(@facility))
+    else
+      flash[:error] = "That did not work"
+      redirect_to (facility_path(@facility))
+    end
+  end
+
   private
 
     def facility_params

@@ -36,12 +36,14 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-left">
-              <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "HOME", facility_path(@facility) %></li>
+              <li class="<%= 'active' if current_page?(admin_facility_path(@facility)) %>"><%= link_to "facility HOME", facility_path(@facility) %></li>
               <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "ROUTES", user_facility_routes_path(current_user, @facility) %></li>
               <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "Analytics", analytics_facility_path(@facility) %></li>
               <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "ZONES", facility_zones_path(@facility) %></li>
               <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "GRADING", facility_grades_path(@facility) %></li>
-
+              <% unless FacilityRole.where(facility_id: @facility.id, name: 'facility_management').count > 0 %>
+                <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "Manage", new_admin_facility_subscription_path(@facility) %></li>
+              <% end %>
             </ul>
           </div><!-- /.navbar-collapse -->
         </nav>

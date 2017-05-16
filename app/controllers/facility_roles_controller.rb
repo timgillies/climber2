@@ -2,7 +2,16 @@ class FacilityRolesController < ApplicationController
   before_action :authenticate_user!
 
 
-  layout 'user'
+  layout :check_layout
+
+  def check_layout
+    if params[:facility_id].present?
+      'admin'
+    else
+      'user'
+    end
+  end
+
 
   include FacilitiesHelper
 
@@ -90,6 +99,14 @@ class FacilityRolesController < ApplicationController
     end
     redirect_to(inbox_user_path(current_user))
   end
+
+  def new
+    @user = current_user
+    @facility = Facility.find(params[:facility_id])
+    @facility_role = FacilityRole.new
+
+  end
+
 
 
 

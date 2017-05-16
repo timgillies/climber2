@@ -27,16 +27,12 @@ class Admin::FacilitiesController < ApplicationController
   end
 
   def new
-
+    # instance variable is set in the before actions, via the facilities_check method
   end
 
   def create
     if @facility.save
-      @facility.update_plan_choice("1")
-      unless current_user.role == "site_admin"
-        current_user.update_attribute(:role, 'facility_admin')
-      end
-      redirect_to admin_facility_path(@facility)
+      redirect_to facility_path(@facility)
     else
       render 'new'
     end

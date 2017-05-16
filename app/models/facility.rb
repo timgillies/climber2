@@ -32,6 +32,7 @@ class Facility < ActiveRecord::Base
   validates :state, presence: true
   validates :zipcode, presence: true
 
+  # creates a facility role as climber when the facility is created
   after_create :create_facility_role
 
   has_attached_file :logo_image, styles: { large: "600", medium: "300", thumb: "100x100#" }, default_url: "default-avatar.png"
@@ -89,9 +90,8 @@ class Facility < ActiveRecord::Base
 
     # replace "*" with "%" for wildcard searches,
     # append '%', remove duplicate '%'s
-    terms = terms.map { |e|
-      (e.gsub('*', '%') + '%').gsub(/%+/, '%')
-    }
+
+    terms = terms.map { |e| ('%'+e.gsub('*','%')+'%').gsub(/%+/, '%') }
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
@@ -118,7 +118,7 @@ class Facility < ActiveRecord::Base
 
   # (after_create) - Creates relationship in FacilityRole table between facility_owner and facility
   def create_facility_role
-    self.facility_roles.create!(user_id: user.id, name: 'facility_management', email: user.email, confirmed: true )
+    self.facility_roles.create!(user_id: user.id, name: 'climber', email: user.email, confirmed: true )
   end
 
 end
