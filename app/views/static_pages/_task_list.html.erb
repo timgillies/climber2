@@ -99,15 +99,7 @@
                   <span class="badge badge-today">due today</span>
 
 
-              <% if f.assignee %>
-                <% if f.assignee.image? %>
-                  <%= image_tag f.assignee.image ,:class=> "img-setter-icon" %>
-                <% elsif f.assignee.avatar_file_name? %>
-                  <%= image_tag f.assignee.avatar.url(:thumb), class: "img-setter-icon" %>
-                <% else %>
-                  <span class="img-setter-icon hidden-xs"><%= f.assignee.name %><span>
-                <% end %>
-              <% end %>
+
 
 
 

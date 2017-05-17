@@ -8,7 +8,7 @@
             <div class="row">
               <br/>
               <%= link_to facility_path(f) do %>
-              <div class="col-xs-9">
+              <div class="col-xs-9 col-sm-6">
                 <div class="row">
                 <h3>
                   <% if FacilityRole.where("facility_id = ? and user_id = ?", f.id, @user.id).count > 0 %>
@@ -21,13 +21,8 @@
                 <div class="row">
                   <p><%= f.addressline1 + " " + f.city + ", " + f.state %></p>
                 </div>
-
-                <% unless FacilityRole.where(facility_id: f.id, name: 'facility_management').count > 0 %>
-                <div class="row">
-                  <p><%= link_to "manage", new_admin_facility_subscription_path(f) %></p>
-                </div>
-                <% end %>
               </div>
+
 
                 <div id="use_system_form">
 
@@ -36,6 +31,15 @@
                     <% else %>
                     <%= render 'join_facility', :f => f %>
                     <% end %>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3 no-print">
+                  <div class="row pull-right">
+                    <% unless FacilityRole.where(facility_id: f.id, name: 'facility_management').count > 0 %>
+
+                      <%= link_to "manage", new_admin_facility_subscription_path(f), class: "btn btn-expire btn-md" %>
+
+                    <% end %>
+                  </div>
                 </div>
 
 

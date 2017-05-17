@@ -3,21 +3,26 @@
     <h1>facility Stats</h1>
   </div>
 
-
-  <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.size %><span class="text"><%= "total" %></span></div>
-  </div>
+  <%= link_to admin_facility_routes_path(@facility) do %>
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><%= @facility.routes.current.size %><span class="text"><%= "total" %></span></div>
+    </div>
+  <% end %>
 
   <% unless (@facility.routes.current.climb_type("boulder").size == 0) && (@facility.routes.current.climb_type("sport").size) > 0 %>
-  <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").size %><span class="text"><%= "boulder".pluralize(@facility.routes.current.size) %></span></div>
-  </div>
+    <%= link_to admin_facility_routes_path(@facility) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").size %><span class="text"><%= "boulder".pluralize(@facility.routes.current.size) %></span></div>
+      </div>
+    <% end %>
   <% end %>
 
   <% unless (@facility.routes.current.climb_type("sport").size == 0) && (@facility.routes.current.climb_type("boulder").size) > 0 %>
-  <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").size %><span class="text"><%= "route".pluralize(@facility.routes.current.size) %></span></div>
-  </div>
+    <%= link_to admin_facility_routes_path(@facility) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").size %><span class="text"><%= "route".pluralize(@facility.routes.current.size) %></span></div>
+      </div>
+    <% end %>
   <% end %>
   <div class="circle-wrapper">
     <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.size) if @facility.routes.current.size > 0  %><span class="text"><%= "avg. age" %></span></div>
@@ -44,7 +49,9 @@
       <% end %>
     </ul>
 
+ <% unless @facility.demo? %>
     <%= render 'facilities/follow_button' %>
+  <% end %>
 
 </div>
 

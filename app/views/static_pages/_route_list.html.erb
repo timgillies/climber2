@@ -72,10 +72,10 @@
 
 
               <% if f.user %>
-                <% if f.user.image? %>
-                  <%= image_tag f.user.image ,:class=> "img-setter-icon" %>
-                <% elsif f.user.avatar_file_name? %>
-                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon" %>
+                <% if f.user.avatar? %>
+                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon-list" %>
+                <% elsif f.user.image? %>
+                  <%= image_tag f.user.image ,:class=> "img-setter-icon-list" %>
                 <% end %>
               <% end %>
 

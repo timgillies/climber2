@@ -102,7 +102,7 @@ class Admin::SubscriptionsController < ApplicationController
     # @subscription.update_attribute(:current_period_end, subscription['data'].current_period_end)
     # @subscription.update_attribute(:ended_at, subscription['data'].ended_at)
 
-    redirect_to new_facility_facility_role_path(@facility), notice: 'Thank you for subscribing!'
+    redirect_to admin_facility_path(@facility), notice: 'Thank you for subscribing!'
 
     @facility_role = FacilityRole.where(facility_id: @facility, user_id: current_user).first
     if @facility_role
@@ -206,7 +206,8 @@ private
     'BETA6' => 1.00,
     'PARTNER' => 1.00,
     'PARTNER100' => 1.00,
-    'DEMO'    => 1.00
+    'DEMO'    => 1.00,
+    'CWASUMMIT' => 1.00
   }
 
   def get_discount(code)

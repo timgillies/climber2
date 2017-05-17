@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="headliner">
-      <h1><strong>CLIMB | CONNECT</strong> Pro</h1>
+      <%= image_tag 'https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/CC-horizontal-gray.svg', class: "logo" %>
     </div>
   </div>
 </div>
@@ -11,7 +11,7 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <strong>Description: </strong>CLIMB |  CONNECT <%= @facility.plan.name.humanize %>
+    <strong>Description: </strong>Gym Management PRO
   </div>
 </div>
 <div class="row">
@@ -43,14 +43,14 @@
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="pk_live_NRDt9JVFEmJEH26Ts4X0FFfC"
-          data-name="CLIMB | CONNECT"
+          data-name="CLIMB CONNECT"
           data-description="<%= @facility.plan.description %>"
           data-amount="<%= @final_amount.to_i %>"
           data-panel-label="Subscribe"
           data-label="Add Payment Method"
           data-email="<%= current_user.email %>"
           data-allow-remember-me="false"
-          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-image="https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/CC-figure8.svg"
           data-locale="auto">
         </script>
       </div>

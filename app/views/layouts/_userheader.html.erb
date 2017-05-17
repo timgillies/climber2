@@ -5,11 +5,19 @@
 
       <div class="col-sm-12">
         <%= link_to home_user_path(current_user) do %>
-        <h1><% if @user.image? %><%= image_tag @user.image ,:class=> "img-profile-medium" %>
-        <% else %>
-        <%= image_tag @user.avatar.url(:thumb), class: "img-profile-medium" %>
-        <% end %>
-        <%= @user.name if @user.name %></h1>
+        <h1>
+
+          <% if @user.avatar? %>
+            <%= image_tag @user.avatar.url(:thumb), class: "img-profile-medium" %>
+          <% elsif @user.image? %>
+            <%= image_tag @user.image ,:class=> "img-profile-medium" %>
+          <% else %>
+            <%= image_tag @user.avatar.url(:thumb), class: "img-profile-medium" %>
+          <% end %>
+          
+          <%= @user.name if @user.name %>
+
+        </h1>
         <% end %>
       </div>
     </div>

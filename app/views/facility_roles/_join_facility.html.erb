@@ -1,4 +1,5 @@
-<div class="col-xs-12 col-sm-6 col-md-3 no-print">
+<div class="col-xs-6 col-sm-3 col-md-3 no-print">
+  <div class="row">
 
 <%= form_for [@user, @facility_role], remote: false do |fg| %>
     <div><%= hidden_field_tag :name, 'climber' %></div>
@@ -7,5 +8,6 @@
     <div><%= hidden_field_tag :email, @user.email %></div>
     <%= fg.submit "follow", class: "btn btn-add btn-md" %>
 <% end %>
+  </div>
 
 </div>

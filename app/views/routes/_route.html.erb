@@ -20,11 +20,15 @@
           <h2 class="tab"> <%= route.name if route.name %></h2></span>
           <span class="pull-right hidden-xs">
             <% if route.user %>
-              <% if route.user.image? %>
-                <%= image_tag route.user.image ,:class=> "img-setter-icon" %>
-              <% elsif route.user.avatar_file_name? %>
+
+              <% if route.user.avatar? %>
                 <%= image_tag route.user.avatar.url(:thumb), class: "img-setter-icon" %>
+              <% elsif route.user.image? %>
+                <%= image_tag route.user.image ,:class=> "img-setter-icon" %>
+                <% else %>
+              <%= image_tag route.user.avatar.url(:thumb), class: "img-setter-icon" %>
               <% end %>
+
             <% end %>
           </span>
 

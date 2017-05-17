@@ -7,11 +7,15 @@
 			<%= link_to facility_route_path(news_item.route.facility_id, news_item.route_id) do %>
 			<div for="expand_tick_<%= news_item.id %>">
         <% if news_item.user %>
-          <% if news_item.user.image? %>
-            <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
-          <% elsif news_item.user.avatar_file_name? %>
-            <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+
+          <% if news_item.user.avatar? %>
+          <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+          <% elsif news_item.user.image? %>
+          <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
+          <% else %>
+          <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
           <% end %>
+
         <% end %>
 				<strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.route.facility.name %></strong>
 			</div>
@@ -45,11 +49,15 @@
       <%= link_to facility_path(news_item.facility_id) do %>
       <div for="expand_tick_<%= news_item.id %>">
         <% if news_item.user %>
-          <% if news_item.user.image? %>
-            <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
-          <% elsif news_item.user.avatar_file_name? %>
-            <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+
+          <% if news_item.user.avatar? %>
+          <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+          <% elsif news_item.user.image? %>
+          <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
+          <% else %>
+          <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
           <% end %>
+
         <% end %>
         <strong><%= news_item.user.name if news_item.user %></strong> sent a <strong><%= news_item.grade.grade if news_item.grade %></strong> at <strong><%= news_item.facility.name %></strong>
       </div>
@@ -83,11 +91,15 @@
       <%= link_to facility_route_path(news_item.facility_id, news_item.id) do %>
       <div for="expand_route_<%= news_item.id %>">
         <% if news_item.user %>
-          <% if news_item.user.image? %>
-            <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
-          <% elsif news_item.user.avatar_file_name? %>
-            <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+
+          <% if news_item.user.avatar? %>
+          <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+          <% elsif news_item.user.image? %>
+          <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
+          <% else %>
+          <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
           <% end %>
+          
         <% end %>
         <strong><%= news_item.user.name if news_item.user %></strong> added a new <strong> <%= news_item.grade.grade if news_item.grade %></strong> in the <%= news_item.zone.name if news_item.zone %> zone at <strong><%= (news_item.facility.name) if news_item.facility %></strong>
       </div>

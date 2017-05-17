@@ -49,7 +49,7 @@
             <% unless @subscription.trial_start.nil? %>
               <div class="row">
                 <div class="col-sm-12">
-                    <strong>Trial Period: </strong><%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") if @subscription.trial_start %>
+                    <strong>Trial Period: </strong><%= Time.at(@subscription.trial_start).strftime("%b %d, %Y") %> to <%= Time.at(@subscription.trial_end).strftime("%b %d, %Y") if @subscription.trial_end %>
                 </div>
               </div>
             <% end %>

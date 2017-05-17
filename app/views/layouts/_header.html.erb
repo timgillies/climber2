@@ -60,7 +60,7 @@
         <% unless Route.where(user_id: current_user.id).count > 0 %>
 
           <li>
-            <%= link_to "See Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
+            <%= link_to "Management Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
           </li>
 
         <% end %>
@@ -72,7 +72,7 @@
         <li><%= link_to "Features & Details", root_url + "#features" %></li>
 
         <li>
-          <%= link_to "Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
+          <%= link_to "Management Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
         </li>
 
         <% end %>

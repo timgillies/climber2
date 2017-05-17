@@ -7,10 +7,12 @@
 			<div for="expand_tick_<%= news_item.id %>">
         <span>
           <% if news_item.user %>
-            <% if news_item.user.image? %>
-              <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
-            <% elsif news_item.user.avatar_file_name? %>
-              <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+            <% if news_item.user.avatar? %>
+            <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
+            <% elsif news_item.user.image? %>
+            <%= image_tag news_item.user.image ,:class=> "img-ticklist-icon" %>
+            <% else %>
+            <%= image_tag news_item.user.avatar.url(:thumb), class: "img-ticklist-icon" %>
             <% end %>
           <% end %>
         </span>
