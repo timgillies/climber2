@@ -42,6 +42,11 @@
             <%= f.select(:country, options_for_select(country_list, selected: f.object.country ), { include_blank: 'Select country' }, { class: 'form-control' }) %>
           </div>
 
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <%= f.label :public, "Privacy" %>
+            <%= f.select(:public, options_for_select(true_false, selected: f.object.public ), { include_blank: false }, { class: 'form-control' }) %>
+          </div>
+
 
           <div class="col-sm-12">
             <%= image_tag @facility.logo_image.url(:thumb) if @facility.logo_image.exists? %>
@@ -55,7 +60,7 @@
 
             <br>
             <br>
-            
+
           <div class="col-sm-12 col-md-12 col-lg-12">
             <%= f.submit "Save", class: "btn btn-save btn-lg" %>
           </div>

@@ -301,6 +301,13 @@ def country_list
   ]
 end
 
+def true_false
+  [
+    ['Public', true],
+    ['Private', false]
+  ]
+end
+
 def facility_systems
   GradeSystem.joins(:facilities).where(:facilities => {:id => @facility.id} )
 end
