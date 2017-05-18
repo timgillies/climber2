@@ -1,5 +1,5 @@
 
-<%= form_for [current_user, @tick], :html => {:class => "form-label", id: 'tickForm', :multipart => true }, remote: true do |f| %>
+<%= form_for [current_user, @tick], :html => {:class => "form-label", id: 'tickForm', :multipart => true }, remote: true, authenticity_token: true do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
 <div id="successMessage" style="display: none">

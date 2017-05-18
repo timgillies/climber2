@@ -50,7 +50,7 @@
         <% @userfacilities_check.each do |facility| %>
           <%= link_to facility_path(facility) do %>
             <li>
-              <%= facility.name %><%= (" " + facility.location) if facility.location %>
+              <p><%= facility.name %><%= (" " + facility.location) if facility.location %></p>
             </li>
           <% end %>
         <% end %>

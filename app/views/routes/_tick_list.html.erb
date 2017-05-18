@@ -26,8 +26,8 @@
             <%= news_item.description %>
             <% end %>
 
-            <% if news_item.image_file_name %>
-            <%= image_tag(news_item.image.url(:medium)) %>
+            <% if news_item.image.present? %>
+            <%= image_tag(news_item.image.url(:medium), class: "img-route-show") %>
             <% end %>
 
           </div>
