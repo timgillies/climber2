@@ -19,14 +19,12 @@
             </h1>
           <h2 class="tab"> <%= route.name if route.name %></h2></span>
           <span class="pull-right">
-            <% if route.user %>
+            <% if route.facility %>
 
-              <% if route.user.avatar? %>
-                <%= image_tag route.user.avatar.url(:thumb), class: "img-setter-icon" %>
-              <% elsif route.user.image? %>
-                <%= image_tag route.user.image ,:class=> "img-setter-icon" %>
-                <% else %>
-              <%= image_tag route.user.avatar.url(:thumb), class: "img-setter-icon" %>
+              <% if route.facility.logo_image? %>
+                <%= link_to facility_path(route.facility) do %>
+                  <%= image_tag route.facility.logo_image.url(:medium), class: "img-setter-icon" %>
+                <% end %>
               <% end %>
 
             <% end %>
