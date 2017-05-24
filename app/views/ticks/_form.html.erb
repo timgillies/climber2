@@ -1,5 +1,8 @@
 
-<%= form_for [current_user, @tick], :html => {:class => "form-label", id: 'tickForm', :multipart => true }, remote: true, authenticity_token: true do |f| %>
+
+<%= form_for [current_user, @tick], :html => {:class => "form-label", id: 'tickForm', :multipart => true }, :remote => controller_check?("new"), authenticity_token: true do |f| %>
+
+
 <%= render 'shared/error_messages', object: f.object %>
 
 <div id="successMessage" style="display: none">
@@ -39,7 +42,7 @@
           <div id="donate">
             <% @userfacilities_check.each do |fs| %>
               <label class="gray"><%= f.radio_button :facility_id, fs.id, params[:facility_id] == fs.id ? { checked: true } : {checked: f.object.facility_id.eql?(fs.id) } %>
-                <span><%= fs.name %></span>
+                <span><%= fs.name %> <%= (fs.location) if fs.location %></span>
               </label>
             <% end %>
           </div>

@@ -1,9 +1,11 @@
 <ol class="activity-feed">
   <% Tick.includes(:route, :user, :grade ).ascent.where(route_id: @route.id).order(date: :desc).each do |news_item| %>
     <% if news_item.instance_of? Tick %>
+    <%= link_to home_user_path(news_item.user_id) do %>
   	<li class="feed-item" data-content="&#xf00c;" data-time="<%= time_ago_in_words(news_item.created_at) %> ago" data-color="green">
   		<section>
-  			<%= link_to home_user_path(news_item.user_id) do %>
+
+
   			<div for="expand_tick_<%= news_item.id %>">
           <span>
             <% if news_item.user %>
@@ -17,8 +19,12 @@
             <% end %>
           </span>
   				<strong><%= news_item.user.name if news_item.user %></strong> logged a <strong><%= news_item.tick_type %></strong> for this route.
-  			</div>
+          <% if current_user == news_item.user %>
+            <span class="pull-right"><%= link_to "edit", edit_user_tick_path(current_user, news_item), class: "pull-right" %></span>
+          <% end %>
+        </div>
   			<% end %>
+
 
   			<main class="content">
           <div>

@@ -37,4 +37,9 @@ module TicksHelper
 
   end
 
+# returns boolean 
+  def controller_check?(action)
+    params[:action] == action
+  end
+
 end

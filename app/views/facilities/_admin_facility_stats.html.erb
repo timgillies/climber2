@@ -2,14 +2,14 @@
   <div class="header bg-top-10">
     <h1>facility Stats</h1>
   </div>
-  <%= link_to user_facility_routes_path(current_user, @facility) do %>
+  <%= link_to admin_facility_routes_path(@facility) do %>
     <div class="circle-wrapper">
       <div class="large-circle responsive"><%= @facility.routes.current.size %><span class="text"><%= "total" %></span></div>
     </div>
   <% end %>
 
   <% unless (@facility.routes.current.climb_type("boulder").size == 0) && (@facility.routes.current.climb_type("sport").size) > 0 %>
-    <%= link_to user_facility_routes_path(current_user, @facility) do %>
+    <%= link_to admin_facility_routes_path(@facility) do %>
       <div class="circle-wrapper">
         <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").size %><span class="text"><%= "boulder".pluralize(@facility.routes.current.size) %></span></div>
       </div>
@@ -17,7 +17,7 @@
   <% end %>
 
   <% unless (@facility.routes.current.climb_type("sport").size == 0) && (@facility.routes.current.climb_type("boulder").size) > 0 %>
-    <%= link_to user_facility_routes_path(current_user, @facility) do %>
+    <%= link_to admin_facility_routes_path(@facility) do %>
       <div class="circle-wrapper">
         <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").size %><span class="text"><%= "route".pluralize(@facility.routes.current.size) %></span></div>
       </div>
@@ -32,12 +32,19 @@
   </div>
     <ul>
       <% @facility.zones.each do |zone| %>
-
+      <% if params[:controller][0..4] == 'admin' %>
+        <%= link_to admin_facility_zone_path(zone.facility_id, zone) do %>
+          <li>
+            <%= zone.name %>
+          </li>
+        <% end %>
+      <% else %>
         <%= link_to facility_zone_path(zone.facility_id, zone) do %>
           <li>
             <%= zone.name %>
           </li>
         <% end %>
+      <% end %>
       <% end %>
     </ul>
 

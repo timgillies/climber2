@@ -1,0 +1,111 @@
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_for [current_user, @route.facility , @route, @tick], :html => {:class => "form-label", :multipart => true } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+
+
+
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+    <div class="gray-labels">
+      <div>
+        <div class="container-fluid">
+        <h2> LOG ASCENT </h2>
+        <div class="divider-line"></div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <p><%= f.label :tick_type, "Ascent Detail", class: "sr-only" %></p>
+          <div class="route-form">
+            <div id="donate">
+              <% tick_types.each do |fs| %>
+                <label class="gray"><%= f.radio_button :tick_type, fs[1], params[:tick_type] == fs[1] ? { checked: true } : {checked: f.object.tick_type.eql?(fs[1]) } %>
+                  <span><%= fs[0] %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <p><%= f.label :lead, "Climb Type", class: "sr-only" %></p>
+          <div class="route-form">
+            <div id="donate">
+              <% rope_tick_types.each do |fs| %>
+                <label class="gray"><%= f.radio_button :lead, fs[1], params[:lead] == fs[1] ? { checked: true } : {checked: f.object.lead.eql?(fs[1]) } %>
+                  <span><%= fs[0] %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <br>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.label :description, "Description", class:"sr-only" %>
+          <%= f.text_area :description, class: 'form-control', placeholder: "Comments", rows: "2" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <%= f.label :date, "Date*" %>
+          <% if params[:action] == "edit" %>
+            <%= f.date_field :date, class: 'form-control' %>
+          <% else %>
+            <%= f.date_field :date, :value => Date.current , class: 'form-control' %>
+          <% end %>
+
+        </div>
+      </div>
+      <br>
+
+      <h2> How was the ROUTE? </h2>
+      <div class="divider-line"></div>
+
+      <div class="row">
+        <div class="col-sm-12 ratings">
+
+          <% if current_user %>
+            <%= (rating_for @route, "total", disable_after_rate: false, cancel: false) %>
+          <% end %>
+
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="route-form">
+            <div id="donate">
+              <% previous_next(@route).each do |fs| %>
+                <label class="gray"><%= f.radio_button :grade_vote_id, fs[1], params[:grade_vote_id] == fs[1] ? { checked: true } : {checked: f.object.grade_vote_id.eql?(fs[1]) } %>
+                  <span><%= fs[0] %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.submit "Save", class: "btn btn-save btn-lg" %>
+    </div>
+  </div>
+  <% end %>
+
+  </div>
+</div>

@@ -36,7 +36,7 @@
 
             <%= link_to "/users/#{@user.id}/ticks/tick_list?utf8=%E2%9C%93&filterrific%5Bwith_date_eq%5D=#{tick_date}" do %>
             <div class="circle-wrapper">
-              <div class="large-circle responsive"><%= @ticks.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
+              <div class="large-circle responsive"><%= @ticks.ascent.where(date: tick_date).grade_desc.first.grade.grade %><span class="text">hardest</span></div>
             </div>
             <% end %>
             <br>
@@ -62,7 +62,15 @@
                         <%= link_to f.route.grade.grade , facility_route_path(f.route.facility_id, f.route_id) if f.route.grade %>
 
                     </h3>
-                    <h2> <%= f.route.zone.name if f.route.zone %></h2>
+                    <h2>
+
+                      <% if f.route.zone.name == 'Climber Generated' %>
+                        <%= f.route.facility.name if f.route %>
+                      <% else %>
+                        <%= f.route.zone.name if f.route.zone %>
+                      <% end %>
+
+                    </h2>
                     <span class="pull-right">
                       <% if f.grade_id? %>
                       <h2>
