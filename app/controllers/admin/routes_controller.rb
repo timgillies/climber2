@@ -4,7 +4,7 @@ class Admin::RoutesController < ApplicationController
   before_action :setter_role,               only: [:destroy], :unless => :facility_is_demo
   before_action :guest_role,                only: [:destroy], :unless => :facility_is_demo
   before_action :marketing_role,            except: [:index, :show], :unless => :facility_is_demo
-  # before_action :paid_subscriber,           only: [:new, :create], :unless => :facility_is_demo
+  before_action :paid_subscriber,           only: [:new, :create], :unless => :facility_is_demo
   before_action :route_owner,               only: [:edit, :update], :unless => :facility_is_demo
   before_action :demo_facility,             except: [:index, :show, :new]
 
