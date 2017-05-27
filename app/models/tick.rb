@@ -14,7 +14,6 @@ class Tick < ActiveRecord::Base
 
   validates_presence_of :date
   validates_presence_of :grade
-  validates_presence_of :facility
   validates_presence_of :tick_type
 
   scope :grade_desc, -> { joins(:grade).order('grades.rank desc') }
