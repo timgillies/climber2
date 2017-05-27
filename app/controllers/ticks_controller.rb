@@ -129,8 +129,8 @@ class TicksController < ApplicationController
     @tick = Tick.find(params[:id])
     @route = Route.find(params[:route_id])
     @user = User.find(params[:user_id])
-    @userfacilities_check = current_user.facility_relationships.all
-    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
   end
 
   def edit
