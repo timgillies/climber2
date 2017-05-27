@@ -45,6 +45,7 @@ gem 'jquery-minicolors-rails'
 gem "parsley-rails"
 gem "font-awesome-rails"
 gem "toastr-rails"
+gem 'delayed_job_active_record'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
