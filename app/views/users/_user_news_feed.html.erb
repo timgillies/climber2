@@ -31,10 +31,6 @@
           <%= news_item.description %>
           <% end %>
 
-          <% if news_item.image.present? %>
-          <%= link_to image_tag(news_item.image.url(:medium), class: "img-route-show") , facility_route_path(news_item.route.facility_id, news_item.route_id) %>
-          <% end %>
-
         </div>
 			</main>
 		</section>
@@ -69,10 +65,6 @@
         <div>
           <% if news_item.description %>
           <%= news_item.description %>
-          <% end %>
-
-          <% if news_item.image.present? %>
-          <%= link_to image_tag(news_item.image.url(:medium), class: "img-route-show") , facility_route_path(news_item.facility_id, news_item) %>
           <% end %>
 
         </div>

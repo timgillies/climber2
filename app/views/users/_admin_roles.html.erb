@@ -9,11 +9,11 @@
           <% if f.confirmed? %>
             <% if f.name == 'climber' %>
                 <%= link_to facility_path(f.facility_id) do %>
-
+                <%= (image_tag(f.facility.logo_image.url(:medium), class: "img-facility-logo-list")) if f.facility.logo_image%>
                 <div class="col-xs-11 col-sm-11">
                   <div class="row">
                   <h3>
-                    <%= f.facility.name %><small><%= f.facility.location if f.facility.location %></small>
+                    <%= image_tag(f.facility.logo_image.url(:medium), class: "img-facility-logo-list") %> <%= f.facility.name %><small><%= f.facility.location if f.facility.location %></small>
                   </h3>
                   </div>
                   <div class="row">
@@ -23,7 +23,7 @@
                 <% end %>
               <% else %>
               <%= link_to admin_facility_path(f.facility_id) do %>
-
+              <%= (image_tag(f.facility.logo_image.url(:medium), class: "img-facility-logo-list")) if f.facility.logo_image%>
               <div class="col-xs-11 col-sm-11">
                 <div class="row">
                 <h3>
