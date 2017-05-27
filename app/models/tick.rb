@@ -12,7 +12,10 @@ class Tick < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "600", thumb: "100x100#" }, default_url: "default-avatar.png"
   validates_attachment_content_type :image, :content_type => ['image/jpg', 'image/png', 'image/gif', 'image/jpeg']
 
-
+  validates_presence_of :date
+  validates_presence_of :grade
+  validates_presence_of :facility
+  validates_presence_of :tick_type
 
   scope :grade_desc, -> { joins(:grade).order('grades.rank desc') }
 
