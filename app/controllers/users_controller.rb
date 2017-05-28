@@ -82,7 +82,7 @@ class UsersController < ApplicationController
     @userfacilities_check = @user.facility_relationships.all
 
     # refactored tick_feed and new_route_feed into respective models
-    @news_feed = Tick.tick_feed(@userfacilities_check) + Route.new_route_feed(@userfacilities_check) + Tick.no_route_tick_feed(@userfacilities_check)
+    @news_feed = Tick.tick_feed(@userfacilities_check) + Route.new_route_feed(@userfacilities_check)
 
     # combines new ticks and new routes, newest first
     @news_feed.sort! { |a, b| b.created_at <=> a.created_at }

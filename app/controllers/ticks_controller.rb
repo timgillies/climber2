@@ -101,7 +101,7 @@ class TicksController < ApplicationController
         @zone = Zone.where(facility_id: @tick.facility_id, name: "Climber Generated").first
       end
 
-      @route = Route.new(facility_id: @tick.facility_id, zone_id: @zone.id, setdate: @tick.date, grade_id: @tick.grade_id, color_hex: @tick.color_hex, user_id: current_user.id, image: @tick.image)
+      @route = Route.new(facility_id: @tick.facility_id, zone_id: @zone.id, setdate: @tick.date, grade_id: @tick.grade_id, color_hex: @tick.color_hex, user_id: current_user.id, image: @tick.image, name: @tick.name)
       @route.save
       @tick.update_attributes(route_id: @route.id)
     end
@@ -165,7 +165,7 @@ class TicksController < ApplicationController
   private
 
     def tick_params
-      params.require(:tick).permit(:route_id, :facility_id, :user_id, :tick_type, :description, :date, :lead, :grade_id, :grade_vote_id, :color_hex, :image)
+      params.require(:tick).permit(:route_id, :facility_id, :user_id, :tick_type, :description, :name, :date, :lead, :grade_id, :grade_vote_id, :color_hex, :image)
     end
 
 
