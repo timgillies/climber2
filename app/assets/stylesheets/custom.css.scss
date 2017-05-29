@@ -1825,7 +1825,7 @@ select {
     text-align: center;
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
-    background-color: #666;
+    background-color: #888;
     color: white;
     margin: 20px;
 
@@ -1845,10 +1845,10 @@ select {
     text-align: center;
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
-    background-color: #666;
+    background-color: #888;
     color: white;
     margin: 20px;
-    box-shadow: 0 0 3px 2px #47cf73;
+    box-shadow: 0 0 2px 4px #47cf73;
     .text {
       font-size: 8px;
       margin-top: -4px !important;
