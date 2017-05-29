@@ -109,7 +109,7 @@ class UsersController < ApplicationController
 
   def manage_users
     @user = current_user
-    @users = User.all
+    @users = User.order(id: :desc).all
   end
 
 
