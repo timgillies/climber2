@@ -57,7 +57,7 @@
               <% end %>
             </h3>
             <% end %>
-            <h2> <%= f.name %> <%= "#" + f.id.to_s %></h2>
+
 
             <span class="pull-right"><%= (image_tag f.facility.logo_image.url(:medium), class: "img-facility-logo-list") if f.facility.logo_image %></span>
           </div>
@@ -65,19 +65,32 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-              <div class="mobile-tab"><strong><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></strong></div>
+            <h2> <%= f.name %> <%= "#" + f.id.to_s %></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 ratings">
+            <% if current_user %>
+              <%= (rating_for f, "total", disable_after_rate: false) %><%= Rate.average_rating(f).to_s + " / " + Rate.rating_count(f).to_s + " votes" %>
+            <% end %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12">
+              <div class="mobile-tab"><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
           </div>
 
           <div class="col-sm-12">
-              <div class="mobile-tab"><strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></strong></div>
+              <div class="mobile-tab"><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="mobile-tab"><strong><%= f.user.name if f.user %></strong></div>
+            <div class="mobile-tab"><%= f.user.name if f.user %></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="mobile-tab text-right">
 
-              <strong>
+
                 <% unless params[:controller] == 'admin/tasks' %>
                   <% if (days_ago(f) == "today") %>
                     <span>set <%= days_ago(f) %></span>
@@ -89,13 +102,12 @@
                   due on <%= f.setdate.strftime("%b %d, %Y") %>
                   <% end %>
                 <% end %>
-              </strong>
+
 
             </div>
           </div>
         </div>
-
-        <br>
+        <div class="divider-line"></div>
 
         <div class="row">
             <%= render(partial: 'routes/list_buttons', locals: { f: f }) %>

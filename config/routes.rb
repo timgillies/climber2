@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       end
       resources :ticks
     end
+    collection do #collection gets index of users rather than specific tick ID
+      get :manage_users
+    end
 
     resources :ticks do
       collection do #collection gets index of ticks rather than specific tick ID

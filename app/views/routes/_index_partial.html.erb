@@ -94,7 +94,13 @@
       <div id="donate">
         <% Zone.includes(:facility).where(facility_id: @userfacilities_check).each do |zone| %>
           <label class="green"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
-            <span><%= zone.name %></span>
+            <span>
+              <% if zone.name == "Climber Generated" %>
+                <%= zone.facility.name %>
+              <% else %>
+                <%= zone.name %>
+              <% end %>
+              </span>
           </label>
         <% end %>
       </div>

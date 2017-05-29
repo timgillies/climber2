@@ -1,8 +1,9 @@
 class Facility < ActiveRecord::Base
 
-  def to_param
-   [id, name.parameterize].join("-")
-  end
+  # adds facility name to URL but it breaks the links in the charts
+  #  def to_param
+  #   [id, name.parameterize].join("-")
+  #  end
 
   has_many :users, :through => :facility_roles
   belongs_to :user

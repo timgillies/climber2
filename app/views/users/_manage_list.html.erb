@@ -1,0 +1,45 @@
+
+<%= div_for(@users) do |f| %>
+<ol class="chartlist">
+  <li>
+    <div class="routelist">
+      <div class="container-fluid">
+        <div class="row">
+            <br/>
+          <div class="col-sm-4">
+
+            <h3><%= f.name %></h3>
+
+          </div>
+          <div class="col-sm-2">
+              <p><%= f.email %></p>
+
+          </div>
+
+          <div class="col-sm-4">
+
+          </div>
+
+          <div class="col-xs-1 col-sm-1 col-md-1">
+
+            <h3><%= link_to edit_user_path(f) do %>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <%end %>
+
+            </h3>
+          </div>
+
+
+          <div class="col-xs-1 col-sm-1 col-md-1">
+            <h3><%= link_to user_path(f), data: {:confirm => 'Are you sure? This cannot be undone.'},
+                        :method => :delete do %>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <%end %>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ol>
+<% end %>

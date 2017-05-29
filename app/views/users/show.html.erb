@@ -18,9 +18,9 @@
               <div class="gray-labels routeform-header bg-blue-gradient">
                 <h1>activity</h1>
               </div>
-              <% if @userfacilities_check.count > 1 %>
+              <% if @userfacilities_check.count > 0 %>
                 <%= render 'users/user_news_feed' %>
-              <% else %>
+              <% elsif @user == current_user %>
               <%= render 'users/no_facility' %>
 
                 <% end %>

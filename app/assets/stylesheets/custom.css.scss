@@ -972,8 +972,6 @@ input {
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
-
-
 }
 
 .bg-routeform {
@@ -1731,7 +1729,7 @@ select {
   font-weight: 300;
   font-size: 0.7em;
   letter-spacing: -0.0px;
-  color: #777;
+  color: #666;
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   li {
@@ -1745,7 +1743,7 @@ select {
 
 
     a {
-      color: #777;
+      color: #666;
     }
 
     h1 {
@@ -1820,21 +1818,43 @@ select {
   }
 
   .tick-circle {
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
     font-size: 18px;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
-    background: linear-gradient(60deg, #2bb573, #8cc53f);
+    background-color: #666;
     color: white;
     margin: 20px;
+
     .text {
       font-size: 8px;
       margin-top: -4px !important;
       position: relative;
       display: block;
+    }
+  }
+
+  .tick-circle-fill {
+    height: 70px;
+    width: 70px;
+    font-size: 18px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%; /* may require vendor prefixes */
+    background-color: #666;
+    color: white;
+    margin: 20px;
+    box-shadow: 0 0 3px 2px #47cf73;
+    .text {
+      font-size: 8px;
+      margin-top: -4px !important;
+      position: relative;
+      display: block;
+      color: white;
     }
   }
 
@@ -2204,12 +2224,12 @@ select {
 			background-color: #ddd;
 		}
 		section {
-			background-color: white;
+			background-color: #eee;
 			//width: auto;
 			//display: inline-block;
 			padding: 10px 15px;
 			border-radius: 4px;
-			border: 1px solid #f0f0f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
 			label {
         font-weight: 200;
@@ -2792,17 +2812,18 @@ span.picture {
 .btn-follow {
   border: none;
   opacity: 1.0;
-  background: linear-gradient(60deg, #ff5f6d, #ffc371);
+  background-color: #47cf73;
   color: #ffffff;
   display: inline-block;
   width: 100%;
   font-weight: 400;
+  border-radius: 20px;
 }
 
 .btn-follow:hover, .btn-follow:active {
   border: none;
   opacity: 1;
-  background: linear-gradient(60deg, #ff5f6d, #ffc371);
+  background-color: #47cf73;
   color: #ffffff;
 }
 
@@ -2897,8 +2918,8 @@ span.picture {
   color: #ffffff;
 }
 
-.btn-pretick{
-  background-color: #ccc;
+.btn-pretick {
+  background-color: #ddd;
   border: none;
   opacity: 1;
   color: #666;
@@ -3488,12 +3509,12 @@ font-family: 'Montserrat', sans-serif;
 			background-color: #ddd;
 		}
 		section {
-			background-color: white;
+			background-color: #eee;
 			//width: auto;
 			//display: inline-block;
 			padding: 10px 15px;
 			border-radius: 4px;
-			border: 1px solid #f0f0f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
 			label {
         font-weight: 200;

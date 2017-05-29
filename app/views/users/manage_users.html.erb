@@ -1,0 +1,15 @@
+<% provide(:title, 'Manage Users') %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="headliner-line">
+        <h1>Add grading system</h1>
+      </div>
+
+      <div class="headliner">
+        <h1>Manage Users</h1>
+      </div>
+        <%= render 'users/manage_list', object: @users %>
+    </div>
+  </div>

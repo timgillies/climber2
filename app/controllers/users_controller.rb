@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!,    only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:home, :edit, :update, :destroy]
+  before_action :site_admin, only: [:manage_users]
 
   include UsersHelper
 
-  layout 'user'
+  layout 'user', except: [:manage_users]
 
   def index
     @users = User.page(params[:page]).per(25)
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def show
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to manage_users_users_path
   end
 
   def manage
@@ -104,6 +105,11 @@ class UsersController < ApplicationController
       @route = Route.current.where(id: Route.top_ten(@userfacilities_check)).where.not(id: Tick.where(user_id: @user.id).pluck(:route_id)).first
     end
 
+  end
+
+  def manage_users
+    @user = current_user
+    @users = User.all
   end
 
 
