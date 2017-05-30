@@ -192,7 +192,7 @@ end
   end
 
   def options_for_facility_select
-    Facility.where(id: climber_facilities).all.map{|fz| [fz.name, fz.id ] }
+    Facility.where(id: climber_facilities).all.map{|fz| [fz.name + (" " + fz.location if fz.location)  , fz.id ] }
     # provides the list of available grades in the route list filters
   end
 

@@ -70,16 +70,6 @@ class Admin::SubscriptionsController < ApplicationController
     )
   end
 
-  if @final_amount > 0
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @final_amount,
-      :description => 'Rails Stripe customer',
-      :currency    => 'usd',
-      :metadata    => charge_metadata
-    )
-  end
-
     @subscription.customer_id = customer.id
     @subscription.plan_id = @facility.plan_id
     @subscription.stripe_subscription_id = customer.subscriptions['data'][0].id
