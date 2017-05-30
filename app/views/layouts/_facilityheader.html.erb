@@ -41,7 +41,7 @@
               <li class="<%= 'active' if current_page?(admin_facility_routes_path(@facility)) %>"><%= link_to "Analytics", analytics_facility_path(@facility) %></li>
               <li class="<%= 'active' if current_page?(admin_facility_zones_path(@facility)) %>"><%= link_to "ZONES", facility_zones_path(@facility) %></li>
               <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "GRADING", facility_grades_path(@facility) %></li>
-              <% unless FacilityRole.where(facility_id: @facility.id, name: 'facility_management').count > 0 %>
+              <% unless FacilityRole.where(facility_id: @facility.id, name: ['facility_management','head_setter').count > 0 %>
                 <li class="<%= 'active' if current_page?(admin_facility_grades_path(@facility)) %>"><%= link_to "Manage", new_admin_facility_subscription_path(@facility) %></li>
               <% end %>
             </ul>

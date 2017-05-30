@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-xs-6 col-sm-3 col-md-3 no-print">
                   <div class="row pull-right">
-                    <% unless FacilityRole.where(facility_id: f.id, name: 'facility_management').count > 0 %>
+                    <% unless FacilityRole.where(facility_id: f.id, name: ['facility_management','head_setter']).count > 0 %>
 
                       <%= link_to "manage", new_admin_facility_subscription_path(f), class: "btn btn-expire btn-md" %>
 

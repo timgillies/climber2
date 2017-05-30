@@ -11,7 +11,7 @@
           <div class="tick-circle-fill">
         <% end %>
             <%= Tick.send_type_count(f, current_user, "project") %>
-            <span class="text"><%= "project".pluralize(Tick.send_type_count(f, current_user, "project")) %></span>
+            <span class="text"><%= "attempt".pluralize(Tick.send_type_count(f, current_user, "project")) %></span>
           </div>
         <% end %>
   </div>
