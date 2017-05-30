@@ -206,7 +206,7 @@ scope :sorted_by, lambda { |sort_option|
 
 # gets top 10 routes based on ratings cache average
   def self.top_ten(facility)
-    Route.current.includes(:grade, :facility, :rating_cache).where(facility_id: facility).where(id: RatingCache.where(cacheable_type: "Route").where('rating_caches.qty > ?', 2).order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
+    Route.current.includes(:grade, :facility, :rating_cache).where(facility_id: facility).where(id: RatingCache.where(cacheable_type: "Route").where('rating_caches.qty > ?', 1).order('rating_caches.avg desc').take(10).map { |rate| [rate.cacheable_id.to_i] } )
   end
 
   def self.newest_ten(facility)
