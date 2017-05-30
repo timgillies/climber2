@@ -8,7 +8,7 @@
 
         <h1>
           <% if @facility.logo_image? %>
-            <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-medium"), admin_facility_path(@facility)) %>
+            <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-medium"), facility_path(@facility)) %>
           <% end %>
             <strong><%= @facility.name %></strong><%= @facility.location %>
         </h1>
