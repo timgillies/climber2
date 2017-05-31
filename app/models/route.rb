@@ -201,11 +201,11 @@ scope :sorted_by, lambda { |sort_option|
 
 # defines what shows up in newsfeed for new routes
   def self.new_route_feed(facility)
-    self.where(facility_id: facility).order(created_at: :desc).includes(:zone, :grade, :facility).limit(10)
+    self.where(facility_id: facility).where('routes.created_at > ?', 6.days.ago.to_date).order(created_at: :desc).includes(:zone, :grade, :facility).limit(10)
   end
 
   def self.user_new_route_feed(facility, user)
-    self.where(facility_id: facility).where('grades.rank > ?', Tick.hardest_send(user).rank - 5).references(:grades).order(created_at: :desc).includes(:zone, :grade, :facility).limit(10)
+    self.where(facility_id: facility).where('routes.created_at > ?', 6.days.ago.to_date).where('grades.rank > ?', Tick.hardest_send(user).rank - 5).references(:grades).order(created_at: :desc).includes(:zone, :grade, :facility).limit(10)
   end
 
 # gets top 10 routes based on ratings cache average

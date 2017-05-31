@@ -126,11 +126,11 @@ class Tick < ActiveRecord::Base
 
 
   def self.tick_feed(facility)
-    self.ascent.joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility).limit(20)
+    self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility).limit(20)
   end
 
   def self.user_tick_feed(facility, user)
-    self.ascent.where('grades.rank > ?', Tick.hardest_send(user).rank - 5).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility).limit(20)
+    self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).where('grades.rank > ?', Tick.hardest_send(user).rank - 5).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility).limit(20)
   end
 
   def self.no_route_tick_feed(facility)

@@ -84,10 +84,10 @@ class UsersController < ApplicationController
 
     # refactored tick_feed and new_route_feed into respective models
 
-    if Tick.hardest_send(@user)
+    if Tick.hardest_send(@user) && @ticks
       @news_feed = Tick.user_tick_feed(@userfacilities_check, @user) + Route.user_new_route_feed(@userfacilities_check, @user)
     else
-      @news_feed = Route.new_route_feed(@userfacilities_check) + Tick.tick_feed(@user_facilities_check)
+      @news_feed =  Tick.tick_feed(@userfacilities_check) + Route.new_route_feed(@userfacilities_check)
     end
 
     # combines new ticks and new routes, newest first
