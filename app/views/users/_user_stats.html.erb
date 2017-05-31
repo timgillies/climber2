@@ -34,11 +34,7 @@
     <%= link_to user_ticks_path(@user) do %>
       <div class="circle-wrapper">
         <div class="large-circle responsive">
-          <% if @ticks.ascent.present? %>
-            <%= @ticks.ascent.grade_desc.first.grade.grade if @ticks.ascent.grade_desc.first.grade %>
-            <% else %>
-            0
-          <% end %>
+          <%= Tick.hardest_send(@user).grade if Tick.hardest_send(@user) %>
           <span class="text">hardest</span></div>
       </div>
     <% end %>

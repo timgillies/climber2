@@ -126,11 +126,15 @@ class Tick < ActiveRecord::Base
 
 
   def self.tick_feed(facility)
-    self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility)
+    self.ascent.joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility).limit(20)
+  end
+
+  def self.user_tick_feed(facility, user)
+    self.ascent.where('grades.rank > ?', Tick.hardest_send(user).rank - 5).joins(:route).merge(Route.where(facility_id: facility)).includes(:user, :grade, :route, :facility).limit(20)
   end
 
   def self.no_route_tick_feed(facility)
-    self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).where(facility_id: facility).includes(:user, :grade, :facility)
+    self.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).where(facility_id: facility).includes(:user, :grade, :facility).limit(20)
   end
 
   def self.top_ten(facility)
@@ -140,6 +144,13 @@ class Tick < ActiveRecord::Base
   def self.top_ten_climbers(facility)
     self.includes(:grade, :user).where(route_id: Route.includes(:facility).where(facility_id: facility)).ascent.grade_desc.take(10).uniq{ |s| s.user_id }
   end
+
+  def self.hardest_send(user)
+    if self.ascent.where(user_id: user.id).where.not(grade_id: nil)
+      self.ascent.where(user_id: user.id).grade_desc.first.grade if self.ascent.where(user_id: user.id).grade_desc.first
+    end
+  end
+
 
 
 
