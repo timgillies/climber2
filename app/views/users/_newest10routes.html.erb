@@ -1,13 +1,14 @@
 <br>
-<div class="top-10 row">
+<div class="top-10 home-stats new-routes row">
   <div class="header bg-top-10">
     <h1>Newest Routes</h1>
   </div>
+
 <ul>
     <% Route.newest_ten(@userfacilities_check).each do |route| %>
     <%= link_to facility_route_path(route.facility_id, route) do %>
       <li>
-        <strong><%= route.grade.grade %></strong> <%= route.zone.name if route.zone %>
+      <p> <strong><%= route.grade.grade %></strong> <%= route.zone.name if route.zone %></p>
       </li>
     <% end %>
   <% end %>

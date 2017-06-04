@@ -628,6 +628,32 @@ display: none;
 
 }
 
+.modal-list {
+  a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+  }
+  li {
+
+    background: linear-gradient(60deg, #1b75bb, #00b1ff);
+      margin-bottom: 10px;
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.25);
+      padding: 10px;
+      margin: 10px !important;
+      margin-left: -25px !important;
+
+      a, a:hover {
+        color: #fff;
+        background-color: transparent;
+      }
+
+  }
+}
+
 
 
 
@@ -773,6 +799,31 @@ input {
   display: inline;
   margin-right: 10px;
   vertical-align: bottom;
+}
+
+.img-facility-logo-profile {
+  height: 40px;
+  background-size: cover;
+  display: inline;
+  margin-right: 10px;
+  vertical-align: bottom;
+  position: absolute;
+  top: 90px;
+  right: 30px;
+
+}
+
+.img-user-image-profile {
+  height: 40px;
+  background-size: cover;
+  display: inline;
+  margin-right: 10px;
+  vertical-align: bottom;
+  position: absolute;
+  top: 90px;
+  right: 30px;
+  border-radius: 6px;
+
 }
 
 .users {
@@ -1181,12 +1232,84 @@ input {
     background-size: cover;
     background-position: center;
   margin-top: -75px;
-  padding-top: 75px;
+  padding-top: 80px;
+  @media (max-width: 768px) {
+    padding-top: 88px;
+  }
   padding-right: 20px;
   padding-left: 20px;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  a {
+    text-decoration: none;
+  }
+
+  .circle-wrapper {
+    margin: 2px;
+    display: inline-block;
+  }
+
+
+.large-circle {
+  height: 75px;
+  width: 75px;
+  font-size: 20px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  color: white;
+  margin: 20px;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+  }
+  li {
+
+      background: linear-gradient(60deg, #e32666, #d7348c);
+      margin-bottom: 10px;
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.25);
+      padding: 10px;
+      margin: 10px !important;
+      a, a:hover {
+        color: #fff;
+        background-color: transparent;
+      }
+
+  }
+}
+
+.large-circle-gray {
+
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  color: #47cf73;
+  .text {
+    color: white;
+  }
+}
 
 }
+
+.bg-profile-admin {
+  background:
+    /* top, transparent red, faked with gradient */
+
+    linear-gradient(60deg,
+      rgba(248, 87, 166, 0.8),
+      rgba(255, 88, 88, 0.8)
+    ),
+    /* bottom, image */
+    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
+    background-size: cover;
+    background-position: center;
+
+  }
+
 
 .img-profile-icon{
  width: 25px;
@@ -1214,6 +1337,7 @@ input {
  display: inline;
  vertical-align: bottom;
  margin-right: 10px;
+ border-radius: 6px;
 
 }
 
@@ -2414,6 +2538,8 @@ span.picture {
       padding-top: 7px;
 
     }
+
+
 }
 
 .navbar-nav li a {
@@ -2479,6 +2605,7 @@ span.picture {
       color: #fff;
       background-color: transparent;
     }
+
   }
 }
 
@@ -3598,25 +3725,59 @@ input[type="checkbox"] {
   background-color: white;
   //width: auto;
   //display: inline-block;
-  padding: 10px 15px;
+  padding: 10px 15px 5px 5px;
   border-radius: 4px;
   border: 1px solid #f0f0f0;
   @media (min-width: 768px) {
     margin-right: 0px;
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    margin-bottom: -5px;
+    color: #ddd;
+    text-transform: uppercase;
+    font-size: 1.0em;
+  }
+
+  .img-facility-logo-list-left {
+    width: 70px;
+
+    left: 30px;
+    background-size: cover;
+    display: inline;
+    vertical-align: bottom;
+  }
   .header {
     h1{
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       display: inline;
       font-size: 1.0em;
       color: #fff;
       text-transform: uppercase;
       font-weight: 400;
-      letter-spacing: 0.5px;
-
+      letter-spacing: 0.0px;
+      small {
+        color: white;
+        font-weight: 200;
+      }
     }
+
     border: none;
-    margin-bottom: 7px;
+    margin-bottom: 0px;
+  }
+
+  li {
+    background-color: rgba(0,0,0,.45);
+    margin-bottom: 10px;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.25);
+    padding: 10px;
+    margin-left: -30px !important;
   }
 
   .bg-top-10 {
@@ -3634,7 +3795,7 @@ input[type="checkbox"] {
   }
 
   .circle-wrapper {
-    margin: 5px;
+    margin: 2px;
     display: inline-block;
   }
 
@@ -3662,15 +3823,117 @@ input[type="checkbox"] {
   text-align: center;
   vertical-align: middle;
   border-radius: 50%; /* may require vendor prefixes */
-  background: linear-gradient(60deg, #1b75bb, #00b1ff);
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
   color: white;
   margin: 20px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.25);
   .text {
     font-size: 10px;
-    margin-top: -6px !important;
+    margin-top: -5px !important;
     position: relative;
     display: block;
+    color: white;
+  }
+  li {
+
+      background: linear-gradient(60deg, #e32666, #d7348c);
+      margin-bottom: 10px;
+      position: relative;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.25);
+      padding: 10px;
+      margin: 10px !important;
+      a, a:hover {
+        color: #fff;
+        background-color: transparent;
+      }
+
+  }
+}
+
+.large-circle-gray {
+
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  color: #47cf73;
+  .text {
+    color: white;
+  }
+}
+
+.right {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  color: #aaa;
+  margin: 0px;
+  right: 5px;
+  bottom: -7px;
+  position: absolute;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+
+  }
+}
+
+.route-count {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  color: #47cf73;
+  margin: 0px;
+  left: 100px;
+  bottom: -7px;
+  position: absolute;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+
+  }
+}
+
+/* this is the follower count "circle" for the users facility list */
+.follower-count {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  color: #47cf73;
+  margin: 0px;
+  @media (min-width: 768px) {
+    right: 75px;
+  }
+  @media (max-width: 768px) {
+    left: 150px;
+  }
+  bottom: -7px;
+  position: absolute;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+
   }
 }
 
@@ -3738,6 +4001,54 @@ input[type="checkbox"] {
     text-align: left;
     font-size: 2.0em;
   }
+
+}
+
+.climber {
+
+  background: linear-gradient(rgba(82, 100, 148, 0.7), rgba(96, 68, 132, .7));
+  background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(60deg,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, .4)
+    ),
+    /* bottom, image */
+    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc-climber-swing.jpg');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.new-routes {
+
+  background: linear-gradient(rgba(255, 81, 47, 0.7), rgba(221, 36, 118, .7));
+  background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(60deg,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    /* bottom, image */
+    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc-new-route.jpg');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.top-routes {
+
+  background: linear-gradient(rgba(255, 81, 47, 0.7), rgba(221, 36, 118, .7));
+  background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(60deg,
+      rgba(255, 81, 47, 0.6),
+      rgba(221, 36, 118, 0.6)
+    ),
+    /* bottom, image */
+    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc-new-route.jpg');
+    background-size: cover;
+    background-position: center;
 
 }
 

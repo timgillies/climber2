@@ -19,7 +19,13 @@
         <div class="row">
           <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
             <h3>
-              <%= link_to f.grade.grade + " "+ f.color.upcase , "#" if f.grade %>
+              <% if f.color? %>
+                <%= link_to f.grade.grade + " "+ f.color.upcase , "#" if f.grade %>
+              <% elsif (color_name(f.color_hex, @facility)).nil? %>
+                <%= link_to f.grade.grade , "#" if f.grade %>
+              <% else %>
+                <%= link_to f.grade.grade + " "+ color_name(f.color_hex, @facility)[0].upcase , "#" if f.grade %>
+              <% end %>
             </h3>
             <h2> <%= f.name %></h2>
           </div>
@@ -39,7 +45,7 @@
           <div class="col-sm-12">
               <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
+          <div class="col-xs-4 col-sm-4 col-md-4">
             <div class="tab"><strong>
 
               <% if params[:controller] == "admin/tasks" %>

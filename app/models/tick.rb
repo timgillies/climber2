@@ -142,12 +142,18 @@ class Tick < ActiveRecord::Base
   end
 
   def self.top_ten_climbers(facility)
-    self.includes(:grade, :user).where(route_id: Route.includes(:facility).where(facility_id: facility)).ascent.grade_desc.take(10).uniq{ |s| s.user_id }
+    self.ascent.where(route_id: Route.where(facility_id: facility)).where('ticks.created_at > ?', 6.days.ago.to_date).includes(:grade).order('grades.rank DESC').take(1000).uniq { |u| u.user_id}.take(10)
   end
 
   def self.hardest_send(user)
     if self.ascent.where(user_id: user.id).where.not(grade_id: nil)
       self.ascent.where(user_id: user.id).grade_desc.first.grade if self.ascent.where(user_id: user.id).grade_desc.first
+    end
+  end
+
+  def self.days_hardest_send(user, days)
+    if self.ascent.where(user_id: user.id).where.not(grade_id: nil)
+      self.ascent.where(user_id: user.id).where('ticks.created_at > ?', days.days.ago.to_date).grade_desc.first.grade if self.ascent.where(user_id: user.id).grade_desc.first
     end
   end
 

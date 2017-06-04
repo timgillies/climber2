@@ -11,3 +11,9 @@
 <div class="circle-wrapper">
   <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.length) if @facility.routes.current.length > 0  %><span class="text"><%= "avg. age" %></span></div>
 </div>
+
+<%= link_to admin_facility_routes_path(@facility) do %>
+  <div class="circle-wrapper">
+    <div class="large-circle responsive"><i class="fa fa-list" aria-hidden="true"></i><span class="text"><%= "Route List" %></span></div>
+  </div>
+<% end %>

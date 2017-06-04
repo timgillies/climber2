@@ -33,7 +33,7 @@
     <% if (user_signed_in? && @userfacilities.include?(@facility) && params[:controller][0..4] == 'admin') || @facility.demo? %>
       <%= render 'layouts/adminheader' %>
     <% else %>
-      <%= render 'layouts/facilityheader' %>
+      <%= render 'layouts/userheader2' %>
     <% end %>
 
     <div class="container-fluid">

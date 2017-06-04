@@ -1,13 +1,14 @@
 <br>
-<div class="top-10 row">
+<div class="top-10 home-stats climber row">
   <div class="header bg-top-10">
     <h1>Top Sends</h1>
   </div>
+
 <ul>
   <% Tick.top_ten_climbers(@userfacilities_check).each do |send| %>
     <%= link_to user_path(send.user_id) do %>
       <li>
-        <strong><%= send.grade.grade %></strong> <%= send.route.facility.name if send.route.facility %> - <%= send.user.name %>
+        <p><strong><%= send.grade.grade %></strong> <%= send.route.facility.name if send.route.facility %> - <%= send.user.name %></p>
       </li>
     <% end %>
   <% end %>

@@ -1,5 +1,6 @@
 class ZonesController < ApplicationController
   before_action :authenticate_user!
+  before_action :paid_subscriber,           only: [:index, :new, :create], :unless => :facility_is_demo
 
 
   layout :check_layout

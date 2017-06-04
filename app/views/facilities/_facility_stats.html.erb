@@ -1,17 +1,25 @@
 <div class="top-10 home-stats row">
   <div class="header bg-top-10">
-    <h1>facility Stats</h1>
+    <%= link_to( image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-medium"), facility_path(@facility)) %><br>
+    <br>
+
+    <h1><%= @facility.name %>
+    <small><%= @facility.location if @facility.location %></small></h1>
+    <br>
+
+
+
   </div>
   <%= link_to user_facility_routes_path(current_user, @facility) do %>
     <div class="circle-wrapper">
-      <div class="large-circle responsive"><%= @facility.routes.current.size %><span class="text"><%= "total" %></span></div>
+      <div class="large-circle large-circle-gray responsive"><%= @facility.routes.current.size %><span class="text"><%= "Total" %></span></div>
     </div>
   <% end %>
 
   <% unless (@facility.routes.current.climb_type("boulder").size == 0) && (@facility.routes.current.climb_type("sport").size) > 0 %>
     <%= link_to user_facility_routes_path(current_user, @facility) do %>
       <div class="circle-wrapper">
-        <div class="large-circle responsive"><%= @facility.routes.current.climb_type("boulder").size %><span class="text"><%= "boulder".pluralize(@facility.routes.current.size) %></span></div>
+        <div class="large-circle large-circle-gray responsive"><%= @facility.routes.current.climb_type("boulder").size %><span class="text"><%= "Boulder".pluralize(@facility.routes.current.size) %></span></div>
       </div>
     <% end %>
   <% end %>
@@ -19,30 +27,62 @@
   <% unless (@facility.routes.current.climb_type("sport").size == 0) && (@facility.routes.current.climb_type("boulder").size) > 0 %>
     <%= link_to user_facility_routes_path(current_user, @facility) do %>
       <div class="circle-wrapper">
-        <div class="large-circle responsive"><%= @facility.routes.current.climb_type("sport").size %><span class="text"><%= "route".pluralize(@facility.routes.current.size) %></span></div>
+        <div class="large-circle large-circle-gray responsive"><%= @facility.routes.current.climb_type("sport").size %><span class="text"><%= "Route".pluralize(@facility.routes.current.size) %></span></div>
       </div>
     <% end %>
   <% end %>
   <div class="circle-wrapper">
-    <div class="large-circle responsive"><%= (total_age(@facility.routes) / @facility.routes.current.size) if @facility.routes.current.size > 0  %><span class="text"><%= "avg. age" %></span></div>
+    <div class="large-circle large-circle-gray responsive"><%= (total_age(@facility.routes) / @facility.routes.current.size) if @facility.routes.current.size > 0  %><span class="text"><%= "Avg. age" %></span></div>
   </div>
+
+  <%= link_to user_facility_routes_path(current_user, @facility) do %>
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><i class="fa fa-list" aria-hidden="true"></i><span class="text"><%= "Route List" %></span></div>
+    </div>
+  <% end %>
+
+  <%= link_to analytics_facility_path(@facility) do %>
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="text"><%= "Analytics" %></span></div>
+    </div>
+  <% end %>
+
+  <%= link_to new_user_tick_path(current_user) do %>
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="text"><%= "New tick" %></span></div>
+    </div>
+  <% end %>
+
+  <% unless params[:action] == 'show' %>
+    <div class="hidden-xs">
+  <% end %>
 
   <div class="header bg-top-10">
-    <h1>Zones</h1>
+    <h1><%= link_to "Zones", facility_zones_path(@facility) %></h1>
   </div>
-    <ul>
-      <% @facility.zones.each do |zone| %>
 
-        <%= link_to facility_zone_path(zone.facility_id, zone) do %>
-          <li>
-            <%= zone.name %>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
+  <% if @facility.zones.count > 1 %>
+  <%= render 'facilities/stats_zonedist' %>
+  <% else %>
+  <p class="tab">This facility has not set up it's zones yet</p>
+  <br>
+  <% end %>
+
+    <div class="circle-wrapper">
+      <div class="large-circle large-circle-gray responsive"><%= FacilityRole.where(facility: @facility).count %><span class="text"><%= "followers" %></span></div>
+    </div>
+    <div class="circle-wrapper">
+      <div class="large-circle large-circle-gray responsive"><%= FacilityRole.where(facility: @facility, name: ['head_setter','setter']).count %><span class="text"><%= "setters" %></span></div>
+    </div>
+
+    <br>
 
  <% unless @facility.demo? %>
     <%= render 'facilities/follow_button' %>
+  <% end %>
+
+  <% unless params[:action] == 'show' %>
+    </div>
   <% end %>
 
 </div>

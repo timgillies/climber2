@@ -5,6 +5,8 @@ class Admin::ZonesController < ApplicationController
   before_action :guest_role,               only: [:destroy, :new, :create, :edit, :update], :unless => :facility_is_demo
   before_action :marketing_role,            except: [:index, :show], :unless => :facility_is_demo
   before_action :demo_facility,             except: [:index, :show, :new]
+  before_action :paid_subscriber,           only: [:index, :new, :create], :unless => :facility_is_demo
+
 
 
   layout "admin"

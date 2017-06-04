@@ -81,7 +81,7 @@
           <div class="col-sm-12">
               <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
+          <div class="col-xs-5 col-sm-6 col-md-6">
             <div class="tab"><strong>
 
               <% if params[:controller] == "admin/tasks" %>
@@ -114,8 +114,8 @@
             </div>
           </div>
 
-          <div class="col-xs-1 col-sm-1">
-            <div class="tab text-right">
+          <div class="col-xs-2 col-sm-1">
+            <div>
               <% if f.user %>
 
                 <% if f.user.avatar? %>

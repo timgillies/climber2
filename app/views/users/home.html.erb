@@ -7,7 +7,7 @@
 
       </div>
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-5 col-md-4">
           <%= render 'users/user_stats' %>
           <div class="hidden-sm hidden-md hidden-lg"><br></div>
         <div class="hidden-xs">
@@ -16,15 +16,7 @@
           <%= render 'users/newest10routes' %>
         </div>
         </div>
-        <div class="col-sm-8">
-          <% if (@admin_facility_roles.count > 0) && (current_user == @user) %>
-            <div class="row">
-                <div class="gray-labels routeform-header bg-blue-gradient">
-                  <h1> Route Management</h1>
-                </div>
-                  <%= render 'users/admin_roles' %>
-            </div>
-          <% end %>
+        <div class="col-sm-7 col-md-8">
 
           <% if @route %>
             <div class="row">
@@ -42,25 +34,6 @@
             </div>
             <br>
           <% end %>
-
-          <div class="row">
-              <div class="gray-labels routeform-header bg-blue-gradient">
-                <h1>Week Summary</h1>
-              </div>
-          </div>
-          <br>
-          <% if @ticks.present? %>
-          <div class="row">
-            <div class="bg-white">
-            <%= render(
-            partial: 'ticks/user_ticks',
-            locals: { ticks: @ticks }
-            ) %>
-            </div>
-          </div>
-          <% end %>
-
-          <br>
 
           <div class="row">
               <div class="gray-labels routeform-header bg-blue-gradient">

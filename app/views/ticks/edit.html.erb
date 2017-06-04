@@ -1,20 +1,41 @@
-<% if @tick.route_id.present? %>
+<% provide(:title, current_user.name + ' Edit Tick') %>
 
-<%= render(
-partial: 'routes/route',
-locals: { route: @route }
-) %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-5 col-md-4">
+          <%= render 'users/user_stats' %>
+          <div class="hidden-sm hidden-md hidden-lg"><br></div>
+        <div class="hidden-xs">
+          <%= render 'users/top10sends' %>
+          <%= render 'users/top10routes' %>
+          <%= render 'users/newest10routes' %>
+        </div>
+        </div>
+        <div class="col-sm-8">
+          <% if @tick.route_id.present? %>
 
-<%= render(
-partial: 'ticks/edit_route_tick_form',
-locals: { tick: @tick }
-) %>
+          <%= render(
+          partial: 'routes/route',
+          locals: { route: @route }
+          ) %>
 
-<% else %>
+          <%= render(
+          partial: 'ticks/edit_route_tick_form',
+          locals: { tick: @tick }
+          ) %>
 
-<%= render(
-partial: 'ticks/form',
-locals: { tick: @tick }
-) %>
+          <% else %>
 
-<% end %>
+          <%= render(
+          partial: 'ticks/form',
+          locals: { tick: @tick }
+          ) %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

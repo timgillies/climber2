@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     member do
       get :inbox
       get :home
+      get :analytics
     end
   end
 
@@ -121,6 +122,7 @@ Rails.application.routes.draw do
           post :un_complete_task
         end
       end
+      resources :comps
     end
   end
 

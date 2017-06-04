@@ -60,6 +60,11 @@ class User < ActiveRecord::Base
   end
 
 
+  def self.top_ten_climbers(facility)
+    User.where(id: Tick.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).where(route_id: Route.where(facility_id: facility)).includes(:grade).grade_desc.map { |t| t.user_id}).limit(10)
+  end
+
+
   private
 
     # Converts email to all lower-case

@@ -117,6 +117,13 @@ class UsersController < ApplicationController
     @users = User.order(id: :desc).all
   end
 
+  def analytics
+    @user = User.find(params[:id])
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
+
+  end
+
 
 
 
