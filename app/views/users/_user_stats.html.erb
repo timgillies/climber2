@@ -95,7 +95,7 @@
 <% end %>
 
     <div class="header bg-top-10">
-      <h1>user facilities</h1>
+      <h1>user facilities</h1><span class="pull-right"><%= link_to "see all", user_facility_roles_path(current_user) %></span>
     </div>
       <ul>
         <% @userfacilities_check.each do |facility| %>
