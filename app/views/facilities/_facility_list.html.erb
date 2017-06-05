@@ -1,0 +1,45 @@
+<div id="filterrific_facility_public_results">
+  <ul>
+    <% (@facilities.joins(:routes).group('facilities.id').order('count(routes.id) DESC').where(public: true) + @facilities.order('state ASC, city ASC').where(public: true)).uniq.each do |facility| %>
+      <%= link_to facility_path(facility) do %>
+        <li>
+          <p><strong><%= facility.name %></strong>
+            <small><%= (" " + facility.location) if facility.location %></small></p>
+          <p><small>
+            <%= facility.addressline1 if facility.addressline1 %>
+            <%= facility.city if facility.city %>
+            <%= facility.state if facility.state %>
+            <%= facility.zipcode if facility.zipcode %>
+          </small></p>
+           <br>
+          <%= (image_tag(facility.logo_image.url(:medium), class: "img-facility-logo-list-left")) if facility.logo_image%>
+
+          <div class="circle-wrapper">
+            <div class="large-circle route-count responsive"><%= facility.routes.current.count %><span class="text"><%= "routes" %></span></div>
+          </div>
+
+          <div class="circle-wrapper">
+            <div class="large-circle follower-count responsive">
+              <% if FacilityRole.where(facility: facility).count > 0 %>
+                <%= FacilityRole.where(facility: facility).count %>
+              <% else %>
+              0
+              <% end %>
+
+              <span class="text"><%= "climbers" %></span></div>
+          </div>
+
+            <% if FacilityRole.where(user: current_user, facility: facility).where.not(name: 'climber').count > 0 %>
+
+            <%= link_to admin_facility_path(facility) do %>
+              <div class="circle-wrapper">
+                <div class="large-circle right responsive"><i class="fa fa-dashboard" aria-hidden="true"></i><span class="text"><%= " admin" %></span></div>
+              </div>
+            <% end %>
+
+            <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

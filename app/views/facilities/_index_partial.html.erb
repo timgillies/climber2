@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
+    <div>
+          <div class="container-fluid bg-blue-gradient">
+            <div class="gray-labels">
+              <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                  <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+                  <div class="form-group">
+                    <%= f.text_field(
+                      :facility_search_query,
+                      placeholder: '  Search by Name',
+                      class: 'filterrific-periodically-observed form-control'
+                    ) %>
+                  </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-4">
+                  <%= f.select(
+                    :with_state,
+                    @filterrific.select_options[:with_state],
+                    { include_blank: 'state' },
+                    {class: "form-control"}
+                  ) %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<br>
+
+  <div class="top-10 home-stats left-margin row">
+
+    <div class="header bg-top-10">
+      <h1>facilities</h1>
+    </div>
+    <%= render 'facilities/facility_list', object: @facilities %>
+  </div>
+      <%= paginate @facilities %>

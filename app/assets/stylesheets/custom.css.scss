@@ -3745,7 +3745,6 @@ input[type="checkbox"] {
 
   .img-facility-logo-list-left {
     width: 70px;
-
     left: 30px;
     background-size: cover;
     display: inline;
@@ -3955,6 +3954,13 @@ input[type="checkbox"] {
     display: block;
   }
 }
+}
+
+.left-margin {
+  margin-left: 0px;
+  @media (max-width: 768px) {
+    margin-right: 0px;
+  }
 }
 
 .home-stats {

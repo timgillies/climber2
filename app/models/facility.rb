@@ -26,7 +26,6 @@ class Facility < ActiveRecord::Base
   belongs_to :plan
   has_many :subscriptions
 
-  default_scope -> { order(created_at: :asc) }
   validates :name, presence: true
   validates :addressline1, presence: true
   validates :city, presence: true
