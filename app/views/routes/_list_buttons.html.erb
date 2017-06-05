@@ -1,9 +1,10 @@
 
 <div id="tick_count_<%= f.id %>">
-
 <div class="no-print">
-  <div class="col-xs-4 col-sm-3">
+  <div class="col-xs-12">
+    <div class="row">
 
+      <div class="circle-wrapper">
         <%= button_to quick_project_user_route_path(current_user, f), method: :quick_project, class: 'btn btn-pretick btn-md', remote: true do %>
         <% unless Tick.send_type_count(f, current_user, "project") > 0 %>
           <div class="tick-circle">
@@ -14,36 +15,39 @@
             <span class="text"><%= "attempt".pluralize(Tick.send_type_count(f, current_user, "project")) %></span>
           </div>
         <% end %>
-  </div>
+      </div>
 
-  <div class="col-xs-4 col-sm-3">
 
-      <%= button_to quick_redpoint_user_route_path(current_user, f), method: :quick_redpoint, class: 'btn btn-pretick btn-md', remote: true do %>
+      <div class="circle-wrapper">
 
-      <% unless Tick.send_type_count(f, current_user, "redpoint") > 0 %>
-        <div class="tick-circle">
-      <% else %>
-        <div class="tick-circle-fill">
-      <% end %>
-          <%= Tick.send_type_count(f, current_user, "redpoint") %>
-          <span class="text"><%= "redpoint".pluralize(Tick.send_type_count(f, current_user, "redpoint")) %></span>
-        </div>
-      <% end %>
+        <%= button_to quick_redpoint_user_route_path(current_user, f), method: :quick_redpoint, class: 'btn btn-pretick btn-md', remote: true do %>
 
-  </div>
+        <% unless Tick.send_type_count(f, current_user, "redpoint") > 0 %>
+          <div class="tick-circle">
+        <% else %>
+          <div class="tick-circle-fill">
+        <% end %>
+            <%= Tick.send_type_count(f, current_user, "redpoint") %>
+            <span class="text"><%= "redpoint".pluralize(Tick.send_type_count(f, current_user, "redpoint")) %></span>
+          </div>
+        <% end %>
+      </div>
 
-  <div class="col-xs-4 col-sm-3">
 
-      <%= button_to quick_flash_user_route_path(current_user, f), method: :quick_flash, class: 'btn btn-pretick btn-md', remote: true do %>
-      <% unless Tick.send_type_count(f, current_user, "flash") > 0 %>
-        <div class="tick-circle">
-      <% else %>
-        <div class="tick-circle-fill">
-      <% end %>
-          <%= Tick.send_type_count(f, current_user, "flash") %>
-          <span class="text"><%= "flash".pluralize(Tick.send_type_count(f, current_user, "flash")) %></span>
-        </div>
-      <% end %>
+      <div class="circle-wrapper">
+
+        <%= button_to quick_flash_user_route_path(current_user, f), method: :quick_flash, class: 'btn btn-pretick btn-md', remote: true do %>
+        <% unless Tick.send_type_count(f, current_user, "flash") > 0 %>
+          <div class="tick-circle">
+        <% else %>
+          <div class="tick-circle-fill">
+        <% end %>
+            <%= Tick.send_type_count(f, current_user, "flash") %>
+            <span class="text"><%= "flash".pluralize(Tick.send_type_count(f, current_user, "flash")) %></span>
+          </div>
+        <% end %>
+      </div>
+      </div>
   </div>
 
 </div>

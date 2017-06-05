@@ -96,7 +96,7 @@
           <label class="green"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
             <span>
               <% if zone.name == "Climber Generated" %>
-                <%= zone.facility.name %>
+                <%= zone.facility.name %> <%= zone.facility.location if zone.facility.location %>
               <% else %>
                 <%= zone.name %>
               <% end %>

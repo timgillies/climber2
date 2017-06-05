@@ -18,7 +18,7 @@
 
   </div>
   <%= div_for(@routes) do |f| %>
-  <ol class="routelist">
+  <ol class="routelist routelist-dark">
 
       <% if f.color_hex? %>
       <li style="border-left: 15px solid <%= f.color_hex %>">
@@ -32,30 +32,32 @@
       <li>
       <% end %>
 
+      <%= link_to user_facility_route_path(@user, f.facility, f) do %>
+    <span>
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12">
             <% if params[:facility_id].present? %>
-            <h3>
+            <h3><strong>
               <% if f.color? %>
-                <%= link_to f.grade.grade + " "+ f.color.upcase , user_facility_route_path(@user, f.facility, f) if f.grade %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
               <% elsif (color_name(f.color_hex,f.facility)).nil? %>
-                <%= link_to f.grade.grade , user_facility_route_path(@user, f.facility, f) if f.grade %>
+                <%= f.grade.grade if f.grade %>
               <% else %>
-                <%= link_to f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase , user_facility_route_path(@user, f.facility, f) if f.grade %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
               <% end %>
-            </h3>
+            </strong></h3>
 
             <% else %>
-            <h3>
+            <h3><strong>
               <% if f.color? %>
-                <%= link_to f.grade.grade + " "+ f.color.upcase , facility_route_path(f.facility_id, f) if f.grade %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
               <% elsif (color_name(f.color_hex,f.facility)).nil? %>
-                <%= link_to f.grade.grade , facility_route_path(f.facility_id, f) if f.grade %>
+                <%= f.grade.grade if f.grade %>
               <% else %>
-                <%= link_to f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase , facility_route_path(f.facility_id, f) if f.grade %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
               <% end %>
-            </h3>
+            </strong></h3>
             <% end %>
 
 
@@ -65,26 +67,23 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <h2> <%= f.name %> <%= "#" + f.id.to_s %></h2>
+            <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
           </div>
         </div>
 
-          <%= render(partial: 'routes/rating_count', locals: { route: f }) %>
-
-        <br>
         <div class="row">
           <div class="col-sm-12">
-              <div class="mobile-tab"><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
+              <div><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
           </div>
 
           <div class="col-sm-12">
-              <div class="mobile-tab"><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+              <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="mobile-tab"><%= f.user.name if f.user %></div>
+            <div><%= f.user.name if f.user %></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="mobile-tab text-right">
+            <div class="text-right">
 
 
                 <% unless params[:controller] == 'admin/tasks' %>
@@ -103,7 +102,12 @@
             </div>
           </div>
         </div>
+      </span>
+      <% end %>
         <div class="divider-line"></div>
+        <i><%= f.description if f.description %></i>
+        <%= render(partial: 'routes/rating_count', locals: { route: f }) %>
+
 
         <div class="row">
             <%= render(partial: 'routes/list_buttons', locals: { f: f }) %>

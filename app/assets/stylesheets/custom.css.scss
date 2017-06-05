@@ -1901,8 +1901,9 @@ select {
   }
 
     .circle-wrapper {
-      margin: 5px;
+      margin: 0px;
       display: inline-block;
+      opacity: 1.0;
     }
 
   .circle {
@@ -1949,7 +1950,7 @@ select {
     text-align: center;
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
-    background-color: #888;
+    background-color: #222;
     color: white;
     margin: 20px;
 
@@ -1969,7 +1970,7 @@ select {
     text-align: center;
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
-    background-color: #888;
+    background-color: #222;
     color: white;
     margin: 20px;
     box-shadow: 0 0 2px 4px #47cf73;
@@ -2075,7 +2076,7 @@ select {
 
   h3 {
     font-size: 2.7em;
-    letter-spacing: -1.0px;
+    letter-spacing: -0.0px;
     margin-bottom: 0px;
     font-weight: 200;
     display: inline;
@@ -2244,6 +2245,54 @@ select {
      border-radius: 2px;
      opacity: .9;
     }
+}
+
+.routelist-dark {
+  vertical-align: bottom;
+  list-style: none;
+  padding: 0px;
+  display: inline;
+  font-weight: 300;
+  font-size: 0.7em;
+  letter-spacing: -0.0px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  li {
+    background-color: #444;
+    margin-bottom: 10px;
+    border-left: 15px solid #444;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.25);
+
+
+
+    a, a:hover {
+      color: #fff;
+    }
+
+    h1 {
+      color: #52BE80;
+      font-size: 3em;
+      letter-spacing: -2px;
+      margin-bottom: 5px;
+      text-align: left;
+      border-bottom: 1px solid $gray-lighter;
+      font-family: 'Montserrat', sans-serif;
+      h3 {
+        text-align: right;
+      }
+
+    }
+    h2 {
+      color: #eee;
+      size: 1.0em;
+    }
+    h3 {
+      color: #fff;
+    }
+  }
 }
 
 .ticklist {
@@ -3046,7 +3095,7 @@ span.picture {
 }
 
 .btn-pretick {
-  background-color: #ddd;
+  background-color: #444;
   border: none;
   opacity: 1;
   color: #666;
