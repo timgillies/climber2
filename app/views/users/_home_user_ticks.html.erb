@@ -151,7 +151,7 @@
         }
       },
       plotOptions: {
-        area: {
+        areaspline: {
           marker: {
               enabled: false
           }
@@ -200,7 +200,7 @@
       series: [
         {
           name: "Effort",
-          type: "area",
+          type: "areaspline",
           pointInterval: <%= 1.day * 1000 %>,
           pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
           data: <% if @ticks.present? %><%= user_ticks_value_chart_series( @ticks, @ticks.first.date ) %> <% end %>
