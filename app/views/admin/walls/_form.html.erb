@@ -3,22 +3,27 @@
   <div class="row">
     <%= render 'shared/error_messages', object: f.object %>
 
-    <div class="col-sm-6">
+    <div class="col-sm-12">
       <%= f.label :name, "Child zone name:" %>
       <%= f.text_field :name, class: 'form-control', placeholder: "Child zone name..." %>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-12">
       <%= f.label :height, "Wall Height (ft):" %>
-      <%= f.number_field :height, class: 'form-control', placeholder: false, step: :any %>
+      <%= f.number_field :height, class: 'form-control', placeholder: "Wall height (ft)", step: :any %>
     </div>
 
-    <div class="col-sm-6">
-      <%= f.label :name, "Child zone name:" %>
-      <%= f.text_field :name, class: 'form-control', placeholder: "Child zone name..." %>
+    <div class="col-sm-12">
+      <%= f.label :width, "Wall Width (ft):" %>
+      <%= f.number_field :width, class: 'form-control', placeholder: "Wall width (ft)", step: :any %>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-12">
+      <%= f.label :angle, "Angle of wall (degrees):" %>
+      <%= f.number_field :angle, class: 'form-control', placeholder: "Angle (ex. 30)", step: :any %>
+    </div>
+
+    <div class="col-sm-12">
       <%= f.label :zone_id, "Choose parent zone:" %>
       <%= f.select(:zone_id, @facilityzones,
       params[:zone_id] ? { :selected => params[:zone_id] } : { include_blank: "Select parent zone..." },
