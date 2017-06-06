@@ -1,9 +1,17 @@
+<script>
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+</script>
 <div id="user-stats">
   <div class="top-10 home-stats row">
 
     <div class="header bg-top-10">
-      <%= link_to home_user_path(current_user) do %>
 
+    <% if current_user == @user %>
+      <div class="hidden-xs">
+    <% end %>
+      <%= link_to home_user_path(current_user) do %>
         <% if @user.avatar? %>
           <%= image_tag @user.avatar.url(:medium), class: "img-profile" %>
         <% elsif @user.image? %>
@@ -12,6 +20,9 @@
           <%= image_tag @user.avatar.url(:medium), class: "img-profile" %>
         <% end %>
       <% end %>
+    <% if current_user == @user %>
+      </div>
+    <% end %>
       <h1><%= @user.name %></h1><br>
   </div>
 
@@ -36,6 +47,14 @@
         <div class="large-circle large-circle-gray responsive"><%= @ticks.length %><span class="text"><%= "attempt".pluralize(@ticks.length) %></span></div>
       </div>
     <% end %>
+
+
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive" aria-hidden="true" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="This is based on a point value for the grades you've sent plus project attempts.">
+          <%= (@ticks.ascent.includes(:grade).sum(:rank) + (@ticks.where(tick_type: "project").includes(:grade).sum(:rank) * 0.5)).to_i %>
+          <span class="text"><%= "effort score" %></span>
+        </div>
+      </div>
 
     <%= link_to user_ticks_path(@user) do %>
       <div class="circle-wrapper">

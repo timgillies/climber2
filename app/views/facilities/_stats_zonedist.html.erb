@@ -198,7 +198,7 @@
       },{
           type: 'spline',
           name: 'Target',
-          data: <%= raw raw @facility.zones.all.map {|f| [f.name, FacilityTarget.where("zone_id = ? AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
+          data: <%= raw @facility.zones.all.map {|f| [f.name, FacilityTarget.where("zone_id = ? AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
       }
     ]
     });

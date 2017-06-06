@@ -14,10 +14,7 @@ class Route < ActiveRecord::Base
   has_many :grade_systems, :through=>:grades
 
 
-
-
-
-
+  scope :with_ratings, ->{includes(:rate_average_without_dimension).order("rating_caches.avg desc")}
 
   accepts_nested_attributes_for :ticks
 
