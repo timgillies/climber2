@@ -13,7 +13,11 @@
 //= require highcharts/modules/exporting
 //= require parsley
 //= require toastr
+//= require nprogress
 
+$(document).ready(function() {
+  NProgress.start();
+});
 
 $(document).ready(function() {
 
