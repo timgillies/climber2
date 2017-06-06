@@ -14,6 +14,7 @@
 //= require parsley
 //= require toastr
 //= require nprogress
+//= require nprogress-ajax
 
 $(document).ready(function() {
   NProgress.start();
