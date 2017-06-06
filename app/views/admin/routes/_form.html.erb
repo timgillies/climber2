@@ -1,4 +1,8 @@
-
+<script>
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+</script>
 <%= form_for [:admin, @facility, @route], :html => {:class => "form-label", id: 'routeForm', :multipart => false, 'data-parsley-validate' => '', 'data-parsley-error-message' => "required" }, authenticity_token: true, remote: true do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
@@ -171,8 +175,24 @@
 
       </div>
 
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <%= f.label :total_holds, "Total Hold Count" %> <i class="fa fa-question-circle" aria-hidden="true" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="We are collecting this data to help provide analytics about number of holds used.  Please consider participating!"></i>
+          <%= f.number_field :total_holds, value: f.object.total_holds, class: 'form-control', placeholder: "# of holds (total)" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <%= f.label :foot_holds, "Count of foot holds only" %> <i class="fa fa-question-circle" aria-hidden="true" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="We are collecting this data to help provide analytics about number of holds used. Please consider participating!"></i>
+          <%= f.number_field :foot_holds, value: f.object.foot_holds, class: 'form-control', placeholder: "# of holds (feet only)" %>
+        </div>
+      </div>
+
 
       <br>
+
+
 
 
 

@@ -112,6 +112,6 @@ class Admin::ZonesController < ApplicationController
   private
 
     def zone_params
-      params.require(:zone).permit(:name, :facility_id, :user_id, :image)
+      params.require(:zone).permit(:name, :facility_id, :user_id, :height, :width, :angle, :image)
     end
   end

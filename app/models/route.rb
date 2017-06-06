@@ -214,7 +214,7 @@ scope :sorted_by, lambda { |sort_option|
   end
 
   def self.newest_ten(facility)
-    Route.where(facility_id: facility).includes(:grade, :facility, :zone).order('routes.setdate desc').limit(10)
+    Route.current.where(facility_id: facility).includes(:grade, :facility, :zone).order('routes.setdate desc').limit(10)
   end
 
 

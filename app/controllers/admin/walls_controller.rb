@@ -69,6 +69,6 @@ class Admin::WallsController < ApplicationController
   private
 
     def wall_params
-      params.require(:wall).permit(:name, :facility_id, :user_id, :vertical_ft, :zone_id)
+      params.require(:wall).permit(:name, :facility_id, :user_id, :vertical_ft, :height, :width, :angle, :zone_id)
     end
   end

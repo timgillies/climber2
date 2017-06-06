@@ -188,7 +188,7 @@ end
 
 
   def route_params
-    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :discipline, :description, :active)
+    params.require(:route).permit(:name, :color, :setdate, :enddate, :facility_id, :grade_id, :zone_id, :wall_id, :setter_id, :discipline, :description, :active, :total_holds, :foot_holds,)
   end
 
   def options_for_facility_select

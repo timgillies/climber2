@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527223637) do
+ActiveRecord::Schema.define(version: 20170606024338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,6 +267,8 @@ ActiveRecord::Schema.define(version: 20170527223637) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "color_hex"
+    t.integer  "total_holds"
+    t.integer  "foot_holds"
   end
 
   add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
@@ -455,6 +457,9 @@ ActiveRecord::Schema.define(version: 20170527223637) do
     t.integer  "user_id"
     t.integer  "vertical_ft"
     t.integer  "zone_id"
+    t.float    "height"
+    t.float    "width"
+    t.float    "angle"
   end
 
   add_index "walls", ["facility_id"], name: "index_walls_on_facility_id", using: :btree
@@ -471,6 +476,9 @@ ActiveRecord::Schema.define(version: 20170527223637) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.float    "height"
+    t.float    "width"
+    t.float    "angle"
   end
 
   add_index "zones", ["facility_id"], name: "index_zones_on_facility_id", using: :btree

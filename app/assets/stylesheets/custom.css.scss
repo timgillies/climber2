@@ -1601,7 +1601,7 @@ input {
     color: $gray-light;
     text-align: left;
   }
-  input[type=text], input[type=date], input[type=email] {
+  input[type=text], input[type=date], input[type=email], input[type=number] {
       margin-left: 4px;
       margin-right: 4px;
       border-radius: 4px;
@@ -1681,6 +1681,12 @@ select {
   .divider-line {
     border-top: 1px solid #888;
     margin-bottom: 5px;
+  }
+
+  .fa-question-circle {
+    color: #1b75bb;
+    font-size: 1.3em;
+    margin-left: 5px;
   }
 }
 
