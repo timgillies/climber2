@@ -55,7 +55,7 @@
   <% end %>
 
   <div class="header bg-top-10">
-    <h1><%= link_to "Zones", admin_facility_zones_path(@facility) %></h1>
+    <h1><%= link_to "Zones", admin_facility_zones_path(@facility) %></h1><span class="pull-right"><%= link_to "manage", admin_facility_zones_path(@facility) %></span>
   </div>
     <ul>
       <% @facility.zones.each do |zone| %>
