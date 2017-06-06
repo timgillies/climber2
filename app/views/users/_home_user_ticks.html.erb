@@ -140,11 +140,7 @@
         }
       },
       tooltip: {
-        enabled: false,
-        formatter: function() {
-          return Highcharts.dateFormat("%a %B %e, %Y", this.x) + ': ' +
-           + Highcharts.numberFormat(this.y, 0);
-        }
+        enabled: true,
       },
       legend: {
         enabled: false
@@ -155,7 +151,7 @@
         }
       },
       plotOptions: {
-        spline: {
+        area: {
           marker: {
               enabled: false
           }
@@ -184,14 +180,14 @@
       colors: [{
             linearGradient: perShapeGradient,
             stops: [
-                [0, '#2bb573'],
-                [1, '#8cc53f']
+                [0, 'rgba(0, 177, 255,.2)'],
+                [1, 'rgba(0, 177, 255,0.5)']
                 ]
             }, {
             linearGradient: perShapeGradient,
             stops: [
-                [0, '#00b1ff'],
-                [1, '#00b1ff']
+                [0, '#2bb573'],
+                [1, '#8cc53f']
                 ]
             }, {
             linearGradient: perShapeGradient,
@@ -203,17 +199,20 @@
 
       series: [
         {
+          name: "Effort",
+          type: "area",
+          pointInterval: <%= 1.day * 1000 %>,
+          pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
+          data: <% if @ticks.present? %><%= user_ticks_value_chart_series( @ticks, @ticks.first.date ) %> <% end %>
+        },
+        {
+          name: "Ticks",
           yAxis: 1,
           pointInterval: <%= 1.day * 1000 %>,
           pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
           data: <% if @ticks.present? %><%= user_ticks_chart_series( @ticks, @ticks.first.date ) %> <% end %>
         },
-        {
-          type: "spline",
-          pointInterval: <%= 1.day * 1000 %>,
-          pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
-          data: <% if @ticks.present? %><%= user_ticks_value_chart_series( @ticks, @ticks.first.date ) %> <% end %>
-        },
+
         ]
     });
   });
