@@ -26,13 +26,16 @@
       <h1><%= @user.name %></h1><br>
   </div>
 
+
   <% if @ticks.count > 0 && params[:action] == 'home' %>
     <%= render(
     partial: 'users/home_user_ticks',
     locals: { ticks: @ticks }
     ) %>
+    <div class="circle-wrapper">
+      <p>last 7 days</p>
+    </div><br>
   <% end %>
-
 
     <%= link_to user_ticks_path(@user) do %>
       <div class="circle-wrapper">
@@ -50,9 +53,9 @@
 
 
       <div class="circle-wrapper">
-        <div class="large-circle large-circle-gray responsive" aria-hidden="true" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="This is based on a point value for the grades you've sent plus project attempts.">
+        <div class="large-circle large-circle-gray responsive" aria-hidden="true" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="We know you tried hard, so we added up your effort on all of your attempts">
           <%= (@ticks.ascent.includes(:grade).sum(:rank) + (@ticks.where(tick_type: "project").includes(:grade).sum(:rank) * 0.5)).to_i %>
-          <span class="text"><%= "effort score" %></span>
+          <span class="text"><%= "try hard" %></span>
         </div>
       </div>
 

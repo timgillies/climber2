@@ -1,4 +1,4 @@
-<div id="user_ticks">
+<div id="user_grades">
 <script type="text/javascript" charset="utf-8">
   $(function() {
     var perShapeGradient = {
@@ -14,7 +14,6 @@
 
           // scale: 2 (default),
           enabled: false,
-          filename: "new_routes",
 
           buttons: {
                 contextButton: {
@@ -47,7 +46,6 @@
                     }
                 },
                 subtitle: {
-                    text:  "New Routes"
                 },
             }
 
@@ -73,8 +71,8 @@
           }
       },
       chart: {
+        renderTo: "usergradedist-<%= @user.id %>",
         backgroundColor:'transparent',
-        renderTo: "newroutes",
         spacingBottom: 35,
         type: "column",
         style: {
@@ -85,15 +83,15 @@
         text: ""
       },
       xAxis: {
-        type: "datetime",
-        tickInterval: 24 * 3600 * 1000,
+        type: 'category',
         labels: {
-          format: '{value: %a, %m/%d}'
+          enabled: true
         },
         tickLength: 0,
+        minorGridLineWidth: 0,
         minorTickLength: 0,
       },
-      yAxis: [{  // Primary yAxis
+      yAxis: {
         title: {
           text: ""
         },
@@ -107,22 +105,7 @@
         minorTickLength: 0,
         lineColor: 'transparent',
         allowDecimals: false
-      },{ // Secondary yAxis
-        title: {
-          text: ""
-        },
-        labels: {
-          enabled: false
-        },
-        tickLength: 0,
-        lineWidth: 0,
-        minorGridLineWidth: 0,
-        gridLineColor: 'transparent',
-        minorTickLength: 0,
-        lineColor: 'transparent',
-        allowDecimals: false,
-        opposite: true,
-      }],
+      },
       credits: {
         enabled: false,
         style: {
@@ -136,33 +119,28 @@
           y: -8,
         }
       },
-      tooltip: {
-
-      },
       legend: {
         enabled: false
       },
-      setOptions: {
-        global : {
-            useUTC : false
-        }
-      },
       plotOptions: {
-        areaspline: {
-          marker: {
-              enabled: false
-          }
-        },
         column: {
           borderColor: 'transparent',
-          grouping: true,
+          cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.series.options.data[this.category][2] ;
+                        }
+                    }
+                },
           dataLabels: {
             enabled: true,
             style: {
               textShadow: '0 0 0 black',
-              color: '#333',
+              color: '#444',
+              fontSize: "12px",
               fontFamily: 'Montserrat',
-              fontWeight: 'normal'
+              fontWeight: 'thin'
             },
             formatter: function() {
                 if (this.y != 0) {
@@ -177,43 +155,30 @@
       colors: [{
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgba(0, 177, 255,.2)'],
-                [1, 'rgba(0, 177, 255,0.5)']
+                [0, '#d7348c'],
+                [1, '#e32666']
                 ]
             }, {
             linearGradient: perShapeGradient,
             stops: [
-                [0, '#2bb573'],
-                [1, '#8cc53f']
-                ]
+              [0, 'rgba(0, 177, 255,.2)'],
+              [1, 'rgba(0, 177, 255,0.5)']
+              ]
             }, {
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgb(136, 219, 5)'],
-                [1, 'rgb(112, 180, 5)']
-                ]},
+              [0, 'rgba(0, 177, 255,.2)'],
+              [1, 'rgba(0, 177, 255,0.5)']
+              ]},
         ],
 
-        series: [
-          {
-            name: "Try Hard",
-            type: "areaspline",
-            pointInterval: <%= 1.day * 1000 %>,
-            pointStart: <% if ticks.present? %><%= (ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
-            data: <% if ticks.present? %><%= user_ticks_value_chart_series( ticks, ticks.first.date ) %> <% end %>
-          },
-          {
-            name: "Ticks",
-            yAxis: 1,
-            pointInterval: <%= 1.day * 1000 %>,
-            pointStart: <% if ticks.present? %><%= (ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
-            data: <% if ticks.present? %><%= user_ticks_chart_series( ticks, ticks.first.date ) %> <% end %>
-          },
-
-          ]
+      series: [{
+          type: 'column',
+          name: 'Routes',
+          data: <%= raw ticks.joins(:grade).order('grades.id ASC').pluck(:grade_id).uniq.map {|fs| [Grade.where(id: fs).first.grade, ticks.where("grade_id = ? AND user_id = ?", fs, @user.id).count, "https://www.climbconnect.com/users/#{@user.id}/ticks"] } %>
+      }]
     });
   });
 </script>
-<div id="newroutes" style="width:100%; height:200px;"></div>
-
+<div id="usergradedist-<%= @user.id %>" style="width:100%; height: 200px;"></div>
 </div>

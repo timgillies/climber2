@@ -3913,6 +3913,15 @@ input[type="checkbox"] {
   }
 }
 
+.large-circle-yellow {
+
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  color: #c5e326;
+  .text {
+    color: white;
+  }
+}
+
 .right {
   height: 50px;
   width: 50px;

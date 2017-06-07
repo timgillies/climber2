@@ -15,12 +15,21 @@
 
 
 <div class="row">
-  <div class="bg-white">
+
   <%= render(
   partial: 'ticks/user_ticks',
   locals: { ticks: @ticks }
   ) %>
-  </div>
+
+</div>
+
+<div class="row">
+
+  <%= render(
+  partial: 'ticks/usergradedist',
+  locals: { ticks: @ticks }
+  ) %>
+
 </div>
 
 

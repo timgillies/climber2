@@ -56,7 +56,7 @@
   <% unless FacilityRole.where(facility_id: @facility.id, name: ['facility_management','head_setter']).count > 0 %>
     <%= link_to new_admin_facility_subscription_path(@facility) do %>
       <div class="circle-wrapper">
-        <div class="large-circle responsive"><i class="fa fa-unlock-alt" aria-hidden="true"></i><span class="text"><%= "Manage" %></span></div>
+        <div class="large-circle large-circle-yellow responsive"><i class="fa fa-unlock-alt" aria-hidden="true"></i><span class="text"><%= "Manage" %></span></div>
       </div>
     <% end %>
   <% end %>

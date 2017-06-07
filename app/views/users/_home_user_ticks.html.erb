@@ -143,7 +143,14 @@
         enabled: true,
       },
       legend: {
-        enabled: false
+        enabled: true,
+        layout: 'horizontal',
+        align: 'center',
+
+        verticalAlign: 'bottom',
+        y: 30,
+        floating: true,
+        color: "#ffffff",
       },
       setOptions: {
         global : {
@@ -199,7 +206,7 @@
 
       series: [
         {
-          name: "Effort",
+          name: "Try Hard",
           type: "areaspline",
           pointInterval: <%= 1.day * 1000 %>,
           pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
