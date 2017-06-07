@@ -119,7 +119,6 @@
         minorTickLength: 0,
         lineColor: 'transparent',
         allowDecimals: false,
-        opposite: true,
       }],
       credits: {
         enabled: false,
@@ -200,6 +199,7 @@
         name: 'Routes',
         data: <%= raw ticks.joins(:grade).order('grades.id ASC').pluck(:grade_id).uniq.map {|fs| [Grade.where(id: fs).first.grade, ticks.where("grade_id = ? AND user_id = ?", fs, @user.id).count, "https://www.climbconnect.com/users/#{@user.id}/ticks"] } %>
           },{
+        yAxis: 1,
         type: 'column',
         name: 'Routes',
         data: <%= raw ticks.joins(:grade).order('grades.id ASC').pluck(:grade_id).uniq.map {|fs| [Grade.where(id: fs).first.grade, ticks.ascent.where("grade_id = ? AND user_id = ?", fs, @user.id).count, "https://www.climbconnect.com/users/#{@user.id}/ticks"] } %>
