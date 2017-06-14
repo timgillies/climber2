@@ -139,7 +139,7 @@ class Admin::TasksController < ApplicationController
   def activate_route
     @facility = Facility.find(params[:facility_id])
     @task = Task.find(params[:id]) # find original object
-    redirect_to(new_admin_facility_route_path(:name => @task.name, :grade_id => @task.grade_id, :color => @task.color, :color_hex => @task.color_hex, :assignee_id => @task.assignee_id, :zone_id => @task.zone_id, :wall_id => @task.wall_id, :sub_child_zone_id => @task.sub_child_zone_id, :description => @task.description, :task_id => @task.id ))
+    redirect_to(new_admin_facility_route_path(:name => @task.name, :grade_id => @task.grade_id, :color => @task.color, :color_hex => @task.color_hex, :assignee_id => @task.assignee_id, :zone_id => @task.zone_id, :wall_id => @task.wall_id, :task_id => @task.id, :description => @task.description, :sub_child_zone_id => @task.sub_child_zone_id ))
   end
 
   def complete_task

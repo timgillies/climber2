@@ -210,14 +210,14 @@
           type: "areaspline",
           pointInterval: <%= 1.day * 1000 %>,
           pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
-          data: <% if @ticks.present? %><%= user_ticks_value_chart_series( @ticks, @ticks.first.date ) %> <% end %>
+          data: <% if @ticks.present? %><%= user_ticks_value_chart_series( @ticks, 6.days.ago ) %> <% end %>
         },
         {
           name: "Ticks",
           yAxis: 1,
           pointInterval: <%= 1.day * 1000 %>,
           pointStart: <% if @ticks.present? %><%= (@ticks.first.date.at_midnight.to_i * 1000) %> <% end %>,
-          data: <% if @ticks.present? %><%= user_ticks_chart_series( @ticks, @ticks.first.date ) %> <% end %>
+          data: <% if @ticks.present? %><%= user_ticks_chart_series( @ticks, 6.days.ago ) %> <% end %>
         },
 
         ]
