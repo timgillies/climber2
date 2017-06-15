@@ -44,11 +44,22 @@ module TicksHelper
                 select("date, SUM(grades.rank) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
     attempts_by_day = ticks.where(tick_type: 'project').where(:date => start_time..Date.current).
                 group("date(date)").
-                select("date, SUM(grades.rank * .5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+                select("date, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
       (start_time.to_date..Date.current).map do |date|
         tick = (sends_by_day + attempts_by_day).detect { |tick| tick.date.to_date == date }
         tick && tick.tick_count.to_f || 0
-      end.inspect
+      end
+
+  end
+
+  def user_projects_value_chart_series(ticks, start_time)
+    attempts_by_day = ticks.where(tick_type: 'project').where(:date => start_time..Date.current).
+                group("date(date)").
+                select("date, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+      (start_time.to_date..Date.current).map do |date|
+        tick = (attempts_by_day).detect { |tick| tick.date.to_date == date }
+        tick && tick.tick_count.to_f || 0
+      end
 
   end
 
