@@ -141,7 +141,7 @@ class UsersController < ApplicationController
   # Confirms the correct user
   def correct_user
     @user = User.find(params[:id])
-    unless (current_user == @user || current_user.role == "site_admin")
+    unless user_signed_in? && (current_user == @user || current_user.role == "site_admin")
     redirect_to(root_url)
     flash[:warning] = "You can't access that!"
     end
