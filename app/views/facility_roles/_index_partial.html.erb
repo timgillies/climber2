@@ -1,55 +1,48 @@
 <div>
   <div class="row">
     <div class="routelist-header bg-blue-gradient">
-      <h1><strong>My Facilities</strong> </h1>
+      <h1><strong>Facilities</strong> </h1>
     </div>
-  </div>
-  <div class="row">
-    <%= render 'facility_roles/facility_role', object: @facility_roles %>
   </div>
   <br>
   <div class="row">
-    <div class="routelist-header bg-blue-gradient">
-      <h1><strong>All Facilities</strong> </h1>
-    </div>
-  </div>
-  <div class="row">
-    <%= form_for_filterrific @filterrific do |f| %>
-    <div>
-      <br>
-          <div class="container-fluid bg-routeform">
-            <div class="gray-labels">
-              <div class="row">
-                <div class="col-xs-12 col-sm-8">
-                  <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-                  <div class="form-group">
-                    <%= f.text_field(
-                      :facility_search_query,
-                      placeholder: '  Search by Name',
-                      class: 'filterrific-periodically-observed form-control'
+    <div class="top-10 home-stats facility-list left-margin row">
+      <%= form_for_filterrific @filterrific do |f| %>
+      <div>
+        <br>
+            <div class="container-fluid">
+              <div class="gray-labels">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-8">
+                    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+                    <div class="form-group">
+                      <%= f.text_field(
+                        :facility_search_query,
+                        placeholder: " Search by name ...",
+                        class: 'filterrific-periodically-observed form-control'
+                      )%>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-4">
+                    <%= f.select(
+                      :with_state,
+                      @filterrific.select_options[:with_state],
+                      { include_blank: 'state' },
+                      {class: "form-control"}
                     ) %>
                   </div>
                 </div>
-
-                <div class="col-xs-6 col-sm-4">
-                  <%= f.select(
-                    :with_state,
-                    @filterrific.select_options[:with_state],
-                    { include_blank: 'state' },
-                    {class: "form-control"}
-                  ) %>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-8">
-                  <%= link_to "Add new", new_admin_facility_path(@facility) %>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-8">
+                    <%= link_to "Add new", new_admin_facility_path(@facility) %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-    <% end %>
-
+      <% end %>
     <%= render 'facility_roles/facility_list', object: @facilities %>
+  </div>
   </div>
 </div>

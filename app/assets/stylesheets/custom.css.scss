@@ -3946,6 +3946,11 @@ input[type="checkbox"] {
   }
 }
 
+.right-claim {
+  right: 60px;
+
+}
+
 .route-count {
   height: 50px;
   width: 50px;
@@ -3983,7 +3988,7 @@ input[type="checkbox"] {
   color: #47cf73;
   margin: 0px;
   @media (min-width: 768px) {
-    right: 75px;
+    left: 175px;
   }
   @media (max-width: 768px) {
     left: 150px;
@@ -4072,6 +4077,11 @@ input[type="checkbox"] {
     font-size: 2.0em;
   }
 
+}
+
+.facility-list {
+  color: #eee;
+  background: #a9a9a9;
 }
 
 .climber {

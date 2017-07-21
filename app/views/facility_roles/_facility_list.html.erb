@@ -1,54 +1,77 @@
+
 <div id="filterrific_facility_results">
-<br>
-  <%= div_for(@facilities.where(public: true)) do |f| %>
-    <ol class="routelist">
-      <li style="border: none;">
-        <div class="col-sm-12">
-          <div class="container-fluid">
-            <div class="row">
-              <br/>
-              <%= link_to facility_path(f) do %>
-              <div class="col-xs-9 col-sm-6">
-                <div class="row">
-                <h3>
-                  <% if FacilityRole.where("facility_id = ? and user_id = ?", f.id, @user.id).count > 0 %>
-                  <span class="glyphicon glyphicon-ok glyphicon-green"></span>
-                  <% end %>
-                  <%= f.name %>
-                </h3>
-                </div>
-                <% end %>
-                <div class="row">
-                  <p><%= f.addressline1 + " " + f.city + ", " + f.state %></p>
-                </div>
-              </div>
+  <div class="header bg-top-10">
+    <h1>facilities</h1>
+  </div>
+  <ul>
+    <% (@facilities.joins(:facility_roles).group('facilities.id').order('count(facility_roles.user_id) DESC').where('facility_roles.user_id = ?', current_user.id).where(public: true) + @facilities.order('state ASC, city ASC').where(public: true)).uniq.each do |facility| %>
+      <%= link_to facility_path(facility) do %>
+        <li>
+          <p><strong><%= facility.name %></strong>
+            <small><%= (" " + facility.location) if facility.location %></small></p>
+          <p><small>
+            <%= facility.addressline1 if facility.addressline1 %>
+            <%= facility.city if facility.city %>
+            <%= facility.state if facility.state %>
+            <%= facility.zipcode if facility.zipcode %>
+          </small></p>
+           <br>
+          <%= (image_tag(facility.logo_image.url(:medium), class: "img-facility-logo-list-left")) if facility.logo_image%>
 
-
-                <div id="use_system_form">
-
-                    <% if FacilityRole.where("facility_id = ? and user_id = ?", f.id, @user.id).count > 0 %>
-
-                    <% else %>
-                    <%= render 'join_facility', :f => f %>
-                    <% end %>
-                </div>
-                <div class="col-xs-6 col-sm-3 col-md-3 no-print">
-                  <div class="row pull-right">
-                    <% unless FacilityRole.where(facility_id: f.id, name: ['facility_management','head_setter']).count > 0 %>
-
-                      <%= link_to "manage", new_admin_facility_subscription_path(f), class: "btn btn-expire btn-md" %>
-
-                    <% end %>
-                  </div>
-                </div>
-
-
-
-            </div>
+          <div class="circle-wrapper">
+            <div class="large-circle route-count responsive"><%= facility.routes.current.count %><span class="text"><%= "routes" %></span></div>
           </div>
-        </div>
-      </li>
-    </ol>
-  <% end %>
-    <%= paginate @facilities %>
+
+          <div class="circle-wrapper">
+            <div class="large-circle follower-count responsive">
+              <% if FacilityRole.where(facility: facility).count > 0 %>
+                <%= FacilityRole.where(facility: facility).count %>
+              <% else %>
+              0
+              <% end %>
+
+              <span class="text"><%= "climbers" %></span></div>
+          </div>
+
+          <% if FacilityRole.where(facility: facility).where.not(name: 'climber').count == 0 %>
+
+            <%= link_to new_admin_facility_subscription_path(facility) do %>
+              <div class="circle-wrapper">
+                <div class="large-circle right right-claim responsive"><i class="fa fa-hand-paper-o" aria-hidden="true"></i><span class="text"><%= " claim" %></span></div>
+              </div>
+            <% end %>
+
+          <% end %>
+
+            <% if FacilityRole.where(user: current_user, facility: facility).where.not(name: 'climber').count > 0 %>
+
+            <%= link_to admin_facility_path(facility) do %>
+              <div class="circle-wrapper">
+                <div class="large-circle right responsive"><i class="fa fa-dashboard" aria-hidden="true"></i><span class="text"><%= " admin" %></span></div>
+              </div>
+            <% end %>
+
+            <% elsif FacilityRole.where(user: current_user, facility: facility).where(name: 'climber').count == 0 %>
+
+            <%= link_to user_facility_follow_facility_path(current_user, facility), method: :follow_facility do %>
+              <div class="circle-wrapper">
+                <div class="large-circle right responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= " follow" %></span></div>
+              </div>
+            <% end %>
+
+            <% else %>
+
+            <%= link_to user_facility_unfollow_facility_path(current_user, facility), method: :unfollow_facility do %>
+              <div class="circle-wrapper">
+                <div class="large-circle right green responsive"><i class="fa fa-check" aria-hidden="true"></i><span class="text"><%= " following" %></span></div>
+              </div>
+            <% end %>
+
+            <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
 </div>
+
+<%= paginate @facilities %>
