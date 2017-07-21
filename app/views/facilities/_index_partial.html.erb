@@ -1,9 +1,18 @@
 <div class="container-fluid">
   <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1><strong>ALL</strong>Facilities</h1>
+    </div>
+    <br>
     <%= form_for_filterrific @filterrific do |f| %>
     <div>
-          <div class="container-fluid bg-blue-gradient">
+      <div class="top-10 home-stats left-margin facility-list row">
             <div class="gray-labels">
+
+            <div class="header bg-top-10">
+              <h1>search</h1>
+            </div>
+
               <div class="row">
                 <div class="col-xs-12 col-sm-8">
                   <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
@@ -26,13 +35,12 @@
                 </div>
               </div>
             </div>
+            <%= render 'facilities/facility_list', object: @facilities %>
           </div>
+          <%= paginate @facilities %>
         </div>
     <% end %>
   </div>
 </div>
 
 <br>
-
-
-    <%= render 'facilities/facility_list', object: @facilities %>

@@ -8,6 +8,22 @@
 
 <br/>
 
+<div class="row">
+  <div class="col-xs-12">
+    <div class="headliner">
+      <strong><%= @facility.name %></strong><br>
+      <%= @facility.location if @facility.location %>
+      <%= @facility.addressline1 if @facility.addressline1 %>
+      <%= @facility.addressline2 if @facility.addressline2 %>
+      <%= @facility.city if @facility.city %>
+      <%= @facility.state if @facility.state %>
+      <%= @facility.zipcode if @facility.zipcode %>
+    </div>
+  </div>
+</div>
+
+<br>
+
 
 <div class="row">
   <div class="col-xs-12">

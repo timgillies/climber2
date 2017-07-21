@@ -73,7 +73,7 @@
 
         <% else %>
 
-        <li><%= link_to "Features & Details", root_url + "#features" %></li>
+        <li><%= link_to "Browse Facilities", facilities_path %></li>
 
         <li>
           <%= link_to "Management Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>

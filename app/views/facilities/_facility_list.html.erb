@@ -1,9 +1,5 @@
 <div id="filterrific_facility_public_results">
-  <div class="top-10 home-stats left-margin row">
-
-    <div class="header bg-top-10">
-      <h1>facilities</h1>
-    </div>
+  <br>
     <ul>
       <% (@facilities.joins(:routes).group('facilities.id').order('count(routes.id) DESC').where(public: true) + @facilities.order('state ASC, city ASC').where(public: true)).uniq.each do |facility| %>
         <%= link_to facility_path(facility) do %>
@@ -34,16 +30,29 @@
                 <span class="text"><%= "climbers" %></span></div>
             </div>
 
-            <% if FacilityRole.where(facility: facility).where.not(name: 'climber').count == 0 %>
+            <% unless user_signed_in? %>
+              <% if FacilityRole.where(facility: facility).where.not(name: 'climber').count == 0 %>
 
-              <%= link_to new_admin_facility_subscription_path(facility) do %>
-                <div class="circle-wrapper">
-                  <div class="large-circle right right-claim responsive"><i class="fa fa-hand-paper-o" aria-hidden="true"></i><span class="text"><%= " claim" %></span></div>
-                </div>
+                <%= link_to new_admin_facility_subscription_path(facility) do %>
+                  <div class="circle-wrapper">
+                    <div class="large-circle right right responsive"><i class="fa fa-hand-paper-o" aria-hidden="true"></i><span class="text"><%= " claim" %></span></div>
+                  </div>
+                <% end %>
+
               <% end %>
+            <% else %>
+              <% if FacilityRole.where(facility: facility).where.not(name: 'climber').count == 0 %>
 
+                <%= link_to new_admin_facility_subscription_path(facility) do %>
+                  <div class="circle-wrapper">
+                    <div class="large-circle right-claim responsive"><i class="fa fa-hand-paper-o" aria-hidden="true"></i><span class="text"><%= " claim" %></span></div>
+                  </div>
+                <% end %>
+
+              <% end %>
             <% end %>
 
+            <% if user_signed_in? %>
               <% if FacilityRole.where(user: current_user, facility: facility).where.not(name: 'climber').count > 0 %>
 
               <%= link_to admin_facility_path(facility) do %>
@@ -69,11 +78,11 @@
               <% end %>
 
               <% end %>
+
+            <% end %>
           </li>
         <% end %>
       <% end %>
     </ul>
-  </div>
 
-  <%= paginate @facilities %>
 </div>
