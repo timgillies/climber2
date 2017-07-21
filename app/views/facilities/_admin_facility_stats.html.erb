@@ -86,7 +86,7 @@
 
     <%= link_to admin_facility_grades_path(@facility) do %>
       <div class="circle-wrapper">
-        <div class="large-circle responsive"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i><span class="text"><%= "grading" %></span></div>
+        <div class="large-circle responsive"><i class="fa fa-tasks" aria-hidden="true"></i><span class="text"><%= "grading" %></span></div>
       </div>
     <% end %>
 
@@ -110,10 +110,6 @@
     <% unless params[:action] == 'show' %>
     </div>
     <% end %>
-
- <% unless @facility.demo? %>
-    <%= render 'facilities/follow_button' %>
-  <% end %>
 
 </div>
 
