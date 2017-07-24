@@ -4,13 +4,45 @@ class UsersController < ApplicationController
   before_action :site_admin, only: [:manage_users]
 
   include UsersHelper
+  include FacilitiesHelper
+
 
   layout 'user', except: [:manage_users]
 
   def index
-    @users = User.page(params[:page]).per(25)
     @user = current_user
+
+    @filterrific = initialize_filterrific(
+        User,
+        params[:filterrific],
+        select_options: {
+          with_facility: options_for_state_select,
+        },
+        persistence_id: false,
+      ) or return
+      # Get an ActiveRecord::Relation for all students that match the filter settings.
+      # You can paginate with will_paginate or kaminari.
+      # NOte: filterrific_find returns an ActiveRecord Relation that can be
+      # chained with other scopes to further narrow down the scope of the list,
+      # e.g., to apply permissions or to hard coded exclude certain types of records.
+      @users = User.filterrific_find(@filterrific).page(params[:page]).per(50)
+
+      # Respond to html for initial page load and to js for AJAX filter updates.
+      respond_to do |format|
+        format.html
+        format.js
+      end
+
+    # Recover from invalid param sets, e.g., when a filter refers to the
+    # database id of a record that doesn’t exist any more.
+    # In this case we reset filterrific and discard all filter params.
+    rescue ActiveRecord::RecordNotFound => e
+      # There is an issue with the persisted param_set. Reset it.
+      puts "Had to reset filterrific params: #{ e.message }"
+      redirect_to(reset_filterrific_url(format: :html)) and return
   end
+
+
 
   def show
     @user = User.find(params[:id])
@@ -146,6 +178,12 @@ class UsersController < ApplicationController
     flash[:warning] = "You can't access that!"
     end
 
+  end
+
+  def options_for_state_select
+
+    Facility.all.map{ |f| [f.name, f.id] }
+    # provides the list of available grades in the route list filters
   end
 
 end

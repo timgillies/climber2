@@ -64,6 +64,50 @@ class User < ActiveRecord::Base
     User.where(id: Tick.ascent.where('ticks.created_at > ?', 6.days.ago.to_date).where(route_id: Route.where(facility_id: facility)).includes(:grade).grade_desc.map { |t| t.user_id}).limit(10)
   end
 
+  filterrific(
+  default_filter_params: {  },
+  available_filters: [
+    :user_search_query,
+    :with_facility,
+  ]
+  )
+
+  # define ActiveRecord scopes for
+  # :search_query, :sorted_by, :with_country_id, and :with_created_at_gte
+
+  scope :user_search_query, lambda { |query|
+    # Searches the students table on the 'first_name' and 'last_name' columns.
+    # Matches using LIKE, automatically appends '%' to each term.
+    # LIKE is case INsensitive with MySQL, however it is case
+    # sensitive with PostGreSQL. To make it work in both worlds,
+    # we downcase everything.
+    return nil  if query.blank?
+
+    # condition query, parse into individual keywords
+    terms = query.downcase.split(/\s+/)
+
+    # replace "*" with "%" for wildcard searches,
+    # append '%', remove duplicate '%'s
+
+    terms = terms.map { |e| ('%'+e.gsub('*','%')+'%').gsub(/%+/, '%') }
+    # configure number of OR conditions for provision
+    # of interpolation arguments. Adjust this if you
+    # change the number of OR conditions.
+    num_or_conds = 1
+    where(
+      terms.map { |term|
+        "(LOWER(users.name) LIKE ?)"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conds }.flatten
+    )
+  }
+
+
+
+  scope :with_facility, lambda { |facility|
+      joins(:facility_roles).where( 'facility_roles.facility_id = ?', facility)
+  }
+
 
   private
 

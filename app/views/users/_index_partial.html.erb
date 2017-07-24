@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1><strong>Users</strong>List</h1>
+    </div>
+    <br>
+    <%= form_for_filterrific @filterrific do |f| %>
+    <div>
+      <div class="top-10 home-stats left-margin facility-list row">
+            <div class="gray-labels">
+
+            <div class="header bg-top-10">
+              <h1>search</h1>
+            </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                  <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+                  <div class="form-group">
+                    <%= f.text_field(
+                      :user_search_query,
+                      placeholder: '  Search by Name',
+                      class: 'filterrific-periodically-observed form-control'
+                    ) %>
+                  </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-4">
+                  <%= f.select(
+                    :with_facility,
+                    @filterrific.select_options[:with_facility],
+                    { include_blank: 'facility' },
+                    {class: "form-control"}
+                  ) %>
+                </div>
+              </div>
+            </div>
+            <%= render 'users/user_list', object: @users %>
+          </div>
+          <%= paginate @users %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<br>

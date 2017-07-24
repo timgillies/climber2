@@ -1,0 +1,50 @@
+<div id="filterrific_user_public_results">
+  <br>
+    <ul>
+      <% (@users.joins(:ticks).group('users.id').order('count(ticks.id) DESC') + @users.order('name ASC')).uniq.each do |user| %>
+        <%= link_to user_path(user) do %>
+          <li>
+            <p><strong><%= user.name %></strong></p>
+            <p><small>
+              <% if user.zip.present? %>
+              <%= user.zip.to_region if user.zip %>
+              <% end %>
+            </small></p>
+             <br>
+             <% if user.avatar? %>
+             <%= image_tag user.avatar.url(:thumb), class: "img-userlist-icon" %>
+             <% elsif user.image? %>
+             <%= image_tag user.image ,:class=> "img-userlist-icon" %>
+             <% end %>
+
+            <div class="circle-wrapper">
+              <div class="large-circle route-count responsive"><%= user.ticks.ascent.count %><span class="text"><%= "ascents" %></span></div>
+            </div>
+
+            <div class="circle-wrapper">
+              <div class="large-circle follower-count responsive">
+
+                  <%= user.facility_roles.count %>
+
+                <span class="text"><%= "facilities" %></span></div>
+            </div>
+
+
+            <!---
+            <% if user_signed_in? %>
+
+              <%= link_to user_path(user) do %>
+                <div class="circle-wrapper">
+                  <div class="large-circle right responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= " follow" %></span></div>
+                </div>
+              <% end %>
+
+            <% end %>
+            --->
+
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+</div>

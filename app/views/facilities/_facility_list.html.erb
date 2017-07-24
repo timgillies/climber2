@@ -35,11 +35,18 @@
 
                 <%= link_to new_admin_facility_subscription_path(facility) do %>
                   <div class="circle-wrapper">
-                    <div class="large-circle right right responsive"><i class="fa fa-hand-paper-o" aria-hidden="true"></i><span class="text"><%= " claim" %></span></div>
+                    <div class="large-circle right right-claim responsive"><i class="fa fa-hand-paper-o" aria-hidden="true"></i><span class="text"><%= " claim" %></span></div>
                   </div>
                 <% end %>
 
               <% end %>
+
+              <%= link_to facility_path(facility) do %>
+                <div class="circle-wrapper">
+                  <div class="large-circle right responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= " follow" %></span></div>
+                </div>
+              <% end %>
+
             <% else %>
               <% if FacilityRole.where(facility: facility).where.not(name: 'climber').count == 0 %>
 
