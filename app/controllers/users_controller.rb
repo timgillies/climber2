@@ -174,14 +174,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @relationship = Relationship.find_by(follower_id: current_user.id, followed_id: @user.id)
     @relationship.destroy
-    if @relationship.save
-      respond_to do |format|
-        format.html {redirect_to @users}
-        format.js
-      end
-    else
-      redirect_to @users
+    respond_to do |format|
+      format.html {redirect_to @users}
+      format.js
     end
+
   end
 
 
