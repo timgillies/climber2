@@ -2,7 +2,7 @@
     <ul class="white-list">
       <div class="row">
       <div class="container-fluid">
-      <% (@users.joins(:ticks).group('users.id').order('count(ticks.id) DESC') + @users.order('name ASC')).uniq.each do |user| %>
+      <% (@users.joins(:ticks).group('users.id').order('count(ticks.id) DESC')).each do |user| %>
         <%= link_to user_path(user) do %>
           <li>
             <strong class="tab-text-top"><%= user.name %></strong>
