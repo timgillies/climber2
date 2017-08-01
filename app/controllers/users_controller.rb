@@ -161,11 +161,12 @@ class UsersController < ApplicationController
     @relationship = Relationship.new(follower_id: current_user.id, followed_id: @user.id)
     @relationship.save
     if @relationship.save
-      flash[:success] = "You are now following #{ @user.name }"
-      redirect_to (users_path)
+      respond_to do |format|
+        format.html {redirect_to @users}
+        format.js
+      end
     else
-      flash[:error] = "You are not following #{ @user.name }.  Try again"
-      redirect_to (users_path)
+      redirect_to @users
     end
   end
 
@@ -173,8 +174,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @relationship = Relationship.find_by(follower_id: current_user.id, followed_id: @user.id)
     @relationship.destroy
-    flash[:success] = "Unfollowed"
-    redirect_to users_path
+    if @relationship.save
+      respond_to do |format|
+        format.html {redirect_to @users}
+        format.js
+      end
+    else
+      redirect_to @users
+    end
   end
 
 
