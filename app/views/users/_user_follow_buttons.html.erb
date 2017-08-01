@@ -4,7 +4,7 @@
 
 
 
-<%= link_to follow_user_path(user), method: :follow do %>
+<%= link_to follow_user_path(user), method: :post, remote: true do %>
 <div class="">
   <div class="large-circle userlist-follow route-count-dark-text responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "follow" %></span></div>
 </div>
@@ -16,7 +16,7 @@
 
 <% if current_user.active_relationships.find_by(followed_id: user.id) %>
 
-  <%= link_to unfollow_user_path(user), method: :follow  do %>
+  <%= link_to unfollow_user_path(user), method: :post, remote: true  do %>
 
 
   <div class="">
