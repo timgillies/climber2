@@ -154,16 +154,34 @@ end
     @user = User.find(params[:user_id])
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'flash', date: Date.current)
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
     @tick.save
-    redirect_to (user_route_tick_path(current_user, @route, @tick))
+    if @tick.save
+      respond_to do |format|
+        format.html {redirect_to user_routes_path(@user)}
+        format.js
+      end
+    else
+      redirect_to user_routes_path(@user)
+    end
   end
 
   def quick_redpoint
     @user = User.find(params[:user_id])
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'redpoint', date: Date.current)
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
     @tick.save
-    redirect_to (user_route_tick_path(current_user, @route, @tick))
+    if @tick.save
+      respond_to do |format|
+        format.html {redirect_to user_routes_path(@user)}
+        format.js
+      end
+    else
+      redirect_to user_routes_path(@user)
+    end
   end
 
   def quick_project
@@ -171,7 +189,17 @@ end
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'project', date: Date.current)
     @tick.save
-    redirect_to (user_route_tick_path(current_user, @route, @tick))
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
+    @tick.save
+    if @tick.save
+      respond_to do |format|
+        format.html {redirect_to user_routes_path(@user)}
+        format.js
+      end
+    else
+      redirect_to user_routes_path(@user)
+    end
   end
 
   def quick_tick

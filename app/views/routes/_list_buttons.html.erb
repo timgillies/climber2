@@ -5,7 +5,7 @@
     <div class="row">
 
       <div class="circle-wrapper">
-        <%= button_to quick_project_user_route_path(current_user, f), method: :quick_project, class: 'btn btn-pretick btn-md', remote: true do %>
+        <%= button_to quick_project_user_route_path(current_user, f), method: :post, class: 'btn btn-pretick btn-md', remote: true do %>
         <% unless Tick.send_type_count(f, current_user, "project") > 0 %>
           <div class="tick-circle">
         <% else %>
@@ -20,7 +20,7 @@
 
       <div class="circle-wrapper">
 
-        <%= button_to quick_redpoint_user_route_path(current_user, f), method: :quick_redpoint, class: 'btn btn-pretick btn-md', remote: true do %>
+        <%= button_to quick_redpoint_user_route_path(current_user, f), method: :post, class: 'btn btn-pretick btn-md', remote: true do %>
 
         <% unless Tick.send_type_count(f, current_user, "redpoint") > 0 %>
           <div class="tick-circle">
@@ -36,7 +36,7 @@
 
       <div class="circle-wrapper">
 
-        <%= button_to quick_flash_user_route_path(current_user, f), method: :quick_flash, class: 'btn btn-pretick btn-md', remote: true do %>
+        <%= button_to quick_flash_user_route_path(current_user, f), method: :post, class: 'btn btn-pretick btn-md', remote: true do %>
         <% unless Tick.send_type_count(f, current_user, "flash") > 0 %>
           <div class="tick-circle">
         <% else %>

@@ -1,0 +1,57 @@
+<div id="user-stats">
+  <% if @ticks.count > 0 && params[:action] == 'home' %>
+    <%= render(
+    partial: 'users/home_user_ticks',
+    locals: { ticks: @ticks }
+    ) %>
+    <div class="circle-wrapper">
+      <p>last 7 days</p>
+    </div><br>
+  <% end %>
+
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+        <%= @ticks.total_send_overall_count(@user, "project").length %><span class="text"><%= "ascent".pluralize(@ticks.total_send_overall_count(@user, "project").length) %></span></div>
+      </div>
+    <% end %>
+
+
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive"><%= @ticks.length %><span class="text"><%= "attempt".pluralize(@ticks.length) %></span></div>
+      </div>
+    <% end %>
+
+
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive" aria-hidden="true" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="We know you tried hard, so we added up your effort on all of your attempts">
+          <%= (@ticks.ascent.includes(:grade).sum(:rank) + (@ticks.where(tick_type: "project").includes(:grade).sum(:rank) * 0.5)).to_i %>
+          <span class="text"><%= "try hard" %></span>
+        </div>
+      </div>
+
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <% if @ticks.present? %>
+            <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").length.to_f)/(@ticks.length.to_f)*100), precision: 0) %>
+          <% else %>
+              0
+          <% end %>
+        <span class="text"><%= "send rate" %></span></div>
+      </div>
+    <% end %>
+
+    <%= link_to user_ticks_path(@user) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <% if @ticks.hardest_send(@user) %>
+          <%= @ticks.hardest_send(@user).grade %>
+          <% else %>
+          N/A
+          <% end %>
+          <span class="text">hardest</span></div>
+      </div>
+    <% end %>
+  </div>
