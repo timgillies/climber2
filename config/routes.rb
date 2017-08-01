@@ -30,6 +30,14 @@ Rails.application.routes.draw do
     collection do #collection gets index of users rather than specific tick ID
       get :manage_users
     end
+    member do
+      get :following, :followers
+    end
+
+    member do
+      post :follow #output path - user/:id/follow
+      post :unfollow #output path - user/:id/unfollow
+    end
 
     resources :ticks do
       collection do #collection gets index of ticks rather than specific tick ID
@@ -64,15 +72,13 @@ Rails.application.routes.draw do
   post 'admin/subscriptions/webhook'      => 'admin/subscriptions#webhook' #webhook for Stripe
   # post 'admin/facilities/:facility_id/routes/mass_expire'      => 'admin/routes#mass_expire' #webhook for Stripe
 
+  resources :relationships,       only: [:create, :destroy]
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :grade_systems do
       resources :grades
     end
-
-
-
 
     resources :facilities do
       resources :routes do

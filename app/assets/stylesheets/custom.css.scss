@@ -829,6 +829,7 @@ input {
 .img-userlist-icon {
   height: 75px;
   border-radius: 6px;
+
 }
 
 .users {
@@ -4010,6 +4011,60 @@ input[type="checkbox"] {
   }
 }
 
+.userlist-follow {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: transparent;
+  color: #a9a9a9;
+  margin: 0px;
+  border: none;
+  @media (min-width: 768px) {
+    right: 10px;
+  }
+  @media (max-width: 768px) {
+    right: 10px;
+  }
+  top: 10px;
+  position: absolute;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+
+  }
+}
+
+.top-right-position {
+  @media (min-width: 768px) {
+    right: 15px;
+  }
+  @media (max-width: 768px) {
+    right: 15px;
+  }
+  top: 15px;
+  position: absolute;
+
+}
+
+.bottom-right-position {
+  @media (min-width: 768px) {
+    right: 15px;
+  }
+  @media (max-width: 768px) {
+    right: 15px;
+  }
+  bottom: 10px;
+  position: absolute;
+
+}
+
 .tick-circle {
   height: 50px;
   width: 50px;
@@ -4087,6 +4142,39 @@ input[type="checkbox"] {
 .facility-list {
   color: #eee;
   background: #a9a9a9;
+}
+
+.white-list {
+  color: #222;
+  background: #a9a9a9;
+  .tab-text-top {
+    position: absolute;
+    top: 10px;
+    left: 110px;
+  }
+  .tab-text-bottom {
+    position: absolute;
+    top: 25px;
+    left: 110px;
+  }
+
+  p {
+    color: #666;
+  }
+  li {
+    background: #eee;
+    color: #666;
+    a, a:visited {
+      color: #666;
+    }
+  }
+
+  .route-count-dark-text {
+    .text {
+      color: #666;
+    }
+  }
+
 }
 
 .admin-sidebar {

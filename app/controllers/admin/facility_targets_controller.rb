@@ -1,10 +1,10 @@
 class Admin::FacilityTargetsController < ApplicationController
     before_action :authenticate_user!,        only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
     before_action :facility_admin,            only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
+    before_action :demo_facility,             except: [:index, :show, :new]
     before_action :setter_role,               only: [:destroy], :unless => :facility_is_demo
     before_action :guest_role,                only: [:index, :show, :new, :create, :edit, :update, :destroy], :unless => :facility_is_demo
     before_action :marketing_role,            except: [:index, :show], :unless => :facility_is_demo
-    before_action :demo_facility,             except: [:index, :show, :new]
 
 
     include FacilityTargetsHelper

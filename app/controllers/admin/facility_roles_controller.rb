@@ -1,10 +1,10 @@
 class Admin::FacilityRolesController < ApplicationController
   before_action :authenticate_user!,        only: [:index, :new, :edit, :update, :destroy], :unless => :facility_is_demo
   before_action :facility_admin,            only: [:index, :edit, :update, :destroy], :unless => :facility_is_demo
+  before_action :demo_facility,             except: [:index, :show, :new]
   before_action :setter_role,               except: [:index, :show]
   before_action :guest_role,               except: [:index, :show]
   before_action :marketing_role,            except: [:index, :show]
-  before_action :demo_facility,             except: [:index, :show, :new]
 
 
 

@@ -1,0 +1,30 @@
+<div id="follow_buttons_<%= user.id %>">
+<% unless current_user.active_relationships.find_by(followed_id: user.id) || current_user == user %>
+
+
+
+
+<%= link_to follow_user_path(user), method: :follow do %>
+<div class="">
+  <div class="large-circle userlist-follow route-count-dark-text responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "follow" %></span></div>
+</div>
+
+<% end %>
+
+
+<% else %>
+
+<% if current_user.active_relationships.find_by(followed_id: user.id) %>
+
+  <%= link_to unfollow_user_path(user), method: :follow  do %>
+
+
+  <div class="">
+    <div class="large-circle userlist-follow route-count-dark-text responsive"><i class="fa fa-check" aria-hidden="true"></i><span class="text"><%= "following" %></span></div>
+  </div>
+
+  <% end %>
+<% end %>
+
+<% end %>
+</div>

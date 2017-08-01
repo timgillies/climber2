@@ -1,10 +1,10 @@
 class Admin::FacilityGradeSystemsController < ApplicationController
   before_action :authenticate_user!,        only: [:create, :destroy], :unless => :facility_is_demo
   before_action :facility_admin,            only: [:create, :destroy], :unless => :facility_is_demo
+  before_action :demo_facility,             except: [:index, :show, :new]
   before_action :setter_role,               only: [:create, :destroy], :unless => :facility_is_demo# using "only" will exclude these actions, "except" will allow
   before_action :guest_role,               only: [:create, :destroy], :unless => :facility_is_demo # using "only" will exclude these actions, "except" will allow
   before_action :marketing_role,            only: [:create, :destroy], :unless => :facility_is_demo # using "only" will exclude these actions, "except" will allow
-  before_action :demo_facility,             except: [:index, :show, :new]
 
 
   layout "admin", only: [:index]

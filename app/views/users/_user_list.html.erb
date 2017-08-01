@@ -1,50 +1,43 @@
 <div id="filterrific_user_public_results">
-  <br>
-    <ul>
+    <ul class="white-list">
+      <div class="row">
+      <div class="container-fluid">
       <% (@users.joins(:ticks).group('users.id').order('count(ticks.id) DESC') + @users.order('name ASC')).uniq.each do |user| %>
         <%= link_to user_path(user) do %>
           <li>
-            <p><strong><%= user.name %></strong></p>
-            <p><small>
+            <strong class="tab-text-top"><%= user.name %></strong>
+            <p class="tab-text-bottom"><small>
               <% if user.zip.present? %>
               <%= user.zip.to_region if user.zip %>
               <% end %>
             </small></p>
-             <br>
              <% if user.avatar? %>
              <%= image_tag user.avatar.url(:thumb), class: "img-userlist-icon" %>
              <% elsif user.image? %>
              <%= image_tag user.image ,:class=> "img-userlist-icon" %>
+             <% else %>
+             <%= image_tag user.avatar.url(:thumb), class: "img-userlist-icon" %>
              <% end %>
 
             <div class="circle-wrapper">
-              <div class="large-circle route-count responsive"><%= user.ticks.ascent.count %><span class="text"><%= "ascents" %></span></div>
+              <div class="large-circle route-count route-count-dark-text responsive"><%= user.ticks.ascent.count %><span class="text"><%= "ascents" %></span></div>
             </div>
 
             <div class="circle-wrapper">
-              <div class="large-circle follower-count responsive">
+              <div class="large-circle follower-count route-count-dark-text responsive">
 
                   <%= user.facility_roles.count %>
 
                 <span class="text"><%= "facilities" %></span></div>
             </div>
 
-
-            <!---
-            <% if user_signed_in? %>
-
-              <%= link_to user_path(user) do %>
-                <div class="circle-wrapper">
-                  <div class="large-circle right responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= " follow" %></span></div>
-                </div>
-              <% end %>
-
-            <% end %>
-            --->
+            <%= render 'users/user_follow_buttons', user: user %>
 
           </li>
         <% end %>
       <% end %>
+      </div>
+    </div>
     </ul>
 
 </div>
