@@ -12,9 +12,11 @@ class Route < ActiveRecord::Base
   belongs_to :rating_cache
   has_many :custom_colors, {:through=>:facilities, :source=>:custom_color}
   has_many :grade_systems, :through=>:grades
+  belongs_to :competition
 
 
   scope :with_ratings, ->{includes(:rate_average_without_dimension).order("rating_caches.avg desc")}
+  default_scope -> { order(enddate: :desc) }
 
   accepts_nested_attributes_for :ticks
 

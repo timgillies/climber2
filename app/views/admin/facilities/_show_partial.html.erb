@@ -10,6 +10,15 @@
 
   <% else %>
   <br>
+  <div class="col-sm-6">
+    <div class="routelist">
+      <div class="row">
+      <h3>Routes by Zone</h3>
+
+        <%= render 'facilities/zonedist' %>
+      </div>
+    </div>
+  </div>
     <% @facility_systems.each do |fs| %>
 
 
@@ -32,15 +41,7 @@
 
     <% end %>
 
-    <div class="col-sm-6">
-      <div class="routelist">
-        <div class="row">
-        <h3>Routes by Zone</h3>
 
-          <%= render 'facilities/zonedist' %>
-        </div>
-      </div>
-    </div>
 
     <div class="col-sm-12">
       <div class="routelist">

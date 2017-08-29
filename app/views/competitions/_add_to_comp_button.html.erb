@@ -1,0 +1,30 @@
+<div id="add_route_button_<%= route.id %>">
+<% unless CompRoute.find_by(route_id: route.id, competition_id: @competition.id) %>
+
+
+
+
+<%= link_to facility_competition_route_add_route_path(@facility, @competition, route), method: :post, remote: true do %>
+<div class="circle-wrapper">
+  <div class="comp-add"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "add" %></span></div>
+</div>
+
+<% end %>
+
+
+<% else %>
+
+<% if CompRoute.find_by(route_id: route.id, competition_id: @competition.id) %>
+
+  <%= link_to facility_competition_route_remove_route_path(@facility, @competition, route), method: :post, remote: true  do %>
+
+
+  <div class="circle-wrapper">
+    <div class="comp-add green-check"><i class="fa fa-check" aria-hidden="true"></i><span class="text"><%= "added" %></span></div>
+  </div>
+
+  <% end %>
+<% end %>
+
+<% end %>
+</div>

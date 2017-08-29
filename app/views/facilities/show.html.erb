@@ -1,29 +1,37 @@
-<% provide(:title, "Home") %>
+<% provide(:title, @facility.name + " home") %>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
+<div class="container-fluid no-margin">
       <div class="row">
+
+
+        <div class="col-sm-12">
+          <div class="row">
+            <%= render 'facilities/facility_stats2', object: @facility %>
+          </div>
+        </div>
+
+        <% if @facility.zones.count > 1 %>
+        <div class="col-sm-12 bg-black">
+            <%= render 'facilities/stats_zonedist' %>
+        </div>
+        <% end %>
 
       </div>
-      <div class="row">
-        <div class="col-sm-4">
-            <%= render 'facilities/facility_stats', object: @facility %>
-            <div class="hidden-xs">
-              <%= render 'facilities/top10sends', object: @facility %>
-              <%= render 'facilities/top10routes', object: @facility %>
-              <%= render 'facilities/newest10routes', object: @facility %>
-            </div>
+    </div>
+
+        <div class="col-sm-6">
+          <%= render 'facilities/top10sends' %>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-6">
+          <%= render 'facilities/top10routes' %>
+        </div>
+
+
+    <div class="container-fluid">
           <div class="row">
-            <div class="gray-labels routeform-header bg-blue-gradient">
-              <h1> NEWS FEED</h1>
-            </div>
-              <%= render 'facilities/facility_activity_feed' %>
-          </div>
+
+        <div class="col-sm-12">
+          <%= render 'facilities/facility_activity_feed' %>
         </div>
       </div>
     </div>
-  </div>
-</div>

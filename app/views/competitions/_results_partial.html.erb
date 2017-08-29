@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1><strong></strong>Results </h1>
+
+  </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid hidden-xs bg-black">
+
+<div class="row left-no-double-margin">
+
+<ol class="resultlist">
+  <li>
+    <div class="row">
+
+    <div class="col-sm-2">
+    <h1>Name</h1>
+    </div>
+    <div class="col-sm-1">
+    <h1>Routes Attempted</h1>
+    </div>
+    <div class="col-sm-1">
+    <h1>Routes Sent</h1>
+    </div>
+    <div class="col-sm-1">
+    <h1>Routes Flashed</h1>
+    </div>
+    <div class="col-sm-1">
+    <h1>Send Rate</h1>
+    </div>
+    <div class="col-sm-1">
+    <h1>Flash Rate</h1>
+    </div>
+    <div class="col-sm-1">
+    <h1>Climber Score</h1>
+    </div>
+    <div class="col-sm-2">
+    <h1>Top 3 Score (send)</h1>
+    </div>
+    <div class="col-sm-2">
+    <h1>Top 3 Score (flash)</h1>
+    </div>
+    <br>
+  </div>
+
+  </li>
+</ol>
+
+
+  <%= div_for(@participants) do |object| %>
+<ol class="resultlist">
+  <li>
+    <div class="row">
+      <div class="col-sm-2">
+      <%= object.name %>
+      </div>
+      <div class="col-sm-1">
+      <%= Tick.where(competition_id: @competition.id, user_id: object.id).select(:route_id).uniq.count %>
+      </div>
+      <div class="col-sm-1">
+        <%= Tick.where(competition_id: @competition.id, user_id: object.id, tick_type: ['redpoint','flash']).select(:route_id).uniq.count %>
+      </div>
+      <div class="col-sm-1">
+        <%= Tick.where(competition_id: @competition.id, user_id: object.id, tick_type: ['flash']).select(:route_id).uniq.count %>
+      </div>
+      <div class="col-sm-1">
+        <%= number_to_percentage((Tick.where(competition_id: @competition.id, user_id: object.id, tick_type: ['redpoint','flash']).select(:route_id).uniq.count.to_f)/(Tick.where(competition_id: @competition.id, user_id: object.id).select(:route_id).uniq.count.to_f)*100, precision: 0) %>
+
+      </div>
+      <div class="col-sm-1">
+        <%= number_to_percentage((Tick.where(competition_id: @competition.id, user_id: object.id, tick_type: ['flash']).select(:route_id).uniq.count.to_f)/(Tick.where(competition_id: @competition.id, user_id: object.id).select(:route_id).uniq.count.to_f)*100, precision: 0) %>
+
+      </div>
+      <div class="col-sm-1">
+        <%= (Tick.ascent.where(competition_id: @competition.id, user_id: object.id).includes(:grade).sum(:rank) + (Tick.where(tick_type: "project", competition_id: @competition.id, user_id: object.id).includes(:grade).sum(:rank) * 0.5)).to_i %>
+      </div>
+      <div class="col-sm-2">
+        <%= top_three_ascent_score(@competition, object) %>
+        (<% Tick.top_three_routes(@competition, object).each do |t| %>
+          <%= t.grade.grade %>
+          <% end %>)
+      </div>
+      <div class="col-sm-2">
+        <%= top_three_flash_score(@competition, object) %>
+        (<% Tick.where(tick_type: 'flash').top_three_routes(@competition, object).each do |t| %>
+          <%= t.grade.grade %>
+          <% end %>)
+      </div>
+    </div>
+  </li>
+</ol>
+    <% end %>
+
+  </div>
+</div>
+
+<div class='hidden-sm hidden-md hidden-lg'>
+<%= render 'competitions/results_list_1' %>
+</div>
+
+<br>
+
+<div class='hidden-sm hidden-md hidden-lg'>
+<%= render 'competitions/results_list_2' %>
+</div>

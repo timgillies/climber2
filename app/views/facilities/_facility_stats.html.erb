@@ -61,6 +61,12 @@
     <% end %>
   <% end %>
 
+  <%= link_to facility_competitions_path(@facility) do %>
+    <div class="circle-wrapper">
+      <div class="large-circle responsive"><i class="fa fa-trophy" aria-hidden="true"></i><span class="text"><%= "comps" %></span></div>
+    </div>
+  <% end %>
+
   <% unless params[:action] == 'show' %>
     <div class="hidden-xs">
   <% end %>

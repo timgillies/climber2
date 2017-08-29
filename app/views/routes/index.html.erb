@@ -1,26 +1,31 @@
 <% provide(:title, current_user.name + " Routes") %>
 
-<div class="container-fluid">
+<div class="container-fluid no-margin">
       <div class="row">
-        <% unless params[:facility_id].present? %>
-        <div class="col-sm-5 col-md-4 hidden-xs">
-          <%= render 'users/user_stats' %>
-          <div class="hidden-sm hidden-md hidden-lg"><br></div>
-
-          <%= render 'users/top10sends' %>
-          <%= render 'users/top10routes' %>
-          <%= render 'users/newest10routes' %>
-
+        <% if params[:facility_id].present? %>
+        <div class="col-sm-12">
+          <div class="row">
+            <%= render 'facilities/facility_stats2' %>
+          </div>
         </div>
 
         <% else %>
 
-        <div class="col-sm-4">
-          <%= render 'facilities/facility_stats', object: @facility %>
+        <div class="col-sm-12">
+          <div class="row">
+            <%= render 'users/user_stats2' %>
+          </div>
         </div>
-        <% end %>
 
-        <div class="col-sm-7 col-md-8">
+
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+          <div class="row">
+
+        <div class="col-sm-12">
             <%= render 'routes/index_partial', object: @user_tick_feed %>
         </div>
       </div>

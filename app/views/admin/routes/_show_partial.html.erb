@@ -9,6 +9,13 @@
 
 <br>
 
+
+<%= link_to "edit", edit_admin_facility_route_path(@facility, @route ), class: "btn btn-add" %>
+
+<br>
+<br>
+
+
 <%= render(
 partial: 'routes/route',
 locals: { route: @route }

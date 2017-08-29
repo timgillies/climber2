@@ -2,7 +2,7 @@ $('body').scrollTop(0);
 $('#grade_render').html('');
 $('#wall_render').html('');
 $('#tickForm')[0].reset();
-$("#user-stats").html("<%= j (render(partial: 'users/user_stats')) %>");
+// $("#user-stats").html("<%= j (render(partial: 'users/user_stats')) %>");
 
 
 
@@ -10,4 +10,4 @@ $("#user-stats").html("<%= j (render(partial: 'users/user_stats')) %>");
 
 
 var $successMessageDiv = $('#successMessage'); // get the reference of the div
-$successMessageDiv.show().html('Tick saved!'); // show and set the message
+$successMessageDiv.slideDown(100,'linear').html('Tick saved!'); // show and set the message

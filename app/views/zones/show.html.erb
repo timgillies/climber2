@@ -4,51 +4,26 @@
 <div class="container-fluid">
   <div class="row">
     <div class="routelist-header bg-blue-gradient">
-      <h1><strong>Zone</strong> </h1>
-
+      <h1><strong><%= @zone.name %></strong> </h1>
   </div>
   </div>
-  <br>
   <div class="row">
-    <div class="col-sm-6">
-      <div class="row">
-        <%= div_for @zone do |fz| %>
-          <%= render 'zones/zone', object: @zone, :fz => fz %>
-        <% end %>
+    <div class="col-sm-12">
+      <div class="routelist row">
+          <%= render 'admin/zones/zone_stats', object: @zone %>
       </div>
+      <% @facility_systems.each do |fs| %>
+        <% if (facility_system_route_count(fs, @zone) > 0) || (facility_system_target_count(fs, @zone) > 0) %>
+
+      <%= render 'facilities/zonegradedist', :fz => @zone, :fs => fs  %>
+      <% end %>
+    <% end %>
+
       <div class="row">
         <%= render 'zones/zone_routelist', object: @zone_routes %>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="bg-white">
-            <div class="container-fluid">
-              <% @facility_systems.each do |fs| %>
-                <% if (facility_system_route_count(fs, @zone) > 0) || (facility_system_target_count(fs, @zone) > 0) %>
-                <div class="routelist">
-                  <h3><%= fs.name %></h3>
-                </div>
-                <div class="divider-line"></div>
-              <%= render 'facilities/zonegradedist', :fz => @zone, :fs => fs  %>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-          <br>
-          <div class="bg-white">
-            <div class="container-fluid">
-              <div class="routelist">
-                <h3>Sub-zones</h3>
-              </div>
-              <div class="divider-line"></div>
-                <%= render 'facilities/walldist_column', fz: @zone %>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
+
 
         <div class="row">
           <div class="col-sm-12">
@@ -63,4 +38,5 @@
           </div>
         </div>
       </div>
+</div>
 </div>

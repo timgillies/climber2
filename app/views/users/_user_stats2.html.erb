@@ -1,0 +1,48 @@
+<div class="row">
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-list" aria-hidden="true"></i></span>
+  <%= link_to user_routes_path(@user) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive">
+      <%= @ticks.total_send_overall_count(@user, "project").length %><span class="text"><%= "Ascent".pluralize(@ticks.total_send_overall_count(@user, "project").length) %></span>
+    </div>
+    </div>
+  <% end %>
+</div>
+
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-flash" aria-hidden="true"></i></span>
+  <%= link_to user_ticks_path(@user) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive">
+        <% if @ticks.hardest_send(@user) %>
+        <%= @ticks.hardest_send(@user).grade %>
+        <% else %>
+        N/A
+        <% end %>
+        <span class="text">Hardest</span>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-group" aria-hidden="true"></i></span>
+  <%= link_to following_user_path(@user) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive"><%= @user.following.count %><span class="text">Following</span></div>
+    </div>
+  <% end %>
+</div>
+
+
+
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-group" aria-hidden="true"></i></span>
+  <%= link_to followers_user_path(@user) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive"><%= @user.followers.count %><span class="text">Followers</span></div>
+    </div>
+  <% end %>
+</div>
+</div>

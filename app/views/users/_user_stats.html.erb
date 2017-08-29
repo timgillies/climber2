@@ -4,76 +4,25 @@
       })
 </script>
 
-  <div class="top-10 home-stats row">
-
-    <div class="header bg-top-10">
-
-    <% if current_user == @user %>
-      <div class="hidden-xs">
-    <% end %>
-      <%= link_to home_user_path(current_user) do %>
-        <% if @user.avatar? %>
-          <%= image_tag @user.avatar.url(:medium), class: "img-profile" %>
-        <% elsif @user.image? %>
-          <%= image_tag @user.image ,:class=> "img-profile" %>
-        <% else %>
-          <%= image_tag @user.avatar.url(:medium), class: "img-profile" %>
-        <% end %>
-      <% end %>
-    <% if current_user == @user %>
-      </div>
-    <% end %>
-    <br>
-      <h1><%= @user.name %></h1><br>
-  </div>
-
-
-  <%= render 'users/user_stats_partial', object: @users %>
-
-
-
-      <%= link_to analytics_user_path(@user) do %>
-        <div class="circle-wrapper">
-          <div class="large-circle responsive"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="text"><%= "Analytics" %></span></div>
-        </div>
-      <% end %>
-
-      <%= link_to user_ticks_path(@user) do %>
-        <div class="circle-wrapper">
-          <div class="large-circle responsive"><i class="fa fa-check" aria-hidden="true"></i><span class="text"><%= "Tick List" %></span></div>
-        </div>
-      <% end %>
-
-    <% if @user == current_user %>
-
-    <%= link_to inbox_user_path(current_user) do %>
-      <div class="circle-wrapper">
-        <div class="large-circle responsive"><i class="fa fa-envelope" aria-hidden="true"></i><span class="text"><%= "Mail (" + FacilityRole.where("email = ?", current_user.email ).unconfirmed.count.to_s + ")" %></span></div>
-      </div>
-    <% end %>
-
-      <%= link_to edit_user_path(current_user) do %>
-        <div class="circle-wrapper">
-          <div class="large-circle responsive"><i class="fa fa-gears" aria-hidden="true"></i><span class="text"><%= "Settings" %></span></div>
-        </div>
-      <% end %>
-    <% end %>
+  <div class="top-10 home-stats bg-home-white row no-margin">
 
 
 <% unless params[:action] == 'home' %>
   <div class="hidden-xs">
 <% end %>
 
-    <div class="header bg-top-10">
-      <h1>user facilities</h1><span class="pull-right"><%= link_to "see all", user_facility_roles_path(current_user) %></span>
+    <div class="top10new">
+      <h1>Facilities</h1><span class="pull-right"><%= link_to "see all", user_facility_roles_path(current_user) %></span>
     </div>
       <ul>
         <% @userfacilities_check.each do |facility| %>
           <%= link_to facility_path(facility) do %>
             <li>
               <p><%= facility.name %>
+                <% if facility.location %>
                 <small><%= (" " + facility.location) if facility.location %></small></p>
-                              <br>
+                <% end %>
+              <br>
               <%= (image_tag(facility.logo_image.url(:medium), class: "img-facility-logo-list-left")) if facility.logo_image%>
 
               <div class="circle-wrapper">

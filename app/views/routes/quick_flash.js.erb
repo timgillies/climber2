@@ -1,2 +1,1 @@
-$("#tick_count_<%= @route.id %>").html("<%= j (render(partial: 'routes/list_buttons',locals: { f: @route })) %>");
-$("#user-stats").html("<%= j (render(partial: 'users/user_stats_partial', object: @users)) %>");
+$("#quick_flash_<%= @route.id %>").html("<%= j (render(partial: 'routes/quick_flash',locals: { f: @route })) %>");

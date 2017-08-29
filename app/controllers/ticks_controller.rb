@@ -166,7 +166,7 @@ class TicksController < ApplicationController
   private
 
     def tick_params
-      params.require(:tick).permit(:route_id, :facility_id, :user_id, :tick_type, :description, :name, :date, :lead, :grade_id, :grade_vote_id, :color_hex, :image)
+      params.require(:tick).permit(:route_id, :facility_id, :user_id, :tick_type, :description, :name, :date, :lead, :grade_id, :grade_vote_id, :color_hex, :image, :competition_id)
     end
 
 

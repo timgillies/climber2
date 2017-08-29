@@ -1,0 +1,14 @@
+<% provide(:title, @facility.name ) %>
+
+
+      <div class="row">
+        <%= render 'facilities/facility_stats2', object: @facility %>
+      </div>
+
+
+        <div class="col-sm-12">
+          <div class="row">
+              <%= render 'competitions/index_partial' %>
+          </div>
+        </div>
+      

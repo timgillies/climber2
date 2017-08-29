@@ -1,0 +1,21 @@
+<% provide(:title, @facility.name ) %>
+
+<div class="row">
+  <%= render 'competitions/comp_stats', object: @competition %>
+</div>
+
+<br>
+<%= render 'competitions/route_list' %>
+
+<script>
+$(document).bind("ajaxStart", function(){
+   $("#spinner").removeClass('hidden');
+   $("#donate").addClass('blur-out');
+ })
+
+ $(document).bind("ajaxComplete", function(){
+   $("#spinner").addClass('hidden');
+   $("#donate").removeClass('blur-out');
+
+ });
+ </script>

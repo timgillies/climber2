@@ -1,0 +1,125 @@
+<div id="filterrific_results">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="routelist">
+      <h2><%= page_entries_info @routes  %>
+      <% if filter_results_count > 0 %>
+        (<%= filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>)
+      <% end %>
+      </h2>
+      <span class="pull-right">
+        <%= link_to(
+          'Reset filters',
+          reset_filterrific_url, class: "btn btn-md btn-close"
+        ) %>
+
+      </span>
+    </div>
+      <br>
+      <br>
+    </div>
+
+  </div>
+  <%= div_for(@routes) do |f| %>
+  <ol class="routelist routelist-dark">
+
+
+      <li>
+
+
+
+  <div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
+
+
+      <%= link_to user_facility_route_path(@user, f.facility, f) do %>
+    <span>
+      <div class="container-fluid">
+        <div class="row doubletab">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <% if params[:facility_id].present? %>
+            <h3><strong>
+              <% if f.color? %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+              <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                <%= f.grade.grade if f.grade %>
+              <% else %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+              <% end %>
+            </strong></h3>
+
+            <% else %>
+            <h3><strong>
+              <% if f.color? %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+              <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                <%= f.grade.grade if f.grade %>
+              <% else %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+              <% end %>
+            </strong></h3>
+            <% end %>
+
+
+            <span class="pull-right"><%= (image_tag f.facility.logo_image.url(:medium), class: "img-facility-logo-list") if f.facility.logo_image %></span>
+          </div>
+
+        </div>
+        <div class="row doubletab">
+          <div class="col-sm-12">
+            <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-12">
+              <div><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
+          </div>
+
+          <div class="col-sm-12">
+              <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div><%= f.user.name if f.user %></div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="text-right">
+
+
+                <% unless params[:controller] == 'admin/tasks' %>
+                  <% if (days_ago(f) == "today") %>
+                    <span>set <%= days_ago(f) %></span>
+                  <% else %>
+                    set <%= days_ago(f) %> ago
+                  <% end %>
+                <% else %>
+                  <% if f.setdate? %>
+                  due on <%= f.setdate.strftime("%b %d, %Y") %>
+                  <% end %>
+                <% end %>
+
+
+            </div>
+          </div>
+        </div>
+      </span>
+      <% end %>
+
+
+        <div class="row">
+            <%= render(partial: 'competitions/list_buttons', locals: { f: f }) %>
+        </div>
+
+
+
+
+
+    </li>
+  </ol>
+
+
+
+  <% end %>
+
+  <%= paginate @routes %>
+</div>

@@ -1,0 +1,21 @@
+<div id="quick_redpoint_<%= f.id %>", class="circle-wrapper">
+
+    <%= button_to quick_comp_redpoint_facility_competition_route_path(@facility, @competition, f), method: :post, class: 'btn btn-pretick btn-md', remote: true,
+    data: { disable_with:
+      "<div class='tick-circle-fill'>
+        <i class='fa fa-refresh fa-spin'></i>
+      </div>"
+
+    }  do %>
+
+    <% unless Tick.send_type_count(f, current_user, "redpoint") > 0 %>
+      <div class="tick-circle">
+    <% else %>
+      <div class="tick-circle-fill">
+    <% end %>
+        <%= Tick.send_type_count(f, current_user, "redpoint") %>
+        <span class="text"><%= "redpoint".pluralize(Tick.send_type_count(f, current_user, "redpoint")) %></span>
+      </div>
+    <% end %>
+
+</div>

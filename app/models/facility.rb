@@ -25,6 +25,8 @@ class Facility < ActiveRecord::Base
   has_many :facility_roles
   belongs_to :plan
   has_many :subscriptions
+  has_many :competitions
+  has_many :members, through: :facility_roles , source: :user
 
   validates :name, presence: true
   validates :addressline1, presence: true

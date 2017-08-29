@@ -151,9 +151,12 @@ end
   end
 
   def quick_flash
-    @user = User.find(params[:user_id])
+    @user = current_user
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'flash', date: Date.current)
+    if params[:competition_id].present?
+      @tick.competition_id = params[:competition_id]
+    end
     @userfacilities_check = @user.facility_relationships.all
     @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
     @tick.save
@@ -168,9 +171,12 @@ end
   end
 
   def quick_redpoint
-    @user = User.find(params[:user_id])
+    @user = current_user
     @route = Route.find(params[:id])
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'redpoint', date: Date.current)
+    if params[:competition_id].present?
+      @tick.competition_id = params[:competition_id]
+    end
     @userfacilities_check = @user.facility_relationships.all
     @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
     @tick.save
@@ -185,10 +191,77 @@ end
   end
 
   def quick_project
-    @user = User.find(params[:user_id])
+    @user = current_user
     @route = Route.find(params[:id])
+
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'project', date: Date.current)
+
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
     @tick.save
+    if params[:competition_id].present?
+      @tick.competition_id = params[:competition_id]
+    end
+    if @tick.save
+      respond_to do |format|
+        format.html {redirect_to user_routes_path(@user)}
+        format.js
+      end
+    else
+      redirect_to user_routes_path(@user)
+    end
+  end
+
+  def quick_comp_flash
+    @user = current_user
+    @route = Route.find(params[:id])
+    @competition = Competition.find(params[:competition_id])
+    @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'flash', date: Date.current)
+    if params[:competition_id].present?
+      @tick.competition_id = params[:competition_id]
+    end
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
+    @tick.save
+    if @tick.save
+      respond_to do |format|
+        format.html {redirect_to user_routes_path(@user)}
+        format.js
+      end
+    else
+      redirect_to user_routes_path(@user)
+    end
+  end
+
+  def quick_comp_project
+    @user = current_user
+    @route = Route.find(params[:id])
+    @competition = Competition.find(params[:competition_id])
+    @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'project', date: Date.current)
+    @userfacilities_check = @user.facility_relationships.all
+    @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
+    @tick.save
+    if params[:competition_id].present?
+      @tick.competition_id = params[:competition_id]
+    end
+    if @tick.save
+      respond_to do |format|
+        format.html {redirect_to user_routes_path(@user)}
+        format.js
+      end
+    else
+      redirect_to user_routes_path(@user)
+    end
+  end
+
+  def quick_comp_redpoint
+    @user = current_user
+    @route = Route.find(params[:id])
+    @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'redpoint', date: Date.current)
+    @competition = Competition.find(params[:competition_id])
+    if params[:competition_id].present?
+      @tick.competition_id = params[:competition_id]
+    end
     @userfacilities_check = @user.facility_relationships.all
     @ticks = @user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
     @tick.save
@@ -223,8 +296,6 @@ end
     Facility.where(id: climber_facilities).all.map{|fz| [fz.name , fz.id ] }
     # provides the list of available grades in the route list filters
   end
-
-
 
   def options_for_grade_select
     Grade.joins(:facility_grade_systems).merge(FacilityGradeSystem.where(facility_id: @userfacilities_check)).uniq.map{|sg| [sg.grade , sg.id ] }

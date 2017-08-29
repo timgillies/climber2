@@ -116,8 +116,9 @@ class Tick < ActiveRecord::Base
     self.where(route_id: route.id, user_id: user.id ).where.not(tick_type: project).length
   end
 
+  #counts number of ticks for route list buttons for today's date
   def self.send_type_count(route, user, tick_type)
-    self.where(route_id: route.id, user_id: user.id, tick_type: tick_type).length
+    self.where(route_id: route.id, user_id: user.id, tick_type: tick_type, date: Date.current).length
   end
 
   def self.total_send_overall_count(user, project)
@@ -145,6 +146,10 @@ class Tick < ActiveRecord::Base
     self.ascent.where(route_id: Route.where(facility_id: facility)).where('ticks.created_at > ?', 6.days.ago.to_date).includes(:grade).order('grades.rank DESC').take(1000).uniq { |u| u.user_id}.take(10)
   end
 
+  def self.top_three_routes(competition, user)
+    self.ascent.where(competition_id: competition.id, user_id: user.id).includes(:grade).order('grades.rank DESC').take(1000).uniq { |u| u.route_id}.take(3).to_a
+  end
+
   def self.hardest_send(user)
     if self.ascent.where(user_id: user.id).where.not(grade_id: nil)
       self.ascent.where(user_id: user.id).grade_desc.first.grade if self.ascent.where(user_id: user.id).grade_desc.first
@@ -156,6 +161,21 @@ class Tick < ActiveRecord::Base
       self.ascent.where(user_id: user.id).where('ticks.created_at > ?', days.days.ago.to_date).grade_desc.first.grade if self.ascent.where(user_id: user.id).grade_desc.first
     end
   end
+
+  def self.tryhard_send
+    self.ascent.includes(:grade).sum(:rank)
+  end
+
+  def self.tryhard_project
+     self.where(tick_type: "project").includes(:grade).sum(:rank) * 0.5
+  end
+
+  def self.tryhard_score
+    (tryhard_send + tryhard_project).to_i
+  end
+
+
+
 
 
 

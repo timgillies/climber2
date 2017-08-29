@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726142112) do
+ActiveRecord::Schema.define(version: 20170814155243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,56 @@ ActiveRecord::Schema.define(version: 20170726142112) do
   end
 
   add_index "charges", ["user_id"], name: "index_charges_on_user_id", using: :btree
+
+  create_table "comp_relationships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "competition_id"
+    t.string   "role_name"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "comp_relationships", ["competition_id"], name: "index_comp_relationships_on_competition_id", using: :btree
+  add_index "comp_relationships", ["user_id"], name: "index_comp_relationships_on_user_id", using: :btree
+
+  create_table "comp_routes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "route_id"
+    t.integer  "competition_id"
+  end
+
+  add_index "comp_routes", ["user_id"], name: "index_comp_routes_on_user_id", using: :btree
+
+  create_table "competitions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "facility_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean  "private"
+    t.string   "password"
+    t.string   "password_confirmation"
+    t.string   "logo_image_file_name"
+    t.string   "logo_image_content_type"
+    t.integer  "logo_image_file_size"
+    t.datetime "logo_image_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "comp_format"
+    t.integer  "number_of_rounds"
+    t.string   "discipline"
+    t.integer  "attempts_allowed"
+    t.float    "attempt_value"
+    t.float    "flash_value"
+    t.float    "onsight_value"
+    t.float    "redpoint_value"
+  end
+
+  add_index "competitions", ["facility_id"], name: "index_competitions_on_facility_id", using: :btree
+  add_index "competitions", ["user_id"], name: "index_competitions_on_user_id", using: :btree
 
   create_table "custom_colors", force: :cascade do |t|
     t.string   "color_hex"
@@ -400,6 +450,7 @@ ActiveRecord::Schema.define(version: 20170726142112) do
     t.integer  "zone_id"
     t.integer  "wall_id"
     t.integer  "grade_vote_id"
+    t.integer  "competition_id"
   end
 
   add_index "ticks", ["facility_id"], name: "index_ticks_on_facility_id", using: :btree
@@ -498,6 +549,13 @@ ActiveRecord::Schema.define(version: 20170726142112) do
   add_foreign_key "admins", "facilities"
   add_foreign_key "admins", "users"
   add_foreign_key "charges", "users", on_delete: :nullify
+  add_foreign_key "comp_relationships", "competitions", on_delete: :nullify
+  add_foreign_key "comp_relationships", "users", on_delete: :nullify
+  add_foreign_key "comp_routes", "competitions", on_delete: :nullify
+  add_foreign_key "comp_routes", "routes", on_delete: :nullify
+  add_foreign_key "comp_routes", "users", on_delete: :nullify
+  add_foreign_key "competitions", "facilities", on_delete: :nullify
+  add_foreign_key "competitions", "users", on_delete: :nullify
   add_foreign_key "custom_colors", "facilities", on_delete: :nullify
   add_foreign_key "custom_colors", "users", on_delete: :nullify
   add_foreign_key "facilities", "plans", on_delete: :nullify
@@ -537,6 +595,7 @@ ActiveRecord::Schema.define(version: 20170726142112) do
   add_foreign_key "tasks", "sub_child_zones", on_delete: :nullify
   add_foreign_key "tasks", "walls", on_delete: :nullify
   add_foreign_key "tasks", "zones", on_delete: :nullify
+  add_foreign_key "ticks", "competitions", on_delete: :nullify
   add_foreign_key "ticks", "facilities", on_delete: :nullify
   add_foreign_key "ticks", "grades", on_delete: :nullify
   add_foreign_key "ticks", "routes", on_delete: :nullify

@@ -1,0 +1,44 @@
+<div id="filterrific_user_public_results">
+  <div class="row">
+
+    <%= render 'admin/competitions/comp_stats', object: @competition %>
+
+
+    <div class="competition-about">
+      <div class='col-sm-6 tab'>
+        <br>
+        <h2><i class="fa fa-calendar" aria-hidden="true" style="color: #bbb;"></i> Dates</h2>
+        <%= @competition.start_date.strftime("%a, %b %d, %Y") %> to <%= @competition.end_date.strftime("%a, %b %d, %Y") %>
+        <br>
+        <br>
+        <h2><i class="fa fa-calendar" aria-hidden="true" style="color: #bbb;"></i> Registration</h2>
+        <%= @competition.start_date.strftime("%a %d, %Y") %>
+        <br>
+        <br>
+        <h2><i class="fa fa-dollar" aria-hidden="true" style="color: #bbb;"></i> Price</h2>
+        $30.00
+        <br>
+        <br>
+        <h2><i class="fa fa-group" aria-hidden="true" style="color: #bbb;"></i> Ages</h2>
+        16-40+
+        <br>
+
+      </div>
+
+      <div class='col-sm-5 tab'>
+        <br>
+        <h2>Description</h2>
+
+        Lorem ipsum dolor sit amet, et posuere et ut hendrerit consequat quis. Ac sodales, eu est dui iaculis consectetuer egestas mattis, neque sed tempor sagittis egestas fermentum, mauris egestas eos sapien sapien laboriosam. Sem sit. Elit malesuada. Pellentesque est turpis et, amet in elit massa, suspendisse mi. Mi leo eleifend netus, suscipit sit, ornare elit ornare ac felis urna sit. Morbi hendrerit, posuere in sem, dolor non in justo orci aut, libero et quam a justo magna aliquam, accumsan enim a velit donec.
+      </div>
+    </div>
+  </div>
+  <br>
+
+    <div class='col-md-12'>
+      <div class="row">
+        <%= render 'admin/routes/list' %>
+      </div>
+    </div>
+
+</div>

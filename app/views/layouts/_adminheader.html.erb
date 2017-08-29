@@ -2,16 +2,14 @@
 <div class="bg-profile-header bg-profile-admin">
   <div>
 
+    <h1><%= @facility.name %></h1>
+    <h2><%= @facility.location if @facility.location %></h2>
+
+
 
     <%= link_to admin_facility_path(@facility) do %>
       <div class="circle-wrapper">
         <div class="large-circle responsive"><i class="fa fa-home" aria-hidden="true"></i><span class="text">Admin</span></div>
-      </div>
-    <% end %>
-
-    <%= link_to admin_facility_routes_path(@facility) do %>
-      <div class="circle-wrapper">
-        <div class="large-circle responsive"><i class="fa fa-list" aria-hidden="true"></i><span class="text"><%= "Route List" %></span></div>
       </div>
     <% end %>
 
@@ -21,10 +19,46 @@
       </div>
     <% end %>
 
-    <%= link_to admin_facility_path(@facility) do %>
+    <%= link_to '#facilitySettingsModal', data: { toggle: "modal"}, remote: false do %>
+      <div class="circle-wrapper">
+        <div class="large-circle responsive">
+
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+
+        <span class="text"><%= "settings" %></span>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to facility_path(@facility) do %>
       <%= image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-logo-profile") %>
     <% end %>
 
 
   </div>
 </div>
+
+
+<!-- Modal -->
+
+  <div class="modal fade" id="facilitySettingsModal" tabindex="-1" role="dialog" aria-labelledby="facilitySettingsModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <span class="modal-title" id="facilitySettingsModal"><%= link_to (image_tag 'cc-white-horizontal.svg'), root_path, class: "logo" %></span>
+        </div>
+        <div class="modal-body row">
+          <ul class="modal-list">
+            <%= link_to edit_admin_facility_path(@facility) do %><li>Facility Info</li><% end %>
+            <%= link_to admin_facility_facility_targets_path(@facility) do %><li>Targets</li><% end %>
+            <%= link_to admin_facility_custom_colors_path(@facility) do %><li>Manage Colors </li><% end %>
+            <%= link_to admin_facility_subscriptions_path(@facility) do %><li>Subscriptions</li><% end %>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

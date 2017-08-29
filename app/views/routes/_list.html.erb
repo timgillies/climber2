@@ -7,38 +7,27 @@
         (<%= filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>)
       <% end %>
       </h2>
-      <span class="pull-right">
-        <%= link_to(
-          'Reset filters',
-          reset_filterrific_url, class: "btn btn-md btn-close"
-        ) %>
-
-      </span>
     </div>
-                  <br>
-                  <br>
+      <br>
+      <br>
     </div>
 
   </div>
   <%= div_for(@routes) do |f| %>
   <ol class="routelist routelist-dark">
 
-      <% if f.color_hex? %>
-      <li style="border-left: 15px solid <%= f.color_hex %>">
-      <% elsif f.color? %>
-        <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
-          <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
-          <% else %>
-          <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
-          <% end %>
-      <% else %>
+
       <li>
-      <% end %>
+
+
+
+  <div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
+
 
       <%= link_to user_facility_route_path(@user, f.facility, f) do %>
     <span>
       <div class="container-fluid">
-        <div class="row">
+        <div class="row doubletab">
           <div class="col-xs-12 col-sm-12 col-md-12">
             <% if params[:facility_id].present? %>
             <h3><strong>
@@ -68,13 +57,12 @@
           </div>
 
         </div>
-        <div class="row">
+        <div class="row doubletab">
           <div class="col-sm-12">
             <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
           </div>
         </div>
 
-        <br>
 
         <div class="row">
           <div class="col-sm-12">
@@ -109,9 +97,6 @@
         </div>
       </span>
       <% end %>
-        <div class="divider-line"></div>
-        <i><%= f.description if f.description %></i>
-        <%= render(partial: 'routes/rating_count', locals: { route: f }) %>
 
 
         <div class="row">

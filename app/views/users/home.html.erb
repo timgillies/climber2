@@ -1,53 +1,58 @@
 <% provide(:title, "Home") %>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
 
-      </div>
-      <div class="row">
-        <div class="col-sm-5 col-md-4">
-          <%= render 'users/user_stats' %>
-          <div class="hidden-sm hidden-md hidden-lg"><br></div>
-        <div class="hidden-xs">
-          <%= render 'users/top10sends' %>
-          <%= render 'users/top10routes' %>
-          <%= render 'users/newest10routes' %>
-        </div>
-        </div>
-        <div class="col-sm-7 col-md-8">
+<div class="no-margin">
+  <%= render 'users/user_stats2' %>
+</div>
 
-          <% if @route %>
-            <div class="row">
-                <div class="gray-labels routeform-header bg-blue-gradient">
-                  <h1>Discover</h1>
-                </div>
-            </div>
 
-            <br>
-            <div class="row">
-              <%= render(
-              partial: 'users/featured_route',
-              locals: { route: @route }
-              ) %>
-            </div>
-            <br>
+
+
+
+          <% if @ticks.count > 0 && params[:action] == 'home' %>
+            <%= render(
+            partial: 'users/home_user_ticks',
+            locals: { ticks: @ticks }
+            ) %>
+
           <% end %>
 
-          <div class="row">
-              <div class="gray-labels routeform-header bg-blue-gradient">
-                <h1> NEWS FEED</h1>
-              </div>
-              <% if @userfacilities_check.count > 0 %>
-                <%= render 'users/user_news_feed' %>
-              <% elsif @user == current_user %>
-              <%= render 'users/no_facility' %>
 
-                <% end %>
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="top-10 home-stats row no-margin">
+            <br>
+            <%= render 'users/user_stats_partial', object: @users %>
           </div>
         </div>
       </div>
+
+
+  <div class="col-sm-6">
+    <div class="row">
+
+      <%= render(
+      partial: 'ticks/usergradedist',
+      locals: { ticks: @ticks }
+      ) %>
+
     </div>
   </div>
-</div>
+  <div class="col-sm-6">
+    <div class="row">
+
+      <%= render(
+      partial: 'users/complist'
+      ) %>
+
+    </div>
+  </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <%= render 'users/facility_list' %>
+        </div>
+      </div>
+
+    </div>
+  </div>

@@ -1,0 +1,58 @@
+<div id="filterrific_user_public_results">
+
+
+    <div class="row">
+      <%= render 'competitions/comp_stats', object: @competition %>
+    </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+
+        <div class="top-10 home-stats row no-margin">
+          <br>
+          <%= render 'competitions/comp_user_stats_partial', object: @users %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="competition-about">
+      <div class='col-sm-6'>
+        <br>
+
+        <%= image_tag @competition.logo_image.url(:medium) %>
+
+      </div>
+
+      <div class='col-sm-6'>
+
+        <br>
+        <h2>Description</h2>
+
+        <%= @competition.description %><br><br>
+        <h2><i class="fa fa-calendar" aria-hidden="true" style="color: #bbb;"></i> Dates</h2>
+        <%= @competition.start_date.strftime("%a, %b %d, %Y") %> to <%= @competition.end_date.strftime("%a, %b %d, %Y") %>
+        <br>
+        <br>
+        <h2><i class="fa fa-calendar" aria-hidden="true" style="color: #bbb;"></i> Registration Opens</h2>
+        Now
+        <br>
+        <br>
+        <h2><i class="fa fa-dollar" aria-hidden="true" style="color: #bbb;"></i> Price</h2>
+        Free
+        <br>
+        <br>
+        <h2><i class="fa fa-group" aria-hidden="true" style="color: #bbb;"></i> Ages</h2>
+        All Ages
+        <br>
+
+
+
+      </div>
+    </div>
+  <br>
+
+
+        <%= render 'routes/list' %>
+
+</div>

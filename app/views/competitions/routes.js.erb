@@ -1,0 +1,5 @@
+
+  <% js = escape_javascript(
+    render(partial: 'competitions/route_check_list', locals: { routes: @routes })
+  ) %>
+  $("#filterrific_results").html("<%= js %>");

@@ -1,5 +1,9 @@
 <% provide(:title, 'Edit Facility') %>
 
+<div class="no-margin">
+<%= render 'admin/facilities/facility_stats2', object: @facility %>
+</div>
+
 <div class="container-fluid">
     <div class="row">
           <%= render 'admin/facilities/form', object: @facility %>

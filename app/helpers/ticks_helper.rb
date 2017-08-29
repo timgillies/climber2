@@ -63,6 +63,22 @@ module TicksHelper
 
   end
 
+def top_three_ascent_score(competition, user)
+  array = Array.new
+  Tick.ascent.top_three_routes(competition, user).each do |t|
+    array.push(t.grade.rank.to_f)
+  end
+  array.inject(:+)
+end
+
+def top_three_flash_score(competition, user)
+  array = Array.new
+  Tick.where(tick_type: 'flash').top_three_routes(competition, user).each do |t|
+    array.push(t.grade.rank.to_f)
+  end
+  array.inject(:+)
+end
+
 # returns boolean
   def controller_check?(action)
     params[:action] == action

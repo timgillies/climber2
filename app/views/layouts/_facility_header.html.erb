@@ -1,0 +1,31 @@
+<!-- Left nav -->
+<div class="bg-profile-header bg-profile-facility">
+  <div>
+
+    <h1><%= @facility.name %></h1>
+    <h2><%= @facility.location if @facility.location %></h2>
+
+    <%= link_to facility_path(@facility) do %>
+    <div class="circle-wrapper">
+      <div class="large-circle-transparent responsive"><%= image_tag( @facility.logo_image.url(:medium) ,:class=> "img-facility-circle-button") %></div>
+         </div>
+    <% end %>
+
+    <% unless @facility.demo? %>
+       <%= render 'facilities/follow_button' %>
+     <% end %>
+
+
+
+    <%= link_to new_user_tick_path(current_user) do %>
+      <div class="circle-wrapper pull-right">
+        <div class="large-circle responsive"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="text"><%= "New tick" %></span></div>
+      </div>
+    <% end %>
+
+
+
+
+
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% provide(:title, @user.name) %>
+
+
+          <div class="row">
+            <%= render 'users/user_stats2', object: @facility %>
+          </div>
+
+
+
+        <div class="col-sm-12">
+          <%= render 'facilities/followers_partial', object: @users %>
+        </div>

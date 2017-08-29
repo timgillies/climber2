@@ -7,7 +7,9 @@
       <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#routeFilters" aria-expanded="false" aria-controls="routeFilters">
         Filters <span class="glyphicon glyphicon-filter"></span>
       </button>
-      <span class="hidden-xs"><%= link_to "new route", new_admin_facility_route_path(@facility), class: "btn btn-close", style: "display: inline-block;" %></span>
+      <% unless params[:controller] == 'admin/competitions' %>
+        <span class="hidden-xs"><%= link_to "new route", new_admin_facility_route_path(@facility), class: "btn btn-close", style: "display: inline-block;" %></span>
+      <% end %>
     </span>
   </div>
   </div>
@@ -93,19 +95,43 @@
           <div class="route-form">
             <div id="donate">
               <% Zone.where(facility_id: @facility).each do |zone| %>
-                <label class="green"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
+                <label class="purple"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
                   <span><%= zone.name %></span>
                 </label>
               <% end %>
+              <%= link_to reset_filterrific_url do %>
+              <label class="pink">
+                <span>Reset</span>
+              </label>
+              <% end %>
             </div>
+          </div>
+          <div id="spinner" class="spinner-class hidden" >
+            <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+             <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+          </svg>
           </div>
         </div>
       </div>
 
 
+
+
     <% end %>
     <br>
-<div class="divider-line"></div>
 
 
 <%= render( 'admin/routes/list', routes: @routes )%>
+
+<script>
+$(document).bind("ajaxStart", function(){
+   $("#spinner").removeClass('hidden');
+   $("#donate").addClass('blur-out');
+ })
+
+ $(document).bind("ajaxComplete", function(){
+   $("#spinner").addClass('hidden');
+   $("#donate").removeClass('blur-out');
+
+ });
+ </script>

@@ -1,0 +1,43 @@
+<div id="quick_flash_<%= f.id %>" class="circle-wrapper">
+
+  <% unless params[:controller] == 'competitions' %>
+  <%= button_to quick_flash_user_route_path(current_user, f), method: :post, class: 'btn btn-pretick btn-md', remote: true,
+
+  data: { disable_with:
+    "<div class='tick-circle-fill'>
+      <i class='fa fa-refresh fa-spin'></i>
+    </div>"
+
+  }  do %>
+
+  <% unless Tick.send_type_count(f, current_user, "flash") > 0 %>
+    <div class="tick-circle">
+  <% else %>
+    <div class="tick-circle-fill">
+  <% end %>
+      <%= Tick.send_type_count(f, current_user, "flash") %>
+      <span class="text"><%= "flash".pluralize(Tick.send_type_count(f, current_user, "flash")) %></span>
+    </div>
+  <% end %>
+
+  <% else %>
+  <%= button_to quick_flash_facility_competition_route_path(@facility, @competition, f), method: :post, class: 'btn btn-pretick btn-md', remote: true,
+
+  data: { disable_with:
+    "<div class='tick-circle-fill'>
+      <i class='fa fa-refresh fa-spin'></i>
+    </div>"
+
+  }  do %>
+
+  <% unless Tick.send_type_count(f, current_user, "flash") > 0 %>
+    <div class="tick-circle">
+  <% else %>
+    <div class="tick-circle-fill">
+  <% end %>
+      <%= Tick.send_type_count(f, current_user, "flash") %>
+      <span class="text"><%= "flash".pluralize(Tick.send_type_count(f, current_user, "flash")) %></span>
+    </div>
+  <% end %>
+  <% end %>
+</div>

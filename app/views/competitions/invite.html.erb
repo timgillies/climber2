@@ -1,0 +1,11 @@
+<% provide(:title, @facility.name + " home") %>
+
+      <div class="row">
+        <%= render 'competitions/comp_stats', object: @competition %>
+      </div>
+
+
+
+<div class="col-sm-12">
+      <%= render 'facilities/followers_partial' %>
+</div>

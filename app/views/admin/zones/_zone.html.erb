@@ -1,6 +1,6 @@
 
   <div class="row">
-    <ol class="routelist">
+    <ol class="routelist routelist-dark">
       <div class="col-sm-12">
         <%= link_to admin_facility_zone_path(@facility, fz ) do %>
         <li style="border: none;">
@@ -9,9 +9,7 @@
             <small><span class="pull-right"><%= fz.routes.current.count %> active <%= 'route'.pluralize(fz.routes.current.count) %></span></small></h3>
           </div>
 
-          <div class="col-xs-12">
-            <div class="divider-line"></div>
-          </div>
+
 
 
 
@@ -56,17 +54,22 @@
 
           <% end %>
 
+              <div class="col-xs-12">
+              <%= link_to admin_facility_zone_mass_create_tasks_path(@facility, fz ), method: :post, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} do %>
+                <div class="tick-circle">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  <span class="text"><%= "expire all" %></span>
+                </div>
+              <% end %>
 
-          <div class="col-md-12 col-xs-12">
-            <div class="row">
-              <div class="col-xs-6 col-sm-6 pull-right no-print">
-                <%= button_to "create tasks",  admin_facility_zone_mass_create_tasks_path(@facility, fz ), class: 'btn btn-expire btn-md', method: :mass_create_tasks, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} %>
+              <%= link_to admin_facility_zone_mass_create_tasks_path(@facility, fz ), method: :post, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} do %>
+                <div class="tick-circle">
+                  <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                  <span class="text"><%= "new tasks" %></span>
+                </div>
+              <% end %>
               </div>
-              <div class="col-xs-6 col-sm-6 pull-right no-print">
-                <%= button_to "expire all routes",  admin_facility_zone_mass_expire_path(@facility, fz ), class: 'btn btn-expire btn-md', method: :mass_expire, data: {:confirm => 'Are you sure you want to expire all routes in this zone?'} %>
-              </div>
-            </div>
-          </div>
+
 
 
 

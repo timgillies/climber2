@@ -1,0 +1,2 @@
+class CompRoutesController < ApplicationController
+end

@@ -85,6 +85,7 @@ Rails.application.routes.draw do
 
         member do
           post :expire #output path - expire_route/:id
+          post :unexpire
           post :tagged #output path - tagged_route/:id
           post :untagged #output path - tagged_route/:id
           post :create_task
@@ -128,7 +129,19 @@ Rails.application.routes.draw do
           post :un_complete_task
         end
       end
-      resources :comps
+      resources :competitions do
+        member do
+          get :routes
+          get :route_list
+          post :add_route
+          post :remove_route
+        end
+        resources :routes do
+          post :add_route
+          post :remove_route
+        end
+      end
+
     end
   end
 
@@ -141,9 +154,34 @@ Rails.application.routes.draw do
     resources :setters, only: [:index, :show]
     resources :ticks
     resources :facility_roles
+    resources :competitions do
+      member do
+        get :routes
+        get :followers
+        get :invite
+        get :route_list
+        get :results
+        post :add_route
+        post :remove_route
+        post :add_user
+      end
+      resources :routes do
+        post :add_route
+        post :remove_route
+          member do
+            post :quick_flash #output path - expire_route/:id
+            post :quick_redpoint #output path - tagged_route/:id
+            post :quick_project
+            post :quick_comp_flash #output path - expire_route/:id
+            post :quick_comp_redpoint #output path - tagged_route/:id
+            post :quick_comp_project
+            post :quick_tick
+          end
+      end
+    end
 
     member do
-      get :leaderboard
+      get :followers
       get :social
       get :analytics
     end

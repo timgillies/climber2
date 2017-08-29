@@ -1,0 +1,35 @@
+<div id="expire_buttons_<%= f.id %>">
+<% if f.active? %>
+    <%= link_to expire_admin_facility_route_path(@facility, f ), method: :post, remote: true,
+    data: { disable_with:
+      "<div class='expire-circle expired'>
+        <i class='fa fa-refresh fa-spin'></i>
+      </div>"
+
+    } do %>
+    <div class="expire-circle">
+      <i class="fa fa-flash" aria-hidden="true"></i>
+      <span class="text"><%= "active" %></span>
+    </div>
+    <% end %>
+<% else %>
+<%= link_to unexpire_admin_facility_route_path(@facility, f ), method: :post, remote: true,
+data: { disable_with:
+  "<div class='expire-circle'>
+    <i class='fa fa-refresh fa-spin'></i>
+  </div>"
+
+} do %>
+<div class="expire-circle expired">
+  <i class="fa fa-flash" aria-hidden="true"></i>
+  <span class="text"><%= "expired" %></span>
+</div>
+<% end %>
+<% end %>
+<%= link_to create_task_admin_facility_route_path(@facility, f ), method: :post, remote: false do %>
+<div class="expire-circle task-circle">
+  <i class="fa fa-wrench" aria-hidden="true"></i>
+  <span class="text"><%= "task" %></span>
+</div>
+<% end %>
+</div>

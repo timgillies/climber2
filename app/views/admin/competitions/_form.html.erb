@@ -1,0 +1,82 @@
+<%= form_for [:admin, @facility, @competition], :html => {:class => "form-label", :multipart => true} do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="">
+    <div class="container-fluid bg-routeform">
+
+      <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <%= f.label :name, "Competion name*", class: "form-label" %>
+      <%= f.text_field :name, placeholder: "ex. USA Climbing Youth Divisional", class: 'form-control' %>
+
+      <%= f.label :description, "Description*"%>
+      <%= f.text_field :description, placeholder: "Description...", class: 'form-control' %>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <%= f.label :private, "Privacy" %>
+        <%= f.select(:private, options_for_select(false_true, selected: f.object.private ), { include_blank: false }, { class: 'form-control' }) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+      <%= f.label :password, "Password" %>
+      <%= f.text_field :password, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+    <%= f.text_field :password_confirmation, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4 col-md-4 col-lg-4">
+  <%= f.label :start_date, "Start Date*" %>
+  <%= f.date_field :start_date %>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4 col-md-4 col-lg-4">
+  <%= f.label :end_date, "End Date*" %>
+  <%= f.date_field :end_date %>
+</div>
+</div>
+
+  <div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <%= f.label :comp_format, "Competition Format" %>
+    <%= f.select(:comp_format, options_for_select(comp_formats, selected: f.object.comp_format ), params[:comp_format] ? { class: 'form-control' } : { include_blank: false }, { class: 'form-control' }) %>
+
+  </div>
+</div>
+
+
+
+
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label :logo_image,"Logo Image" %>
+        <%= f.file_field :logo_image, class: 'btn-expire btn-lg'  %>
+      </div>
+    </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <%= f.submit "Save", class: "btn btn-save btn-lg" %>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+
+<% end %>

@@ -1,0 +1,9 @@
+<% js = escape_javascript(
+  render(partial: 'competitions/join_button', locals: { competition: @competition })
+) %>
+$("#comp_join_button").html("<%= js %>");
+
+<% js = escape_javascript(
+  render(partial: 'competitions/participant_count', locals: { object: @competition })
+) %>
+$("#comp_participant_count").html("<%= js %>");

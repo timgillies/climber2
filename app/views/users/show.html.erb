@@ -1,23 +1,63 @@
 <% provide(:title, "Home") %>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
 
-      </div>
-      <div class="row">
-        <div class="col-sm-4 hidden-xs">
-          <%= render 'users/user_stats' %>
-          <%= render 'users/top10sends' %>
-          <%= render 'users/top10routes' %>
-          <%= render 'users/newest10routes' %>
+<div class="no-margin">
+  <%= render 'users/user_stats2' %>
+</div>
+
+
+
+
+
+          <% if @ticks.count > 0 && params[:action] == 'home' %>
+            <%= render(
+            partial: 'users/home_user_ticks',
+            locals: { ticks: @ticks }
+            ) %>
+
+          <% end %>
+
+
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="top-10 home-stats row no-margin">
+            <br>
+            <%= render 'users/user_stats_partial', object: @users %>
+          </div>
         </div>
-        <div class="col-sm-8">
+      </div>
+
+
+  <div class="col-sm-6">
+    <div class="row">
+
+      <%= render(
+      partial: 'ticks/usergradedist',
+      locals: { ticks: @ticks }
+      ) %>
+
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row">
+
+      <%= render(
+      partial: 'users/complist'
+      ) %>
+
+    </div>
+  </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <%= render 'users/facility_list' %>
+        </div>
+      </div>
+        <div class="col-sm-12 col-md-12">
+
+
           <div class="row">
-              <div class="gray-labels routeform-header bg-blue-gradient">
-                <h1>activity</h1>
-              </div>
+
               <% if @userfacilities_check.count > 0 %>
                 <%= render 'users/user_news_feed' %>
               <% elsif @user == current_user %>
@@ -26,7 +66,5 @@
                 <% end %>
           </div>
         </div>
-      </div>
     </div>
   </div>
-</div>

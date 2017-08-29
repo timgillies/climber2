@@ -1,0 +1,67 @@
+<div id="filterrific_user_public_results">
+  <div class="top-10 home-stats left-margin facility-list row">
+    <ul class="white-list">
+      <div class="row">
+      <div class="container-fluid">
+      <% Array(object).each do |comp| %>
+        <%= link_to admin_facility_competition_path(@facility, comp) do %>
+          <li>
+            <strong class="tab-text-top"><%= comp.name %></strong>
+            <p class="tab-text-bottom"><small>
+              <% if comp.facility %>
+              <%= comp.facility.name %>
+              <% end %>
+            </small></p>
+             <% if comp.logo_image_file_size? %>
+             <%= image_tag comp.logo_image.url(:thumb), class: "img-userlist-icon" %>
+             <% else %>
+             <br>
+             <br>
+             <br>
+             <% end %>
+
+             <%= link_to route_list_admin_facility_competition_path(@facility, comp) do %>
+
+            <div class="circle-wrapper">
+              <div class="large-circle route-count route-count-dark-text responsive"><%= comp.routes.count %><span class="text"><%= "routes" %></span></div>
+            </div>
+            <% end %>
+
+            <div class="circle-wrapper">
+              <div class="large-circle follower-count route-count-dark-text responsive">
+                  <%= "50" %>
+                <span class="text"><%= "users" %></span></div>
+            </div>
+
+            <%= link_to routes_admin_facility_competition_path(@facility, comp) do %>
+            <div class="">
+              <div class="large-circle third-button route-count-dark-text responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "routes" %></span></div>
+            </div>
+
+            <% end %>
+
+            <%= link_to routes_admin_facility_competition_path(@facility, comp) do %>
+            <div class="">
+              <div class="large-circle fourth-button route-count-dark-text responsive"><i class="fa fa-trophy" aria-hidden="true"></i><span class="text"><%= "leaders" %></span></div>
+            </div>
+
+            <% end %>
+
+
+            <%= link_to edit_admin_facility_competition_path(@facility, comp)  do %>
+            <div class="hidden-xs">
+              <div class="large-circle edit-button route-count-dark-text responsive"><i class="fa fa-cog" aria-hidden="true"></i></div>
+            </div>
+            <% end %>
+
+
+
+          </li>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+    </ul>
+  </div>
+
+</div>

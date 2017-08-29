@@ -79,7 +79,7 @@
       chart: {
         renderTo: "stats_zone_dist",
         backgroundColor:'transparent',
-        spacingBottom: 35,
+        spacingBottom: 10,
         type: "bar",
         style: {
           fontFamily: 'Montserrat',
@@ -132,9 +132,6 @@
         }
       },
       legend: {
-        enabled: false
-      },
-      tooltip: {
         enabled: false
       },
       plotOptions: {
@@ -194,14 +191,14 @@
       series: [{
           type: 'bar',
           name: 'Routes',
-          data: <%= raw @facility.zones.all.map {|f| [f.name, Route.current.where("zone_id = ?", f).count, "https://www.climbconnect.com/facilities/#{@facility.id}/zones/#{ f.id }" ] } %>
+          data: <%= raw @facility.zones.all.map {|f| [f.name, Route.current.where("zone_id = ?", f).count, "/facilities/#{@facility.id}/zones/#{ f.id }" ] } %>
       },{
           type: 'spline',
           name: 'Target',
-          data: <%= raw @facility.zones.all.map {|f| [f.name, FacilityTarget.where("zone_id = ? AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
+          data: <%= raw raw @facility.zones.all.map {|f| [f.name, FacilityTarget.where("zone_id = ? AND sub_child_zone_id IS NULL", f).sum(:value) ] } %>
       }
     ]
     });
   });
 </script>
-<div id="stats_zone_dist" style="width:100%; height: 250px;"></div>
+<div id="stats_zone_dist" style="width:100%; height:100%;"></div>

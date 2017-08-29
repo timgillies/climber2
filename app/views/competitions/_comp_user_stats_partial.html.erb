@@ -1,0 +1,61 @@
+<div id="user-stats" class="center">
+
+  <%= link_to home_user_path(@user) do %>
+  <div class="circle-wrapper">
+    <div class="large-circle-transparent responsive">
+      <% if @user.avatar? %>
+        <%= image_tag @user.avatar.url(:medium), class: "img-user-circle-button" %>
+      <% elsif @user.image? %>
+        <%= image_tag @user.image ,:class=> "img-user-circle-button" %>
+      <% else %>
+        <%= image_tag @user.avatar.url(:medium), class: "img-user-circle-button" %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+    <%= link_to results_facility_competition_path(@facility, @competition) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <%= Tick.where(competition_id: @competition.id, user_id: current_user.id, tick_type: ['redpoint','flash']).select(:route_id).uniq.count %>
+          <span class="text">sends</span></div>
+      </div>
+    <% end %>
+
+
+    <%= link_to results_facility_competition_path(@facility, @competition) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+              <%= Tick.where(competition_id: @competition.id, user_id: current_user.id, tick_type: ['flash']).select(:route_id).uniq.count %>
+          <span class="text">flashes</span></div>
+      </div>
+    <% end %>
+
+    <%= link_to results_facility_competition_path(@facility, @competition) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <%= (Tick.ascent.where(competition_id: @competition.id, user_id: current_user.id).includes(:grade).sum(:rank) + (Tick.where(tick_type: "project", competition_id: @competition.id, user_id: current_user.id).includes(:grade).sum(:rank) * 0.5)).to_i %>
+          <span class="text">Try Hard</span></div>
+      </div>
+    <% end %>
+
+
+    <%= link_to results_facility_competition_path(@facility, @competition) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <%= top_three_ascent_score(@competition, current_user) %>
+          <span class="text">send score</span></div>
+      </div>
+    <% end %>
+
+    <%= link_to results_facility_competition_path(@facility, @competition) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <%= top_three_flash_score(@competition, current_user) %>
+          <span class="text">flash score</span></div>
+      </div>
+    <% end %>
+
+
+
+  </div>

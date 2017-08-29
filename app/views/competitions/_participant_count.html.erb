@@ -1,0 +1,11 @@
+<div id="comp_participant_count">
+  <div class='col-sm-3 col-xs-6 comp-stats-center'>
+    <span class="comp-stat-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+    <%= link_to followers_facility_competition_path(@facility, object) do %>
+      <div class="comp-circle-wrapper">
+        <div class="comp-large-circle responsive"><%= @competition.users_as_participants.count %>
+          <span class="text">Participants</span></div>
+      </div>
+    <% end %>
+  </div>
+</div>

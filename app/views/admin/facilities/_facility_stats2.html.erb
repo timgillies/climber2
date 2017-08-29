@@ -1,0 +1,39 @@
+<div class="row">
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-list" aria-hidden="true"></i></span>
+  <%= link_to admin_facility_routes_path(@facility) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive"><%= @facility.routes.current.size %><span class="text">Routes</span></div>
+    </div>
+  <% end %>
+</div>
+
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+  <%= link_to admin_facility_tasks_path(@facility) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive"><%= @facility.tasks.where(completed_at: nil).size %><span class="text">Tasks</span></div>
+    </div>
+  <% end %>
+</div>
+
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-group" aria-hidden="true"></i></span>
+  <%= link_to admin_facility_facility_roles_path(@facility) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive"><i class="fa fa-group" aria-hidden="true"></i><span class="text">Team</span></div>
+    </div>
+  <% end %>
+</div>
+
+
+
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-trophy" aria-hidden="true"></i></span>
+  <%= link_to facility_competitions_path(@facility) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive"><%= @facility.competitions.where('start_date <= ? AND end_date >= ?', Date.current, Date.current).size %><span class="text">Comps</span></div>
+    </div>
+  <% end %>
+</div>
+</div>

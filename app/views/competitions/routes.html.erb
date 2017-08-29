@@ -1,0 +1,10 @@
+<% provide(:title, @facility.name ) %>
+
+<div class="row">
+  <%= render 'competitions/comp_stats', object: @competition %>
+</div>
+
+<br>
+<% if @facility.routes.current.count > 0 %>
+<%= render 'competitions/routes_partial' %>
+<% end %>

@@ -1,0 +1,43 @@
+
+    <div class="routelist-header bg-blue-gradient no-margin">
+      <% if params[:action] == 'following' %>
+      <h1><strong>Following</strong></h1>
+      <% elsif params[:action] == 'followers' && params[:controller] == 'users' %>
+      <h1><strong>Followers</strong></h1>
+      <% elsif params[:action] == 'followers' && params[:controller] == 'competitions' %>
+      <h1><strong>Participants</strong></h1>
+      <% else %>
+      <h1><strong>Climbers</strong></h1>
+      <% end %>
+    </div>
+    <br>
+    <%= form_for_filterrific @filterrific do |f| %>
+    <div>
+      <div class="top-10 home-stats left-margin facility-list row no-margin no-padding">
+            <div class="user-search-box">
+
+            <div class="header bg-top-10">
+              <h1>search</h1>
+            </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+                  <div class="form-group">
+                    <%= f.text_field(
+                      :user_search_query,
+                      placeholder: '  Search by Name',
+                      class: 'filterrific-periodically-observed form-control user-search-box'
+                    ) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%= render 'facilities/users_list', object: @users %>
+          </div>
+        </div>
+        <%= paginate @users %>
+    <% end %>
+
+
+<br>

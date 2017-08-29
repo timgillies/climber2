@@ -1,14 +1,22 @@
 <br>
-<div class="top-10 home-stats climber row">
-  <div class="header bg-top-10">
+<div class="row">
+  <div class="top10new">
     <h1>Top Sends</h1>
+    <h2>last 7 days<h2>
   </div>
-    <br>
-<ul>
+<ul class="top10new">
   <% Tick.top_ten_climbers(@facility).each do |send| %>
     <%= link_to user_path(send.user_id) do %>
       <li>
-        <p><strong><%= send.grade.grade %></strong> <%= send.user.name %></p>
+        <% if send.user.avatar? %>
+        <%= image_tag send.user.avatar.url(:thumb), class: "img-user-list-small" %>
+        <% elsif user.image? %>
+        <%= image_tag send.user.image ,:class=> "img-user-list-small" %>
+        <% else %>
+        <%= image_tag send.user.avatar.url(:thumb), class: "img-user-list-small" %>
+        <% end %>
+
+      <strong class="doubletab"><%= send.grade.grade %></strong> <%= send.user.name %> - <%= send.date.strftime("%a, %m/%d") %>
       </li>
     <% end %>
   <% end %>

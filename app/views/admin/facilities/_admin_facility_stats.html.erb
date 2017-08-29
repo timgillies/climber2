@@ -1,0 +1,39 @@
+<div id="user-stats" class="center">
+
+    <%= link_to admin_facility_routes_path(@facility) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <%= @facility.routes.current.climb_type("boulder").length %><span class="text"><%= "boulder".pluralize(@facility.routes.current.length) %></span>
+        </div>
+      </div>
+    <% end %>
+
+
+    <%= link_to admin_facility_routes_path(@facility) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+              <%= @facility.routes.current.climb_type("sport").length %><span class="text"><%= "route".pluralize(@facility.routes.current.length) %></span>
+            </div>
+      </div>
+    <% end %>
+
+    <%= link_to admin_facility_routes_path(@facility) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <%= (total_age(@facility.routes) / @facility.routes.current.length) if @facility.routes.current.length > 0  %><span class="text"><%= "avg. age" %></span>
+        </div>
+      </div>
+    <% end %>
+
+
+    <%= link_to admin_facility_grades_path(@facility) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle large-circle-gray responsive">
+          <i class="fa fa-tasks" aria-hidden="true"></i><span class="text"><%= "grading" %></span>
+        </div>
+      </div>
+    <% end %>
+
+
+
+  </div>

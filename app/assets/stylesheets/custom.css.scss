@@ -2,7 +2,7 @@
 @import "bootstrap";
 @import 'parsley';
 @import "font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400|Roboto:300,400|Raleway:300');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400|Roboto:300,400|Poppins:300,400,700|Source+Sans+Pro:300');
 
 /* Don't print link hrefs */
 @media print {
@@ -34,7 +34,6 @@
     }
   }
 
-
 .highcharts-title {
     fill: #434348;
     font-weight: bold;
@@ -52,6 +51,13 @@
     margin-left: 0px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.no-margin {
+    padding-left: -15px !important;
+    padding-right: -15px !important;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
 }
 
 
@@ -74,11 +80,15 @@ body {
   padding: 0px;
   padding-top: 65px;
   padding-bottom: 0px;
-  font-family: sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
+  letter-spacing: 0.2px;
+  font-size: 1.6em;
+  color: #999;
 
   @media (max-width: 768px) {
     margin: -10px;
+
   }
 
 }
@@ -152,7 +162,6 @@ a {
 
 
 .center {
-  background-color: rgba(0,0,0, 0.6);
   padding-bottom: 20px;
 
   h1 {
@@ -197,15 +206,22 @@ a {
   background-color: #eee;
   background: linear-gradient(60deg, #e32666, #d7348c);
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 0px;
   color: white;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  font-family: 'Poppins', sans-serif;
 }
 
 .bg-dark-gray {
   background-color: #aaa;
   padding: 20px;
   border-radius: 4px;
+}
+
+.bg-black {
+  background-color: #444;
+  padding: 5px;
+  border-radius: 0px;
 }
 
 .bg-messages {
@@ -294,14 +310,6 @@ li {
   letter-spacing: -2px;
   padding-top: 9px;
   font-weight: 700;
-}
-
-.img-beta-icon {
-   width: 25px;
-   height: 25px;
-   background-size: cover;
-   display: inline;
-   margin-right: 10px;
 }
 
 .navbar-img-collapsed {
@@ -810,7 +818,28 @@ input {
   position: absolute;
   top: 90px;
   right: 30px;
+  opacity: 0.9;
+  @media (max-width: 768px) {
+      top: 150px;;
+  }
+}
 
+.img-facility-logo-stats {
+  height: 75px;
+}
+
+.img-facility-circle-button {
+  width: 85px;
+}
+
+.img-user-circle-button {
+  width: 75px;
+  border-radius: 50%;
+
+}
+
+.transparent {
+  background: transparent;
 }
 
 .img-user-image-profile {
@@ -828,7 +857,7 @@ input {
 
 .img-userlist-icon {
   height: 75px;
-  border-radius: 6px;
+  border-radius: 0px;
 
 }
 
@@ -1039,7 +1068,7 @@ input {
     padding-left: 7px;
     padding-right: 7px;
   }
-  border-radius: 4px;
+  border-radius: 0px;
   background-size: cover;
   background-position: center;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
@@ -1237,8 +1266,9 @@ input {
     url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
     background-size: cover;
     background-position: center;
+
   margin-top: -75px;
-  padding-top: 80px;
+  padding-top: 150px;
   @media (max-width: 768px) {
     padding-top: 88px;
   }
@@ -1247,6 +1277,23 @@ input {
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
   a {
     text-decoration: none;
+  }
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.0px;
+    color: white;
+    margin: 20px;
+    @media (max-width: 768px) {
+      font-size: 1.7em;
+    }
+  }
+  h2 {
+    margin-top: -10px;
+    color: white;
+    letter-spacing: 0.0px;
+    font-family: 'Poppins', sans-serif;
+
   }
 
   .circle-wrapper {
@@ -1258,7 +1305,7 @@ input {
 .large-circle {
   height: 75px;
   width: 75px;
-  font-size: 20px;
+  font-size: 30px;
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -1272,7 +1319,12 @@ input {
     position: relative;
     display: block;
     color: white;
+    letter-spacing: 0.8px;
+
   }
+
+
+
   li {
 
       background: linear-gradient(60deg, #e32666, #d7348c);
@@ -1301,6 +1353,12 @@ input {
 
 }
 
+.top-right-edit {
+  position: absolute;
+  top: 75px;
+  right: 15px;
+}
+
 .bg-profile-admin {
   background:
     /* top, transparent red, faked with gradient */
@@ -1316,15 +1374,50 @@ input {
 
   }
 
+  .bg-profile-facility {
+    background:
+      /* top, transparent red, faked with gradient */
+
+      linear-gradient(60deg,
+        rgba(080, 080, 080, 0.6),
+        rgba(080, 080, 080, 0.8)
+      ),
+      /* bottom, image */
+      url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
+      background-size: cover;
+      background-position: center;
+
+    }
+
+  .bg-profile-admin-comp {
+    background:
+      /* top, transparent red, faked with gradient */
+
+      linear-gradient(60deg,
+        rgba(080, 080, 080, 0.6),
+        rgba(080, 080, 080, 0.8)
+      ),
+      /* bottom, image */
+      url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
+      background-size: cover;
+      background-position: center;
+
+    }
+
 
 .img-profile-icon{
- width: 25px;
- height: 25px;
+ width: 42px;
+ height: 42px;
  background-size: cover;
- display: inline;
- margin-right: 10px;
-
-}
+ border-radius:50%;
+ position: absolute;
+ top: 12px;
+ left: 20px;
+   @media (max-width: 768px) {
+     top: 14px;
+     left: 12px;
+   }
+ }
 
 .img-profile-medium{
  width: 50px;
@@ -1358,6 +1451,17 @@ input {
  position: absolute;
  right: 12px;
  top: -10px;
+
+}
+
+.img-user-list-small{
+ width: 25px;
+ height: 25px;
+ vertical-align: bottom;
+ background-size: cover;
+ display: inline;
+ opacity: 1;
+ position: absolute;
 
 }
 
@@ -1418,6 +1522,62 @@ input {
     text-align: left;
     color: $gray-light;
   }
+}
+
+/* Competitions */
+
+.competition-about {
+  color: #777;
+  h2 {
+    text-align: left;
+    margin: 0px;
+  }
+}
+
+.comp-circle-wrapper {
+  margin: 2px;
+  display: inline-block;
+}
+
+
+.comp-large-circle {
+font-family: 'Poppins', sans-serif;
+font-weight: 600;
+height: 100px;
+width: 100px;
+font-size: 50px;
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+border-radius: 50%; /* may require vendor prefixes */
+color: rgba(96, 68, 132, 0.8);
+margin: 20px;
+.text {
+  font-weight: 300;
+  font-size: 15px;
+  margin-top: -10px !important;
+  position: relative;
+  display: block;
+  color: #888;
+}
+}
+
+.comp-stat-icon {
+font-size: 80px;
+position: absolute;
+text-align: center;
+z-index: -1;
+left: 120px;
+top: 0px;
+color: #e5e5e5;
+@media (max-width: 768px) {
+  left: 50px;
+}
+
+}
+
+.comp-stats-center {
+  text-align: center;
 }
 
 /* Marketing */
@@ -1590,15 +1750,16 @@ input {
 .gray-labels {
   margin-top: 0px;
   margin-bottom: 0px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
+  font-weight: 700;
   color: #444;
   label {
     margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
-    color: #666;
-    font-weight: 200;
+    color: #999;
+    font-weight: 700;
   }
   h2 {
     font-family: 'Montserrat', sans-serif;
@@ -1608,19 +1769,15 @@ input {
     text-align: left;
   }
   input[type=text], input[type=date], input[type=email], input[type=number] {
-      margin-left: 4px;
-      margin-right: 4px;
-      border-radius: 4px;
+      border-radius: 0px;
       box-shadow: none;
       font-size: 16px;
       padding: 12px;
       text-transform: uppercase;
       border: none;
-      background-color: #ccc;
-      color: #666;
-      box-shadow: 0 1px 2px rgba(0,0,0,.25);
-
-  }
+      display:block;
+      box-sizing: border-box;
+    }
 
   input[type=date] {
     margin-left: 4px;
@@ -1651,18 +1808,19 @@ select {
   .large-label {
     input[type=text] {
       margin-left: 4px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
       margin-right: 4px;
-      font-size: 16px;
+      font-size: 22px;
       padding: 12px;
-      background-color: #ccc;
+      background-color: #fff;
       color: #666;
-      box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
     }
   }
 
   textarea[type=text] {
-    border-radius: 3px;
+    border-radius: 0px;
     box-shadow: none;
     font-size: 16px;
     box-shadow: 0 1px 2px rgba(0,0,0,.25);
@@ -1724,12 +1882,12 @@ select {
       display: inline-block;
       position: relative;
       overflow: hidden;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', sans-serif;
       text-transform: uppercase;
-      letter-spacing: -0.5px;
+      letter-spacing: 0.0px;
       background-color: #fff;
       color: #fff;
-      font-weight: 200;
+      font-weight: 700;
       box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
 
@@ -1741,7 +1899,7 @@ select {
       font-size: 16px;
       padding: 12px;
       @media (max-width: 768px) {
-        font-size: 16px;
+        font-size: 12px;
         padding: 12px;
       }
 
@@ -1785,13 +1943,12 @@ select {
       font-size: 8px;
   }
   #donate .gray {
-    background-color: #ccc;
-
-    color: #666;
+    background-color:#bbb;
+    color:#fff;
   }
 
   #donate .purple {
-      background-color:#8833ff;
+      background-color:#bbb;
       color:#fff;
   }
 
@@ -1815,12 +1972,12 @@ select {
       display: inline-block;
       position: relative;
       overflow: hidden;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', sans-serif;
       text-transform: uppercase;
       letter-spacing: -0.5px;
       background-color: #ccc;
       color: #666;
-      font-weight: 200;
+      font-weight: 700;
       box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
 
@@ -1867,7 +2024,6 @@ select {
   letter-spacing: -0.0px;
   color: #666;
   font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
   li {
     background-color: #ddd;
     margin-bottom: 10px;
@@ -1937,21 +2093,62 @@ select {
   .large-circle {
     height: 75px;
     width: 75px;
-    font-size: 25px;
+    font-size: 20px;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
-    background: linear-gradient(60deg, #1b75bb, #00b1ff);
+    background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
     color: white;
     margin: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.25);
     .text {
       font-size: 10px;
-      margin-top: -6px !important;
+      margin-top: -5px !important;
       position: relative;
       display: block;
+      color: white;
     }
+  }
+
+  .white-circle {
+    background: linear-gradient(60deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+    color: #222;
+    .text {
+      color: #222;
+    }
+  }
+
+  .comp-add {
+    height: 50px;
+    width: 50px;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: bottom;
+    border-radius: 50%; /* may require vendor prefixes */
+    background: #222;
+    color: #a9a9a9;
+    margin: 0px;
+    border: none;
+    @media (min-width: 768px) {
+      right: 10px;
+    }
+    @media (max-width: 768px) {
+      right: 10px;
+    }
+    top: 5px;
+    position: absolute;
+    .text {
+      font-size: 10px;
+      margin-top: -10px !important;
+      position: relative;
+      display: block;
+      color: #888;
+
+    }
+  }
+
+  .green-check {
+    color: #52BE80;
   }
 
   .tick-circle {
@@ -1964,13 +2161,14 @@ select {
     border-radius: 50%; /* may require vendor prefixes */
     background-color: #222;
     color: white;
-    margin: 20px;
+    margin: 0px;
 
     .text {
-      font-size: 8px;
+      font-size: 10px;
       margin-top: -4px !important;
       position: relative;
       display: block;
+      letter-spacing: 0.8px;
     }
   }
 
@@ -1984,10 +2182,10 @@ select {
     border-radius: 50%; /* may require vendor prefixes */
     background-color: #222;
     color: white;
-    margin: 20px;
+    margin: 0px;
     box-shadow: 0 0 2px 4px #47cf73;
     .text {
-      font-size: 8px;
+      font-size: 10px;
       margin-top: -4px !important;
       position: relative;
       display: block;
@@ -1996,7 +2194,7 @@ select {
   }
 
   .img-facility-logo-list {
-    height: 40px;
+    height: 50px;
     @media (max-width: 768px) {
       height: 30px;
     }
@@ -2006,6 +2204,7 @@ select {
     display: inline;
     margin-right: 10px;
     vertical-align: bottom;
+    opacity: 0.7;
   }
 
   .project {
@@ -2264,24 +2463,23 @@ select {
   list-style: none;
   padding: 0px;
   display: inline;
-  font-weight: 300;
   font-size: 0.7em;
-  letter-spacing: -0.0px;
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  color: #ddd;
+  font-family: 'Poppins', sans-serif;
+
   li {
     background-color: #444;
     margin-bottom: 10px;
-    border-left: 15px solid #444;
+    border-left: none;
     position: relative;
-    border-radius: 4px;
+    border-radius: 0px;
     box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
 
 
     a, a:hover {
-      color: #fff;
+      color: #ccc;
     }
 
     h1 {
@@ -2298,14 +2496,96 @@ select {
 
     }
     h2 {
-      color: #eee;
-      size: 1.0em;
+      color: #ccc;
+      font-size: 1.8em;
     }
     h3 {
       color: #fff;
+      font-size: 2.2em;
+      font-weight: 700;
     }
   }
+  .circle-wrapper {
+    margin: 0px;
+  }
 }
+
+
+/** Spinner **/
+// This is just to center the spinner
+.spinner-class {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  z-index: +1;
+
+html, body { height: 100%; }
+
+body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+// Here is where the magic happens
+
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite,
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+	0% { stroke: #47cf73; }
+	25% { stroke: #2cb5e8; }
+	50% { stroke: #7839F9; }
+	75% { stroke: #e32666; }
+  100% { stroke: #d7348c; }
+}
+
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}
+}
+
+.blur-out {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  opacity: 0.90;
+}
+
+/* Result List */
+
+
+
 
 .ticklist {
   li {
@@ -2674,6 +2954,8 @@ span.picture {
   margin-left:-20px;
 }
 
+
+
 /*-- change navbar dropdown color --*/
 
  .navbar .navbar-nav .open .dropdown-menu>li>a {
@@ -2846,12 +3128,8 @@ span.picture {
 
 .btn, .btn-group {
   font-weight: normal;
-  font-weight: 200;
   vertical-align: bottom;
   border-radius: 2px;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 
 }
 
@@ -3225,6 +3503,66 @@ span.picture {
   display: inline-block;
   font-family: 'Montserrat', sans-serif;
 
+}
+
+.expire-circle {
+  position: absolute;
+  right: 100px;
+  top: 0px;
+  height: 60px;
+  width: 60px;
+  font-size: 30px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: text-top;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, #5ccb6c, #57d79a);
+  color: white;
+  margin: 0px;
+  padding: 2px;
+  @media (max-width: 678px) {
+    height: 55px;
+    width: 55px;
+    font-size: 20px;
+    vertical-align: middle;
+    padding-top: 5px;
+    right: 75px;
+    top: 5px;
+
+  }
+
+  .text {
+    font-size: 10px;
+    margin-top: -8px !important;
+    position: relative;
+    display: block;
+    text-align: center;
+    letter-spacing: 0.8px;
+    @media (max-width: 678px) {
+      margin-top: -3px !important;
+
+    }
+  }
+}
+
+.expired {
+
+  background: #888;
+  color: white;
+
+
+  .text {
+    color: white;
+  }
+}
+
+.task-circle {
+  right: 10px;
+  top: 0px;
+  background: #888;
+  @media (max-width: 678px) {
+    top: 5px;
+  }
 }
 
 .btn-activate, .btn-completed:hover{
@@ -3647,17 +3985,21 @@ font-family: 'Montserrat', sans-serif;
 }
 
 .activity-feed {
-  font-family: 'Montserrat', sans-serif;
-
+  font-family: sans-serif;
 	list-style-type: none;
 	padding: 0;
 	margin: 50px 0px 50px 25px;
+  a {
+    color: 444;
+    text-decoration: none;
+  }
 
   .img-route-show {
     width: 250px;
   }
 
 	.feed-item {
+    color: #fff;
 		position: relative;
 		min-height: 60px;
 		margin-bottom: 25px;
@@ -3697,11 +4039,11 @@ font-family: 'Montserrat', sans-serif;
 			background-color: #ddd;
 		}
 		section {
-			background-color: #eee;
+			background-color: #fff;
 			//width: auto;
 			//display: inline-block;
 			padding: 10px 15px;
-			border-radius: 4px;
+			border-radius: 0px;
       box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
 			label {
@@ -3758,7 +4100,7 @@ input[type="checkbox"] {
 }
 
 .content {
-  border-top: 1px solid #fcd000;
+  border-top: 1px solid #ffffff;
   margin-top: 5px;
   padding-top: 5px;
 }
@@ -3787,8 +4129,8 @@ input[type="checkbox"] {
   //width: auto;
   //display: inline-block;
   padding: 10px 15px 5px 5px;
-  border-radius: 4px;
-  border: 1px solid #f0f0f0;
+  margin: 0px;
+  border-radius: 0px;
   @media (min-width: 768px) {
     margin-right: 0px;
   }
@@ -3798,10 +4140,21 @@ input[type="checkbox"] {
   }
 
   p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     margin-bottom: -5px;
-    color: #ddd;
-    text-transform: uppercase;
-    font-size: 1.0em;
+    color: #eee;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    @media (max-width: 768px) {
+      font-size: 1.0em;
+    }
+    small {
+      font-weight: 200;
+      display: block;
+      margin-top: -10px;
+      font-size: 0.5em;
+    }
   }
 
   .img-facility-logo-list-left {
@@ -3813,7 +4166,7 @@ input[type="checkbox"] {
   }
   .header {
     h1{
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', sans-serif;
       display: inline;
       font-size: 1.0em;
       color: #fff;
@@ -3831,11 +4184,10 @@ input[type="checkbox"] {
   }
 
   li {
-    background-color: rgba(0,0,0,.45);
+    background-color: rgba(0,0,0,.5);
     margin-bottom: 10px;
     position: relative;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.25);
+    border-radius: 0px;
     padding: 10px;
     margin-left: -30px !important;
   }
@@ -4011,6 +4363,17 @@ input[type="checkbox"] {
   }
 }
 
+.start-date {
+
+  font-size: 15px;
+  color: #47cf73;
+  margin: 0px;
+  left: 300px;
+  bottom: -7px;
+  position: absolute;
+
+}
+
 .userlist-follow {
   height: 50px;
   width: 50px;
@@ -4030,6 +4393,93 @@ input[type="checkbox"] {
     right: 10px;
   }
   top: 10px;
+  position: absolute;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+
+  }
+}
+
+.third-button {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  color: #aaa;
+  margin: 0px;
+  @media (min-width: 768px) {
+    left: 250px;
+  }
+  @media (max-width: 768px) {
+    left: 200px;
+  }
+  bottom: -7px;
+  position: absolute;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+
+  }
+}
+
+.fourth-button {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  color: #aaa;
+  margin: 0px;
+  @media (min-width: 768px) {
+    left: 325px;
+  }
+  @media (max-width: 768px) {
+    left: 250px;
+  }
+  bottom: -7px;
+  position: absolute;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+
+  }
+}
+
+.edit-button {
+  height: 50px;
+  width: 50px;
+  font-size: 25px;
+  display: block;
+  text-align: center;
+  vertical-align: bottom;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  color: #aaa;
+  margin: 0px;
+  @media (min-width: 768px) {
+    right: 0px;
+  }
+  @media (max-width: 768px) {
+    right: 0px;
+  }
+  top: 7px;
   position: absolute;
   .text {
     font-size: 10px;
@@ -4075,7 +4525,7 @@ input[type="checkbox"] {
   border-radius: 50%; /* may require vendor prefixes */
   background: linear-gradient(60deg, #2bb573, #8cc53f);
   color: white;
-  margin: 20px;
+  margin: 0px;
   .text {
     font-size: 8px;
     margin-top: -4px !important;
@@ -4134,38 +4584,47 @@ input[type="checkbox"] {
   h1 {
     font-weight: 200;
     text-align: left;
-    font-size: 2.0em;
   }
 
+}
+
+.bg-home-white {
+  background: transparent;
 }
 
 .facility-list {
   color: #eee;
-  background: #a9a9a9;
+  background: #ddd;
 }
 
 .white-list {
+  font-family: 'Poppins', sans-serif;
   color: #222;
-  background: #a9a9a9;
+  background: #ddd;
   .tab-text-top {
     position: absolute;
     top: 10px;
     left: 110px;
+    white-space: nowrap;
+     right: 0px;
+     overflow: hidden;
   }
   .tab-text-bottom {
     position: absolute;
-    top: 25px;
+    top: 29px;
     left: 110px;
   }
 
   p {
-    color: #666;
+    color: #999;
   }
   li {
     background: #eee;
-    color: #666;
+    color: #777;
+    border-radius: 0px;
+    border: none;
     a, a:visited {
-      color: #666;
+      color: #777;
     }
   }
 
@@ -4175,6 +4634,10 @@ input[type="checkbox"] {
     }
   }
 
+}
+
+.transparent {
+  background-color: transparent;
 }
 
 .admin-sidebar {
@@ -4188,8 +4651,8 @@ input[type="checkbox"] {
   background:
     /* top, transparent red, faked with gradient */
     linear-gradient(60deg,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, .4)
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, .4)
     ),
     /* bottom, image */
     url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc-climber-swing.jpg');
@@ -4232,4 +4695,162 @@ input[type="checkbox"] {
 
 .get-started {
   background: linear-gradient(60deg, #ff5f6d, #ffc371);
+}
+
+
+/* Route List 2.0 */
+
+.list-color-circle {
+  height: 43px;
+  width: 43px;
+  font-size: 20px;
+  display: table-cell;
+  text-align: center;
+  position: absolute;
+  left: -5px;
+  top: -10px;
+  vertical-align: middle;
+  border-radius: 6px; /* may require vendor prefixes */
+  background: #2cb5e8;
+  color: blue;
+  margin: 20px;
+  margin-bottom: 25px;
+  .text {
+    font-size: 10px;
+    margin-top: -5px !important;
+    position: relative;
+    display: block;
+    color: white;
+  }
+  img {
+    height: 40px;
+    background-size: cover;
+    display: inline;
+    margin-right: 10px;
+    vertical-align: bottom;
+    position: absolute;
+    top: 90px;
+    right: 30px;
+    border-radius: 6px;
+  }
+
+}
+
+.routelist2 {
+  font-family: 'Poppins', sans-serif;
+
+  h1,h2,h3,h4 {
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1 {
+    font-size: 1.4em;
+    letter-spacing: 0.0px;
+    position: absolute;
+    top: -70px;
+    left: 70px;
+  }
+
+  h2 {
+    position: absolute;
+    top: -50px;
+    left: 70px;
+  }
+
+  li {
+    border-bottom: 1px solid $gray-lighter;
+
+  }
+
+}
+
+.resultlist {
+  font-family: 'Poppins', sans-serif;
+  text-overflow: clip;
+  font-size: 0.8em;
+  h1 {
+    font-size: 1.0em;
+    letter-spacing: 0.0px;
+    font-weight: 700;
+    text-align: left;
+    color: white;
+  }
+
+}
+
+.left-no-double-margin {
+  margin-left:-37px;
+  margin-right: 3px;
+}
+
+/* form labels and inputs */
+.user-search-box {
+  input[type=text], input[type=date], input[type=email], input[type=number] {
+      margin-left: 11px;
+      margin-right: 10px;
+      border-radius: 0px;
+      box-shadow: none;
+      font-size: 16px;
+      padding: 12px;
+      text-transform: uppercase;
+      border: none;
+      display:block;
+      box-sizing: border-box;
+      width: calc(100% - 10px)
+  }
+}
+
+.large-circle-transparent {
+  height: 75px;
+  width: 75px;
+  font-size: 20px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: linear-gradient(60deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  color: white;
+  margin: 20px;
+  .text {
+    font-size: 10px;
+    margin-top: -0px !important;
+    position: relative;
+    display: block;
+    color: white;
+  }
+}
+
+/* Top 10 */
+
+.top10new {
+  font-family: "Poppins", sans-serif;
+
+
+  h1 {
+    color: rgba(96, 68, 132, 0.8);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.0px;
+    margin: 20px;
+    margin-bottom: 5px;
+    @media (max-width: 768px) {
+      font-size: 1.7em;
+    }
+  }
+
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    margin: 0px;
+    color: #d0d0d0;
+    text-transform: none;
+    text-align: left;
+    margin-left: 40px;
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin: 0px;
+    line-height: 30px;
+  }
 }

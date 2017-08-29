@@ -1,0 +1,165 @@
+<div id="filterrific_results_admin">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="routelist">
+        <h2><%= page_entries_info @routes  %>
+
+          <% if filter_results_count > 0 %>
+            (<%= filter_results_count.to_s + ' filter'.pluralize(filter_results_count) + ' applied' %>)
+          <% end %>
+        </h2>
+        <br>
+      </div>
+    </div>
+
+  </div>
+  <%= div_for(@routes) do |f| %>
+  <ol class="routelist white-list">
+
+      <% if f.color_hex? %>
+      <li style="border-left: 15px solid <%= f.color_hex %>">
+      <% elsif f.color? %>
+        <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
+          <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
+          <% else %>
+          <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
+          <% end %>
+      <% else %>
+      <li>
+      <% end %>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-10 col-sm-10 col-md-5">
+            <h3>
+              <% if f.color? %>
+                <%= link_to f.grade.grade + " "+ f.color.upcase , admin_facility_route_path(@facility, f) if f.grade %>
+              <% elsif (color_name(f.color_hex, @facility)).nil? %>
+                <%= link_to f.grade.grade , admin_facility_route_path(@facility, f) if f.grade %>
+              <% else %>
+                <%= link_to f.grade.grade + " "+ color_name(f.color_hex, @facility)[0].upcase , admin_facility_route_path(@facility, f) if f.grade %>
+              <% end %>
+            </h3>
+            <h2> <%= f.name %></h2>
+          </div>
+
+
+
+
+          <% if params[:controller][0..4] == ['admin'] %>
+          <div class="hidden-xs hidden-sm no-print">
+            <div class="col-md-3">
+              <% if f.active? %>
+                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: true %>
+              <% else %>
+                <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-md', method: :expire, remote: true %>
+              <% end %>
+            </div>
+
+            <div class="col-md-3 no-print">
+              <%= button_to "new task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :create_task, remote: false %>
+            </div>
+          </div>
+          <div class="col-xs-2 col-sm-1 no-print">
+              <h3><%= link_to edit_admin_facility_route_path(@facility, f ) do %>
+                <i class="glyphicon glyphicon-cog pull-right"></i>
+              <%end %>
+            </h3>
+          </div>
+          <% else %>
+            <%= render 'admin/competitions/add_to_comp_button', route: f  %>
+          <% end %>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+              <div class="tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.id %></div>
+
+          </div>
+          <div class="col-sm-12">
+              <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="tab"><strong>
+
+              <% if params[:controller] == "admin/tasks" %>
+
+               Assigned to:
+
+               <% else %>
+
+               Set by:
+
+               <% end %>
+
+             </strong><%= f.user.name if f.user %></div>
+          </div>
+
+          <% unless params[:controller] == ['competitions']  %>
+          <div class="col-xs-12 col-sm-12">
+            <% else %>
+            <div class="col-xs-12 col-sm-12">
+            <% end %>
+
+            <div class="tab">
+
+
+              <% unless params[:controller] == 'admin/tasks' %>
+                <% if (days_ago(f) == "today") %>
+                  <span><%= days_ago(f) %></span>
+                <% else %>
+                  <%= days_ago(f) %> ago
+                <% end %>
+              <% else %>
+                <% if f.setdate? %>
+                due on <%= f.setdate.strftime("%b %d, %Y") %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+          <% unless params[:controller] == 'competitions' %>
+          <div class="col-xs-2 col-sm-1">
+            <div>
+              <% if f.user %>
+
+                <% if f.user.avatar? %>
+                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon-list" %>
+                <% elsif f.user.image? %>
+                  <%= image_tag f.user.image ,:class=> "img-setter-icon-list" %>
+                <% end %>
+
+              <% end %>
+
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+        <% unless params[:controller][0..3] == 'admin' %>
+
+        <div class="row">
+          <div class="hidden-md hidden-lg hidden-xl no-print">
+            <br/>
+            <div class="col-xs-6 col-sm-6">
+              <% if f.active? %>
+                <%= button_to "expire",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: true %>
+              <% else %>
+                <%= button_to "expired",  expire_admin_facility_route_path(@facility, f ), class: 'btn btn-expired btn-md', method: :expire, remote: true %>
+              <% end %>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 no-print">
+              <%= button_to "new task",  create_task_admin_facility_route_path(@facility, f ), class: 'btn btn-expire btn-md', method: :expire, remote: false %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+
+      </div>
+    </li>
+  </ol>
+  <% end %>
+
+  <%= paginate @routes %>
+  </div>

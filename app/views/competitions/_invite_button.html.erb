@@ -1,0 +1,12 @@
+<div id="comp_invite_button">
+  <% if @competition.users_as_participants.where(user_id: current_user).count == 0 %>
+  <div class='col-sm-3 col-xs-6 comp-stats-center'>
+    <span class="comp-stat-icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+    <%= link_to add_user_facility_competition_path(@facility, @competition), method: :post, remote: true do %>
+      <div class="comp-circle-wrapper">
+        <div class="comp-large-circle responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text">Invite</span></div>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>

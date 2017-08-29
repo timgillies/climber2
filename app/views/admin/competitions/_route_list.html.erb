@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1 class="hidden-xs"><strong>Route</strong>Database </h1>
+      <h1 class="hidden-sm hidden-md hidden-lg hidden-xl">Routes </h1>
+    <span class="pull-right">
+      <button class="btn btn-filter" type="button" data-toggle="collapse" data-target="#routeFilters" aria-expanded="false" aria-controls="routeFilters">
+        Filters <span class="glyphicon glyphicon-filter"></span>
+      </button>
+      <% unless params[:controller] == 'admin/competitions' %>
+        <span class="hidden-xs"><%= link_to "new route", new_admin_facility_route_path(@facility), class: "btn btn-close", style: "display: inline-block;" %></span>
+      <% end %>
+    </span>
+  </div>
+  </div>
+</div>
+<%= form_for_filterrific @filterrific do |f| %>
+
+<div class="collapse" id="routeFilters">
+  <br>
+      <div class="container-fluid bg-routeform">
+        <div class="gray-labels">
+          <div class="row">
+            <div class="col-xs-6 col-sm-5">
+              <%= f.label :setdate,  "Set on (start range):" %>
+              <%= f.date_field :with_setdate_gte, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
+            </div>
+            <div class="col-xs-6 col-sm-5">
+              <%= f.label :setdate,  "Set on (end range):" %>
+              <%= f.date_field :with_setdate_lt, include_blank: true, class: 'form-control date filterrific-periodically-observed', placeholder: 'mm/dd/yyyy' %>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+              <%= f.label :sorted_by,  "Sort" %>
+              <%= f.select(
+                :sorted_by,
+                @filterrific.select_options[:sorted_by],
+                { include_blank: 'Sort by' },
+                {class: "form-control"}
+              ) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-sm-3">
+              <%= f.select(
+                :with_grade_id,
+                @filterrific.select_options[:with_grade_id],
+                { include_blank: 'grades' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <%= f.select(
+                :with_wall_id,
+                @filterrific.select_options[:with_wall_id],
+                { include_blank: 'sub-zones' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <%= f.select(
+                :with_setter_id,
+                @filterrific.select_options[:with_setter_id],
+                { include_blank: 'setters' },
+                {class: "form-control"}
+              ) %>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+              <%= f.select(
+                :with_status_id,
+                @filterrific.select_options[:with_status_id],
+                { include_blank: 'All' },
+                {class: "form-control"}
+              ) %>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <span class="pull-right">
+                <%= link_to(
+                  'Reset filters',
+                  reset_filterrific_url
+                ) %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="route-form">
+            <div id="donate">
+              <% Zone.where(facility_id: @facility).each do |zone| %>
+                <label class="purple"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
+                  <span><%= zone.name %></span>
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+    <br>
+<div class="divider-line"></div>
+
+<br>
+<%= render( 'admin/routes/list', routes: @routes )%>
