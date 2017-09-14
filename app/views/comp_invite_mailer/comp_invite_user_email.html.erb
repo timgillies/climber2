@@ -441,7 +441,7 @@
                                         <tr>
                                             <td valign="top" class="bodyContent" mc:edit="body_content00">
                                                 <h1><%= @inviter.name %> has invited you!</h1>
-                                                <h3><%= link_to @competition.name, facility_competition_path(@facility, @competition) %></h3>
+                                                <h3><%= link_to @competition.name, facility_competition_url(@facility, @competition) %></h3>
                                                 <%= @competition.description if @competition.description %>
                                             </td>
                                         </tr>
@@ -457,7 +457,7 @@
                                                 With Climb Connect, you can now easily create your own circuits at your gym, compete with friends, and track your stats!
                                                 <br>
                                                 <br>
-                                                <h2><%= link_to "Sign in ", new_user_session_path %></h2>
+                                                <h2><%= link_to "Sign in ", new_user_session_url %></h2>
                                             </td>
                                         </tr>
                                     </table>
