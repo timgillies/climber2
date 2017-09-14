@@ -31,12 +31,12 @@
             <div class="col-xs-12">
               <div class="tripletab">
                 <p>
-                  <% if FacilityRole.where(user_id: current_user.id).count == 0 %>
+                  <% if FacilityRole.where(user_id: user.id).count == 0 %>
                     following 0 facilities
-                  <% elsif FacilityRole.where(user_id: current_user.id).count > 1 %>
-                    following <%= FacilityRole.where(user_id: current_user.id).first.facility.name %> and <%= FacilityRole.where(user_id: current_user.id).count - 1 %> others...
+                  <% elsif FacilityRole.where(user_id: user.id).count > 1 %>
+                    following <%= FacilityRole.where(user_id: user.id).first.facility.name %> and <%= FacilityRole.where(user_id: user.id).count - 1 %> others...
                   <% else %>
-                    following <%= FacilityRole.where(user_id: current_user.id).first.name %>
+                    following <%= FacilityRole.where(user_id: user.id).first.name %>
                   <% end %>
                 </p>
               </div>
