@@ -4,10 +4,13 @@
 
 
 
-<%= link_to admin_facility_competition_route_add_route_path(@facility, @competition, route), method: :post, remote: true do %>
-<div class="circle-wrapper">
+<%= link_to admin_facility_competition_route_add_route_path(@facility, @competition, route), method: :post, remote: true, data: { disable_with:
+  "
+    <div class='comp-add'><i class='fa fa-refresh fa-spin' aria-hidden='true'></i>
+  " } do %>
+
   <div class="comp-add"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "add" %></span></div>
-</div>
+
 
 <% end %>
 
@@ -16,12 +19,15 @@
 
 <% if CompRoute.find_by(route_id: route.id, competition_id: @competition.id) %>
 
-  <%= link_to admin_facility_competition_route_remove_route_path(@facility, @competition, route), method: :post, remote: true  do %>
+  <%= link_to admin_facility_competition_route_remove_route_path(@facility, @competition, route), method: :post, remote: true, data: { disable_with:
+    "
+      <div class='comp-add'><i class='fa fa-refresh fa-spin' aria-hidden='true'></i></div>
+    " } do %>
 
 
-  <div class="circle-wrapper">
+
     <div class="comp-add green-check"><i class="fa fa-check" aria-hidden="true"></i><span class="text"><%= "added" %></span></div>
-  </div>
+
 
   <% end %>
 <% end %>

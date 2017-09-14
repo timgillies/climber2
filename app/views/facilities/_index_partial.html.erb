@@ -6,8 +6,8 @@
     <br>
     <%= form_for_filterrific @filterrific do |f| %>
     <div>
-      <div class="top-10 home-stats left-margin facility-list row">
-            <div class="gray-labels">
+      <div class="">
+            <div class="top-10 home-stats left-margin facility-list row">
 
             <div class="header bg-top-10">
               <h1>search</h1>
@@ -16,7 +16,7 @@
               <div class="row">
                 <div class="col-xs-12 col-sm-8">
                   <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-                  <div class="form-group">
+                  <div class="form-group user-search-box">
                     <%= f.text_field(
                       :facility_search_query,
                       placeholder: '  Search by Name',
@@ -26,12 +26,14 @@
                 </div>
 
                 <div class="col-xs-6 col-sm-4">
-                  <%= f.select(
-                    :with_state,
-                    @filterrific.select_options[:with_state],
-                    { include_blank: 'state' },
-                    {class: "form-control"}
-                  ) %>
+                  <div class="form-group user-search-box">
+                    <%= f.select(
+                      :with_state,
+                      @filterrific.select_options[:with_state],
+                      { include_blank: 'State' },
+                      {class: "form-control"}
+                    ) %>
+                  </div>
                 </div>
               </div>
             </div>
@@ -42,5 +44,3 @@
     <% end %>
   </div>
 </div>
-
-<br>

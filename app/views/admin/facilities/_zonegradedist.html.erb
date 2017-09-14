@@ -1,0 +1,199 @@
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+        var perShapeGradient = {
+                x1: 1,
+                y1: 1,
+                x2: 1,
+                y2: 0
+            };
+    new Highcharts.Chart({
+      exporting: {
+          sourceWidth: 800,
+          sourceHeight: 400,
+
+          // scale: 2 (default),
+          enabled: false,
+          filename: "routes__<%= @facility.name.downcase %>_<%= fz.name.downcase %>",
+
+          buttons: {
+                contextButton: {
+                    symbolStroke: '#d5d5d5',
+                    menuItems: [{
+                        text: 'Export to PNG',
+                        onclick: function () {
+                            this.exportChart({
+                                width: 3200
+                            });
+                        }
+                    },{
+                        text: 'Export to PDF',
+                        onclick: function () {
+                            this.exportChart({
+                              type: 'application/pdf'
+                            });
+                        },
+                        separator: false
+                    },
+                  ]
+                }
+            },
+            chartOptions: {
+                title: {
+                    text: "<%= @facility.name.gsub(/[^0-9a-z ]/i, '') + " " + @facility.location.gsub(/[^0-9a-z ]/i, '') %>",
+                    style: {
+                        color: 'black',
+                        fontWeight: 'bold',
+                        fontFamily: "'Helvetica', sans-serif"
+                    }
+                },
+                subtitle: {
+                    text:  "<%= fz.name %>"
+                },
+            }
+
+      },
+      navigation: {
+          buttonOptions: {
+              align: 'right',
+              verticalAlign: 'bottom',
+              y: 32,
+              theme: {
+                r: '0',
+                  states: {
+                      hover: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      },
+                      select: {
+                          fill: '#a9a9a9',
+                          stroke: '#a9a9a9',
+                      }
+                  }
+              }
+          }
+      },
+      chart: {
+        renderTo: "zonegradedist-<%= fs.id %><%= fz.id %>",
+        type: "column",
+        spacingBottom: 35,
+        backgroundColor:'transparent',
+        style: {
+          fontFamily: 'Helvetica',
+        }
+      },
+      title: {
+        text: ""
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          enabled: true,
+          style: {
+            color: '#fff',
+          }
+        },
+        tickLength: 0,
+        minorGridLineWidth: 0,
+        minorTickLength: 0,
+      },
+      yAxis: {
+        title: {
+          text: ""
+        },
+        labels: {
+          enabled: false
+        },
+        tickLength: 0,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        gridLineColor: 'transparent',
+        minorTickLength: 0,
+        lineColor: 'transparent',
+        allowDecimals: false
+      },
+      credits: {
+        enabled: false,
+        text: '<%= @facility.name.gsub(/[^0-9a-z ]/i, '')%>  |  climbconnect.com',
+        style: {
+          fontSize: "12px",
+        },
+        href: 'https://www.climbconnect.com',
+        position: {
+          align: "right",
+          verticalAlign: "bottom",
+          x: -40,
+          y: -8,
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        spline: {
+          marker: {
+              enabled: false
+          }
+        },
+        column: {
+          borderColor: 'transparent',
+          cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.series.options.data[this.category][2] ;
+                        }
+                    }
+                },
+          dataLabels: {
+            enabled: true,
+            style: {
+              textShadow: '0 0 0 black',
+              color: '#444',
+              fontFamily: 'Montserrat',
+              fontWeight: 'thin'
+            },
+            formatter: function() {
+                if (this.y != 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
+            }
+          }
+        }
+      },
+      colors: [{
+            linearGradient: perShapeGradient,
+            stops: [
+                [0, '#d7348c'],
+                [1, '#e32666']
+                ]
+            }, {
+            linearGradient: perShapeGradient,
+            stops: [
+                [0, '#00b1ff'],
+                [1, '#00b1ff']
+                ]
+            }, {
+            linearGradient: perShapeGradient,
+            stops: [
+                [0, 'rgb(136, 219, 5)'],
+                [1, 'rgb(112, 180, 5)']
+                ]},
+        ],
+
+      series: [{
+          type: 'column',
+          name: 'Routes',
+          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).map {|f| [f.grade, Route.current.where("grade_id = ? AND zone_id = ? AND facility_id = ?", f, fz.id, @facility.id, ).count, "https://www.climbconnect.com/admin/facilities/#{@facility.id}/routes?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_grade_id%5D=#{ f.id }&filterrific%5Bwith_zone_id%5D=#{ fz.id }&filterrific%5Bwith_wall_id%5D=&filterrific%5Bwith_setter_id%5D=&filterrific%5Bwith_status_id%5D=#{Date.current}&filterrific%5Bsorted_by%5D=created_at_desc&_="] } %>
+      },{
+          type: 'spline',
+          name: 'Target',
+          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).map {|f| [f.grade, FacilityTarget.where("grade_id = ? AND zone_id = ? AND facility_id = ?", f, fz.id, @facility.id).sum(:value) ] } %>
+        }
+      ]
+    });
+  });
+</script>
+<div id="zonegradedist-<%= fs.id %><%= fz.id %>" style="width:100%; height:200px;"></div>

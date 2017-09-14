@@ -188,7 +188,7 @@
       series: [{
           type: 'bar',
           name: 'Routes',
-          data: <%= raw @facility.zones.all.map {|f| [f.name, Route.current.where("zone_id = ?", f).count, "/admin/facilities/#{@facility.id}/zones/#{ f.id }" ] } %>
+          data: <%= raw @facility.zones.all.map {|f| [f.name, Route.current.where("zone_id = ?", f).count, "facilities/#{@facility.id}/zones/#{ f.id }" ] } %>
       },{
           type: 'spline',
           name: 'Target',

@@ -25,7 +25,7 @@ end
       @userfacilities_check = current_user.facility_relationships.all
     end
 
-    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
     @filterrific = initialize_filterrific(
       Route,
       params[:filterrific],
@@ -91,7 +91,7 @@ end
     @ratingcount = Rate.where("rateable_id = ?", @route).count(:stars)
 
     @userfacilities_check = current_user.facility_relationships.all
-    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
   end
 
   def create
@@ -281,6 +281,32 @@ end
     @tick = Tick.new(user_id: current_user.id, route_id: @route.id, grade_id: @route.grade_id, tick_type: 'quick_add', date: Date.current)
     @tick.save
     redirect_to (user_route_tick_path(current_user, @route, @tick))
+  end
+
+  def route_like
+    @user = User.find(params[:user_id])
+    @route = Route.find(params[:id])
+    @route_like = RouteLike.new(user_id: current_user.id, route_id: @route.id, like: true)
+    @route_like.save
+    if @route_like.save
+      respond_to do |format|
+        format.html {redirect_to user_routes_path(@user)}
+        format.js
+      end
+    else
+      redirect_to user_routes_path(@user)
+    end
+  end
+
+  def route_unlike
+    @user = User.find(params[:user_id])
+    @route = Route.find(params[:id])
+    @route_like = RouteLike.find_by(user_id: current_user.id, route_id: @route.id)
+    @route_like.destroy
+    respond_to do |format|
+      format.html {redirect_to @users}
+      format.js
+    end
   end
 
 

@@ -1,0 +1,36 @@
+<div id="route_like_<%= f.id %>" class="circle-wrapper">
+
+  <% unless RouteLike.where(user_id: current_user.id, route_id: f.id).count > 0 %>
+  <%= button_to route_like_user_route_path(current_user, f), method: :post, class: 'btn btn-pretick btn-md', remote: true,
+
+  data: { disable_with:
+    "<div class='heart-circle hear-fill'>
+      <i class='fa fa-heart' aria-hidden='true'></i>
+    </div>"
+
+  }  do %>
+
+    <div class="heart-circle">
+      <i class="fa fa-heart" aria-hidden="true"></i>
+      <span class="text"><%= RouteLike.where(route_id: f.id).count %><%= " Like".pluralize(RouteLike.where(route_id: f.id).count) %></span>
+    </div>
+    <% end %>
+  <% else %>
+  <%= button_to route_unlike_user_route_path(current_user, f), method: :post, class: 'btn btn-pretick btn-md', remote: true,
+
+  data: { disable_with:
+    "<div class='heart-circle'>
+      <i class='fa fa-heart' aria-hidden='true'></i>
+    </div>"
+
+  }  do %>
+
+  <div class="heart-circle heart-fill">
+    <i class="fa fa-heart" aria-hidden="true"></i>
+    <span class="text"><%= RouteLike.where(route_id: f.id).count %><%= " Like".pluralize(RouteLike.where(route_id: f.id).count) %></span>
+  </div>
+  <% end %>
+
+  <% end %>
+
+</div>

@@ -9,7 +9,7 @@ class TicksController < ApplicationController
     @user = User.find(params[:user_id])
     @tick.route_id = params[:route_id]
     @userfacilities_check = current_user.facility_relationships.all
-    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
   end
 
 
@@ -87,7 +87,7 @@ class TicksController < ApplicationController
     @tick.route_id = params[:route_id]
     # Put this in model eventually
     @userfacilities_check = current_user.facility_relationships.all
-    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
 
     if params[:route_id]
       @tick.grade_id = Route.where(id: params[:route_id]).first.grade_id

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814155243) do
+ActiveRecord::Schema.define(version: 20170913172451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20170814155243) do
   end
 
   add_index "charges", ["user_id"], name: "index_charges_on_user_id", using: :btree
+
+  create_table "comp_invites", force: :cascade do |t|
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "competition_id"
+  end
+
+  add_index "comp_invites", ["invitee_id"], name: "index_comp_invites_on_invitee_id", using: :btree
+  add_index "comp_invites", ["inviter_id", "invitee_id"], name: "index_comp_invites_on_inviter_id_and_invitee_id", unique: true, using: :btree
+  add_index "comp_invites", ["inviter_id"], name: "index_comp_invites_on_inviter_id", using: :btree
 
   create_table "comp_relationships", force: :cascade do |t|
     t.integer  "user_id"
@@ -297,6 +309,15 @@ ActiveRecord::Schema.define(version: 20170814155243) do
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
+  create_table "route_likes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "route_id"
+    t.boolean  "like"
+    t.string   "comment"
+  end
+
   create_table "routes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "facility_id"
@@ -549,6 +570,7 @@ ActiveRecord::Schema.define(version: 20170814155243) do
   add_foreign_key "admins", "facilities"
   add_foreign_key "admins", "users"
   add_foreign_key "charges", "users", on_delete: :nullify
+  add_foreign_key "comp_invites", "competitions", on_delete: :nullify
   add_foreign_key "comp_relationships", "competitions", on_delete: :nullify
   add_foreign_key "comp_relationships", "users", on_delete: :nullify
   add_foreign_key "comp_routes", "competitions", on_delete: :nullify
@@ -576,6 +598,8 @@ ActiveRecord::Schema.define(version: 20170814155243) do
   add_foreign_key "grades", "users"
   add_foreign_key "registrations", "plans", on_delete: :nullify
   add_foreign_key "registrations", "users"
+  add_foreign_key "route_likes", "routes", on_delete: :nullify
+  add_foreign_key "route_likes", "users", on_delete: :nullify
   add_foreign_key "routes", "facilities"
   add_foreign_key "routes", "grades", on_delete: :nullify
   add_foreign_key "routes", "sub_child_zones", on_delete: :nullify

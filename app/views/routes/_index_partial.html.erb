@@ -96,7 +96,7 @@
         <% Zone.includes(:facility).where(facility_id: @userfacilities_check).each do |zone| %>
           <label class="gray"><%= f.radio_button :with_zone_id_checkbox, zone.id %>
             <span>
-              <% if zone.name == "Climber Generated" %>
+              <% if (zone.name == "Climber Generated") && (params[:facility_id].blank? ) %>
                 <%= zone.facility.name %> <%= zone.facility.location if zone.facility.location %>
               <% else %>
                 <%= zone.name %>

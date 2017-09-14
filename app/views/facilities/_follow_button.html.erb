@@ -1,14 +1,16 @@
+<div id="follow_button_<%= @facility.id %>" class="circle-wrapper pull-right">
 <% if FacilityRole.where(facility_id: @facility.id, user_id: current_user.id).exists? %>
   <% if FacilityRole.where(facility_id: @facility.id, user_id: current_user.id, name: 'climber').exists? %>
-    <%= link_to user_facility_unfollow_facility_path(current_user, @facility), method: :unfollow_facility do %>
+    <%= link_to user_facility_unfollow_facility_path(current_user, @facility), method: :post, remote: true do %>
       <div class="circle-wrapper pull-right">
         <div class="large-circle responsive"><i class="fa fa-check glyphicon-green" aria-hidden="true"></i><span class="text"><%= "Following" %></span></div>
       </div>
     <% end %>
   <% end %>
 <% else %>
-<%= link_to user_facility_follow_facility_path(current_user, @facility), method: :unfollow_facility do %>
+<%= link_to user_facility_follow_facility_path(current_user, @facility), method: :post, remote: true do %>
   <div class="circle-wrapper pull-right">
     <div class="large-circle responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "Follow" %></span></div>
   </div>
 <% end %><% end %>
+</div>

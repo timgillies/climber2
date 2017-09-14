@@ -27,11 +27,11 @@ module TicksHelper
 # optimizes tick chart on daily summary page
   def user_ticks_chart_series(ticks, start_time)
 
-    ticks_by_day = ticks.where(:date => start_time..Date.current).
-                group("date(date)").
-                select("date, count(id) as tick_count")
-      (start_time.to_date..Date.current).map do |date|
-        tick = ticks_by_day.detect { |tick| tick.date.to_date == date }
+    ticks_by_day = ticks.ascent.where(:date => start_time..Date.current).
+                group("DATE_TRUNC('week', date)").
+                select("DATE_TRUNC('week', date) as tick_month, count(id) as tick_count")
+      (start_time.to_date..Date.current).map {|d| Date.new(d.year, d.month, d.day).beginning_of_week }.uniq.map do |date|
+        tick = ticks_by_day.detect { |tick| tick.tick_month.to_date == date }
         tick && tick.tick_count.to_f || 0
       end.inspect
 
@@ -40,13 +40,13 @@ module TicksHelper
   def user_ticks_value_chart_series(ticks, start_time)
 
     sends_by_day = ticks.ascent.where(:date => start_time..Date.current).
-                group("date(date)").
-                select("date, SUM(grades.rank) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+                group("DATE_TRUNC('week', date)").
+                select("DATE_TRUNC('week', date) as tick_month, SUM(grades.rank) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
     attempts_by_day = ticks.where(tick_type: 'project').where(:date => start_time..Date.current).
-                group("date(date)").
-                select("date, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
-      (start_time.to_date..Date.current).map do |date|
-        tick = (sends_by_day + attempts_by_day).detect { |tick| tick.date.to_date == date }
+                group("DATE_TRUNC('week', date)").
+                select("DATE_TRUNC('week', date) as tick_month, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+      (start_time.to_date..Date.current).map {|d| Date.new(d.year, d.month, d.day).beginning_of_week }.uniq.map do |date|
+        tick = (sends_by_day + attempts_by_day).detect { |tick| tick.tick_month.to_date == date }
         tick && tick.tick_count.to_f || 0
       end
 
@@ -54,10 +54,10 @@ module TicksHelper
 
   def user_projects_value_chart_series(ticks, start_time)
     attempts_by_day = ticks.where(tick_type: 'project').where(:date => start_time..Date.current).
-                group("date(date)").
-                select("date, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
-      (start_time.to_date..Date.current).map do |date|
-        tick = (attempts_by_day).detect { |tick| tick.date.to_date == date }
+                group("DATE_TRUNC('week', date)").
+                select("DATE_TRUNC('week', date) as tick_month, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+      (start_time.to_date..Date.current).map {|d| Date.new(d.year, d.month, d.day).beginning_of_week }.uniq.map do |date|
+        tick = (attempts_by_day).detect { |tick| tick.tick_month.to_date == date }
         tick && tick.tick_count.to_f || 0
       end
 

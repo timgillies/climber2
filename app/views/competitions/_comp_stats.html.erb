@@ -3,14 +3,8 @@
 <%= render 'competitions/join_button' %>
 <% end %>
 
-<div class='col-sm-3 col-xs-6 comp-stats-center'>
-  <span class="comp-stat-icon"><i class="fa fa-list" aria-hidden="true"></i></span>
-  <%= link_to route_list_facility_competition_path(@facility, object) do %>
-    <div class="comp-circle-wrapper">
-      <div class="comp-large-circle responsive"><%= object.routes.count %><span class="text">Routes</span></div>
-    </div>
-  <% end %>
-</div>
+
+<%= render 'competitions/route_count', object: @competition %>
 
 
 
@@ -37,7 +31,10 @@
   <% end %>
 </div>
 
+<% elsif @competition.users_as_participants.where(user_id: current_user).count == 0 %>
+
 <% else %>
+
 
 <div class='col-sm-3 col-xs-6 comp-stats-center'>
   <span class="comp-stat-icon"><i class="fa fa-plus" aria-hidden="true"></i></span>

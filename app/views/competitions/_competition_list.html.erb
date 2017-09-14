@@ -1,61 +1,58 @@
 <div id="filterrific_user_public_results">
-  <div class="top-10 home-stats left-margin facility-list row">
-    <ul class="white-list">
+  <div class="routelist-dark row">
+    <ol class="routelist routelist-dark">
       <div class="row">
       <div class="container-fluid">
       <% Array(object).each do |comp| %>
         <%= link_to facility_competition_path(@facility, comp) do %>
           <li>
-            <strong class="tab-text-top"><%= comp.name %></strong>
-            <p class="tab-text-bottom"><small>
-              <% if comp.facility %>
-              <%= comp.facility.name %>
+              <div class='col-xs-12'>
+                <% if comp.logo_image_file_size? %>
+                <%= image_tag comp.logo_image.url(:thumb), class: "img-facility-logo-list-left" %>
+                <% end %>
+                <div class="tripletab"><h3><%= comp.name %></h3></div>
+              </div>
+              <div class='col-xs-12'>
+                <div class="tripletab">
+                  <h2>
+                    <% if comp.facility %>
+                    <%= comp.facility.name %>
+                    <% end %>
+                  </h2>
+                </div>
+              </div>
+              <div class='col-xs-12'>
+                <div class="tripletab">
+                  <p>
+                    <% if comp.end_date >= Date.current && comp.start_date <= Date.current %>
+                    <span class="green-check">End date: <%= comp.start_date.strftime("%a %m/%d/%y") %></span>
+                    <% elsif comp.end_date >= Date.current && comp.start_date >= Date.current %>
+                    <span class="green-check">Starts: <%= comp.start_date.strftime("%a %m/%d/%y") %></span>
+                    <% else %>
+                    Ended: <%= comp.end_date.strftime("%a %m/%d/%y") %>
+                    <% end %>
+                  </p>
+                </div>
+
+
+              </div>
+
+
+              <div class='col-xs-10'>
+                <br>
+               <%= link_to route_list_facility_competition_path(@facility, comp) do %>
+
+              <div class="circle-wrapper">
+                <div class="large-circle route-count route-count-dark-text responsive"><%= comp.routes.count %><span class="text"><%= "routes" %></span></div>
+              </div>
               <% end %>
-            </small></p>
-             <% if comp.logo_image_file_size? %>
-             <%= image_tag comp.logo_image.url(:thumb), class: "img-userlist-icon" %>
-             <% else %>
-             <br>
-             <br>
-             <br>
-             <% end %>
 
-             <%= link_to route_list_facility_competition_path(@facility, comp) do %>
-
-            <div class="circle-wrapper">
-              <div class="large-circle route-count route-count-dark-text responsive"><%= comp.routes.count %><span class="text"><%= "routes" %></span></div>
-            </div>
-            <% end %>
-
-            <div class="circle-wrapper">
-              <div class="large-circle follower-count route-count-dark-text responsive">
-                  <%= "50" %>
-                <span class="text"><%= "users" %></span></div>
-            </div>
-
-            <%= link_to routes_facility_competition_path(@facility, comp) do %>
-            <div class="">
-              <div class="large-circle third-button route-count-dark-text responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "routes" %></span></div>
-            </div>
-
-            <% end %>
-
-            <%= link_to routes_facility_competition_path(@facility, comp) do %>
-            <div class="">
-              <div class="large-circle fourth-button route-count-dark-text responsive"><i class="fa fa-trophy" aria-hidden="true"></i><span class="text"><%= "leaders" %></span></div>
-            </div>
-
-            <% end %>
-
-
-            <%= link_to edit_facility_competition_path(@facility, comp)  do %>
-            <div class="hidden-xs">
-              <div class="large-circle edit-button route-count-dark-text responsive"><i class="fa fa-cog" aria-hidden="true"></i></div>
-            </div>
-            <% end %>
-
-
-
+              <div class="circle-wrapper">
+                <div class="large-circle follower-count route-count-dark-text responsive">
+                    <%= comp.users_as_participants.count %>
+                  <span class="text"><%= "climbers" %></span></div>
+              </div>
+              </div>
           </li>
         <% end %>
       <% end %>

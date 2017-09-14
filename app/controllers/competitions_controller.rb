@@ -283,6 +283,18 @@ class CompetitionsController < ApplicationController
 
   end
 
+  def invite_user
+    @user = User.find(params[:user_id])
+    @competition = Competition.find(params[:id])
+    @comp_invite = CompInvite.new(inviter_id: current_user.id, invitee_id: @user.id, competition_id: @competition.id)
+    @comp_invite.save
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    CompInviteMailer.comp_invite_user_email(@competition.facility, @competition, @user, current_user).deliver_now
+  end
+
 
 
   private

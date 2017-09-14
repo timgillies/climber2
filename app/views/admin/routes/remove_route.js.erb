@@ -1,1 +1,2 @@
 $("#add_route_button_<%= @route.id %>").html("<%= j (render(partial: 'admin/competitions/add_to_comp_button', locals: { route: @route })) %>");
+$("#route_count").html("<%= j (render(partial: 'competitions/route_count', locals: { object: @competition })) %>");

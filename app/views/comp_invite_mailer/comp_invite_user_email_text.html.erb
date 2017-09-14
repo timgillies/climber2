@@ -1,0 +1,6 @@
+Hi, <%= @user.name %>!
+===============================================
+
+<%= @inviter.name %> has invited you to <%= @competition.name %> on Climb Connect!
+
+<%= link_to "Join Competition", facility_competition_path(@facility, @competition) %>

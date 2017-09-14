@@ -1,14 +1,3 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="routelist-header bg-blue-gradient">
-      <h1 class="hidden-xs"><strong>Route</strong>info </h1>
-        <h1 class="hidden-sm hidden-md hidden-lg hidden-xl">Route </h1>
-    </div>
-  </div>
-</div>
-
-<br>
-
 
 <%= link_to "edit", edit_admin_facility_route_path(@facility, @route ), class: "btn btn-add" %>
 
@@ -18,7 +7,7 @@
 
 <%= render(
 partial: 'routes/route',
-locals: { route: @route }
+locals: { f: @route }
 ) %>
 
 

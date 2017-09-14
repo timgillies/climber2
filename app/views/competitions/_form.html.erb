@@ -1,6 +1,6 @@
 <%= form_for [@facility, @competition], :html => {:class => "form-label", :multipart => true} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="">
+  <div class="gray-labels white">
     <div class="container-fluid bg-routeform">
 
       <div class="row">
@@ -49,21 +49,17 @@
 </div>
 </div>
 
-  <div class="row">
-    <div class="col-sm-4 col-md-4 col-lg-4">
-    <%= f.label :comp_format, "Competition Format" %>
-    <%= f.select(:comp_format, options_for_select(comp_formats, selected: f.object.comp_format ), params[:comp_format] ? { class: 'form-control' } : { include_blank: false }, { class: 'form-control' }) %>
-
-  </div>
-</div>
-
 
 
 
     <div class="row">
       <div class="col-sm-12">
         <%= f.label :logo_image,"Logo Image" %>
-        <%= f.file_field :logo_image, class: 'btn-expire btn-lg'  %>
+        <br>
+        <span class="btn btn-large btn-add btn-file">
+            <i class='fa fa-plus'></i> Add photo
+          <%= f.file_field :logo_image %>
+        </span>
       </div>
     </div>
 
@@ -71,7 +67,8 @@
 
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-          <%= f.submit "Save", class: "btn btn-save btn-lg" %>
+
+            <%= f.submit "Save", class: "btn btn-save btn-lg", "data-disable-with"=> "Saving..."  %>
         </div>
       </div>
 

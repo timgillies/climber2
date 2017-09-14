@@ -174,6 +174,10 @@ class Tick < ActiveRecord::Base
     (tryhard_send + tryhard_project).to_i
   end
 
+  def week
+    self.date.strftime('%W')
+  end
+
 
 
 

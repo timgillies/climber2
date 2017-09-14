@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="routelist row">
-          <%= render 'admin/zones/zone_stats', object: @zone %>
+          <%= render 'admin/zones/zone_stats', fz: @zone %>
       </div>
       <% @facility_systems.each do |fs| %>
         <% if (facility_system_route_count(fs, @zone) > 0) || (facility_system_target_count(fs, @zone) > 0) %>

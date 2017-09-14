@@ -24,6 +24,8 @@ Rails.application.routes.draw do
         post :quick_redpoint #output path - tagged_route/:id
         post :quick_project
         post :quick_tick
+        post :route_like
+        post :route_unlike
       end
       resources :ticks
     end
@@ -55,6 +57,11 @@ Rails.application.routes.draw do
       get :inbox
       get :home
       get :analytics
+    end
+    resources :competitions do
+      member do
+        post :invite_user
+      end
     end
   end
 
@@ -154,6 +161,10 @@ Rails.application.routes.draw do
     resources :setters, only: [:index, :show]
     resources :ticks
     resources :facility_roles
+    member do
+      post :follow_facility
+      post :unfollow_facility
+    end
     resources :competitions do
       member do
         get :routes

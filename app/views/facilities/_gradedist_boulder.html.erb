@@ -90,7 +90,10 @@
       xAxis: {
         type: 'category',
         labels: {
-          enabled: true
+          enabled: true,
+          style: {
+            color: '#fff',
+          }
         },
         tickLength: 0,
         minorTickLength: 0,
@@ -184,7 +187,7 @@
       series: [{
           type: 'column',
           name: 'Routes',
-          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).order('grade_systems.discipline ASC', 'grades.rank ASC').map {|f| [ f.grade, Route.current.where("grade_id = ? AND facility_id = ?", f, @facility.id ).length, "https://www.climbconnect.com/admin/facilities/#{@facility.id}/routes?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_grade_id%5D=#{ f.id }&filterrific%5Bwith_zone_id%5D=&filterrific%5Bwith_wall_id%5D=&filterrific%5Bwith_setter_id%5D=&filterrific%5Bwith_status_id%5D=#{Date.current}&filterrific%5Bsorted_by%5D=created_at_desc&_=" ] } %>,
+          data: <%= raw facility_grades.where('grade_systems.id = ?', fs ).order('grade_systems.discipline ASC', 'grades.rank ASC').map {|f| [ f.grade, Route.current.where("grade_id = ? AND facility_id = ?", f, @facility.id ).length, "/facilities/#{@facility.id}/routes?utf8=%E2%9C%93&filterrific%5Bsearch_query%5D=&filterrific%5Bwith_grade_id%5D=#{ f.id }&filterrific%5Bwith_zone_id%5D=&filterrific%5Bwith_wall_id%5D=&filterrific%5Bwith_setter_id%5D=&filterrific%5Bwith_status_id%5D=#{Date.current}&filterrific%5Bsorted_by%5D=created_at_desc&_=" ] } %>,
           url: 'test'
       },{
           type: 'spline',

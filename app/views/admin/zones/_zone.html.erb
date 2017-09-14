@@ -18,15 +18,13 @@
           <% if params[:action] == 'show' %>
           <div class="col-md-12 col-xs-12">
             <div class="row">
-              <div class="col-sm-4 col-xs-12">
-                <% if fz.image.exists? %>
-                  <%= image_tag(fz.image.url(:square), class: 'img-zone-list') if fz.image.exists? %>
-                <% else %>
-                  <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
-                <% end %>
-              </div>
+              <% if fz.image.exists? %>
+                <div class="col-sm-4 col-xs-12">
+                    <%= image_tag(fz.image.url(:square), class: 'img-zone-list') if fz.image.exists? %>
+                </div>
+              <% end %>
               <div class="col-sm-8">
-                    <%= render 'admin/zones/zone_stats', object: @zone %>
+                    <%= render 'admin/zones/zone_stats', fz: @zone %>
                 </div>
               </div>
           </div>
@@ -35,14 +33,12 @@
 
           <div class="col-md-12 col-xs-12">
             <div class="row">
-              <div class="col-sm-3 col-xs-12">
+              <div class="col-sm-12 col-xs-12">
                 <% if fz.image.exists? %>
                   <%= image_tag(fz.image.url(:square), class: 'img-zone-list') if fz.image.exists? %>
-                <% else %>
-                  <%= image_tag("cc_add_photo.jpg", class: 'img-zone-list') %>
                 <% end %>
               </div>
-              <div class="col-sm-9 col-xs-12">
+              <div class="col-sm-12 col-xs-12">
                 <% @facility_systems.each do |fs| %>
                   <% if (facility_system_route_count(fs, fz) > 0) || (facility_system_target_count(fs, fz) > 0) %>
                 <%= render 'facilities/zonegradedist_list', :fz => fz, :fs => fs  %>
@@ -53,25 +49,11 @@
           </div>
 
           <% end %>
-
-              <div class="col-xs-12">
-              <%= link_to admin_facility_zone_mass_create_tasks_path(@facility, fz ), method: :post, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} do %>
-                <div class="tick-circle">
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                  <span class="text"><%= "expire all" %></span>
-                </div>
-              <% end %>
-
-              <%= link_to admin_facility_zone_mass_create_tasks_path(@facility, fz ), method: :post, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} do %>
-                <div class="tick-circle">
-                  <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                  <span class="text"><%= "new tasks" %></span>
-                </div>
-              <% end %>
-              </div>
-
-
-
+          <% if Route.current.where(zone_id: @zone).where.not(wall_id: nil).count > 0 %>
+            <div class="col-xs-12">
+              <%= render 'facilities/walldist_column', fz: fz %>
+            </div>
+          <% end %>
 
         </li>
           <% end %>

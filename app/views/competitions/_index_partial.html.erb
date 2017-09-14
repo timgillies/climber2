@@ -1,19 +1,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="routelist-header bg-blue-gradient">
-      <h1><strong>Competitions</strong></h1>
+      <h1><strong>Circuits</strong></h1>
     </div>
     <br>
 
-    <%= link_to "Create new Competition", new_facility_competition_path(@facility), class: "btn btn-primary btn-med" %>
+    <div class="pull-right"><%= link_to "Create new circuit", new_facility_competition_path(@facility), class: "btn btn-add btn-med" %></div>
 
     <% if @competitions.count > 0 %>
-    <br>
-    <br>
-    <%= render 'competitions/competition_list', object: @competitions %>
+
+    <%= render 'competitions/competition_list', object: @competitions.where('end_date > ?', Date.current) %>
+
+    <%= render 'competitions/competition_list', object: @competitions.where('end_date < ?', Date.current) %>
     <% end %>
 
   </div>
 </div>
-
-<br>

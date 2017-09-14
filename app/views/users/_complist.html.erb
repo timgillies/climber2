@@ -4,7 +4,7 @@
     <h2>Active</h2>
   </div>
 <ul class="top10new">
-  <% Competition.joins(:comp_relationships).where('comp_relationships.user_id = ?', current_user.id).each do |comp| %>
+  <% Competition.joins(:comp_relationships).where('comp_relationships.user_id = ?', current_user.id).where('end_date > ?', Date.current).each do |comp| %>
     <%= link_to facility_competition_path(comp.facility_id, comp.id) do %>
       <li>
         <%= image_tag comp.logo_image.url(:medium) ,:class=> "img-user-list-small" %>

@@ -9,13 +9,11 @@
 
 
 
-          <% if @ticks.count > 0 && params[:action] == 'home' %>
             <%= render(
             partial: 'users/home_user_ticks',
             locals: { ticks: @ticks }
             ) %>
 
-          <% end %>
 
 
       <div class="col-sm-12">
@@ -47,6 +45,8 @@
 
     </div>
   </div>
+
+
 
       <div class="col-sm-12">
         <div class="row">

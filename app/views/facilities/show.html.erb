@@ -12,6 +12,7 @@
 
         <% if @facility.zones.count > 1 %>
         <div class="col-sm-12 bg-black">
+
             <%= render 'facilities/stats_zonedist' %>
         </div>
         <% end %>
@@ -19,12 +20,45 @@
       </div>
     </div>
 
+
+    <div class="container-fluid no-margin">
+      <div class='row'>
+
         <div class="col-sm-6">
+          <div class="row">
           <%= render 'facilities/top10sends' %>
         </div>
-        <div class="col-sm-6">
-          <%= render 'facilities/top10routes' %>
         </div>
+        <div class="col-sm-12">
+          <div class='row'>
+
+        <% @facility_systems.each do |fs| %>
+
+        <ol class="routelist routelist-dark">
+          <li style="border: none; padding: 15px;">
+            <div class="col-xs-12">
+
+              <div class="row">
+                  <h3> <%= fs.name %></h3>
+              </div>
+              <div class="row">
+                Total Active Routes: <%= Route.facility_system(fs).where(facility_id: @facility.id).current.count %>
+              </div>
+              <div class="row">
+                  <%= render 'facilities/gradedist_boulder', :fs => fs %>
+              </div>
+            </div>
+          </li>
+        </ol>
+
+
+
+        <% end %>
+      </div>
+      </div>
+    </div>
+    </div>
+
 
 
     <div class="container-fluid">

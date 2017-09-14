@@ -28,7 +28,7 @@
     <span>
       <div class="container-fluid">
         <div class="row doubletab">
-          <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="col-xs-10 col-sm-10 col-md-10">
             <% if params[:facility_id].present? %>
             <h3><strong>
               <% if f.color? %>
@@ -53,31 +53,30 @@
             <% end %>
 
 
-            <span class="pull-right"><%= (image_tag f.facility.logo_image.url(:medium), class: "img-facility-logo-list") if f.facility.logo_image %></span>
           </div>
 
         </div>
         <div class="row doubletab">
-          <div class="col-sm-12">
+          <div class="col-xs-10">
             <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
           </div>
         </div>
 
 
         <div class="row">
-          <div class="col-sm-12">
-              <div><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
+          <div class="col-xs-10">
+              <div><strong><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></strong></div>
           </div>
+          <span class="pull-right"><%= render(partial: 'routes/route_like', locals: { f: f }) %></span>
 
-          <div class="col-sm-12">
+
+          <div class="col-xs-12">
               <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
+          <div class="col-xs-12 col-sm-12 col-md-12">
             <div><%= f.user.name if f.user %></div>
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="text-right">
-
 
                 <% unless params[:controller] == 'admin/tasks' %>
                   <% if (days_ago(f) == "today") %>
@@ -91,8 +90,6 @@
                   <% end %>
                 <% end %>
 
-
-            </div>
           </div>
         </div>
       </span>

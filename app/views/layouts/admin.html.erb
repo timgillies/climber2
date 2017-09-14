@@ -33,11 +33,13 @@
     <% if user_signed_in? %>
       <% if (user_signed_in?) && (params[:controller] == 'competitions') && (['index','new','create'].exclude?(params[:action])) %>
         <%= render 'layouts/admincompheader' %>
-      <% elsif (user_signed_in? && @userfacilities.include?(@facility) && params[:controller][0..4] == 'admin') || @facility.demo? %>
+      <% elsif ((user_signed_in? && @userfacilities.include?(@facility) && params[:controller][0..4] == 'admin') || @facility.demo?) %>
         <%= render 'layouts/adminheader' %>
       <% else %>
         <%= render 'layouts/facility_header' %>
       <% end %>
+    <% elsif @facility.demo? %>
+      <%= render 'layouts/adminheader' %>
     <% end %>
 
     <div class="container-fluid">

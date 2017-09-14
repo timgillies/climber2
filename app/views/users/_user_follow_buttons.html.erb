@@ -1,4 +1,4 @@
-<div id="follow_buttons_<%= user.id %>">
+<div id="follow_buttons_<%= user.id %>" style="display:inline-block;">
 <% unless current_user.active_relationships.find_by(followed_id: user.id) || current_user == user %>
 
 
@@ -6,7 +6,7 @@
 
 <%= link_to follow_user_path(user), method: :post, remote: true do %>
 <div class="">
-  <div class="large-circle userlist-follow route-count-dark-text responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "follow" %></span></div>
+  <div class="large-circle right-follow"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "follow" %></span></div>
 </div>
 
 <% end %>
@@ -20,7 +20,7 @@
 
 
   <div class="">
-    <div class="large-circle userlist-follow route-count-dark-text responsive"><i class="fa fa-check" aria-hidden="true"></i><span class="text"><%= "following" %></span></div>
+    <div class="large-circle right-follow green-check"><i class="fa fa-check" aria-hidden="true"></i><span class="text"><%= "following" %></span></div>
   </div>
 
   <% end %>

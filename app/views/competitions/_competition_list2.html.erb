@@ -1,0 +1,98 @@
+<div id="filterrific_user_public_results">
+  <div class="routelist-dark row">
+    <ol class="routelist routelist-dark">
+      <div class="row">
+      <div class="container-fluid">
+      <% Array(object).each do |comp| %>
+        <%= link_to facility_competition_path(@facility, comp) do %>
+          <li>
+            <div class="list-color-circle"><span>
+              <% if comp.logo_image_file_size? %>
+              <%= image_tag comp.logo_image.url(:thumb), class: "img-userlist-icon" %>
+              <% end %>
+            </span></div>
+
+
+              <span>
+                <div class="container-fluid">
+                  <div class="row doubletab">
+                    <div class="col-xs-10 col-sm-10 col-md-10">
+                      <% if params[:facility_id].present? %>
+                      <h3><strong>
+                        <% if f.color? %>
+                          <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+                        <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                          <%= f.grade.grade if f.grade %>
+                        <% else %>
+                          <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+                        <% end %>
+                      </strong></h3>
+
+                      <% else %>
+                      <h3><strong>
+                        <% if f.color? %>
+                          <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+                        <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                          <%= f.grade.grade if f.grade %>
+                        <% else %>
+                          <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+                        <% end %>
+                      </strong></h3>
+                      <% end %>
+
+
+                    </div>
+
+                  </div>
+                  <div class="row doubletab">
+                    <div class="col-xs-10">
+                      <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-xs-10">
+                        <div><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
+                    </div>
+                    <span class="pull-right"><%= render(partial: 'routes/route_like', locals: { f: f }) %></span>
+
+
+                    <div class="col-xs-12">
+                        <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div><%= f.user.name if f.user %></div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+
+                          <% unless params[:controller] == 'admin/tasks' %>
+                            <% if (days_ago(f) == "today") %>
+                              <span>set <%= days_ago(f) %></span>
+                            <% else %>
+                              set <%= days_ago(f) %> ago
+                            <% end %>
+                          <% else %>
+                            <% if f.setdate? %>
+                            due on <%= f.setdate.strftime("%b %d, %Y") %>
+                            <% end %>
+                          <% end %>
+
+                    </div>
+                  </div>
+                </span>
+                <% end %>
+
+
+                  <div class="row">
+                      <%= render(partial: 'routes/list_buttons', locals: { f: f }) %>
+                  </div>
+          </li>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </ol>
+  </div>
+
+</div>

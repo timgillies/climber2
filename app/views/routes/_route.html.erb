@@ -1,128 +1,108 @@
-      <div class="container-fluid routelist routeshow">
-        <div class="col-xs-12 bg-white">
-          <% if route.color_hex? %>
-            <div style="border-left: 15px solid <%= route.color_hex %>"></div>
+<ol class="routelist routelist-dark">
+
+
+    <li>
+
+
+
+<div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
+
+  <span>
+    <div class="container-fluid">
+      <div class="row doubletab">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <% if params[:facility_id].present? %>
+          <h3><strong>
+            <% if f.color? %>
+              <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+            <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+              <%= f.grade.grade if f.grade %>
+            <% else %>
+              <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+            <% end %>
+          </strong></h3>
+
+          <% else %>
+          <h3><strong>
+            <% if f.color? %>
+              <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+            <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+              <%= f.grade.grade if f.grade %>
+            <% else %>
+              <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+            <% end %>
+          </strong></h3>
           <% end %>
 
 
-            <h1 style="border-left: 15px solid <%= route.color_hex %>">
-              <span class="tab">
-              <% if route.grade %>
-                <% if route.color? %>
-                  <%= link_to route.grade.grade + " " + route.color.upcase , facility_route_path(route.facility, route) %>
-                <% elsif (color_name(route.color_hex, @facility)).nil? %>
-                  <%= link_to route.grade.grade , facility_route_path(route.facility, route) %>
+          <span class="pull-right"><%= (image_tag f.facility.logo_image.url(:medium), class: "img-facility-logo-list") if f.facility.logo_image %></span>
+        </div>
+
+      </div>
+      <div class="row doubletab">
+        <div class="col-sm-12">
+          <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-12">
+            <div><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></div>
+        </div>
+
+        <div class="col-sm-12">
+            <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <div><%= f.user.name if f.user %></div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <div class="text-right">
+
+
+              <% unless params[:controller] == 'admin/tasks' %>
+                <% if (days_ago(f) == "today") %>
+                  <span>set <%= days_ago(f) %></span>
                 <% else %>
-                  <%= link_to route.grade.grade + " " + color_name(route.color_hex, @facility)[0].upcase , facility_route_path(route.facility, route) %>
+                  set <%= days_ago(f) %> ago
                 <% end %>
-              <% end %>
-            </h1>
-          <h2 class="tab"> <%= route.name if route.name %></h2></span>
-
-            <% if route.facility %>
-
-              <% if route.facility.logo_image? %>
-                <%= link_to facility_path(route.facility) do %>
-                  <%= image_tag route.facility.logo_image.url(:medium), class: "img-setter-icon" %>
+              <% else %>
+                <% if f.setdate? %>
+                due on <%= f.setdate.strftime("%b %d, %Y") %>
                 <% end %>
               <% end %>
 
-            <% end %>
 
-
-
-
-
-
-
-          <br>
-          <div class="divider-line"></div>
-          <br>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-sm-12">
-                <span><p><strong> <%= route.facility.name %></strong> <%= route.facility.location %></p></span>
-
-                    <span class="pull-right hidden-xs">
-                        <% unless params[:controller] == 'admin/tasks' %>
-                          <% if (days_ago(route) == "today") %>
-                            <span class="badge badge-today">set <%= days_ago(route) %></span>
-                          <% else %>
-                            set <%= days_ago(route) %> ago
-                          <% end %>
-                        <% else %>
-                          <% if route.setdate? %>
-                          set on <%= route.setdate.strftime("%b %d, %Y") %>
-                          <% end %>
-                        <% end %>
-                    </span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <span><strong>Location: </strong><%= route.zone.name if route.zone %><%= " > " + route.wall.name if route.wall %> <%= " > " + route.sub_child_zone.name if route.sub_child_zone %></span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <span><strong>Setter: </strong> <%= route.user.name if route.user %></span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <span class="pull-right hidden-sm hidden-md hidden-lg">
-                    <% unless params[:controller] == 'admin/tasks' %>
-                      <% if (days_ago(route) == "today") %>
-                        <span class="badge badge-today">set <%= days_ago(route) %></span>
-                      <% else %>
-                        set <%= days_ago(route) %> ago
-                      <% end %>
-                    <% else %>
-                      <% if route.setdate? %>
-                      set on <%= route.setdate.strftime("%b %d, %Y") %>
-                      <% end %>
-                    <% end %>
-                </span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <span><strong>Route ID: </strong> <%= route.id %></span>
-              </div>
-            </div>
-
-            <% if route.description? %>
-            <div class="row">
-              <br/>
-              <div class="col-sm-12">
-                  <span><i><%= route.description %></i></span>
-              </div>
-            </div>
-            <% end %>
-
-            <%= render(
-            partial: 'routes/rating_count',
-            locals: { route: route }
-            ) %>
           </div>
+        </div>
+      </div>
+    </span>
+
+
+
+
+
+
+  </li>
+</ol>
 
           <% unless params[:controller] == 'admin/tasks' %>
           <div class="col-xs-12 col-sm-4">
             <div class="row">
-                <% if route.image.exists? %>
+                <% if f.image.exists? %>
                   <% if params[:action] == 'home' %>
                     <br>
-                      <%= link_to image_tag(route.image.url(:medium), class: "img-route-show") , facility_route_path(route.facility_id, route.id) %>
+                      <%= link_to image_tag(f.image.url(:medium), class: "img-route-show") , facility_route_path(f.facility_id, f.id) %>
                   <% else %>
                     <br>
-                      <%= link_to image_tag(route.image.url(:medium), class: "img-route-show") , "#routeShowModal", data: { toggle: "modal"} %>
+                      <%= link_to image_tag(f.image.url(:medium), class: "img-route-show") , "#routeShowModal", data: { toggle: "modal"} %>
                   <% end %>
                 <% end %>
             </div>
           </div>
           <% end %>
-      </div>
-    </div>
+
 
 
 
@@ -136,7 +116,7 @@
           <span class="modal-title" id="routeShowModal"><span class="logo"><%= link_to (image_tag 'cc_white_horizontal.png'), root_path, class: "logo" %></span></span>
         </div>
         <div class="modal-body row">
-          <%= image_tag route.image.url, class: "img-route-show"%>
+          <%= image_tag f.image.url, class: "img-route-show"%>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-close" data-dismiss="modal">close</button>

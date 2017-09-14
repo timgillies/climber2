@@ -86,9 +86,9 @@
       },
       xAxis: {
         type: "datetime",
-        tickInterval: 24 * 3600 * 1000,
+        minTickInterval: 24 * 3600 * 1000 * 7,
         labels: {
-          format: '{value: %a}',
+          format: '{value: %B}',
           style: {
             color: '#444'
           },
@@ -170,8 +170,8 @@
             enabled: true,
             style: {
               textShadow: '0 0 0 black',
-              color: '#222',
-              fontFamily: 'Montserrat',
+              color: '#444',
+              fontFamily: 'Source Sans Pro',
               fontWeight: 'normal'
             },
             formatter: function() {
@@ -208,20 +208,20 @@
         {
           name: "Try Hard",
           type: "areaspline",
-          pointInterval: <%= 1.day * 1000 %>,
-          pointStart: <%= (6.days.ago.at_midnight.to_i * 1000) %>,
-          data: <% if @ticks.present? %>
+          pointInterval: 24 * 3600 * 1000 * 7,
+          pointStart: <%= (52.weeks.ago.beginning_of_week.to_i * 1000) %>,
+          data: <% if @annualticks.present? %>
 
-          <%= [user_ticks_value_chart_series( @ticks, 6.days.ago ), user_projects_value_chart_series( @ticks, 6.days.ago )].transpose.map {|x| x.sum} %>
+          <%= [user_ticks_value_chart_series( @annualticks, 52.weeks.ago ), user_projects_value_chart_series( @annualticks, 52.weeks.ago )].transpose.map {|x| x.sum} %>
 
            <% end %>
         },
         {
           name: "Ticks",
           yAxis: 1,
-          pointInterval: <%= 1.day * 1000 %>,
-          pointStart: <%= (6.days.ago.at_midnight.to_i * 1000) %>,
-          data: <% if @ticks.present? %><%= user_ticks_chart_series( @ticks, 6.days.ago ) %> <% end %>
+          pointInterval: 24 * 3600 * 1000 * 7,
+          pointStart: <%= (52.weeks.ago.beginning_of_week.to_i * 1000) %>,
+          data: <% if @annualticks.present? %><%= user_ticks_chart_series( @annualticks, 52.weeks.ago ) %> <% end %>
         },
 
         ]

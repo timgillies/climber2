@@ -50,7 +50,8 @@ class UsersController < ApplicationController
     @routes = @user.routes.page(params[:page])
     @facility_roles = FacilityRole.where(user_id: @user, confirmed: true).page(params[:page])
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
-    @ticks = Tick.where(user_id: @user).page(params[:page]).per(5000000)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
+    @annualticks = Tick.where(user_id: @user)
     @userfacilities_check = @user.facility_relationships.all
 
     #refactored tick_feed and new_route_feed into respective models
@@ -124,8 +125,8 @@ class UsersController < ApplicationController
 
     # combines new ticks and new routes, newest first
     @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
-
-    @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
+    @annualticks = Tick.where(user_id: @user)
     @admin_facility_roles = FacilityRole.where(user_id: @user).where.not(name: 'climber').page(params[:page])
 
 
@@ -152,7 +153,7 @@ class UsersController < ApplicationController
   def analytics
     @user = User.find(params[:id])
     @userfacilities_check = @user.facility_relationships.all
-    @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
 
   end
 
@@ -183,7 +184,7 @@ class UsersController < ApplicationController
 
   def followers
     @user = User.find(params[:id])
-    @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
     @filterrific = initialize_filterrific(
         User,
         params[:filterrific],
@@ -217,7 +218,7 @@ class UsersController < ApplicationController
 
   def following
     @user = User.find(params[:id])
-    @ticks = Tick.where('ticks.date > ?', 7.days.ago.beginning_of_day.to_date).where(user_id: @user)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
     @filterrific = initialize_filterrific(
         User,
         params[:filterrific],

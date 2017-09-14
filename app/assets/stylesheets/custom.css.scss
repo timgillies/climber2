@@ -856,8 +856,9 @@ input {
 }
 
 .img-userlist-icon {
-  height: 75px;
+  height: 45px;
   border-radius: 0px;
+  position: absolute;
 
 }
 
@@ -1293,12 +1294,17 @@ input {
     color: white;
     letter-spacing: 0.0px;
     font-family: 'Poppins', sans-serif;
+    position: relative;
+    text-align: center;
 
   }
 
   .circle-wrapper {
     margin: 2px;
     display: inline-block;
+    .btn:focus {
+      outline: none;
+    }
   }
 
 
@@ -1368,9 +1374,9 @@ input {
       rgba(255, 88, 88, 0.8)
     ),
     /* bottom, image */
-    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
+    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/DSC_6834.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: top;
 
   }
 
@@ -1379,13 +1385,19 @@ input {
       /* top, transparent red, faked with gradient */
 
       linear-gradient(60deg,
-        rgba(080, 080, 080, 0.6),
-        rgba(080, 080, 080, 0.8)
+        rgba(000, 000, 000, 0.4),
+        rgba(00, 000, 000, 0.6)
       ),
       /* bottom, image */
       url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
       background-size: cover;
       background-position: center;
+
+      h2 {
+        position: absolute;
+          left: 55%;
+          color: #bbb;
+      }
 
     }
 
@@ -1394,11 +1406,11 @@ input {
       /* top, transparent red, faked with gradient */
 
       linear-gradient(60deg,
-        rgba(080, 080, 080, 0.6),
-        rgba(080, 080, 080, 0.8)
+        rgba(000, 000, 000, 0.4),
+        rgba(000, 000, 000, 0.6)
       ),
       /* bottom, image */
-      url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg');
+      url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/DSC_9151.jpg');
       background-size: cover;
       background-position: center;
 
@@ -1578,6 +1590,15 @@ color: #e5e5e5;
 
 .comp-stats-center {
   text-align: center;
+  h1 {
+    text-align: left;
+    font-size: 12px;
+    position: absolute;
+    letter-spacing: 0.0px;
+    top: -30px;
+    left: 35px;
+    color: #aaa;
+  }
 }
 
 /* Marketing */
@@ -1751,7 +1772,6 @@ color: #e5e5e5;
   margin-top: 0px;
   margin-bottom: 0px;
   font-family: 'Poppins', sans-serif;
-  text-transform: uppercase;
   font-weight: 700;
   color: #444;
   label {
@@ -1773,7 +1793,6 @@ color: #e5e5e5;
       box-shadow: none;
       font-size: 16px;
       padding: 12px;
-      text-transform: uppercase;
       border: none;
       display:block;
       box-sizing: border-box;
@@ -1785,7 +1804,6 @@ color: #e5e5e5;
     box-shadow: none;
     font-size: 16px;
     padding: 8px;
-    text-transform: uppercase;
     border: none;
     background-color: #ccc;
     color: #666;
@@ -1797,7 +1815,6 @@ select {
   border: none;
   background-color: #ccc;
   color: #666;
-  text-transform: uppercase;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
 
@@ -2072,6 +2089,11 @@ select {
       margin: 0px;
       display: inline-block;
       opacity: 1.0;
+      .btn:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+      }
     }
 
   .circle {
@@ -2125,7 +2147,6 @@ select {
     text-align: center;
     vertical-align: bottom;
     border-radius: 50%; /* may require vendor prefixes */
-    background: #222;
     color: #a9a9a9;
     margin: 0px;
     border: none;
@@ -2150,6 +2171,9 @@ select {
   .green-check {
     color: #52BE80;
   }
+
+
+
 
   .tick-circle {
     height: 70px;
@@ -2193,6 +2217,33 @@ select {
     }
   }
 
+  .heart-circle {
+    font-size: 40px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: #888;
+    margin: 0px;
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    .text {
+      font-size: 10px;
+      margin-top: -4px !important;
+      position: relative;
+      display: block;
+      color: white;
+      letter-spacing: 0.8px;
+    }
+  }
+  .heart-circle:hover, .heart-circle:active  {
+    color: #e43b5e;
+  }
+
+  .heart-fill {
+    color: #e43b5e;
+  }
+
   .img-facility-logo-list {
     height: 50px;
     @media (max-width: 768px) {
@@ -2205,6 +2256,20 @@ select {
     margin-right: 10px;
     vertical-align: bottom;
     opacity: 0.7;
+  }
+
+  .img-facility-logo-list-left {
+    height: 60px;
+    @media (max-width: 768px) {
+      height: 60px;
+    }
+    position: absolute;
+    left: 10px;
+    background-size: cover;
+    display: inline;
+    margin-right: 10px;
+    vertical-align: bottom;
+    opacity: 1.0;
   }
 
   .project {
@@ -2463,9 +2528,8 @@ select {
   list-style: none;
   padding: 0px;
   display: inline;
-  font-size: 0.7em;
   letter-spacing: 0.2px;
-  color: #ddd;
+  color: #eee;
   font-family: 'Poppins', sans-serif;
 
   li {
@@ -2476,10 +2540,8 @@ select {
     border-radius: 0px;
     box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
-
-
     a, a:hover {
-      color: #ccc;
+      color: #ddd;
     }
 
     h1 {
@@ -2503,6 +2565,13 @@ select {
       color: #fff;
       font-size: 2.2em;
       font-weight: 700;
+
+    }
+    p {
+      font-size: 1.0em;
+      letter-spacing: 0.0px;
+      color: #ddd;
+
     }
   }
   .circle-wrapper {
@@ -3263,14 +3332,15 @@ span.picture {
 
 .btn-add {
   border: none;
-  opacity: .8;
+  opacity: 0.9;
   background: linear-gradient(60deg, #526494, #604484);
   color: #ffffff;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn-add:hover, .btn-add:active {
   border: none;
-  opacity: 1;
+  opacity: 0.8;
   background: linear-gradient(60deg, #526494, #604484);
   color: #ffffff;
 }
@@ -3765,6 +3835,27 @@ label:hover input[type="checkbox"] ~ i.fa {
 color: #7AA3CC;
 }
 
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
 
 /*flash*/
 .alert-error {
@@ -4128,8 +4219,6 @@ input[type="checkbox"] {
   background-color: white;
   //width: auto;
   //display: inline-block;
-  padding: 10px 15px 5px 5px;
-  margin: 0px;
   border-radius: 0px;
   @media (min-width: 768px) {
     margin-right: 0px;
@@ -4154,15 +4243,26 @@ input[type="checkbox"] {
       display: block;
       margin-top: -10px;
       font-size: 0.5em;
+      @media (max-width: 768px) {
+        font-size: 0.8em;
+        margin-top: -0.3px;
+
+      }
     }
   }
 
   .img-facility-logo-list-left {
-    width: 70px;
-    left: 30px;
+    height: 30px;
+    @media (max-width: 768px) {
+      height: 60px;
+    }
+    position: absolute;
+    left: 15px;
     background-size: cover;
     display: inline;
+    margin-right: 10px;
     vertical-align: bottom;
+    opacity: 0.5;
   }
   .header {
     h1{
@@ -4184,19 +4284,21 @@ input[type="checkbox"] {
   }
 
   li {
-    background-color: rgba(0,0,0,.5);
-    margin-bottom: 10px;
     position: relative;
     border-radius: 0px;
     padding: 10px;
-    margin-left: -30px !important;
+    margin-left: 0px !important;
+  }
+
+  li:last-child {
+    margin-bottom: 10px;
   }
 
   .bg-top-10 {
 
     background-color: #999;
     padding: 5px;
-    padding-left: 10px;
+    padding-left: 0px;
     border-radius: 4px;
     color: white;
     box-shadow: 0 1px 2px rgba(0,0,0,.25);
@@ -4209,6 +4311,9 @@ input[type="checkbox"] {
   .circle-wrapper {
     margin: 2px;
     display: inline-block;
+    .btn:focus {
+      outline: none;
+    }
   }
 
 .circle {
@@ -4377,12 +4482,10 @@ input[type="checkbox"] {
 .userlist-follow {
   height: 50px;
   width: 50px;
-  font-size: 20px;
-  display: block;
+  font-size: 30px;
   text-align: center;
   vertical-align: bottom;
   border-radius: 50%; /* may require vendor prefixes */
-  background: transparent;
   color: #a9a9a9;
   margin: 0px;
   border: none;
@@ -4392,16 +4495,20 @@ input[type="checkbox"] {
   @media (max-width: 768px) {
     right: 10px;
   }
-  top: 10px;
+  top: 5px;
   position: absolute;
   .text {
     font-size: 10px;
-    margin-top: -5px !important;
+    margin-top: -10px !important;
     position: relative;
     display: block;
-    color: white;
+    color: #888;
 
   }
+}
+
+.green-check {
+  color: #52BE80;
 }
 
 .third-button {
@@ -4594,13 +4701,14 @@ input[type="checkbox"] {
 
 .facility-list {
   color: #eee;
-  background: #ddd;
+  background: #aaa;
 }
 
 .white-list {
-  font-family: 'Poppins', sans-serif;
-  color: #222;
-  background: #ddd;
+  a, a:visited, a:hover {
+    color: #fff;
+  }
+
   .tab-text-top {
     position: absolute;
     top: 10px;
@@ -4618,19 +4726,11 @@ input[type="checkbox"] {
   p {
     color: #999;
   }
-  li {
-    background: #eee;
-    color: #777;
-    border-radius: 0px;
-    border: none;
-    a, a:visited {
-      color: #777;
-    }
-  }
+
 
   .route-count-dark-text {
     .text {
-      color: #666;
+      color: #eee;
     }
   }
 
@@ -4786,18 +4886,17 @@ input[type="checkbox"] {
 
 /* form labels and inputs */
 .user-search-box {
-  input[type=text], input[type=date], input[type=email], input[type=number] {
+  input[type=text], input[type=date], input[type=email], input[type=number], select {
       margin-left: 11px;
-      margin-right: 10px;
+      margin-right: 11px;
       border-radius: 0px;
       box-shadow: none;
       font-size: 16px;
       padding: 12px;
-      text-transform: uppercase;
       border: none;
       display:block;
       box-sizing: border-box;
-      width: calc(100% - 10px)
+      width: calc(100% - 20px)
   }
 }
 
@@ -4825,6 +4924,9 @@ input[type="checkbox"] {
 
 .top10new {
   font-family: "Poppins", sans-serif;
+  a, a:hover, a:visited {
+    text-decoration: none;
+  }
 
 
   h1 {
@@ -4849,8 +4951,25 @@ input[type="checkbox"] {
     margin-bottom: 10px;
   }
 
+  h3 {
+    color: rgba(96, 68, 132, 0.8);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.0px;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 3.0em;
+    @media (max-width: 768px) {
+      font-size: 1.7em;
+    }
+  }
+
   li {
     margin: 0px;
     line-height: 30px;
   }
+}
+
+.fa-green {
+  color: #52BE80;
 }

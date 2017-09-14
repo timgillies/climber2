@@ -1,7 +1,7 @@
 <% provide(:title, "Home") %>
 
 
-<div class="no-margin">
+<div class="row">
   <%= render 'users/user_stats2' %>
 </div>
 
@@ -9,10 +9,10 @@
 
 
 
-          <% if @ticks.count > 0 && params[:action] == 'home' %>
+          <% if @annualticks.count > 0 && params[:action] == 'home' %>
             <%= render(
             partial: 'users/home_user_ticks',
-            locals: { ticks: @ticks }
+            locals: { ticks: @annualticks }
             ) %>
 
           <% end %>
@@ -20,7 +20,7 @@
 
       <div class="col-sm-12">
         <div class="row">
-          <div class="top-10 home-stats row no-margin">
+          <div class="top-10 home-stats no-margin">
             <br>
             <%= render 'users/user_stats_partial', object: @users %>
           </div>
@@ -48,11 +48,16 @@
     </div>
   </div>
 
-      <div class="col-sm-12">
-        <div class="row">
-          <%= render 'users/facility_list' %>
-        </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="top10new">
+        <%= link_to facilities_path do %><h3>Facilities</h3><% end %>
       </div>
-
     </div>
   </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <%= render 'users/facility_list' %>
+      </div>
+    </div>

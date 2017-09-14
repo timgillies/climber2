@@ -316,7 +316,7 @@ end
 def user_ticks_chart_series(ticks, start_time)
 
   ticks_by_day = ticks.where(:date => start_time..Date.current).
-              group("date(date)").
+              group("yearweek(date)").
               select("date, count(id) as tick_count")
     (start_time.to_date..Date.current).map do |date|
       tick = ticks_by_day.detect { |tick| tick.date.to_date == date }

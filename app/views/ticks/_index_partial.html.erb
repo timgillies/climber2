@@ -1,5 +1,5 @@
 <div>
-  <div class="row">
+  <div>
     <div class="routelist-header bg-blue-gradient">
       <h1 class="hidden-xs">daily summary</h1>
       <h1 class="hidden-sm hidden-md hidden-lg hidden-xl"><strong>Daily</strong>summary</h1>
@@ -14,23 +14,21 @@
 
 
 
-<div class="row">
+
 
   <%= render(
   partial: 'ticks/user_ticks',
   locals: { ticks: @ticks }
   ) %>
 
-</div>
 
-<div class="row">
+
 
   <%= render(
   partial: 'ticks/usergradedist',
   locals: { ticks: @ticks }
   ) %>
 
-</div>
 
 
 <br>
@@ -40,7 +38,6 @@
 
 
 
-  <div class="row">
       <div class="route-form">
         <div id="donate">
           <% tick_date_filters.each do |zone| %>
@@ -50,14 +47,11 @@
           <% end %>
         </div>
       </div>
-  </div>
 
 <% end %>
 
 
-<div class="row">
   <%= render(
   partial: 'ticks/daily_summary',
   locals: { ticks: @ticks }
   ) %>
-</div>

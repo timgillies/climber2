@@ -1,40 +1,61 @@
 <div id="filterrific_user_public_results">
-    <ul class="white-list">
+    <ul class="routelist routelist-dark">
       <% (@users.joins(:ticks).group('users.id').order('count(ticks.id) DESC') + @users.order('name ASC')).uniq.each do |user| %>
         <%= link_to user_path(user) do %>
           <li>
-            <strong class="tab-text-top"><%= user.name %></strong>
-            <p class="tab-text-bottom"><small>
-
-              <% if user.zip.present? %>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <%= user.zip.to_region if user.zip %>
+            <div class="col-xs-12">
+              <% if user.avatar? %>
+              <%= image_tag user.avatar.url(:thumb), class: "img-facility-logo-list-left" %>
+              <% elsif user.image? %>
+              <%= image_tag user.image ,:class=> "img-facility-logo-list-left" %>
               <% else %>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <%= "Planet Earth" %>
+              <%= image_tag user.avatar.url(:thumb), class: "img-facility-logo-list-left" %>
               <% end %>
-            </small></p>
-             <% if user.avatar? %>
-             <%= image_tag user.avatar.url(:thumb), class: "img-userlist-icon" %>
-             <% elsif user.image? %>
-             <%= image_tag user.image ,:class=> "img-userlist-icon" %>
-             <% else %>
-             <%= image_tag user.avatar.url(:thumb), class: "img-userlist-icon" %>
-             <% end %>
+              <div class="tripletab">
+                <h3><%= user.name %></h3>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="tripletab">
+                <h2>
+                  <% if user.zip.present? %>
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <%= user.zip.to_region if user.zip %>
+                  <% else %>
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <%= "Planet Earth" %>
+                  <% end %>
+                </h2>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="tripletab">
+                <p>
+                  <% if FacilityRole.where(user_id: current_user.id).count == 0 %>
+                    following 0 facilities
+                  <% elsif FacilityRole.where(user_id: current_user.id).count > 1 %>
+                    following <%= FacilityRole.where(user_id: current_user.id).first.facility.name %> and <%= FacilityRole.where(user_id: current_user.id).count - 1 %> others...
+                  <% else %>
+                    following <%= FacilityRole.where(user_id: current_user.id).first.name %>
+                  <% end %>
+                </p>
+              </div>
+              <br>
+            </div>
 
+             <div class="col-xs-12">
             <div class="circle-wrapper">
-              <div class="large-circle route-count route-count-dark-text responsive"><%= user.ticks.ascent.count %><span class="text"><%= "ascents" %></span></div>
+              <div class="large-circle responsive"><%= user.ticks.ascent.count %><span class="text"><%= "ascents" %></span></div>
             </div>
 
             <div class="circle-wrapper">
-              <div class="large-circle follower-count route-count-dark-text responsive">
+              <div class="large-circle responsive">
 
                   <%= user.facility_roles.count %>
 
                 <span class="text"><%= "facilities" %></span>
               </div>
             </div>
-
             <% unless params[:action] == 'invite' %>
 
             <%= render 'users/user_follow_buttons', user: user  %>
@@ -45,6 +66,8 @@
 
             <% end %>
 
+
+          </div>
 
           </li>
         <% end %>

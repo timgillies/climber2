@@ -1,0 +1,30 @@
+<div id="follow_button_<%= facility.id %>">
+  <% if user_signed_in? %>
+    <% if FacilityRole.where(user: current_user, facility: facility).where.not(name: 'climber').count > 0 %>
+
+    <%= link_to admin_facility_path(facility) do %>
+      <div class="circle-wrapper">
+        <div class="large-circle right responsive"><i class="fa fa-dashboard" aria-hidden="true"></i><span class="text"><%= " admin" %></span></div>
+      </div>
+    <% end %>
+
+    <% elsif FacilityRole.where(user: current_user, facility: facility).where(name: 'climber').count == 0 %>
+
+    <%= link_to user_facility_follow_facility_path(current_user, facility), method: :post, remote: true do %>
+      <div class="circle-wrapper">
+        <div class="large-circle right responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= " follow" %></span></div>
+      </div>
+    <% end %>
+
+    <% else %>
+
+    <%= link_to user_facility_unfollow_facility_path(current_user, facility), method: :post, remote: true do %>
+      <div class="circle-wrapper">
+        <div class="large-circle right responsive"><i class="fa fa-check fa-green" aria-hidden="true"></i><span class="text"><%= " following" %></span></div>
+      </div>
+    <% end %>
+
+    <% end %>
+
+  <% end %>
+</div>

@@ -8,13 +8,13 @@
 
   }  do %>
 
-  <% unless Tick.send_type_count(f, current_user, "flash") > 0 %>
+  <% unless Tick.where(competition_id: @competition.id).send_type_count(f, current_user, "flash") > 0 %>
     <div class="tick-circle">
   <% else %>
     <div class="tick-circle-fill">
   <% end %>
-      <%= Tick.send_type_count(f, current_user, "flash") %>
-      <span class="text"><%= "flash".pluralize(Tick.send_type_count(f, current_user, "flash")) %></span>
+      <%= Tick.where(competition_id: @competition.id).send_type_count(f, current_user, "flash") %>
+      <span class="text"><%= "flash".pluralize(Tick.where(competition_id: @competition.id).send_type_count(f, current_user, "flash")) %></span>
     </div>
   <% end %>
 </div>
