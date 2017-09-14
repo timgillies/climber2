@@ -1,5 +1,5 @@
 <div id="comp_invite_button<%= user.id %>" class="circle-wrapper">
-  <% if CompInvite.where(invitee_id: user.id, comp_id: @competition.id).count == 0 %>
+  <% if CompInvite.where(invitee_id: user.id, competition_id: @competition.id).count == 0 %>
     <%= link_to invite_user_user_competition_path(user, @competition), method: :post, remote: true do %>
       <div class="">
         <div class="large-circle"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= "invite" %></span></div>
