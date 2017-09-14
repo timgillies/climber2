@@ -44,8 +44,6 @@ class User < ActiveRecord::Base
     true
   end
 
-  ratyrate_rater
-
   def self.from_omniauth(auth)
     data = auth.info
     user = User.where(:email => data["email"]).first
