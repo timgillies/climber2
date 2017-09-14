@@ -10,7 +10,7 @@
       <li>
         <% if send.user.avatar? %>
         <%= image_tag send.user.avatar.url(:thumb), class: "img-user-list-small" %>
-        <% elsif user.image? %>
+        <% elsif send.user.image? %>
         <%= image_tag send.user.image ,:class=> "img-user-list-small" %>
         <% else %>
         <%= image_tag send.user.avatar.url(:thumb), class: "img-user-list-small" %>
