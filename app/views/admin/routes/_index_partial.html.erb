@@ -123,7 +123,7 @@
 
 <%= render( 'admin/routes/list', routes: @routes )%>
 
-<script>
+<script type="text/javascript">
 $(document).bind("ajaxStart", function(){
    $("#spinner").removeClass('hidden');
    $("#donate").addClass('blur-out');
