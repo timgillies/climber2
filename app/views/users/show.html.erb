@@ -53,18 +53,6 @@
           <%= render 'users/facility_list' %>
         </div>
       </div>
-        <div class="col-sm-12 col-md-12">
 
-
-          <div class="row">
-
-              <% if @userfacilities_check.count > 0 %>
-                <%= render 'users/user_news_feed' %>
-              <% elsif @user == current_user %>
-              <%= render 'users/no_facility' %>
-
-                <% end %>
-          </div>
-        </div>
     </div>
   </div>
