@@ -67,7 +67,6 @@ class Route < ActiveRecord::Base
 
 
 # enables rating for routes
-  ratyrate_rateable 'total'
 
   filterrific(
   default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.current },

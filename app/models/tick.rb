@@ -6,8 +6,6 @@ class Tick < ActiveRecord::Base
   accepts_nested_attributes_for :facility
   belongs_to :grade
 
-  # enables rating for routes
-  ratyrate_rateable 'tick_route_rating'
 
   has_attached_file :image, styles: { medium: "600", thumb: "100x100#" }, default_url: "default-avatar.png"
   validates_attachment_content_type :image, :content_type => ['image/jpg', 'image/png', 'image/gif', 'image/jpeg']
