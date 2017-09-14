@@ -17,10 +17,18 @@
   <% end %>
 </div>
 
-<%= render 'competitions/participant_count', object: @competition %>
-
+<div class='col-sm-3 col-xs-6 comp-stats-center'>
+  <span class="comp-stat-icon"><i class="fa fa-group" aria-hidden="true"></i></span>
+  <%= link_to invite_facility_competition_path(@facility, object) do %>
+    <div class="comp-circle-wrapper">
+      <div class="comp-large-circle responsive"><i class="fa fa-group" aria-hidden="true"></i><span class="text">Invite Friends</span></div>
+    </div>
+  <% end %>
+</div>
 
 <% if @competition.users_as_participants.where(user_id: current_user, role_name: 'admin').count > 0 %>
+
+
 
 <div class='col-sm-3 col-xs-6 comp-stats-center'>
   <span class="comp-stat-icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
@@ -36,14 +44,7 @@
 <% else %>
 
 
-<div class='col-sm-3 col-xs-6 comp-stats-center'>
-  <span class="comp-stat-icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
-  <%= link_to invite_facility_competition_path(@facility, object) do %>
-    <div class="comp-circle-wrapper">
-      <div class="comp-large-circle responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text">Invite Friends</span></div>
-    </div>
-  <% end %>
-</div>
+
 
 <% end %>
 </div>
