@@ -44,7 +44,7 @@
           </span>
           <br>
 
-          <%= link_to user_facility_routes_path(current_user, facility) do %>
+          <%= link_to facility_routes_path(facility) do %>
             <div class="circle-wrapper">
               <div class="large-circle route-count responsive"><%= facility.routes.current.count %><span class="text"><%= "routes" %></span></div>
             </div>
@@ -74,8 +74,8 @@
             <% end %>
           <% end %>
 
-          <% unless user_signed_in? %>
-            <% if FacilityRole.where(facility: facility).where.not(name: 'climber').count == 0 %>
+          <% if user_signed_in? %>
+            <% if Subscription.where(facility_id: facility.id, status: 'active', stripe_plan_id: 'facility_admin').count == 0 %>
 
               <%= link_to new_admin_facility_subscription_path(facility) do %>
                 <div class="circle-wrapper">
@@ -85,22 +85,10 @@
 
             <% end %>
 
-            <%= link_to facility_path(facility) do %>
-              <div class="circle-wrapper">
-                <div class="large-circle right responsive"><i class="fa fa-plus" aria-hidden="true"></i><span class="text"><%= " follow" %></span></div>
-              </div>
-            <% end %>
+            <%= render 'facilities/follow_button', facility: facility %>
 
           <% else %>
-            <% if FacilityRole.where(facility: facility).where.not(name: 'climber').count == 0 %>
 
-              <%= link_to new_admin_facility_subscription_path(facility) do %>
-                <div class="circle-wrapper">
-                  <div class="large-circle right right-claim responsive"><i class="fa fa-hand-paper-o" aria-hidden="true"></i><span class="text"><%= " claim" %></span></div>
-                </div>
-              <% end %>
-
-            <% end %>
           <% end %>
 
 

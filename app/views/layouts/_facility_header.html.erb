@@ -12,7 +12,7 @@
     <% end %>
 
     <% unless @facility.demo? %>
-       <%= render 'facilities/follow_button' %>
+       <%= render 'facilities/follow_button', facility: @facility %>
      <% end %>
 
 
