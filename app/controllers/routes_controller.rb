@@ -309,6 +309,34 @@ end
     end
   end
 
+  def add_route
+    @facility = Facility.find(params[:facility_id])
+    @competition = Competition.find(params[:competition_id])
+    @route = Route.find(params[:route_id])
+    @comp_route = CompRoute.new(user_id: current_user.id, route_id: @route.id, competition_id: @competition.id)
+    @comp_route.save
+    if @comp_route.save
+      respond_to do |format|
+        format.html {redirect_to @competition}
+        format.js
+      end
+    else
+      redirect_to @competition
+    end
+  end
+
+  def remove_route
+    @facility = Facility.find(params[:facility_id])
+    @competition = Competition.find(params[:competition_id])
+    @route = Route.find(params[:route_id])
+    @comp_route = CompRoute.find_by(route_id: @route.id, competition_id: @competition.id)
+    @comp_route.destroy
+    respond_to do |format|
+      format.html {redirect_to @competition}
+      format.js
+    end
+  end
+
 
 
   private
