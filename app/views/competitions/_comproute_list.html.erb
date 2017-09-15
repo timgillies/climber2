@@ -102,10 +102,11 @@
       </span>
       <% end %>
 
-
+      <% if @competition.start_date <= Date.current %>
         <div class="row">
             <%= render(partial: 'competitions/list_buttons', locals: { f: f }) %>
         </div>
+      <% end %>  
 
 
 
