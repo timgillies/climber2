@@ -51,6 +51,7 @@
         <div class="modal-body row">
           <ul class="modal-list">
             <%= link_to edit_admin_facility_path(@facility) do %><li>Facility Info</li><% end %>
+            <%= link_to admin_facility_zones_path(@facility) do %><li>Zones</li><% end %>
             <%= link_to admin_facility_grades_path(@facility) do %><li>Grading</li><% end %>
             <%= link_to admin_facility_facility_targets_path(@facility) do %><li>Targets</li><% end %>
             <%= link_to admin_facility_custom_colors_path(@facility) do %><li>Manage Colors </li><% end %>
