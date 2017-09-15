@@ -68,18 +68,9 @@
       </div>
       <br>
 
-      <h2> How was the ROUTE? </h2>
+      <h2> Grade the route! </h2>
       <div class="divider-line"></div>
 
-      <div class="row">
-        <div class="col-sm-12 ratings">
-
-          <% if current_user %>
-            <%= (rating_for @route, "total", disable_after_rate: false, cancel: false) %>
-          <% end %>
-
-        </div>
-      </div>
       <br>
       <div class="row">
         <div class="col-sm-12">
