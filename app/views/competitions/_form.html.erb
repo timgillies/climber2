@@ -14,25 +14,7 @@
     </div>
   </div>
 
-    <div class="row">
-      <div class="col-sm-4 col-md-4 col-lg-4">
-        <%= f.label :private, "Privacy" %>
-        <%= f.select(:private, options_for_select(false_true, selected: f.object.private ), { include_blank: false }, { class: 'form-control' }) %>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-4 col-md-4 col-lg-4">
-      <%= f.label :password, "Password" %>
-      <%= f.text_field :password, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-4 col-md-4 col-lg-4">
-    <%= f.label :password_confirmation, "Password Confirmation" %>
-    <%= f.text_field :password_confirmation, class: 'form-control' %>
-  </div>
 </div>
 
 <div class="row">
