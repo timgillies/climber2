@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="routelist-header bg-blue-gradient">
+      <h1><strong>Circuits</strong></h1>
+    </div>
+
+    <% if @competitions.count > 0 %>
+
+    <%= render 'competitions/competition_list', object: @competitions.where('end_date > ?', Date.current) %>
+
+    <%= render 'competitions/competition_list', object: @competitions.where('end_date < ?', Date.current) %>
+    <% end %>
+
+  </div>
+</div>

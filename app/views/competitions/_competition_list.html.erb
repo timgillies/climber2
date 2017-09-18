@@ -4,7 +4,7 @@
       <div class="row">
       <div class="container-fluid">
       <% Array(object).each do |comp| %>
-        <%= link_to facility_competition_path(@facility, comp) do %>
+        <%= link_to facility_competition_path(comp.facility, comp) do %>
           <li>
               <div class='col-xs-12'>
                 <% if comp.logo_image_file_size? %>
@@ -25,7 +25,7 @@
                 <div class="tripletab">
                   <p>
                     <% if comp.end_date >= Date.current && comp.start_date <= Date.current %>
-                    <span class="green-check">End date: <%= comp.start_date.strftime("%a %m/%d/%y") %></span>
+                    <span class="green-check">End date: <%= comp.end_date.strftime("%a %m/%d/%y") %></span>
                     <% elsif comp.end_date >= Date.current && comp.start_date >= Date.current %>
                     <span class="green-check">Starts: <%= comp.start_date.strftime("%a %m/%d/%y") %></span>
                     <% else %>
@@ -40,7 +40,7 @@
 
               <div class='col-xs-10'>
                 <br>
-               <%= link_to route_list_facility_competition_path(@facility, comp) do %>
+               <%= link_to route_list_facility_competition_path(comp.facility, comp) do %>
 
               <div class="circle-wrapper">
                 <div class="large-circle route-count route-count-dark-text responsive"><%= comp.routes.count %><span class="text"><%= "routes" %></span></div>

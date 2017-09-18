@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       get :manage_users
     end
     member do
-      get :following, :followers
+      get :following, :followers, :competitions
     end
 
     member do

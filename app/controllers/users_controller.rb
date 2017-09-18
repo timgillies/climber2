@@ -143,6 +143,9 @@ class UsersController < ApplicationController
       @route = Route.current.where(id: Route.top_ten(@userfacilities_check)).where.not(id: Tick.where(user_id: @user.id).pluck(:route_id)).first
     end
 
+    @userfacilities_check = @user.facility_relationships.all
+    @competitions = Competition.where(facility_id: @userfacilities_check)
+
   end
 
   def manage_users
@@ -248,6 +251,12 @@ class UsersController < ApplicationController
       puts "Had to reset filterrific params: #{ e.message }"
       redirect_to(reset_filterrific_url(format: :html)) and return
 
+  end
+
+  def competitions
+    @user = User.find(params[:id])
+    @userfacilities_check = @user.facility_relationships.all
+    @competitions = Competition.where(facility_id: @userfacilities_check)
   end
 
 

@@ -9,9 +9,9 @@
 
     <% if @competitions.count > 0 %>
 
-    <%= render 'competitions/competition_list', object: @competitions.where('end_date > ?', Date.current) %>
+    <%= render 'competitions/competition_list', object: @competitions.where('end_date > ?', Date.current), facility: @facility %>
 
-    <%= render 'competitions/competition_list', object: @competitions.where('end_date < ?', Date.current) %>
+    <%= render 'competitions/competition_list', object: @competitions.where('end_date < ?', Date.current), facility: @facility %>
     <% end %>
 
   </div>
