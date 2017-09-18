@@ -88,17 +88,18 @@
         type: "datetime",
         minTickInterval: 24 * 3600 * 1000 * 7,
         labels: {
-          format: '{value: %B}',
+          format: '{value: %B }',
           style: {
             color: '#444'
           },
+          step: 1,
         },
         tickLength: 0,
         minorTickLength: 0,
       },
       yAxis: [{  // Primary yAxis
         title: {
-          text: ""
+          text: "Weekly"
         },
         labels: {
           enabled: false
@@ -112,7 +113,7 @@
         allowDecimals: false
       },{ // Secondary yAxis
         title: {
-          text: ""
+          text: "",
         },
         labels: {
           enabled: false
@@ -209,10 +210,10 @@
           name: "Try Hard",
           type: "areaspline",
           pointInterval: 24 * 3600 * 1000 * 7,
-          pointStart: <%= (52.weeks.ago.beginning_of_week.to_i * 1000) %>,
+          pointStart: <%= (26.weeks.ago.beginning_of_week.to_i * 1000) %>,
           data: <% if @annualticks.present? %>
 
-          <%= [user_ticks_value_chart_series( @annualticks, 52.weeks.ago ), user_projects_value_chart_series( @annualticks, 52.weeks.ago )].transpose.map {|x| x.sum} %>
+          <%= [user_ticks_value_chart_series( @annualticks, 26.weeks.ago ), user_projects_value_chart_series( @annualticks, 26.weeks.ago )].transpose.map {|x| x.sum} %>
 
            <% end %>
         },
@@ -220,8 +221,8 @@
           name: "Ticks",
           yAxis: 1,
           pointInterval: 24 * 3600 * 1000 * 7,
-          pointStart: <%= (52.weeks.ago.beginning_of_week.to_i * 1000) %>,
-          data: <% if @annualticks.present? %><%= user_ticks_chart_series( @annualticks, 52.weeks.ago ) %> <% end %>
+          pointStart: <%= (26.weeks.ago.beginning_of_week.to_i * 1000) %>,
+          data: <% if @annualticks.present? %><%= user_ticks_chart_series( @annualticks, 26.weeks.ago ) %> <% end %>
         },
 
         ]
