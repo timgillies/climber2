@@ -38,6 +38,9 @@
   </div>
   <div class="col-sm-6">
     <div class="row">
+      <div class="top10new">
+        <%= link_to competitions_user_path(@user) do %><h1>Circuits</h1><% end %>
+      </div>
 
       <%= render(
       partial: 'users/complist'

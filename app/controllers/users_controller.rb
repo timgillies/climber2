@@ -59,6 +59,8 @@ class UsersController < ApplicationController
 
     #combines new ticks and new routes, newest first
     @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
+    @userfacilities_check = @user.facility_relationships.all
+    @competitions = Competition.where(facility_id: @userfacilities_check)
   end
 
   def new
