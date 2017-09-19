@@ -53,14 +53,6 @@
             </div>
             <div class="col-xs-6 col-sm-3">
               <%= f.select(
-                :with_status_id,
-                @filterrific.select_options[:with_status_id],
-                { include_blank: 'All' },
-                {class: "form-control"}
-              ) %>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-              <%= f.select(
                 :sorted_by,
                 @filterrific.select_options[:sorted_by],
                 { include_blank: 'Sort by' },
@@ -104,6 +96,11 @@
               </span>
           </label>
         <% end %>
+        <label class="expired-filter"><%= f.check_box :with_expired_only, {:checked=>true} , Date.current, nil %>
+          <span>
+            Active Only
+            </span>
+        </label>
         <%= link_to reset_filterrific_url do %>
         <label class="pink">
           <span>Reset</span>

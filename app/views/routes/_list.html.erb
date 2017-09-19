@@ -78,6 +78,10 @@
           </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
 
+            <% if (f.enddate.present?) && (f.enddate < Date.current) %>
+              <i class="fa fa-window-close red" aria-hidden="true"></i> expired <%= f.enddate.strftime("%b %d, %Y") %>
+            <% else %>
+
                 <% unless params[:controller] == 'admin/tasks' %>
                   <% if (days_ago(f) == "today") %>
                     <span>set <%= days_ago(f) %></span>
@@ -89,6 +93,7 @@
                   due on <%= f.setdate.strftime("%b %d, %Y") %>
                   <% end %>
                 <% end %>
+              <% end %>  
 
           </div>
         </div>

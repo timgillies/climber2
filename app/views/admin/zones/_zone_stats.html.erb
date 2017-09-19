@@ -16,6 +16,7 @@
   <div class="large-circle responsive"><%= (total_age(@zone.routes) / @zone.routes.current.count) if @zone.routes.current.count > 0 %><span class="text"><%= "avg. age" %></span></div>
 </div>
 
+<% if params[:controller][0..4] == 'admin' %>
 <%= link_to admin_facility_zone_mass_create_tasks_path(@facility, @zone ), method: :post, data: {:confirm => 'This will mass create tasks based on your targets in this zone.  Are you sure you want to do this?'} do %>
   <div class="circle-wrapper">
     <div class="large-circle responsive"><i class="fa fa-trash" aria-hidden="true"></i>
@@ -30,4 +31,5 @@
       <span class="text"><%= "new tasks" %></span>
     </div>
   </div>
+<% end %>
 <% end %>
