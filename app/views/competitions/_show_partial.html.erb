@@ -72,9 +72,9 @@ $(document).bind("ajaxStart", function(){
   <%= form_for_filterrific @filterrific do |f| %>
 
               <div id="donate", class="pull-right">
-                  <label class="gray"><%= f.check_box :with_expired_only, {multiple: true}, Date.current, nil %>
+                  <label class="gray"><%= f.check_box :with_expired_only, {:checked=>true}, Date.current, nil %>
                     <span>
-                      Show Expired
+                      Active only
                       </span>
                   </label>
               </div>
