@@ -75,7 +75,7 @@ class CompetitionsController < ApplicationController
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @routes = @competition.routes.current.where(status: nil).filterrific_find(@filterrific).includes(:zone, :wall, :user, :grade ).page(params[:page]).per(50)
+    @routes = @competition.routes.filterrific_find(@filterrific).includes(:zone, :wall, :user, :grade ).page(params[:page]).per(50)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -108,7 +108,7 @@ class CompetitionsController < ApplicationController
         with_zone_id: options_for_zone_select,
         with_wall_id: options_for_wall_select,
         with_setter_id: options_for_setter_select,
-        with_status_id: Route.options_for_status_select
+
       },
       persistence_id: false,
     ) or return
@@ -176,7 +176,7 @@ class CompetitionsController < ApplicationController
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @routes = @competition.routes.current.where(status: nil).filterrific_find(@filterrific).includes(:zone, :wall, :user, :grade ).page(params[:page]).per(50)
+    @routes = @competition.routes.filterrific_find(@filterrific).includes(:zone, :wall, :user, :grade ).page(params[:page]).per(50)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

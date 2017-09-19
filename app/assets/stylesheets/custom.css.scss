@@ -296,6 +296,10 @@ li {
   list-style: none;
 }
 
+.red {
+  color: #e43b5e;
+}
+
 /* header */
 
 .logo>img {
@@ -2255,58 +2259,6 @@ select {
     margin-right: 5px;
     margin-left: 5px;
     display: inline;
-  }
-
-  .red {
-    border-left: 15px solid rgba(239, 83, 80, 1);
-  }
-
-  .purple {
-    border-left: 15px solid rgba(126, 87, 194, 1);
-  }
-
-  .blue {
-    border-left: 15px solid rgba(41, 128, 185, 1);
-  }
-
-  .green {
-    border-left: 15px solid rgba(22, 176, 133, 1);
-  }
-
-  .yellow{
-    border-left: 15px solid rgba(253, 216, 53, 1);
-  }
-
-  .orange {
-    border-left: 15px solid rgba(255, 152, 0, 1);
-  }
-
-  .gray {
-    border-left: 15px solid #e2e2e2;
-  }
-
-  .black {
-    border-left: 15px solid $gray;
-  }
-
-  .white {
-    border-left: 15px solid #F2F4F4;
-  }
-
-  .pink {
-    border-left: 15px solid rgba(255, 51, 170, 1);
-  }
-
-  .brown {
-    border-left: 15px solid rgba(153, 102, 85, 1);
-  }
-
-  .lime {
-    border-left: 15px solid rgba(205, 220, 57, 1);
-  }
-
-  .magenta {
-    border-left: 15px solid rgba(255, 51, 153, 1);
   }
 
   .date-list li {

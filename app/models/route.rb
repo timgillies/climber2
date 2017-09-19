@@ -69,7 +69,7 @@ class Route < ActiveRecord::Base
 # enables rating for routes
 
   filterrific(
-  default_filter_params: { sorted_by: 'created_at_desc', with_status_id: Date.current },
+  default_filter_params: { sorted_by: 'created_at_desc', with_active_only: true },
   available_filters: [
     :sorted_by,
     :search_query,
@@ -82,7 +82,9 @@ class Route < ActiveRecord::Base
     :with_setdate_lt,
     :with_facility_id,
     :with_zone_id_checkbox,
-    :with_facility_id_checkbox
+    :with_facility_id_checkbox,
+    :with_active_only,
+    :with_expired_only
   ]
   )
 
@@ -149,6 +151,15 @@ scope :sorted_by, lambda { |sort_option|
 
   scope :with_status_id, lambda { |status_ids|
       where( 'routes.enddate > ? OR routes.enddate IS ?', status_ids, nil)
+  }
+
+  scope :with_active_only, lambda { |flag|
+    return [Date.current, nil] if 1 == flag # checkbox unchecked
+    where('routes.enddate > ? OR routes.enddate IS ?', Date.current, nil)
+  }
+
+  scope :with_expired_only, lambda { |flag|
+    where('routes.enddate < ?', Date.current)
   }
 
   scope :with_facility_id, lambda { |facility_ids|

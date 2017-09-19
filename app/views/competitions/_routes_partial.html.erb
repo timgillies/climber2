@@ -64,14 +64,6 @@
                 {class: "form-control"}
               ) %>
             </div>
-            <div class="col-xs-6 col-sm-3">
-              <%= f.select(
-                :with_status_id,
-                @filterrific.select_options[:with_status_id],
-                { include_blank: 'All' },
-                {class: "form-control"}
-              ) %>
-            </div>
 
           </div>
           <div class="row">
@@ -104,6 +96,18 @@
                   <span><%= zone.name %></span>
                 </label>
               <% end %>
+              <%= link_to reset_filterrific_url do %>
+              <label class="pink">
+                <span>Reset</span>
+              </label>
+              <% end %>
+            </div>
+            <div id="donate", class="pull-right">
+                <label class="gray"><%= f.check_box :with_expired_only, {multiple: true}, Date.current, nil %>
+                  <span>
+                    Show Expired
+                    </span>
+                </label>
             </div>
 
           </div>
