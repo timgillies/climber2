@@ -41,7 +41,7 @@
               <div class="col-sm-12 col-xs-12">
                 <% @facility_systems.each do |fs| %>
                   <% if (facility_system_route_count(fs, fz) > 0) || (facility_system_target_count(fs, fz) > 0) %>
-                <%= render 'facilities/zonegradedist_list', :fz => fz, :fs => fs  %>
+                <%= render 'facilities/adminzonegradedist_list', :fz => fz, :fs => fs  %>
                 <% end %>
               <% end %>
               </div>

@@ -96,11 +96,11 @@
               </span>
           </label>
         <% end %>
-        <label class="expired-filter"><%= f.check_box :with_expired_only, {:checked=>true} , Date.current, nil %>
-          <span>
-            Active Only
-            </span>
-        </label>
+        <label class="gray"><%= f.check_box :with_expired_only, {:checked=>true}, Date.current, nil %>
+        <span>
+          Active only
+          </span>
+      </label>
         <%= link_to reset_filterrific_url do %>
         <label class="pink">
           <span>Reset</span>

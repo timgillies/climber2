@@ -154,14 +154,14 @@ scope :sorted_by, lambda { |sort_option|
   }
 
   scope :with_active_only, lambda { |flag|
-    return [Date.current, nil] if 1 == flag # checkbox unchecked
-    where('routes.enddate > ? OR routes.enddate IS ?', Date.current, nil)
-  }
+     return [Date.current, nil] if 1 == flag # checkbox unchecked
+     where('routes.enddate > ? OR routes.enddate IS ?', Date.current, nil)
+   }
 
-  scope :with_expired_only, lambda { |flag|
-    return nil if 0 == flag # checkbox unchecked
-    where('routes.enddate > ? OR routes.enddate IS ?', Date.current, nil)
-  }
+   scope :with_expired_only, lambda { |flag|
+     return nil if 0 == flag # checkbox unchecked
+     where('routes.enddate > ? OR routes.enddate IS ?', Date.current, nil)
+   }
 
   scope :with_facility_id, lambda { |facility_ids|
       where( 'facility_id = ?', facility_ids)

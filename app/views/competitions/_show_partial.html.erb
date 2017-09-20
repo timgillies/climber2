@@ -72,11 +72,11 @@ $(document).bind("ajaxStart", function(){
   <%= form_for_filterrific @filterrific do |f| %>
 
               <div id="donate", class="pull-right">
-                  <label class="gray"><%= f.check_box :with_expired_only, {:checked=>true}, Date.current, nil %>
-                    <span>
-                      Active only
-                      </span>
-                  </label>
+                <label class="gray"><%= f.check_box :with_expired_only, {:checked=>true}, Date.current, nil %>
+                <span>
+                  Active only
+                  </span>
+              </label>
               </div>
               <div id="spinner" class="spinner-class hidden" >
                 <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
