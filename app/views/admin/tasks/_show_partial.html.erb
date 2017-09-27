@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="container-fluid bg-gray">
     <div class="col-sm-6">
-      <div class="container routelist routeshow">
+      <div class="container routelist">
         <% if @task.color? %>
           <% if ["light", "dark", "neon", "hot"].include?(@task.color.split(/\W+/).first.downcase.to_s) %>
             <div class="<%= @task.color.split(/\W+/).second.downcase.to_s %>">

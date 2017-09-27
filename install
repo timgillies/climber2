@@ -1,0 +1,1234 @@
+#!/bin/sh
+
+# This program is Copyright (c) 2013-2017 VividCortex, Inc. All rights reserved.
+
+# This is a placeholder that is populated with the version of agents
+# that the script is deployed with. It is here for information purposes only - DO NOT USE
+VERSION=1.7.659
+
+# Placeholder that is populated with the base URI for the download server - DO NOT USE
+baseuri="https://download.vividcortex.com"
+
+set -u
+POSIXLY_CORRECT=1
+export POSIXLY_CORRECT
+
+defaultconfdir=/etc/vividcortex
+confdir="${defaultconfdir}"
+logdir=/var/log/vividcortex
+runvdir=/var/run/vividcortex
+superpid="/var/run/vc-agent-007.pid"
+tempdir=""
+socks5=""
+SKIPCERTS=""
+LOADCERTS=""
+
+EXISTS="command -v"
+${EXISTS} ls >/dev/null 2>&1 || EXISTS=which
+if ! ${EXISTS} ls >/dev/null 2>&1 ; then
+	echo "command/which failed" >&2
+	exit 1
+fi
+
+# testing
+test "${baseuri}" = "unknown" && baseuri="https://download.vividcortex.com"
+
+###############################################################################
+
+reset_tempdir()
+{
+	test -n "${tempdir}" && test -d "${tempdir}" && rm -Rf "${tempdir}" >/dev/null 2>&1
+	tempdir=""
+}
+
+###############################################################################
+
+abort()
+{
+	if [ $# -gt 0 ]; then
+		echo >&2
+		echo "$1" >&2
+		echo >&2
+	fi
+	reset_tempdir
+	exit 1
+}
+
+###############################################################################
+
+createdir()
+{
+	mkdir -p "$1" || abort "Unable to create directory $1"
+}
+
+###############################################################################
+
+getfile()
+{
+	failed=0
+	if ${EXISTS} curl >/dev/null 2>&1 ; then
+		if [ -z "${socks5}" ]; then
+			curl -f -s "$1" > "$2" 2>/dev/null && return 0
+			test -n "${SKIPCERTS}" && curl -k -f -s "$1" > "$2" 2>/dev/null && return 0
+		else
+			curl -f -s --socks5-hostname "${socks5}" "$1" > "$2" 2>/dev/null && return 0
+			curl -f -s --socks5 "${socks5}" "$1" > "$2" 2>/dev/null && return 0
+			curl -f -s -x "socks5://${socks5}" "$1" > "$2" 2>/dev/null && return 0
+			test -n "${SKIPCERTS}" && curl -k -f -s --socks5-hostname "${socks5}" "$1" > "$2" 2>/dev/null && return 0
+			test -n "${SKIPCERTS}" && curl -k -f -s --socks5 "${socks5}" "$1" > "$2" 2>/dev/null && return 0
+			test -n "${SKIPCERTS}" && curl -k -f -s -x "socks5://${socks5}" "$1" > "$2" 2>/dev/null && return 0
+		fi
+		failed=1
+	fi
+	if ${EXISTS} wget >/dev/null 2>&1 ; then
+		# depending on version, uses env vars
+		wget -q -O - "$1" > "$2" 2>/dev/null && return 0
+		test -n "${SKIPCERTS}" && wget --no-check-certificate -q -O - "$1" > "$2" 2>/dev/null && return 0
+		failed=1
+	fi
+	if ${EXISTS} fetch >/dev/null 2>&1 ; then
+		# fetch uses env vars and does not support socks5
+		fetch -q -o - "$1" > "$2" 2>/dev/null && return 0
+		test -n "${SKIPCERTS}" && fetch --no-verify-peer -q -o - "$1" > "$2" 2>/dev/null && return 0
+		failed=1
+	fi
+
+	test "${failed}" = "0" && abort "No suitable tool for file download found"
+
+	dlHelp="Unable to retrieve $1
+
+Please verify proxy/firewall and install or update CA Root Certificates"
+
+	case "${initver}" in
+		FreeBSD)
+			abort "${dlHelp} - e.g. pkg install security/ca_root_nss"
+			;;
+		Redhat)
+			if [ "${distro}" = "Slackware" ]; then
+				abort "${dlHelp} - e.g. update-ca-certificates"
+			else
+				abort "${dlHelp} - e.g. yum update ca-certificates"
+			fi
+			;;
+		Debian|OpenRC|systemd)
+			if [ "${distro}" = "SuSE" ]; then
+				abort "${dlHelp} - e.g. zypper install ca-certificates ; update-ca-certificates"
+			else
+				abort "${dlHelp} - e.g. update-ca-certificates"
+			fi
+			;;
+		*)
+			abort "${dlHelp}."
+			;;
+	esac
+}
+
+###############################################################################
+
+usage()
+{
+	abort "Usage: install --token VIVIDCORTEX_API_TOKEN  ...
+
+Full list of options:
+
+  --help [-h]           Display this help information
+  --autostart           Configure system to start VividCortex at boot
+  --no-autostart        Do not configure system to start VividCortex at boot
+  --start-now [-s]      Start VividCortex services after installation
+  --token [-t] 'TOKEN'  Configure VividCortex token to 'TOKEN'
+  --no-proxy            Do not configure an HTTP proxy, alias of --proxy no
+  --proxy [-p] 'URI/auto/dyn/no' Configure HTTP/HTTPS or SOCKS5 proxy to 'URI',
+      'auto' sets whatever proxy (or no proxy) is detected in environment vars,
+      'dyn' makes VividCortex agents detect proxies every time they start.
+  --batch [-b]          Non-interactive mode, suppresses prompts
+  --init [-i] 'INIT'    Linux only. Override init detection and use the
+                        specified init setup [Debian, None, OpenRC, Redhat].
+  --update-init         Update init. Requires --cfg-dir, --bin-dir and --init
+                        if non std. VividCortex will stop and won't restart
+                        unless --start-now is specified. VividCortex won't be
+                        started on reboot unless --autostart is specified.
+  --hostname 'HOSTNAME' Override hostname.
+  --off-host            Install VividCortex in RDS (off-host) mode.
+  --static              Linux only. Use statically compiled binaries.
+  --sample 'TARGET'     Limit query samples. Valid targets are 'ALL' (default),
+                        sends full query samples to VividCortex; 'META' strips
+                        query text and sends origin/user/db/latency/plan/etc;
+                        'NONE' disables sampling.
+  --api-uri [-a] 'URI'  Use custom API endpoint 'URI'
+  --cdn-uri [-c] 'URI'  Use custom CDN endpoint 'URI'
+  --bin-dir [-d] 'DIR'  Use custom agent directory 'DIR'
+  --cfg-dir [-g] 'DIR'  Use custom configuration files directory 'DIR'
+  --uninstall [-u]      Stop & uninstall VividCortex
+  --version [-v] 'TAG'  Install VividCortex version 'TAG' (latest otherwise)"
+}
+
+###############################################################################
+
+if [ "$(id -u)" -ne 0 ]; then
+	abort "This script must be run as root"
+fi
+
+test -d /usr || abort "/usr not mounted"
+
+# Note that I am using the external getopt(1) here rather than the bash-
+# internal getopts() because /bin/sh on some operating systems (e.g. FreeBSD)
+# is not bash.
+(getopt -T) >/dev/null 2>&1
+exitcode=$?
+if [ ${exitcode} -eq 4 ]; then
+	# GNU version, supports long options
+	GETARGS=$(getopt -o "hslkbup:t:v:i:a:c:d:g:" -l "help,autostart,no-autostart,start-now,load-certs,skip-certs,batch,static,uninstall,off-host,update-init,static-ip,no-proxy,proxy:,token:,version:,init:,sample:,api-uri:,cdn-uri:,bin-dir:,cfg-dir:,hostname:" -n "$0" -- "$@") 2>/dev/null
+	test $? -eq 0 || usage
+	eval set -- "${GETARGS}"
+else
+	# BSD, cannot validate
+	eval set -- "$*"
+fi
+
+AUTOSTART=""
+BATCH=""
+HOSTNAME=""
+hn=""
+OFFHOST=""
+UNINSTALL=""
+UPDATEINIT=""
+NOPROXY=""
+PROXY=""
+STARTNOW=""
+VCTOKEN=""
+STATIC=""
+SAMPLE="ALL"
+STATICIP=""
+APIURI=""
+CDNURI=""
+API_TRANSPORT="HTTPS"
+API_PORT="443"
+FORCE_INIT=""
+INSTALL_VERSION=current
+defaultvcbindir="/usr/local/bin"
+vcbindir="${defaultvcbindir}"
+
+if [ -n "${SSL_NO_VERIFY_PEER:-}" ]; then
+	SKIPCERTS=1
+	LOADCERTS=1
+fi
+
+while [ $# -ne 0 ]; do
+	case "$1" in
+		--autostart)
+			shift
+			AUTOSTART=1
+			;;
+		--no-autostart)
+			shift
+			AUTOSTART=0
+			;;
+		-b|--batch)
+			shift
+			BATCH=1
+			;;
+		-s|--start-now)
+			shift
+			STARTNOW=1
+			;;
+		-l|--load-certs)
+			shift
+			LOADCERTS=1
+			;;
+		-k|--skip-certs)
+			shift
+			SKIPCERTS=1
+			LOADCERTS=1
+			;;
+		--off-host)
+			shift
+			OFFHOST=1
+			;;
+		--no-proxy)
+			shift
+			NOPROXY=1
+			PROXY=""
+			;;
+		-p|--proxy)
+			shift
+			if [ -n "$1" ]; then
+				NOPROXY=""
+				PROXY="$1"
+				shift
+				if [ "${PROXY}" = "no" ] || [ "${PROXY}" = "none" ] || [ "${PROXY}" = "false" ] || [ "${PROXY}" = "off" ]; then
+					NOPROXY=1
+					PROXY=""
+				fi
+			fi
+			;;
+		-i|--init)
+			shift
+			FORCE_INIT="$1"
+			if [ "${FORCE_INIT}" != "Debian" ] && [ "${FORCE_INIT}" != "None" ] && [ "${FORCE_INIT}" != "OpenRC" ] && [ "${FORCE_INIT}" != "Redhat" ]; then
+				abort "init must be Debian, None, OpenRC or Redhat"
+			fi
+			shift
+			;;
+		--update-init)
+			shift
+			UPDATEINIT=1
+			;;
+		--static)
+			shift
+			STATIC=1
+			;;
+		--static-ip)
+			# Undocumented so Customer Support has a chance to talk you out of this:
+			## our contingency metric storage system is S3, and won't work if your firewall forbids arbitrary outbound traffic
+			## if you don't talk with CS you won't get an advance notice if/when we need to change the static IP
+			# ... use a proxy if at all possible
+			shift
+			STATICIP=1
+			APIURI="https://static-app.vividcortex.com/api"
+			CDNURI="https://static-download.vividcortex.com"
+			baseuri="${CDNURI}"
+			;;
+		--sample)
+			shift
+			test -z "$1" && abort "--sample requires a value"
+			SAMPLE="$1"
+			if [ "${SAMPLE}" != "ALL" ] && [ "${SAMPLE}" != "META" ] && [ "${SAMPLE}" != "NONE" ]; then
+				abort "sample must be ALL, META or NONE"
+			fi
+			shift
+			;;
+		-a|--api-uri)
+			shift
+			test -z "$1" && abort "--api-uri requires a value"
+			APIURI="$1"
+			echo "${APIURI}" | grep '^http' >/dev/null 2>&1 || abort "--api-uri must be http or https"
+			if ! echo "${APIURI}" | grep '^https' >/dev/null 2>&1 ; then
+				API_TRANSPORT="HTTP"
+				API_PORT="80"
+			fi
+			shift
+			;;
+		-c|--cdn-uri)
+			shift
+			test -z "$1" && abort "--cdn-uri requires a value"
+			CDNURI="$1"
+			baseuri="$1"
+			echo "${CDNURI}" | grep '^http' >/dev/null 2>&1 || abort "--cdn-uri must be http or https"
+			shift
+			;;
+		-d|--bin-dir)
+			shift
+			test -z "$1" && abort "--bin-dir requires a value"
+			vcbindir="$1"
+			echo "${vcbindir}" | grep '^/[^ ]\+[^/]$' >/dev/null 2>&1 || abort "invalid directory: ${vcbindir}"
+			test -d "${vcbindir}" || abort "${vcbindir} is not a directory"
+			shift
+			;;
+		-g|--cfg-dir)
+			shift
+			test -z "$1" && abort "--cfg-dir requires a value"
+			confdir="$1"
+			echo "${confdir}" | grep '^/[^ ]\+[^/]$' >/dev/null 2>&1 || abort "invalid directory: ${confdir}"
+			test -d "${confdir}" || abort "${confdir} is not a directory"
+			shift
+			;;
+		--hostname)
+			shift
+			test -z "$1" && abort "--hostname requires a value"
+			HOSTNAME="$1"
+			echo "${HOSTNAME}" | grep '^[0-9A-Za-z.-]\+$' >/dev/null 2>&1 || abort "invalid hostname: ${HOSTNAME}"
+			hn="${HOSTNAME}"
+			shift
+			;;
+		-t|--token)
+			shift
+			if [ -n "$1" ]; then
+				VCTOKEN="$1"
+				shift
+			fi
+			;;
+		-u|--uninstall)
+			shift
+			UNINSTALL=1
+			;;
+		-v|--version)
+			shift
+			if [ -n "$1" ]; then
+				INSTALL_VERSION="$1"
+				shift
+			fi
+			;;
+		-h|--help)
+			shift
+			usage
+			;;
+		--)
+			shift
+			break
+			;;
+		*)
+			shift
+			usage
+			;;
+	esac
+done
+
+platform=$(uname -s | tr A-Z a-z)
+distro=""
+arch=""
+initver=""
+initdir=""
+initname="vividcortex"
+initperm=755
+startcmd=""
+stopcmd=""
+preinstallcmd="true"
+installcmd=""
+uninstallcmd="true"
+
+longbit=$(getconf LONG_BIT 2>/dev/null)
+if [ -z "${longbit}" ]; then
+	if [ -x /usr/bin/file ] && [ -x /bin/cat ]; then
+		if /usr/bin/file /bin/cat | grep 64.bit >/dev/null 2>&1 ; then
+			longbit=64
+		fi
+	else
+		if uname -a | grep "\(amd\|x86_\)64" >/dev/null 2>&1 ; then
+			longbit=64
+		fi
+	fi
+fi
+
+case "${longbit}" in
+	64)
+		arch="amd64"
+		;;
+	32)
+		abort "VividCortex isn't supported on 32-bit systems"
+		;;
+	*)
+		abort "Could not determine system configuration.
+Please contact VividCortex for installation support.
+Additional information: $(uname -a)"
+		;;
+esac
+
+# aborts or sets (distro) or (distro,initdir,initver)
+case "${platform}" in
+	linux)
+		initdir="/etc/init.d"
+
+		if [ -n "${FORCE_INIT}" ]; then
+			initver="${FORCE_INIT}"
+			if [ "${initver}" = "None" ]; then
+				initdir="/tmp"
+				initname=""
+			else
+				test -d "${initdir}" || initdir="/etc/rc.d"
+				test -d "${initdir}" || abort "Cannot find directory for init scripts"
+			fi
+			distro="Unknown-${FORCE_INIT}"
+		elif grep -i ubuntu /etc/*-release >/dev/null 2>&1 ; then
+			distro="Ubuntu"
+			initver="Debian"
+		elif grep -i debian /etc/*-release >/dev/null 2>&1 ; then
+			distro="Debian"
+			initver="Debian"
+		elif grep -i amazon /etc/*-release >/dev/null 2>&1 ; then
+			distro="Amazon"
+			initver="Redhat"
+		elif grep -i centos /etc/*-release >/dev/null 2>&1 ; then
+			distro="CentOS"
+			initver="Redhat"
+		elif grep -i red.hat.enterprise /etc/*-release >/dev/null 2>&1 ; then
+			distro="RHEL"
+			initver="Redhat"
+		elif grep -i fedora /etc/*-release >/dev/null 2>&1 ; then
+			distro="Fedora"
+			initver="Redhat"
+		elif grep 'ID=coreos' /etc/os-release >/dev/null 2>&1 ; then
+			distro="CoreOS"
+			#systemd
+		elif grep 'ID=alpine' /etc/os-release >/dev/null 2>&1 ; then
+			distro="Alpine"
+			if ${EXISTS} rc-update >/dev/null 2>&1; then
+				# host
+				initver="OpenRC"
+			else
+				# container
+				initdir="/tmp"
+				initver="None"
+				initname=""
+				STATIC=1
+				SKIPCERTS=1
+				LOADCERTS=1
+			fi
+		elif grep 'ID=slackware' /etc/os-release >/dev/null 2>&1 ; then
+			distro="Slackware"
+			initdir="/etc/rc.d"
+			initver="Redhat"
+		elif grep 'ID=rancheros' /etc/os-release >/dev/null 2>&1 ; then
+			distro="RancherOS"
+			initdir="/tmp"
+			initver="None"
+			initname=""
+		elif grep 'ID=arch' /etc/os-release >/dev/null 2>&1 ; then
+			distro="Arch"
+			#systemd
+		elif [ -e /etc/redhat-release ]; then
+			distro="Redhat"
+			initver="Redhat"
+		elif [ -e /etc/debian_version ]; then
+			distro="Debian"
+			initver="Debian"
+		elif [ -e /etc/gentoo-release ]; then
+			distro="Gentoo"
+			initver="OpenRC"
+		elif [ -e /etc/SuSE-release ]; then
+			distro="SuSE"
+			initver="Debian"
+		else
+			distro="Unknown"
+			# don't abort, it may be an unknown systemd-based distro
+		fi
+		;;
+	freebsd)
+		initdir="/etc/rc.d"
+		test -d /usr/local/etc/rc.d && grep '/usr/local/etc/rc.d' /etc/defaults/rc.conf >/dev/null 2>&1 && initdir="/usr/local/etc/rc.d"
+		test -d /usr/local/etc && test "${confdir}" = "${defaultconfdir}" && confdir="/usr/local/etc/vividcortex"
+		distro="FreeBSD"
+		initver="FreeBSD"
+		;;
+	XXXdarwinXXX)
+		# to-do: remove XXX if/when we build binaries for Darwin
+		distro="Darwin"
+		initver="launchd"
+		initdir="/Library/LaunchDaemons"
+		initname="com.vividcortex.supervisor.plist"
+		;;
+	*)
+		abort "Sorry, this install script doesn't support the '${platform}' platform.
+Please contact VividCortex for installation support.
+Additional information: $(uname -a)"
+		;;
+esac
+
+# linux: do we need to use systemd instead of legacy initver?
+if [ "${platform}" = "linux" ] && [ "${FORCE_INIT}" = "" ]; then
+	if [ -d /etc/systemd/system ]; then
+		if ${EXISTS} systemctl >/dev/null 2>&1 ; then
+			# installed; enabled?
+			export SYSTEMD_PAGER=
+			if systemctl >/dev/null 2>&1 ; then
+				# enabled; in use?
+				if systemctl | grep -q "\.service" ; then
+					initver="systemd"
+					# CoreOS mounts /usr read-only. Use /vividcortex unless user overrides it.
+					test "${distro}" = "CoreOS" && test "${vcbindir}" = "${defaultvcbindir}" && vcbindir="/vividcortex"
+				fi
+			fi
+		fi
+	fi
+fi
+
+# verify initver dependencies and set startcmd/stopcmd/installcmd
+case "${initver}" in
+	Redhat)
+		startcmd="${initdir}/vividcortex start"
+		stopcmd="${initdir}/vividcortex stop"
+		if [ "${distro}" = "Slackware" ]; then
+			installcmd="ln -s -f ${initdir}/vividcortex /etc/rc.d/rc3.d/Svividcortex"
+			uninstallcmd="rm -f /etc/rc.d/rc?.d/?vividcortex && rm -f ${initdir}/vividcortex"
+		else
+			installcmd="/sbin/chkconfig --add vividcortex"
+			uninstallcmd="/sbin/chkconfig --del vividcortex"
+			${EXISTS} /sbin/chkconfig >/dev/null 2>&1 || initver=""
+		fi
+		;;
+	Debian)
+		if ${EXISTS} update-rc.d >/dev/null 2>&1 ; then
+			startcmd="${initdir}/vividcortex start"
+			stopcmd="${initdir}/vividcortex stop"
+			installcmd="update-rc.d vividcortex defaults"
+			uninstallcmd="rm -f ${initdir}/vividcortex && update-rc.d vividcortex remove"
+		elif ${EXISTS} /sbin/chkconfig >/dev/null 2>&1 ; then
+			startcmd="${initdir}/vividcortex start"
+			stopcmd="${initdir}/vividcortex stop"
+			installcmd="/sbin/chkconfig --add vividcortex"
+			uninstallcmd="/sbin/chkconfig --del vividcortex"
+		else
+			initver=""
+		fi
+		;;
+	OpenRC)
+		startcmd="rc-service vividcortex start"
+		stopcmd="rc-service vividcortex stop"
+		installcmd="rc-update add vividcortex"
+		uninstallcmd="rc-update delete vividcortex"
+		${EXISTS} rc-update >/dev/null 2>&1 || initver=""
+		${EXISTS} rc-service >/dev/null 2>&1 || initver=""
+		;;
+	systemd)
+		startcmd="systemctl start vividcortex.service"
+		stopcmd="systemctl stop vividcortex.service"
+		preinstallcmd="systemctl daemon-reload"
+		installcmd="systemctl enable vividcortex.service"
+		uninstallcmd="systemctl disable vividcortex.service"
+		initdir="/etc/systemd/system"
+		initname="vividcortex.service"
+		initperm=644
+		;;
+	launchd)
+		startcmd="launchctl start com.vividcortex.supervisor"
+		stopcmd="launchctl stop com.vividcortex.supervisor"
+		installcmd="launchctl load -w ${initdir}/${initname}"
+		uninstallcmd="launchctl unload -w ${initdir}/${initname}"
+		${EXISTS} launchctl >/dev/null 2>&1 || initver=""
+		# to-do
+		test "${AUTOSTART}" = "0" && abort "Not-autostarting unsupported, please remove option --no-autostart"
+		AUTOSTART=1
+		;;
+	FreeBSD)
+		startcmd="${initdir}/vividcortex onestart"
+		stopcmd="${initdir}/vividcortex stop"
+		installcmd="true"
+		if [ "${UNINSTALL}" = "" ] && [ "${UPDATEINIT}" = "" ]; then
+			vcenabled=""
+			grep '^[[:space:]]*vividcortex_enable="\?\(FALSE\|false\|NO\|no\|0\)' /etc/rc.conf >/dev/null 2>&1 && vcenabled=0
+			grep '^[[:space:]]*vividcortex_enable="\?\(TRUE\|true\|YES\|yes\|1\)' /etc/rc.conf >/dev/null 2>&1 && vcenabled=1
+			if [ "${AUTOSTART}" = "0" ]; then
+				test "${vcenabled}" = "1" && abort "Please change vividcortex_enable to FALSE in /etc/rc.conf"
+				test "${vcenabled}" = "0" || abort "Please add vividcortex_enable=FALSE to /etc/rc.conf"
+			elif [ "${AUTOSTART}" = "1" ]; then
+				# compatibility: init script starts by default when vividcortex_enable not present
+				test "${vcenabled}" = "0" && abort "vividcortex_enable=FALSE found in /etc/rc.conf, change it to TRUE to autostart"
+			elif [ "${vcenabled}" = "0" ]; then
+				AUTOSTART=0
+			elif [ "${vcenabled}" = "1" ]; then
+				AUTOSTART=1
+			else
+				abort "Please set vividcortex_enable to FALSE or TRUE in /etc/rc.conf"
+			fi
+		fi
+		;;
+	None)
+		startcmd="${vcbindir}/vc-agent-007"
+		test "${confdir}" = "${defaultconfdir}" || startcmd="${startcmd} -config-file=${confdir}/global.conf"
+		stopcmd="test -f ${superpid} && kill \$(cat ${superpid}) || rm -f ${superpid}"
+		test "${AUTOSTART}" = "1" && abort "Autostarting unsupported, please remove option --autostart"
+		AUTOSTART=0
+		;;
+	*)
+		initver=""
+		;;
+esac
+
+###############################################################################
+
+delete_agents()
+{
+	test $# -ne 1 && abort "delete_agents: expected 1 arg, got $#"
+	agdir="$1"
+	echo "${agdir}" | grep '^/[^?*" ]\+[^/?*" .]$' >/dev/null 2>&1 || abort "delete_agents: invalid dir ${agdir}"
+	delspec="${agdir}/vc-agent-007 ${agdir}/vc-aggregator ${agdir}/vc-*-query ${agdir}/vc-*-metrics"
+	for f in ${delspec}; do
+		test -f "${f}" && grep -i 'Copyright (c) [0-9-]\+ VividCortex, Inc' "${f}" >/dev/null 2>&1 && rm -f "${f}"
+	done
+}
+
+###############################################################################
+
+stop_agents()
+{
+	echo -n "Stopping VividCortex... "
+	# stop - assumes running agents use current init system
+	if [ -n "${stopcmd}" ]; then
+		${stopcmd} >/dev/null 2>&1
+	fi
+	# stop - generic linux/freebsd
+	${EXISTS} service >/dev/null 2>&1 && service vividcortex stop >/dev/null 2>&1
+	${EXISTS} rc-service >/dev/null 2>&1 && rc-service vividcortex stop >/dev/null 2>&1
+	${EXISTS} systemctl >/dev/null 2>&1 && systemctl stop vividcortex.service >/dev/null 2>&1
+	test -x /etc/init.d/vividcortex && /etc/init.d/vividcortex stop >/dev/null 2>&1
+	test -x /etc/rc.d/vividcortex && /etc/rc.d/vividcortex stop >/dev/null 2>&1
+	test -x /usr/local/etc/rc.d/vividcortex && /usr/local/etc/rc.d/vividcortex stop >/dev/null 2>&1
+	if [ -f "${superpid}" ]; then
+		# ${stopcmd} fails on BusyBox's ash
+		sleep 7
+		if [ -f "${superpid}" ]; then
+			kill $(cat "${superpid}")
+			rm -f "${superpid}" >/dev/null 2>&1
+		fi
+	fi
+	rm -f /var/lock/subsys/vividcortex >/dev/null 2>&1
+	echo "OK"
+}
+
+###############################################################################
+
+delete_init()
+{
+	echo -n "Removing VividCortex init script... "
+	# assumes running agents use current init system
+	${uninstallcmd} >/dev/null 2>&1
+	# generic linux/freebsd
+	/sbin/chkconfig --del vividcortex >/dev/null 2>&1
+	${EXISTS} systemctl >/dev/null 2>&1 && systemctl disable vividcortex.service >/dev/null 2>&1
+	${EXISTS} rc-update >/dev/null 2>&1 && rc-update delete vividcortex >/dev/null 2>&1
+	rm -f /etc/init.d/vividcortex >/dev/null 2>&1
+	${EXISTS} update-rc.d >/dev/null 2>&1 && update-rc.d vividcortex remove >/dev/null 2>&1 # after deleting init.d script
+	rm -f /etc/rc.d/vividcortex >/dev/null 2>&1
+	rm -f /etc/rc.d/rc?.d/?vividcortex /etc/rc.d/rc?.d/?[0-9]vividcortex /etc/rc.d/rc?.d/?[0-9][0-9]vividcortex >/dev/null 2>&1
+	rm -f /usr/local/etc/rc.d/vividcortex >/dev/null 2>&1
+	rm -f /etc/systemd/system/vividcortex.service >/dev/null 2>&1
+	rm -f /etc/systemd/system/*/vividcortex.service >/dev/null 2>&1
+	echo "OK"
+}
+
+###############################################################################
+
+get_init()
+{
+	if [ -n "${initname}" ]; then
+		getfile "${baseuri}/${platform}/init-scripts/${initver}/${INSTALL_VERSION}/vividcortex" "${tempdir}/vividcortex"
+		if [ "${vcbindir}" != "${defaultvcbindir}" ]; then
+			escFrom=`echo "${defaultvcbindir}" | sed 's/\//\\\&/g'`
+			escTo=`echo "${vcbindir}" | sed 's/\//\\\&/g'`
+			sed "s/${escFrom}/${escTo}/g" "${tempdir}/vividcortex" >"${tempdir}/vividcortex.new" || abort "Failed to replace vcbindir in init script"
+			mv -f "${tempdir}/vividcortex.new" "${tempdir}/vividcortex" || abort "Failed to move file after replacing vcbindir in init script"
+		fi
+		if [ "${confdir}" != "${defaultconfdir}" ]; then
+			escFrom=`echo "${defaultconfdir}" | sed 's/\//\\\&/g'`
+			escTo=`echo "${confdir}" | sed 's/\//\\\&/g'`
+			sed "s/${escFrom}/${escTo}/g" "${tempdir}/vividcortex" >"${tempdir}/vividcortex.new" || abort "Failed to replace confdir in init script"
+			sed "s/set_conf_file=0/set_conf_file=1/" "${tempdir}/vividcortex.new" >"${tempdir}/vividcortex" || abort "Failed to replace set_conf_file in init script"
+			if [ "${initver}" = "systemd" ]; then
+				mv -f "${tempdir}/vividcortex" "${tempdir}/vividcortex.new" || abort "Unable to move vividcortex init script"
+				sed "s/\(^ExecStart=.\+$\)/\1 -config-file=${escTo}\/global.conf/" "${tempdir}/vividcortex.new" > "${tempdir}/vividcortex" || abort "Failed to patch ExecStart in init script"
+			fi
+			rm -f "${tempdir}/vividcortex.new"
+		fi
+	fi
+}
+
+###############################################################################
+
+install_init()
+{
+	if [ -n "${initname}" ]; then
+		mv -f "${tempdir}/vividcortex" "${initdir}/${initname}" || abort "Unable to install vividcortex init script"
+		chmod ${initperm} "${initdir}/${initname}" || abort "Unable to set ${initdir}/${initname} permissions"
+	fi
+}
+
+###############################################################################
+
+set_proxy()
+{
+	# detect proxy
+	detProxy=${HTTPS_PROXY:-''}
+	test -n "${detProxy}" && echo "${detProxy}" | grep -v '://' >/dev/null 2>&1 && detProxy="https://${detProxy}"
+	echo "${detProxy}" | grep '^http' >/dev/null 2>&1 || detProxy=${https_proxy:-''}
+	test -n "${detProxy}" && echo "${detProxy}" | grep -v '://' >/dev/null 2>&1 && detProxy="https://${detProxy}"
+	echo "${detProxy}" | grep '^http' >/dev/null 2>&1 || detProxy=${HTTP_PROXY:-''}
+	test -n "${detProxy}" && echo "${detProxy}" | grep -v '://' >/dev/null 2>&1 && detProxy="http://${detProxy}"
+	echo "${detProxy}" | grep '^http' >/dev/null 2>&1 || detProxy=${http_proxy:-''}
+	test -n "${detProxy}" && echo "${detProxy}" | grep -v '://' >/dev/null 2>&1 && detProxy="http://${detProxy}"
+	echo "${detProxy}" | grep '^http' >/dev/null 2>&1 || detProxy=${SOCKS_SERVER:-''}
+	test -n "${detProxy}" && echo "${detProxy}" | grep -v '://' >/dev/null 2>&1 && detProxy="socks5://${detProxy}"
+	echo "${detProxy}" | grep '^http\|^socks' >/dev/null 2>&1 || detProxy=${ALL_PROXY:-''}
+	test -n "${detProxy}" && echo "${detProxy}" | grep -v '://' >/dev/null 2>&1 && detProxy="socks5://${detProxy}"
+	echo "${detProxy}" | grep '^http\|^socks' >/dev/null 2>&1 || detProxy=${all_proxy:-''}
+	test -n "${detProxy}" && echo "${detProxy}" | grep -v '://' >/dev/null 2>&1 && detProxy="socks5://${detProxy}"
+	echo "${detProxy}" | grep '^http\|^socks' >/dev/null 2>&1 || detProxy=""
+
+	proxy=""
+	dynmsg=""
+
+	if [ -n "${NOPROXY}" ]; then
+		test -n "${detProxy}" && dynmsg=" because of --no-proxy. If install fails, consider removing
+that option as ${detProxy} may be a valid proxy."
+	elif [ "${PROXY}" = "auto" ]; then
+		proxy="${detProxy}"
+		dynmsg="  (auto-detected)"
+	elif [ "${PROXY}" = "dyn" ]; then
+		proxy="${detProxy}"
+		dynmsg="  (will re-detect every time an agent starts)"
+	elif [ -n "${PROXY}" ]; then
+		proxy="${PROXY}"
+	elif [ "${BATCH}" = "1" ]; then
+		test -n "${detProxy}" && dynmsg=" because of --batch and lack of --proxy. If install fails,
+consider --proxy=auto as ${detProxy} may be a valid proxy."
+	else
+		resp=""
+		echo
+		echo -n "Do you need to set up a proxy? [y/N] "
+		if read -r resp && [ "${resp}" = "Y" ] || [ "${resp}" = "y" ]; then
+			if [ -n "${detProxy}" ]; then
+				echo
+				echo "Environment vars suggest this may be a valid proxy: ${detProxy}"
+			fi
+			echo
+			echo -n "Please input your proxy URI: "
+			read -r proxy
+			test -z "${proxy}" && abort "Blank proxy; retry install"
+		fi
+	fi
+
+	unset ALL_PROXY all_proxy HTTP_PROXY http_proxy HTTP_PROXY_AUTH HTTPS_PROXY https_proxy SOCKS_SERVER SOCKS_VERSION SSL_NO_VERIFY_PEER
+	if [ -n "${proxy}" ]; then
+		if echo "${proxy}" | grep "^\(socks5\|socks\)://" >/dev/null 2>&1 ; then
+			# socks5 proxy
+			socks5=$(echo "${proxy}" | sed 's/[^:]\+:\/\///')
+			export SOCKS_SERVER="${socks5}"
+			export SOCKS_VERSION=5
+			export ALL_PROXY="${proxy}"
+			export all_proxy="${proxy}"
+		elif echo "${proxy}" | grep "^\(https\|http\)://" >/dev/null 2>&1 ; then
+			# https/http proxy
+			export HTTP_PROXY="${proxy}"
+			export http_proxy="${proxy}"
+			export HTTPS_PROXY="${proxy}"
+			export https_proxy="${proxy}"
+		else
+			abort "Unsupported proxy URI: ${proxy}
+Proxy URI must begin with 'https://', 'http://', 'socks5://' or 'socks://'.
+E.g.: socks5://user:pass@127.0.0.1:1080"
+		fi
+		echo
+		echo "Using proxy: ${proxy}${dynmsg}"
+	else
+		# try harder to not use a proxy
+		export NO_PROXY="$(echo "${baseuri}" | sed 's/.*:\/\///' | sed 's/\/.*$//')"
+		export no_proxy="${NO_PROXY}"
+		echo
+		echo "Not using a proxy${dynmsg}"
+	fi
+	test "${PROXY}" = "dyn" && proxy="auto"
+}
+
+###############################################################################
+
+create_config()
+{
+	rm -f "${globalconf}.tmp"
+
+	cat - > "${globalconf}.tmp" <<EOF
+{
+
+EOF
+
+	# testing
+	grep 'EXTRA_' "${globalconf}.tmp" >/dev/null 2>&1 && echo '{' > "${globalconf}.tmp"
+
+	if [ -n "${APIURI}" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "api-uri": "${APIURI}",
+EOF
+	fi
+
+	if [ -n "${CDNURI}" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "cdn-uri": "${CDNURI}",
+EOF
+	fi
+
+	if [ "${vcbindir}" != "${defaultvcbindir}" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "agent-install-dir": "${vcbindir}/",
+EOF
+	fi
+
+	if [ -n "${LOADCERTS}" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "override-os-certs": "true",
+EOF
+	fi
+
+	if [ -n "${HOSTNAME}" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "hostname": "${HOSTNAME}",
+EOF
+	fi
+
+	if [ -n "${OFFHOST}" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "host-discovery-limit": "0",
+EOF
+	fi
+
+	if [ "${SAMPLE}" = "META" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "disable-sampling-text": "true",
+EOF
+	elif [ "${SAMPLE}" = "NONE" ]; then
+		cat - >> "${globalconf}.tmp" <<EOF
+    "disable-sampling": "true",
+EOF
+	fi
+
+	cat - >> "${globalconf}.tmp" <<EOF
+    "api-token": "${VCTOKEN}",
+    "proxy-uri": "${proxy}"
+}
+EOF
+
+	mv -f "${globalconf}.tmp" "${globalconf}"
+
+	chmod 600 "${globalconf}" || abort "Unable to create ${globalconf}"
+}
+
+###############################################################################
+
+start_service()
+{
+	resp=""
+	if [ -z "${AUTOSTART}" ] && [ "${BATCH}" != "1" ] && [ "${installcmd}" != "" ]; then
+		echo -n "Would you like to schedule automatic service startup? [Y/n] "
+		read -r resp
+		echo
+		test -z "${resp}" && resp="Y"
+	fi
+
+	${preinstallcmd} >/dev/null 2>&1 || abort "Running pre-install action '${preinstallcmd}' failed"
+
+	if [ "${resp}" = "Y" ] || [ "${resp}" = "y" ] || [ "${AUTOSTART}" = "1" ]; then
+		if [ "${installcmd}" = "" ]; then
+			abort "Sorry, don't know how to enable init scripts for '${initver}'.
+Please enable the 'vividcortex' init script manually.
+Please also tell VividCortex how to improve this script to do that."
+		else
+			${installcmd} >/dev/null 2>&1 || abort "Unable to install init script using '${installcmd}'"
+			AUTOSTART=1
+		fi
+		echo "VividCortex init script scheduled for automatic start/stop"
+	else
+		echo "VividCortex init script is NOT scheduled for automatic start/stop"
+	fi
+
+	echo
+
+	if [ "${STARTNOW}" = "1" ]; then
+		echo "Starting VividCortex service"
+		rm -f "${superpid}" >/dev/null 2>&1
+		started=0
+		if ${startcmd} >/dev/null 2>&1 ; then
+			sleep 3
+			test -f "${superpid}" && started=1
+		fi
+
+		if [ "${started}" != "1" ]; then
+			abort "VividCortex service startup may have failed.
+Please inspect '${logdir}/vc-agent-007.log' for details.
+
+VividCortex service can be started by running:
+
+    ${startcmd}
+
+and stopped by running:
+
+    ${stopcmd}"
+		elif [ "${AUTOSTART}" != "1" ]; then
+			echo
+			echo "Started successfully.  VividCortex is NOT configured to start at boot because"
+			echo "install was run without --autostart.  Service can be started by running:"
+			echo
+			echo "    ${startcmd}"
+			echo
+			echo "and stopped by running:"
+			echo
+			echo "    ${stopcmd}"
+		fi
+	else
+		echo "VividCortex service can be started by running:"
+		echo
+		echo "    ${startcmd}"
+		echo
+		echo "and stopped by running:"
+		echo
+		echo "    ${stopcmd}"
+	fi
+}
+
+globalconf="${confdir}/global.conf"
+
+if [ "${UNINSTALL}" = "1" ]; then
+	echo
+	if [ "${BATCH}" != "1" ]; then
+		echo -n "Are you sure you want to uninstall VividCortex? [y/N] "
+		read -r resp
+		test "${resp}" != "y" && test "${resp}" != "Y" && abort "Uninstall aborted."
+		echo
+	fi
+
+	stop_agents
+	delete_init
+	echo -n "Cleaning up... "
+	# clean-up
+	rm -Rf /etc/vividcortex >/dev/null 2>&1
+	rm -Rf /usr/local/etc/vividcortex >/dev/null 2>&1
+	#rm -Rf /var/log/vividcortex >/dev/null 2>&1
+	rm -Rf /var/run/vividcortex >/dev/null 2>&1
+	rm -Rf /var/lock/vividcortex >/dev/null 2>&1
+	delete_agents "${defaultvcbindir}"
+	delete_agents "${vcbindir}"
+	if [ -d /var/log/vividcortex ]; then
+		echo "OK, deleted everything except logs at /var/log/vividcortex"
+	else
+		echo "OK"
+	fi
+	echo
+	exit 0
+fi
+
+###############################################################################
+
+if [ "${initver}" = "" ] || [ "${initdir}" = "" ] || [ ! -d "${initdir}" ]; then
+	abort "Sorry, install does not yet support your version or flavor of ${platform}/${distro}.
+
+Additional information: $(uname -a)
+
+Please contact VividCortex for installation support."
+fi
+
+# Download to temp folder in case we need to abort
+tempdir=$(mktemp -d /tmp/vividcortex.XXXXXX)
+if [ $? -ne 0 ] || [ -z "${tempdir}" ] || [ ! -d "${tempdir}" ]; then
+	tempdir=""
+	abort "Unable to create temp folder under /tmp"
+fi
+
+if [ -n "${UPDATEINIT}" ]; then
+	if [ ! -e "${globalconf}" ]; then
+		abort "${globalconf} does not exist. --cfg-dir needed?"
+	fi
+
+	if [ ! -d "${vcbindir}" ]; then
+		abort "${vcbindir} does not exist. --bin-dir needed?"
+	fi
+
+	if [ -z "${initname}" ]; then
+		abort "unknown init type"
+	fi
+
+	echo
+	echo "Updating VividCortex init script for ${platform} ${distro} ${arch}."
+
+	set_proxy
+	get_init
+	echo
+	stop_agents
+	delete_init
+	install_init
+	reset_tempdir
+
+	echo
+	echo "VividCortex init script successfully updated"
+	echo
+
+	start_service
+
+	echo
+	exit 0
+fi
+
+platform_bins="${platform}"
+flavor=""
+if [ "${platform}" = "linux" ]; then
+	if [ "${STATIC}" = "1" ] || [ ! -f /lib64/ld-linux-x86-64.so.2 ]; then
+		STATIC=1
+		platform_bins="${platform}-static"
+		flavor=" (static)"
+	fi
+fi
+
+if [ "${platform}" = "linux" ] && [ "${OFFHOST}" = "" ]; then
+	uname -a | grep "BrandZ" >/dev/null 2>&1 && abort "Linux Branded Zones are only supported in off-host mode.
+Re-run installer adding --off-host to the command-line.
+
+Additional information: $(uname -a)
+
+Please contact VividCortex for installation support."
+fi
+
+if [ -e "${globalconf}" ]; then
+	abort "${globalconf} exists; stopping.
+Remove and re-run if you want to replace an existing install."
+fi
+
+if [ -z "${hn}" ]; then
+	if ${EXISTS} hostname >/dev/null 2>&1 ; then # generic
+		hn="$(hostname)"
+		hnmethod="hostname"
+	elif [ -f /proc/sys/kernel/hostname ]; then # Linux
+		hn="$(cat /proc/sys/kernel/hostname)"
+		hnmethod="proc"
+	elif ${EXISTS} sysctl >/dev/null 2>&1 ; then # BSD
+		hn="$(sysctl -b -q kern.hostname)"
+		hnmethod="sysctl"
+	else
+		hnmethod="none"
+	fi
+	test -z "${hn}" && abort "VividCortex requires system hostname to be set or overriden with --hostname.
+Please contact VividCortex for installation support.
+Additional information: ${hnmethod} / $(uname -a)"
+fi
+
+# agents are installed in ${vcbindir}; make sure it exists
+if [ ! -d "${vcbindir}" ]; then
+	if [ "${vcbindir}" = "/usr/local/bin" ] && [ ! -d /usr/local ]; then
+		mkdir /usr/local >/dev/null 2>&1
+		chmod 755 /usr/local >/dev/null 2>&1
+	fi
+	mkdir "${vcbindir}" >/dev/null 2>&1
+	chmod 755 "${vcbindir}" >/dev/null 2>&1
+	test -d "${vcbindir}" || abort "Cannot create ${vcbindir}"
+fi
+
+# customer consented a reinstall by removing globalconf; make sure service isn't running
+if [ -z "${initname}" ] || [ -e "${initdir}/${initname}" ]; then
+	stop_agents >/dev/null
+	sleep 1
+	${uninstallcmd} >/dev/null 2>&1
+fi
+
+# remove service file
+test -n "${initname}" && rm -f "${initdir}/${initname}"
+
+echo
+echo "Installing VividCortex on host ${hn} for ${platform} ${distro} ${arch}${flavor}."
+
+if [ "${platform}" = "freebsd" ] && [ ! -c /dev/mem ]; then
+	echo
+	echo "Warning /dev/mem not found! Running inside a jail? Try installing in parent OS."
+	echo "Auto-discovery, sniffing network traffic and listing OS processes won't work."
+	echo "Fully working: monitoring RDS / remote database instances."
+fi
+
+if [ -z "${VCTOKEN}" ]; then
+	test "${BATCH}" = "1" && abort "Batch mode: please enter your VividCortex API token using --token parameter"
+
+	echo
+	echo -n "Please enter your VividCortex API token: "
+
+	if ! read -r VCTOKEN; then
+		abort "Unable to read API token."
+	fi
+
+	if [ -z "${VCTOKEN}" ]; then
+		abort "A token has to be provided."
+	fi
+fi
+
+set_proxy
+
+if [ "${INSTALL_VERSION}" != "current" ]; then
+	echo
+	echo "Installing VividCortex version: ${INSTALL_VERSION}"
+fi
+
+if [ "${STATICIP}" != "" ]; then
+	echo
+	echo "Using static IP: make sure to allow connections to TCP port 443 of static-app.vividcortex.com"
+fi
+
+getfile "${baseuri}/${platform_bins}/${arch}/${INSTALL_VERSION}/vc-agent-007" "${tempdir}/vc-agent-007"
+
+mv -f "${tempdir}/vc-agent-007" "${vcbindir}/" || abort "Unable to install vc-agent-007"
+chmod 700 "${vcbindir}/vc-agent-007" || abort "Unable to set ${vcbindir}/vc-agent-007 permissions"
+
+# Verify that env looks good to 007
+
+EXTRA_ARG=""
+API_DOMAIN="app.vividcortex.com"
+if [ -n "${APIURI}" ]; then
+	EXTRA_ARG="-api-uri=${APIURI}"
+	API_DOMAIN=$(echo "${APIURI}" | sed -e 's|^[^/]*//||' -e 's|/.*$||')
+fi
+if [ "${vcbindir}" != "${defaultvcbindir}" ]; then
+	test -n "${EXTRA_ARG}" && EXTRA_ARG="${EXTRA_ARG} "
+	EXTRA_ARG="${EXTRA_ARG}-agent-install-dir=${vcbindir}/"
+fi
+if [ -n "${LOADCERTS}" ]; then
+	test -n "${EXTRA_ARG}" && EXTRA_ARG="${EXTRA_ARG} "
+	EXTRA_ARG="${EXTRA_ARG}-override-os-certs"
+fi
+if [ -n "${HOSTNAME}" ]; then
+	test -n "${EXTRA_ARG}" && EXTRA_ARG="${EXTRA_ARG} "
+	EXTRA_ARG="${EXTRA_ARG}-hostname=${HOSTNAME}"
+fi
+{ "${vcbindir}/vc-agent-007" -self-test -proxy-uri="${proxy}" -config-file="" -api-token="${VCTOKEN}" ${EXTRA_ARG} ; } >"${tempdir}/vc-agent-007.log" 2>&1
+exitcode=$?
+# 0 exitSuccess, 2 exitBadOptions (pre-1.6.143 vc-agent-007 doesn't support -self-test)
+if [ ${exitcode} -ne 0 ]; then
+	rm -f "${vcbindir}/vc-agent-007"
+	if   [ ${exitcode} -eq 3 ]; then  # exitNoToken
+		abort "The API token you used, ${VCTOKEN}, is not valid, please verify and retry installation"
+	elif [ ${exitcode} -eq 4 ]; then  # exitBadProxy
+		abort "Cannot use proxy [ ${proxy} ], please verify and retry installation"
+	elif [ ${exitcode} -eq 7 ]; then  # exitCantReachAPI
+		if [ "${platform}" = "freebsd" ] && [ ! -f /usr/local/share/certs/ca-root-nss.crt ]; then
+			abort "Cannot reach VividCortex. Please verify that proxy/firewall allows outgoing
+${API_TRANSPORT} (port ${API_PORT}) to [${API_DOMAIN}], CA root certificates present (pkg install security/ca_root_nss), and retry installation."
+		elif [ "${distro}" = "SuSE" ]; then
+			abort "Cannot reach VividCortex. Please verify that proxy/firewall allows outgoing
+${API_TRANSPORT} (port ${API_PORT}) to [${API_DOMAIN}], and retry installation.
+
+You may need to install or update CA Root Certificates - e.g. zypper install ca-certificates ; update-ca-certificates"
+		else
+			abort "Cannot reach VividCortex. Please verify that proxy/firewall allows outgoing
+${API_TRANSPORT} (port ${API_PORT}) to [${API_DOMAIN}], and retry installation."
+		fi
+	elif [ ${exitcode} -eq 8 ]; then # exitUnsupported
+		abort "OS version probably unsupported, please contact VividCortex.
+
+Self-test log:
+$(cat "${tempdir}/vc-agent-007.log")
+
+Additional information: ${distro}/${arch} (exitcode=${exitcode}) $(uname -a)"
+	elif [ ${exitcode} -eq 9 ]; then # exitNoAdmin
+		abort "Process is unable to secure root privileges, please contact VividCortex.
+
+Self-test log:
+$(cat "${tempdir}/vc-agent-007.log")
+
+Additional information: ${distro}/${arch} (exitcode=${exitcode}) $(uname -a)"
+	elif [ ${exitcode} -eq 127 ] && [ "${platform}" = "linux" ] && [ "${STATIC}" = "" ]; then # 127 not a valid program
+		abort "Dynamically linked binary failed to load. Please add --static to command-line."
+	elif [ ${exitcode} -ge 125 ]; then # 125 panic, 126 access denied, 127 not a valid program, 128+signal
+		abort "OS version probably unsupported, please contact VividCortex.
+
+Self-test log:
+$(cat "${tempdir}/vc-agent-007.log")
+
+Additional information: ${distro}/${arch} (exitcode=${exitcode}) $(uname -a)"
+	else
+		abort "Installation failed. Please retry and, if the problem persists, contact VividCortex.
+
+Self-test log:
+$(cat "${tempdir}/vc-agent-007.log")
+
+Additional information: ${distro}/${arch} (exitcode=${exitcode}) $(uname -a)"
+	fi
+fi
+
+get_init
+
+createdir "${confdir}"
+createdir "${logdir}"
+createdir "${runvdir}"
+
+install_init
+reset_tempdir
+create_config
+
+echo
+echo "VividCortex agents successfully installed"
+echo
+
+start_service
+
+echo
+echo "Installation is done; please check the VividCortex app to see the new host"
+echo
+exit 0

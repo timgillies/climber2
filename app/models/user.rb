@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
-  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "default-avatar.png"
+  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/social-media/default-avatar.png"
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 

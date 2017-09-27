@@ -1,9 +1,9 @@
-<ul class="grades">
+<ul class="routelist">
   <% @walls.each do |wall| %>
     <li>
       <%= wall.name  %>
       <%= link_to "edit",  edit_facility_wall_path(@facility, wall ) %>
-      <%= link_to "delete", wall , method: :delete %> 
+      <%= link_to "delete", wall , method: :delete %>
     </li>
   <% end %>
 </ul>

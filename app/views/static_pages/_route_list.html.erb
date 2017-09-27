@@ -1,114 +1,118 @@
 
 <%= div_for(@demo_facility.routes.current.last(3)) do |f| %>
-  <ol class="routelist">
+<ol class="routelist routelist-dark">
 
-      <% if f.color? %>
-        <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
-          <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
+
+    <li>
+
+
+
+<div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
+
+
+    <%= link_to admin_facility_route_path( f.facility, f) do %>
+  <span>
+    <div class="container-fluid">
+      <div class="row doubletab">
+        <div class="col-xs-7">
+          <% if params[:facility_id].present? %>
+          <h3><strong>
+            <% if f.color? %>
+              <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+            <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+              <%= f.grade.grade if f.grade %>
+            <% else %>
+              <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+            <% end %>
+          </strong></h3>
 
           <% else %>
+          <h3><strong>
+            <% if f.color? %>
+              <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+            <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+              <%= f.grade.grade if f.grade %>
+            <% else %>
+              <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+            <% end %>
+          </strong></h3>
+          <% end %>
 
-          <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
+
+        </div>
+        <div class="col-xs-5">
+          <div id="expire_buttons_<%= f.id %>">
+          <% if f.active? %>
+              <div class="expire-circle">
+                <i class="fa fa-flash" aria-hidden="true"></i>
+                <span class="text"><%= "active" %></span>
+              </div>
+          <% else %>
+
+          <div class="expire-circle expired">
+            <i class="fa fa-flash" aria-hidden="true"></i>
+            <span class="text"><%= "expired" %></span>
+          </div>
 
           <% end %>
-      <% else %>
-        <li>
-      <% end %>
-
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-            <h3>
-              <% if f.color? %>
-                <%= link_to f.grade.grade + " "+ f.color.upcase , "#" if f.grade %>
-              <% elsif (color_name(f.color_hex, @facility)).nil? %>
-                <%= link_to f.grade.grade , "#" if f.grade %>
-              <% else %>
-                <%= link_to f.grade.grade + " "+ color_name(f.color_hex, @facility)[0].upcase , "#" if f.grade %>
-              <% end %>
-            </h3>
-            <h2> <%= f.name %></h2>
+          <div class="expire-circle task-circle">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+            <span class="text"><%= "task" %></span>
           </div>
 
-          <div class="col-xs-2 col-sm-2 no-print">
-              <h3><%= link_to "#", remote: true do %>
-                <i class="glyphicon glyphicon-cog pull-right"></i>
-              <%end %>
-            </h3>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-              <div class="tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.id %></div>
 
-          </div>
-          <div class="col-sm-12">
-              <div class="tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4">
-            <div class="tab"><strong>
+      </div>
+      <div class="row doubletab">
+        <div class="col-xs-7">
+          <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
+        </div>
+      </div>
 
-              <% if params[:controller] == "admin/tasks" %>
 
-               Assigned to:
+      <div class="row">
 
-               <% else %>
+        <div class="col-sm-12">
+            <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+        </div>
+        <div class="col-xs-12 col-sm-12">
+          <div><%= f.user.name if f.user %></div>
+        </div>
+        <div class="col-xs-12 col-sm-12">
 
-               Set by:
-
-               <% end %>
-
-             </strong><%= f.user.name if f.user %></div>
-          </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="tab text-right">
-
+          <% if (f.enddate.present?) && (f.enddate < Date.current) %>
+            <i class="fa fa-window-close red" aria-hidden="true"></i> expired <%= f.enddate.strftime("%b %d, %Y") %>
+          <% else %>
 
               <% unless params[:controller] == 'admin/tasks' %>
-                <% if (@random_number == 1) %>
-                  <span class="badge badge-today">set today</span>
+                <% if (days_ago(f) == "today") %>
+                  <span>set <%= days_ago(f) %></span>
                 <% else %>
-                  set <%= @random_number %> days ago
+                  set <%= days_ago(f) %> ago
                 <% end %>
               <% else %>
                 <% if f.setdate? %>
                 due on <%= f.setdate.strftime("%b %d, %Y") %>
                 <% end %>
               <% end %>
+            <% end %>
 
 
-              <% if f.user %>
-                <% if f.user.avatar? %>
-                  <%= image_tag f.user.avatar.url(:thumb), class: "img-setter-icon-list" %>
-                <% elsif f.user.image? %>
-                  <%= image_tag f.user.image ,:class=> "img-setter-icon-list" %>
-                <% end %>
-              <% end %>
-
-
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <div class="no-print">
-            <br/>
-            <div class="col-xs-6 col-sm-6">
-              <% if f.active? %>
-                <%= button_to "expire",  "#", class: 'btn btn-expire btn-md', remote: true %>
-              <% else %>
-                <%= button_to "expired",  "#", class: 'btn btn-expired btn-md', remote: true %>
-              <% end %>
-            </div>
-
-            <div class="col-xs-6 col-sm-6 no-print">
-              <%= button_to "create task",  "#", class: 'btn btn-expire btn-md', remote: true %>
-            </div>
-          </div>
         </div>
       </div>
-    </li>
-  </ol>
+    </span>
+    <% end %>
+
+
+
+
+
+
+
+
+
+
+  </li>
+</ol>
   <% end %>

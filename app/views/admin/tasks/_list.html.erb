@@ -107,7 +107,7 @@
 
           </div>
           <div class="col-sm-12">
-              <div class="task-tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
+              <div class="task-tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
           </div>
         </div>
         <div class="row">
@@ -220,29 +220,3 @@
 
   <%= paginate @tasks %>
 </div>
-
-<!-- Modal -->
-
-  <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <span class="modal-title" id="newTaskModal"><h4><strong>CLIMB | CONNECT </strong><small><%= @facility.name %> <%= @facility.location if @facility.location %></small></h4></span>
-        </div>
-        <div class="modal-body row">
-          <%= form_for [:admin, @facility, @task], :html => {:class => "form-label"} do |f| %>
-            <% if(params[:name]) %>
-              <%= render 'admin/tasks/prepopulated_form', :f => f %>
-            <% else %>
-              <%= render 'admin/tasks/form', :f => f %>
-            <% end %>
-        </div>
-        <div class="modal-footer">
-          <%= f.button :submit, class: "btn btn-save" %>
-          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <% end %>

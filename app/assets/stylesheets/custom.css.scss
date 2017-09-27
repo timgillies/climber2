@@ -34,18 +34,6 @@
     }
   }
 
-.highcharts-title {
-    fill: #434348;
-    font-weight: bold;
-    letter-spacing: 0.3em;
-    font-size: 3em;
-}
-.highcharts-subtitle {
-    font-family: 'Oswald', monospace;
-    font-style: italic;
-    fill: #7cb5ec;
-}
-
 .container-fluid {
     margin-right: 0px;
     margin-left: 0px;
@@ -213,30 +201,12 @@ a {
 }
 
 .bg-dark-gray {
-  background-color: #aaa;
-  padding: 20px;
-  border-radius: 4px;
-}
-
-.bg-black {
   background-color: #444;
   padding: 5px;
   border-radius: 0px;
 }
 
-.bg-messages {
-  background-color: #444;
-}
-
-.bg-form {
-  border: 1px solid #bbb;
-  padding: 15px;
-  border-radius: 6px;
-  .divider-line{
-    border-bottom: 1px solid #eee;
-  }
-}
-
+/* This makes the box smaller and justifies it left */
 .routeform-header {
   h1{
     font-family: 'Montserrat', sans-serif;
@@ -246,23 +216,6 @@ a {
     color: #fff;
   }
 }
-
-.home-divider-line {
-  border-top: 1px solid #aaa;
-  margin-bottom: 10px;
-  margin-top: 30px;
-}
-
-.div-header {
-  background-color: #888;
-  height: 20px;
-  margin: -20px;
-  margin-bottom: 20px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-
-}
-
 
 /* typography */
 
@@ -279,12 +232,11 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
+  font-size: 1.4em;
   margin-bottom: 10px;
-  text-align: center;
+  text-align: left;
   font-weight: normal;
-  color: $gray-light;
+  color: #999;
 }
 
 p {
@@ -314,12 +266,6 @@ li {
   letter-spacing: -2px;
   padding-top: 9px;
   font-weight: 700;
-}
-
-.navbar-img-collapsed {
-  margin-right: 100px;
-  padding: 0;
-  vertical-align: bottom;
 }
 
 .img-route-show {
@@ -479,36 +425,8 @@ textarea[type=text] {
   font-size: 16px;
 }
 
-#setdate-input {
-  font-weight: 400;
-  background-color: #bbb;
-  width: auto;
-  min-width: 50px;
-  margin: 4px;
-  border-radius:4px;
-  overflow: hidden;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  background-color: #fff;
-  color: #fff;
-  font-weight: 400;
-  box-shadow: 2px 2px 2px #aaa;
-  background-color: #ddd;
-  color: #888;
-  border: none;
-  padding: 12px;
-  input[type=date] {
-      border-radius: 3px;
-      box-shadow: none;
-      font-size: 16px;
-  }
-}
 
-.form-label {
-  font-family: 'Oswald', sans-serif;
-}
-
+/* potentially can remove */
 .badge-today {
   font-size: 0.8em;
   font-weight: lighter;
@@ -519,6 +437,7 @@ textarea[type=text] {
 }
 
 
+/* puts box around sign-up form.  Potentially can be moved to another area in CSS */
 .signup-form {
 
   border: 1px solid #ddd;
@@ -527,9 +446,6 @@ textarea[type=text] {
   font-family: 'Montserrat', sans-serif;
   background-size: cover;
   background-position: center;
-
-
-
   h1 {
     margin-top: 5px;
     font-size: 2.0em;
@@ -546,14 +462,6 @@ textarea[type=text] {
     border-top: 1px solid #f2f2f2;
     margin-bottom: 5px;
   }
-  label {
-    font-family: 'Montserrat', sans-serif;
-    color: #000;
-    opacity: 0.5;
-  }
-
-
-
 }
 
 /* Modal Styling */
@@ -588,8 +496,6 @@ textarea[type=text] {
 .modal {
   margin-top: 120px;
 }
-
-
 
 .modal-header {
   background: linear-gradient(60deg, #f857a6, #ff5858);
@@ -649,100 +555,9 @@ display: none;
 }
 
 
-
-
-
-
-/* headliner */
-
-.chart-header {
-  list-style: none;
-  font-style: normal;
-  font-weight: 300;
-
-  h1 {
-    font-size: 1.7em;
-    letter-spacing: -1px;
-    margin-bottom: 5px;
-    text-align: center;
-    font-weight: 300;
-    color: $gray;
-    h3 {
-      text-align: right;
-    }
-  }
-}
-
-.headliner-line {
-  list-style: none;
-  font-style: normal;
-  font-weight: 300;
-  h1 {
-    font-size: 1.7em;
-    letter-spacing: -1px;
-    margin-bottom: 1px;
-    font-weight: 300;
-    text-align: left;
-    color: $gray-darker;
-    border-bottom: 1px solid $gray-lighter;
-  }
-}
-
-.form-gray {
-  list-style: none;
-  font-style: normal;
-  font-weight: 300;
-  h1 {
-    font-size: 1.7em;
-    letter-spacing: -1px;
-    margin-bottom: 1px;
-    font-weight: 200;
-    text-align: left;
-    font-family: 'Montserrat', sans-serif;
-    color: #777;
-    border-bottom: 1px solid #bbb;
-  }
-}
-
-.headliner {
-  list-style: none;
-  font-style: normal;
-  font-weight: 300;
-  display: inline;
-  h1 {
-    font-size: 1.7em;
-    font-weight: 300;
-    letter-spacing: -1px;
-    margin-bottom: 1px;
-    text-align: left;
-    color: $gray-darker;
-  }
-
-  .btn {
-    display: inline;
-    margin-top: 7px;
-    align-self: auto;
-  }
-}
-
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
-
-.form-background {
-  background-color: #eee;
-}
-
-
-
 /* forms */
 
+// Climb Connect logo at the top of the sign-in form
 .devise-logo {
   width: 30%;
   margin: auto;
@@ -810,10 +625,6 @@ input {
   }
 }
 
-.img-facility-logo-stats {
-  height: 75px;
-}
-
 .img-facility-circle-button {
   width: 85px;
 }
@@ -828,223 +639,22 @@ input {
   background: transparent;
 }
 
-.img-user-image-profile {
-  height: 40px;
-  background-size: cover;
-  display: inline;
-  margin-right: 10px;
-  vertical-align: bottom;
-  position: absolute;
-  top: 90px;
-  right: 30px;
-  border-radius: 6px;
 
-}
 
-.img-userlist-icon {
-  height: 45px;
-  border-radius: 0px;
-  position: absolute;
-
-}
-
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-  }
-}
-
-.facilities {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-  }
-}
-
-.routes {
-  list-style: none;
-  margin: 0;
-  h1 {
-    font-size: 2.0em;
-    @media (max-width: 768px) {
-      font-size: 1.3em;
-
-    }
-    letter-spacing: -2px;
-    margin-bottom: 2px;
-    text-align: left;
-    font-weight: 200;
-    text-transform: uppercase;
-    color: #fff;
-    display: inline-block;
-    h3 {
-      text-align: right;
-    }
-
-  }
-
-  h2 {
-    font-size: 1.2em;
-    letter-spacing: -1px;
-    margin-bottom: 0px;
-    font-weight: normal;
-    text-align: left;
-    color: $gray;
-  }
-
-  h3 {
-    font-size: 1.2em;
-    letter-spacing: -1px;
-    margin-bottom: 0px;
-    font-weight: normal;
-    align: right;
-    color: $gray;
-  }
-
-  p {
-    font-size: 1.2em;
-    letter-spacing: -1px;
-    margin-top: 0px;
-    font-weight: normal;
-    text-align: left;
-    color: $gray-light;
-  }
-
-  li {
-    overflow: auto;
-    padding: 10px 0;
-  }
-
-  .badge-demo {
-    font-size: 0.7em;
-    font-weight: lighter;
-    background-color: #888;
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 0.4px;
-  }
-
-  .badge-role {
-    font-size: 0.7em;
-    font-weight: lighter;
-    background-color: #6bb0de;
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 0.4px;
-  }
-}
-
- /* -------  Subscription Plans ------- */
-
-.plan-list {
-
-  .lead { font-size: 33px;margin-bottom:0px; }
-
-  h4 {
-    font-family: 'Oswald', sans-serif;
-  }
-
-  btn {
-    font-family: 'Oswald', sans-serif;
-  }
-
-  .panel-body {
-    background: #ffffff;
-    color: black;
-  }
-
-  .list-group {
-    color: black;
-  }
-
-  .panel-free {
-    background: $gray-medium-light;
-    color: $gray-light;
-    h4 {
-      font-family: 'Oswald', sans-serif;
-    }
-  }
-
-  .btn-plan-free {
-    background: $gray-medium-light;
-    color: $gray-light;
-  }
-
-  .panel-basic {
-    background: #5499C7;
-    color: #fff
-  }
-
-  .btn-plan-basic {
-    background: #5499C7;
-    color: #fff;
-  }
-
-  .panel-pro {
-    background: #58D68D;
-    color: #fff;
-  }
-
-  .btn-plan-pro {
-    background: #58D68D;
-    color: #fff;
-  }
-
-}
 
 /* Homepage */
 
+// removes margin on top so that the navbar is overlaying the hero image
 .home-body {
     margin-top: -90px;
 }
 
-.home-indoors {
-    background-image: url(asset-path('indoors.jpg'));
-    background-size: cover;
-    background-position: center;
-    padding: 50px;
-}
-
-.home-outdoors {
-    background-image: url(asset-path('outdoors.jpg'));
-    background-size: cover;
-    background-position: top left;
-    padding: 50px;
-}
-
-.home-social {
-    background-image: url(asset-path('social.jpg'));
-    background-size: cover;
-    background-position: top right;
-    padding: 50px;
-}
-
-.home-manage {
-    background-image: url(asset-path('manage.jpg'));
-    background-size: cover;
-    background-position: right;
-    padding: 50px;
-}
 
 .signup {
   letter-spacing: 0px;
   margin-bottom: 0px;
   text-align: left;
   color: $gray;
-}
-
-.bg-white {
-  background-color: #eee;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.25);
-
 }
 
 .bg-routeform {
@@ -1063,18 +673,7 @@ input {
 
 }
 
-
-.bg-gray-gradient {
-  background: linear-gradient(#fff, #ccc);
-  background-size: cover;
-  background-position: center;
-  border-radius: 4px;
-
-}
-
-
-
-/* Makes carousel expand the picture on larger screens */
+// Carousel is used for the hero image.  Refactor later
 @media (min-width:768px) {
   .carousel  {
     .item {
@@ -1096,15 +695,6 @@ input {
   }
   bottom: auto;
   text-shadow: none;
-}
-
-/* Admin Homepage */
-
-.admin-home-body {
-    background-image: url(asset-path('gym_climber.jpg'));
-    background-size: cover;
-    background-position: top left;
-    padding: 50px;
 }
 
 
@@ -1214,6 +804,7 @@ input {
 
 }
 
+// edit button for users home page
 .top-right-edit {
   position: absolute;
   top: 75px;
@@ -1272,7 +863,7 @@ input {
     }
 
 
-.img-profile-icon{
+.img-profile-icon {
  width: 42px;
  height: 42px;
  background-size: cover;
@@ -1286,17 +877,7 @@ input {
    }
  }
 
-.img-profile-medium{
- width: 50px;
- height: 50px;
- background-size: cover;
- display: inline;
- margin-right: 10px;
- vertical-align: bottom;
-
-}
-
-.img-profile{
+.img-profile {
  width: 100px;
  height: 100px;
  background-size: cover;
@@ -1307,7 +888,7 @@ input {
 
 }
 
-.img-setter-icon-list{
+.img-setter-icon-list {
  width: 25px;
  height: 25px;
  vertical-align: bottom;
@@ -1321,7 +902,7 @@ input {
 
 }
 
-.img-user-list-small{
+.img-user-list-small {
  width: 25px;
  height: 25px;
  vertical-align: bottom;
@@ -1332,36 +913,6 @@ input {
 
 }
 
-
-/* chart list */
-
-.chartlist {
-  vertical-align: bottom;
-  list-style: none;
-  padding: 0px;
-  display: inline;
-  font-weight: 300;
-  font-size: 0.8em;
-  letter-spacing: 0.0px;
-  color: $gray-light;
-  li {
-    margin-bottom: 10px;
-    padding: 0px 0;
-    border-bottom: 1px solid #bbb;
-    position: relative;
-    margin-top: 10px;
-
-  }
-  p {
-    font-size: 1.0em;
-    padding: 0px;
-    letter-spacing: -0.0px;
-    margin-top: 0px;
-    font-weight: 300;
-    text-align: left;
-    color: $gray-light;
-  }
-}
 
 /* Competitions */
 
@@ -1429,6 +980,8 @@ color: #e5e5e5;
 }
 
 /* Marketing */
+
+// This can be refactored
 
 .marketing {
   vertical-align: bottom;
@@ -1576,25 +1129,6 @@ color: #e5e5e5;
 
 /* route list filter */
 
-.filter {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  font-weight: 200;
-  label {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    color: #888;
-    font-weight: 200;
-  }
-  h2 {
-    font-family: 'Roboto', sans-serif;
-    margin: 0px;
-    float: left;
-  }
-}
-
 .gray-labels {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -1649,6 +1183,7 @@ select {
 }
 
 
+// used for route form name
   .large-label {
     input[type=text] {
       margin-left: 4px;
@@ -1673,18 +1208,18 @@ select {
 
   ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #666;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #666;
-   opacity:  1;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #666;
-   opacity:  1;
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #666;
-}
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color:    #666;
+     opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color:    #666;
+     opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color:    #666;
+  }
 
   .divider-line {
     border-top: 1px solid #888;
@@ -1701,11 +1236,7 @@ select {
 
 /* route form */
 
-.collapsing {
-    -webkit-transition: none;
-    transition: none;
-}
-
+//endables donate buttons which should be renamed at somepoint
 .route-form {
 
   body {
@@ -1766,10 +1297,6 @@ select {
 
   }
 
-  #donate .yellow {
-      background-color:#e2d512;
-      color:#333;
-  }
 
   #donate .blue {
       background-color: #fff;
@@ -1918,6 +1445,7 @@ select {
     }
   }
 
+
     .circle-wrapper {
       margin: 0px;
       display: inline-block;
@@ -2017,15 +1545,14 @@ select {
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
     background-color: #222;
-    color: white;
+    color: #888;
     margin: 0px;
-
     .text {
       font-size: 10px;
-      margin-top: -4px !important;
+      margin-top: -2px !important;
       position: relative;
       display: block;
-      letter-spacing: 0.8px;
+      color: #888;
     }
   }
 
@@ -2038,7 +1565,7 @@ select {
     vertical-align: middle;
     border-radius: 50%; /* may require vendor prefixes */
     background-color: #222;
-    color: white;
+    color: #bbb;
     margin: 0px;
     box-shadow: 0 0 2px 4px #47cf73;
     .text {
@@ -2046,7 +1573,7 @@ select {
       margin-top: -4px !important;
       position: relative;
       display: block;
-      color: white;
+      color: #bbb;
     }
   }
 
@@ -2243,30 +1770,6 @@ select {
     font-family: sans-serif;
   }
 
-  .badge-week {
-    font-size: 1em;
-    font-weight: lighter;
-    background-color: #58D68D;
-  }
-  .divider-line {
-    border-top: 1px solid #ccc;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .divider-line-light {
-    border-top: 1px solid #ccc;
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-
-  .right-divider-line-light {
-    border-right: 1px solid #ccc;
-    margin-right: 5px;
-    margin-left: 5px;
-    display: inline;
-  }
-
   .date-list li {
 
     color: #fff;
@@ -2304,6 +1807,8 @@ select {
     }
 }
 
+
+// Start routelist dark - refactor into regular routelist
 .routelist-dark {
   vertical-align: bottom;
   list-style: none;
@@ -2432,10 +1937,8 @@ $duration: 1.4s;
   opacity: 0.90;
 }
 
+
 /* Result List */
-
-
-
 
 .ticklist {
   li {
@@ -2464,163 +1967,9 @@ $duration: 1.4s;
   }
 }
 
-.routeshow-list {
-  li {
-
-    color: #fff;
-    background-color: #fff;
-    border-left: #aaa;
-    box-shadow: none;
-    text-transform: none !important;
 
 
-    h3 {
-      color: #888;
-    }
-  }
-
-  .img-ticklist-icon{
-   width: 50px;
-   height: 50px;
-   vertical-align: bottom;
-   background-size: cover;
-   display: inline;
-   margin-left: 0px;
-   border-radius: 2px;
-   opacity: .9;
-  }
-
-}
-
-/* Routeshow ticklist */
-
-.tick-feed {
-  font-family: 'Montserrat', sans-serif;
-	list-style-type: none;
-	padding: 0;
-	margin: 50px 0px 50px 25px;
-	.feed-item {
-		position: relative;
-		min-height: 60px;
-		margin-bottom: 25px;
-		padding-left: 30px;
-		border-left: 2px solid #ddd;
-    &:last-child { border-color: transparent; }
-		&:before {
-			content: attr(data-time);
-			display: flex;
-			width: 200px;
-			position: absolute;
-			text-align: left;
-			justify-content: left;
-			align-items: left;
-			left: -20px;
-			top: -22px;
-			font-size: 12px;
-			color: #999;
-		}
-    &::after {
-      content: attr(data-content);
-      display: flex;
-			justify-content: center;
-			align-items: center;
-      position: absolute;
-      top: 0;
-      left: -21px;
-      width: 40px;
-      height: 40px;
-			font: normal normal normal 14px/1 FontAwesome;
-			font-size: inherit;
-			text-rendering: auto;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-      border-radius: 50%;
-			color: white;
-			background-color: #ddd;
-		}
-		section {
-			background-color: #eee;
-			//width: auto;
-			//display: inline-block;
-			padding: 10px 15px;
-			border-radius: 4px;
-      box-shadow: 0 1px 2px rgba(0,0,0,.25);
-
-			label {
-        font-weight: 200;
-				display: block;
-				cursor: pointer;
-				// &:after {
-				// 	content: "\f067";
-				// 	position: absolute;
-				// 	right: 20px;
-				// 	color: #999;
-				// 	font: normal normal normal 14px/1 FontAwesome;
-				// 	text-rendering: auto;
-				// 	font-size: 20px;
-				// 	-webkit-font-smoothing: antialiased;
-				// 	-moz-osx-font-smoothing: grayscale;
-				// 	transition: all .15s ease-in-out;
-				// }
-			}
-		}
-	}
-
-  .img-ticklist-icon{
-   width: 50px;
-   height: 50px;
-   vertical-align: bottom;
-   background-size: cover;
-   display: inline;
-   margin-left: 0px;
-   border-radius: 2px;
-   opacity: .9;
-  }
-
-}
-
-/* route show */
-
-.routeshow {
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-    display: inline-block;
-    border: none;
-    color: $gray;
-    font-weight: 200;
-  }
-  h2 {
-    display: inline-block;
-    letter-spacing: -0.4px;
-  }
-  p {
-    font-size: 1.2em;
-    letter-spacing: 0.0px;
-  }
-  li {
-    margin-left: -15px;
-  }
-
-  .img-setter-icon{
-    height: 40px;
-    @media (max-width: 768px) {
-      height: 30px;
-    }
-    position: absolute;
-    right: 10px;
-    top: 30px;
-    background-size: cover;
-    margin-right: 10px;
-  }
-
-  .divider-line {
-    border-top: 1px solid #888;
-    margin-bottom: 5px;
-  }
-
-}
-
-
+// Look at this one further to see if we are actually rendering the recent routes list anywhere
 #recent_routes {
   @media (min-width: 768px) {
     margin-left: 10px;
@@ -2628,48 +1977,10 @@ $duration: 1.4s;
 }
 
 
-/* grades */
-
-.grades {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-bottom: 1px solid #e8e8e8;
-  }
-  .grade {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .grade {
-    display: block;
-    margin-left: 60px;
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
-  }
-}
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-
-span.picture {
-  margin-top: 10px;
-  input {
-    border: 0;
-  }
-}
 
 /* Glyphicons */
 .glyphicon-remove {
   color: #B2BABB;
-  transition-duration: 0.25s;
 }
 
 .glyphicon-remove:hover {
@@ -2678,14 +1989,11 @@ span.picture {
 
 .glyphicon-trash {
   color: #888;
-  transition-duration: 0.25s;
 }
 
 .glyphicon-trash:hover {
   color: #CD6155;
 }
-
-
 
 .glyphicon-cog {
   color: #888;
@@ -2869,108 +2177,28 @@ span.picture {
     margin-bottom: -10px;
 }
 
-#admin-header {
-
-  .navbar .navbar-toggle {
-    margin-top: 15px;
-    margin-bottom: -10px;
-
-  }
-  .navbar-nav li a {
-      line-height: 15px;
-      &:hover {
-        line-height: 15px;
-      }
-  }
-  .navbar {
-    color: black;
-    background-color: transparent;
-    border-style: none;
-    margin-left: 1px;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: -0.4px;
-
-    li>a {
-      color: #fff;
-      margin-top: 3px;
-      margin-bottom: 3px;
-      padding-top: 3px;
-      font-size: 1.0em;
-      @media (max-width: 768px) {
-          font-size: 1.3em;
-      }
-    }
-
-    a:active, li:active, li:hover, a:hover, a:active{
-      color: #eee;
-      background-color: transparent;
-    }
-
-    .btn, btn:hover, btn:active {
-      font-size: 1.1em;
-      vertical-align: text-top;
-      color: #fff;
-      letter-spacing: -1.0px;
-    }
-
-
-    .btn-primary, .btn-primary:hover, .btn-primary:active{
-      color: #ffffff;
-    }
-
-  }
-  .navbar-collapse {
-    background-color: transparent;
-  }
-  .navbar-toggle {
-    border-style: none;
-    float: left;
-  }
-}
-
-.header-text {
-  font-family: 'Lato', sans-serif;
-  letter-spacing: -1.0px;
-  li a{
-    color: #eee;
-  }
-
-}
-
 @media (min-width: 768px){
 
-    .navbar-nav{
-        float:none;
-        margin: 0px auto;
-        display: table;
-        table-layout: fixed;
-        margin-bottom: 0px;
-    }
-    li a {
-      color: $gray;
-      &:hover {
-        color: $gray-darker;
-        background-color: transparent;
-      }
-      }
-
-      .navbar {
-        border-style: none;
-        font-weight: 300;
-      }
-
-
-
-
-}
-
-.adminnavbar {
-  body { padding-top: 0px;
+  .navbar-nav{
+      float:none;
+      margin: 0px auto;
+      display: table;
+      table-layout: fixed;
+      margin-bottom: 0px;
   }
+  li a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+      background-color: transparent;
+    }
+    }
+
+    .navbar {
+      border-style: none;
+      font-weight: 300;
+    }
 }
-
-
-
 
 
 /* Buttons */
@@ -3008,13 +2236,12 @@ span.picture {
   width: 200px;
   color: #fff;
   font-weight: 700;
+  font-size: 0.9em;
   display: inline-block;
   box-shadow: none;
-}
-
-.btn-join:hover, .btn-join:active {
-  opacity: 1;
-  color: white;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  transition-duration: 0.5s;
 }
 
 .btn-signin, .btn-signin:hover, .btn-signin:active {
@@ -3025,30 +2252,16 @@ span.picture {
   color: #fff;
   display: inline-block;
   box-shadow: none;
+  font-weight: 700;
+  font-size: 0.9em;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  transition-duration: 0.5s;
 }
 
-.btn-signin:hover {
+.btn-signin:hover, .btn-join:hover, .btn-join:active {
   opacity: 1;
   color: white;
-}
-
-.btn-more {
-  height: 75px;
-  width: 75px;
-  font-size: 12px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%; /* may require vendor prefixes */
-  background: linear-gradient(60deg, #1b75bb, #00b1ff);
-  color: white;
-  margin: 20px;
-  .text {
-    font-size: 12px;
-    margin-top: -10px !important;
-    position: relative;
-    display: block;
-  }
 }
 
 .btn-submit{
@@ -3067,22 +2280,7 @@ span.picture {
   color: #ffffff;
 }
 
-.btn-signup{
-  border-color: #52BE80;
-  background: #52BE80;
-  opacity: 1;
-  color: #ffffff;
-  transition-duration: 0.5s;
-  letter-spacing: -0.0px;
-}
-
-.btn-signup:hover, .btn-signup:active{
-  border-color: #58D68D;
-  background: #58D68D;
-  opacity: 1;
-  color: #ffffff;
-}
-
+// button for the pink demo buttons on homepage
 .btn-demo{
   border-color: #FF33AA;
   background: #FF33AA;
@@ -3090,13 +2288,6 @@ span.picture {
   color: #ffffff;
   transition-duration: 0.5s;
   letter-spacing: -0.0px;
-}
-
-.btn-demo:hover, .btn-demo:active{
-  border-color: #FF33AA;
-  background: r#FF33AA;
-  opacity: 1;
-  color: #ffffff;
 }
 
 .btn-save{
@@ -3128,68 +2319,13 @@ span.picture {
   color: #ffffff;
 }
 
-.btn-follow {
-  border: none;
-  opacity: 1.0;
-  background-color: #47cf73;
-  color: #ffffff;
-  display: inline-block;
-  width: 100%;
-  font-weight: 400;
-  border-radius: 20px;
-}
-
-.btn-follow:hover, .btn-follow:active {
-  border: none;
-  opacity: 1;
-  background-color: #47cf73;
-  color: #ffffff;
-}
-
-.btn-addnew{
-  background: $gray;
-  border-color: $gray;
-  opacity: 1;
-  color: $gray-lighter;
-}
-
-.btn-addnew:hover{
-  background: #ffffff;
-  border-color: #3498DB;
-  opacity: 1;
-  color: $gray;
-}
-
-.btn-nav, .btn-nav:hover, .btn-nav:active{
-  border-color: $gray-lighter;
-  background: $gray-lighter;
-  opacity: 1;
-  color: $gray-light;
-  letter-spacing: -0.0px;
-  display: inline;
-}
-
-.btn-create, .btn-create:hover, .btn-create:active{
+.btn-blue, .btn-blue:hover, .btn-blue:active{
   border-color: #2e8ece;
   background: #2e8ece;
   opacity: 1;
   color: white;
   transition-duration: 0.5s;
   letter-spacing: -0.0px;
-}
-
-.btn-moredetail, .btn-moredetail:hover {
-  background: linear-gradient(60deg, #888, #bbb);
-  border: none;
-  opacity: 1;
-  color: #eee;
-  letter-spacing: 0.5px;
-  left-margin: 4px;
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-  text-transform: uppercase;
-  box-shadow: 2px 2px 2px #aaa;
 }
 
 .btn-close, .btn-close:hover {
@@ -3208,122 +2344,16 @@ span.picture {
   opacity: 1;
   color: #444;
   letter-spacing: -0.0px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
   text-transform: uppercase;
 }
 
-.btn-photo, .btn-photo:hover {
-  background: white;
-  opacity: 1;
-  color: $gray-light;
-  letter-spacing: 0.0px;
-}
-
-
-.btn-create, .btn-create:hover, .btn-create:active{
-  border-color: #2e8ece;
-  background: #2e8ece;
-  opacity: 1;
-  color: white;
-  transition-duration: 0.5s;
-  letter-spacing: -0.0px;
-}
-
-.btn-onsight:hover{
-  background: #6bda8f;
-  border-color: #6bda8f;
-  opacity: 1;
-  color: #ffffff;
-}
-
-.btn-pretick {
-  background-color: #444;
-  border: none;
-  opacity: 1;
-  color: #666;
-  font-weight: 400;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
-
-.btn-flash{
-  background: linear-gradient(60deg, #5ccb6c, #5ccb6c);
-  border: none;
-  opacity: 0.9;
-  color: #eee;
-  font-weight: 400;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
-
-.btn-flash:hover{
-  background: linear-gradient(60deg, #5ccb6c, #5ccb6c);
-  border: none;
-  opacity: 1;
-  color: #eee;
-  font-weight: 400;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
-
-.btn-redpoint{
-  background: linear-gradient(60deg, #5ccb6c, #5ccb6c);
-  border: none;
-  opacity: 0.9;
-  color: #eee;
-  font-weight: 400;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
-
-.btn-redpoint:hover{
-  background: linear-gradient(60deg, #5ccb6c, #5ccb6c);
-  border: none;
-  opacity: 1;
-  color: #eee;
-  font-weight: 400;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
-
-.btn-project{
-  background: linear-gradient(60deg, #5ccb6c, #5ccb6c);
-  border: none;
-  opacity: 0.9;
-  color: #eee;
-  font-weight: 400;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-
-}
-
-.btn-project:hover{
-  background: linear-gradient(60deg, #5ccb6c, #5ccb6c);
-  border: none;
-  opacity: 1;
-  color: #eee;
-  font-weight: 400;
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
-
-/* Cancel subscription */
-
+// Cancel subscription
 .btn-cancel{
   border-color: #CD6155;
   background: #CD6155;
   letter-spacing: 1px;
   color: white;
   display: inline-block;
-
 }
 
 .btn-expire, .btn-expire:hover{
@@ -3333,11 +2363,8 @@ span.picture {
   color: #666;
   letter-spacing: 0.5px;
   display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
   text-transform: uppercase;
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
-
   a {
     color: #eee;
     display: block;
@@ -3345,19 +2372,16 @@ span.picture {
   @media (max-width: 768px) {
     font-size: 10px;
   }
-
 }
-
 
 .btn-expired, .btn-expired:hover{
   background: #f3817f;
   color: #ffffff;
   border: none;
   display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-
 }
 
+// expire button on admin route list (green with flash)
 .expire-circle {
   position: absolute;
   right: 100px;
@@ -3381,7 +2405,6 @@ span.picture {
     padding-top: 5px;
     right: 75px;
     top: 5px;
-
   }
 
   .text {
@@ -3398,17 +2421,16 @@ span.picture {
   }
 }
 
+// non-active state for routes
 .expired {
-
   background: #888;
   color: white;
-
-
   .text {
     color: white;
   }
 }
 
+// task circle for admin route list
 .task-circle {
   right: 10px;
   top: 0px;
@@ -3418,125 +2440,8 @@ span.picture {
   }
 }
 
-.btn-activate, .btn-completed:hover{
-  background: #fff;
-  letter-spacing: 0.5px;
-  opacity: 1;
-  color: #444;
-  display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-  text-transform: uppercase;
-  li a {
-    color: $gray-light;
-    display: block;
-  }
-
-}
-
-.btn-activate:hover, .btn-completed{
-  background: #58D68D;
-  letter-spacing: 0.5px;
-  opacity: 1;
-  color: white;
-  display: block;
-  li a i {
-    color: $gray-light;
-    display: block;
-  }
-
-}
-
-.btn-tag, .btn-tagged:hover, .btn-tag:hover {
-  background: #fff;
-  letter-spacing: 0.5px;
-  opacity: 1;
-  color: #444;
-  display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-  text-transform: uppercase;
-}
-
-.btn-tagged {
-  background: #c2c2c2;
-  opacity: 1;
-  color: #ffffff;
-  display: inline-block;
-  width: 100%;
-}
-
-.btn-gray {
-  background: #888;
-  opacity: 1;
-  color: #ffffff;
-  display: inline;
-  width: 100%;
-}
-
-.btn-lightgray {
-  background: #ccc;
-  opacity: 1;
-  color: #ffffff;
-  display: inline;
-  width: 100%;
-}
-
-.btn-blue, .btn-blue:hover  {
-  background: #2e8ece;
-  opacity: 1;
-  color: #ffffff;
-  display: inline;
-  width: 100%;
-}
-
-.btn-purple, .btn-purple:hover {
-  border: none;
-  opacity: 0.8;
-  background: #444;
-  color: #ffffff;
-  display: inline;
-  width: 100%;
-}
-
-.btn-purple:hover, .btn-purple:active {
-  border: none;
-  opacity: 1;
-  background: #444;
-  color: #ffffff;
-  display: inline;
-  width: 100%;
-}
-
-.btn-edit, .btn-edit:hover{
-  border-color: #ffffff;
-  background: #ffffff;
-  opacity: 1;
-  color: $gray-light;
-  margin-top: 5px;
-}
-
-.btn-danger, .btn-danger:hover {
-    a {
-      color: #ffffff;
-    }
-}
-
-.btn-homeaction {
-  background: #52BE80;
-  color: $gray-lighter;
-  font-size: 1.1em;
-  letter-spacing: 1px;
-}
-
-.btn-homeaction:hover , .btn-homeaction:active{
-  color: $gray-lighter;
-  background: #52BE80;
-}
-
-
 .btn-facebook {
-  background-image: url(asset-path('facebook-6-24.png'));
+  background-image: url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/social-media/facebook-6-24.png');
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
@@ -3556,7 +2461,7 @@ span.picture {
 }
 
 .btn-google {
-  background-image: url(asset-path('google-btn.png'));
+  background-image: url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/social-media/google-btn.png');
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
@@ -3578,46 +2483,7 @@ span.picture {
   font-size: 3.2vw;
 }
 
-.btn-circle {
-  position: absolute;
-  top: -10px;
-  height: 35px;
-  width: 35px;
-  font-size: 25px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  border: none;
-  border-radius: 50%; /* may require vendor prefixes */
-  background: transparent;
-  color: #888;
-  margin: 0px;
-  box-shadow: none;
-  .text {
-    font-size: 6px;
-    margin-top: -4px !important;
-    position: relative;
-    display: block;
-    text-align: center;
-  }
-}
-
-label input[type="checkbox"] ~ i.fa.fa-square-o{
-    color: #c8c8c8;    display: inline;
-}
-label input[type="checkbox"] ~ i.fa.fa-check-square-o{
-    display: none;
-}
-label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
-    display: none;
-}
-label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
-    color: #7AA3CC;    display: inline;
-}
-label:hover input[type="checkbox"] ~ i.fa {
-color: #7AA3CC;
-}
-
+// image upload button
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -3637,6 +2503,16 @@ color: #7AA3CC;
     background: white;
     cursor: inherit;
     display: block;
+}
+
+.btn-pretick {
+  background-color: transparent;
+  border: none;
+  opacity: 1;
+  color: #666;
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 }
 
 
@@ -3693,28 +2569,6 @@ color: #7AA3CC;
    margin-top: -65px;
  }
 
-.list-group {
-
-}
-
-/*Check box in the middle of the text fix*/
-
-.checkbox {
-    width: 15px;
-    height: 15px;
-    float: left;
-    vertical-align: middle;
-
-}
-.checkbox-inline {
-    float: left;
-    padding-left: 3px;
-    margin-left: 10px;
-    padding: 15px;
-    vertical-align: middle;
-
-}
-
 
 /*target Internet Explorer 9 and Internet Explorer 10:*/
 @media screen and (min-width:0\0) {
@@ -3729,14 +2583,7 @@ color: #7AA3CC;
   border-bottom: 1px solid $gray-lighter;
 }
 
-
-.img-zone-show {
-   width: 100%;
-   background-size: cover;
-   display: inline;
-   vertical-align: bottom;
-   margin: 10px;
-}
+/* Zones */
 
 .img-zone-list {
    width:100px;
@@ -3748,23 +2595,6 @@ color: #7AA3CC;
    vertical-align: bottom;
    margin-bottom: 10px;
 }
-
-.zoneshow-header {
-  h1{
-    font-family: 'Architects Daughter', sans-serif;
-    display: inline;
-    font-size: 2.0em;
-    color: #444;
-    text-transform: uppercase;
-    font-weight: 200;
-  }
-}
-
-.divider-line {
-    border-top: 1px solid #ddd;
-    margin-bottom: 5px;
-}
-
 
 /* HEX
 #8e44ad
@@ -3840,6 +2670,7 @@ background-color: #F8F8F9;; /* CHANGE BACKGROUND HERE*/
 border-radius: 6px;
 font-family: 'Montserrat', sans-serif;
   h1 {
+    font-size: 46px;
     font-family: 'Poppins', sans-serif;
     text-align: left;
     font-weight: 700;
@@ -3848,15 +2679,9 @@ font-family: 'Montserrat', sans-serif;
 }
 
 
-.banner {
-	background: linear-gradient(45deg, #2cb5e8, #47cf73);
-	padding: 25px 50px;
-	h1 {
-		color: white;
-		font-weight: normal;
-		letter-spacing: 20px;
-	}
-}
+/* News feed */
+
+// Start of news feed that is currently not getting used in most places
 
 .activity-feed {
   font-family: sans-serif;
@@ -3940,7 +2765,7 @@ font-family: 'Montserrat', sans-serif;
 		}
 	}
 
-  .img-ticklist-icon{
+  .img-ticklist-icon {
    width: 50px;
    height: 50px;
    vertical-align: bottom;
@@ -3979,14 +2804,6 @@ input[type="checkbox"] {
   padding-top: 5px;
 }
 
-.feed-ratings {
-  img {
-    height: 25px;
-    margin-bottom: 5px;
-  }
-  display: inline-block;
-}
-
 [data-color=red] { &:after { background-color: #ff3c41 !important; } }
 [data-color=blue] { &:after { background-color: #2cb5e8 !important; } }
 [data-color=green] { &:after { background-color: #47cf73 !important; } }
@@ -3997,6 +2814,7 @@ input[type="checkbox"] {
 // &#xf004;
 
 
+// top-10 is getting used in many places
 .top-10 {
   font-family: 'Montserrat', sans-serif;
   background-color: white;
@@ -4006,11 +2824,9 @@ input[type="checkbox"] {
   @media (min-width: 768px) {
     margin-right: 0px;
   }
-
   a {
     text-decoration: none;
   }
-
   p {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
@@ -4425,6 +3241,8 @@ input[type="checkbox"] {
 }
 }
 
+// End of top-10
+
 .left-margin {
   margin-left: 0px;
   @media (max-width: 768px) {
@@ -4528,22 +3346,6 @@ input[type="checkbox"] {
   background: #494949;
 }
 
-.climber {
-
-  background: linear-gradient(rgba(82, 100, 148, 0.7), rgba(96, 68, 132, .7));
-  background:
-    /* top, transparent red, faked with gradient */
-    linear-gradient(60deg,
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, .4)
-    ),
-    /* bottom, image */
-    url('https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc-climber-swing.jpg');
-    background-size: cover;
-    background-position: center;
-
-}
-
 .new-routes {
 
   background: linear-gradient(rgba(255, 81, 47, 0.7), rgba(221, 36, 118, .7));
@@ -4581,7 +3383,7 @@ input[type="checkbox"] {
 }
 
 
-/* Route List 2.0 */
+/* this is the color square for routelist dark */
 
 .list-color-circle {
   height: 43px;
@@ -4615,35 +3417,6 @@ input[type="checkbox"] {
     top: 90px;
     right: 30px;
     border-radius: 6px;
-  }
-
-}
-
-.routelist2 {
-  font-family: 'Poppins', sans-serif;
-
-  h1,h2,h3,h4 {
-    text-align: left;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  h1 {
-    font-size: 1.4em;
-    letter-spacing: 0.0px;
-    position: absolute;
-    top: -70px;
-    left: 70px;
-  }
-
-  h2 {
-    position: absolute;
-    top: -50px;
-    left: 70px;
-  }
-
-  li {
-    border-bottom: 1px solid $gray-lighter;
-
   }
 
 }

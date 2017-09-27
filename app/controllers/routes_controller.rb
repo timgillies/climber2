@@ -44,7 +44,7 @@ end
     # NOte: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @routes = Route.where(facility_id: @userfacilities_check).filterrific_find(@filterrific).includes(:zone, :wall, :user, :grade, :facility, :ticks).page(params[:page]).per(50)
+    @routes = Route.where(facility_id: @userfacilities_check).filterrific_find(@filterrific).includes(:zone, :wall, :user, :grade, :facility).page(params[:page]).per(50)
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
