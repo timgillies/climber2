@@ -58,7 +58,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <span class="modal-title" id="newZoneModal"><%= link_to (image_tag 'cc-white-horizontal.svg'), root_path, class: "logo" %></span>
+          <span class="modal-title" id="newZoneModal"><%= link_to (image_tag 'https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/cc-white-horizontal.svg'), root_path, class: "logo" %></span>
         </div>
         <div class="modal-body row">
           <%= form_for [:admin, @facility, @zone], :html => {:class => "form-label"}, remote: false do |f| %>
@@ -80,7 +80,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <span class="modal-title" id="newWallModal"><%= link_to (image_tag 'cc-white-horizontal.svg'), root_path, class: "logo" %></span>
+            <span class="modal-title" id="newWallModal"><%= link_to (image_tag 'https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/cc-white-horizontal.svg'), root_path, class: "logo" %></span>
           </div>
           <div class="modal-body row">
             <%= form_for [:admin, @facility, @wall], :html => {:class => "form-label"}, remote: false do |f| %>
