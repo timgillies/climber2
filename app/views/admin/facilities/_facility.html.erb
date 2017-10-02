@@ -5,7 +5,7 @@
 </div>
 
 <ol class="list-group">
-  <%= div_for(@facilities) do |f| %>
+  <% @facilities.each do |f| %>
   <li class="list-group-item clearfix">
     <h3 class="pull-left">
       <%= link_to f.name,  admin_facility_path(f) %><br />

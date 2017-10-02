@@ -1,2 +1,2 @@
-class RouteLike < ActiveRecord::Base
+class RouteLike < ApplicationRecord
 end

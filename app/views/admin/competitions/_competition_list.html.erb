@@ -23,7 +23,7 @@
              <%= link_to route_list_admin_facility_competition_path(@facility, comp) do %>
 
             <div class="circle-wrapper">
-              <div class="large-circle route-count route-count-dark-text responsive"><%= comp.routes.count %><span class="text"><%= "routes" %></span></div>
+              <div class="large-circle route-count route-count-dark-text responsive"><%= comp.routes.size %><span class="text"><%= "routes" %></span></div>
             </div>
             <% end %>
 

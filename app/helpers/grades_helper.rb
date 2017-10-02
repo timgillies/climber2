@@ -21,7 +21,7 @@ module GradesHelper
   end
 
   def facility_system_route_count(fs)
-    Route.current.where(grade_id: Grade.where(grade_system_id: fs.id), facility_id: @facility.id).count
+    Route.current.where(grade_id: Grade.where(grade_system_id: fs.id), facility_id: @facility.id).size
   end
 
 

@@ -1,5 +1,4 @@
-class FacilityRole < ActiveRecord::Base
-  has_many :users
+class FacilityRole < ApplicationRecord
   has_many :facilities
   belongs_to :facility
   belongs_to :user

@@ -1,6 +1,6 @@
 <div id="color_list">
 
-  <%= div_for(@custom_colors) do |f| %>
+  <%= @custom_colors.each do |f| %>
   <ol class="routelist">
     <div class="divider-line"></div>
       <li style="border-left: 15px solid <%= f.color_hex %>">

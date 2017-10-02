@@ -33,7 +33,7 @@
     </div>
     <div class="col-sm-12">
       <div class="row">
-        <%= div_for @zones do |fz| %>
+        <% @zones.each do |fz| %>
           <%= render 'admin/zones/zone', object: @zones, :fz => fz %>
         <% end %>
       </div>

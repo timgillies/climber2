@@ -1,2 +1,2 @@
-class Ticktype < ActiveRecord::Base
+class Ticktype < ApplicationRecord
 end

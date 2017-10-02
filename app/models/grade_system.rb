@@ -1,4 +1,4 @@
-class GradeSystem < ActiveRecord::Base
+class GradeSystem < ApplicationRecord
 
   belongs_to :facility
   belongs_to :user

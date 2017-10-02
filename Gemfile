@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '>= 5.0.0.rc2', '< 5.1'
 # Use mysql as the database for Active Record
-gem 'pg',             '0.17.1'
+gem 'pg', '~> 0.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -48,6 +48,11 @@ gem 'delayed_job_active_record'
 gem 'nprogress-rails'
 gem 'area'
 gem 'newrelic_rpm'
+gem 'turbolinks', '~> 5.0.0'
+gem "lazyload-rails"
+gem 'sprockets', '3.7.1'
+gem 'rubocop', require: false
+gem 'jquery-infinite-pages'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -84,11 +89,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring',  '~> 1.7.2'
   gem 'bullet'
-  gem 'newrelic_rpm'
 end
 
 group :production do
-  gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
   gem 'puma',           '3.1.0'
 end

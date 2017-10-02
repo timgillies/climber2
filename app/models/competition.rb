@@ -1,4 +1,4 @@
-class Competition < ActiveRecord::Base
+class Competition < ApplicationRecord
 
   belongs_to :facility
   belongs_to :user

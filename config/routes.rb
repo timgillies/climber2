@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
 
@@ -27,10 +28,15 @@ Rails.application.routes.draw do
         post :route_like
         post :route_unlike
       end
+      collection do
+        get :filter_results
+        get :index
+      end
       resources :ticks
     end
     collection do #collection gets index of users rather than specific tick ID
       get :manage_users
+
     end
     member do
       get :following, :followers, :competitions
@@ -51,6 +57,7 @@ Rails.application.routes.draw do
       post :follow_facility #output path - /users/:user_id/facilities/:facility_id/follow_facility(.:format), user_facility_follow_facility
       resources :routes do
         resources :ticks
+
       end
     end
     member do

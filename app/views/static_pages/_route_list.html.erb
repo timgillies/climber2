@@ -1,5 +1,5 @@
 
-<%= div_for(@demo_facility.routes.current.last(3)) do |f| %>
+<% @demo_facility.routes.includes(:grade, :zone, :wall, :user).current.last(3).each do |f| %>
 <ol class="routelist routelist-dark">
 
 
@@ -8,7 +8,6 @@
 
 
 <div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
-
 
     <%= link_to admin_facility_route_path( f.facility, f) do %>
   <span>

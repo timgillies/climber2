@@ -25,7 +25,7 @@ module RoutesHelper
   end
 
   def total_age(routes)
-      if routes.current.count > 0
+      if routes.current.size > 0
         routes.current.map {|f| [route_age(f).to_i] }.inject(:+).sum
       end
   end

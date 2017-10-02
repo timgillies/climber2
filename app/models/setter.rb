@@ -1,4 +1,4 @@
-class Setter < ActiveRecord::Base
+class Setter < ApplicationRecord
 
 
 

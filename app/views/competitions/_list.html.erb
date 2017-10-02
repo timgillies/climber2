@@ -13,7 +13,7 @@
     </div>
 
   </div>
-  <%= div_for(@routes) do |f| %>
+  <% @routes.each do |f| %>
   <ol class="routelist white-list">
 
       <% if f.color_hex? %>

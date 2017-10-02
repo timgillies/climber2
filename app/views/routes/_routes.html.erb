@@ -1,0 +1,96 @@
+<ol class="routelist routelist-dark">
+<li>
+
+
+
+<div class="list-color-circle", style="background-color: <%= route.color_hex %>"><span class="text"><%= "" %></span></div>
+
+
+    <%= link_to user_facility_route_path(@user, route.facility, route) do %>
+  <span>
+    <div class="container-fluid">
+      <div class="row doubletab">
+        <div class="col-xs-10 col-sm-10 col-md-10">
+          <% if params[:facility_id].present? %>
+          <h3><strong>
+            <% if route.color? %>
+              <%= route.grade.grade + " "+ route.color.upcase if route.grade %>
+            <% elsif (color_name(route.color_hex,route.facility)).nil? %>
+              <%= route.grade.grade if route.grade %>
+            <% else %>
+              <%= route.grade.grade + " "+ color_name(route.color_hex,route.facility)[0].upcase if route.grade %>
+            <% end %>
+          </strong></h3>
+
+          <% else %>
+          <h3><strong>
+            <% if route.color? %>
+              <%= route.grade.grade + " "+ route.color.upcase if route.grade %>
+            <% elsif (color_name(route.color_hex,route.facility)).nil? %>
+              <%= route.grade.grade if route.grade %>
+            <% else %>
+              <%= route.grade.grade + " "+ color_name(route.color_hex,route.facility)[0].upcase if route.grade %>
+            <% end %>
+          </strong></h3>
+          <% end %>
+
+
+        </div>
+
+      </div>
+      <div class="row doubletab">
+        <div class="col-xs-10">
+          <h2> <%= route.name if route.name %> <%= "#" + route.id.to_s %></h2>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-10">
+            <div><strong><%= route.facility.name if route.facility %> <%= route.facility.location if route.facility.location %></strong></div>
+        </div>
+        <span class="pull-right"><%= render(partial: 'routes/route_like', locals: { f: route }) %></span>
+
+
+        <div class="col-xs-12">
+            <div><%= route.zone.name if route.zone %> > <%= route.wall.name if route.wall %></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div><%= route.user.name if route.user %></div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+
+          <% if (route.enddate.present?) && (route.enddate < Date.current) %>
+            <i class="fa fa-window-close red" aria-hidden="true"></i> expired <%= route.enddate.strftime("%b %d, %Y") %>
+          <% else %>
+
+              <% unless params[:controller] == 'admin/tasks' %>
+                <% if (days_ago(route) == "today") %>
+                  <span>set <%= days_ago(route) %></span>
+                <% else %>
+                  set <%= days_ago(route) %> ago
+                <% end %>
+              <% else %>
+                <% if route.setdate? %>
+                due on <%= route.setdate.strftime("%b %d, %Y") %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+        </div>
+      </div>
+    </span>
+    <% end %>
+
+
+      <div class="row">
+          <%= render(partial: 'routes/list_buttons', locals: { f: route }) %>
+      </div>
+
+
+
+
+
+  </li>
+
+</ol>

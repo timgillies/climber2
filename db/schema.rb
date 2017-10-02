@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -21,10 +20,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.integer  "facility_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["facility_id"], name: "index_admins_on_facility_id", using: :btree
+    t.index ["user_id"], name: "index_admins_on_user_id", using: :btree
   end
-
-  add_index "admins", ["facility_id"], name: "index_admins_on_facility_id", using: :btree
-  add_index "admins", ["user_id"], name: "index_admins_on_user_id", using: :btree
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -41,9 +39,8 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_charges_on_user_id", using: :btree
   end
-
-  add_index "charges", ["user_id"], name: "index_charges_on_user_id", using: :btree
 
   create_table "comp_invites", force: :cascade do |t|
     t.integer  "inviter_id"
@@ -51,10 +48,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "competition_id"
+    t.index ["invitee_id"], name: "index_comp_invites_on_invitee_id", using: :btree
+    t.index ["inviter_id"], name: "index_comp_invites_on_inviter_id", using: :btree
   end
-
-  add_index "comp_invites", ["invitee_id"], name: "index_comp_invites_on_invitee_id", using: :btree
-  add_index "comp_invites", ["inviter_id"], name: "index_comp_invites_on_inviter_id", using: :btree
 
   create_table "comp_relationships", force: :cascade do |t|
     t.integer  "user_id"
@@ -62,10 +58,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.string   "role_name"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["competition_id"], name: "index_comp_relationships_on_competition_id", using: :btree
+    t.index ["user_id"], name: "index_comp_relationships_on_user_id", using: :btree
   end
-
-  add_index "comp_relationships", ["competition_id"], name: "index_comp_relationships_on_competition_id", using: :btree
-  add_index "comp_relationships", ["user_id"], name: "index_comp_relationships_on_user_id", using: :btree
 
   create_table "comp_routes", force: :cascade do |t|
     t.integer  "user_id"
@@ -73,9 +68,8 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.datetime "updated_at",     null: false
     t.integer  "route_id"
     t.integer  "competition_id"
+    t.index ["user_id"], name: "index_comp_routes_on_user_id", using: :btree
   end
-
-  add_index "comp_routes", ["user_id"], name: "index_comp_routes_on_user_id", using: :btree
 
   create_table "competitions", force: :cascade do |t|
     t.integer  "user_id"
@@ -101,10 +95,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.float    "flash_value"
     t.float    "onsight_value"
     t.float    "redpoint_value"
+    t.index ["facility_id"], name: "index_competitions_on_facility_id", using: :btree
+    t.index ["user_id"], name: "index_competitions_on_user_id", using: :btree
   end
-
-  add_index "competitions", ["facility_id"], name: "index_competitions_on_facility_id", using: :btree
-  add_index "competitions", ["user_id"], name: "index_competitions_on_user_id", using: :btree
 
   create_table "custom_colors", force: :cascade do |t|
     t.string   "color_hex"
@@ -128,9 +121,8 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
-
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
@@ -162,19 +154,17 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.datetime "header_image_updated_at"
     t.string   "url"
     t.string   "phone_number"
+    t.index ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
+    t.index ["user_id"], name: "index_facilities_on_user_id", using: :btree
   end
-
-  add_index "facilities", ["user_id", "created_at"], name: "index_facilities_on_user_id_and_created_at", using: :btree
-  add_index "facilities", ["user_id"], name: "index_facilities_on_user_id", using: :btree
 
   create_table "facility_grade_systems", force: :cascade do |t|
     t.integer  "facility_id"
     t.integer  "grade_system_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["facility_id"], name: "index_facility_grade_systems_on_facility_id", using: :btree
   end
-
-  add_index "facility_grade_systems", ["facility_id"], name: "index_facility_grade_systems_on_facility_id", using: :btree
 
   create_table "facility_roles", force: :cascade do |t|
     t.string   "name"
@@ -184,10 +174,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.datetime "updated_at",  null: false
     t.string   "email"
     t.boolean  "confirmed"
+    t.index ["facility_id"], name: "index_facility_roles_on_facility_id", using: :btree
+    t.index ["user_id"], name: "index_facility_roles_on_user_id", using: :btree
   end
-
-  add_index "facility_roles", ["facility_id"], name: "index_facility_roles_on_facility_id", using: :btree
-  add_index "facility_roles", ["user_id"], name: "index_facility_roles_on_user_id", using: :btree
 
   create_table "facility_targets", force: :cascade do |t|
     t.integer  "facility_id"
@@ -199,13 +188,12 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.integer  "value"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.index ["facility_id"], name: "index_facility_targets_on_facility_id", using: :btree
+    t.index ["grade_id"], name: "index_facility_targets_on_grade_id", using: :btree
+    t.index ["sub_child_zone_id"], name: "index_facility_targets_on_sub_child_zone_id", using: :btree
+    t.index ["wall_id"], name: "index_facility_targets_on_wall_id", using: :btree
+    t.index ["zone_id"], name: "index_facility_targets_on_zone_id", using: :btree
   end
-
-  add_index "facility_targets", ["facility_id"], name: "index_facility_targets_on_facility_id", using: :btree
-  add_index "facility_targets", ["grade_id"], name: "index_facility_targets_on_grade_id", using: :btree
-  add_index "facility_targets", ["sub_child_zone_id"], name: "index_facility_targets_on_sub_child_zone_id", using: :btree
-  add_index "facility_targets", ["wall_id"], name: "index_facility_targets_on_wall_id", using: :btree
-  add_index "facility_targets", ["zone_id"], name: "index_facility_targets_on_zone_id", using: :btree
 
   create_table "grade_systems", force: :cascade do |t|
     t.string   "name"
@@ -216,9 +204,8 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "category"
+    t.index ["facility_id"], name: "index_grade_systems_on_facility_id", using: :btree
   end
-
-  add_index "grade_systems", ["facility_id"], name: "index_grade_systems_on_facility_id", using: :btree
 
   create_table "grades", force: :cascade do |t|
     t.string   "grade"
@@ -232,10 +219,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.decimal  "range_end"
     t.string   "system_name"
     t.integer  "grade_system_id"
+    t.index ["grade_system_id"], name: "index_grades_on_grade_system_id", using: :btree
+    t.index ["user_id"], name: "index_grades_on_user_id", using: :btree
   end
-
-  add_index "grades", ["grade_system_id"], name: "index_grades_on_grade_system_id", using: :btree
-  add_index "grades", ["user_id"], name: "index_grades_on_user_id", using: :btree
 
   create_table "leads", force: :cascade do |t|
     t.string   "email"
@@ -268,10 +254,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.string   "dimension"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+    t.index ["rater_id"], name: "index_rates_on_rater_id", using: :btree
   end
-
-  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
-  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
 
   create_table "rating_caches", force: :cascade do |t|
     t.integer  "cacheable_id"
@@ -281,9 +266,8 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.string   "dimension"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
   end
-
-  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
   create_table "registrations", force: :cascade do |t|
     t.integer  "user_id"
@@ -292,21 +276,19 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.integer  "plan_id"
     t.string   "card_token"
     t.string   "email"
+    t.index ["plan_id"], name: "index_registrations_on_plan_id", using: :btree
+    t.index ["user_id"], name: "index_registrations_on_user_id", using: :btree
   end
-
-  add_index "registrations", ["plan_id"], name: "index_registrations_on_plan_id", using: :btree
-  add_index "registrations", ["user_id"], name: "index_registrations_on_user_id", using: :btree
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   end
-
-  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "route_likes", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -350,15 +332,14 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.string   "color_hex"
     t.integer  "total_holds"
     t.integer  "foot_holds"
+    t.index ["facility_id"], name: "index_routes_on_facility_id", using: :btree
+    t.index ["grade_id"], name: "index_routes_on_grade_id", using: :btree
+    t.index ["sub_child_zone_id"], name: "index_routes_on_sub_child_zone_id", using: :btree
+    t.index ["user_id", "facility_id", "created_at"], name: "index_routes_on_user_id_and_facility_id_and_created_at", using: :btree
+    t.index ["user_id"], name: "index_routes_on_user_id", using: :btree
+    t.index ["wall_id"], name: "index_routes_on_wall_id", using: :btree
+    t.index ["zone_id"], name: "index_routes_on_zone_id", using: :btree
   end
-
-  add_index "routes", ["facility_id"], name: "index_routes_on_facility_id", using: :btree
-  add_index "routes", ["grade_id"], name: "index_routes_on_grade_id", using: :btree
-  add_index "routes", ["sub_child_zone_id"], name: "index_routes_on_sub_child_zone_id", using: :btree
-  add_index "routes", ["user_id", "facility_id", "created_at"], name: "index_routes_on_user_id_and_facility_id_and_created_at", using: :btree
-  add_index "routes", ["user_id"], name: "index_routes_on_user_id", using: :btree
-  add_index "routes", ["wall_id"], name: "index_routes_on_wall_id", using: :btree
-  add_index "routes", ["zone_id"], name: "index_routes_on_zone_id", using: :btree
 
   create_table "setters", force: :cascade do |t|
     t.string   "first_name"
@@ -370,10 +351,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.datetime "updated_at",                 null: false
     t.integer  "user_id"
     t.boolean  "active",      default: true
+    t.index ["facility_id"], name: "index_setters_on_facility_id", using: :btree
+    t.index ["user_id"], name: "index_setters_on_user_id", using: :btree
   end
-
-  add_index "setters", ["facility_id"], name: "index_setters_on_facility_id", using: :btree
-  add_index "setters", ["user_id"], name: "index_setters_on_user_id", using: :btree
 
   create_table "sub_child_zones", force: :cascade do |t|
     t.string   "name"
@@ -382,10 +362,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["facility_id"], name: "index_sub_child_zones_on_facility_id", using: :btree
+    t.index ["wall_id"], name: "index_sub_child_zones_on_wall_id", using: :btree
   end
-
-  add_index "sub_child_zones", ["facility_id"], name: "index_sub_child_zones_on_facility_id", using: :btree
-  add_index "sub_child_zones", ["wall_id"], name: "index_sub_child_zones_on_wall_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "email"
@@ -412,9 +391,8 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.string   "stripe_plan_interval"
     t.integer  "stripe_plan_interval_count"
     t.integer  "stripe_plan_created"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
-
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "assigner_id"
@@ -441,13 +419,12 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.date     "completed_at"
     t.integer  "route_id"
     t.string   "color_hex"
+    t.index ["facility_id"], name: "index_tasks_on_facility_id", using: :btree
+    t.index ["grade_id"], name: "index_tasks_on_grade_id", using: :btree
+    t.index ["sub_child_zone_id"], name: "index_tasks_on_sub_child_zone_id", using: :btree
+    t.index ["wall_id"], name: "index_tasks_on_wall_id", using: :btree
+    t.index ["zone_id"], name: "index_tasks_on_zone_id", using: :btree
   end
-
-  add_index "tasks", ["facility_id"], name: "index_tasks_on_facility_id", using: :btree
-  add_index "tasks", ["grade_id"], name: "index_tasks_on_grade_id", using: :btree
-  add_index "tasks", ["sub_child_zone_id"], name: "index_tasks_on_sub_child_zone_id", using: :btree
-  add_index "tasks", ["wall_id"], name: "index_tasks_on_wall_id", using: :btree
-  add_index "tasks", ["zone_id"], name: "index_tasks_on_zone_id", using: :btree
 
   create_table "ticks", force: :cascade do |t|
     t.integer  "user_id"
@@ -471,11 +448,10 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.integer  "wall_id"
     t.integer  "grade_vote_id"
     t.integer  "competition_id"
+    t.index ["facility_id"], name: "index_ticks_on_facility_id", using: :btree
+    t.index ["route_id"], name: "index_ticks_on_route_id", using: :btree
+    t.index ["user_id"], name: "index_ticks_on_user_id", using: :btree
   end
-
-  add_index "ticks", ["facility_id"], name: "index_ticks_on_facility_id", using: :btree
-  add_index "ticks", ["route_id"], name: "index_ticks_on_route_id", using: :btree
-  add_index "ticks", ["user_id"], name: "index_ticks_on_user_id", using: :btree
 
   create_table "ticktypes", force: :cascade do |t|
     t.string   "name"
@@ -526,10 +502,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "walls", force: :cascade do |t|
     t.string   "name"
@@ -542,11 +517,10 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.float    "height"
     t.float    "width"
     t.float    "angle"
+    t.index ["facility_id"], name: "index_walls_on_facility_id", using: :btree
+    t.index ["user_id"], name: "index_walls_on_user_id", using: :btree
+    t.index ["zone_id"], name: "index_walls_on_zone_id", using: :btree
   end
-
-  add_index "walls", ["facility_id"], name: "index_walls_on_facility_id", using: :btree
-  add_index "walls", ["user_id"], name: "index_walls_on_user_id", using: :btree
-  add_index "walls", ["zone_id"], name: "index_walls_on_zone_id", using: :btree
 
   create_table "zones", force: :cascade do |t|
     t.string   "name"
@@ -561,10 +535,9 @@ ActiveRecord::Schema.define(version: 20170914205158) do
     t.float    "height"
     t.float    "width"
     t.float    "angle"
+    t.index ["facility_id"], name: "index_zones_on_facility_id", using: :btree
+    t.index ["user_id"], name: "index_zones_on_user_id", using: :btree
   end
-
-  add_index "zones", ["facility_id"], name: "index_zones_on_facility_id", using: :btree
-  add_index "zones", ["user_id"], name: "index_zones_on_user_id", using: :btree
 
   add_foreign_key "admins", "facilities"
   add_foreign_key "admins", "users"

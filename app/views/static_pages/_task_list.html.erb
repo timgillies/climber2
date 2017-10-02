@@ -1,5 +1,5 @@
 
-  <%= div_for(@demo_facility.tasks.last(2)) do |f| %>
+  <% @demo_facility.tasks.includes(:grade, :zone, :wall, :assignee).last(2).each do |f| %>
   <ol class="routelist">
 
 
@@ -64,7 +64,7 @@
 
           </div>
           <div class="col-sm-12">
-              <div class="task-tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %> > <%= f.sub_child_zone.name if f.sub_child_zone %></div>
+              <div class="task-tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="task-tab"><strong>

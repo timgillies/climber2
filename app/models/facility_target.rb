@@ -1,4 +1,4 @@
-class FacilityTarget < ActiveRecord::Base
+class FacilityTarget < ApplicationRecord
   belongs_to :facility
   belongs_to :grade
   belongs_to :zone

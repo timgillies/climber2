@@ -1,4 +1,4 @@
-class Route < ActiveRecord::Base
+class Route < ApplicationRecord
   belongs_to :facility
   belongs_to :zone
   belongs_to :wall

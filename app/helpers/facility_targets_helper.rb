@@ -10,7 +10,7 @@ module FacilityTargetsHelper
   end
 
   def facility_systems_route_count
-    facility_grades.joins(:routes).where(:routes => {:grade_id => facility_grades.id} ).count
+    facility_grades.joins(:routes).where(:routes => {:grade_id => facility_grades.id} ).size
   end
 
 end

@@ -1,8 +1,10 @@
 //= require jquery
 //= require jquery.minicolors
 //= require jquery_ujs
+//= require turbolinks
 //= require filterrific/filterrific-jquery
 //= require bootstrap
+
 
 //= require_tree .
 
@@ -12,10 +14,10 @@
 //= require highcharts/modules/exporting
 //= require parsley
 //= require toastr
+//= require jquery.infinite-pages
 
 
-$(document).ready(function() {
-
+$( document ).on('turbolinks:load', function() {
 
  toastr.options = {
                   "closeButton": false,

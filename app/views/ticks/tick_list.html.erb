@@ -1,18 +1,12 @@
 <% provide(:title, ' Ascents') %>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-5 col-md-4">
-      <%= render 'users/user_stats' %>
-      <div class="hidden-sm hidden-md hidden-lg"><br></div>
-    <div class="hidden-xs">
-      <%= render 'users/top10sends' %>
-      <%= render 'users/top10routes' %>
-      <%= render 'users/newest10routes' %>
-    </div>
-    </div>
-    <div class="col-sm-7 col-md-8">
-            <%= render 'ticks/tick_list_partial' %>
-        </div>
-      </div>
+
+<div class="row">
+  <%= render 'users/user_stats2' %>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+      <%= render 'ticks/tick_list_partial' %>
+  </div>
 </div>

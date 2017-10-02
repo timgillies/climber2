@@ -1,4 +1,4 @@
-class Grade < ActiveRecord::Base
+class Grade < ApplicationRecord
   belongs_to :route
   belongs_to :grade_system, :foreign_key => :grade_system_id
   has_many :routes

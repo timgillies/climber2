@@ -132,11 +132,11 @@ class UsersController < ApplicationController
     @admin_facility_roles = FacilityRole.where(user_id: @user).where.not(name: 'climber').page(params[:page])
 
 
-    if (@ticks.ascent.count > 1) && (Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.previous(@ticks.ascent.grade_desc.first)).first)
+    if (@ticks.ascent.size > 1) && (Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.previous(@ticks.ascent.grade_desc.first)).first)
       # featured route take your hardest ascent and then takes the next grade down
       @route = Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.previous(@ticks.ascent.grade_desc.first)).where.not(id: Tick.where(user_id: @user.id).pluck(:route_id)).first
 
-    elsif (@ticks.ascent.count > 0) && (Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.where(id: @ticks.ascent.grade_desc.first.grade_id).first).first)
+    elsif (@ticks.ascent.size > 0) && (Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.where(id: @ticks.ascent.grade_desc.first.grade_id).first).first)
       # returns top rated route for the climber's gyms
       @route = Route.current.where(facility_id: @userfacilities_check, grade_id: Grade.where(id: @ticks.ascent.grade_desc.first.grade_id).first).where.not(id: Tick.where(user_id: @user.id).pluck(:route_id)).first
 

@@ -1,5 +1,5 @@
 
-<%= div_for(@demo_facility.routes.current.last(3)) do |f| %>
+<% @demo_facility.routes.current.last(3).each do |f| %>
   <ol class="routelist routelist-dark">
 
       <% if f.color? %>

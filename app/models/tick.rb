@@ -1,4 +1,4 @@
-class Tick < ActiveRecord::Base
+class Tick < ApplicationRecord
 
   belongs_to :route
   belongs_to :user

@@ -1,4 +1,4 @@
-class FacilityGradeSystem < ActiveRecord::Base
+class FacilityGradeSystem < ApplicationRecord
 
   belongs_to :facility, :foreign_key => :facility_id
   belongs_to :grade_system

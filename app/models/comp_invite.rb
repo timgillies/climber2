@@ -1,2 +1,2 @@
-class CompInvite < ActiveRecord::Base
+class CompInvite < ApplicationRecord
 end

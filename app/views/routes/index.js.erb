@@ -1,2 +1,2 @@
-
-$("#filterrific_results").html("<%= j (render(partial: 'routes/list', locals: { routes: @routes })) %>");
+  $('#routes-list').append('<%= j (render(partial: 'routes/listitem', locals: { routes: @routes })) %>');
+  $('.pagination').replaceWith('<%= j paginate @routes %>');

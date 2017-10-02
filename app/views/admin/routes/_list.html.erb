@@ -13,7 +13,7 @@
     </div>
 
   </div>
-  <%= div_for(@routes) do |f| %>
+  <% @routes.each do |f| %>
   <ol class="routelist routelist-dark">
 
 
@@ -91,7 +91,7 @@
                   due on <%= f.setdate.strftime("%b %d, %Y") %>
                   <% end %>
                 <% end %>
-              <% end %>  
+              <% end %>
 
 
           </div>

@@ -1,4 +1,4 @@
-class Wall < ActiveRecord::Base
+class Wall < ApplicationRecord
   belongs_to  :facility
   belongs_to  :user
   belongs_to  :zone

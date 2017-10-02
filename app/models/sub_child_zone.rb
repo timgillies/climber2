@@ -1,4 +1,4 @@
-class SubChildZone < ActiveRecord::Base
+class SubChildZone < ApplicationRecord
 
   belongs_to :facility
   belongs_to :user

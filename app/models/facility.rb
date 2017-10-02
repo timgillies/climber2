@@ -1,4 +1,4 @@
-class Facility < ActiveRecord::Base
+class Facility < ApplicationRecord
 
   # adds facility name to URL but it breaks the links in the charts
   #  def to_param
