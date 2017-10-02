@@ -38,7 +38,7 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'omniauth-facebook'
-gem 'paperclip', "~> 5.0.0"
+gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'jquery-minicolors-rails'
 gem "parsley-rails"
