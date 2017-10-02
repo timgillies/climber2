@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-jQuery ->
+$(document).on "ready turbolinks:load", ->
   $('#route_wall_id').parent().show()
   $('#route_sub_child_zone_id').parent().show()
   walls = $('#route_wall_id').html()
@@ -18,7 +18,7 @@ jQuery ->
       $('#route_wall_id').parent().hide()
 
 
-  jQuery ->
+  $(document).on "ready turbolinks:load", ->
     zone = $('input[name="route[zone_id]"]:checked').val()
 
     $('.walls').hide()
@@ -34,7 +34,7 @@ jQuery ->
 
 
 
-  jQuery ->
+  $(document).on "ready turbolinks:load", ->
     grade = $('input[name="route[grade_system_virtual]"]:checked').val()
 
     $('.grade-').hide()
