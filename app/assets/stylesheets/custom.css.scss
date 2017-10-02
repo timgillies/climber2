@@ -52,6 +52,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
+$green : #52BE80;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -669,7 +670,7 @@ input {
 
 .bg-routeform {
   /* background: linear-gradient(60deg, #526494, #604484); */
-  background-color: #ddd;
+  background-color: #444;
   padding: 20px;
   @media (max-width:768px) {
     padding-left: 7px;
@@ -1160,13 +1161,15 @@ color: #e5e5e5;
     text-align: left;
   }
   input[type=text], input[type=date], input[type=email], input[type=number] {
-      border-radius: 0px;
+      border-radius: 4px;
       box-shadow: none;
       font-size: 16px;
       padding: 12px;
       border: none;
       display:block;
       box-sizing: border-box;
+      background: #222;
+      color: #888;
     }
 
   input[type=date] {
@@ -1202,8 +1205,8 @@ select {
       margin-right: 4px;
       font-size: 22px;
       padding: 12px;
-      background-color: #fff;
-      color: #666;
+      background: #222;
+      color: #888;
 
     }
   }
@@ -1274,9 +1277,6 @@ select {
       color: #fff;
       font-weight: 700;
       box-shadow: 0 1px 2px rgba(0,0,0,.25);
-
-
-
   }
 
   #donate label span {
@@ -1287,30 +1287,25 @@ select {
         font-size: 12px;
         padding: 12px;
       }
-
-
       display: block;
 
   }
 
   #donate label input {
       position:absolute;
-      top:-20px;
+      top:-25px;
   }
 
   #donate input:checked + span {
-      background-color:#444;
-      color:#F7F7F7;
-
+      background: linear-gradient(60deg, #5ccb6c, #57d79a);
+      color: #fff;
       box-shadow: 4px 4px 2px rgba(255,255,255,.5);
-
-
   }
 
 
   #donate .blue {
-      background-color: #fff;
-      color:#888;
+      background-color: #888;
+      color: #444;
   }
 
   #donate .pink {
@@ -1324,8 +1319,8 @@ select {
       font-size: 8px;
   }
   #donate .gray {
-    background-color:#bbb;
-    color:#fff;
+    background-color:#222;
+    color: #888;
   }
 
   #donate .expired-filter {
@@ -1340,7 +1335,7 @@ select {
   }
 
   #donate .pink {
-    background: linear-gradient(60deg, #00adee, #1b75bb);
+    background: linear-gradient(60deg, #1b75bb, #00adee);
       color:#fff;
   }
 
@@ -1362,8 +1357,8 @@ select {
       font-family: 'Poppins', sans-serif;
       text-transform: uppercase;
       letter-spacing: -0.5px;
-      background-color: #ccc;
-      color: #666;
+      background-color:#888;
+      color: #444;
       font-weight: 700;
       box-shadow: 0 1px 2px rgba(0,0,0,.25);
 
@@ -1379,21 +1374,18 @@ select {
         font-size: 16px;
         padding: 12px;
       }
-
-
       display: block;
-
   }
 
   #donate-colors label input {
       position:absolute;
-      top:-20px;
+      top:-25px;
   }
 
   #donate-colors input:checked + span {
-      background-color:#444;
-      color:#F7F7F7;
-
+    background: #222;
+    color: #888;
+    box-shadow: 4px 4px 2px rgba(255,255,255,.5);
   }
 
 }

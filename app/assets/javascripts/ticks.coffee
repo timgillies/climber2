@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-  jQuery ->
+  $(document).on "ready turbolinks:load", ->
     grade = $('input[name="tick[grade_system_virtual]"]:checked').val()
 
     $('.grade-').hide()
