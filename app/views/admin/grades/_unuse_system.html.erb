@@ -1,4 +1,4 @@
-<% @facility_grade_systems.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id)).each do |fg| %>
+<% @facility_grade_systems.where("facility_id = ? and grade_system_id = ?", @facility.id, fs.id).each do |fg| %>
 <div class="col-xs-6">
   <h3><i class="glyphicon glyphicon-ok glyphicon-green"></i></h3>
 </div>
