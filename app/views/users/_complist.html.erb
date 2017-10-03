@@ -1,9 +1,10 @@
+<% if @competitions.current.size > 0 %>
 <div class="row">
   <div class="top10new">
     <h2>Active</h2>
   </div>
 <ul class="top10new">
-  <% @competitions.where('end_date > ?', Date.current).where('end_date > ?', Date.current).each do |comp| %>
+  <% @competitions.current.each do |comp| %>
     <%= link_to facility_competition_path(comp.facility_id, comp.id) do %>
       <li>
         <%= image_tag comp.logo_image.url(:medium) ,:class=> "img-user-list-small" %>
@@ -15,3 +16,12 @@
   <% end %>
 </ul>
 </div>
+
+<% else %>
+<br>
+<br>
+<div class="center">
+<%= link_to "Create New Circuit", new_user_session_path, class: 'btn btn-green btn-lg' %>
+</div>
+
+<% end %>

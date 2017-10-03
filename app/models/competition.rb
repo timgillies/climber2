@@ -21,4 +21,9 @@ class Competition < ApplicationRecord
   has_attached_file :logo_image, styles: { large: "600", medium: "300", thumb: "100x100#" }, default_url: "https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/cc-white-block.svg"
   validates_attachment_content_type :logo_image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+
+  def self.current
+    where('end_date > ?', Date.current).where('end_date > ?', Date.current)
+  end
+
 end

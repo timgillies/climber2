@@ -288,10 +288,11 @@ li {
 /* footer */
 
 footer {
+  background: #ddd;
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
   color: $gray-light;
+  text-align: center;
   a {
     color: $gray-light;
     &:hover {
@@ -299,13 +300,18 @@ footer {
     }
   }
   small {
-    float: left;
+
+  }
+  p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: white;
   }
   ul {
-    float: right;
+    text-align: center;
     list-style: none;
     li {
-      float: left;
+
       margin-left: 15px;
       a, a:hover {
         color: $gray-light;
@@ -313,6 +319,10 @@ footer {
         text-decoration: none;
       }
     }
+  }
+
+  .footer-logo>img {
+    text-align: center;
   }
 
   $timing        : 265ms;
@@ -340,7 +350,7 @@ footer {
   .social-icons {
       padding: 0;
       list-style: none;
-      margin: 1em;
+      margin-top: 0.5em;
 
       li {
           display: inline-block;
@@ -979,7 +989,6 @@ color: #e5e5e5;
 
 .comp-stats-center {
   text-align: center;
-  border-right: 1px solid #ddd;
   h1 {
     text-align: left;
     font-size: 12px;
@@ -990,6 +999,18 @@ color: #e5e5e5;
     color: #aaa;
   }
 }
+
+.comp-stats-center:after {
+  content : "";
+  position: absolute;
+  right    : 0;
+  z-index: 100;
+  top  : 12.5%;
+  width  : 1px;
+  height   : 75%;  /* or 100px */
+  background: #ddd;
+}
+
 
 /* Marketing */
 
@@ -2327,6 +2348,18 @@ a:focus {
   border: none;
   opacity: 0.8;
   background: linear-gradient(60deg, #526494, #604484);
+  color: #ffffff;
+}
+
+.btn-green{
+  border-color: none;
+  background: linear-gradient(60deg, #5ccb6c, #57d79a);
+  opacity: 1.0;
+  color: #ffffff;
+}
+
+.btn-green:hover, .btn-green:active {
+  opacity: 1.0;
   color: #ffffff;
 }
 

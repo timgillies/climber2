@@ -36,7 +36,6 @@ $(document).on "ready turbolinks:load", ->
   $('#donate-colors').on "click", ->
     color_box = $('input[name="route[color_hex]"]:checked').val().replace('#','')
     if $('input[name="route[color_hex]"]:checked').val()
-       alert(color_box)
        $('#route_color_hex'+_color_box).css('background','blue')
 
 
