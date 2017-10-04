@@ -17,10 +17,9 @@
 //= require jquery.infinite-pages
 
 
-$( document ).on('turbolinks:load', function() {
-
+/*global toastr*/
  toastr.options = {
-                  "closeButton": false,
+                  "closeButton": true,
                   "debug": false,
                   "positionClass": "toast-bottom-right",
                   "onclick": null,
@@ -33,5 +32,3 @@ $( document ).on('turbolinks:load', function() {
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
               }
-
-});
