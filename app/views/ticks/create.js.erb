@@ -2,7 +2,8 @@ $('body').scrollTop(0);
 $('#grade_render').html('');
 $('#wall_render').html('');
 $('#tickForm')[0].reset();
-// $("#user-stats").html("<%= j (render(partial: 'users/user_stats')) %>");
+$("#tick-stats").html("<%= j (render(partial: 'users/user_stats_tick_count')) %>");
+$("#hardest-send").html("<%= j (render(partial: 'users/user_stats_hardest_send')) %>");
 
 
 
