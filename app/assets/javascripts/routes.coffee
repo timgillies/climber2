@@ -33,13 +33,6 @@ $(document).on "ready turbolinks:load", ->
       $('#zone_wall_'+zone).clone().appendTo('#wall_render')
 
 
-  $('#donate-colors').on "click", ->
-    color_box = $('input[name="route[color_hex]"]:checked').val().replace('#','')
-    if $('input[name="route[color_hex]"]:checked').val()
-       $('#route_color_hex'+_color_box).css('background','blue')
-
-
-
 
   $(document).on "ready turbolinks:load", ->
     grade = $('input[name="route[grade_system_virtual]"]:checked').val()

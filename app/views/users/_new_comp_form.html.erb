@@ -1,0 +1,84 @@
+<%= form_for [@user, @competition], :html => {:class => "form-label", :multipart => true} do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="gray-labels white">
+    <div class="container-fluid bg-routeform">
+
+      <div class="row">
+
+        <% unless @userfacilities_check.nil? %>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.label :facility_id, "Facility", class: "sr-only" %>
+            <div class="route-form">
+              <div id="donate">
+                <% @userfacilities_check.each do |fs| %>
+                  <label class="gray"><%= f.radio_button :facility_id, fs.id, params[:facility_id] == fs.id ? { checked: true } : {checked: f.object.facility_id.eql?(fs.id) } %>
+                    <span><%= fs.name %> <%= (fs.location) if fs.location %></span>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% else %>
+
+        <%= link_to "Add your facilities", user_facility_roles_path(current_user), class: "btn btn-save btn-lg tab" %>
+
+        <% end %>
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <%= f.label :name, "Competion name*", class: "form-label" %>
+      <%= f.text_field :name, placeholder: "ex. USA Climbing Youth Divisional", class: 'form-control' %>
+
+      <%= f.label :description, "Description*"%>
+      <%= f.text_field :description, placeholder: "Description...", class: 'form-control' %>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="row">
+  <div class="col-sm-4 col-md-4 col-lg-4">
+  <%= f.label :start_date, "Start Date*" %>
+  <%= f.date_field :start_date %>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4 col-md-4 col-lg-4">
+  <%= f.label :end_date, "End Date*" %>
+  <%= f.date_field :end_date %>
+</div>
+</div>
+
+
+
+
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label :logo_image,"Logo Image" %>
+        <br>
+        <span class="btn btn-large btn-add btn-file">
+            <i class='fa fa-plus'></i> Add photo
+          <%= f.file_field :logo_image %>
+        </span>
+      </div>
+    </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <%= f.submit "Save", class: "btn btn-save btn-lg", "data-disable-with"=> "Saving..."  %>
+        </div>
+      </div>
+
+  </div>
+</div>
+
+
+<% end %>

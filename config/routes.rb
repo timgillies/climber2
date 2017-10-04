@@ -36,12 +36,10 @@ Rails.application.routes.draw do
     end
     collection do #collection gets index of users rather than specific tick ID
       get :manage_users
-
     end
     member do
-      get :following, :followers, :competitions
+      get :following, :followers, :competitions, :competition, :new_competition
     end
-
     member do
       post :follow #output path - user/:id/follow
       post :unfollow #output path - user/:id/unfollow

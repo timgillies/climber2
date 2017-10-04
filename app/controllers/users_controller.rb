@@ -261,6 +261,12 @@ class UsersController < ApplicationController
     @competitions = Competition.where(facility_id: @userfacilities_check)
   end
 
+  def new_competition
+    @user = User.find(params[:id])
+    @userfacilities_check = @user.facility_relationships.all
+    @competition = Competition.new
+  end
+
 
 
 

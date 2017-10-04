@@ -21,14 +21,12 @@ class CompetitionsController < ApplicationController
   end
 
   def create
-    @facility = Facility.find(params[:facility_id]) #This ensures the redirect_to goes back to the nested resource
     @competition = current_user.competitions.build(competition_params)
-    @competition.facility_id = params[:facility_id] #this passes the facility ID through the field
     if @competition.save
       competition_admin = CompRelationship.create(user_id: current_user.id, competition_id: @competition.id, role_name: 'admin')
       competition_admin.save
       flash[:success] = "Competition created!"
-      redirect_to(facility_competition_path(@facility, @competition))
+      redirect_to(facility_competition_path(@competition.facility_id, @competition))
     else
       render 'new'
     end

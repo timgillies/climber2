@@ -326,10 +326,10 @@ footer {
   }
 
   $timing        : 265ms;
-  $iconColor     : #e32666;
-  $accent        : #d7348c;
-  $grape         : #7b00e0;
-  $orchid        : #ae31d9;
+  $iconColor     : #888;
+  $accent        : #888;
+  $grape         : #888;
+  $orchid        : #888;
 
 
   @mixin transformScale($size: 1) {
