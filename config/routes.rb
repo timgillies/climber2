@@ -138,7 +138,7 @@ Rails.application.routes.draw do
         member do
           post :activate_route #output path - activate_route/:id
           post :complete_task
-          post :un_complete_task
+          post :uncomplete_task
         end
       end
       resources :competitions do

@@ -8,7 +8,7 @@
         Filters <span class="glyphicon glyphicon-filter"></span>
       </button>
       <% unless params[:controller] == 'admin/competitions' %>
-        <span class="hidden-xs"><%= link_to "new route", new_admin_facility_route_path(@facility), class: "btn btn-close", style: "display: inline-block;" %></span>
+        <span class="hidden-xs"><%= link_to "new route", new_admin_facility_route_path(@facility), class: "btn btn-filter", style: "display: inline-block;" %></span>
       <% end %>
     </span>
   </div>

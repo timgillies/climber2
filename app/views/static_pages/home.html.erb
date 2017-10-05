@@ -244,7 +244,7 @@ $('#hamburger').click(function() {
         <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
         <% end %>
         <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
-        <p><%= mail_to "lee@climbconnect.com", "Say Hello", class: "btn btn-close btn-large" %></p>
+        <p><%= mail_to "lee@climbconnect.com", "Say Hello", class: "btn btn-filter btn-large" %></p>
     </div>
   </div>
   <div class="col-sm-4">

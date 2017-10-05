@@ -23,39 +23,40 @@
 
   <% @tasks.each do |f| %>
   <ol class="routelist routelist-dark">
+  <li>
 
 
-    <% if f.color_hex? %>
-    <li style="border-left: 15px solid <%= f.color_hex %>">
-    <% elsif f.color? %>
-      <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
-        <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
-      <% else %>
-        <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
-      <% end %>
-    <% else %>
-    <li style="border: none;">
-    <% end %>
 
+  <div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
+
+
+      <%= link_to edit_admin_facility_task_path(f, @facility) do %>
+    <span>
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-10 col-sm-10 col-md-5">
-
-            <% unless f.grade_id? %>
-            <h3>
-              <% unless f.task_type == "route_task" %>
-                <span class="glyphicon glyphicon-wrench"></span>
-                <%= link_to "MAINTENANCE ITEM" , edit_admin_facility_task_path(@facility, f) if f.task_description %>
-
-                <% else %>
-                <span class="glyphicon glyphicon-calendar"></span>
-                <%= link_to "NEW ROUTE" , edit_admin_facility_task_path(@facility, f) if f.task_description %>
-
+        <div class="row doubletab">
+          <div class="col-xs-7 col-sm-9">
+            <% if params[:facility_id].present? %>
+            <h3><strong>
+              <% if f.color? %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+              <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                <%= f.grade.grade if f.grade %>
+              <% else %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
               <% end %>
-            </h3>
+            </strong></h3>
 
             <% else %>
-
+            <h3><strong>
+              <% if f.color? %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+              <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                <%= f.grade.grade if f.grade %>
+              <% else %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+              <% end %>
+            </strong></h3>
+            <% end %>
             <h3>
               <% unless f.task_type == "route_task" %>
                 <span class="glyphicon glyphicon-wrench"></span>
@@ -63,158 +64,78 @@
               <% else %>
               <span class="glyphicon glyphicon-calendar"></span>
               <% end %>
-
-              <% if f.color? %>
-                <%= link_to f.grade.grade + " "+ f.color.upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
-              <% elsif (color_name(f.color_hex, @facility)).nil? %>
-                <%= link_to f.grade.grade , edit_admin_facility_task_path(@facility, f) if f.grade %>
-              <% else %>
-                <%= link_to f.grade.grade + " "+ color_name(f.color_hex,@facility)[0].upcase , edit_admin_facility_task_path(@facility, f) if f.grade %>
-              <% end %>
             </h3>
 
-            <% end %>
 
-            <h2> <%= f.name %></h2>
+          </div>
+          <div class="col-xs-5 col-sm-3">
+            <span class="pull-right"><%= render(partial: 'admin/tasks/list_buttons', locals: { f: f }) %></span>
           </div>
 
 
-          <div class="hidden-xs hidden-sm no-print button-links">
-            <div class="col-md-3">
-              <% if f.task_type == 'route_task'  && f.active? %>
-                <%= link_to activate_route_admin_facility_task_path(@facility, f), class: 'btn btn-expire btn-md', method: :activate_route, remote: false do %>
-                      create route <i class="glyphicon glyphicon-share-alt"></i>
-                      <%end %>
-              <% end %>
-            </div>
-
-            <div class="col-md-3 no-print">
-              <% if f.active? %>
-              <%= button_to "mark as done",  complete_task_admin_facility_task_path(@facility, f), class: 'btn btn-expire btn-md', method: :complete_task, remote: true %>
-              <% end %>
-            </div>
-          </div>
-          <div class="col-xs-2 col-sm-1 no-print">
-              <h3><%= link_to edit_admin_facility_task_path(@facility, f ) do %>
-                <i class="glyphicon glyphicon-cog pull-right"></i>
-              <%end %>
-            </h3>
+        </div>
+        <div class="row doubletab">
+          <div class="col-xs-8">
+            <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-              <div class="task-tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.task_number %></div>
 
-          </div>
-          <div class="col-sm-12">
-              <div class="task-tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
-          </div>
-        </div>
+
         <div class="row">
+          <div class="col-xs-10">
+              <div><strong><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></strong></div>
+          </div>
+
+
+          <div class="col-xs-12">
+              <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div><%= f.user.name if f.user %></div>
+          </div>
           <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="task-tab"><strong>
 
-              <% if params[:controller] == "admin/tasks" %>
-
-              <% if f.assignee_id? %> Assigned to:
-
-              <% end %>
-
-               <% else %>
-
-               Set by:
-
-               <% end %>
-
-             </strong><%= f.assignee.name if f.assignee_id %></div>
-          </div>
-
-
-
-        <div class="col-xs-5 col-sm-5">
-          <div class="task-task-tab text-right">
-
-
-            <% unless params[:controller] == 'admin/tasks' %>
-              <% if (task_days_ago(f) == "today") %>
-                <% unless f.setdate == Date.current %>
-                  due on <%= f.setdate.strftime("%A, %b %d, %Y") %>
-                <% else %>
-                <span class="badge badge-today">due <%= task_days_ago(f) %></span>
-                <% end %>
-              <% elsif f.setdate < Date.current %>
-              <span class="badge badge-late">due <%= task_days_ago(f) %> ago</span>
-              <% else %>
-                due on <%= task_days_ago(f) %>
-              <% end %>
+            <% if (f.enddate.present?) && (f.enddate < Date.current) %>
+              <i class="fa fa-window-close red" aria-hidden="true"></i> expired <%= f.enddate.strftime("%b %d, %Y") %>
             <% else %>
-            <% if f.active? %>
-              <% if (task_days_ago(f) == "today") %>
-              <% if f.setdate == Date.tomorrow %>
-                due tomorrow
-              <% else %>
-              <span class="badge badge-today">due <%= task_days_ago(f) %></span>
+
+                <% unless params[:controller] == 'admin/tasks' %>
+                  <% if (days_ago(f) == "today") %>
+                    <span>set <%= days_ago(f) %></span>
+                  <% else %>
+                    set <%= days_ago(f) %> ago
+                  <% end %>
+                <% else %>
+                  <% if f.setdate? %>
+                  due on <%= f.setdate.strftime("%b %d, %Y") %>
+                  <% end %>
+                <% end %>
               <% end %>
-                <% elsif f.setdate < Date.current %>
-                <span class="badge badge-late">due <%= task_days_ago(f) %> ago</span>
-              <% else %>
-                due on <%= f.setdate.strftime("%A, %b %d, %Y") %>
-              <% end %>
-            <% elsif f.completed_at?%>
-              <span class="glyphicon glyphicon-ok glyphicon-green"></span> Completed on <%= f.completed_at.strftime("%b %d, %Y") %>
-            <% end %>
-            <% end %>
 
           </div>
         </div>
-        <div class="col-sm-1">
-
-
-            <% if f.assignee %>
-              <% if f.assignee.image? %>
-                <%= image_tag f.assignee.image ,:class=> "img-setter-icon-list" %>
-              <% elsif f.assignee.avatar_file_name? %>
-                <%= image_tag f.assignee.avatar.url(:thumb), class: "img-setter-icon-list" %>
-              <% else %>
-                <span class="img-setter-icon hidden-xs"><%= f.assignee.name %><span>
-              <% end %>
-            <% end %>
-
-
-
-          </div>
+      </span>
+      <% end %>
+      <% if f.task_description? %>
+      <div class="row">
+        <div class="col-xs-12">
+          <p style="font-size: 1.3em;"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+            <%= f.task_description %>
+          </span></p>
+        </div>
       </div>
-
-        <% if f.task_description? %>
-        <div class="row">
-          <div class="col-sm-12">
-            <p><span class="task-tab"><strong><%= f.task_description %></strong></span></p>
-          </div>
-        </div>
-        <% end %>
+      <% end %>
 
 
         <div class="row">
-
-          <div class="hidden-md hidden-lg hidden-xl no-print">
-            <br/>
-            <div class="col-xs-6 col-sm-6">
-              <% if f.task_type == 'route_task'  && f.active? %>
-                <%= link_to activate_route_admin_facility_task_path(@facility, f), class: 'btn btn-expire btn-md', method: :activate_route, remote: false do %>
-                      create route <i class="glyphicon glyphicon-share-alt"></i>
-                      <%end %>
-              <% end %>
-            </div>
-
-            <div class="col-xs-6 col-sm-6 no-print">
-              <% if f.active? %>
-              <%= button_to "mark as done",  complete_task_admin_facility_task_path(@facility, f), class: 'btn btn-expire btn-md', method: :complete_task, remote: true %>
-              <% end %>
-            </div>
-          </div>
         </div>
-      </div>
+
+
+
+
+
     </li>
+
   </ol>
   <% end %>
 

@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-jQuery ->
+$(document).on "ready turbolinks:load", ->
   $('#task_wall_id').parent().show()
   $('#task_sub_child_zone_id').parent().show()
   walls = $('#task_wall_id').html()
@@ -16,7 +16,7 @@ jQuery ->
       $('#task_wall_id').empty
       $('#task_wall_id').parent().hide()
 
-  jQuery ->
+$(document).on "ready turbolinks:load", ->
       $('#task_sub_child_zone_id').parent().show()
       sub_child_zones = $('#task_sub_child_zone_id').html()
       $('#task_zone_id').select ->
@@ -33,7 +33,7 @@ jQuery ->
           $('#task_sub_child_zone_id').parent().hide()
 
 
-      jQuery ->
+$(document).on "ready turbolinks:load", ->
         zone = $('input[name="task[zone_id]"]:checked').val()
 
         $('.walls').hide()
@@ -49,7 +49,7 @@ jQuery ->
 
 
 
-      jQuery ->
+$(document).on "ready turbolinks:load", ->
         grade = $('input[name="task[grade_system_virtual]"]:checked').val()
 
         $('.grade-').hide()

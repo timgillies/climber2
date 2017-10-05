@@ -3,7 +3,7 @@
     <div class="routelist-header bg-blue-gradient">
       <h1>Team</h1>
         <span class="pull-right no-print">
-            <%= link_to "Add team member", '#newFacilityRoleModal', data: { toggle: "modal"}, remote: false, class: "btn btn-close", style: "display: inline-block" %>
+            <%= link_to "Add team member", '#newFacilityRoleModal', data: { toggle: "modal"}, remote: false, class: "btn btn-filter", style: "display: inline-block" %>
         </span>
     </div>
   </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
           <%= f.button :submit, class: "btn btn-save" %>
-          <button type="button" class="btn btn-close" data-dismiss="modal">cancel</button>
+          <button type="button" class="btn btn-filter" data-dismiss="modal">cancel</button>
         </div>
       </div>
     </div>

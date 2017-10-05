@@ -1,0 +1,39 @@
+<div id="expire_buttons_<%= f.id %>">
+<% if f.task_type == 'route_task'  && f.active? %>
+  <%= link_to activate_route_admin_facility_task_path(@facility, f), method: :activate_route, remote: false do %>
+    <div class="expire-circle task-circle">
+      <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+      <span class="text"><%= "activate" %></span>
+    </div>
+  <% end %>
+<% end %>
+<% if f.active? %>
+    <%= link_to complete_task_admin_facility_task_path(@facility, f), method: :post, remote: true,
+    data: { disable_with:
+      "<div class='expire-circle expired'>
+        <i class='fa fa-refresh fa-spin'></i>
+      </div>"
+
+    } do %>
+    <div class="expire-circle expired">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      <span class="text"><%= "finish" %></span>
+    </div>
+    <% end %>
+<% else %>
+<%= link_to uncomplete_task_admin_facility_task_path(@facility, f), method: :post, remote: true,
+data: { disable_with:
+  "<div class='expire-circle'>
+    <i class='fa fa-refresh fa-spin'></i>
+  </div>"
+
+} do %>
+<div class="expire-circle">
+  <i class="fa fa-check" aria-hidden="true"></i>
+  <span class="text"><%= "done" %></span>
+</div>
+<% end %>
+<% end %>
+
+
+</div>

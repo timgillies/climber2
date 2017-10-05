@@ -1,0 +1,1 @@
+$("#expire_buttons_<%= @task.id %>").html("<%= j (render(partial: 'admin/tasks/list_buttons',locals: { f: @task })) %>");

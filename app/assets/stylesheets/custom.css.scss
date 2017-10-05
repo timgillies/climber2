@@ -797,6 +797,8 @@ input {
 
 
 
+
+
   li {
 
       background: linear-gradient(60deg, #e32666, #d7348c);
@@ -2372,13 +2374,13 @@ a:focus {
   letter-spacing: -0.0px;
 }
 
-.btn-close, .btn-close:hover {
+.btn-filter, .btn-filter:hover {
   background: #F8F8F9;
   opacity: 1;
   color: #444;
   letter-spacing: -0.0px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   display: inline;
 }

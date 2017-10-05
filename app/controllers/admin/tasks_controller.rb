@@ -146,14 +146,20 @@ class Admin::TasksController < ApplicationController
     @facility = Facility.find(params[:facility_id])
     @task = Task.find(params[:id]) # find original object
     @task.update_attributes(status: "completed", completed_at: Date.current, completed_by_id: current_user.id)
-    redirect_to(admin_facility_tasks_path(@facility))
+    respond_to do |format|
+      format.html {redirect_to(admin_facility_tasks_path(@facility))}
+      format.js
+    end
   end
 
-  def un_complete_task
+  def uncomplete_task
     @facility = Facility.find(params[:facility_id])
     @task = Task.find(params[:id]) # find original object
     @task.update_attributes(status: "active", completed_at: nil, completed_by_id: nil)
-    redirect_to(admin_facility_tasks_path(@facility))
+    respond_to do |format|
+      format.html {redirect_to(admin_facility_tasks_path(@facility))}
+      format.js
+    end
   end
 
 

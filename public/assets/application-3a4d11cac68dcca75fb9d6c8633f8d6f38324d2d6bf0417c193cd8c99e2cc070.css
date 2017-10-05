@@ -15102,7 +15102,7 @@ span.picture input {
 }
 
 /* line 3189, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
-.btn-close, .btn-close:hover {
+.btn-filter, .btn-filter:hover {
   background: #F8F8F9;
   opacity: 1;
   color: #444;

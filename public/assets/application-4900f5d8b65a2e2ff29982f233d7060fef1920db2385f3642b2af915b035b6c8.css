@@ -12122,62 +12122,68 @@ li {
 /* footer */
 /* line 290, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer {
+  background: #ddd;
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
   color: #777777;
+  text-align: center;
   /* Miscellaneous */
 }
-/* line 295, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 296, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer a {
   color: #777777;
 }
-/* line 297, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 298, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer a:hover {
   color: #222222;
 }
-/* line 301, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
-footer small {
-  float: left;
-}
-/* line 304, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
-footer ul {
-  float: right;
-  list-style: none;
-}
-/* line 307, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
-footer ul li {
-  float: left;
-  margin-left: 15px;
+/* line 305, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+footer p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: white;
 }
 /* line 310, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+footer ul {
+  text-align: center;
+  list-style: none;
+}
+/* line 313, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+footer ul li {
+  margin-left: 15px;
+}
+/* line 316, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer ul li a, footer ul li a:hover {
   color: #777777;
   font-size: 16px;
   text-decoration: none;
 }
-/* line 331, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
-footer body {
-  background-color: rgba(227, 38, 102, 0.05);
+/* line 324, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+footer .footer-logo > img {
+  text-align: center;
 }
-/* line 335, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 341, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+footer body {
+  background-color: rgba(136, 136, 136, 0.05);
+}
+/* line 345, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-container {
   text-align: center;
 }
-/* line 340, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 350, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons {
   padding: 0;
   list-style: none;
-  margin: 1em;
+  margin-top: 0.5em;
 }
-/* line 345, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 355, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons li {
   display: inline-block;
   margin: 0.15em;
   position: relative;
   font-size: 1.2em;
 }
-/* line 353, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 363, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons i {
   color: #fff;
   position: absolute;
@@ -12185,11 +12191,11 @@ footer .social-icons i {
   left: 22px;
   transition: all 265ms ease-out;
 }
-/* line 361, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 371, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons a {
   display: inline-block;
 }
-/* line 364, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 374, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons a:before {
   transform: scale(1);
   -ms-transform: scale(1);
@@ -12199,39 +12205,39 @@ footer .social-icons a:before {
   height: 60px;
   border-radius: 100%;
   display: block;
-  background: linear-gradient(45deg, #e32666, #d7348c);
+  background: linear-gradient(45deg, #888, #888);
   transition: all 265ms ease-out;
   font-size: 4em;
 }
-/* line 376, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 386, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons a:hover:before {
   transform: scale(0);
   transition: all 265ms ease-in;
 }
-/* line 381, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 391, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons a:hover i {
   transform: scale(2.2);
   -ms-transform: scale(2.2);
   -webkit-transform: scale(2.2);
-  color: #e32666;
-  background: -webkit-linear-gradient(45deg, #e32666, #d7348c);
+  color: #888;
+  background: -webkit-linear-gradient(45deg, #888, #888);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 265ms ease-in;
 }
-/* line 393, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 403, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons a.social-square:before {
-  background: linear-gradient(45deg, #7b00e0, #ae31d9);
+  background: linear-gradient(45deg, #888, #888);
   border-radius: 10%;
 }
-/* line 398, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 408, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons a.social-square:hover:before {
   transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
   -webkit-transform: scale(-180deg);
   border-radius: 100%;
 }
-/* line 405, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 415, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .social-icons a.social-square:hover i {
   transform: scale(1.6);
   -ms-transform: scale(1.6);
@@ -12240,7 +12246,7 @@ footer .social-icons a.social-square:hover i {
   transform: scale(1.6);
   -webkit-text-fill-color: #fff;
 }
-/* line 416, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 426, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 footer .debug_dump {
   clear: both;
   float: left;
@@ -12252,14 +12258,14 @@ footer .debug_dump {
 }
 
 /* Form Styling */
-/* line 427, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 437, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 input[type=text] {
   border-radius: 3px;
   box-shadow: none;
   font-size: 16px;
 }
 
-/* line 433, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 443, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 textarea[type=text] {
   border-radius: 3px;
   box-shadow: none;
@@ -12267,7 +12273,7 @@ textarea[type=text] {
 }
 
 /* potentially can remove */
-/* line 441, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 451, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .badge-today {
   font-size: 0.8em;
   font-weight: lighter;
@@ -12278,7 +12284,7 @@ textarea[type=text] {
 }
 
 /* puts box around sign-up form.  Potentially can be moved to another area in CSS */
-/* line 452, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 462, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .signup-form {
   border: 1px solid #ddd;
   padding: 15px;
@@ -12287,66 +12293,66 @@ textarea[type=text] {
   background-size: cover;
   background-position: center;
 }
-/* line 460, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 470, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .signup-form h1 {
   margin-top: 5px;
   font-size: 2.0em;
   color: #000;
   opacity: 0.6;
 }
-/* line 466, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 476, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .signup-form p {
   font-size: 1.3em;
   color: #000;
   opacity: 0.5;
   text-align: center;
 }
-/* line 472, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 482, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .signup-form .divider-line {
   border-top: 1px solid #f2f2f2;
   margin-bottom: 5px;
 }
 
 /* Modal Styling */
-/* line 480, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 490, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal {
   -webkit-overflow-scrolling: auto;
 }
 
-/* line 483, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 493, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 200;
   margin-left: -20px;
 }
-/* line 487, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 497, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-body input, .modal-body select, .modal-body textarea {
   font-size: 16px;
 }
 
-/* line 493, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 503, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-title {
   font-size: 1.7em;
   letter-spacing: -1px;
   font-weight: 200;
 }
-/* line 497, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 507, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-title h4 {
   display: inline-block;
   font-weight: 200;
   color: white;
 }
-/* line 501, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 511, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-title h4 small {
   color: #777777;
 }
 
-/* line 507, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 517, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal {
   margin-top: 120px;
 }
 
-/* line 511, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 521, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-header {
   background: linear-gradient(60deg, #f857a6, #ff5858);
   font-family: 'Montserrat', sans-serif;
@@ -12354,7 +12360,7 @@ textarea[type=text] {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
-/* line 517, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 527, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-header h1 {
   font-size: 2.7em;
   font-family: 'Montserrat', sans-serif;
@@ -12362,31 +12368,31 @@ textarea[type=text] {
   color: #eee;
 }
 
-/* line 526, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 536, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-body {
   background: transparent;
 }
 
-/* line 531, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 541, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .close {
   float: right;
   font-size: 60px;
   display: none;
 }
 
-/* line 537, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 547, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-dialog {
   border-top-left-radius: 8px;
 }
 
-/* line 543, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 553, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-list a {
   color: white;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.5em;
 }
-/* line 549, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 559, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-list li {
   background: linear-gradient(60deg, #1b75bb, #00b1ff);
   margin-bottom: 10px;
@@ -12397,14 +12403,14 @@ textarea[type=text] {
   margin: 10px !important;
   margin-left: -25px !important;
 }
-/* line 560, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 570, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .modal-list li a, .modal-list li a:hover {
   color: #fff;
   background-color: transparent;
 }
 
 /* forms */
-/* line 572, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 582, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .devise-logo {
   width: 30%;
   margin: auto;
@@ -12412,7 +12418,7 @@ textarea[type=text] {
   margin-bottom: 15px;
 }
 
-/* line 579, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 589, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -12423,35 +12429,35 @@ input, textarea, select, .uneditable-input {
   border-radius: 0;
 }
 
-/* line 587, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 597, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 input {
   height: auto !important;
   border-radius: 0;
 }
 
-/* line 592, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 602, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #error_explanation {
   color: red;
 }
-/* line 594, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 604, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #error_explanation ul {
   color: red;
   margin: 0 0 30px 0;
 }
 
-/* line 602, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 612, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .field_with_errors .form-control {
   color: #a94442;
 }
 
-/* line 609, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 619, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #session_remember_me {
   width: auto;
   margin-left: 0;
 }
 
 /* Facilities index */
-/* line 616, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 626, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-facility-logo-medium {
   height: 50px;
   background-size: cover;
@@ -12460,7 +12466,7 @@ input {
   vertical-align: bottom;
 }
 
-/* line 624, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 634, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-facility-logo-profile {
   height: 40px;
   background-size: cover;
@@ -12473,35 +12479,35 @@ input {
   opacity: 0.9;
 }
 @media (max-width: 768px) {
-  /* line 624, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 634, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .img-facility-logo-profile {
     top: 150px;
   }
 }
 
-/* line 639, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 649, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-facility-circle-button {
   width: 85px;
 }
 
-/* line 643, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 653, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-user-circle-button {
   width: 75px;
   border-radius: 50%;
 }
 
-/* line 649, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 659, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .transparent {
   background: transparent;
 }
 
 /* Homepage */
-/* line 659, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 669, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .home-body {
   margin-top: -90px;
 }
 
-/* line 664, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 674, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .signup {
   letter-spacing: 0px;
   margin-bottom: 0px;
@@ -12509,7 +12515,7 @@ input {
   color: #555555;
 }
 
-/* line 671, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 681, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-routeform {
   /* background: linear-gradient(60deg, #526494, #604484); */
   background-color: #444;
@@ -12520,7 +12526,7 @@ input {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 768px) {
-  /* line 671, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 681, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .bg-routeform {
     padding-left: 7px;
     padding-right: 7px;
@@ -12528,33 +12534,33 @@ input {
 }
 
 @media (min-width: 768px) {
-  /* line 690, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 700, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .carousel .item {
     height: 500px;
     min-width: 100%;
   }
 }
-/* line 699, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 709, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .carousel-caption {
   top: 0%;
   bottom: auto;
   text-shadow: none;
 }
 @media (max-width: 768px) {
-  /* line 699, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 709, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .carousel-caption {
     top: 20.5%;
   }
 }
 @media (min-width: 768px) {
-  /* line 699, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 709, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .carousel-caption {
     top: 20%;
   }
 }
 
 /* users */
-/* line 714, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 724, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header {
   background: linear-gradient(60deg, #47cf73, #2cb5e8);
   background: linear-gradient(60deg, rgba(71, 207, 115, 0.8), rgba(44, 181, 232, 0.8)), url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg");
@@ -12567,16 +12573,16 @@ input {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 768px) {
-  /* line 714, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 724, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .bg-profile-header {
     padding-top: 88px;
   }
 }
-/* line 735, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 745, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header a {
   text-decoration: none;
 }
-/* line 738, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 748, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header h1 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -12585,12 +12591,12 @@ input {
   margin: 20px;
 }
 @media (max-width: 768px) {
-  /* line 738, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 748, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .bg-profile-header h1 {
     font-size: 1.7em;
   }
 }
-/* line 748, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 758, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header h2 {
   margin-top: -10px;
   color: white;
@@ -12599,16 +12605,16 @@ input {
   position: relative;
   text-align: center;
 }
-/* line 758, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 768, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .circle-wrapper {
   margin: 2px;
   display: inline-block;
 }
-/* line 761, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 771, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .circle-wrapper .btn:focus {
   outline: none;
 }
-/* line 767, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 777, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .large-circle {
   height: 75px;
   width: 75px;
@@ -12622,7 +12628,7 @@ input {
   color: white;
   margin: 20px;
 }
-/* line 778, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 788, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .large-circle .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -12631,7 +12637,7 @@ input {
   color: white;
   letter-spacing: 0.8px;
 }
-/* line 790, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 802, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .large-circle li {
   background: linear-gradient(60deg, #e32666, #d7348c);
   margin-bottom: 10px;
@@ -12641,56 +12647,56 @@ input {
   padding: 10px;
   margin: 10px !important;
 }
-/* line 799, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 811, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .large-circle li a, .bg-profile-header .large-circle li a:hover {
   color: #fff;
   background-color: transparent;
 }
-/* line 807, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 819, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .large-circle-gray {
   background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
   color: #47cf73;
 }
-/* line 811, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 823, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-header .large-circle-gray .text {
   color: white;
 }
 
-/* line 819, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 831, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-right-edit {
   position: absolute;
   top: 75px;
   right: 15px;
 }
 
-/* line 825, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 837, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-admin {
   background: linear-gradient(60deg, rgba(248, 87, 166, 0.8), rgba(255, 88, 88, 0.8)), url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/DSC_6834.jpg");
   background-size: cover;
   background-position: top;
 }
 
-/* line 840, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 852, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-facility {
   background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/header_bg.jpg");
   background-size: cover;
   background-position: center;
 }
-/* line 853, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 865, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-facility h2 {
   position: absolute;
   left: 55%;
   color: #bbb;
 }
 
-/* line 861, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 873, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-profile-admin-comp {
   background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/DSC_9151.jpg");
   background-size: cover;
   background-position: center;
 }
 
-/* line 877, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 889, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-profile-icon {
   width: 42px;
   height: 42px;
@@ -12701,14 +12707,14 @@ input {
   left: 20px;
 }
 @media (max-width: 768px) {
-  /* line 877, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 889, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .img-profile-icon {
     top: 14px;
     left: 12px;
   }
 }
 
-/* line 891, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 903, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-profile {
   width: 100px;
   height: 100px;
@@ -12719,7 +12725,7 @@ input {
   border-radius: 6px;
 }
 
-/* line 902, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 914, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-setter-icon-list {
   width: 25px;
   height: 25px;
@@ -12733,7 +12739,7 @@ input {
   top: -10px;
 }
 
-/* line 916, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 928, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-user-list-small {
   width: 25px;
   height: 25px;
@@ -12745,23 +12751,23 @@ input {
 }
 
 /* Competitions */
-/* line 930, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 942, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .competition-about {
   color: #777;
 }
-/* line 932, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 944, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .competition-about h2 {
   text-align: left;
   margin: 0px;
 }
 
-/* line 938, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 950, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .comp-circle-wrapper {
   margin: 2px;
   display: inline-block;
 }
 
-/* line 944, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 956, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .comp-large-circle {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -12776,7 +12782,7 @@ input {
   color: rgba(96, 68, 132, 0.8);
   margin: 20px;
 }
-/* line 956, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 968, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .comp-large-circle .text {
   font-weight: 300;
   font-size: 15px;
@@ -12786,7 +12792,7 @@ input {
   color: #888;
 }
 
-/* line 966, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 978, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .comp-stat-icon {
   font-size: 80px;
   position: absolute;
@@ -12797,17 +12803,17 @@ input {
   color: #e5e5e5;
 }
 @media (max-width: 768px) {
-  /* line 966, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 978, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .comp-stat-icon {
     left: 50px;
   }
 }
 
-/* line 980, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 992, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .comp-stats-center {
   text-align: center;
 }
-/* line 982, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 994, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .comp-stats-center h1 {
   text-align: left;
   font-size: 12px;
@@ -12818,8 +12824,21 @@ input {
   color: #aaa;
 }
 
+/* line 1005, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+.comp-stats-center:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  top: 12.5%;
+  width: 1px;
+  height: 75%;
+  /* or 100px */
+  background: #ddd;
+}
+
 /* Marketing */
-/* line 997, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1021, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing {
   vertical-align: bottom;
   list-style: none;
@@ -12829,7 +12848,7 @@ input {
   font-size: 1.0em;
   color: #555555;
 }
-/* line 1005, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1029, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing li {
   margin-bottom: 5px;
   padding: 0px 0;
@@ -12837,7 +12856,7 @@ input {
   position: relative;
   margin-top: 5px;
 }
-/* line 1013, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1037, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing p {
   font-size: 1.7vw;
   letter-spacing: -1px;
@@ -12846,7 +12865,7 @@ input {
   text-align: left;
   color: #555555;
 }
-/* line 1022, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1046, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing h1 {
   font-family: 'Poppins', sans-serif;
   color: #555555;
@@ -12858,21 +12877,21 @@ input {
   padding-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
 }
-/* line 1032, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1056, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing h1 h3 {
   text-align: right;
 }
-/* line 1037, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1061, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing .center {
   text-align: center;
 }
-/* line 1039, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1063, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing .center p {
   font-size: 40px;
 }
 
 /* Marketing Mobile */
-/* line 1047, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1071, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-mobile {
   text-align: center;
   vertical-align: bottom;
@@ -12883,7 +12902,7 @@ input {
   font-size: 1.0em;
   color: #555555;
 }
-/* line 1056, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1080, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-mobile li {
   margin-bottom: 5px;
   padding: 0px 0;
@@ -12891,7 +12910,7 @@ input {
   position: relative;
   margin-top: 5px;
 }
-/* line 1064, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1088, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-mobile p {
   font-size: 3.1vw;
   letter-spacing: -1px;
@@ -12900,7 +12919,7 @@ input {
   text-align: left;
   color: #555555;
 }
-/* line 1073, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1097, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-mobile h1 {
   font-family: 'Poppins', sans-serif;
   color: #555555;
@@ -12912,17 +12931,17 @@ input {
   padding-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
 }
-/* line 1083, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1107, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-mobile h1 h3 {
   text-align: right;
 }
-/* line 1088, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1112, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-mobile .tab {
   margin-left: 10px;
 }
 
 /* Marketing Checkout */
-/* line 1095, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1119, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-checkout {
   text-align: center;
   vertical-align: bottom;
@@ -12933,7 +12952,7 @@ input {
   font-size: 12px;
   color: #555555;
 }
-/* line 1104, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1128, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-checkout li {
   margin-bottom: 5px;
   padding: 0px 0;
@@ -12941,7 +12960,7 @@ input {
   position: relative;
   margin-top: 5px;
 }
-/* line 1112, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1136, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-checkout p {
   font-size: 1.3vw;
   letter-spacing: -1px;
@@ -12950,7 +12969,7 @@ input {
   text-align: left;
   color: #555555;
 }
-/* line 1121, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1145, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-checkout h1 {
   font-family: 'Poppins', sans-serif;
   color: #555555;
@@ -12962,17 +12981,17 @@ input {
   padding-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
 }
-/* line 1131, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1155, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-checkout h1 h3 {
   text-align: right;
 }
-/* line 1136, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1160, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .marketing-checkout .tab {
   margin-left: 10px;
 }
 
 /* route list filter */
-/* line 1143, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1167, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -12980,7 +12999,7 @@ input {
   font-weight: 700;
   color: #444;
 }
-/* line 1149, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1173, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels label {
   margin-top: 10px;
   font-family: 'Poppins', sans-serif;
@@ -12988,7 +13007,7 @@ input {
   color: #999;
   font-weight: 700;
 }
-/* line 1156, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1180, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels h2 {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
@@ -12996,7 +13015,7 @@ input {
   color: #777777;
   text-align: left;
 }
-/* line 1163, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1187, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels input[type=text], .gray-labels input[type=date], .gray-labels input[type=email], .gray-labels input[type=number] {
   border-radius: 4px;
   box-shadow: none;
@@ -13008,7 +13027,7 @@ input {
   background: #222;
   color: #888;
 }
-/* line 1175, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1199, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels input[type=date] {
   margin-left: 4px;
   border-radius: 4px;
@@ -13020,14 +13039,14 @@ input {
   color: #666;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1188, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1212, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels select {
   border: none;
   background-color: #ccc;
   color: #666;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1201, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1225, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels .large-label input[type=text] {
   margin-left: 4px;
   font-family: 'Poppins', sans-serif;
@@ -13038,41 +13057,41 @@ input {
   background: #222;
   color: #888;
 }
-/* line 1214, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1238, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels textarea[type=text] {
   border-radius: 0px;
   box-shadow: none;
   font-size: 16px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1222, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1246, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #666;
 }
-/* line 1225, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1249, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #666;
   opacity: 1;
 }
-/* line 1229, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1253, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #666;
   opacity: 1;
 }
-/* line 1233, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1257, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #666;
 }
-/* line 1237, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1261, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels .divider-line {
   border-top: 1px solid #888;
   margin-bottom: 5px;
 }
-/* line 1242, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1266, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .gray-labels .fa-question-circle {
   color: #1b75bb;
   font-size: 1.3em;
@@ -13080,16 +13099,16 @@ input {
 }
 
 /* route form */
-/* line 1255, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1279, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form body {
   font-family: sans-serif;
 }
-/* line 1259, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1283, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate {
   margin: 0px;
   float: left;
 }
-/* line 1264, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1288, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate label {
   float: left;
   width: auto;
@@ -13107,7 +13126,7 @@ input {
   font-weight: 700;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1282, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1306, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate label span {
   text-align: center;
   font-size: 16px;
@@ -13115,65 +13134,65 @@ input {
   display: block;
 }
 @media (max-width: 768px) {
-  /* line 1282, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1306, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .route-form #donate label span {
     font-size: 12px;
     padding: 12px;
   }
 }
-/* line 1294, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1318, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate label input {
   position: absolute;
   top: -25px;
 }
-/* line 1299, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1323, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate input:checked + span {
   background: linear-gradient(60deg, #5ccb6c, #57d79a);
   color: #fff;
   box-shadow: 4px 4px 2px rgba(255, 255, 255, 0.5);
 }
-/* line 1306, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1330, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate .blue {
   background-color: #bbb;
   color: #eee;
 }
-/* line 1311, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1335, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate .pink {
   background-color: #FF33AA;
   color: #fff;
 }
-/* line 1316, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1340, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate .green {
   background: linear-gradient(60deg, #00adee, #1b75bb);
   color: #fff;
   font-size: 8px;
 }
-/* line 1321, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1345, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate .gray {
   background-color: #222;
   color: #888;
 }
-/* line 1326, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1350, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate .expired-filter {
   background: #ddd;
   color: #999;
 }
-/* line 1332, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1356, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate .purple {
   background-color: #bbb;
   color: #fff;
 }
-/* line 1337, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1361, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate .pink {
   background: linear-gradient(60deg, #1b75bb, #00adee);
   color: #fff;
 }
-/* line 1343, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1367, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate-colors {
   margin: 0px;
   float: left;
 }
-/* line 1348, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1372, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate-colors label {
   float: left;
   width: auto;
@@ -13191,7 +13210,7 @@ input {
   font-weight: 700;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1369, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1393, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate-colors label span {
   text-align: center;
   font-size: 16px;
@@ -13199,18 +13218,18 @@ input {
   display: block;
 }
 @media (max-width: 768px) {
-  /* line 1369, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1393, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .route-form #donate-colors label span {
     font-size: 16px;
     padding: 12px;
   }
 }
-/* line 1380, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1404, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate-colors label input {
   position: absolute;
   top: -25px;
 }
-/* line 1385, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1409, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .route-form #donate-colors input:checked + span {
   background: #222;
   color: #888;
@@ -13218,7 +13237,7 @@ input {
 }
 
 /* route list */
-/* line 1396, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1420, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist {
   vertical-align: bottom;
   list-style: none;
@@ -13230,7 +13249,7 @@ input {
   color: #666;
   font-family: 'Montserrat', sans-serif;
 }
-/* line 1406, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1430, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist li {
   background-color: #ddd;
   margin-bottom: 10px;
@@ -13239,11 +13258,11 @@ input {
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1416, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1440, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist li a {
   color: #666;
 }
-/* line 1420, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1444, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist li h1 {
   color: #52BE80;
   font-size: 3em;
@@ -13253,32 +13272,32 @@ input {
   border-bottom: 1px solid #eeeeee;
   font-family: 'Montserrat', sans-serif;
 }
-/* line 1428, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1452, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist li h1 h3 {
   text-align: right;
 }
-/* line 1435, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1459, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist li .button-links a {
   color: #666;
   display: inline-block;
 }
-/* line 1445, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1469, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .white-links a {
   color: #eee;
 }
-/* line 1451, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1475, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .circle-wrapper {
   margin: 0px;
   display: inline-block;
   opacity: 1.0;
 }
-/* line 1455, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1479, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .circle-wrapper .btn:focus {
   outline: none;
   border: none;
   box-shadow: none;
 }
-/* line 1462, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1486, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .circle {
   height: 45px;
   width: 45px;
@@ -13294,7 +13313,7 @@ input {
   line-height: 45px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1478, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1502, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .large-circle {
   height: 75px;
   width: 75px;
@@ -13308,7 +13327,7 @@ input {
   color: white;
   margin: 20px;
 }
-/* line 1489, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1513, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .large-circle .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -13316,16 +13335,16 @@ input {
   display: block;
   color: white;
 }
-/* line 1498, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1522, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .white-circle {
   background: linear-gradient(60deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
   color: #222;
 }
-/* line 1501, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1525, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .white-circle .text {
   color: #222;
 }
-/* line 1506, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1530, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .comp-add {
   height: 50px;
   width: 50px;
@@ -13341,18 +13360,18 @@ input {
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 1506, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1530, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .routelist .comp-add {
     right: 10px;
   }
 }
 @media (max-width: 768px) {
-  /* line 1506, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1530, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .routelist .comp-add {
     right: 10px;
   }
 }
-/* line 1524, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1548, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .comp-add .text {
   font-size: 10px;
   margin-top: -10px !important;
@@ -13360,11 +13379,11 @@ input {
   display: block;
   color: #888;
 }
-/* line 1534, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1558, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .green-check {
   color: #52BE80;
 }
-/* line 1541, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1565, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .tick-circle {
   height: 70px;
   width: 70px;
@@ -13378,7 +13397,7 @@ input {
   color: #888;
   margin: 0px;
 }
-/* line 1552, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1576, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .tick-circle .text {
   font-size: 10px;
   margin-top: -2px !important;
@@ -13386,7 +13405,7 @@ input {
   display: block;
   color: #888;
 }
-/* line 1561, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1585, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .tick-circle-fill {
   height: 70px;
   width: 70px;
@@ -13401,7 +13420,7 @@ input {
   margin: 0px;
   box-shadow: 0 0 2px 4px #47cf73;
 }
-/* line 1573, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1597, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .tick-circle-fill .text {
   font-size: 10px;
   margin-top: -4px !important;
@@ -13409,7 +13428,7 @@ input {
   display: block;
   color: #bbb;
 }
-/* line 1582, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1606, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .heart-circle {
   font-size: 40px;
   display: table-cell;
@@ -13421,7 +13440,7 @@ input {
   right: 15px;
   top: 0px;
 }
-/* line 1592, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1616, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .heart-circle .text {
   font-size: 10px;
   margin-top: -4px !important;
@@ -13430,15 +13449,15 @@ input {
   color: white;
   letter-spacing: 0.8px;
 }
-/* line 1601, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1625, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .heart-circle:hover, .routelist .heart-circle:active {
   color: #e43b5e;
 }
-/* line 1605, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1629, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .heart-fill {
   color: #e43b5e;
 }
-/* line 1609, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1633, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .img-facility-logo-list {
   height: 50px;
   position: absolute;
@@ -13450,12 +13469,12 @@ input {
   opacity: 0.7;
 }
 @media (max-width: 768px) {
-  /* line 1609, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1633, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .routelist .img-facility-logo-list {
     height: 30px;
   }
 }
-/* line 1623, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1647, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .img-facility-logo-list-left {
   height: 60px;
   position: absolute;
@@ -13467,60 +13486,60 @@ input {
   opacity: 1.0;
 }
 @media (max-width: 768px) {
-  /* line 1623, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1647, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .routelist .img-facility-logo-list-left {
     height: 60px;
   }
 }
-/* line 1637, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1661, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .project {
   background: linear-gradient(60deg, #185a9d, #43cea2);
 }
-/* line 1642, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1666, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .flash {
   background: linear-gradient(60deg, #ed2a7b, #faaf40);
 }
-/* line 1646, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1670, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .redpoint {
   background: linear-gradient(60deg, #4776e6, #8e54e9);
 }
-/* line 1651, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1675, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .attempt {
   background: linear-gradient(60deg, #9d50bb, #6e48aa);
 }
-/* line 1659, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1683, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .responsive {
   position: sticky;
 }
-/* line 1665, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1689, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .grade {
   margin-top: 5em;
   padding-top: 0;
 }
-/* line 1669, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1693, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .info {
   display: block;
   margin-left: 60px;
 }
-/* line 1672, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1696, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .info img {
   display: block;
   padding: 5px 0;
 }
-/* line 1677, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1701, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .timestamp {
   color: #eaeaea;
   display: block;
   margin-left: 0px;
   font-weight: 300;
 }
-/* line 1683, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1707, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .gravatar {
   float: left;
   margin-right: 10px;
   margin-top: 5px;
 }
-/* line 1689, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1713, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -13529,16 +13548,16 @@ input {
   border-bottom: 1px solid #eeeeee;
 }
 @media (max-width: 768px) {
-  /* line 1689, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1713, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .routelist h1 {
     font-size: 2.5em;
   }
 }
-/* line 1698, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1722, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist h1 h3 {
   text-align: right;
 }
-/* line 1704, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1728, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist h2 {
   font-size: 1.2em;
   letter-spacing: -0.5px;
@@ -13549,7 +13568,7 @@ input {
   display: inline;
   color: #777;
 }
-/* line 1715, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1739, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist h3 {
   font-size: 2.7em;
   letter-spacing: -0.0px;
@@ -13562,12 +13581,12 @@ input {
   vertical-align: bottom;
 }
 @media (max-width: 768px) {
-  /* line 1715, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1739, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .routelist h3 {
     font-size: 2.0em;
   }
 }
-/* line 1731, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1755, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist h4 {
   font-size: 1.2em;
   letter-spacing: -.5px;
@@ -13577,7 +13596,7 @@ input {
   letter-spacing: 0.8px;
   font-family: 'Poppins', sans-serif;
 }
-/* line 1741, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1765, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist p {
   font-size: 1.7em;
   letter-spacing: -1px;
@@ -13587,41 +13606,41 @@ input {
   margin-bottom: 0px;
   display: inline-block;
 }
-/* line 1751, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1775, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist li {
   overflow: auto;
   padding: 10px 0;
 }
-/* line 1756, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1780, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist a {
   color: #555555;
   text-decoration: none;
 }
-/* line 1761, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1785, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .badge-today {
   font-size: 1em;
   font-weight: lighter;
   background-color: #58D68D;
   font-family: sans-serif;
 }
-/* line 1768, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1792, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .badge-late {
   font-size: 1em;
   font-weight: lighter;
   background: linear-gradient(60deg, #e32666, #d7348c);
   font-family: sans-serif;
 }
-/* line 1775, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1799, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .date-list li {
   color: #fff;
   background-color: #eee;
   border-left: #aaa;
 }
-/* line 1780, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1804, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .date-list li h3 {
   color: #888;
 }
-/* line 1784, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1808, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .date-list li .ticklist li {
   color: #fff;
   background-color: #fff;
@@ -13630,11 +13649,11 @@ input {
   margin-left: -40px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1793, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1817, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .date-list li .ticklist li h3 {
   color: #888;
 }
-/* line 1800, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1824, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist .img-ticklist-icon {
   width: 50px;
   height: 50px;
@@ -13646,7 +13665,7 @@ input {
   opacity: .9;
 }
 
-/* line 1814, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1838, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark {
   vertical-align: bottom;
   list-style: none;
@@ -13656,7 +13675,7 @@ input {
   color: #eee;
   font-family: 'Poppins', sans-serif;
 }
-/* line 1823, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1847, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark li {
   background-color: #444;
   margin-bottom: 10px;
@@ -13665,11 +13684,11 @@ input {
   border-radius: 0px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1831, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1855, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark li a, .routelist-dark li a:hover {
   color: #ddd;
 }
-/* line 1835, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1859, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark li h1 {
   color: #52BE80;
   font-size: 3em;
@@ -13679,34 +13698,34 @@ input {
   border-bottom: 1px solid #eeeeee;
   font-family: 'Montserrat', sans-serif;
 }
-/* line 1843, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1867, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark li h1 h3 {
   text-align: right;
 }
-/* line 1848, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1872, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark li h2 {
   color: #ccc;
   font-size: 1.8em;
 }
-/* line 1852, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1876, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark li h3 {
   color: #fff;
   font-size: 2.2em;
   font-weight: 700;
 }
-/* line 1858, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1882, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark li p {
   font-size: 1.0em;
   letter-spacing: 0.0px;
   color: #ddd;
 }
-/* line 1865, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1889, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-dark .circle-wrapper {
   margin: 0px;
 }
 
 /** Spinner **/
-/* line 1873, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1897, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .spinner-class {
   position: absolute;
   text-align: center;
@@ -13714,17 +13733,17 @@ input {
   right: 0;
   z-index: +1;
 }
-/* line 1880, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1904, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .spinner-class html, .spinner-class body {
   height: 100%;
 }
-/* line 1882, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1906, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .spinner-class body {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* line 1893, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1917, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .spinner-class .spinner {
   animation: rotator 1.4s linear infinite;
 }
@@ -13736,7 +13755,7 @@ input {
     transform: rotate(270deg);
   }
 }
-/* line 1902, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1926, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .spinner-class .path {
   stroke-dasharray: 187;
   stroke-dashoffset: 0;
@@ -13773,7 +13792,7 @@ input {
     transform: rotate(450deg);
   }
 }
-/* line 1933, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1957, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .blur-out {
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
@@ -13784,7 +13803,7 @@ input {
 }
 
 /* Result List */
-/* line 1946, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1970, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .ticklist li {
   color: #fff;
   background-color: #fff;
@@ -13793,12 +13812,12 @@ input {
   text-transform: none !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 1955, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1979, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .ticklist li h3 {
   color: #888;
 }
 
-/* line 1962, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 1986, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .routelist-header h1 {
   font-family: 'Montserrat', sans-serif;
   display: inline;
@@ -13809,72 +13828,72 @@ input {
 }
 
 @media (min-width: 768px) {
-  /* line 1975, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 1999, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   #recent_routes {
     margin-left: 10px;
   }
 }
 
 /* Glyphicons */
-/* line 1984, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2008, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-remove {
   color: #B2BABB;
 }
 
-/* line 1988, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2012, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-remove:hover {
   color: #CD6155;
 }
 
-/* line 1992, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2016, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-trash {
   color: #888;
 }
 
-/* line 1996, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2020, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-trash:hover {
   color: #CD6155;
 }
 
-/* line 2000, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2024, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-cog {
   color: #888;
 }
 
-/* line 2004, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2028, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-cog:hover {
   color: #444;
 }
 
-/* line 2008, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2032, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-green {
   color: #52BE80;
 }
 
-/* line 2012, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2036, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-gray {
   color: #eeeeee;
 }
 
-/* line 2016, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2040, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .glyphicon-center {
   text-align: center;
 }
 
-/* line 2020, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2044, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .power-off {
   transition: all .35s ease;
   font-size: 24px;
   color: #52BE80;
 }
 
-/* line 2026, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2050, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .power-off:hover {
   color: #e32666;
 }
 
 /* Navbar */
-/* line 2033, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2057, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar {
   background-color: rgba(0, 0, 0, 0.8);
   border: none;
@@ -13882,57 +13901,57 @@ input {
   margin-bottom: -10px;
 }
 @media (min-width: 768px) {
-  /* line 2033, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2057, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .navbar {
     padding-top: 7px;
   }
 }
 
-/* line 2046, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2070, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar-nav li a {
   line-height: 50px;
   margin-bottom: -20px;
   border-color: transparent;
 }
 @media (max-width: 768px) {
-  /* line 2046, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2070, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .navbar-nav li a {
     line-height: 20px;
   }
 }
-/* line 2053, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2077, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar-nav li a img {
   vertical-align: text-bottom;
 }
 
 /* Navbar Mobile Hamburger Menu */
-/* line 2060, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2084, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar .navbar-toggle {
   border-color: rbga(0, 0, 0, 0.7);
   /* Removes border color */
   margin-top: 22px;
 }
 
-/* line 2066, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2090, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar .navbar-toggle .icon-bar {
   background-color: #ccc;
   /* Changes regular toggle color */
   color: rbga(0, 0, 0, 0.7);
 }
 
-/* line 2074, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2098, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar .navbar-toggle .icon-bar:hover {
   background-color: #ddd;
   /* Changes toggle color on hover */
 }
 
-/* line 2078, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2102, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar div.navbar-collapse {
   border-color: transparent;
   border-top: none;
   box-shadow: none;
 }
-/* line 2082, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2106, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar div.navbar-collapse li a {
   font-size: 1.0em;
   color: #ccc;
@@ -13945,35 +13964,35 @@ input {
   font-weight: 200;
 }
 @media (max-width: 768px) {
-  /* line 2082, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2106, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .navbar div.navbar-collapse li a {
     font-size: 1.1em;
     margin-bottom: 1px;
   }
 }
-/* line 2096, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2120, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar div.navbar-collapse li a:hover {
   color: #fff;
   background-color: transparent;
 }
-/* line 2100, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2124, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar div.navbar-collapse li a:focus {
   color: #fff;
   background-color: transparent;
 }
-/* line 2104, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2128, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar div.navbar-collapse li a:active {
   color: #fff;
   background-color: transparent;
 }
 
-/* line 2112, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2136, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .left-no-margin {
   margin-left: -20px;
 }
 
 /*-- change navbar dropdown color --*/
-/* line 2120, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2144, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar .navbar-nav .open .dropdown-menu > li > a {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.1em;
@@ -13984,7 +14003,7 @@ input {
   display: inline-block;
 }
 @media (max-width: 768px) {
-  /* line 2120, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2144, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .navbar .navbar-nav .open .dropdown-menu > li > a {
     font-size: 1.3em;
     background-color: transparent;
@@ -13993,40 +14012,40 @@ input {
   }
 }
 
-/* line 2139, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2163, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar .navbar-nav .open .dropdown-menu {
   background-color: rgba(0, 0, 0, 0.7);
   border: none;
   margin-top: -1px;
 }
 
-/* line 2146, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2170, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .white > li > a {
   color: #aeaeae;
   opacity: 50%;
 }
-/* line 2149, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2173, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .white > li > a:hover {
   color: white;
 }
 
-/* line 2154, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2178, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar .navbar-nav .open .dropdown-menu .divider {
   background-color: #222222;
 }
 
 /*-- change navbar dropdown color --*/
-/* line 2161, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2185, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar div.navbar-collapse .navbar-custom li a {
   color: #ffffff;
 }
-/* line 2163, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2187, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar div.navbar-collapse .navbar-custom li a:hover {
   color: #fff;
 }
 
 @media (max-width: 768px) {
-  /* line 2169, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2193, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .navbar-header {
     border-style: none;
     line-height: 55px;
@@ -14034,14 +14053,14 @@ input {
   }
 }
 
-/* line 2177, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2201, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .navbar-toggle {
   margin-top: 15px;
   margin-bottom: -10px;
 }
 
 @media (min-width: 768px) {
-  /* line 2184, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2208, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .navbar-nav {
     float: none;
     margin: 0px auto;
@@ -14050,34 +14069,34 @@ input {
     margin-bottom: 0px;
   }
 
-  /* line 2191, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2215, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   li a {
     color: #555555;
   }
-  /* line 2193, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2217, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   li a:hover {
     color: #222222;
     background-color: transparent;
   }
 
-  /* line 2199, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2223, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .navbar {
     border-style: none;
     font-weight: 300;
   }
 }
 /* Buttons */
-/* line 2208, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2232, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn:focus {
   outline: none;
 }
 
-/* line 2212, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2236, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 a:focus {
   outline: none;
 }
 
-/* line 2216, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2240, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn, .btn-group {
   font-weight: normal;
   vertical-align: bottom;
@@ -14086,13 +14105,13 @@ a:focus {
   font-weight: 700;
 }
 
-/* line 2224, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2248, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-group .dropdown-menu {
   background-color: #222;
   opacity: .7;
 }
 
-/* line 2229, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2253, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-group .dropdown-menu > li > a {
   background-color: transparent;
   font-weight: 200;
@@ -14102,12 +14121,12 @@ a:focus {
   padding-bottom: 3px;
   display: inline-block;
 }
-/* line 2237, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2261, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-group .dropdown-menu > li > a:hover {
   color: #777777;
 }
 
-/* line 2242, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2266, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-join, .btn-join:hover, .btn-join:active {
   opacity: 0.8;
   margin-top: 80px;
@@ -14123,7 +14142,7 @@ a:focus {
   transition-duration: 0.5s;
 }
 
-/* line 2257, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2281, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-signin, .btn-signin:hover, .btn-signin:active {
   opacity: 0.8;
   margin-top: 25px;
@@ -14139,13 +14158,13 @@ a:focus {
   transition-duration: 0.5s;
 }
 
-/* line 2272, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2296, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-signin:hover, .btn-join:hover, .btn-join:active {
   opacity: 1;
   color: white;
 }
 
-/* line 2277, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2301, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-submit {
   border-color: #52BE80;
   background: #52BE80;
@@ -14155,7 +14174,7 @@ a:focus {
   letter-spacing: -0.0px;
 }
 
-/* line 2286, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2310, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-submit:hover, .btn-submit:active {
   border-color: #58D68D;
   background: #58D68D;
@@ -14163,7 +14182,7 @@ a:focus {
   color: #ffffff;
 }
 
-/* line 2294, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2318, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-demo {
   border-color: #FF33AA;
   background: #FF33AA;
@@ -14173,7 +14192,7 @@ a:focus {
   letter-spacing: -0.0px;
 }
 
-/* line 2303, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2327, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-save {
   border-color: none;
   background: linear-gradient(60deg, #e32666, #d7348c);
@@ -14181,7 +14200,7 @@ a:focus {
   color: #ffffff;
 }
 
-/* line 2310, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2334, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-save:hover, .btn-save:active {
   border-color: none;
   background: linear-gradient(60deg, #e32666, #d7348c);
@@ -14189,7 +14208,7 @@ a:focus {
   color: #ffffff;
 }
 
-/* line 2317, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2341, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-add {
   border: none;
   opacity: 0.9;
@@ -14198,7 +14217,7 @@ a:focus {
   font-family: 'Poppins', sans-serif;
 }
 
-/* line 2325, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2349, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-add:hover, .btn-add:active {
   border: none;
   opacity: 0.8;
@@ -14206,7 +14225,21 @@ a:focus {
   color: #ffffff;
 }
 
-/* line 2332, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2356, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+.btn-green {
+  border-color: none;
+  background: linear-gradient(60deg, #5ccb6c, #57d79a);
+  opacity: 1.0;
+  color: #ffffff;
+}
+
+/* line 2363, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+.btn-green:hover, .btn-green:active {
+  opacity: 1.0;
+  color: #ffffff;
+}
+
+/* line 2368, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-blue, .btn-blue:hover, .btn-blue:active {
   border-color: #2e8ece;
   background: #2e8ece;
@@ -14216,19 +14249,19 @@ a:focus {
   letter-spacing: -0.0px;
 }
 
-/* line 2341, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2377, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-filter, .btn-filter:hover {
   background: #F8F8F9;
   opacity: 1;
   color: #444;
   letter-spacing: -0.0px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   display: inline;
 }
 
-/* line 2352, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2388, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-filter, .btn-filter:hover {
   background: #fff;
   opacity: 1;
@@ -14237,7 +14270,7 @@ a:focus {
   text-transform: uppercase;
 }
 
-/* line 2361, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2397, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-cancel {
   border-color: #CD6155;
   background: #CD6155;
@@ -14246,7 +14279,7 @@ a:focus {
   display: inline-block;
 }
 
-/* line 2369, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2405, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-expire, .btn-expire:hover {
   background-color: #ccc;
   border: none;
@@ -14257,19 +14290,19 @@ a:focus {
   text-transform: uppercase;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 2378, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2414, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-expire a, .btn-expire:hover a {
   color: #eee;
   display: block;
 }
 @media (max-width: 768px) {
-  /* line 2369, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2405, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .btn-expire, .btn-expire:hover {
     font-size: 10px;
   }
 }
 
-/* line 2387, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2423, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-expired, .btn-expired:hover {
   background: #f3817f;
   color: #ffffff;
@@ -14277,7 +14310,7 @@ a:focus {
   display: inline-block;
 }
 
-/* line 2395, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2431, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .expire-circle {
   position: absolute;
   right: 100px;
@@ -14296,7 +14329,7 @@ a:focus {
   padding: 2px;
 }
 @media (max-width: 678px) {
-  /* line 2395, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2431, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .expire-circle {
     height: 55px;
     width: 55px;
@@ -14307,7 +14340,7 @@ a:focus {
     top: 5px;
   }
 }
-/* line 2420, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2456, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .expire-circle .text {
   font-size: 10px;
   margin-top: -8px !important;
@@ -14317,36 +14350,36 @@ a:focus {
   letter-spacing: 0.8px;
 }
 @media (max-width: 678px) {
-  /* line 2420, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2456, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .expire-circle .text {
     margin-top: -3px !important;
   }
 }
 
-/* line 2435, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2471, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .expired {
   background: #888;
   color: white;
 }
-/* line 2438, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2474, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .expired .text {
   color: white;
 }
 
-/* line 2444, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2480, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .task-circle {
   right: 10px;
   top: 0px;
   background: #888;
 }
 @media (max-width: 678px) {
-  /* line 2444, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2480, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .task-circle {
     top: 5px;
   }
 }
 
-/* line 2453, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2489, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-facebook {
   background-image: url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/social-media/facebook-6-24.png");
   background-position: left;
@@ -14362,13 +14395,13 @@ a:focus {
   display: inline-block;
 }
 
-/* line 2468, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2504, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-facebook:hover {
   background-color: #4e69a2;
   color: #ffffff;
 }
 
-/* line 2473, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2509, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-google {
   background-image: url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/social-media/google-btn.png");
   background-position: left;
@@ -14384,23 +14417,23 @@ a:focus {
   display: inline;
 }
 
-/* line 2488, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2524, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-google:hover {
   color: #ffffff;
 }
 
-/* line 2492, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2528, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-mobile {
   font-size: 3.2vw;
 }
 
-/* line 2497, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2533, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-file {
   position: relative;
   overflow: hidden;
 }
 
-/* line 2502, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2538, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -14417,7 +14450,7 @@ a:focus {
   display: block;
 }
 
-/* line 2518, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2554, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .btn-pretick {
   background-color: transparent;
   border: none;
@@ -14425,14 +14458,14 @@ a:focus {
   color: #666;
 }
 @media (max-width: 768px) {
-  /* line 2518, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2554, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .btn-pretick {
     font-size: 10px;
   }
 }
 
 /*flash*/
-/* line 2530, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2566, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-error {
   font-family: 'Montserrat';
   text-transform: uppercase;
@@ -14441,12 +14474,12 @@ a:focus {
   color: #b94a48;
   text-align: left;
 }
-/* line 2537, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2573, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-error ul {
   list-style: none;
 }
 
-/* line 2542, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2578, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-alert {
   font-family: 'Montserrat';
   text-transform: uppercase;
@@ -14455,12 +14488,12 @@ a:focus {
   color: #b94a48;
   text-align: left;
 }
-/* line 2549, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2585, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-alert ul {
   list-style: none;
 }
 
-/* line 2554, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2590, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-success {
   font-family: 'Montserrat';
   text-transform: uppercase;
@@ -14469,12 +14502,12 @@ a:focus {
   color: #468847;
   text-align: left;
 }
-/* line 2561, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2597, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-success ul {
   list-style: none;
 }
 
-/* line 2566, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2602, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-notice {
   font-family: 'Montserrat';
   text-transform: uppercase;
@@ -14483,32 +14516,32 @@ a:focus {
   color: #468847;
   text-align: left;
 }
-/* line 2573, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2609, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-notice ul {
   list-style: none;
 }
 
-/* line 2578, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2614, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .alert-danger {
   margin-top: -65px;
 }
 
 /*target Internet Explorer 9 and Internet Explorer 10:*/
 @media screen and (min-width: 0\0) {
-  /* line 2585, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2621, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   select {
     background: none;
     padding: 5px;
   }
 }
-/* line 2591, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2627, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .list-group li:nth-child(1) {
   border: 0 none;
   border-bottom: 1px solid #eeeeee;
 }
 
 /* Zones */
-/* line 2598, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2634, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .img-zone-list {
   width: 100px;
   background-size: cover;
@@ -14517,7 +14550,7 @@ a:focus {
   margin-bottom: 10px;
 }
 @media (max-width: 768px) {
-  /* line 2598, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2634, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .img-zone-list {
     width: 100%;
   }
@@ -14532,7 +14565,7 @@ a:focus {
 #16a085
 */
 /* Parsley Error Messages */
-/* line 2621, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2657, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #setter_error {
   color: red;
   font-size: 16px;
@@ -14540,7 +14573,7 @@ a:focus {
   margin-left: 10px;
 }
 
-/* line 2628, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2664, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #color_error {
   color: red;
   font-size: 16px;
@@ -14548,7 +14581,7 @@ a:focus {
   margin-left: 10px;
 }
 
-/* line 2635, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2671, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #grade_error {
   color: red;
   font-size: 16px;
@@ -14556,7 +14589,7 @@ a:focus {
   margin-left: 10px;
 }
 
-/* line 2642, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2678, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #date_error {
   color: red;
   font-size: 16px;
@@ -14564,7 +14597,7 @@ a:focus {
   margin-left: 10px;
 }
 
-/* line 2649, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2685, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 #successMessage {
   margin-top: 10px;
   background-color: #eee;
@@ -14581,7 +14614,7 @@ a:focus {
 }
 
 /* HERO IMAGE - HEADER */
-/* line 2668, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2704, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .hero-unit {
   padding: 0px;
   /* CHANGE PADDING HERE*/
@@ -14596,7 +14629,7 @@ a:focus {
   border-radius: 6px;
   font-family: 'Montserrat', sans-serif;
 }
-/* line 2679, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2715, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .hero-unit h1 {
   font-size: 46px;
   font-family: 'Poppins', sans-serif;
@@ -14606,23 +14639,23 @@ a:focus {
 }
 
 /* News feed */
-/* line 2693, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2729, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed {
   font-family: sans-serif;
   list-style-type: none;
   padding: 0;
   margin: 50px 0px 50px 25px;
 }
-/* line 2698, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2734, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed a {
   color: 444;
   text-decoration: none;
 }
-/* line 2703, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2739, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .img-route-show {
   width: 250px;
 }
-/* line 2707, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2743, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .feed-item {
   color: #fff;
   position: relative;
@@ -14631,11 +14664,11 @@ a:focus {
   padding-left: 30px;
   border-left: 2px solid #ddd;
 }
-/* line 2714, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2750, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .feed-item:last-child {
   border-color: transparent;
 }
-/* line 2715, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2751, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .feed-item:before {
   content: attr(data-time);
   display: flex;
@@ -14649,7 +14682,7 @@ a:focus {
   font-size: 12px;
   color: #999;
 }
-/* line 2728, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2764, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .feed-item::after {
   content: attr(data-content);
   display: flex;
@@ -14669,20 +14702,20 @@ a:focus {
   color: white;
   background-color: #ddd;
 }
-/* line 2747, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2783, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .feed-item section {
   background-color: #fff;
   padding: 10px 15px;
   border-radius: 0px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 2755, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2791, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .feed-item section label {
   font-weight: 200;
   display: block;
   cursor: pointer;
 }
-/* line 2775, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2811, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .activity-feed .img-ticklist-icon {
   width: 50px;
   height: 50px;
@@ -14694,16 +14727,16 @@ a:focus {
   opacity: .9;
 }
 
-/* line 2788, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2824, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 input[type="checkbox"] {
   display: none;
 }
-/* line 2792, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2828, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 input[type="checkbox"]:checked ~ label:after {
   transform: rotate(45deg);
   color: tomato;
 }
-/* line 2797, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2833, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 input[type="checkbox"]:checked ~ .content {
   max-height: 1000px;
   border-top: 1px solid #f0f0f0;
@@ -14713,34 +14746,34 @@ input[type="checkbox"]:checked ~ .content {
   transition: max-height .25s ease-in;
 }
 
-/* line 2808, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2844, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .content {
   border-top: 1px solid #ffffff;
   margin-top: 5px;
   padding-top: 5px;
 }
 
-/* line 2814, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2850, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 [data-color=red]:after {
   background-color: #ff3c41 !important;
 }
 
-/* line 2815, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2851, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 [data-color=blue]:after {
   background-color: #2cb5e8 !important;
 }
 
-/* line 2816, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2852, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 [data-color=green]:after {
   background-color: #47cf73 !important;
 }
 
-/* line 2817, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2853, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 [data-color=yellow]:after {
   background-color: #fcd000 !important;
 }
 
-/* line 2825, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2861, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 {
   font-family: 'Montserrat', sans-serif;
   background-color: white;
@@ -14748,16 +14781,16 @@ input[type="checkbox"]:checked ~ .content {
   /* this is the follower count "circle" for the users facility list */
 }
 @media (min-width: 768px) {
-  /* line 2825, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2861, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 {
     margin-right: 0px;
   }
 }
-/* line 2834, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2870, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 a {
   text-decoration: none;
 }
-/* line 2837, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2873, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 p {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -14767,12 +14800,12 @@ input[type="checkbox"]:checked ~ .content {
   line-height: 1.5em;
 }
 @media (max-width: 768px) {
-  /* line 2837, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2873, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 p {
     font-size: 1.0em;
   }
 }
-/* line 2847, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2883, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 p small {
   font-weight: 200;
   display: block;
@@ -14780,13 +14813,13 @@ input[type="checkbox"]:checked ~ .content {
   font-size: 0.5em;
 }
 @media (max-width: 768px) {
-  /* line 2847, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2883, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 p small {
     font-size: 0.8em;
     margin-top: -0.3px;
   }
 }
-/* line 2860, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2896, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .img-facility-logo-list-left {
   height: 30px;
   position: absolute;
@@ -14798,17 +14831,17 @@ input[type="checkbox"]:checked ~ .content {
   opacity: 0.5;
 }
 @media (max-width: 768px) {
-  /* line 2860, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 2896, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .img-facility-logo-list-left {
     height: 60px;
   }
 }
-/* line 2873, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2909, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .header {
   border: none;
   margin-bottom: 0px;
 }
-/* line 2874, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2910, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .header h1 {
   font-family: 'Poppins', sans-serif;
   display: inline;
@@ -14818,23 +14851,23 @@ input[type="checkbox"]:checked ~ .content {
   font-weight: 400;
   letter-spacing: 0.0px;
 }
-/* line 2882, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2918, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .header h1 small {
   color: white;
   font-weight: 200;
 }
-/* line 2892, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2928, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 li {
   position: relative;
   border-radius: 0px;
   padding: 10px;
   margin-left: 0px !important;
 }
-/* line 2899, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2935, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 li:last-child {
   margin-bottom: 10px;
 }
-/* line 2903, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2939, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .bg-top-10 {
   background-color: #999;
   padding: 5px;
@@ -14843,20 +14876,20 @@ input[type="checkbox"]:checked ~ .content {
   color: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 2913, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2949, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 li {
   margin-left: -20px;
 }
-/* line 2917, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2953, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .circle-wrapper {
   margin: 2px;
   display: inline-block;
 }
-/* line 2920, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2956, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .circle-wrapper .btn:focus {
   outline: none;
 }
-/* line 2925, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2961, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .circle {
   height: 45px;
   width: 45px;
@@ -14872,7 +14905,7 @@ input[type="checkbox"]:checked ~ .content {
   line-height: 45px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
-/* line 2941, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2977, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle {
   height: 75px;
   width: 75px;
@@ -14886,7 +14919,7 @@ input[type="checkbox"]:checked ~ .content {
   color: white;
   margin: 20px;
 }
-/* line 2952, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2988, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -14894,7 +14927,7 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 2959, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 2995, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle li {
   background: linear-gradient(60deg, #e32666, #d7348c);
   margin-bottom: 10px;
@@ -14904,30 +14937,30 @@ input[type="checkbox"]:checked ~ .content {
   padding: 10px;
   margin: 10px !important;
 }
-/* line 2968, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3004, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle li a, .top-10 .large-circle li a:hover {
   color: #fff;
   background-color: transparent;
 }
-/* line 2976, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3012, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle-gray {
   background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
   color: #47cf73;
 }
-/* line 2980, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3016, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle-gray .text {
   color: white;
 }
-/* line 2985, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3021, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle-yellow {
   background: linear-gradient(60deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
   color: #c5e326;
 }
-/* line 2989, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3025, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .large-circle-yellow .text {
   color: white;
 }
-/* line 2994, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3030, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .right {
   height: 50px;
   width: 50px;
@@ -14944,7 +14977,7 @@ input[type="checkbox"]:checked ~ .content {
   bottom: -7px;
   position: absolute;
 }
-/* line 3008, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3044, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .right .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -14952,11 +14985,11 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 3018, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3054, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .right-claim {
   right: 60px;
 }
-/* line 3023, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3059, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .route-count {
   height: 50px;
   width: 50px;
@@ -14973,7 +15006,7 @@ input[type="checkbox"]:checked ~ .content {
   bottom: -7px;
   position: absolute;
 }
-/* line 3037, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3073, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .route-count .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -14981,7 +15014,7 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 3048, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3084, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .follower-count {
   height: 50px;
   width: 50px;
@@ -14998,18 +15031,18 @@ input[type="checkbox"]:checked ~ .content {
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 3048, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3084, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .follower-count {
     left: 175px;
   }
 }
 @media (max-width: 768px) {
-  /* line 3048, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3084, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .follower-count {
     left: 150px;
   }
 }
-/* line 3067, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3103, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .follower-count .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -15017,7 +15050,7 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 3077, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3113, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .start-date {
   font-size: 15px;
   color: #47cf73;
@@ -15026,7 +15059,7 @@ input[type="checkbox"]:checked ~ .content {
   bottom: -7px;
   position: absolute;
 }
-/* line 3088, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3124, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .userlist-follow {
   height: 50px;
   width: 50px;
@@ -15042,18 +15075,18 @@ input[type="checkbox"]:checked ~ .content {
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 3088, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3124, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .userlist-follow {
     right: 10px;
   }
 }
 @media (max-width: 768px) {
-  /* line 3088, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3124, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .userlist-follow {
     right: 10px;
   }
 }
-/* line 3106, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3142, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .userlist-follow .text {
   font-size: 10px;
   margin-top: -10px !important;
@@ -15061,11 +15094,11 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: #888;
 }
-/* line 3116, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3152, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .green-check {
   color: #52BE80;
 }
-/* line 3120, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3156, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .third-button {
   height: 50px;
   width: 50px;
@@ -15082,18 +15115,18 @@ input[type="checkbox"]:checked ~ .content {
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 3120, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3156, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .third-button {
     left: 250px;
   }
 }
 @media (max-width: 768px) {
-  /* line 3120, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3156, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .third-button {
     left: 200px;
   }
 }
-/* line 3139, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3175, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .third-button .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -15101,7 +15134,7 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 3149, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3185, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .fourth-button {
   height: 50px;
   width: 50px;
@@ -15118,18 +15151,18 @@ input[type="checkbox"]:checked ~ .content {
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 3149, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3185, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .fourth-button {
     left: 325px;
   }
 }
 @media (max-width: 768px) {
-  /* line 3149, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3185, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .fourth-button {
     left: 250px;
   }
 }
-/* line 3168, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3204, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .fourth-button .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -15137,7 +15170,7 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 3178, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3214, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .edit-button {
   height: 50px;
   width: 50px;
@@ -15154,18 +15187,18 @@ input[type="checkbox"]:checked ~ .content {
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 3178, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3214, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .edit-button {
     right: 0px;
   }
 }
 @media (max-width: 768px) {
-  /* line 3178, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3214, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .edit-button {
     right: 0px;
   }
 }
-/* line 3197, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3233, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .edit-button .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -15173,41 +15206,41 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 3207, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3243, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .top-right-position {
   top: 15px;
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 3207, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3243, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .top-right-position {
     right: 15px;
   }
 }
 @media (max-width: 768px) {
-  /* line 3207, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3243, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .top-right-position {
     right: 15px;
   }
 }
-/* line 3219, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3255, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .bottom-right-position {
   bottom: 10px;
   position: absolute;
 }
 @media (min-width: 768px) {
-  /* line 3219, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3255, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .bottom-right-position {
     right: 15px;
   }
 }
 @media (max-width: 768px) {
-  /* line 3219, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3255, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top-10 .bottom-right-position {
     right: 15px;
   }
 }
-/* line 3231, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3267, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .tick-circle {
   height: 50px;
   width: 50px;
@@ -15221,7 +15254,7 @@ input[type="checkbox"]:checked ~ .content {
   color: white;
   margin: 0px;
 }
-/* line 3242, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3278, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-10 .tick-circle .text {
   font-size: 8px;
   margin-top: -4px !important;
@@ -15229,18 +15262,18 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
 }
 
-/* line 3253, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3289, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .left-margin {
   margin-left: 0px;
 }
 @media (max-width: 768px) {
-  /* line 3253, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3289, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .left-margin {
     margin-right: 0px;
   }
 }
 
-/* line 3260, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3296, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .home-stats {
   color: #eee;
   background: linear-gradient(rgba(82, 100, 148, 0.95), rgba(96, 68, 132, 0.95));
@@ -15248,16 +15281,16 @@ input[type="checkbox"]:checked ~ .content {
   background-size: cover;
   background-position: center;
 }
-/* line 3276, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3312, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .home-stats a {
   color: #eee;
   text-decoration: none;
 }
-/* line 3281, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3317, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .home-stats a:visited {
   color: #eee;
 }
-/* line 3285, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3321, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .home-stats .bg-top-10 {
   background-color: transparent;
   padding: 5px;
@@ -15266,33 +15299,33 @@ input[type="checkbox"]:checked ~ .content {
   color: white;
   box-shadow: none;
 }
-/* line 3293, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3329, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .home-stats .bg-top-10 h1 {
   font-size: 20px;
   color: #eee;
 }
-/* line 3299, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3335, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .home-stats h1 {
   font-weight: 200;
   text-align: left;
 }
 
-/* line 3306, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3342, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .bg-home-white {
   background: transparent;
 }
 
-/* line 3310, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3346, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .facility-list {
   color: #eee;
   background: #aaa;
 }
 
-/* line 3316, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3352, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .white-list a, .white-list a:visited, .white-list a:hover {
   color: #fff;
 }
-/* line 3320, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3356, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .white-list .tab-text-top {
   position: absolute;
   top: 10px;
@@ -15301,33 +15334,33 @@ input[type="checkbox"]:checked ~ .content {
   right: 0px;
   overflow: hidden;
 }
-/* line 3328, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3364, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .white-list .tab-text-bottom {
   position: absolute;
   top: 29px;
   left: 110px;
 }
-/* line 3334, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3370, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .white-list p {
   color: #999;
 }
-/* line 3340, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3376, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .white-list .route-count-dark-text .text {
   color: #eee;
 }
 
-/* line 3347, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3383, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .transparent {
   background-color: transparent;
 }
 
-/* line 3351, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3387, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .admin-sidebar {
   color: #eee;
   background: #494949;
 }
 
-/* line 3356, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3392, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .new-routes {
   background: linear-gradient(rgba(255, 81, 47, 0.7), rgba(221, 36, 118, 0.7));
   background: linear-gradient(60deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc-new-route.jpg");
@@ -15335,7 +15368,7 @@ input[type="checkbox"]:checked ~ .content {
   background-position: center;
 }
 
-/* line 3372, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3408, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top-routes {
   background: linear-gradient(rgba(255, 81, 47, 0.7), rgba(221, 36, 118, 0.7));
   background: linear-gradient(60deg, rgba(255, 81, 47, 0.6), rgba(221, 36, 118, 0.6)), url("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc-new-route.jpg");
@@ -15343,13 +15376,13 @@ input[type="checkbox"]:checked ~ .content {
   background-position: center;
 }
 
-/* line 3388, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3424, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .get-started {
   background: linear-gradient(60deg, #ff5f6d, #ffc371);
 }
 
 /* this is the color square for routelist dark */
-/* line 3395, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3431, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .list-color-circle {
   height: 43px;
   width: 43px;
@@ -15367,7 +15400,7 @@ input[type="checkbox"]:checked ~ .content {
   margin: 20px;
   margin-bottom: 25px;
 }
-/* line 3410, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3446, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .list-color-circle .text {
   font-size: 10px;
   margin-top: -5px !important;
@@ -15375,7 +15408,7 @@ input[type="checkbox"]:checked ~ .content {
   display: block;
   color: white;
 }
-/* line 3417, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3453, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .list-color-circle img {
   height: 40px;
   background-size: cover;
@@ -15388,13 +15421,13 @@ input[type="checkbox"]:checked ~ .content {
   border-radius: 6px;
 }
 
-/* line 3431, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3467, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .resultlist {
   font-family: 'Poppins', sans-serif;
   text-overflow: clip;
   font-size: 0.8em;
 }
-/* line 3435, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3471, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .resultlist h1 {
   font-size: 1.0em;
   letter-spacing: 0.0px;
@@ -15403,14 +15436,14 @@ input[type="checkbox"]:checked ~ .content {
   color: white;
 }
 
-/* line 3445, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3481, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .left-no-double-margin {
   margin-left: -37px;
   margin-right: 3px;
 }
 
 /* form labels and inputs */
-/* line 3452, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3488, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .user-search-box input[type=text], .user-search-box input[type=date], .user-search-box input[type=email], .user-search-box input[type=number], .user-search-box select {
   margin-left: 11px;
   margin-right: 11px;
@@ -15424,7 +15457,7 @@ input[type="checkbox"]:checked ~ .content {
   width: calc(100% - 20px);
 }
 
-/* line 3466, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3502, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .large-circle-transparent {
   height: 75px;
   width: 75px;
@@ -15438,7 +15471,7 @@ input[type="checkbox"]:checked ~ .content {
   color: white;
   margin: 20px;
 }
-/* line 3477, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3513, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .large-circle-transparent .text {
   font-size: 10px;
   margin-top: -0px !important;
@@ -15448,15 +15481,15 @@ input[type="checkbox"]:checked ~ .content {
 }
 
 /* Top 10 */
-/* line 3488, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3524, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top10new {
   font-family: "Poppins", sans-serif;
 }
-/* line 3490, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3526, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top10new a, .top10new a:hover, .top10new a:visited {
   text-decoration: none;
 }
-/* line 3495, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3531, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top10new h1 {
   color: rgba(96, 68, 132, 0.8);
   font-family: 'Poppins', sans-serif;
@@ -15466,12 +15499,12 @@ input[type="checkbox"]:checked ~ .content {
   margin-bottom: 5px;
 }
 @media (max-width: 768px) {
-  /* line 3495, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3531, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top10new h1 {
     font-size: 1.7em;
   }
 }
-/* line 3507, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3543, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top10new h2 {
   font-family: 'Poppins', sans-serif;
   margin: 0px;
@@ -15481,7 +15514,7 @@ input[type="checkbox"]:checked ~ .content {
   margin-left: 40px;
   margin-bottom: 10px;
 }
-/* line 3517, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3553, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top10new h3 {
   color: rgba(96, 68, 132, 0.8);
   font-family: 'Poppins', sans-serif;
@@ -15492,18 +15525,18 @@ input[type="checkbox"]:checked ~ .content {
   font-size: 3.0em;
 }
 @media (max-width: 768px) {
-  /* line 3517, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+  /* line 3553, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
   .top10new h3 {
     font-size: 1.7em;
   }
 }
-/* line 3530, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3566, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .top10new li {
   margin: 0px;
   line-height: 30px;
 }
 
-/* line 3536, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
+/* line 3572, /Users/timgillies/climber2/app/assets/stylesheets/custom.css.scss */
 .fa-green {
   color: #52BE80;
 }
