@@ -30,7 +30,7 @@
   <div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
 
 
-      <%= link_to edit_admin_facility_task_path(f, @facility) do %>
+      <%= link_to edit_admin_facility_task_path(@facility, f) do %>
     <span>
       <div class="container-fluid">
         <div class="row doubletab">
