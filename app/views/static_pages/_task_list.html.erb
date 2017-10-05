@@ -1,40 +1,39 @@
 
   <% @demo_facility.tasks.includes(:grade, :zone, :wall, :assignee).last(2).each do |f| %>
-  <ol class="routelist">
+  <ol class="routelist routelist-dark">
+  <li>
 
 
-      <% if f.color? %>
-        <% if ["light", "dark", "neon", "hot"].include?(f.color.split(/\W+/).first.downcase.to_s) %>
-          <li class="<%= f.color.split(/\W+/).second.downcase.to_s %>">
 
-          <% else %>
+  <div class="list-color-circle", style="background-color: <%= f.color_hex %>"><span class="text"><%= "" %></span></div>
 
-          <li class="<%= f.color.split(/\W+/).first.downcase.to_s %>">
 
-          <% end %>
-      <% else %>
-        <li>
-      <% end %>
-
+    <span>
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-10">
-
-            <% unless f.grade_id? %>
-            <h3>
-              <% unless f.task_type == "route_task" %>
-                <span class="glyphicon glyphicon-wrench"></span>
-                <%= link_to "MAINTENANCE ITEM" , "#" %>
-
-                <% else %>
-                <span class="glyphicon glyphicon-calendar"></span>
-                <%= link_to "NEW ROUTE" , "#" %>
-
+        <div class="row doubletab">
+          <div class="col-xs-7 col-sm-9">
+            <% if params[:facility_id].present? %>
+            <h3><strong>
+              <% if f.color? %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+              <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                <%= f.grade.grade if f.grade %>
+              <% else %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
               <% end %>
-            </h3>
+            </strong></h3>
 
             <% else %>
-
+            <h3><strong>
+              <% if f.color? %>
+                <%= f.grade.grade + " "+ f.color.upcase if f.grade %>
+              <% elsif (color_name(f.color_hex,f.facility)).nil? %>
+                <%= f.grade.grade if f.grade %>
+              <% else %>
+                <%= f.grade.grade + " "+ color_name(f.color_hex,f.facility)[0].upcase if f.grade %>
+              <% end %>
+            </strong></h3>
+            <% end %>
             <h3>
               <% unless f.task_type == "route_task" %>
                 <span class="glyphicon glyphicon-wrench"></span>
@@ -42,91 +41,104 @@
               <% else %>
               <span class="glyphicon glyphicon-calendar"></span>
               <% end %>
-
-              <%= link_to f.grade.grade + " "+ f.color.upcase , "#" %>
             </h3>
 
-            <% end %>
-
-            <h2> <%= f.name %></h2>
-          </div>
-
-          <div class="col-xs-2 col-sm-1 no-print button-links">
-              <h3><%= link_to "#", remote: true do %>
-                <i class="glyphicon glyphicon-cog pull-right"></i>
-              <%end %>
-            </h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-              <div class="task-tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.task_number %></div>
 
           </div>
-          <div class="col-sm-12">
-              <div class="task-tab"><strong>Location: </strong><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="task-tab"><strong>
-
-              <% if params[:controller] == "admin/tasks" %>
-
-              <% if f.assignee_id? %> Assigned to:
-
-              <% end %>
-
-               <% else %>
-
-               Assigned to:
-
-               <% end %>
-
-             </strong><%= f.assignee.name if f.assignee_id %></div>
-          </div>
-        </div>
-
-        <% if f.task_description? %>
-        <div class="row">
-          <div class="col-sm-12">
-            <span class="task-tab"><strong>Description: </strong><i><%= f.task_description %></i></span>
-          </div>
-        </div>
-        <% end %>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="task-task-tab text-right">
-
-                  <span class="badge badge-today">due today</span>
-
-
-
-
-
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <div class="no-print">
-            <br/>
-            <div class="col-xs-6 col-sm-6 button-links">
+          <div class="col-xs-5 col-sm-3">
+            <span class="pull-right">
+              <div id="expire_buttons_<%= f.id %>">
               <% if f.task_type == 'route_task'  && f.active? %>
-                <%= link_to "#", class: 'btn btn-expire btn-md', remote: true do %>
-                      move to routes <i class="glyphicon glyphicon-share-alt"></i>
-                      <%end %>
-              <% end %>
-            </div>
+                  <div class="expire-circle task-circle">
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="text"><%= "activate" %></span>
+                  </div>
 
-            <div class="col-xs-6 col-sm-6 no-print">
-              <% if f.active? %>
-              <%= link_to "mark as done",  "#", class: 'btn btn-expire btn-md', remote: true %>
               <% end %>
-            </div>
+              <% if f.active? %>
+
+                  <div class="expire-circle expired">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <span class="text"><%= "finish" %></span>
+                  </div>
+
+              <% else %>
+
+              <div class="expire-circle">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                <span class="text"><%= "done" %></span>
+              </div>
+
+              <% end %>
+
+
+              </div>
+            </span>
           </div>
+
+
+        </div>
+        <div class="row doubletab">
+          <div class="col-xs-8">
+            <h2> <%= f.name if f.name %> <%= "#" + f.id.to_s %></h2>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-10">
+              <div><strong><%= f.facility.name if f.facility %> <%= f.facility.location if f.facility.location %></strong></div>
+          </div>
+
+
+          <div class="col-xs-12">
+              <div><%= f.zone.name if f.zone %> > <%= f.wall.name if f.wall %></div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div><%= f.user.name if f.user %></div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+
+            <% if (f.enddate.present?) && (f.enddate < Date.current) %>
+              <i class="fa fa-window-close red" aria-hidden="true"></i> expired <%= f.enddate.strftime("%b %d, %Y") %>
+            <% else %>
+
+                <% unless params[:controller] == 'admin/tasks' %>
+                  <% if (days_ago(f) == "today") %>
+                    <span>set <%= days_ago(f) %></span>
+                  <% else %>
+                    set <%= days_ago(f) %> ago
+                  <% end %>
+                <% else %>
+                  <% if f.setdate? %>
+                  due on <%= f.setdate.strftime("%b %d, %Y") %>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+          </div>
+        </div>
+      </span>
+
+      <% if f.task_description? %>
+      <div class="row">
+        <div class="col-xs-12">
+          <p style="font-size: 1.3em;"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+            <%= f.task_description %>
+          </span></p>
         </div>
       </div>
+      <% end %>
+
+
+        <div class="row">
+        </div>
+
+
+
+
+
     </li>
+
   </ol>
   <% end %>
