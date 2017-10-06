@@ -116,15 +116,19 @@
         </div>
       </span>
       <% end %>
-      <% if f.task_description? %>
+
+
       <div class="row">
         <div class="col-xs-12">
-          <p style="font-size: 1.3em;"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-            <%= f.task_description %>
+          <p style="font-size: 1.3em;">
+            <%= f.assignee.name if f.assignee_id %>
+            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+
+            <%= f.task_description if f.task_description %>
           </span></p>
         </div>
       </div>
-      <% end %>
+
 
 
         <div class="row">

@@ -54,6 +54,7 @@ gem 'sprockets', '3.7.1'
 gem 'rubocop', require: false
 gem 'jquery-infinite-pages'
 gem 'bootstrap-datepicker-rails'
+gem 'cocoapods'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
