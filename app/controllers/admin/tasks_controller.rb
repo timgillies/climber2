@@ -83,7 +83,6 @@ class Admin::TasksController < ApplicationController
     @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
     @task.facility_id = params[:facility_id]
     if @task.save
-      @task.update_attribute(:task_number, (@facility.id.to_s + current_user.id.to_s + "000" + @task.id.to_s).to_i)
       flash[:success] = "Task created!"
       # if @task.assignee_id?
       #  TaskMailer.task_assignment_email(@task).deliver_now

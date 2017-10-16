@@ -76,7 +76,7 @@
 
         <br>
 
-        
+
 
         <div class="col-xs-2 col-sm-1 no-print">
             <h3><%= link_to edit_admin_facility_task_path(@facility, f ) do %>
@@ -87,7 +87,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-            <div class="task-tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.task_number %></div>
+            <div class="task-tab"><strong><% unless params[:controller] == "admin/tasks" %>Route ID: <% else %>Task ID: <% end %></strong><%= f.id %></div>
 
         </div>
         <div class="col-sm-12">

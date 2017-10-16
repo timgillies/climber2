@@ -1,4 +1,7 @@
-$('body').scrollTop(0);
+
+$('html, body').animate({
+    scrollTop: $("#bodyTop").offset().top
+}, 250);
 $('#grade_render').html('');
 $('#wall_render').html('');
 $('#routeForm')[0].reset();

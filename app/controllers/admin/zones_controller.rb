@@ -93,7 +93,6 @@ class Admin::ZonesController < ApplicationController
       target.value.times do
         @task = Task.create({assigner_id: current_user.id, setdate: Date.current, color: "", facility_id: @facility.id, grade_id: target.grade_id, zone_id: target.zone_id, status: 'active', task_type: 'route_task'})
         if @task.save
-          @task.update_attribute(:task_number, (@facility.id.to_s + current_user.id.to_s + "000" + @task.id.to_s).to_i)
         end
       end
     end

@@ -10,7 +10,7 @@
       <br/>
       <div class="divider-line"></div>
       <p>Or sign in with your email address</p>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
           <div class="form-group">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, class: "form-control" %>
