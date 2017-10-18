@@ -2684,17 +2684,19 @@ a:focus {
 
 #successMessage {
   margin-top: 10px;
-    background-color: #eee;
-    background: linear-gradient(60deg, #5ccb6c, #57d79a);
-    padding: 10px;
-    padding-left: 20px;
-    border-radius: 4px;
-    color: white;
-    box-shadow: 2px 2px 2px #aaa;
-    font-size: 1.0em;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 200;
-    text-transform: uppercase;
+  margin-bottom: 10px;
+  background-color: #eee;
+  background: linear-gradient(60deg, #5ccb6c, #57d79a);
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 4px;
+  color: white;
+  box-shadow: 2px 2px 2px #aaa;
+  font-size: 1.0em;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+
 
 }
 

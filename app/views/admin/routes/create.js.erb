@@ -1,11 +1,11 @@
 
+$('#routeForm')[0].reset();
 $('html, body').animate({
     scrollTop: $("#bodyTop").offset().top
 }, 250);
 $('#grade_render').html('');
 $('#wall_render').html('');
-$('#routeForm')[0].reset();
-$("#recent_routes").html("<%= escape_javascript(render(partial: 'admin/routes/recent', locals: { object: @recent_routes })) %>");
+
 
 
 
@@ -13,4 +13,4 @@ $("#recent_routes").html("<%= escape_javascript(render(partial: 'admin/routes/re
 
 
 var $successMessageDiv = $('#successMessage'); // get the reference of the div
-$successMessageDiv.show().html('Route saved!  Add another...'); // show and set the message
+$successMessageDiv.show().html("<i class='fa fa-check-circle'></i> Route saved!"); // show and set the message

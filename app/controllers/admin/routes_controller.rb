@@ -84,6 +84,13 @@ class Admin::RoutesController < ApplicationController
     @totalticks = Tick.where("route_id = ?", @route)
     @averagerating = Rate.where("rateable_id = ?", @route).average(:stars)
     @ratingcount = Rate.where("rateable_id = ?", @route).count(:stars)
+    @facilitysetters = @facility.facility_roles.where(confirmed: true).where.not(name: 'climber').map{|fs| [fs.user.name, fs.user.id]}
+    @facilityzones = @facility.zones.all.map{|fz| [fz.name, fz.id ] }
+    @facilitygrades = facility_grades.map{ |sg| [sg.grade, sg.id ] }
+    @facilitywalls = @facility.walls.all.map{|fw| [fw.name, fw.id ] }
+    @r_value = ric_values
+    @i_value = ric_values
+    @c_value = ric_values
   end
 
   def create

@@ -1,9 +1,10 @@
-$('body').scrollTop(0);
+$('#tickForm')[0].reset();
+$('html, body').animate({
+    scrollTop: $("#bodyTop").offset().top
+}, 250);
 $('#grade_render').html('');
 $('#wall_render').html('');
-$('#tickForm')[0].reset();
-$("#tick-stats").html("<%= j (render(partial: 'users/user_stats_tick_count')) %>");
-$("#hardest-send").html("<%= j (render(partial: 'users/user_stats_hardest_send')) %>");
+
 
 
 

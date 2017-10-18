@@ -1,14 +1,19 @@
 
-<%= link_to "edit", edit_admin_facility_route_path(@facility, @route ), class: "btn btn-add" %>
-
+<div id="successMessage" style="display: none">
 <br>
 <br>
+</div>
 
-
+<div id="routeShow">
 <%= render(
 partial: 'routes/route',
 locals: { f: @route }
 ) %>
+</div>
+
+
+    <%= render 'admin/routes/form', object: @route  %>
+
 
 
 

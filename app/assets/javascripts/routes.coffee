@@ -18,35 +18,17 @@ $(document).on "ready turbolinks:load", ->
       $('#route_wall_id').parent().hide()
 
 
-  $(document).on "ready turbolinks:load", ->
+
+  $('input[name="route[zone_id]"]').click ->
+    $('#wall_render').html('');
     zone = $('input[name="route[zone_id]"]:checked').val()
-
-    $('.walls').hide()
-
-    if zone > 0
-      $('#zone_wall_'+zone).clone().appendTo('#wall_render')
-
-    else
-    $('input[name="route[zone_id]"]').change ->
-      $('#wall_render').html('');
-      zone = $('input[name="route[zone_id]"]:checked').val()
-      $('#zone_wall_'+zone).clone().appendTo('#wall_render')
+    $('#zone_wall_'+zone).clone().appendTo('#wall_render')
 
 
-
-  $(document).on "ready turbolinks:load", ->
+  $('input[name="route[grade_system_virtual]"]').click ->
+    $('#grade_render').html('');
     grade = $('input[name="route[grade_system_virtual]"]:checked').val()
-
-    $('.grade-').hide()
-
-    if grade > 0
-      $('#grade_system_'+grade).clone().appendTo('#grade_render')
-    else
-
-    $('input[name="route[grade_system_virtual]"]').change ->
-      $('#grade_render').html('');
-      grade = $('input[name="route[grade_system_virtual]"]:checked').val()
-      $('#grade_system_'+grade).clone().appendTo('#grade_render')
+    $('#grade_system_'+grade).clone().appendTo('#grade_render')
 
   $ ->
   $.rails.allowAction = (link) ->
