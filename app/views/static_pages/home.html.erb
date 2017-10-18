@@ -1,6 +1,6 @@
 <script>
 $('.navbar').css('background-color', 'transparent');
-$(document).on('ready', function(){
+$(document).on('ready turbolinks:load', function(){
    var scroll_start = 0;
    var startchange = $('#startchange');
    var offset = startchange.offset();
@@ -44,8 +44,8 @@ $('#hamburger').click(function() {
 
         <% unless user_signed_in? %>
 
-        <%= link_to "Join", new_user_registration_path, class: "btn btn-join btn-lg" %>
-        <%= link_to "Sign in", new_user_session_path, class: "btn btn-signin btn-lg" %>
+        <%= link_to "Join", new_user_registration_path, class: "btn btn-join btn-lg", data: { turbolinks: false } %>
+        <%= link_to "Sign in", new_user_session_path, class: "btn btn-signin btn-lg", data: { turbolinks: false }%>
 
         <% end %>
 
@@ -54,12 +54,12 @@ $('#hamburger').click(function() {
           <div class="center">
             <p>You have <%= FacilityRole.where(email: current_user.email, user_id: nil).count %> pending <%= "invite".pluralize(FacilityRole.where(email: current_user.email, user_id: nil).count ) %> </p>
 
-          <%= link_to "confirm", inbox_user_path(current_user), class: "btn btn-signin btn-lg" %>
+          <%= link_to "confirm", inbox_user_path(current_user), class: "btn btn-signin btn-lg", data: { turbolinks: false } %>
           </div>
         <% else %>
 
-        <%= link_to "climb smart", home_user_path(current_user), class: "btn btn-join btn-lg" %>
-        <%= link_to "set smart", new_admin_facility_path, class: "btn btn-signin btn-lg" %>
+        <%= link_to "climb smart", home_user_path(current_user), class: "btn btn-join btn-lg", data: { turbolinks: false } %>
+        <%= link_to "set smart", new_admin_facility_path, class: "btn btn-signin btn-lg", data: { turbolinks: false } %>
 
         <% end %>
 
@@ -86,11 +86,11 @@ $('#hamburger').click(function() {
         <p>Climb Connect gives you access to the routes your gym is setting and allows you to add your own. Track what you're climbing, set up project lists, and create competitions with your friends. #climbsmart
         </p>
         <% if current_user.present? %>
-        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% else %>
-        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% end %>
-        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right", data: { turbolinks: false } %></p>
 
     </div>
   </div>
@@ -120,11 +120,11 @@ $('#hamburger').click(function() {
       <p>We've worked with some of the best setters in the industry to make sure it creates value in their everyday workflow. It's about staying organized, managing your team, and staying connected. #setsmart
       </p>
         <% if current_user.present? %>
-        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% else %>
-        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% end %>
-        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right", data: { turbolinks: false } %></p>
     </div>
   </div>
   <div class="col-xs-12 hidden-sm hidden-md hidden-lg hidden-xl">
@@ -140,11 +140,11 @@ $('#hamburger').click(function() {
         <h1>Analytics</h1>
         <p>You don't need an MBA to be an analytics pro.  Show off your work and impress your boss with Climb Connect analytics. #setsmart</p>
         <% if current_user.present? %>
-        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% else %>
-        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% end %>
-        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right", data: { turbolinks: false } %></p>
     </div>
   </div>
   <div class="col-sm-6">
@@ -172,11 +172,11 @@ $('#hamburger').click(function() {
         <p>Unlimited storage in a helpful and easy to use database.  Add routes and upload photos from your mobile with only a few taps.  Strip routes and create maintenance tasks based on specific routes. #setsmart </p>
 
         <% if current_user.present? %>
-        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% else %>
-        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% end %>
-        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right", data: { turbolinks: false } %></p>
       </div>
     </div>
     <div class="col-xs-12 hidden-sm hidden-md hidden-lg hidden-xl">
@@ -192,11 +192,11 @@ $('#hamburger').click(function() {
           <h1>Customize Your Facility</h1>
           <p>Set up custom grading scales and organize your facility by zones. Create targets and maximize your route setting potential in each area of your gym. #setsmart</p>
           <% if current_user.present? %>
-          <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+          <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
           <% else %>
-          <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+          <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
           <% end %>
-          <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+          <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right", data: { turbolinks: false } %></p>
       </div>
     </div>
     <div class="col-sm-4">
@@ -219,11 +219,11 @@ $('#hamburger').click(function() {
         <h1>Get Things Done</h1>
         <p>Have your day planned before you get out of bed.  Create and assign tasks, manage your team, and stay organize. Strip entire zones and bulk create route setting tasks based on targets that you set. #setsmart</p>
         <% if current_user.present? %>
-        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% else %>
-        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% end %>
-        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right", data: { turbolinks: false } %></p>
     </div>
   </div>
   <div class="col-xs-12 hidden-sm hidden-md hidden-lg hidden-xl">
@@ -239,11 +239,11 @@ $('#hamburger').click(function() {
         <h1>Talk to us!</h1>
         <p>We don't wear headsets all day, but we do want to make sure you have everything you need to get set up.  Shoot us an email and we'll respond as quickly as we can to make sure you have what you need.  Or better yet, come climb with us if you're in the Denver area! #setsmart</p>
         <% if current_user.present? %>
-        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_admin_facility_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% else %>
-        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab" %></p>
+        <p><%= link_to "Start Today »", new_user_registration_path, class: "btn btn-blue btn-large pull-right tab", data: { turbolinks: false } %></p>
         <% end %>
-        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right" %></p>
+        <p><%= link_to "See Demo", admin_facility_path(Facility.where(demo: true).first), class: "btn btn-demo btn-large pull-right", data: { turbolinks: false } %></p>
         <p><%= mail_to "lee@climbconnect.com", "Say Hello", class: "btn btn-filter btn-large" %></p>
     </div>
   </div>

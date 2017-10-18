@@ -85,7 +85,7 @@
         <% unless Route.where(user_id: current_user.id).count > 0 %>
 
           <li>
-            <%= link_to "Management Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
+            <%= link_to "Management Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get', data: { turbolinks: false }  %>
           </li>
 
         <% end %>
@@ -94,10 +94,10 @@
 
         <% else %>
 
-        <li><%= link_to "Browse Facilities", facilities_path %></li>
+        <li><%= link_to "Browse Facilities", facilities_path, data: { turbolinks: false } %></li>
 
         <li>
-          <%= link_to "Management Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get'  %>
+          <%= link_to "Management Demo" , admin_facility_path(Facility.where(demo: true).first), method: 'get', data: { turbolinks: false }  %>
         </li>
 
         <% end %>
@@ -135,9 +135,9 @@
 
         <% else %>
         <li>
-            <%= link_to "Join" , new_user_registration_path, method: 'get'  %>
+            <%= link_to "Join" , new_user_registration_path, method: 'get', data: { turbolinks: false }  %>
         </li>
-        <li><%= link_to "Login", new_user_session_path %></li>
+        <li><%= link_to "Login", new_user_session_path, data: { turbolinks: false } %></li>
         <% end %>
       </ul>
 
