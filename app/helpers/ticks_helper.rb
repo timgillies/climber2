@@ -63,6 +63,56 @@ module TicksHelper
 
   end
 
+  def user_daily_ticks_chart_series(ticks, start_time)
+
+    ticks_by_day = ticks.ascent.where(:date => start_time..Date.current).
+                group("DATE_TRUNC('day', date)").
+                select("DATE_TRUNC('day', date) as tick_day, count(id) as tick_count")
+      (start_time.to_date..Date.current).map {|d| Date.new(d.year, d.month, d.day)}.uniq.map do |date|
+        tick = ticks_by_day.detect { |tick| tick.tick_day.to_date == date }
+        tick && tick.tick_count.to_f || 0
+      end.inspect
+
+  end
+
+  def user_daily_ticks_chart_series(ticks, start_time)
+
+    ticks_by_day = ticks.ascent.where(:date => start_time..Date.current).
+                group("DATE_TRUNC('day', date)").
+                select("DATE_TRUNC('day', date) as tick_day, count(id) as tick_count")
+      (start_time.to_date..Date.current).map {|d| Date.new(d.year, d.month, d.day)}.uniq.map do |date|
+        tick = ticks_by_day.detect { |tick| tick.tick_day.to_date == date }
+        tick && tick.tick_count.to_f || 0
+      end.inspect
+
+  end
+
+  def user_daily_ticks_value_chart_series(ticks, start_time)
+
+    sends_by_day = ticks.ascent.where(:date => start_time..Date.current).
+                group("DATE_TRUNC('day', date)").
+                select("DATE_TRUNC('day', date) as tick_day, SUM(grades.rank) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+    attempts_by_day = ticks.where(tick_type: 'project').where(:date => start_time..Date.current).
+                group("DATE_TRUNC('day', date)").
+                select("DATE_TRUNC('day', date) as tick_day, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+      (start_time.to_date..Date.current).map {|d| Date.new(d.year, d.month, d.day)}.uniq.map do |date|
+        tick = (sends_by_day + attempts_by_day).detect { |tick| tick.tick_day.to_date == date }
+        tick && tick.tick_count.to_f || 0
+      end
+
+  end
+
+  def user_daily_projects_value_chart_series(ticks, start_time)
+    attempts_by_day = ticks.where(tick_type: 'project').where(:date => start_time..Date.current).
+                group("DATE_TRUNC('day', date)").
+                select("DATE_TRUNC('day', date) as tick_day, SUM(grades.rank * 0.5) as tick_count").joins('LEFT OUTER JOIN grades ON ticks.grade_id = grades.id')
+      (start_time.to_date..Date.current).map {|d| Date.new(d.year, d.month, d.day)}.uniq.map do |date|
+        tick = (attempts_by_day).detect { |tick| tick.tick_day.to_date == date }
+        tick && tick.tick_count.to_f || 0
+      end
+
+  end
+
 def top_three_ascent_score(competition, user)
   array = Array.new
   Tick.ascent.top_three_routes(competition, user).each do |t|

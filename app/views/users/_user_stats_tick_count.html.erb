@@ -1,6 +1,6 @@
 <div id="tick-stats">
 <span class="comp-stat-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
-<%= link_to user_ticks_path(@user) do %>
+<%= link_to tick_list_user_ticks_path(@user) do %>
   <div class="comp-circle-wrapper">
     <div class="comp-large-circle responsive">
     <%= @ticks.total_send_overall_count(@user, "project").length %><span class="text"><%= "Ascent".pluralize(@ticks.total_send_overall_count(@user, "project").length) %></span>

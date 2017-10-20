@@ -16,8 +16,8 @@
         </span>
         <span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="You sent your hardest grade yet.  Now we'll track how many you're sending.">
           <p><%= Tick.current.hardest_send(@user).grade %> Coverage</p>
-          <h5><%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count %> out of <%= Route.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count %> active <%= Tick.current.hardest_send(@user).grade %>s </h5>
-          <h4 style="color: #00b1ff;"><%= number_to_percentage(@user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count.to_f / Route.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count.to_f * 100, precision: 0) %> </h4>
+          <h5><%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count %> out of <%= Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count %> active <%= Tick.current.hardest_send(@user).grade %>'s </h5>
+          <h4 style="color: #00b1ff;"><%= number_to_percentage(@user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count.to_f / Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count.to_f * 100, precision: 0) %> </h4>
         </span>
       </div>
       <div class='col-sm-3 col-xs-6'>
@@ -62,5 +62,11 @@
     <h5>Based on your current month's ticks</h5>
 
   </div>
+  <div class='col-sm-12 col-xs-12'>
+    <div class="row">
+      <%= render 'users/home_user_tryhard' %>
+    </div>
+  </div>
+
 
 </div>

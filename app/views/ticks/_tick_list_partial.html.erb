@@ -21,10 +21,15 @@
       <div class="route-form">
         <div id="donate">
           <% tick_date_filters.each do |zone| %>
-            <label class="green"><%= f.radio_button :with_date_gte, zone[1] %>
+            <label class="blue"><%= f.radio_button :with_date_gte, zone[1] %>
               <span><%= zone[0] %></span>
             </label>
           <% end %>
+        </div>
+        <div id="spinner" class="spinner-class hidden" >
+          <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+           <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
         </div>
       </div>
   </div>
@@ -36,3 +41,17 @@
   partial: 'ticks/tick_list_list',
   locals: { ticks: @ticks }
   ) %>
+
+
+  <script type="text/javascript">
+  $(document).bind("ajaxStart", function(){
+     $("#spinner").removeClass('hidden');
+     $("#donate").addClass('blur-out');
+   })
+
+   $(document).bind("ajaxComplete", function(){
+     $("#spinner").addClass('hidden');
+     $("#donate").removeClass('blur-out');
+
+   });
+   </script>

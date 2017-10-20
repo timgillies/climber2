@@ -18,8 +18,8 @@ Highcharts.Point.prototype.highlight = function (event) {
   var perShapeGradient = {
           x1: 0,
           y1: 1,
-          x2: 1,
-          y2: 0
+          x2: 0,
+          y2: 1
       };
 
 if (!Highcharts.theme) {
@@ -167,7 +167,7 @@ Highcharts.chart('activity_points', {
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
             innerRadius: '63%',
-            y: Math.round(<%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count %> / <%= Route.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count %> * 100),
+            y: Math.round(<%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count %> / <%= Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count %> * 100),
         }],
         showInLegend:false
     },
