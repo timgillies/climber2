@@ -12,6 +12,8 @@
 
 //= require highcharts/highcharts
 //= require highcharts/modules/exporting
+//= require highcharts/highcharts-more
+//= require highcharts/modules/solid-gauge
 //= require parsley
 //= require toastr
 //= require jquery.infinite-pages

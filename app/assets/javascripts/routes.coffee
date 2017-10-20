@@ -18,14 +18,21 @@ $(document).on "ready turbolinks:load", ->
       $('#route_wall_id').parent().hide()
 
 
-
-  $('input[name="route[zone_id]"]').click ->
-    $('#wall_render').html('');
-    zone = $('input[name="route[zone_id]"]:checked').val()
-    $('#zone_wall_'+zone).clone().appendTo('#wall_render')
+  $(document).on "ready turbolinks:load", ->
 
 
-  $('input[name="route[grade_system_virtual]"]').click ->
+    $('.walls').hide()
+
+
+    $('input[name="route[zone_id]"]').click ->
+      $('#wall_render').html('');
+      zone = $('input[name="route[zone_id]"]:checked').val()
+      $('#zone_wall_'+zone).clone().appendTo('#wall_render')
+
+
+
+
+  $('input[name="route[grade_system_virtual]"]').change ->
     $('#grade_render').html('');
     grade = $('input[name="route[grade_system_virtual]"]:checked').val()
     $('#grade_system_'+grade).clone().appendTo('#grade_render')

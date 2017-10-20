@@ -3574,3 +3574,33 @@ input[type="checkbox"] {
 .fa-green {
   color: #52BE80;
 }
+
+.activity-stats {
+  font-family: 'Poppins';
+  background: #444;
+  padding-left: 20px;
+  padding-right: 20px;
+  p {
+    color: #fff;
+    font-size: 0.8em;
+    margin-bottom: 2px
+  }
+  h4 {
+    margin-top: 0px;
+    font-weight: 700;
+    font-size: 1.4em;
+  }
+  h5 {
+    margin-top: 0px;
+    font-size: 0.6em;
+    font-style: italic;
+  }
+  h6 {
+    margin-top: 2px;
+    font-size: 0.6em;
+  }
+}
+
+.right-align {
+  text-align: right;
+}

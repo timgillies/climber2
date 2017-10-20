@@ -1,0 +1,198 @@
+
+<div id="activity_points" style="width: 200px; height: 200px; margin: 0 auto;">
+</div>
+
+
+<script>
+
+/**
+ * Highlight a point by showing tooltip, setting hover state and draw crosshair
+ */
+Highcharts.Point.prototype.highlight = function (event) {
+    this.onMouseOver(); // Show the hover marker
+    this.series.chart.tooltip.refresh(this); // Show the tooltip
+    this.series.chart.xAxis[0].drawCrosshair(event, this); // Show the crosshair
+};
+// Uncomment to style it like Apple Watch
+
+  var perShapeGradient = {
+          x1: 0,
+          y1: 1,
+          x2: 1,
+          y2: 0
+      };
+
+if (!Highcharts.theme) {
+    Highcharts.setOptions({
+
+        colors: ['#F62366', '#9DFF02', '#0CCDD6'],
+        colors: [{
+              linearGradient: perShapeGradient,
+              stops: [
+                  [0, '#d7348c'],
+                  [1, '#e32666']
+                  ]
+              }, {
+              linearGradient: perShapeGradient,
+              stops: [
+                  [0, '#00c6ff'],
+                  [1, '#0072ff'],
+                  ]
+              }, {
+              linearGradient: perShapeGradient,
+              stops: [
+                  [0, '#88db05'],
+                  [1, '#70b405']
+                  ]},
+          ],
+        title: {
+            style: {
+                color: '#444'
+            }
+        },
+        tooltip: {
+            style: {
+                color: '#444'
+            }
+        }
+    });
+}
+
+
+Highcharts.chart('activity_points', {
+  exporting: {
+
+      enabled: false,
+    },
+
+    chart: {
+        type: 'solidgauge',
+        marginRight: 0,
+        backgroundColor:'transparent',
+        style: {
+          fontFamily: 'Poppins',
+        }
+    },
+
+    title: {
+      text: ""
+    },
+    legend: {
+      labelFormatter: function() {
+        return '<span style="text-weight:bold; color: {point.color}">' + this.name + '</span>';
+      },
+      symbolWidth: 0
+    },
+    tooltip: {
+        borderWidth: 0,
+        backgroundColor: 'none',
+        shadow: false,
+        style: {
+            fontSize: '8px',
+            color: '#fff'
+        },
+        pointFormat: '{series.name}<br><span style="font-size:2.9em; color: #fff; font-weight: 700;">{point.y}%</span>',
+        positioner: function (labelWidth) {
+            return {
+              x: 75,
+              y: 70,
+            };
+        }
+    },
+
+    pane: {
+        startAngle: 0,
+        endAngle: 360,
+        background: [{ // Track for Move
+            outerRadius: '112%',
+            innerRadius: '88%',
+            backgroundColor: Highcharts.Color('#F62366')
+                .setOpacity(0.3)
+                .get(),
+            borderWidth: 0
+        }, { // Track for Exercise
+            outerRadius: '87%',
+            innerRadius: '63%',
+            backgroundColor: Highcharts.Color('#00b1ff')
+                .setOpacity(0.3)
+                .get(),
+            borderWidth: 0
+        },
+        /*
+        { // Track for Stand
+                outerRadius: '62%',
+                innerRadius: '38%',
+                backgroundColor: Highcharts.Color('#88db05')
+                .setOpacity(0.3)
+                .get(),
+                borderWidth: 0
+            }
+        */
+          ]
+    },
+
+    yAxis: {
+        min: 0,
+        max: 100,
+        lineWidth: 0,
+        tickPositions: []
+    },
+    credits: {
+      enabled: false,
+    },
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                enabled: false
+            },
+            linecap: 'round',
+            stickyTracking: false,
+            rounded: true
+        }
+    },
+
+    series: [{
+        name: 'Gym Coverage',
+        data: [{
+            color: Highcharts.getOptions().colors[0],
+            radius: '112%',
+            innerRadius: '88%',
+            y: Math.round(<%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check)).select(:route_id).uniq.count %> / <%= Route.where(facility: @userfacilities_check).current.count %> * 100),
+        }],
+        showInLegend:false
+    }, {
+        name: '<%= Tick.current.hardest_send(@user).grade %> Coverage',
+        data: [{
+            color: Highcharts.getOptions().colors[1],
+            radius: '87%',
+            innerRadius: '63%',
+            y: Math.round(<%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count %> / <%= Route.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count %> * 100),
+        }],
+        showInLegend:false
+    },
+/*
+    {
+        name: 'Stand',
+        data: [{
+            color: Highcharts.getOptions().colors[2],
+            radius: '62%',
+            innerRadius: '38%',
+            y: Math.round(<%= @ticks.where(user: @user, tick_type: 'flash', grade: Tick.current.hardest_send(@user).id ).length.to_f / @ticks.where(grade: Tick.current.hardest_send(@user).id).length.to_f %> * 100),
+        }],
+        showInLegend:false
+      }
+*/
+    ]
+  },
+
+  /**
+   * In the chart load callback, add icons on top of the circular shapes
+   */
+  function callback() {
+
+      // Show tooltip
+      this.series[1].points[0].highlight();
+
+});
+</script>

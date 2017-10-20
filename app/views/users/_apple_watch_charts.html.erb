@@ -1,0 +1,66 @@
+<script>
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+</script>
+<div class="container-fluid no-margin activity-stats">
+  <% if Tick.current.where(user: @user).count > 0 %>
+      <div class='col-sm-3 col-xs-5'>
+        <br>
+        <span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="How many routes in your gym have you sent?">
+        <p>Gym Coverage</p>
+        <h5><%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check)).select(:route_id).uniq.count %> out of <%= Route.where(facility: @userfacilities_check).current.count %> active routes </h5>
+        <h4 style="color: #e32666;">
+          <%= number_to_percentage(@user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check)).select(:route_id).uniq.count.to_f / Route.where(facility: @userfacilities_check).current.count.to_f * 100, precision: 0) %> </h4>
+
+        </span>
+        <span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="You sent your hardest grade yet.  Now we'll track how many you're sending.">
+          <p><%= Tick.current.hardest_send(@user).grade %> Coverage</p>
+          <h5><%= @user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count %> out of <%= Route.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count %> active <%= Tick.current.hardest_send(@user).grade %>s </h5>
+          <h4 style="color: #00b1ff;"><%= number_to_percentage(@user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count.to_f / Route.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count.to_f * 100, precision: 0) %> </h4>
+        </span>
+      </div>
+      <div class='col-sm-3 col-xs-6'>
+      <%= render 'users/activity_points' %>
+      </div>
+
+  <% else %>
+      <div class='col-sm-3 col-xs-6'>
+        <br>
+        <span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="How many routes in your gym have you sent?">
+        <p>Gym Coverage</p>
+        <h4 style="color: #e32666;">
+          <%= number_to_percentage(@user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check)).select(:route_id).uniq.count.to_f / Route.where(facility: @userfacilities_check).current.count.to_f * 100, precision: 0) %> </h4>
+        </span>
+        <span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="You sent your hardest grade yet.  Now we'll track how many you're sending.">
+          <p>Grade Coverage</p>
+          <h4 style="color: #00b1ff;"><%= number_to_percentage(0, precision: 0) %> </h4>
+        </span>
+        <br>
+        <h5>Based on current inventory of routes in your facilities</h5>
+      </div>
+      <div class='col-sm-3 col-xs-6 padding-right-10'>
+      <%= render 'users/activity_points_zero' %>
+      </div>
+  <% end %>
+  <div class='col-sm-3 col-xs-6'>
+  <%= render 'users/flash_rates' %>
+  </div>
+  <div class='col-sm-3 col-xs-6 right-align'>
+    <br>
+    <p>Overall Send Rate</p>
+    <h5> <%= @ticks.total_send_overall_count(@user, "project").count %> sends vs. <%= @ticks.count %> attempts </h5>
+    <h4 style="color: #96c93d;">
+      <%= number_to_percentage(@ticks.total_send_overall_count(@user, "project").length.to_f / @ticks.length.to_f*100, precision: 0) %>
+    </h4>
+    <p>Overall Flash Rate</p>
+    <h5><%= @ticks.send_type_any_count(@user, "flash") %> flashes vs. <%= @ticks.count %> attempts</h5>
+    <h4 style="color: #dcf6b4;">
+      <%= number_to_percentage(@ticks.send_type_any_count(@user, "flash").to_f / @ticks.count.to_f*100, precision: 0) %>
+    </h4>
+    <br>
+    <h5>Based on your current month's ticks</h5>
+
+  </div>
+
+</div>

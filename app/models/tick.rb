@@ -102,6 +102,10 @@ class Tick < ApplicationRecord
     where.not(tick_type: 'project')
   end
 
+  def self.current
+    where('extract(month from date) = ?', Date.current.strftime("%m"))
+  end
+
   def start_date(user)
     self.where(user_id: user.id).first.created_at
   end
@@ -112,6 +116,11 @@ class Tick < ApplicationRecord
 
   def self.send_overall_count(route, user, project)
     self.where(route_id: route.id, user_id: user.id ).where.not(tick_type: project).length
+  end
+
+  #counts number of ticks for route list buttons for any date and any route
+  def self.send_type_any_count(user, tick_type)
+    self.where(user: user, tick_type: tick_type).length
   end
 
   #counts number of ticks for route list buttons for today's date
