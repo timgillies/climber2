@@ -212,12 +212,12 @@
       series: [{
           type: 'column',
           name: 'Sends',
-          data: <%= raw ticks.joins(:grade).order('grades.id ASC').pluck('grades.grade').uniq.map {|fs| [Grade.where(grade: fs).first.grade, ticks.joins(:grade).where("grades.grade = ? AND ticks.user_id = ?", fs, @user.id).count, "https://www.climbconnect.com/users/#{@user.id}/ticks"] } %>,
+          data: <%= raw ticks.joins(:grade).order('grades.id ASC').pluck('grades.grade').uniq.map {|fs| [Grade.where(grade: fs).first.grade, ticks.joins(:grade).where("grades.grade = ? AND ticks.user_id = ?", fs, @user.id).count, "/users/#{@user.id}/ticks"] } %>,
           pointPlacement: 0
       },{
           type: 'column',
           name: 'Attempts',
-          data: <%= raw attempts.joins(:grade).order('grades.id ASC').pluck('grades.grade').uniq.map {|fs| [Grade.where(grade: fs).first.grade, attempts.joins(:grade).where("grades.grade = ? AND ticks.user_id = ?", fs, @user.id).count, "https://www.climbconnect.com/users/#{@user.id}/ticks"] } %>,
+          data: <%= raw attempts.joins(:grade).order('grades.id ASC').pluck('grades.grade').uniq.map {|fs| [Grade.where(grade: fs).first.grade, attempts.joins(:grade).where("grades.grade = ? AND ticks.user_id = ?", fs, @user.id).count, "/users/#{@user.id}/ticks"] } %>,
           pointPlacement: 0
       }]
     });
