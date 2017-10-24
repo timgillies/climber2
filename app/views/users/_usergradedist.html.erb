@@ -135,6 +135,29 @@
            color: 'white',
          },
       },
+      tooltip: {
+          borderWidth: 0,
+          backgroundColor: '#222',
+          shadow: false,
+          style: {
+              fontSize: '8px',
+              color: '#fff'
+          },
+          pointFormat: '{series.name}<br><span style="font-size:2.9em; color: #fff; font-weight: 700;">{point.y}</span>',
+
+         formatter: function() {
+             var s = [];
+
+             $.each(this.points, function(i, point) {
+                 s.push(point.series.name + '<br>' + '<span style="font-size:2.9em; color: #fff; font-weight: 700;">' +
+                     point.y +'<span>');
+             });
+
+             return s.join('<br>');
+         },
+         shared: true
+
+      },
       plotOptions: {
         column: {
           borderColor: 'transparent',
