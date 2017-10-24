@@ -1579,6 +1579,7 @@ select {
       position: relative;
       display: block;
       color: #888;
+      font-weight: 300;
     }
   }
 
@@ -3584,6 +3585,9 @@ input[type="checkbox"] {
     color: #fff;
     font-size: 0.8em;
     margin-bottom: 2px
+  }
+  h1 {
+    font-weight: 700;
   }
   h4 {
     margin-top: 0px;

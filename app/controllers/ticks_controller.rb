@@ -156,10 +156,17 @@ class TicksController < ApplicationController
   end
 
   def destroy
-    Tick.find(params[:id]).destroy
-    flash[:success] = "Tick deleted"
-    redirect_to :back
+    @ticks = current_user.ticks.where('ticks.date > ?', 7.days.ago.to_date)
+    @user = User.find(params[:user_id])
+    @tick = Tick.find(params[:id])
+    if @tick.delete
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    end
   end
+
 
 
 

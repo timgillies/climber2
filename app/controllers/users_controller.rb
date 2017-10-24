@@ -51,6 +51,7 @@ class UsersController < ApplicationController
     @facility_roles = FacilityRole.where(user_id: @user, confirmed: true).page(params[:page])
     @tick_dates = Tick.where(user_id: @user.id).map { |tick| tick.date }.uniq
     @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
+    @attempts = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
     @annualticks = Tick.where(user_id: @user)
     @userfacilities_check = @user.facility_relationships.all
 
@@ -127,7 +128,8 @@ class UsersController < ApplicationController
 
     # combines new ticks and new routes, newest first
     @news_feed.sort! { |a, b| b.created_at <=> a.created_at }
-    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
+    @ticks = Tick.ascent.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
+    @attempts = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
     @annualticks = Tick.where(user_id: @user)
     @admin_facility_roles = FacilityRole.where(user_id: @user).where.not(name: 'climber').page(params[:page])
 
@@ -190,6 +192,7 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m")).where(user_id: @user)
+    @ticks = Tick.where('extract(month from date) = ?', Date.current.strftime("%m"))
     @filterrific = initialize_filterrific(
         User,
         params[:filterrific],

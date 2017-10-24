@@ -9,7 +9,7 @@
 
     }  do %>
 
-    <% unless Tick.send_type_count(f, current_user, "redpoint") > 0 %>
+    <% unless Tick.send_type_count_current(f, current_user, "redpoint") > 0 %>
       <div class="tick-circle">
     <% else %>
       <div class="tick-circle-fill">
@@ -27,7 +27,7 @@
 
     }  do %>
 
-    <% unless Tick.send_type_count(f, current_user, "redpoint") > 0 %>
+    <% unless Tick.send_type_count_current(f, current_user, "redpoint") > 0 %>
       <div class="tick-circle">
     <% else %>
       <div class="tick-circle-fill">

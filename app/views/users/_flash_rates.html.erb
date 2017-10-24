@@ -152,7 +152,7 @@ Highcharts.chart('container', {
             color: Highcharts.getOptions().colors[0],
             radius: '112%',
             innerRadius: '88%',
-            y: Math.round(<%= @ticks.total_send_overall_count(@user, "project").length.to_f / @ticks.length.to_f %> * 100),
+            y: Math.round(<%= @ticks.total_send_overall_count(@user, "project").length.to_f / @attempts.length.to_f %> * 100),
 
 
         }],
@@ -163,7 +163,7 @@ Highcharts.chart('container', {
             color: Highcharts.getOptions().colors[1],
             radius: '87%',
             innerRadius: '63%',
-            y: Math.round(<%= @ticks.send_type_any_count(@user, "flash").to_f / @ticks.length.to_f %> * 100),
+            y: Math.round(<%= @ticks.send_type_any_count(@user, "flash").to_f / @attempts.length.to_f %> * 100),
         }],
         showInLegend:false
     }]

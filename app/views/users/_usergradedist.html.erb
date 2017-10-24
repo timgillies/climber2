@@ -1,4 +1,4 @@
-<div id="home_user_ticks1">
+<div id="user_grades">
 <script type="text/javascript" charset="utf-8">
   $(function() {
     var perShapeGradient = {
@@ -14,7 +14,6 @@
 
           // scale: 2 (default),
           enabled: false,
-          filename: "new_routes",
 
           buttons: {
                 contextButton: {
@@ -47,7 +46,6 @@
                     }
                 },
                 subtitle: {
-                    text:  "New Routes"
                 },
             }
 
@@ -73,33 +71,34 @@
           }
       },
       chart: {
+        renderTo: "usergradedist-1<%= @user.id %>",
         backgroundColor:'transparent',
-        renderTo: "home_user_ticks",
         spacingBottom: 35,
         type: "column",
         style: {
-          fontFamily: 'Montserrat',
+          fontFamily: 'Poppins',
         }
       },
       title: {
         text: ""
       },
       xAxis: {
-        type: "datetime",
-        minTickInterval: 24 * 3600 * 1000 * 30,
+        type: 'category',
         labels: {
-          format: '{value: %b}',
+          enabled: true,
+          rotation: 0,
           style: {
-            color: '#444'
-          },
-          step: 1,
+            color: '#888'
+          }
         },
         tickLength: 0,
+        minorGridLineWidth: 0,
         minorTickLength: 0,
+        lineColor: '#888',
       },
-      yAxis: [{  // Primary yAxis
+      yAxis: {
         title: {
-          text: "Weekly"
+          text: ""
         },
         labels: {
           enabled: false
@@ -111,22 +110,7 @@
         minorTickLength: 0,
         lineColor: 'transparent',
         allowDecimals: false
-      },{ // Secondary yAxis
-        title: {
-          text: "",
-        },
-        labels: {
-          enabled: false
-        },
-        tickLength: 0,
-        lineWidth: 0,
-        minorGridLineWidth: 0,
-        gridLineColor: 'transparent',
-        minorTickLength: 0,
-        lineColor: 'transparent',
-        allowDecimals: false,
-        opposite: true,
-      }],
+      },
       credits: {
         enabled: false,
         style: {
@@ -140,40 +124,37 @@
           y: -8,
         }
       },
-      tooltip: {
-        enabled: true,
-      },
       legend: {
         enabled: true,
         layout: 'horizontal',
         align: 'center',
-
         verticalAlign: 'bottom',
         y: 30,
         floating: true,
-        color: "#ffffff",
-      },
-      setOptions: {
-        global : {
-            useUTC : false
-        }
+        itemStyle: {
+           color: 'white',
+         },
       },
       plotOptions: {
-        areaspline: {
-          marker: {
-              enabled: false
-          }
-        },
         column: {
           borderColor: 'transparent',
-          grouping: true,
+          grouping: false,
+          cursor: 'pointer',
+                point: {
+                    events: {
+                        click: function () {
+                            location.href = this.series.options.data[this.category][2] ;
+                        }
+                    }
+                },
           dataLabels: {
             enabled: false,
             style: {
               textOutline: false,
-              color: '#444',
-              fontFamily: 'Source Sans Pro',
-              fontWeight: 'normal'
+              color: '#888',
+              fontSize: "12px",
+              fontFamily: 'Poppins',
+              fontWeight: '400'
             },
             formatter: function() {
                 if (this.y != 0) {
@@ -188,47 +169,36 @@
       colors: [{
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgba(0, 177, 255, 0.2)'],
-                [1, 'rgba(0, 177, 255, 0.5)']
+                [0, '#d7348c'],
+                [1, '#e32666']
                 ]
             }, {
             linearGradient: perShapeGradient,
             stops: [
-                [0, '#57d79a'],
-                [1, '#5ccb6c']
-                ]
+              [0, 'rgba(215, 52, 140, 0.3)'],
+              [1, 'rgba(227, 38, 102, 0.3)']
+              ]
             }, {
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgb(136, 219, 5)'],
-                [1, 'rgb(112, 180, 5)']
-                ]},
+              [0, 'rgb(0, 177, 255)'],
+              [1, 'rgb(0, 177, 255)']
+              ]},
         ],
 
-      series: [
-        {
-          name: "Try Hard",
-          type: "areaspline",
-          pointInterval: 24 * 3600 * 1000 * 7,
-          pointStart: <%= (26.weeks.ago.beginning_of_week.to_i * 1000) %>,
-          data: <% if @annualticks.present? %>
-
-          <%= [user_ticks_value_chart_series( @annualticks, 26.weeks.ago ), user_projects_value_chart_series( @annualticks, 26.weeks.ago )].transpose.map {|x| x.sum} %>
-
-           <% end %>
-        },
-        {
-          name: "Ticks",
-          yAxis: 1,
-          pointInterval: 24 * 3600 * 1000 * 7,
-          pointStart: <%= (26.weeks.ago.beginning_of_week.to_i * 1000) %>,
-          data: <% if @annualticks.present? %><%= user_ticks_chart_series( @annualticks, 26.weeks.ago ) %> <% end %>
-        },
-
-        ]
+      series: [{
+          type: 'column',
+          name: 'Sends',
+          data: <%= raw ticks.joins(:grade).order('grades.id ASC').pluck('grades.grade').uniq.map {|fs| [Grade.where(grade: fs).first.grade, ticks.joins(:grade).where("grades.grade = ? AND ticks.user_id = ?", fs, @user.id).count, "https://www.climbconnect.com/users/#{@user.id}/ticks"] } %>,
+          pointPlacement: 0
+      },{
+          type: 'column',
+          name: 'Attempts',
+          data: <%= raw attempts.joins(:grade).order('grades.id ASC').pluck('grades.grade').uniq.map {|fs| [Grade.where(grade: fs).first.grade, attempts.joins(:grade).where("grades.grade = ? AND ticks.user_id = ?", fs, @user.id).count, "https://www.climbconnect.com/users/#{@user.id}/ticks"] } %>,
+          pointPlacement: 0
+      }]
     });
   });
 </script>
-<div id="home_user_ticks" style="width:100%; height: 150px;"></div>
-
+<div id="usergradedist-1<%= @user.id %>" style="width:100%; height: 150px;"></div>
 </div>

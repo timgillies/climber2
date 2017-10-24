@@ -1,24 +1,23 @@
 
-
+<br>
 <br>
 <div id="tick_list">
   <div class='col-sm-12'>
     <div class="row">
         <div class="routelist">
-        <h2><%= page_entries_info @ticks  %>
-        </h2>
+
       </div>
       </div>
 
     </div>
-
+    <br>
 
     <div class="date-list">
 
 
             <div class="row">
               <div class='col-sm-12'>
-              <% @ticks.includes(:route, :grade, :user).order('created_at desc').each do |f| %>
+              <% ticks.includes(:route, :grade, :user).order('created_at desc').each do |f| %>
               <ol class="routelist ticklist">
 
                 <% if f.route_id? %>
@@ -57,8 +56,8 @@
 
                         <span class="pull-right">
 
-                          <h3 class="pull-right"><%= link_to user_tick_path(current_user, f), data: {:confirm => 'Are you sure? This cannot be undone.'},
-                                      :method => :delete do %>
+                          <h3 class="pull-right"><%= link_to user_tick_path(current_user, f),
+                                      :method => :delete, remote: true  do %>
                                       <i class="glyphicon glyphicon-trash"></i>
                                       <%end %>
                           </h3>

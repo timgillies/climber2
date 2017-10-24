@@ -16,10 +16,21 @@ module TicksHelper
 
   def tick_date_filters
     [
-      ['1 week', 6.days.ago.beginning_of_day.to_date],
-      ['1 month', 1.month.ago.to_date],
-      ['6 months', 6.months.ago.to_date],
-      ['1 year', 1.year.ago.to_date],
+      [1.year.ago.beginning_of_month.to_date.strftime('%b %Y'), 1.year.ago],
+      [11.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 11.months.ago],
+      [10.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 10.months.ago],
+      [9.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 9.months.ago],
+      [8.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 8.months.ago],
+      [7.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 7.months.ago],
+      [6.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 6.months.ago],
+      [5.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 5.months.ago],
+      [4.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 4.months.ago],
+      [3.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 3.months.ago],
+      [2.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 2.months.ago],
+      [1.month.ago.beginning_of_month.to_date.strftime('%b %Y'), 1.month.ago],
+      [0.months.ago.beginning_of_month.to_date.strftime('%b %Y'), 0.months.ago],
+
+
     ]
   end
 

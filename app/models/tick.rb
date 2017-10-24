@@ -34,7 +34,7 @@ class Tick < ApplicationRecord
   }
 
   filterrific(
-    default_filter_params: { with_date_gte: 6.days.ago.beginning_of_day.to_date },
+    default_filter_params: { with_date_gte: 0.months.ago },
     available_filters: [
       :search_query,
       :with_date_gte,
@@ -70,7 +70,7 @@ class Tick < ApplicationRecord
 
       # always include the lower boundary for semi open intervals
     scope :with_date_gte, lambda { |reference_time|
-      where('ticks.date >= ?', reference_time)
+      where('ticks.date >= ? AND ticks.date <= ?', reference_time.to_date.beginning_of_month.to_date, reference_time.to_date.end_of_month.to_date)
     }
 
     scope :with_date_lt, lambda { |reference_time|
@@ -125,6 +125,10 @@ class Tick < ApplicationRecord
 
   #counts number of ticks for route list buttons for today's date
   def self.send_type_count(route, user, tick_type)
+    self.where(route_id: route.id, user_id: user.id, tick_type: tick_type).length
+  end
+
+  def self.send_type_count_current(route, user, tick_type)
     self.where(route_id: route.id, user_id: user.id, tick_type: tick_type, date: Date.current).length
   end
 

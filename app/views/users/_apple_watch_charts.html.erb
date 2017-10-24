@@ -4,6 +4,7 @@
       })
 </script>
 <div class="container-fluid no-margin activity-stats">
+  <h1><%= Date.current.strftime("%B %Y") %></h1>
   <% if Tick.current.where(user: @user).count > 0 %>
       <div class='col-sm-3 col-xs-5'>
         <br>
@@ -49,9 +50,9 @@
   <div class='col-sm-3 col-xs-6 right-align'>
     <br>
     <p>Overall Send Rate</p>
-    <h5> <%= @ticks.total_send_overall_count(@user, "project").count %> sends vs. <%= @ticks.count %> attempts </h5>
+    <h5> <%= @ticks.total_send_overall_count(@user, "project").count %> sends vs. <%= @attempts.count %> attempts </h5>
     <h4 style="color: #96c93d;">
-      <%= number_to_percentage(@ticks.total_send_overall_count(@user, "project").length.to_f / @ticks.length.to_f*100, precision: 0) %>
+      <%= number_to_percentage(@ticks.total_send_overall_count(@user, "project").length.to_f / @attempts.length.to_f * 100, precision: 0) %>
     </h4>
     <p>Overall Flash Rate</p>
     <h5><%= @ticks.send_type_any_count(@user, "flash") %> flashes vs. <%= @ticks.count %> attempts</h5>
@@ -62,9 +63,17 @@
     <h5>Based on your current month's ticks</h5>
 
   </div>
-  <div class='col-sm-12 col-xs-12'>
+  <div class='col-sm-6 col-xs-12'>
     <div class="row">
       <%= render 'users/home_user_tryhard' %>
+    </div>
+  </div>
+  <div class='col-sm-6 col-xs-12'>
+    <div class="row">
+      <%= render(
+      partial: 'users/usergradedist',
+      locals: { ticks: @ticks, attempts: @attempts }
+      ) %>
     </div>
   </div>
 
