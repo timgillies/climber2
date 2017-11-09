@@ -17,6 +17,8 @@
 //= require parsley
 //= require toastr
 //= require jquery.infinite-pages
+//= require velocity/velocity
+//= require velocity/velocity2
 
 
 /*global toastr*/
