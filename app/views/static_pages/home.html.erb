@@ -1,33 +1,38 @@
-<script>
-$('.navbar').css('background-color', 'transparent');
-$(document).on('ready turbolinks:load', function(){
-   var scroll_start = 0;
-   var startchange = $('#startchange');
-   var offset = startchange.offset();
-    if (startchange.length){
-   $(document).scroll(function() {
-      scroll_start = $(this).scrollTop();
-      if(scroll_start > offset.top) {
-          $(".navbar").css('background-color', 'rgba(0,0,0,.8)');
-       } else {
-          $('.navbar').css('background-color', 'transparent');
-       }
-   });
-    }
-});
 
-$('#hamburger').click(function() {
-    $('.navbar').css({
-        'background-color': 'rgba(0,0,0,.8)',
-    });
-});
-</script>
 
 <meta name="description" content="Track your indoor climbing today, with Climb Connect!" />
 <meta name="keywords" content="routesetting, route setting, climbing, gym climb tracker, gym management" />
 
+<div class="no-margin">
+  <script>
+  $(document).on('ready turbolinks:load', function(){
+     var scroll_start = 0;
+     var startchange = $('#startchange');
+     var homePage = $('#homePage');
+     var offset = startchange.offset();
+       if(homePage) {
+         $('.navbar2').css('background', 'transparent');
+      }
+      if (startchange.length){
+     $(document).scroll(function() {
+        scroll_start = $(this).scrollTop();
+        if(homePage && scroll_start > offset.top) {
+            $(".navbar2").css('background', 'rgba(0,0,0,.8)');
+         } else {
+            $('.navbar2').css('background', 'transparent');
+         }
+     });
+      }
+  });
 
+  $('#hamburger').click(function() {
+      $('.navbar2').css({
+          'background': 'rgba(0,0,0,.8)',
+      });
+  });
+  </script>
 <div class="home-body">
+  <div id="homePage"></div>
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="50000">
 
 
@@ -35,17 +40,22 @@ $('#hamburger').click(function() {
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <div class="hidden-xs">
-      <%= image_tag("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/homepage-chalkbag-logo.jpg", alt: "hello", class: "img-responsive") %>
+      <%= image_tag("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/homepage-chalkbag-logo.jpg", alt: "climb connect home background", class: "img-responsive") %>
       </div>
       <div class="hidden-sm hidden-md hidden-lg">
-      <%= image_tag("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc_chalkbag.jpg", alt: "hello", class: "img-responsive") %>
+      <%= image_tag("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/cc_chalkbag.jpg", alt: "climb connect home background", class: "img-responsive") %>
       </div>
       <div class="carousel-caption">
 
         <% unless user_signed_in? %>
 
-        <%= link_to "Join", new_user_registration_path, class: "btn btn-join btn-lg", data: { turbolinks: false } %>
-        <%= link_to "Sign in", new_user_session_path, class: "btn btn-signin btn-lg", data: { turbolinks: false }%>
+        <% if not mobile_app_request? %>
+          <%= link_to "Join", new_user_registration_path, class: "btn btn-join btn-lg", data: { turbolinks: false } %>
+          <%= link_to "Sign in", new_user_session_path, class: "btn btn-signin btn-lg", data: { turbolinks: false }%>
+        <% else %>
+          <%= link_to "Join", new_user_registration_path, class: "btn btn-join btn-lg", data: { turbolinks: true } %>
+          <%= link_to "Sign in", new_user_session_path, class: "btn btn-signin btn-lg", data: { turbolinks: true }%>
+        <% end %>
 
         <% end %>
 
@@ -257,5 +267,6 @@ $('#hamburger').click(function() {
     <%= image_tag("https://s3-us-west-2.amazonaws.com/climbconnect-assets/backgrounds/Asset+19.png" ,width: '100%', height: '100%') %>
   </div>
 
+</div>
 </div>
 </div>

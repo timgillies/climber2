@@ -11,7 +11,7 @@
     <span class="hidden-xs">
     <%= link_to user_ticks_path(@user) do %>
       <div class="circle-wrapper">
-        <div class="large-circle large-circle-gray responsive"><%= @ticks.length %><span class="text"><%= "attempt".pluralize(@ticks.length) %></span></div>
+        <div class="large-circle large-circle-gray responsive"><%= @attempts.length %><span class="text"><%= "attempt".pluralize(@ticks.length) %></span></div>
       </div>
     <% end %>
   </span>
@@ -20,7 +20,7 @@
       <div class="circle-wrapper">
         <div class="large-circle large-circle-gray responsive">
           <% if @ticks.present? %>
-            <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").length.to_f)/(@ticks.length.to_f)*100), precision: 0) %>
+            <%= number_to_percentage(((@ticks.total_send_overall_count(@user, "project").length.to_f)/(@attempts.length.to_f)*100), precision: 0) %>
           <% else %>
               0
           <% end %>

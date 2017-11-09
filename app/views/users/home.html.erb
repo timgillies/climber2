@@ -1,6 +1,7 @@
 <% provide(:title, "Home") %>
 
 
+
 <div class="row">
   <%= render 'users/user_stats2' %>
 </div>
@@ -20,9 +21,9 @@
           <% end %>
 
 
-      <div class="col-sm-12">
-        <div class="row">
-          <div class="top-10 home-stats no-margin">
+      <div class="no-margin">
+        <div class="">
+          <div class="top-10 home-stats">
             <br>
             <%= render 'users/user_stats_partial', object: @users %>
           </div>

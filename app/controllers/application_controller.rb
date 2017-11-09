@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  helper_method :mobile_app_request?
 
   before_action :set_facilities
   before_action :set_facility_role_access
@@ -12,6 +13,14 @@ class ApplicationController < ActionController::Base
 
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  def mobile_app_request?
+    if session[:mobile_param]
+      session[:mobile_param] == "1"
+    else
+      request.user_agent =~ /Mobile|webOS/
+    end
+  end
 
   private
 

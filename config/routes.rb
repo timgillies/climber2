@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     member do
       post :follow #output path - user/:id/follow
       post :unfollow #output path - user/:id/unfollow
+      get :phone #output path - user/:id/phone
     end
 
     resources :ticks do

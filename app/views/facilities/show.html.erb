@@ -1,14 +1,12 @@
 <% provide(:title, @facility.name + " home") %>
 
-<div class="container-fluid no-margin">
-      <div class="row">
 
 
-        <div class="col-sm-12">
-          <div class="row">
-            <%= render 'facilities/facility_stats2', object: @facility %>
-          </div>
-        </div>
+
+
+    <div class="row">
+      <%= render 'facilities/facility_stats2', object: @facility %>
+    </div>
 
         <% if @facility.zones.count > 1 %>
         <div class="col-sm-12 bg-dark-gray">
@@ -17,8 +15,8 @@
         </div>
         <% end %>
 
-      </div>
-    </div>
+
+
 
 
     <div class="container-fluid no-margin">

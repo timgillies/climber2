@@ -1,0 +1,154 @@
+
+
+
+<span class="navbar2">
+  <span class="logo-left"><%= link_to (image_tag 'https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/cc-white-horizontal.svg'), root_path, class: "logo-left" %></span>
+</span>
+<div class="hamb"><i class="fa fa-bars"></i>
+  <span id="startchange"></span>
+</div>
+<% if user_signed_in? %>
+<span>
+    <%= link_to home_user_path(current_user) do %>
+    <% if current_user.avatar? %>
+      <%= image_tag current_user.avatar.url(:thumb), class: "img-profile-icon" %>
+    <% elsif current_user.image? %>
+      <%= image_tag current_user.image ,:class=> "img-profile-icon" %>
+    <% else %>
+      <%= image_tag current_user.avatar.url(:thumb), class: "img-profile-icon" %>
+    <% end %>
+    <% end %>
+</span>
+<% end %>
+
+
+<nav class="nav" role='navigation'>
+  <div class="left">
+    <br>
+    <span class="logo-center"><%= link_to (image_tag 'https://s3-us-west-2.amazonaws.com/climbconnect-assets/logos/cc-white-horizontal.svg'), root_path, class: "logo-center" %></span>
+    <p>Start Climbing Smart</p>
+    <small>#climbsmart <span class="by-travis">#setsmart</small>
+  </div>
+  <div class="right">
+    <ul class="right-inner">
+      <li><%= link_to 'Home', root_path %></a></li>
+      <li><%= link_to 'Facilities', facilities_path %></li>
+      <li><hr /></li>
+
+      <% if user_signed_in? %>
+      <%= link_to inbox_user_path(current_user) do  %>
+      <li><%= " inbox (" + FacilityRole.where("email = ?", current_user.email ).unconfirmed.count.to_s + ")" %></li>
+      <% end %>
+      <li><%= link_to "Account", edit_user_path(current_user) %></li>
+
+      <% else %>
+      <li><%= link_to 'Log In', new_user_session_path %></li>
+      <li><%= link_to 'Create Account', new_user_registration_path %></li>
+
+      <% end %>
+
+      <% if user_signed_in? %>
+      <li>
+        <%= link_to 'Log Out', destroy_user_session_path , method: :delete %>
+      </li>
+      <% end %>
+
+      <li><hr /></li>
+      <li class="social">
+        <a href="http://www.facebook.com/climbconnect"><i class="fa fa-facebook-square"></i></a>
+        <a href="http://www.instagram.com/climbconnect"><i class="fa fa-instagram"></i></a>
+        <a href="mailto:tim@climbconnect.com" target="_blank"><i class="fa fa-envelope"></i>
+      </li>
+      <li><hr /></li>
+      <li class="nav-foot">
+        <%= link_to 'About' %>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+
+var menuOpen = [
+  { elements: $('.nav'),
+    properties: {
+      height: ['100%', 0],
+      width: ['100%', 0],
+      minHeight: '40rem'
+    },
+    options: {
+      duration: 200
+    }
+  },
+  { elements: $('nav').find('h1, p, small'),
+    properties: {
+      opacity: 1
+    },
+    options: {
+      duration: 200,
+      delay: 100,
+      sequenceQueue: false
+    }
+  },
+  { elements: $('.right-inner'),
+    properties: {
+      width: '100%'
+    },
+    options: {
+      duration: 250,
+      complete: function(){
+        $('.right-inner')
+          .find('li').each(function(i){
+            $(this).velocity({ opacity: 1}, { delay: i * 50 });
+          })
+
+        $('.social').find('i').each(function(i){
+          $(this).velocity('transition.bounceUpIn', { delay: i * 75 });
+        })
+      }
+    }
+  }
+];
+
+$('.hamb').on('click', function(){
+
+  if ($(this).hasClass('open')) {
+
+    $(this)
+      .removeClass('open')
+      .find('i')
+        .addClass('fa-bars')
+        .removeClass('fa-times');
+
+    $('nav').velocity({
+      height: 0,
+      width: 0,
+      minHeight: 0
+    }, {
+      duration: 250,
+      begin: function(){
+        $('nav').find('h1, p, small').css({
+          opacity: 0
+        })
+        $('.right-inner').find('li, .social i').css({
+          opacity: 0
+        });
+      },
+      complete: function(){
+        $('.right-inner').css({
+          width: 0
+        });
+      }
+    });
+
+  } else {
+    $(this)
+      .addClass('open')
+      .find('i')
+        .addClass('fa-times')
+        .removeClass('fa-bars');
+
+    $.Velocity.RunSequence(menuOpen)
+  }
+});
+</script>

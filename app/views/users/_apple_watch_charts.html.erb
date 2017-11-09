@@ -3,7 +3,7 @@
         $('[data-toggle="popover"]').popover()
       })
 </script>
-<div class="container-fluid no-margin activity-stats">
+<div class="container-fluid activity-stats no-margin">
   <h1><%= Date.current.strftime("%B %Y") %></h1>
   <% if Tick.current.where(user: @user).count > 0 %>
       <div class='col-sm-3 col-xs-5'>
@@ -21,12 +21,12 @@
           <h4 style="color: #00b1ff;"><%= number_to_percentage(@user.ticks.ascent.where(route: Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id)).select(:route_id).uniq.count.to_f / Route.current.where(facility: @userfacilities_check, grade: Tick.current.hardest_send(@user).id).count.to_f * 100, precision: 0) %> </h4>
         </span>
       </div>
-      <div class='col-sm-3 col-xs-6'>
+      <div class='col-sm-3 col-xs-7'>
       <%= render 'users/activity_points' %>
       </div>
 
   <% else %>
-      <div class='col-sm-3 col-xs-6'>
+      <div class='col-sm-3 col-xs-5'>
         <br>
         <span data-container="body" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="How many routes in your gym have you sent?">
         <p>Gym Coverage</p>
@@ -40,7 +40,7 @@
         <br>
         <h5>Based on current inventory of routes in your facilities</h5>
       </div>
-      <div class='col-sm-3 col-xs-6 padding-right-10'>
+      <div class='col-sm-3 col-xs-7'>
       <%= render 'users/activity_points_zero' %>
       </div>
   <% end %>

@@ -24,12 +24,16 @@
 
     </script>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag "http://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js" %>
+    <%= javascript_include_tag "http://cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.ui.min.js" %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
+    <% if not mobile_app_request? %>
 
+    <% end %>
+    <%= render 'layouts/header2' %>
     <% if user_signed_in? %>
       <% if (user_signed_in?) && (params[:controller] == 'competitions') && (['index','new','create'].exclude?(params[:action])) %>
         <%= render 'layouts/admincompheader' %>

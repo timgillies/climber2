@@ -270,6 +270,10 @@ class UsersController < ApplicationController
     @competition = Competition.new
   end
 
+  def phone
+    @user = User.find(params[:id])
+  end
+
 
 
 
